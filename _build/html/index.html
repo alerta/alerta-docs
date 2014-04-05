@@ -45,43 +45,37 @@
 <h1>Alerta : Monitoring Tool<a class="headerlink" href="#alerta-monitoring-tool" title="Permalink to this headline">¶</a></h1>
 <p>Alerta accepts alerts from any monitoring system, correlates and deduplicates them, and then presents them via a web console.</p>
 <p>Alert format:</p>
-<div class="highlight-python"><div class="highlight"><pre>{
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;unknown&quot;</span><span class="p">,</span>
+    <span class="s">&quot;origin&quot;</span><span class="p">:</span> <span class="s">&quot;alert/macbookpro-2.local&quot;</span><span class="p">,</span>
+    <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;http://example.com&quot;</span><span class="p">,</span>
+    <span class="s">&quot;severity&quot;</span><span class="p">:</span> <span class="s">&quot;critical&quot;</span><span class="p">,</span>
+    <span class="s">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s">&quot;SiteOK&quot;</span><span class="p">,</span>
+        <span class="s">&quot;SiteDown&quot;</span>
+    <span class="p">],</span>
+    <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s">&quot;EU0167g&quot;</span>
+    <span class="p">],</span>
+    <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;Site is down.&quot;</span><span class="p">,</span>
+    <span class="s">&quot;createTime&quot;</span><span class="p">:</span> <span class="s">&quot;2014-04-05T20:50:19.511Z&quot;</span><span class="p">,</span>
+    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;0/8 available&quot;</span><span class="p">,</span>
+    <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;SiteDown&quot;</span><span class="p">,</span>
+    <span class="s">&quot;environment&quot;</span><span class="p">:</span> <span class="s">&quot;production&quot;</span><span class="p">,</span>
+    <span class="s">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s">&quot;Web&quot;</span>
+    <span class="p">],</span>
+    <span class="s">&quot;rawData&quot;</span><span class="p">:</span> <span class="s">&quot;HTTP/1.1 500 Server Error&quot;</span><span class="p">,</span>
+    <span class="s">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
+    <span class="s">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;priority&quot;</span><span class="p">:</span> <span class="s">&quot;high&quot;</span>
+    <span class="p">},</span>
+    <span class="s">&quot;group&quot;</span><span class="p">:</span> <span class="s">&quot;Network&quot;</span><span class="p">,</span>
+    <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;exceptionAlert&quot;</span><span class="p">,</span>
+    <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;9c3c165a-aabb-4c20-8602-dd5ae9548a60&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<blockquote>
-<div><p>&#8220;status&#8221;: &#8220;unknown&#8221;,
-&#8220;origin&#8221;: &#8220;alert/macbookpro-2.local&#8221;,
-&#8220;resource&#8221;: &#8220;<a class="reference external" href="http://example.com">http://example.com</a>&#8221;,
-&#8220;severity&#8221;: &#8220;critical&#8221;,
-&#8220;correlate&#8221;: [</p>
-<blockquote>
-<div>&#8220;SiteOK&#8221;,
-&#8220;SiteDown&#8221;</div></blockquote>
-<p>],
-&#8220;tags&#8221;: [</p>
-<blockquote>
-<div>&#8220;EU0167g&#8221;</div></blockquote>
-<p>],
-&#8220;text&#8221;: &#8220;Site is down.&#8221;,
-&#8220;createTime&#8221;: &#8220;2014-04-05T20:50:19.511Z&#8221;,
-&#8220;value&#8221;: &#8220;0/8 available&#8221;,
-&#8220;event&#8221;: &#8220;SiteDown&#8221;,
-&#8220;environment&#8221;: &#8220;production&#8221;,
-&#8220;service&#8221;: [</p>
-<blockquote>
-<div>&#8220;Web&#8221;</div></blockquote>
-<p>],
-&#8220;rawData&#8221;: &#8220;HTTP/1.1 500 Server Error&#8221;,
-&#8220;timeout&#8221;: 86400,
-&#8220;attributes&#8221;: {</p>
-<blockquote>
-<div>&#8220;priority&#8221;: &#8220;high&#8221;</div></blockquote>
-<p>},
-&#8220;group&#8221;: &#8220;Network&#8221;,
-&#8220;type&#8221;: &#8220;exceptionAlert&#8221;,
-&#8220;id&#8221;: &#8220;9c3c165a-aabb-4c20-8602-dd5ae9548a60&#8221;</p>
-</div></blockquote>
-<p>}</p>
 <p>Contents:</p>
 <div class="toctree-wrapper compound">
 <ul class="simple">

@@ -10,35 +10,35 @@ Alerta accepts alerts from any monitoring system, correlates and deduplicates th
 
 Alert format::
 
-{
-    "status": "unknown",
-    "origin": "alert/macbookpro-2.local",
-    "resource": "http://example.com",
-    "severity": "critical",
-    "correlate": [
-        "SiteOK",
-        "SiteDown"
-    ],
-    "tags": [
-        "EU0167g"
-    ],
-    "text": "Site is down.",
-    "createTime": "2014-04-05T20:50:19.511Z",
-    "value": "0/8 available",
-    "event": "SiteDown",
-    "environment": "production",
-    "service": [
-        "Web"
-    ],
-    "rawData": "HTTP/1.1 500 Server Error",
-    "timeout": 86400,
-    "attributes": {
-        "priority": "high"
-    },
-    "group": "Network",
-    "type": "exceptionAlert",
-    "id": "9c3c165a-aabb-4c20-8602-dd5ae9548a60"
-}
+    {
+        "status": "unknown",
+        "origin": "alert/macbookpro-2.local",
+        "resource": "http://example.com",
+        "severity": "critical",
+        "correlate": [
+            "SiteOK",
+            "SiteDown"
+        ],
+        "tags": [
+            "EU0167g"
+        ],
+        "text": "Site is down.",
+        "createTime": "2014-04-05T20:50:19.511Z",
+        "value": "0/8 available",
+        "event": "SiteDown",
+        "environment": "production",
+        "service": [
+            "Web"
+        ],
+        "rawData": "HTTP/1.1 500 Server Error",
+        "timeout": 86400,
+        "attributes": {
+            "priority": "high"
+        },
+        "group": "Network",
+        "type": "exceptionAlert",
+        "id": "9c3c165a-aabb-4c20-8602-dd5ae9548a60"
+    }
 
 Contents:
 
