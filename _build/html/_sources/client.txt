@@ -1,6 +1,6 @@
 
-``alert``: command-line tool
-============================
+alert: command-line tool
+========================
 
 `alert` is the unified command-line tool for alerta.
 
