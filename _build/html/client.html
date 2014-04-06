@@ -118,52 +118,49 @@ profile-specific sections have precedence over the <cite>DEFAULT</cite> section.
 </tr>
 </tbody>
 </table>
+<div class="section" id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<p>Configuration file <tt class="file docutils literal"><span class="pre">~/.alerta/config</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>[DEFAULT]
+timezone = Australia/Sydney
+output = json
+
+[profile production]
+endpoint = http://alerta.prod.com:8080
+
+[profile development]
+endpoint = http://alerta.dev.com:8080
+debug = yes
+</pre></div>
+</div>
+<p>Set environment variables:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ export ALERTA_CONF_FILE=~/.alerta/config
+$ export ALERTA_DEFAULT_PROFILE=production
+</pre></div>
+</div>
+<p>Use production configuration settings by default:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alert query
+</pre></div>
+</div>
+<p>Switch to development configuration settings when required:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alert --profile development query
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="send">
 <h2><strong class="command">send</strong><a class="headerlink" href="#send" title="Permalink to this headline">¶</a></h2>
 <p>Send alert to server</p>
 <p>The only mandatory options are <tt class="docutils literal"><span class="pre">resource</span></tt> and <tt class="docutils literal"><span class="pre">event</span></tt>. All the others will
 be set to sensible defaults.</p>
-<div class="highlight-python"><div class="highlight"><pre>usage: alert [OPTIONS] send [-h] [-r RESOURCE] [-e EVENT] [-E ENVIRONMENT]
-                            [-s SEVERITY] [-C CORRELATE] [--status STATUS]
-                            [-S SERVICE] [-g GROUP] [-v VALUE] [-t TEXT]
-                            [-T TAG] [-A ATTRIBUTES] [-O ORIGIN]
-                            [--type EVENT_TYPE] [--timeout TIMEOUT]
-                            [--raw-data RAW_DATA]
+<div class="section" id="id1">
+<h3>Examples<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>To send a minor alert followed by a normal:</p>
+<div class="highlight-python"><div class="highlight"><pre>alert send --resource web01 --event HttpError --group Web --severity minor
 
-optional arguments:
-  -h, --help            show this help message and exit
-  -r RESOURCE, --resource RESOURCE
-                        resource under alarm
-  -e EVENT, --event EVENT
-                        event
-  -E ENVIRONMENT, --environment ENVIRONMENT
-                        environment eg. &quot;production&quot;, &quot;development&quot;, &quot;testing&quot;
-  -s SEVERITY, --severity SEVERITY
-                        severity
-  -C CORRELATE, --correlate CORRELATE
-                        correlate
-  --status STATUS       status should not normally be defined eg. &quot;open&quot;,
-                        &quot;closed&quot;
-  -S SERVICE, --service SERVICE
-                        service affected eg. the application name, &quot;Web&quot;,
-                        &quot;Network&quot;, &quot;Storage&quot;, &quot;Database&quot;, &quot;Security&quot;
-  -g GROUP, --group GROUP
-                        group
-  -v VALUE, --value VALUE
-                        value
-  -t TEXT, --text TEXT  Freeform alert text eg. &quot;Host not responding to ping.&quot;
-  -T TAG, --tag TAG     List of tags eg. &quot;London&quot;, &quot;os:linux&quot;, &quot;AWS/EC2&quot;.
-  -A ATTRIBUTES, --attribute ATTRIBUTES
-                        List of Key=Value attribute pairs eg. &quot;priority=high&quot;,
-                        &quot;moreInfo=...&quot;
-  -O ORIGIN, --origin ORIGIN
-                        Origin of alert. Usually in form of &quot;app/host&quot;
-  --type EVENT_TYPE     event type eg. &quot;exceptionAlert&quot;, &quot;serviceAlert&quot;
-  --timeout TIMEOUT     Timeout in seconds before an &quot;open&quot; alert will be
-                        automatically &quot;expired&quot; or &quot;deleted&quot;
-  --raw-data RAW_DATA   raw data
+alert send --resource web01 --event HttpOK --group Web --severity normal
 </pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="query">
@@ -242,8 +239,14 @@ optional arguments:
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">alert: command-line tool</a><ul>
-<li><a class="reference internal" href="#configuration-options">Configuration Options</a></li>
-<li><a class="reference internal" href="#send"><strong class="command">send</strong></a></li>
+<li><a class="reference internal" href="#configuration-options">Configuration Options</a><ul>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#send"><strong class="command">send</strong></a><ul>
+<li><a class="reference internal" href="#id1">Examples</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#query"><strong class="command">query</strong></a></li>
 <li><a class="reference internal" href="#watch"><strong class="command">watch</strong></a></li>
 <li><a class="reference internal" href="#raw"><strong class="command">raw</strong></a></li>
