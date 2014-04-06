@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Configuration Options &mdash; alerta 3.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="alerta 3.0.1 documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="index.html">alerta 3.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <p><cite>alert</cite> is the unified command-line tool for alerta.</p>
+<div class="section" id="configuration-options">
+<h1>Configuration Options<a class="headerlink" href="#configuration-options" title="Permalink to this headline">¶</a></h1>
+<p>Command-line options have precedence over environment variables, which have precedence over the
+configuration file.</p>
+<p>Within the configuration file profile-specific sections have precedence over the <cite>DEFAULT</cite> section.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="14%" />
+<col width="26%" />
+<col width="22%" />
+<col width="24%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Variable</th>
+<th class="head">Config file</th>
+<th class="head">Environment Variable</th>
+<th class="head">Option</th>
+<th class="head">Default</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>config_file</td>
+<td>n/a</td>
+<td>ALERTA_CONFIG_FILE</td>
+<td>n/a</td>
+<td>~/.alerta.conf</td>
+</tr>
+<tr class="row-odd"><td>profile</td>
+<td>n/a</td>
+<td>ALERTA_DEFAULT_PROFILE</td>
+<td>&#8211;profile</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>endpoint</td>
+<td>endpoint</td>
+<td>ALERTA_DEFAULT_ENDPOINT</td>
+<td>&#8211;endpoint-url</td>
+<td><a class="reference external" href="http://localhost:8080">http://localhost:8080</a></td>
+</tr>
+<tr class="row-odd"><td>timezone</td>
+<td>timezone</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>Europe/London</td>
+</tr>
+<tr class="row-even"><td>output</td>
+<td>output</td>
+<td>n/a</td>
+<td>&#8211;output, &#8211;json</td>
+<td>text</td>
+</tr>
+<tr class="row-odd"><td>color</td>
+<td>color</td>
+<td>CLICOLOR</td>
+<td>&#8211;color, &#8211;no-color</td>
+<td>color on</td>
+</tr>
+<tr class="row-even"><td>debug</td>
+<td>debug</td>
+<td>n/a</td>
+<td>&#8211;debug</td>
+<td>no debug</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/client.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="index.html">alerta 3.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Nick Satterly.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
