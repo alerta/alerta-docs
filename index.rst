@@ -45,7 +45,13 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   alert
+   api
+   api/alerts
+   api/heartbeats
+   api/webhooks
    client
+   correlation
 
 Indices and tables
 ==================

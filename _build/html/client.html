@@ -24,6 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="alerta 3.0.1 documentation" href="index.html" />
+    <link rel="next" title="Event Correlation" href="correlation.html" />
     <link rel="prev" title="Alerta : Monitoring Tool" href="index.html" /> 
   </head>
   <body>
@@ -33,6 +34,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="correlation.html" title="Event Correlation"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Alerta : Monitoring Tool"
              accesskey="P">previous</a> |</li>
@@ -118,6 +122,8 @@ profile-specific sections have precedence over the <cite>DEFAULT</cite> section.
 <div class="section" id="send">
 <h2><tt class="docutils literal"><span class="pre">send</span></tt><a class="headerlink" href="#send" title="Permalink to this headline">¶</a></h2>
 <p>Send alert to server</p>
+<p>The only mandatory options are <tt class="docutils literal"><span class="pre">resource</span></tt> and <tt class="docutils literal"><span class="pre">event</span></tt>. All the others will
+be set to sensible defaults.</p>
 <div class="highlight-python"><div class="highlight"><pre>usage: alert [OPTIONS] send [-h] [-r RESOURCE] [-e EVENT] [-E ENVIRONMENT]
                             [-s SEVERITY] [-C CORRELATE] [--status STATUS]
                             [-S SERVICE] [-g GROUP] [-v VALUE] [-t TEXT]
@@ -258,6 +264,9 @@ optional arguments:
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
                         title="previous chapter">Alerta : Monitoring Tool</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="correlation.html"
+                        title="next chapter">Event Correlation</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/client.txt"
@@ -286,6 +295,9 @@ optional arguments:
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="correlation.html" title="Event Correlation"
+             >next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Alerta : Monitoring Tool"
              >previous</a> |</li>

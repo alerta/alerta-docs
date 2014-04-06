@@ -36,6 +36,10 @@ profile-specific sections have precedence over the `DEFAULT` section.
 
 Send alert to server
 
+The only mandatory options are ``resource`` and ``event``. All the others will
+be set to sensible defaults.
+
+
 ::
 
     usage: alert [OPTIONS] send [-h] [-r RESOURCE] [-e EVENT] [-E ENVIRONMENT]

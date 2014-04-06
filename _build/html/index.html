@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="alerta 3.0.1 documentation" href="#" />
-    <link rel="next" title="alert: command-line tool" href="client.html" /> 
+    <link rel="next" title="alert: format" href="alert.html" /> 
   </head>
   <body>
     <div class="related">
@@ -34,7 +34,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="client.html" title="alert: command-line tool"
+          <a href="alert.html" title="alert: format"
              accesskey="N">next</a> |</li>
         <li><a href="#">alerta 3.0.1 documentation</a> &raquo;</li> 
       </ul>
@@ -83,6 +83,34 @@
 <p>Contents:</p>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="alert.html">alert: format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">REST API v3 Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#alerts">Alerts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#heartbeats">Heartbeats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#web-hooks">Web Hooks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/alerts.html">Alerts API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/alerts.html#get-api-alerts">GET /api/alerts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/alerts.html#get-api-alert-id">GET /api/alert/&lt;id&gt;</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/alerts.html#post-api-alert">POST /api/alert</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/alerts.html#delete-api-alert-id">DELETE /api/alert/&lt;id&gt;</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/alerts.html#post-api-alert-id-status">POST /api/alert/&lt;id&gt;/status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/alerts.html#post-api-alert-id-tag">POST /api/alert/&lt;id&gt;/tag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/alerts.html#get-api-alerts-history">GET /api/alerts/history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/alerts.html#get-api-alerts-count">GET /api/alerts/count</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/heartbeats.html">Heartbeats API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/heartbeats.html#get-api-heartbeats">GET /api/heartbeats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/heartbeats.html#post-api-heartbeat">POST /api/heartbeat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/heartbeats.html#delete-api-heartbeat-id">DELETE /api/heartbeat/&lt;id&gt;</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/webhooks.html">Web Hooks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/webhooks.html#post-api-pagerduty">POST /api/pagerduty</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="client.html">alert: command-line tool</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="client.html#configuration-options">Configuration Options</a></li>
 <li class="toctree-l2"><a class="reference internal" href="client.html#send"><tt class="docutils literal"><span class="pre">send</span></tt></a></li>
@@ -99,6 +127,11 @@
 <li class="toctree-l2"><a class="reference internal" href="client.html#config">config</a></li>
 <li class="toctree-l2"><a class="reference internal" href="client.html#help">help</a></li>
 <li class="toctree-l2"><a class="reference internal" href="client.html#version">version</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="correlation.html">Event Correlation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="correlation.html#de-duplication">De-duplication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="correlation.html#simple-correlation">Simple Correlation</a></li>
 </ul>
 </li>
 </ul>
@@ -126,8 +159,8 @@
 </ul>
 
   <h4>Next topic</h4>
-  <p class="topless"><a href="client.html"
-                        title="next chapter">alert: command-line tool</a></p>
+  <p class="topless"><a href="alert.html"
+                        title="next chapter">alert: format</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/index.txt"
@@ -157,7 +190,7 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="client.html" title="alert: command-line tool"
+          <a href="alert.html" title="alert: format"
              >next</a> |</li>
         <li><a href="#">alerta 3.0.1 documentation</a> &raquo;</li> 
       </ul>

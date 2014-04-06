@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>REST API v3 Resources &mdash; alerta 3.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="alerta 3.0.1 documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="index.html">alerta 3.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="rest-api-v3-resources">
+<h1>REST API v3 Resources<a class="headerlink" href="#rest-api-v3-resources" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="alerts">
+<h2>Alerts<a class="headerlink" href="#alerts" title="Permalink to this headline">¶</a></h2>
+<p>Alerts are received and processed before being added to database.</p>
+<div class="line-block">
+<div class="line">Resource | Description |</div>
+<div class="line">&#8212;&#8212;&#8211; | &#8212;&#8212;&#8211; |</div>
+<div class="line">[GET /api/alerts?:query](/docs/api/get/alerts) | Returns all alerts or all alerts that meet the query filter. |</div>
+<div class="line">[POST /api/alert](/docs/api/post/alert) | foo |</div>
+<div class="line">[GET /api/alert/:id](/docs/api/get/alert) | foo |</div>
+<div class="line">[POST /api/alert/:id/tag](/docs/api/post/alert/tag) | foo |</div>
+<div class="line">[POST /api/alert/:id/status](/docs/api/post/alert/status) | foo |</div>
+<div class="line">[DELETE /api/alert/:id](/docs/api/delete/alert) | foo |</div>
+</div>
+</div>
+<div class="section" id="heartbeats">
+<h2>Heartbeats<a class="headerlink" href="#heartbeats" title="Permalink to this headline">¶</a></h2>
+<p>Heartbeats are sent from something at regular intervals to ensure that it is operating.</p>
+<div class="line-block">
+<div class="line">Resource | Description |</div>
+<div class="line">&#8212;&#8212;&#8211; | &#8212;&#8212;&#8211; |</div>
+<div class="line">[GET /api/heartbeats](/docs/api/get/heartbeats) | foo |</div>
+<div class="line">[POST /api/heartbeat](/docs/api/post/heartbeat) | foo |</div>
+<div class="line">[DELETE /api/heartbeat/:id](/docs/api/delete/heartbeat) | foo |</div>
+</div>
+</div>
+<div class="section" id="web-hooks">
+<h2>Web Hooks<a class="headerlink" href="#web-hooks" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">REST API v3 Resources</a><ul>
+<li><a class="reference internal" href="#alerts">Alerts</a></li>
+<li><a class="reference internal" href="#heartbeats">Heartbeats</a></li>
+<li><a class="reference internal" href="#web-hooks">Web Hooks</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/api.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="index.html">alerta 3.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Nick Satterly.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
