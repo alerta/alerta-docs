@@ -82,54 +82,67 @@ be set to sensible defaults.
                             automatically "expired" or "deleted"
       --raw-data RAW_DATA   raw data
 
-query
------
+:command:`query`
+----------------
+
     query               List alerts based on query filter
 
-watch
------
+:command:`watch`
+----------------
+
     watch               Watch alerts based on query filter
 
-raw
----
+:command:`raw`
+--------------
+
     raw                 Show alert raw data
 
-history
--------
+:command:`history`
+------------------
+
     history             Show alert history
 
-tag
----
+:command:`tag`
+--------------
+
     tag                 Tag alerts
 
-ack
----
+:command:`ack`
+--------------
+
     ack                 Acknowledge alerts
 
-unack
------
+:command:`unack`
+----------------
+
     unack               Unacknowledge alerts
 
-close
------
+:command:`close`
+----------------
+
     close               Close alerts
 
-delete
-------
+:command:`delete`
+-----------------
+
     delete              Delete alerts
 
-heartbeat
----------
+:command:`heartbeat`
+--------------------
+
     heartbeat           Send heartbeat to server
 
-config
-------
+:command:`config`
+-----------------
+
     config              Show config
 
-help
-----
+:command:`help`
+---------------
+
     help                Show help
 
-version
--------
+:command:`version`
+------------------
+
     version             Show alerta version info
