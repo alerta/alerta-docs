@@ -5,9 +5,12 @@ Alerts
 ------
 Alerts are received and processed before being added to database.
 
-| Resource | Description |
-| -------- | -------- |
-| [GET /api/alerts?:query](/docs/api/get/alerts) | Returns all alerts or all alerts that meet the query filter. |
++-------------------+--------------------------------------------------------------+
+| Resource          | Description                                                  |
++===================+==============================================================+
+| :ref:`get-alerts` | Returns all alerts or all alerts that meet the query filter. |
++-------------------+--------------------------------------------------------------+
+
 | [POST /api/alert](/docs/api/post/alert) | foo |
 | [GET /api/alert/:id](/docs/api/get/alert) | foo |
 | [POST /api/alert/:id/tag](/docs/api/post/alert/tag) | foo |

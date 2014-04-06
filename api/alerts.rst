@@ -1,6 +1,8 @@
 Alerts API
 ==========
 
+.. _get-alerts:
+
 GET /api/alerts
 ---------------
 

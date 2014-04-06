@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="alerta 3.0.1 documentation" href="index.html" />
     <link rel="next" title="Event Correlation" href="correlation.html" />
-    <link rel="prev" title="Alerta : Monitoring Tool" href="index.html" /> 
+    <link rel="prev" title="Web Hooks" href="api/webhooks.html" /> 
   </head>
   <body>
     <div class="related">
@@ -38,7 +38,7 @@
           <a href="correlation.html" title="Event Correlation"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Alerta : Monitoring Tool"
+          <a href="api/webhooks.html" title="Web Hooks"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">alerta 3.0.1 documentation</a> &raquo;</li> 
       </ul>
@@ -59,11 +59,11 @@ precedence over the configuration file. Within the configuration file
 profile-specific sections have precedence over the <cite>DEFAULT</cite> section.</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="12%" />
-<col width="12%" />
-<col width="26%" />
-<col width="26%" />
-<col width="24%" />
+<col width="11%" />
+<col width="11%" />
+<col width="30%" />
+<col width="25%" />
+<col width="23%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Variable</th>
@@ -76,19 +76,19 @@ profile-specific sections have precedence over the <cite>DEFAULT</cite> section.
 <tbody valign="top">
 <tr class="row-even"><td>config_file</td>
 <td>n/a</td>
-<td><tt class="docutils literal"><span class="pre">ALERTA_CONF_FILE</span></tt></td>
+<td><span class="target" id="index-0"></span><tt class="xref std std-envvar docutils literal"><span class="pre">ALERTA_CONF_FILE</span></tt></td>
 <td>n/a</td>
-<td><tt class="docutils literal"><span class="pre">~/.alerta.conf</span></tt></td>
+<td><tt class="file docutils literal"><span class="pre">~/.alerta.conf</span></tt></td>
 </tr>
 <tr class="row-odd"><td>profile</td>
 <td>n/a</td>
-<td><tt class="docutils literal"><span class="pre">ALERTA_DEFAULT_PROFILE</span></tt></td>
+<td><span class="target" id="index-1"></span><tt class="xref std std-envvar docutils literal"><span class="pre">ALERTA_DEFAULT_PROFILE</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">--profile</span></tt></td>
 <td>None</td>
 </tr>
 <tr class="row-even"><td>endpoint</td>
 <td>endpoint</td>
-<td><tt class="docutils literal"><span class="pre">ALERTA_DEFAULT_ENDPOINT</span></tt></td>
+<td><span class="target" id="index-2"></span><tt class="xref std std-envvar docutils literal"><span class="pre">ALERTA_DEFAULT_ENDPOINT</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">--endpoint-url</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">http://localhost:8080</span></tt></td>
 </tr>
@@ -106,7 +106,7 @@ profile-specific sections have precedence over the <cite>DEFAULT</cite> section.
 </tr>
 <tr class="row-odd"><td>color</td>
 <td>color</td>
-<td><tt class="docutils literal"><span class="pre">CLICOLOR</span></tt></td>
+<td><span class="target" id="index-3"></span><tt class="xref std std-envvar docutils literal"><span class="pre">CLICOLOR</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">--color</span></tt>, <tt class="docutils literal"><span class="pre">--no-color</span></tt></td>
 <td>color on</td>
 </tr>
@@ -120,7 +120,7 @@ profile-specific sections have precedence over the <cite>DEFAULT</cite> section.
 </table>
 </div>
 <div class="section" id="send">
-<h2><tt class="docutils literal"><span class="pre">send</span></tt><a class="headerlink" href="#send" title="Permalink to this headline">¶</a></h2>
+<h2><strong class="command">send</strong><a class="headerlink" href="#send" title="Permalink to this headline">¶</a></h2>
 <p>Send alert to server</p>
 <p>The only mandatory options are <tt class="docutils literal"><span class="pre">resource</span></tt> and <tt class="docutils literal"><span class="pre">event</span></tt>. All the others will
 be set to sensible defaults.</p>
@@ -243,7 +243,7 @@ optional arguments:
   <ul>
 <li><a class="reference internal" href="#">alert: command-line tool</a><ul>
 <li><a class="reference internal" href="#configuration-options">Configuration Options</a></li>
-<li><a class="reference internal" href="#send"><tt class="docutils literal"><span class="pre">send</span></tt></a></li>
+<li><a class="reference internal" href="#send"><strong class="command">send</strong></a></li>
 <li><a class="reference internal" href="#query">query</a></li>
 <li><a class="reference internal" href="#watch">watch</a></li>
 <li><a class="reference internal" href="#raw">raw</a></li>
@@ -262,8 +262,8 @@ optional arguments:
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter">Alerta : Monitoring Tool</a></p>
+  <p class="topless"><a href="api/webhooks.html"
+                        title="previous chapter">Web Hooks</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="correlation.html"
                         title="next chapter">Event Correlation</a></p>
@@ -299,7 +299,7 @@ optional arguments:
           <a href="correlation.html" title="Event Correlation"
              >next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Alerta : Monitoring Tool"
+          <a href="api/webhooks.html" title="Web Hooks"
              >previous</a> |</li>
         <li><a href="index.html">alerta 3.0.1 documentation</a> &raquo;</li> 
       </ul>
