@@ -116,9 +116,49 @@ profile-specific sections have precedence over the <cite>DEFAULT</cite> section.
 </table>
 </div>
 <div class="section" id="send">
-<h2>send<a class="headerlink" href="#send" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div>send                Send alert to server</div></blockquote>
+<h2><tt class="docutils literal"><span class="pre">send</span></tt><a class="headerlink" href="#send" title="Permalink to this headline">¶</a></h2>
+<p>Send alert to server</p>
+<div class="highlight-python"><div class="highlight"><pre>usage: alert [OPTIONS] send [-h] [-r RESOURCE] [-e EVENT] [-E ENVIRONMENT]
+                            [-s SEVERITY] [-C CORRELATE] [--status STATUS]
+                            [-S SERVICE] [-g GROUP] [-v VALUE] [-t TEXT]
+                            [-T TAG] [-A ATTRIBUTES] [-O ORIGIN]
+                            [--type EVENT_TYPE] [--timeout TIMEOUT]
+                            [--raw-data RAW_DATA]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -r RESOURCE, --resource RESOURCE
+                        resource under alarm
+  -e EVENT, --event EVENT
+                        event
+  -E ENVIRONMENT, --environment ENVIRONMENT
+                        environment eg. &quot;production&quot;, &quot;development&quot;, &quot;testing&quot;
+  -s SEVERITY, --severity SEVERITY
+                        severity
+  -C CORRELATE, --correlate CORRELATE
+                        correlate
+  --status STATUS       status should not normally be defined eg. &quot;open&quot;,
+                        &quot;closed&quot;
+  -S SERVICE, --service SERVICE
+                        service affected eg. the application name, &quot;Web&quot;,
+                        &quot;Network&quot;, &quot;Storage&quot;, &quot;Database&quot;, &quot;Security&quot;
+  -g GROUP, --group GROUP
+                        group
+  -v VALUE, --value VALUE
+                        value
+  -t TEXT, --text TEXT  Freeform alert text eg. &quot;Host not responding to ping.&quot;
+  -T TAG, --tag TAG     List of tags eg. &quot;London&quot;, &quot;os:linux&quot;, &quot;AWS/EC2&quot;.
+  -A ATTRIBUTES, --attribute ATTRIBUTES
+                        List of Key=Value attribute pairs eg. &quot;priority=high&quot;,
+                        &quot;moreInfo=...&quot;
+  -O ORIGIN, --origin ORIGIN
+                        Origin of alert. Usually in form of &quot;app/host&quot;
+  --type EVENT_TYPE     event type eg. &quot;exceptionAlert&quot;, &quot;serviceAlert&quot;
+  --timeout TIMEOUT     Timeout in seconds before an &quot;open&quot; alert will be
+                        automatically &quot;expired&quot; or &quot;deleted&quot;
+  --raw-data RAW_DATA   raw data
+</pre></div>
+</div>
 </div>
 <div class="section" id="query">
 <h2>query<a class="headerlink" href="#query" title="Permalink to this headline">¶</a></h2>
@@ -197,7 +237,7 @@ profile-specific sections have precedence over the <cite>DEFAULT</cite> section.
   <ul>
 <li><a class="reference internal" href="#">alert: command-line tool</a><ul>
 <li><a class="reference internal" href="#configuration-options">Configuration Options</a></li>
-<li><a class="reference internal" href="#send">send</a></li>
+<li><a class="reference internal" href="#send"><tt class="docutils literal"><span class="pre">send</span></tt></a></li>
 <li><a class="reference internal" href="#query">query</a></li>
 <li><a class="reference internal" href="#watch">watch</a></li>
 <li><a class="reference internal" href="#raw">raw</a></li>
