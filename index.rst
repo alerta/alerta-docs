@@ -45,7 +45,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-
+   client
 
 Indices and tables
 ==================

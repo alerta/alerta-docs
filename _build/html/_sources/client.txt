@@ -1,9 +1,12 @@
 
+`alert` Command-line tool
+=========================
+
 `alert` is the unified command-line tool for alerta.
 
 
 Configuration Options
-=====================
+---------------------
 
 Command-line options have precedence over environment variables, which have precedence over the
 configuration file.
