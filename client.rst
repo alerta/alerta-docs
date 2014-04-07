@@ -14,6 +14,7 @@ Installation
 To install the ``alert`` client the tool an be downloaded directly::
 
     $ wget https://raw.githubusercontent.com/alerta/python-alerta-client/master/alert
+    $ chmod +x
 
 Or, installed using pip::
 
@@ -76,8 +77,8 @@ Switch to development configuration settings when required::
     $ alert --profile development query
 
 
-Options
--------
+Commands
+--------
 
 :command:`send`
 ---------------
@@ -86,6 +87,36 @@ Send alert to server
 
 The only mandatory options are ``resource`` and ``event``. All the others will
 be set to sensible defaults.
+
++------------------+-----------------------+
+| Attribute        | Default               |
++==================+=======================+
+| environment      | empty string          |
++------------------+-----------------------+
+| severity         | ``normal``            |
++------------------+-----------------------+
+| status           | ``unknown``           |
++------------------+-----------------------+
+| group            | ``Misc``              |
++------------------+-----------------------+
+| correlate        | empty list            |
++------------------+-----------------------+
+| value            | ``n/a``               |
++------------------+-----------------------+
+| text             | empty list            |
++------------------+-----------------------+
+| tags             | empty list            |
++------------------+-----------------------+
+| attributes       | empty hash map        |
++------------------+-----------------------+
+| origin           | program/host          |
++------------------+-----------------------+
+| type             | ``exceptionAlert``    |
++------------------+-----------------------+
+| timeout          | 86400 (1 day)         |
++------------------+-----------------------+
+| raw data         | empty string          |
++------------------+-----------------------+
 
 Examples
 ++++++++
