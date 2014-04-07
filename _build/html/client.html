@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>alert: command-line tool &mdash; alerta 3.0.1 documentation</title>
+    <title>alert command-line tool &mdash; alerta 3.0.1 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -50,13 +50,28 @@
           <div class="body">
             
   <div class="section" id="alert-command-line-tool">
-<h1>alert: command-line tool<a class="headerlink" href="#alert-command-line-tool" title="Permalink to this headline">¶</a></h1>
-<p><cite>alert</cite> is the unified command-line tool for alerta.</p>
-<div class="section" id="configuration-options">
-<h2>Configuration Options<a class="headerlink" href="#configuration-options" title="Permalink to this headline">¶</a></h2>
-<p>Command-line options have precedence over environment variables, which have
-precedence over the configuration file. Within the configuration file
-profile-specific sections have precedence over the <cite>DEFAULT</cite> section.</p>
+<h1>alert command-line tool<a class="headerlink" href="#alert-command-line-tool" title="Permalink to this headline">¶</a></h1>
+<p><tt class="docutils literal"><span class="pre">alert</span></tt> is the unified command-line tool for alerta. It can be used to
+send and query alerts, tag alerts and change alert status, delete alerts,
+dump alert history or see the raw alert data.</p>
+<p><tt class="docutils literal"><span class="pre">alert</span></tt> can also be used to send heartbeats to the alerta server.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>To install the <tt class="docutils literal"><span class="pre">alert</span></tt> client the tool an be downloaded directly:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ wget https://raw.githubusercontent.com/alerta/python-alerta-client/master/alert
+</pre></div>
+</div>
+<p>Or, installed using pip:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ pip install alerta-client
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>Command-line configuration options have precedence over environment
+variables, which have precedence over the configuration file. Within
+the configuration file profile-specific sections have precedence over
+the <tt class="docutils literal"><span class="pre">[DEFAULT]</span></tt> section.</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="11%" />
@@ -148,6 +163,9 @@ $ export ALERTA_DEFAULT_PROFILE=production
 </div>
 </div>
 </div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+</div>
 <div class="section" id="send">
 <h2><strong class="command">send</strong><a class="headerlink" href="#send" title="Permalink to this headline">¶</a></h2>
 <p>Send alert to server</p>
@@ -238,11 +256,13 @@ alert send --resource web01 --event HttpOK --group Web --severity normal
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">alert: command-line tool</a><ul>
-<li><a class="reference internal" href="#configuration-options">Configuration Options</a><ul>
+<li><a class="reference internal" href="#">alert command-line tool</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
 <li><a class="reference internal" href="#examples">Examples</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#options">Options</a></li>
 <li><a class="reference internal" href="#send"><strong class="command">send</strong></a><ul>
 <li><a class="reference internal" href="#id1">Examples</a></li>
 </ul>

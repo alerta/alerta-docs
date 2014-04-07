@@ -1,16 +1,32 @@
 
-alert: command-line tool
-========================
+alert command-line tool
+=======================
 
-`alert` is the unified command-line tool for alerta.
+``alert`` is the unified command-line tool for alerta. It can be used to
+send and query alerts, tag alerts and change alert status, delete alerts,
+dump alert history or see the raw alert data.
+
+``alert`` can also be used to send heartbeats to the alerta server.
+
+Installation
+------------
+
+To install the ``alert`` client the tool an be downloaded directly::
+
+    $ wget https://raw.githubusercontent.com/alerta/python-alerta-client/master/alert
+
+Or, installed using pip::
+
+    $ pip install alerta-client
 
 
-Configuration Options
----------------------
+Configuration
+-------------
 
-Command-line options have precedence over environment variables, which have
-precedence over the configuration file. Within the configuration file
-profile-specific sections have precedence over the `DEFAULT` section.
+Command-line configuration options have precedence over environment
+variables, which have precedence over the configuration file. Within
+the configuration file profile-specific sections have precedence over
+the ``[DEFAULT]`` section.
 
 +-------------+-------------+-----------------------------------+-----------------------------+---------------------------+
 | Variable    | Config File | Environment Variable              | Option                      | Default                   |
@@ -59,6 +75,9 @@ Switch to development configuration settings when required::
 
     $ alert --profile development query
 
+
+Options
+-------
 
 :command:`send`
 ---------------
