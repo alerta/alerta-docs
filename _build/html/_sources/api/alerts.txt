@@ -31,7 +31,7 @@ Example Request
 
 GET http://host:port/api/alert/22c656fa-02bd-4dde-a761-2218d90338b1
 
-::
+.. code-block:: json
 
     {
       "status": "ok",

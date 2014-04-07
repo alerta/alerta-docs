@@ -86,57 +86,57 @@
 <div class="section" id="example-request">
 <h3>Example Request<a class="headerlink" href="#example-request" title="Permalink to this headline">¶</a></h3>
 <p>GET <a class="reference external" href="http://host:port/api/alert/22c656fa-02bd-4dde-a761-2218d90338b1">http://host:port/api/alert/22c656fa-02bd-4dde-a761-2218d90338b1</a></p>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span><span class="p">,</span>
-  <span class="s">&quot;total&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s">&quot;alert&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s">&quot;origin&quot;</span><span class="p">:</span> <span class="s">&quot;alert-pinger/alerta01&quot;</span><span class="p">,</span>
-    <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;Node did not respond to ping or timed out within 15 seconds&quot;</span><span class="p">,</span>
-    <span class="s">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s">&quot;2014-04-07T21:17:28.536Z&quot;</span><span class="p">,</span>
-    <span class="s">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s">&quot;2014-04-04T14:49:49.879Z&quot;</span><span class="p">,</span>
-    <span class="s">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s">&quot;moreSevere&quot;</span><span class="p">,</span>
-    <span class="s">&quot;rawData&quot;</span><span class="p">:</span> <span class="s">&quot;PING 10-252-167-58 (10.252.167.58) 56(84) bytes of data.</span><span class="se">\n\n</span><span class="s">--- 10-252-167-58 ping statistics ---</span><span class="se">\n</span><span class="s">16 packets transmitted, 0 received, 100% packet loss, time 15000ms&quot;</span><span class="p">,</span>
-    <span class="s">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s">&quot;unknown&quot;</span><span class="p">,</span>
-    <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;PingFailed&quot;</span><span class="p">,</span>
-    <span class="s">&quot;group&quot;</span><span class="p">:</span> <span class="s">&quot;Ping&quot;</span><span class="p">,</span>
-    <span class="s">&quot;severity&quot;</span><span class="p">:</span> <span class="s">&quot;major&quot;</span><span class="p">,</span>
-    <span class="s">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="s">&quot;Network&quot;</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nt">&quot;alert&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;alert-pinger/alerta01&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Node did not respond to ping or timed out within 15 seconds&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2014-04-07T21:17:28.536Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2014-04-04T14:49:49.879Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s2">&quot;moreSevere&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;rawData&quot;</span><span class="p">:</span> <span class="s2">&quot;PING 10-252-167-58 (10.252.167.58) 56(84) bytes of data.\n\n--- 10-252-167-58 ping statistics ---\n16 packets transmitted, 0 received, 100% packet loss, time 15000ms&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s2">&quot;unknown&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;PingFailed&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Ping&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;Network&quot;</span>
     <span class="p">],</span>
-    <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;22c656fa-02bd-4dde-a761-2218d90338b1&quot;</span><span class="p">,</span>
-    <span class="s">&quot;environment&quot;</span><span class="p">:</span> <span class="s">&quot;development&quot;</span><span class="p">,</span>
-    <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;serviceAlert&quot;</span><span class="p">,</span>
-    <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;open&quot;</span><span class="p">,</span>
-    <span class="s">&quot;repeat&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-    <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="s">&quot;createTime&quot;</span><span class="p">:</span> <span class="s">&quot;2014-04-04T14:49:49.865Z&quot;</span><span class="p">,</span>
-    <span class="s">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s">&quot;bc3f26d7-9aa3-404f-9e80-a8e25030ee13&quot;</span><span class="p">,</span>
-    <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;10-252-167-58:icmp&quot;</span><span class="p">,</span>
-    <span class="s">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">4650</span><span class="p">,</span>
-    <span class="s">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="s">&quot;PingFailed&quot;</span><span class="p">,</span>
-      <span class="s">&quot;PingSlow&quot;</span><span class="p">,</span>
-      <span class="s">&quot;PingOK&quot;</span><span class="p">,</span>
-      <span class="s">&quot;PingError&quot;</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;22c656fa-02bd-4dde-a761-2218d90338b1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;development&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;serviceAlert&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;repeat&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2014-04-04T14:49:49.865Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s2">&quot;bc3f26d7-9aa3-404f-9e80-a8e25030ee13&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;10-252-167-58:icmp&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">4650</span><span class="p">,</span>
+    <span class="nt">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;PingFailed&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;PingSlow&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;PingOK&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;PingError&quot;</span>
     <span class="p">],</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;100% packet loss&quot;</span><span class="p">,</span>
-    <span class="s">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
-    <span class="s">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{},</span>
-    <span class="s">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;100% packet loss&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
+    <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{},</span>
+    <span class="nt">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
-        <span class="s">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s">&quot;2014-04-04T14:49:49.865Z&quot;</span><span class="p">,</span>
-        <span class="s">&quot;severity&quot;</span><span class="p">:</span> <span class="s">&quot;major&quot;</span><span class="p">,</span>
-        <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;Node did not respond to ping or timed out within 15 seconds&quot;</span><span class="p">,</span>
-        <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;100% packet loss&quot;</span><span class="p">,</span>
-        <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;PingFailed&quot;</span><span class="p">,</span>
-        <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;22c656fa-02bd-4dde-a761-2218d90338b1&quot;</span>
+        <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2014-04-04T14:49:49.865Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Node did not respond to ping or timed out within 15 seconds&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;100% packet loss&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;PingFailed&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;22c656fa-02bd-4dde-a761-2218d90338b1&quot;</span>
       <span class="p">},</span>
       <span class="p">{</span>
-        <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;open&quot;</span><span class="p">,</span>
-        <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;new alert status change&quot;</span><span class="p">,</span>
-        <span class="s">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s">&quot;2014-04-04T14:49:49.879Z&quot;</span><span class="p">,</span>
-        <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;PingFailed&quot;</span><span class="p">,</span>
-        <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;22c656fa-02bd-4dde-a761-2218d90338b1&quot;</span>
+        <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;new alert status change&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2014-04-04T14:49:49.879Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;PingFailed&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;22c656fa-02bd-4dde-a761-2218d90338b1&quot;</span>
       <span class="p">}</span>
     <span class="p">]</span>
   <span class="p">}</span>
