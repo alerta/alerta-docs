@@ -11,7 +11,7 @@ dump alert history or see the raw alert data.
 Installation
 ------------
 
-To install the ``alert`` client the tool an be downloaded directly::
+To install the ``alert`` client the tool can be downloaded directly::
 
     $ wget https://raw.githubusercontent.com/alerta/python-alerta-client/master/alert
     $ chmod +x
@@ -192,3 +192,11 @@ To send a minor alert followed by a normal::
 ------------------
 
     version             Show alerta version info
+
+Bugs
+----
+
+Log any issues on `GitHub`_ or just fix it yourself and submit a `pull request`_.
+
+.. _`github`: https://github.com/alerta/python-alerta-client/issues
+.. _`pull request`: https://github.com/alerta/python-alerta-client/pulls
