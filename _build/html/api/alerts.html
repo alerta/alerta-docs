@@ -56,6 +56,94 @@
 </div>
 <div class="section" id="get-api-alert-id">
 <span id="get-alert-id"></span><h2>GET /api/alert/&lt;id&gt;<a class="headerlink" href="#get-api-alert-id" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="resource-url">
+<h3>Resource URL<a class="headerlink" href="#resource-url" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://host:port/api/alert/:id">http://host:port/api/alert/:id</a></p>
+</div>
+<div class="section" id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="20%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Parameter</th>
+<th class="head">Description</th>
+<th class="head">Example</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>:id
+<cite>mandatory</cite></td>
+<td>Alert ID</td>
+<td>22c656fa-02bd-4dde-a761-2218d90338b1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="example-request">
+<h3>Example Request<a class="headerlink" href="#example-request" title="Permalink to this headline">¶</a></h3>
+<p>GET <a class="reference external" href="http://host:port/api/alert/22c656fa-02bd-4dde-a761-2218d90338b1">http://host:port/api/alert/22c656fa-02bd-4dde-a761-2218d90338b1</a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s">&quot;total&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s">&quot;alert&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;origin&quot;</span><span class="p">:</span> <span class="s">&quot;alert-pinger/alerta01&quot;</span><span class="p">,</span>
+    <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;Node did not respond to ping or timed out within 15 seconds&quot;</span><span class="p">,</span>
+    <span class="s">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s">&quot;2014-04-07T21:17:28.536Z&quot;</span><span class="p">,</span>
+    <span class="s">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s">&quot;2014-04-04T14:49:49.879Z&quot;</span><span class="p">,</span>
+    <span class="s">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s">&quot;moreSevere&quot;</span><span class="p">,</span>
+    <span class="s">&quot;rawData&quot;</span><span class="p">:</span> <span class="s">&quot;PING 10-252-167-58 (10.252.167.58) 56(84) bytes of data.</span><span class="se">\n\n</span><span class="s">--- 10-252-167-58 ping statistics ---</span><span class="se">\n</span><span class="s">16 packets transmitted, 0 received, 100% packet loss, time 15000ms&quot;</span><span class="p">,</span>
+    <span class="s">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s">&quot;unknown&quot;</span><span class="p">,</span>
+    <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;PingFailed&quot;</span><span class="p">,</span>
+    <span class="s">&quot;group&quot;</span><span class="p">:</span> <span class="s">&quot;Ping&quot;</span><span class="p">,</span>
+    <span class="s">&quot;severity&quot;</span><span class="p">:</span> <span class="s">&quot;major&quot;</span><span class="p">,</span>
+    <span class="s">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s">&quot;Network&quot;</span>
+    <span class="p">],</span>
+    <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;22c656fa-02bd-4dde-a761-2218d90338b1&quot;</span><span class="p">,</span>
+    <span class="s">&quot;environment&quot;</span><span class="p">:</span> <span class="s">&quot;development&quot;</span><span class="p">,</span>
+    <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;serviceAlert&quot;</span><span class="p">,</span>
+    <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;open&quot;</span><span class="p">,</span>
+    <span class="s">&quot;repeat&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s">&quot;createTime&quot;</span><span class="p">:</span> <span class="s">&quot;2014-04-04T14:49:49.865Z&quot;</span><span class="p">,</span>
+    <span class="s">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s">&quot;bc3f26d7-9aa3-404f-9e80-a8e25030ee13&quot;</span><span class="p">,</span>
+    <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;10-252-167-58:icmp&quot;</span><span class="p">,</span>
+    <span class="s">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">4650</span><span class="p">,</span>
+    <span class="s">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s">&quot;PingFailed&quot;</span><span class="p">,</span>
+      <span class="s">&quot;PingSlow&quot;</span><span class="p">,</span>
+      <span class="s">&quot;PingOK&quot;</span><span class="p">,</span>
+      <span class="s">&quot;PingError&quot;</span>
+    <span class="p">],</span>
+    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;100% packet loss&quot;</span><span class="p">,</span>
+    <span class="s">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
+    <span class="s">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{},</span>
+    <span class="s">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s">&quot;2014-04-04T14:49:49.865Z&quot;</span><span class="p">,</span>
+        <span class="s">&quot;severity&quot;</span><span class="p">:</span> <span class="s">&quot;major&quot;</span><span class="p">,</span>
+        <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;Node did not respond to ping or timed out within 15 seconds&quot;</span><span class="p">,</span>
+        <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;100% packet loss&quot;</span><span class="p">,</span>
+        <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;PingFailed&quot;</span><span class="p">,</span>
+        <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;22c656fa-02bd-4dde-a761-2218d90338b1&quot;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;open&quot;</span><span class="p">,</span>
+        <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;new alert status change&quot;</span><span class="p">,</span>
+        <span class="s">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s">&quot;2014-04-04T14:49:49.879Z&quot;</span><span class="p">,</span>
+        <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;PingFailed&quot;</span><span class="p">,</span>
+        <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;22c656fa-02bd-4dde-a761-2218d90338b1&quot;</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="post-api-alert">
 <span id="post-alert"></span><h2>POST /api/alert<a class="headerlink" href="#post-api-alert" title="Permalink to this headline">¶</a></h2>
@@ -87,7 +175,12 @@
   <ul>
 <li><a class="reference internal" href="#">Alerts API</a><ul>
 <li><a class="reference internal" href="#get-api-alerts">GET /api/alerts</a></li>
-<li><a class="reference internal" href="#get-api-alert-id">GET /api/alert/&lt;id&gt;</a></li>
+<li><a class="reference internal" href="#get-api-alert-id">GET /api/alert/&lt;id&gt;</a><ul>
+<li><a class="reference internal" href="#resource-url">Resource URL</a></li>
+<li><a class="reference internal" href="#parameters">Parameters</a></li>
+<li><a class="reference internal" href="#example-request">Example Request</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#post-api-alert">POST /api/alert</a></li>
 <li><a class="reference internal" href="#delete-api-alert-id">DELETE /api/alert/&lt;id&gt;</a></li>
 <li><a class="reference internal" href="#post-api-alert-id-status">POST /api/alert/&lt;id&gt;/status</a></li>
