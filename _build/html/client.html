@@ -69,10 +69,9 @@ $ chmod +x
 </div>
 <div class="section" id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
-<p>Command-line configuration options have precedence over environment
-variables, which have precedence over the configuration file. Within
-the configuration file profile-specific sections have precedence over
-the <tt class="docutils literal"><span class="pre">[DEFAULT]</span></tt> section.</p>
+<p>Options can be set in a configuration file, as environment variables or
+on the command line. Profiles can be used to easily switch between different
+configuration settings.</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="11%" />
@@ -164,6 +163,21 @@ $ export ALERTA_DEFAULT_PROFILE=production
 </div>
 </div>
 </div>
+<div class="section" id="precedence">
+<h2>Precedence<a class="headerlink" href="#precedence" title="Permalink to this headline">¶</a></h2>
+<p>Command-line configuration options have precedence over environment
+variables, which have precedence over the configuration file. Within
+the configuration file profile-specific sections have precedence over
+the <tt class="docutils literal"><span class="pre">[DEFAULT]</span></tt> section.</p>
+<div class="section" id="id1">
+<h3>Examples<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><tt class="docutils literal"><span class="pre">--endpoint</span> <span class="pre">http://foo</span></tt> overrides <tt class="docutils literal"><span class="pre">ALERTA_DEFAULT_ENDPOINT=http://bar</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">ALERTA_DEFAULT_ENDPOINT=http://bar</span></tt> overrides a configuration file option <tt class="docutils literal"><span class="pre">endpoint=http://baz</span></tt>, whether in <tt class="docutils literal"><span class="pre">[DEFAULT]</span></tt> or <tt class="docutils literal"><span class="pre">[profile]</span></tt> sections</li>
+<li><tt class="docutils literal"><span class="pre">[profile</span> <span class="pre">quux]</span> <span class="pre">endpoint=http://quux</span></tt> overrides <tt class="docutils literal"><span class="pre">[DEFAULT]</span> <span class="pre">endpoint=http://baz</span></tt> if <tt class="docutils literal"><span class="pre">--profile</span> <span class="pre">quux</span></tt> is used</li>
+</ol>
+</div>
+</div>
 <div class="section" id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -224,8 +238,8 @@ be set to sensible defaults.</p>
 </tr>
 </tbody>
 </table>
-<div class="section" id="id1">
-<h3>Examples<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3>Examples<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>To send a minor alert followed by a normal:</p>
 <div class="highlight-python"><div class="highlight"><pre>alert send --resource web01 --event HttpError --group Web --severity minor
 
@@ -319,9 +333,13 @@ alert send --resource web01 --event HttpOK --group Web --severity normal
 <li><a class="reference internal" href="#examples">Examples</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#precedence">Precedence</a><ul>
+<li><a class="reference internal" href="#id1">Examples</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#commands">Commands</a></li>
 <li><a class="reference internal" href="#send"><strong class="command">send</strong></a><ul>
-<li><a class="reference internal" href="#id1">Examples</a></li>
+<li><a class="reference internal" href="#id2">Examples</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#query"><strong class="command">query</strong></a></li>

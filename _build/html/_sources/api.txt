@@ -21,6 +21,17 @@ Alerts are received and processed before being added to database.
 | :ref:`delete-alert-id`      | foo                                                          |
 +-----------------------------+--------------------------------------------------------------+
 
+Environments & Services
+-----------------------
+
++-----------------------------+--------------------------------------------------------------+
+| Resource                    | Description                                                  |
++=============================+==============================================================+
+| :ref:`get-environments`     | Returns list of environments and all services for each       |
++-----------------------------+--------------------------------------------------------------+
+| :ref:`get-services`         | Returns list of all services and count of alerts for each    |
++-----------------------------+--------------------------------------------------------------+
+
 Heartbeats
 ----------
 
