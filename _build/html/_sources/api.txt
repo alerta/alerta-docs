@@ -8,17 +8,25 @@ Alerts are received and processed before being added to database.
 +-----------------------------+--------------------------------------------------------------+
 | Resource                    | Description                                                  |
 +=============================+==============================================================+
-| :ref:`get-alerts`           | Returns all alerts or all alerts that meet the query filter. |
+| :ref:`get-alerts`           | Get list of all alerts that meet the query filter.           |
 +-----------------------------+--------------------------------------------------------------+
-| :ref:`post-alert`           | foo                                                          |
+| :ref:`get-alert-id`         | Get alert details for a specific alert.                      |
 +-----------------------------+--------------------------------------------------------------+
-| :ref:`get-alert-id`         | foo                                                          |
+| :ref:`post-alert`           | Create a new alert.                                          |
 +-----------------------------+--------------------------------------------------------------+
-| :ref:`post-alert-id-tag`    | foo                                                          |
+| :ref:`post-alert-id-status` | Change the status of an alert.                               |
 +-----------------------------+--------------------------------------------------------------+
-| :ref:`post-alert-id-status` | foo                                                          |
+| :ref:`post-alert-id-tag`    | Tag an alert.                                                |
 +-----------------------------+--------------------------------------------------------------+
-| :ref:`delete-alert-id`      | foo                                                          |
+| :ref:`post-alert-id-untag`  | Remove a tag from an alert.                                  |
++-----------------------------+--------------------------------------------------------------+
+| :ref:`delete-alert-id`      | Delete an alert.                                             |
++-----------------------------+--------------------------------------------------------------+
+| :ref:`get-alerts-history`   | Get history of actions on an alert.                          |
++-----------------------------+--------------------------------------------------------------+
+| :ref:`get-alerts-count`     | Get aggregate counts of status and severity of alerts.       |
++-----------------------------+--------------------------------------------------------------+
+| :ref:`get-alerts-top10`     | Get list of top 10 alerts grouped by environment and service.|
 +-----------------------------+--------------------------------------------------------------+
 
 Environments & Services
@@ -27,9 +35,9 @@ Environments & Services
 +-----------------------------+--------------------------------------------------------------+
 | Resource                    | Description                                                  |
 +=============================+==============================================================+
-| :ref:`get-environments`     | Returns list of environments and all services for each       |
+| :ref:`get-environments`     | Returns list of environments and all services for each.      |
 +-----------------------------+--------------------------------------------------------------+
-| :ref:`get-services`         | Returns list of all services and count of alerts for each    |
+| :ref:`get-services`         | Returns list of all services and count of alerts for each.   |
 +-----------------------------+--------------------------------------------------------------+
 
 Heartbeats
@@ -102,3 +110,11 @@ HTTP Status Codes
 
 Web Hooks
 ---------
+
+Web hooks can be used to trigger updates to alerts from external services.
+
++-----------------------------+--------------------------------------------------------------+
+| Resource                    | Description                                                  |
++=============================+==============================================================+
+| :ref:`post-pagerduty`       | Change status of alert based on actions in pagerduty.        |
++-----------------------------+--------------------------------------------------------------+

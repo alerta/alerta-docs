@@ -66,22 +66,34 @@
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td><a class="reference internal" href="api/alerts.html#get-alerts"><em>GET /alerts</em></a></td>
-<td>Returns all alerts or all alerts that meet the query filter.</td>
+<td>Get list of all alerts that meet the query filter.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="api/alerts.html#post-alert"><em>POST /alert</em></a></td>
-<td>foo</td>
+<tr class="row-odd"><td><a class="reference internal" href="api/alerts.html#get-alert-id"><em>GET /alert/&lt;id&gt;</em></a></td>
+<td>Get alert details for a specific alert.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="api/alerts.html#get-alert-id"><em>GET /alert/&lt;id&gt;</em></a></td>
-<td>foo</td>
+<tr class="row-even"><td><a class="reference internal" href="api/alerts.html#post-alert"><em>POST /alert</em></a></td>
+<td>Create a new alert.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="api/alerts.html#post-alert-id-tag"><em>POST /alert/&lt;id&gt;/tag</em></a></td>
-<td>foo</td>
+<tr class="row-odd"><td><a class="reference internal" href="api/alerts.html#post-alert-id-status"><em>POST /alert/&lt;id&gt;/status</em></a></td>
+<td>Change the status of an alert.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="api/alerts.html#post-alert-id-status"><em>POST /alert/&lt;id&gt;/status</em></a></td>
-<td>foo</td>
+<tr class="row-even"><td><a class="reference internal" href="api/alerts.html#post-alert-id-tag"><em>POST /alert/&lt;id&gt;/tag</em></a></td>
+<td>Tag an alert.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="api/alerts.html#delete-alert-id"><em>DELETE /alert/&lt;id&gt;</em></a></td>
-<td>foo</td>
+<tr class="row-odd"><td><a class="reference internal" href="api/alerts.html#post-alert-id-untag"><em>POST /alert/&lt;id&gt;/untag</em></a></td>
+<td>Remove a tag from an alert.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/alerts.html#delete-alert-id"><em>DELETE /alert/&lt;id&gt;</em></a></td>
+<td>Delete an alert.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/alerts.html#get-alerts-history"><em>GET /alerts/history</em></a></td>
+<td>Get history of actions on an alert.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/alerts.html#get-alerts-count"><em>GET /alerts/count</em></a></td>
+<td>Get aggregate counts of status and severity of alerts.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/alerts.html#get-alerts-top10"><em>GET /alerts/top10</em></a></td>
+<td>Get list of top 10 alerts grouped by environment and service.</td>
 </tr>
 </tbody>
 </table>
@@ -100,10 +112,10 @@
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td><a class="reference internal" href="api/alerts.html#get-environments"><em>GET /environments</em></a></td>
-<td>Returns list of environments and all services for each</td>
+<td>Returns list of environments and all services for each.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="api/alerts.html#get-services"><em>GET /services</em></a></td>
-<td>Returns list of all services and count of alerts for each</td>
+<td>Returns list of all services and count of alerts for each.</td>
 </tr>
 </tbody>
 </table>
@@ -228,6 +240,23 @@
 </div>
 <div class="section" id="web-hooks">
 <h2>Web Hooks<a class="headerlink" href="#web-hooks" title="Permalink to this headline">¶</a></h2>
+<p>Web hooks can be used to trigger updates to alerts from external services.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Resource</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><em class="xref std std-ref">post-pagerduty</em></td>
+<td>Change status of alert based on actions in pagerduty.</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
