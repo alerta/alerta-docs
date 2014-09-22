@@ -54,8 +54,8 @@
 <div class="section" id="get-alerts">
 <span id="id1"></span><h2>GET /alerts<a class="headerlink" href="#get-alerts" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="get-api-alert-id">
-<span id="get-alert-id"></span><h2>GET /api/alert/&lt;id&gt;<a class="headerlink" href="#get-api-alert-id" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="get-alert-id">
+<span id="id2"></span><h2>GET /alert/&lt;id&gt;<a class="headerlink" href="#get-alert-id" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="resource-url">
 <h3>Resource URL<a class="headerlink" href="#resource-url" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://host:port/api/alert/:id">http://host:port/api/alert/:id</a></p>
@@ -145,23 +145,29 @@
 </div>
 </div>
 </div>
-<div class="section" id="post-api-alert">
-<span id="post-alert"></span><h2>POST /api/alert<a class="headerlink" href="#post-api-alert" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="post-alert">
+<span id="id3"></span><h2>POST /alert<a class="headerlink" href="#post-alert" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="delete-api-alert-id">
-<span id="delete-alert-id"></span><h2>DELETE /api/alert/&lt;id&gt;<a class="headerlink" href="#delete-api-alert-id" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="delete-alert-id">
+<span id="id4"></span><h2>DELETE /alert/&lt;id&gt;<a class="headerlink" href="#delete-alert-id" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="post-api-alert-id-status">
-<span id="post-alert-id-status"></span><h2>POST /api/alert/&lt;id&gt;/status<a class="headerlink" href="#post-api-alert-id-status" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="post-alert-id-status">
+<span id="id5"></span><h2>POST /alert/&lt;id&gt;/status<a class="headerlink" href="#post-alert-id-status" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="post-api-alert-id-tag">
-<span id="post-alert-id-tag"></span><h2>POST /api/alert/&lt;id&gt;/tag<a class="headerlink" href="#post-api-alert-id-tag" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="post-alert-id-tag">
+<span id="id6"></span><h2>POST /alert/&lt;id&gt;/tag<a class="headerlink" href="#post-alert-id-tag" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="get-api-alerts-history">
-<span id="get-alerts-history"></span><h2>GET /api/alerts/history<a class="headerlink" href="#get-api-alerts-history" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="post-alert-id-untag">
+<span id="id7"></span><h2>POST /alert/&lt;id&gt;/untag<a class="headerlink" href="#post-alert-id-untag" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="get-api-alerts-count">
-<span id="get-alerts-count"></span><h2>GET /api/alerts/count<a class="headerlink" href="#get-api-alerts-count" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="get-alerts-history">
+<span id="id8"></span><h2>GET /alerts/history<a class="headerlink" href="#get-alerts-history" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="get-alerts-count">
+<span id="id9"></span><h2>GET /alerts/count<a class="headerlink" href="#get-alerts-count" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="get-alerts-top10">
+<span id="id10"></span><h2>GET /alerts/top10<a class="headerlink" href="#get-alerts-top10" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -175,18 +181,20 @@
   <ul>
 <li><a class="reference internal" href="#">Alerts API</a><ul>
 <li><a class="reference internal" href="#get-alerts">GET /alerts</a></li>
-<li><a class="reference internal" href="#get-api-alert-id">GET /api/alert/&lt;id&gt;</a><ul>
+<li><a class="reference internal" href="#get-alert-id">GET /alert/&lt;id&gt;</a><ul>
 <li><a class="reference internal" href="#resource-url">Resource URL</a></li>
 <li><a class="reference internal" href="#parameters">Parameters</a></li>
 <li><a class="reference internal" href="#example-request">Example Request</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#post-api-alert">POST /api/alert</a></li>
-<li><a class="reference internal" href="#delete-api-alert-id">DELETE /api/alert/&lt;id&gt;</a></li>
-<li><a class="reference internal" href="#post-api-alert-id-status">POST /api/alert/&lt;id&gt;/status</a></li>
-<li><a class="reference internal" href="#post-api-alert-id-tag">POST /api/alert/&lt;id&gt;/tag</a></li>
-<li><a class="reference internal" href="#get-api-alerts-history">GET /api/alerts/history</a></li>
-<li><a class="reference internal" href="#get-api-alerts-count">GET /api/alerts/count</a></li>
+<li><a class="reference internal" href="#post-alert">POST /alert</a></li>
+<li><a class="reference internal" href="#delete-alert-id">DELETE /alert/&lt;id&gt;</a></li>
+<li><a class="reference internal" href="#post-alert-id-status">POST /alert/&lt;id&gt;/status</a></li>
+<li><a class="reference internal" href="#post-alert-id-tag">POST /alert/&lt;id&gt;/tag</a></li>
+<li><a class="reference internal" href="#post-alert-id-untag">POST /alert/&lt;id&gt;/untag</a></li>
+<li><a class="reference internal" href="#get-alerts-history">GET /alerts/history</a></li>
+<li><a class="reference internal" href="#get-alerts-count">GET /alerts/count</a></li>
+<li><a class="reference internal" href="#get-alerts-top10">GET /alerts/top10</a></li>
 </ul>
 </li>
 </ul>

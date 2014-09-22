@@ -8,8 +8,8 @@ GET /alerts
 
 .. _get-alert-id:
 
-GET /api/alert/<id>
--------------------
+GET /alert/<id>
+---------------
 
 Resource URL
 ++++++++++++
@@ -91,30 +91,40 @@ GET http://host:port/api/alert/22c656fa-02bd-4dde-a761-2218d90338b1
 
 .. _post-alert:
 
-POST /api/alert
----------------
+POST /alert
+-----------
 
 .. _delete-alert-id:
 
-DELETE /api/alert/<id>
-----------------------
+DELETE /alert/<id>
+------------------
 
 .. _post-alert-id-status:
 
-POST /api/alert/<id>/status
----------------------------
+POST /alert/<id>/status
+-----------------------
 
 .. _post-alert-id-tag:
 
-POST /api/alert/<id>/tag
-------------------------
+POST /alert/<id>/tag
+--------------------
+
+.. _post-alert-id-untag:
+
+POST /alert/<id>/untag
+----------------------
 
 .. _get-alerts-history:
 
-GET /api/alerts/history
------------------------
+GET /alerts/history
+-------------------
 
 .. _get-alerts-count:
 
-GET /api/alerts/count
----------------------
+GET /alerts/count
+-----------------
+
+.. _get-alerts-top10:
+
+GET /alerts/top10
+-----------------
