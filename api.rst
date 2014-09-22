@@ -47,6 +47,38 @@ Heartbeats are sent from something at regular intervals to ensure that it is ope
 | :ref:`delete-heartbeat-id`  | foo                                                          |
 +-----------------------------+--------------------------------------------------------------+
 
+Users
+-----
+
+User emails that don't match the allowed domains can be individually white-listed.
+
++-----------------------------+--------------------------------------------------------------+
+| Resource                    | Description                                                  |
++=============================+==============================================================+
+| :ref:`get-users`            | Get list of all white-listed user email addresses.           |
++-----------------------------+--------------------------------------------------------------+
+| :ref:`post-user`            | Add user email address to white-list.                        |
++-----------------------------+--------------------------------------------------------------+
+| :ref:`delete-user-id`       | Delete email address from white-list.                        |
++-----------------------------+--------------------------------------------------------------+
+
+API Keys
+--------
+
+API keys are used for programatic access to the API and are associated with an authorized user.
+
++-----------------------------+--------------------------------------------------------------+
+| Resource                    | Description                                                  |
++=============================+==============================================================+
+| :ref:`get-keys`             | Get list of all API keys.                                    |
++-----------------------------+--------------------------------------------------------------+
+| :ref:`get-keys-user`        | Get list of API keys for a user.                             |
++-----------------------------+--------------------------------------------------------------+
+| :ref:`post-key`             | Create a new API key.                                        |
++-----------------------------+--------------------------------------------------------------+
+| :ref:`delete-key-id`        | Delete an API key.                                           |
++-----------------------------+--------------------------------------------------------------+
+
 HTTP Status Codes
 -----------------
 

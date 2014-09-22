@@ -68,19 +68,19 @@
 <tr class="row-even"><td><a class="reference internal" href="api/alerts.html#get-alerts"><em>GET /alerts</em></a></td>
 <td>Returns all alerts or all alerts that meet the query filter.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="api/alerts.html#post-alert"><em>POST /api/alert</em></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="api/alerts.html#post-alert"><em>POST /alert</em></a></td>
 <td>foo</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="api/alerts.html#get-alert-id"><em>GET /api/alert/&lt;id&gt;</em></a></td>
+<tr class="row-even"><td><a class="reference internal" href="api/alerts.html#get-alert-id"><em>GET /alert/&lt;id&gt;</em></a></td>
 <td>foo</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="api/alerts.html#post-alert-id-tag"><em>POST /api/alert/&lt;id&gt;/tag</em></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="api/alerts.html#post-alert-id-tag"><em>POST /alert/&lt;id&gt;/tag</em></a></td>
 <td>foo</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="api/alerts.html#post-alert-id-status"><em>POST /api/alert/&lt;id&gt;/status</em></a></td>
+<tr class="row-even"><td><a class="reference internal" href="api/alerts.html#post-alert-id-status"><em>POST /alert/&lt;id&gt;/status</em></a></td>
 <td>foo</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="api/alerts.html#delete-alert-id"><em>DELETE /api/alert/&lt;id&gt;</em></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="api/alerts.html#delete-alert-id"><em>DELETE /alert/&lt;id&gt;</em></a></td>
 <td>foo</td>
 </tr>
 </tbody>
@@ -99,10 +99,10 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><em class="xref std std-ref">get-environments</em></td>
+<tr class="row-even"><td><a class="reference internal" href="api/alerts.html#get-environments"><em>GET /environments</em></a></td>
 <td>Returns list of environments and all services for each</td>
 </tr>
-<tr class="row-odd"><td><em class="xref std std-ref">get-services</em></td>
+<tr class="row-odd"><td><a class="reference internal" href="api/alerts.html#get-services"><em>GET /services</em></a></td>
 <td>Returns list of all services and count of alerts for each</td>
 </tr>
 </tbody>
@@ -122,14 +122,69 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><a class="reference internal" href="api/heartbeats.html#get-heartbeats"><em>GET /api/heartbeats</em></a></td>
+<tr class="row-even"><td><a class="reference internal" href="api/heartbeats.html#get-heartbeats"><em>GET /heartbeats</em></a></td>
 <td>foo</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="api/heartbeats.html#post-heartbeat"><em>POST /api/heartbeat</em></a></td>
+<tr class="row-odd"><td><a class="reference internal" href="api/heartbeats.html#post-heartbeat"><em>POST /heartbeat</em></a></td>
 <td>foo</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="api/heartbeats.html#delete-heartbeat-id"><em>DELETE /api/heartbeat/&lt;id&gt;</em></a></td>
+<tr class="row-even"><td><a class="reference internal" href="api/heartbeats.html#delete-heartbeat-id"><em>DELETE /heartbeat/&lt;id&gt;</em></a></td>
 <td>foo</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="users">
+<h2>Users<a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
+<p>User emails that don&#8217;t match the allowed domains can be individually white-listed.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Resource</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="api/users.html#get-users"><em>GET /users</em></a></td>
+<td>Get list of all white-listed user email addresses.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/users.html#post-user"><em>POST /user</em></a></td>
+<td>Add user email address to white-list.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/users.html#delete-user-id"><em>DELETE /user/&lt;id&gt;</em></a></td>
+<td>Delete email address from white-list.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="api-keys">
+<h2>API Keys<a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h2>
+<p>API keys are used for programatic access to the API and are associated with an authorized user.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Resource</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="api/keys.html#get-keys"><em>GET /keys</em></a></td>
+<td>Get list of all API keys.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/keys.html#get-keys-user"><em>GET /keys/&lt;user&gt;</em></a></td>
+<td>Get list of API keys for a user.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="api/keys.html#post-key"><em>POST /key</em></a></td>
+<td>Create a new API key.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="api/keys.html#delete-key-id"><em>DELETE /key/&lt;id&gt;</em></a></td>
+<td>Delete an API key.</td>
 </tr>
 </tbody>
 </table>
@@ -188,6 +243,8 @@
 <li><a class="reference internal" href="#alerts">Alerts</a></li>
 <li><a class="reference internal" href="#environments-services">Environments &amp; Services</a></li>
 <li><a class="reference internal" href="#heartbeats">Heartbeats</a></li>
+<li><a class="reference internal" href="#users">Users</a></li>
+<li><a class="reference internal" href="#api-keys">API Keys</a></li>
 <li><a class="reference internal" href="#http-status-codes">HTTP Status Codes</a></li>
 <li><a class="reference internal" href="#web-hooks">Web Hooks</a></li>
 </ul>
