@@ -128,3 +128,18 @@ GET /alerts/count
 
 GET /alerts/top10
 -----------------
+
+.. _get-environments:
+
+GET /environments
+-----------------
+
+.. _get-services:
+
+GET /services
+-------------
+
+.. _post-pagerduty:
+
+POST /pagerduty
+---------------
