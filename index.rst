@@ -50,6 +50,8 @@ Contents:
    api
    api/alerts
    api/heartbeats
+   api/users
+   api/keys
    api/webhooks
    client
    correlation
