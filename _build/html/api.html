@@ -65,7 +65,7 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><a class="reference internal" href="api/alerts.html#get-alerts"><em>GET /api/alerts</em></a></td>
+<tr class="row-even"><td><a class="reference internal" href="api/alerts.html#get-alerts"><em>GET /alerts</em></a></td>
 <td>Returns all alerts or all alerts that meet the query filter.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="api/alerts.html#post-alert"><em>POST /api/alert</em></a></td>
@@ -134,6 +134,43 @@
 </tbody>
 </table>
 </div>
+<div class="section" id="http-status-codes">
+<h2>HTTP Status Codes<a class="headerlink" href="#http-status-codes" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Code</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>200 OK</td>
+<td>No error.</td>
+</tr>
+<tr class="row-odd"><td>201 Created</td>
+<td>Resource created successfully.</td>
+</tr>
+<tr class="row-even"><td>400 Bad Request</td>
+<td>Mandatory parameter or data missing.</td>
+</tr>
+<tr class="row-odd"><td>401 Unauthorized</td>
+<td>Authorization required.</td>
+</tr>
+<tr class="row-even"><td>403 Forbidden</td>
+<td>Pre-receive hook rejected request or authorization failed.</td>
+</tr>
+<tr class="row-odd"><td>404 Not Found</td>
+<td>Resource (such as alert or heartbeat) not found.</td>
+</tr>
+<tr class="row-even"><td>500 Server Error</td>
+<td>Internal error. Default code used for all unexpected server errors.</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="web-hooks">
 <h2>Web Hooks<a class="headerlink" href="#web-hooks" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -151,6 +188,7 @@
 <li><a class="reference internal" href="#alerts">Alerts</a></li>
 <li><a class="reference internal" href="#environments-services">Environments &amp; Services</a></li>
 <li><a class="reference internal" href="#heartbeats">Heartbeats</a></li>
+<li><a class="reference internal" href="#http-status-codes">HTTP Status Codes</a></li>
 <li><a class="reference internal" href="#web-hooks">Web Hooks</a></li>
 </ul>
 </li>

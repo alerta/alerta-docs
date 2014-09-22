@@ -3,8 +3,8 @@ Alerts API
 
 .. _get-alerts:
 
-GET /api/alerts
----------------
+GET /alerts
+-----------
 
 .. _get-alert-id:
 
