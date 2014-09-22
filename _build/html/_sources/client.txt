@@ -29,9 +29,9 @@ on the command line. Profiles can be used to easily switch between different
 configuration settings.
 
 +-------------+-------------+-----------------------------------+-----------------------------+---------------------------+
-| Variable    | Config File | Environment Variable              | Option                      | Default                   |
+| Option      | Config File | Environment Variable              | Optional Argument           | Default                   |
 +=============+=============+===================================+=============================+===========================+
-| config_file |     n/a     | :envvar:`ALERTA_CONF_FILE`        |     n/a                     | :file:`~/.alerta.conf`    |
+| file        |     n/a     | :envvar:`ALERTA_CONF_FILE`        |     n/a                     | :file:`~/.alerta.conf`    |
 +-------------+-------------+-----------------------------------+-----------------------------+---------------------------+
 | profile     |     n/a     | :envvar:`ALERTA_DEFAULT_PROFILE`  | ``--profile``               | None                      |
 +-------------+-------------+-----------------------------------+-----------------------------+---------------------------+
@@ -46,8 +46,7 @@ configuration settings.
 | debug       |  debug      | n/a                               | ``--debug``                 | no debug                  |
 +-------------+-------------+-----------------------------------+-----------------------------+---------------------------+
 
-Examples
-++++++++
+**Examples**
 
 Configuration file :file:`~/.alerta/config`::
 
@@ -83,8 +82,7 @@ variables, which have precedence over the configuration file. Within
 the configuration file profile-specific sections have precedence over
 the ``[DEFAULT]`` section.
 
-Examples
-++++++++
+**Examples**
 
 1. ``--endpoint http://foo`` overrides ``ALERTA_DEFAULT_ENDPOINT=http://bar``
 2. ``ALERTA_DEFAULT_ENDPOINT=http://bar`` overrides a configuration file option ``endpoint=http://baz``, whether in ``[DEFAULT]`` or ``[profile]`` sections
@@ -94,8 +92,10 @@ Examples
 Commands
 --------
 
+ Some stuff about sub-commands.
+
 :command:`send`
----------------
+^^^^^^^^^^^^^^^
 
 Send alert to server
 
@@ -132,8 +132,7 @@ be set to sensible defaults.
 | raw data         | empty string          |
 +------------------+-----------------------+
 
-Examples
-++++++++
+**Examples**
 
 To send a minor alert followed by a normal::
 
@@ -143,67 +142,67 @@ To send a minor alert followed by a normal::
 
 
 :command:`query`
-----------------
+^^^^^^^^^^^^^^^^
 
     query               List alerts based on query filter
 
 :command:`watch`
-----------------
+^^^^^^^^^^^^^^^^
 
     watch               Watch alerts based on query filter
 
 :command:`raw`
---------------
+^^^^^^^^^^^^^^
 
     raw                 Show alert raw data
 
 :command:`history`
-------------------
+^^^^^^^^^^^^^^^^^^
 
     history             Show alert history
 
 :command:`tag`
---------------
+^^^^^^^^^^^^^^
 
     tag                 Tag alerts
 
 :command:`ack`
---------------
+^^^^^^^^^^^^^^
 
     ack                 Acknowledge alerts
 
 :command:`unack`
-----------------
+^^^^^^^^^^^^^^^^
 
     unack               Unacknowledge alerts
 
 :command:`close`
-----------------
+^^^^^^^^^^^^^^^^
 
     close               Close alerts
 
 :command:`delete`
------------------
+^^^^^^^^^^^^^^^^^
 
     delete              Delete alerts
 
 :command:`heartbeat`
---------------------
+^^^^^^^^^^^^^^^^^^^^
 
     heartbeat           Send heartbeat to server
 
 :command:`config`
------------------
+^^^^^^^^^^^^^^^^^
 
     config              Show config
 
 :command:`help`
----------------
+^^^^^^^^^^^^^^^
 
     help                Show help
 
 :command:`version`
-------------------
+^^^^^^^^^^^^^^^^^^
 
     version             Show alerta version info
 

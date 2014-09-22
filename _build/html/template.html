@@ -1,0 +1,515 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Quickstart &mdash; alerta 3.2.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="alerta 3.2.0 documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">alerta 3.2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="quickstart">
+<span id="id1"></span><h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-requests.models"></span><p>Eager to get started? This page gives a good introduction in how to get started
+with Requests.</p>
+<p>First, make sure that:</p>
+<ul class="simple">
+<li>Requests is <em class="xref std std-ref">installed</em></li>
+<li>Requests is <em class="xref std std-ref">up-to-date</em></li>
+</ul>
+<p>Let&#8217;s get started with some simple examples.</p>
+<div class="section" id="make-a-request">
+<h2>Make a Request<a class="headerlink" href="#make-a-request" title="Permalink to this headline">¶</a></h2>
+<p>Making a request with Requests is very simple.</p>
+<p>Begin by importing the Requests module:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">requests</span>
+</pre></div>
+</div>
+<p>Now, let&#8217;s try to get a webpage. For this example, let&#8217;s get GitHub&#8217;s public
+timeline</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;https://api.github.com/events&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now, we have a <tt class="xref py py-class docutils literal"><span class="pre">Response</span></tt> object called <tt class="docutils literal"><span class="pre">r</span></tt>. We can
+get all the information we need from this object.</p>
+<p>Requests&#8217; simple API means that all forms of HTTP request are as obvious. For
+example, this is how you make an HTTP POST request:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;http://httpbin.org/post&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Nice, right? What about the other HTTP request types: PUT, DELETE, HEAD and
+OPTIONS? These are all just as simple:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">&quot;http://httpbin.org/put&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">&quot;http://httpbin.org/delete&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="s">&quot;http://httpbin.org/get&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="s">&quot;http://httpbin.org/get&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>That&#8217;s all well and good, but it&#8217;s also only the start of what Requests can
+do.</p>
+</div>
+<div class="section" id="passing-parameters-in-urls">
+<h2>Passing Parameters In URLs<a class="headerlink" href="#passing-parameters-in-urls" title="Permalink to this headline">¶</a></h2>
+<p>You often want to send some sort of data in the URL&#8217;s query string. If
+you were constructing the URL by hand, this data would be given as key/value
+pairs in the URL after a question mark, e.g. <tt class="docutils literal"><span class="pre">httpbin.org/get?key=val</span></tt>.
+Requests allows you to provide these arguments as a dictionary, using the
+<tt class="docutils literal"><span class="pre">params</span></tt> keyword argument. As an example, if you wanted to pass
+<tt class="docutils literal"><span class="pre">key1=value1</span></tt> and <tt class="docutils literal"><span class="pre">key2=value2</span></tt> to <tt class="docutils literal"><span class="pre">httpbin.org/get</span></tt>, you would use the
+following code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;key1&#39;</span><span class="p">:</span> <span class="s">&#39;value1&#39;</span><span class="p">,</span> <span class="s">&#39;key2&#39;</span><span class="p">:</span> <span class="s">&#39;value2&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;http://httpbin.org/get&quot;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can see that the URL has been correctly encoded by printing the URL:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+<span class="go">http://httpbin.org/get?key2=value2&amp;key1=value1</span>
+</pre></div>
+</div>
+<p>Note that any dictionary key whose value is <tt class="docutils literal"><span class="pre">None</span></tt> will not be added to the
+URL&#8217;s query string.</p>
+</div>
+<div class="section" id="response-content">
+<h2>Response Content<a class="headerlink" href="#response-content" title="Permalink to this headline">¶</a></h2>
+<p>We can read the content of the server&#8217;s response. Consider the GitHub timeline
+again:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;https://api.github.com/events&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">text</span>
+<span class="go">u&#39;[{&quot;repository&quot;:{&quot;open_issues&quot;:0,&quot;url&quot;:&quot;https://github.com/...</span>
+</pre></div>
+</div>
+<p>Requests will automatically decode content from the server. Most unicode
+charsets are seamlessly decoded.</p>
+<p>When you make a request, Requests makes educated guesses about the encoding of
+the response based on the HTTP headers. The text encoding guessed by Requests
+is used when you access <tt class="docutils literal"><span class="pre">r.text</span></tt>. You can find out what encoding Requests is
+using, and change it, using the <tt class="docutils literal"><span class="pre">r.encoding</span></tt> property:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">encoding</span>
+<span class="go">&#39;utf-8&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s">&#39;ISO-8859-1&#39;</span>
+</pre></div>
+</div>
+<p>If you change the encoding, Requests will use the new value of <tt class="docutils literal"><span class="pre">r.encoding</span></tt>
+whenever you call <tt class="docutils literal"><span class="pre">r.text</span></tt>. You might want to do this in any situation where
+you can apply special logic to work out what the encoding of the content will
+be. For example, HTTP and XML have the ability to specify their encoding in
+their body. In situations like this, you should use <tt class="docutils literal"><span class="pre">r.content</span></tt> to find the
+encoding, and then set <tt class="docutils literal"><span class="pre">r.encoding</span></tt>. This will let you use <tt class="docutils literal"><span class="pre">r.text</span></tt> with
+the correct encoding.</p>
+<p>Requests will also use custom encodings in the event that you need them. If
+you have created your own encoding and registered it with the <tt class="docutils literal"><span class="pre">codecs</span></tt>
+module, you can simply use the codec name as the value of <tt class="docutils literal"><span class="pre">r.encoding</span></tt> and
+Requests will handle the decoding for you.</p>
+</div>
+<div class="section" id="binary-response-content">
+<h2>Binary Response Content<a class="headerlink" href="#binary-response-content" title="Permalink to this headline">¶</a></h2>
+<p>You can also access the response body as bytes, for non-text requests:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">content</span>
+<span class="go">b&#39;[{&quot;repository&quot;:{&quot;open_issues&quot;:0,&quot;url&quot;:&quot;https://github.com/...</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">gzip</span></tt> and <tt class="docutils literal"><span class="pre">deflate</span></tt> transfer-encodings are automatically decoded for you.</p>
+<p>For example, to create an image from binary data returned by a request, you can
+use the following code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">StringIO</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="json-response-content">
+<h2>JSON Response Content<a class="headerlink" href="#json-response-content" title="Permalink to this headline">¶</a></h2>
+<p>There&#8217;s also a builtin JSON decoder, in case you&#8217;re dealing with JSON data:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;https://api.github.com/events&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="go">[{u&#39;repository&#39;: {u&#39;open_issues&#39;: 0, u&#39;url&#39;: &#39;https://github.com/...</span>
+</pre></div>
+</div>
+<p>In case the JSON decoding fails, <tt class="docutils literal"><span class="pre">r.json</span></tt> raises an exception. For example, if
+the response gets a 401 (Unauthorized), attempting <tt class="docutils literal"><span class="pre">r.json</span></tt> raises <tt class="docutils literal"><span class="pre">ValueError:</span>
+<span class="pre">No</span> <span class="pre">JSON</span> <span class="pre">object</span> <span class="pre">could</span> <span class="pre">be</span> <span class="pre">decoded</span></tt></p>
+</div>
+<div class="section" id="raw-response-content">
+<h2>Raw Response Content<a class="headerlink" href="#raw-response-content" title="Permalink to this headline">¶</a></h2>
+<p>In the rare case that you&#8217;d like to get the raw socket response from the
+server, you can access <tt class="docutils literal"><span class="pre">r.raw</span></tt>. If you want to do this, make sure you set
+<tt class="docutils literal"><span class="pre">stream=True</span></tt> in your initial request. Once you do, you can do this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;https://api.github.com/events&#39;</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">raw</span>
+<span class="go">&lt;requests.packages.urllib3.response.HTTPResponse object at 0x101194810&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">raw</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">&#39;\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\x03&#39;</span>
+</pre></div>
+</div>
+<p>In general, however, you should use a pattern like this to save what is being
+streamed to a file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="p">):</span>
+        <span class="n">fd</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Using <tt class="docutils literal"><span class="pre">Response.iter_content</span></tt> will handle a lot of what you would otherwise
+have to handle when using <tt class="docutils literal"><span class="pre">Response.raw</span></tt> directly. When streaming a
+download, the above is the preferred and recommended way to retrieve the
+content.</p>
+</div>
+<div class="section" id="custom-headers">
+<h2>Custom Headers<a class="headerlink" href="#custom-headers" title="Permalink to this headline">¶</a></h2>
+<p>If you&#8217;d like to add HTTP headers to a request, simply pass in a <tt class="docutils literal"><span class="pre">dict</span></tt> to the
+<tt class="docutils literal"><span class="pre">headers</span></tt> parameter.</p>
+<p>For example, we didn&#8217;t specify our content-type in the previous example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">json</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">url</span> <span class="o">=</span> <span class="s">&#39;https://api.github.com/some/endpoint&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;some&#39;</span><span class="p">:</span> <span class="s">&#39;data&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;content-type&#39;</span><span class="p">:</span> <span class="s">&#39;application/json&#39;</span><span class="p">}</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">),</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="more-complicated-post-requests">
+<h2>More complicated POST requests<a class="headerlink" href="#more-complicated-post-requests" title="Permalink to this headline">¶</a></h2>
+<p>Typically, you want to send some form-encoded data — much like an HTML form.
+To do this, simply pass a dictionary to the <tt class="docutils literal"><span class="pre">data</span></tt> argument. Your
+dictionary of data will automatically be form-encoded when the request is made:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;key1&#39;</span><span class="p">:</span> <span class="s">&#39;value1&#39;</span><span class="p">,</span> <span class="s">&#39;key2&#39;</span><span class="p">:</span> <span class="s">&#39;value2&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;http://httpbin.org/post&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">  ...</span>
+<span class="go">  &quot;form&quot;: {</span>
+<span class="go">    &quot;key2&quot;: &quot;value2&quot;,</span>
+<span class="go">    &quot;key1&quot;: &quot;value1&quot;</span>
+<span class="go">  },</span>
+<span class="go">  ...</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>There are many times that you want to send data that is not form-encoded. If
+you pass in a <tt class="docutils literal"><span class="pre">string</span></tt> instead of a <tt class="docutils literal"><span class="pre">dict</span></tt>, that data will be posted directly.</p>
+<p>For example, the GitHub API v3 accepts JSON-Encoded POST/PATCH data:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">json</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">url</span> <span class="o">=</span> <span class="s">&#39;https://api.github.com/some/endpoint&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;some&#39;</span><span class="p">:</span> <span class="s">&#39;data&#39;</span><span class="p">}</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="post-a-multipart-encoded-file">
+<h2>POST a Multipart-Encoded File<a class="headerlink" href="#post-a-multipart-encoded-file" title="Permalink to this headline">¶</a></h2>
+<p>Requests makes it simple to upload Multipart-encoded files:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">url</span> <span class="o">=</span> <span class="s">&#39;http://httpbin.org/post&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">files</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;file&#39;</span><span class="p">:</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;report.xls&#39;</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)}</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">text</span>
+<span class="go">{</span>
+<span class="go">  ...</span>
+<span class="go">  &quot;files&quot;: {</span>
+<span class="go">    &quot;file&quot;: &quot;&lt;censored...binary...data&gt;&quot;</span>
+<span class="go">  },</span>
+<span class="go">  ...</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>You can set the filename, content_type and headers explicitly:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">url</span> <span class="o">=</span> <span class="s">&#39;http://httpbin.org/post&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">files</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;file&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;report.xls&#39;</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;report.xls&#39;</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">),</span> <span class="s">&#39;application/vnd.ms-excel&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;Expires&#39;</span><span class="p">:</span> <span class="s">&#39;0&#39;</span><span class="p">})}</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">text</span>
+<span class="go">{</span>
+<span class="go">  ...</span>
+<span class="go">  &quot;files&quot;: {</span>
+<span class="go">    &quot;file&quot;: &quot;&lt;censored...binary...data&gt;&quot;</span>
+<span class="go">  },</span>
+<span class="go">  ...</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>If you want, you can send strings to be received as files:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">url</span> <span class="o">=</span> <span class="s">&#39;http://httpbin.org/post&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">files</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;file&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;report.csv&#39;</span><span class="p">,</span> <span class="s">&#39;some,data,to,send</span><span class="se">\n</span><span class="s">another,row,to,send</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)}</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">text</span>
+<span class="go">{</span>
+<span class="go">  ...</span>
+<span class="go">  &quot;files&quot;: {</span>
+<span class="go">    &quot;file&quot;: &quot;some,data,to,send\\nanother,row,to,send\\n&quot;</span>
+<span class="go">  },</span>
+<span class="go">  ...</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>In the event you are posting a very large file as a <tt class="docutils literal"><span class="pre">multipart/form-data</span></tt>
+request, you may want to stream the request. By default, <tt class="docutils literal"><span class="pre">requests</span></tt> does not
+support this, but there is a separate package which does -
+<tt class="docutils literal"><span class="pre">requests-toolbelt</span></tt>. You should read <a class="reference external" href="https://toolbelt.rtfd.org">the toolbelt&#8217;s documentation</a> for more details about how to use it.</p>
+<p>For sending multiple files in one request refer to the <em class="xref std std-ref">advanced</em>
+section.</p>
+</div>
+<div class="section" id="response-status-codes">
+<h2>Response Status Codes<a class="headerlink" href="#response-status-codes" title="Permalink to this headline">¶</a></h2>
+<p>We can check the response status code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;http://httpbin.org/get&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span>
+<span class="go">200</span>
+</pre></div>
+</div>
+<p>Requests also comes with a built-in status code lookup object for easy
+reference:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">ok</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>If we made a bad request (a 4XX client error or 5XX server error response), we
+can raise it with
+<tt class="xref py py-meth docutils literal"><span class="pre">Response.raise_for_status()</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">bad_r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;http://httpbin.org/status/404&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bad_r</span><span class="o">.</span><span class="n">status_code</span>
+<span class="go">404</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bad_r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;requests/models.py&quot;</span>, line <span class="m">832</span>, in <span class="n">raise_for_status</span>
+    <span class="k">raise</span> <span class="n">http_error</span>
+<span class="gr">requests.exceptions.HTTPError</span>: <span class="n">404 Client Error</span>
+</pre></div>
+</div>
+<p>But, since our <tt class="docutils literal"><span class="pre">status_code</span></tt> for <tt class="docutils literal"><span class="pre">r</span></tt> was <tt class="docutils literal"><span class="pre">200</span></tt>, when we call
+<tt class="docutils literal"><span class="pre">raise_for_status()</span></tt> we get:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+<span class="go">None</span>
+</pre></div>
+</div>
+<p>All is well.</p>
+</div>
+<div class="section" id="response-headers">
+<h2>Response Headers<a class="headerlink" href="#response-headers" title="Permalink to this headline">¶</a></h2>
+<p>We can view the server&#8217;s response headers using a Python dictionary:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">headers</span>
+<span class="go">{</span>
+<span class="go">    &#39;content-encoding&#39;: &#39;gzip&#39;,</span>
+<span class="go">    &#39;transfer-encoding&#39;: &#39;chunked&#39;,</span>
+<span class="go">    &#39;connection&#39;: &#39;close&#39;,</span>
+<span class="go">    &#39;server&#39;: &#39;nginx/1.0.4&#39;,</span>
+<span class="go">    &#39;x-runtime&#39;: &#39;148ms&#39;,</span>
+<span class="go">    &#39;etag&#39;: &#39;&quot;e1ca502697e5c9317743dc078f67693f&quot;&#39;,</span>
+<span class="go">    &#39;content-type&#39;: &#39;application/json&#39;</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>The dictionary is special, though: it&#8217;s made just for HTTP headers. According to
+<a class="reference external" href="http://tools.ietf.org/html/rfc7230#section-3.2">RFC 7230</a>, HTTP Header names
+are case-insensitive.</p>
+<p>So, we can access the headers using any capitalization we want:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s">&#39;Content-Type&#39;</span><span class="p">]</span>
+<span class="go">&#39;application/json&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;content-type&#39;</span><span class="p">)</span>
+<span class="go">&#39;application/json&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cookies">
+<h2>Cookies<a class="headerlink" href="#cookies" title="Permalink to this headline">¶</a></h2>
+<p>If a response contains some Cookies, you can quickly access them:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">url</span> <span class="o">=</span> <span class="s">&#39;http://example.com/some/cookie/setting/url&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">cookies</span><span class="p">[</span><span class="s">&#39;example_cookie_name&#39;</span><span class="p">]</span>
+<span class="go">&#39;example_cookie_value&#39;</span>
+</pre></div>
+</div>
+<p>To send your own cookies to the server, you can use the <tt class="docutils literal"><span class="pre">cookies</span></tt>
+parameter:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">url</span> <span class="o">=</span> <span class="s">&#39;http://httpbin.org/cookies&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cookies</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">cookies_are</span><span class="o">=</span><span class="s">&#39;working&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">cookies</span><span class="o">=</span><span class="n">cookies</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">text</span>
+<span class="go">&#39;{&quot;cookies&quot;: {&quot;cookies_are&quot;: &quot;working&quot;}}&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="redirection-and-history">
+<h2>Redirection and History<a class="headerlink" href="#redirection-and-history" title="Permalink to this headline">¶</a></h2>
+<p>By default Requests will perform location redirection for all verbs except
+HEAD.</p>
+<p>We can use the <tt class="docutils literal"><span class="pre">history</span></tt> property of the Response object to track redirection.</p>
+<p>The <tt class="xref py py-meth docutils literal"><span class="pre">Response.history</span></tt> list contains the
+<tt class="xref py py-class docutils literal"><span class="pre">Request</span></tt> objects that were created in order to
+complete the request. The list is sorted from the oldest to the most recent
+request.</p>
+<p>For example, GitHub redirects all HTTP requests to HTTPS:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;http://github.com&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">url</span>
+<span class="go">&#39;https://github.com/&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span>
+<span class="go">200</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">history</span>
+<span class="go">[&lt;Response [301]&gt;]</span>
+</pre></div>
+</div>
+<p>If you&#8217;re using GET, OPTIONS, POST, PUT, PATCH or DELETE, you can disable
+redirection handling with the <tt class="docutils literal"><span class="pre">allow_redirects</span></tt> parameter:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;http://github.com&#39;</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span>
+<span class="go">301</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">history</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<p>If you&#8217;re using HEAD, you can enable redirection as well:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="s">&#39;http://github.com&#39;</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">url</span>
+<span class="go">&#39;https://github.com/&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">history</span>
+<span class="go">[&lt;Response [301]&gt;]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="timeouts">
+<h2>Timeouts<a class="headerlink" href="#timeouts" title="Permalink to this headline">¶</a></h2>
+<p>You can tell Requests to stop waiting for a response after a given number of
+seconds with the <tt class="docutils literal"><span class="pre">timeout</span></tt> parameter:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;http://github.com&#39;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">requests.exceptions.Timeout</span>: <span class="n">HTTPConnectionPool(host=&#39;github.com&#39;, port=80): Request timed out. (timeout=0.001)</span>
+</pre></div>
+</div>
+<div class="admonition-note admonition">
+<p class="first admonition-title">Note</p>
+<p class="last"><tt class="docutils literal"><span class="pre">timeout</span></tt> is not a time limit on the entire response download;
+rather, an exception is raised if the server has not issued a
+response for <tt class="docutils literal"><span class="pre">timeout</span></tt> seconds (more precisely, if no bytes have been
+received on the underlying socket for <tt class="docutils literal"><span class="pre">timeout</span></tt> seconds).</p>
+</div>
+</div>
+<div class="section" id="errors-and-exceptions">
+<h2>Errors and Exceptions<a class="headerlink" href="#errors-and-exceptions" title="Permalink to this headline">¶</a></h2>
+<p>In the event of a network problem (e.g. DNS failure, refused connection, etc),
+Requests will raise a <tt class="xref py py-class docutils literal"><span class="pre">ConnectionError</span></tt> exception.</p>
+<p>In the rare event of an invalid HTTP response, Requests will raise an
+<tt class="xref py py-class docutils literal"><span class="pre">HTTPError</span></tt> exception.</p>
+<p>If a request times out, a <tt class="xref py py-class docutils literal"><span class="pre">Timeout</span></tt> exception is
+raised.</p>
+<p>If a request exceeds the configured number of maximum redirections, a
+<tt class="xref py py-class docutils literal"><span class="pre">TooManyRedirects</span></tt> exception is raised.</p>
+<p>All exceptions that Requests explicitly raises inherit from
+<tt class="xref py py-class docutils literal"><span class="pre">requests.exceptions.RequestException</span></tt>.</p>
+<hr class="docutils" />
+<p>Ready for more? Check out the <em class="xref std std-ref">advanced</em> section.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Quickstart</a><ul>
+<li><a class="reference internal" href="#make-a-request">Make a Request</a></li>
+<li><a class="reference internal" href="#passing-parameters-in-urls">Passing Parameters In URLs</a></li>
+<li><a class="reference internal" href="#response-content">Response Content</a></li>
+<li><a class="reference internal" href="#binary-response-content">Binary Response Content</a></li>
+<li><a class="reference internal" href="#json-response-content">JSON Response Content</a></li>
+<li><a class="reference internal" href="#raw-response-content">Raw Response Content</a></li>
+<li><a class="reference internal" href="#custom-headers">Custom Headers</a></li>
+<li><a class="reference internal" href="#more-complicated-post-requests">More complicated POST requests</a></li>
+<li><a class="reference internal" href="#post-a-multipart-encoded-file">POST a Multipart-Encoded File</a></li>
+<li><a class="reference internal" href="#response-status-codes">Response Status Codes</a></li>
+<li><a class="reference internal" href="#response-headers">Response Headers</a></li>
+<li><a class="reference internal" href="#cookies">Cookies</a></li>
+<li><a class="reference internal" href="#redirection-and-history">Redirection and History</a></li>
+<li><a class="reference internal" href="#timeouts">Timeouts</a></li>
+<li><a class="reference internal" href="#errors-and-exceptions">Errors and Exceptions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/template.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">alerta 3.2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Nick Satterly.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

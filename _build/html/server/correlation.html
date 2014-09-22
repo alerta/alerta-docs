@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Webhooks &mdash; alerta 3.2.0 documentation</title>
+    <title>Event Correlation &mdash; alerta 3.2.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -23,9 +23,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="alerta 3.2.0 documentation" href="../index.html" />
-    <link rel="next" title="alert command-line tool" href="../client.html" />
-    <link rel="prev" title="Keys API" href="keys.html" /> 
+    <link rel="top" title="alerta 3.2.0 documentation" href="../index.html" /> 
   </head>
   <body>
     <div class="related">
@@ -37,12 +35,6 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="../client.html" title="alert command-line tool"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="keys.html" title="Keys API"
-             accesskey="P">previous</a> |</li>
         <li><a href="../index.html">alerta 3.2.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -52,11 +44,21 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="webhooks">
-<h1>Webhooks<a class="headerlink" href="#webhooks" title="Permalink to this headline">¶</a></h1>
-<p>Blah blah blah <a class="reference external" href="http://developer.pagerduty.com/documentation/rest/webhooks">PagerDuty</a></p>
-<div class="section" id="post-pagerduty">
-<span id="id1"></span><h2>POST /pagerduty<a class="headerlink" href="#post-pagerduty" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="event-correlation">
+<h1>Event Correlation<a class="headerlink" href="#event-correlation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="de-duplication">
+<h2>De-duplication<a class="headerlink" href="#de-duplication" title="Permalink to this headline">¶</a></h2>
+<p>send and alert
+send the same alert, get same id</p>
+</div>
+<div class="section" id="simple-correlation">
+<h2>Simple Correlation<a class="headerlink" href="#simple-correlation" title="Permalink to this headline">¶</a></h2>
+<p>send an alert
+send a correlated alert, get same id</p>
+</div>
+<div class="section" id="complex-event-processing">
+<h2>Complex Event Processing<a class="headerlink" href="#complex-event-processing" title="Permalink to this headline">¶</a></h2>
+<p>Use something like Riemann.</p>
 </div>
 </div>
 
@@ -68,21 +70,17 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Webhooks</a><ul>
-<li><a class="reference internal" href="#post-pagerduty">POST /pagerduty</a></li>
+<li><a class="reference internal" href="#">Event Correlation</a><ul>
+<li><a class="reference internal" href="#de-duplication">De-duplication</a></li>
+<li><a class="reference internal" href="#simple-correlation">Simple Correlation</a></li>
+<li><a class="reference internal" href="#complex-event-processing">Complex Event Processing</a></li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="keys.html"
-                        title="previous chapter">Keys API</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="../client.html"
-                        title="next chapter">alert command-line tool</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/api/webhooks.txt"
+    <li><a href="../_sources/server/correlation.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -111,12 +109,6 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="../client.html" title="alert command-line tool"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="keys.html" title="Keys API"
-             >previous</a> |</li>
         <li><a href="../index.html">alerta 3.2.0 documentation</a> &raquo;</li> 
       </ul>
     </div>

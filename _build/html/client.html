@@ -24,8 +24,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="alerta 3.2.0 documentation" href="index.html" />
-    <link rel="next" title="Event Correlation" href="correlation.html" />
-    <link rel="prev" title="Web Hooks" href="api/webhooks.html" /> 
+    <link rel="next" title="Version" href="api/overview.html" />
+    <link rel="prev" title="Web UI" href="webui.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,10 +35,13 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="correlation.html" title="Event Correlation"
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api/overview.html" title="Version"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="api/webhooks.html" title="Web Hooks"
+          <a href="webui.html" title="Web UI"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">alerta 3.2.0 documentation</a> &raquo;</li> 
       </ul>
@@ -81,15 +84,15 @@ configuration settings.</p>
 <col width="23%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Variable</th>
+<tr class="row-odd"><th class="head">Option</th>
 <th class="head">Config File</th>
 <th class="head">Environment Variable</th>
-<th class="head">Option</th>
+<th class="head">Optional Argument</th>
 <th class="head">Default</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>config_file</td>
+<tr class="row-even"><td>file</td>
 <td>n/a</td>
 <td><span class="target" id="index-0"></span><tt class="xref std std-envvar docutils literal"><span class="pre">ALERTA_CONF_FILE</span></tt></td>
 <td>n/a</td>
@@ -133,8 +136,7 @@ configuration settings.</p>
 </tr>
 </tbody>
 </table>
-<div class="section" id="examples">
-<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<p><strong>Examples</strong></p>
 <p>Configuration file <tt class="file docutils literal"><span class="pre">~/.alerta/config</span></tt>:</p>
 <div class="highlight-python"><div class="highlight"><pre>[DEFAULT]
 timezone = Australia/Sydney
@@ -162,27 +164,25 @@ $ export ALERTA_DEFAULT_PROFILE=production
 </pre></div>
 </div>
 </div>
-</div>
 <div class="section" id="precedence">
 <h2>Precedence<a class="headerlink" href="#precedence" title="Permalink to this headline">¶</a></h2>
 <p>Command-line configuration options have precedence over environment
 variables, which have precedence over the configuration file. Within
 the configuration file profile-specific sections have precedence over
 the <tt class="docutils literal"><span class="pre">[DEFAULT]</span></tt> section.</p>
-<div class="section" id="id1">
-<h3>Examples<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p><strong>Examples</strong></p>
 <ol class="arabic simple">
 <li><tt class="docutils literal"><span class="pre">--endpoint</span> <span class="pre">http://foo</span></tt> overrides <tt class="docutils literal"><span class="pre">ALERTA_DEFAULT_ENDPOINT=http://bar</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">ALERTA_DEFAULT_ENDPOINT=http://bar</span></tt> overrides a configuration file option <tt class="docutils literal"><span class="pre">endpoint=http://baz</span></tt>, whether in <tt class="docutils literal"><span class="pre">[DEFAULT]</span></tt> or <tt class="docutils literal"><span class="pre">[profile]</span></tt> sections</li>
 <li><tt class="docutils literal"><span class="pre">[profile</span> <span class="pre">quux]</span> <span class="pre">endpoint=http://quux</span></tt> overrides <tt class="docutils literal"><span class="pre">[DEFAULT]</span> <span class="pre">endpoint=http://baz</span></tt> if <tt class="docutils literal"><span class="pre">--profile</span> <span class="pre">quux</span></tt> is used</li>
 </ol>
 </div>
-</div>
 <div class="section" id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
-</div>
+<blockquote>
+<div>Some stuff about sub-commands.</div></blockquote>
 <div class="section" id="send">
-<h2><strong class="command">send</strong><a class="headerlink" href="#send" title="Permalink to this headline">¶</a></h2>
+<h3><strong class="command">send</strong><a class="headerlink" href="#send" title="Permalink to this headline">¶</a></h3>
 <p>Send alert to server</p>
 <p>The only mandatory options are <tt class="docutils literal"><span class="pre">resource</span></tt> and <tt class="docutils literal"><span class="pre">event</span></tt>. All the others will
 be set to sensible defaults.</p>
@@ -238,8 +238,7 @@ be set to sensible defaults.</p>
 </tr>
 </tbody>
 </table>
-<div class="section" id="id2">
-<h3>Examples<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p><strong>Examples</strong></p>
 <p>To send a minor alert followed by a normal:</p>
 <div class="highlight-python"><div class="highlight"><pre>alert send --resource web01 --event HttpError --group Web --severity minor
 
@@ -247,71 +246,71 @@ alert send --resource web01 --event HttpOK --group Web --severity normal
 </pre></div>
 </div>
 </div>
-</div>
 <div class="section" id="query">
-<h2><strong class="command">query</strong><a class="headerlink" href="#query" title="Permalink to this headline">¶</a></h2>
+<h3><strong class="command">query</strong><a class="headerlink" href="#query" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div>query               List alerts based on query filter</div></blockquote>
 </div>
 <div class="section" id="watch">
-<h2><strong class="command">watch</strong><a class="headerlink" href="#watch" title="Permalink to this headline">¶</a></h2>
+<h3><strong class="command">watch</strong><a class="headerlink" href="#watch" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div>watch               Watch alerts based on query filter</div></blockquote>
 </div>
 <div class="section" id="raw">
-<h2><strong class="command">raw</strong><a class="headerlink" href="#raw" title="Permalink to this headline">¶</a></h2>
+<h3><strong class="command">raw</strong><a class="headerlink" href="#raw" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div>raw                 Show alert raw data</div></blockquote>
 </div>
 <div class="section" id="history">
-<h2><strong class="command">history</strong><a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h2>
+<h3><strong class="command">history</strong><a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div>history             Show alert history</div></blockquote>
 </div>
 <div class="section" id="tag">
-<h2><strong class="command">tag</strong><a class="headerlink" href="#tag" title="Permalink to this headline">¶</a></h2>
+<h3><strong class="command">tag</strong><a class="headerlink" href="#tag" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div>tag                 Tag alerts</div></blockquote>
 </div>
 <div class="section" id="ack">
-<h2><strong class="command">ack</strong><a class="headerlink" href="#ack" title="Permalink to this headline">¶</a></h2>
+<h3><strong class="command">ack</strong><a class="headerlink" href="#ack" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div>ack                 Acknowledge alerts</div></blockquote>
 </div>
 <div class="section" id="unack">
-<h2><strong class="command">unack</strong><a class="headerlink" href="#unack" title="Permalink to this headline">¶</a></h2>
+<h3><strong class="command">unack</strong><a class="headerlink" href="#unack" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div>unack               Unacknowledge alerts</div></blockquote>
 </div>
 <div class="section" id="close">
-<h2><strong class="command">close</strong><a class="headerlink" href="#close" title="Permalink to this headline">¶</a></h2>
+<h3><strong class="command">close</strong><a class="headerlink" href="#close" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div>close               Close alerts</div></blockquote>
 </div>
 <div class="section" id="delete">
-<h2><strong class="command">delete</strong><a class="headerlink" href="#delete" title="Permalink to this headline">¶</a></h2>
+<h3><strong class="command">delete</strong><a class="headerlink" href="#delete" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div>delete              Delete alerts</div></blockquote>
 </div>
 <div class="section" id="heartbeat">
-<h2><strong class="command">heartbeat</strong><a class="headerlink" href="#heartbeat" title="Permalink to this headline">¶</a></h2>
+<h3><strong class="command">heartbeat</strong><a class="headerlink" href="#heartbeat" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div>heartbeat           Send heartbeat to server</div></blockquote>
 </div>
 <div class="section" id="config">
-<h2><strong class="command">config</strong><a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h2>
+<h3><strong class="command">config</strong><a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div>config              Show config</div></blockquote>
 </div>
 <div class="section" id="help">
-<h2><strong class="command">help</strong><a class="headerlink" href="#help" title="Permalink to this headline">¶</a></h2>
+<h3><strong class="command">help</strong><a class="headerlink" href="#help" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div>help                Show help</div></blockquote>
 </div>
 <div class="section" id="version">
-<h2><strong class="command">version</strong><a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h2>
+<h3><strong class="command">version</strong><a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div>version             Show alerta version info</div></blockquote>
+</div>
 </div>
 <div class="section" id="bugs">
 <h2>Bugs<a class="headerlink" href="#bugs" title="Permalink to this headline">¶</a></h2>
@@ -329,19 +328,10 @@ alert send --resource web01 --event HttpOK --group Web --severity normal
   <ul>
 <li><a class="reference internal" href="#">alert command-line tool</a><ul>
 <li><a class="reference internal" href="#installation">Installation</a></li>
-<li><a class="reference internal" href="#configuration">Configuration</a><ul>
-<li><a class="reference internal" href="#examples">Examples</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#precedence">Precedence</a><ul>
-<li><a class="reference internal" href="#id1">Examples</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#commands">Commands</a></li>
-<li><a class="reference internal" href="#send"><strong class="command">send</strong></a><ul>
-<li><a class="reference internal" href="#id2">Examples</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+<li><a class="reference internal" href="#precedence">Precedence</a></li>
+<li><a class="reference internal" href="#commands">Commands</a><ul>
+<li><a class="reference internal" href="#send"><strong class="command">send</strong></a></li>
 <li><a class="reference internal" href="#query"><strong class="command">query</strong></a></li>
 <li><a class="reference internal" href="#watch"><strong class="command">watch</strong></a></li>
 <li><a class="reference internal" href="#raw"><strong class="command">raw</strong></a></li>
@@ -355,17 +345,19 @@ alert send --resource web01 --event HttpOK --group Web --severity normal
 <li><a class="reference internal" href="#config"><strong class="command">config</strong></a></li>
 <li><a class="reference internal" href="#help"><strong class="command">help</strong></a></li>
 <li><a class="reference internal" href="#version"><strong class="command">version</strong></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#bugs">Bugs</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="api/webhooks.html"
-                        title="previous chapter">Web Hooks</a></p>
+  <p class="topless"><a href="webui.html"
+                        title="previous chapter">Web UI</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="correlation.html"
-                        title="next chapter">Event Correlation</a></p>
+  <p class="topless"><a href="api/overview.html"
+                        title="next chapter">Version</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/client.txt"
@@ -395,10 +387,13 @@ alert send --resource web01 --event HttpOK --group Web --severity normal
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="correlation.html" title="Event Correlation"
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api/overview.html" title="Version"
              >next</a> |</li>
         <li class="right" >
-          <a href="api/webhooks.html" title="Web Hooks"
+          <a href="webui.html" title="Web UI"
              >previous</a> |</li>
         <li><a href="index.html">alerta 3.2.0 documentation</a> &raquo;</li> 
       </ul>

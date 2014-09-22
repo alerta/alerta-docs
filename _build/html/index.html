@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="alerta 3.2.0 documentation" href="#" />
-    <link rel="next" title="alert: format" href="alert.html" /> 
+    <link rel="next" title="Event Correlation" href="server.html" /> 
   </head>
   <body>
     <div class="related">
@@ -34,7 +34,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="alert.html" title="alert: format"
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="server.html" title="Event Correlation"
              accesskey="N">next</a> |</li>
         <li><a href="#">alerta 3.2.0 documentation</a> &raquo;</li> 
       </ul>
@@ -80,77 +83,69 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Contents:</p>
+<div class="section" id="server">
+<h2>Server<a class="headerlink" href="#server" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="alert.html">alert: format</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/alerts.html">Alerts API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/alerts.html#get-alerts">GET /alerts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/alerts.html#get-alert-id">GET /alert/&lt;id&gt;</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/alerts.html#post-alert">POST /alert</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/alerts.html#delete-alert-id">DELETE /alert/&lt;id&gt;</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/alerts.html#post-alert-id-status">POST /alert/&lt;id&gt;/status</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/alerts.html#post-alert-id-tag">POST /alert/&lt;id&gt;/tag</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/alerts.html#post-alert-id-untag">POST /alert/&lt;id&gt;/untag</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/alerts.html#get-alerts-history">GET /alerts/history</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/alerts.html#get-alerts-count">GET /alerts/count</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/alerts.html#get-alerts-top10">GET /alerts/top10</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/alerts.html#get-environments">GET /environments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/alerts.html#get-services">GET /services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Event Correlation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="server.html#de-duplication">De-duplication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html#simple-correlation">Simple Correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html#complex-event-processing">Complex Event Processing</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api/heartbeats.html">Heartbeats API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/heartbeats.html#get-heartbeats">GET /heartbeats</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/heartbeats.html#post-heartbeat">POST /heartbeat</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/heartbeats.html#delete-heartbeat-id">DELETE /heartbeat/&lt;id&gt;</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/users.html">Users API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/users.html#get-users">GET /users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/users.html#post-user">POST /user</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/users.html#delete-user-id">DELETE /user/&lt;id&gt;</a></li>
+</div>
+</div>
+<div class="section" id="web-ui">
+<h2>Web UI<a class="headerlink" href="#web-ui" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="webui.html">Web UI</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/keys.html">Keys API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/keys.html#get-keys">GET /keys</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/keys.html#get-keys-user">GET /keys/&lt;user&gt;</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/keys.html#post-key">POST /key</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api/keys.html#delete-key-id">DELETE /key/&lt;id&gt;</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api/webhooks.html">Web Hooks</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/webhooks.html#post-pagerduty">POST /pagerduty</a></li>
-</ul>
-</li>
+</div>
+</div>
+<div class="section" id="client">
+<h2>Client<a class="headerlink" href="#client" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="client.html">alert command-line tool</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="client.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="client.html#configuration">Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="client.html#precedence">Precedence</a></li>
 <li class="toctree-l2"><a class="reference internal" href="client.html#commands">Commands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="client.html#send"><strong class="command">send</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="client.html#query"><strong class="command">query</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="client.html#watch"><strong class="command">watch</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="client.html#raw"><strong class="command">raw</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="client.html#history"><strong class="command">history</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="client.html#tag"><strong class="command">tag</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="client.html#ack"><strong class="command">ack</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="client.html#unack"><strong class="command">unack</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="client.html#close"><strong class="command">close</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="client.html#delete"><strong class="command">delete</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="client.html#heartbeat"><strong class="command">heartbeat</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="client.html#config"><strong class="command">config</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="client.html#help"><strong class="command">help</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="client.html#version"><strong class="command">version</strong></a></li>
 <li class="toctree-l2"><a class="reference internal" href="client.html#bugs">Bugs</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="correlation.html">Event Correlation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="correlation.html#de-duplication">De-duplication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="correlation.html#simple-correlation">Simple Correlation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="correlation.html#complex-event-processing">Complex Event Processing</a></li>
 </ul>
-</li>
+</div>
+</div>
+<div class="section" id="api">
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/overview.html">Version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/overview.html#base-url">Base URL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/overview.html#authentication">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/overview.html#api-keys">API Keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/overview.html#instance-references">Instance References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/overview.html#post-response">POST Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/overview.html#deleting">Deleting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/overview.html#dates-times">Dates &amp; Times</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/overview.html#camel-case">Camel Case</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/overview.html#jsonp">JSONP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/overview.html#caching">Caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/overview.html#embedding">Embedding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/overview.html#explorer">Explorer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/overview.html#libraries">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/resources.html">REST API v3 Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/format.html">alert: format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/alerts.html">Alerts API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/heartbeats.html">Heartbeats API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/users.html">Users API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/keys.html">Keys API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/webhooks.html">Webhooks</a></li>
 </ul>
+</div>
 </div>
 </div>
 <div class="section" id="indices-and-tables">
@@ -170,13 +165,19 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Alerta : Monitoring Tool</a></li>
+<li><a class="reference internal" href="#">Alerta : Monitoring Tool</a><ul>
+<li><a class="reference internal" href="#server">Server</a></li>
+<li><a class="reference internal" href="#web-ui">Web UI</a></li>
+<li><a class="reference internal" href="#client">Client</a></li>
+<li><a class="reference internal" href="#api">API</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 
   <h4>Next topic</h4>
-  <p class="topless"><a href="alert.html"
-                        title="next chapter">alert: format</a></p>
+  <p class="topless"><a href="server.html"
+                        title="next chapter">Event Correlation</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/index.txt"
@@ -206,7 +207,10 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="alert.html" title="alert: format"
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="server.html" title="Event Correlation"
              >next</a> |</li>
         <li><a href="#">alerta 3.2.0 documentation</a> &raquo;</li> 
       </ul>

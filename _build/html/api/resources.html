@@ -1,0 +1,317 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>REST API v3 Resources &mdash; alerta 3.2.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="alerta 3.2.0 documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">alerta 3.2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="rest-api-v3-resources">
+<h1>REST API v3 Resources<a class="headerlink" href="#rest-api-v3-resources" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="alerts">
+<h2>Alerts<a class="headerlink" href="#alerts" title="Permalink to this headline">¶</a></h2>
+<p>Alerts are received and processed before being added to database.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Resource</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="alerts.html#get-alerts"><em>GET /alerts</em></a></td>
+<td>Get list of all alerts that meet the query filter.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="alerts.html#get-alert-id"><em>GET /alert/&lt;id&gt;</em></a></td>
+<td>Get alert details for a specific alert.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="alerts.html#post-alert"><em>POST /alert</em></a></td>
+<td>Create a new alert.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="alerts.html#post-alert-id-status"><em>POST /alert/&lt;id&gt;/status</em></a></td>
+<td>Change the status of an alert.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="alerts.html#post-alert-id-tag"><em>POST /alert/&lt;id&gt;/tag</em></a></td>
+<td>Tag an alert.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="alerts.html#post-alert-id-untag"><em>POST /alert/&lt;id&gt;/untag</em></a></td>
+<td>Remove a tag from an alert.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="alerts.html#delete-alert-id"><em>DELETE /alert/&lt;id&gt;</em></a></td>
+<td>Delete an alert.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="alerts.html#get-alerts-history"><em>GET /alerts/history</em></a></td>
+<td>Get history of actions on an alert.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="alerts.html#get-alerts-count"><em>GET /alerts/count</em></a></td>
+<td>Get aggregate counts of status and severity of alerts.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="alerts.html#get-alerts-top10"><em>GET /alerts/top10</em></a></td>
+<td>Get list of top 10 alerts grouped by environment and service.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="environments-services">
+<h2>Environments &amp; Services<a class="headerlink" href="#environments-services" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Resource</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="alerts.html#get-environments"><em>GET /environments</em></a></td>
+<td>Returns list of environments and all services for each.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="alerts.html#get-services"><em>GET /services</em></a></td>
+<td>Returns list of all services and count of alerts for each.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="heartbeats">
+<h2>Heartbeats<a class="headerlink" href="#heartbeats" title="Permalink to this headline">¶</a></h2>
+<p>Heartbeats are sent from something at regular intervals to ensure that it is operating.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Resource</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="heartbeats.html#get-heartbeats"><em>GET /heartbeats</em></a></td>
+<td>Get list of all heartbeats.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="heartbeats.html#post-heartbeat"><em>POST /heartbeat</em></a></td>
+<td>Create a new heartbeat.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="heartbeats.html#delete-heartbeat-id"><em>DELETE /heartbeat/&lt;id&gt;</em></a></td>
+<td>Delete a heartbeat.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="users">
+<h2>Users<a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
+<p>User emails that don&#8217;t match the allowed domains can be individually white-listed.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Resource</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="users.html#get-users"><em>GET /users</em></a></td>
+<td>Get list of all white-listed user email addresses.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="users.html#post-user"><em>POST /user</em></a></td>
+<td>Add user email address to white-list.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="users.html#delete-user-id"><em>DELETE /user/&lt;id&gt;</em></a></td>
+<td>Delete email address from white-list.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="api-keys">
+<h2>API Keys<a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h2>
+<p>API keys are used for programatic access to the API and are associated with an authorized user.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Resource</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="keys.html#get-keys"><em>GET /keys</em></a></td>
+<td>Get list of all API keys.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="keys.html#get-keys-user"><em>GET /keys/&lt;user&gt;</em></a></td>
+<td>Get list of API keys for a user.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="keys.html#post-key"><em>POST /key</em></a></td>
+<td>Create a new API key.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="keys.html#delete-key-id"><em>DELETE /key/&lt;id&gt;</em></a></td>
+<td>Delete an API key.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="http-status-codes">
+<h2>HTTP Status Codes<a class="headerlink" href="#http-status-codes" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Code</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>200 OK</td>
+<td>No error.</td>
+</tr>
+<tr class="row-odd"><td>201 Created</td>
+<td>Resource created successfully.</td>
+</tr>
+<tr class="row-even"><td>400 Bad Request</td>
+<td>Mandatory parameter or data missing.</td>
+</tr>
+<tr class="row-odd"><td>401 Unauthorized</td>
+<td>Authorization required.</td>
+</tr>
+<tr class="row-even"><td>403 Forbidden</td>
+<td>Pre-receive hook rejected request or authorization failed.</td>
+</tr>
+<tr class="row-odd"><td>404 Not Found</td>
+<td>Resource (such as alert or heartbeat) not found.</td>
+</tr>
+<tr class="row-even"><td>500 Server Error</td>
+<td>Internal error. Default code used for all unexpected server errors.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="web-hooks">
+<h2>Web Hooks<a class="headerlink" href="#web-hooks" title="Permalink to this headline">¶</a></h2>
+<p>Web hooks can be used to trigger updates to alerts from external services.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Resource</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="webhooks.html#post-pagerduty"><em>POST /pagerduty</em></a></td>
+<td>Change status of alert based on actions in pagerduty.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">REST API v3 Resources</a><ul>
+<li><a class="reference internal" href="#alerts">Alerts</a></li>
+<li><a class="reference internal" href="#environments-services">Environments &amp; Services</a></li>
+<li><a class="reference internal" href="#heartbeats">Heartbeats</a></li>
+<li><a class="reference internal" href="#users">Users</a></li>
+<li><a class="reference internal" href="#api-keys">API Keys</a></li>
+<li><a class="reference internal" href="#http-status-codes">HTTP Status Codes</a></li>
+<li><a class="reference internal" href="#web-hooks">Web Hooks</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/api/resources.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">alerta 3.2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Nick Satterly.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

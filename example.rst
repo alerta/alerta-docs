@@ -11,10 +11,19 @@ Level 3
 .. _level-four-link
 
 Level 4
-^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~
 
 Level 5
 +++++++
+
+Level 6
++++++++
+
+Level 2
+=======
+
+Level 4
+~~~~~~~~~
 
 .. code-block:: none
 

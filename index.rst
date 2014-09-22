@@ -40,19 +40,46 @@ Alert format::
         "id": "9c3c165a-aabb-4c20-8602-dd5ae9548a60"
     }
 
-Contents:
+
+Server
+------
 
 .. toctree::
    :maxdepth: 2
 
-   alert
+   server
+
+Web UI
+------
+
+.. toctree::
+   :maxdepth: 2
+
+   webui
+
+Client
+------
+
+.. toctree::
+   :maxdepth: 2
+
+   client
+
+API
+---
+
+.. toctree::
+   :maxdepth: 1
+
+   api/overview
+   api/resources
+   api/format
    api/alerts
    api/heartbeats
    api/users
    api/keys
    api/webhooks
-   client
-   correlation
+
 
 Indices and tables
 ==================
