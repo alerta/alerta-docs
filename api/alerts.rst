@@ -138,8 +138,3 @@ GET /environments
 
 GET /services
 -------------
-
-.. _post-pagerduty:
-
-POST /pagerduty
----------------
