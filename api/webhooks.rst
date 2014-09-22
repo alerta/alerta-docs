@@ -1,7 +1,7 @@
 Web Hooks
 =========
 
-.. _pager-duty:
+.. _post-pagerduty:
 
 POST /pagerduty
 ---------------
