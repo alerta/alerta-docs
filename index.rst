@@ -45,9 +45,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   gettingstarted
    alert
-   api
    api/alerts
    api/heartbeats
    api/users
