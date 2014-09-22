@@ -48,11 +48,11 @@ Heartbeats are sent from something at regular intervals to ensure that it is ope
 +-----------------------------+--------------------------------------------------------------+
 | Resource                    | Description                                                  |
 +=============================+==============================================================+
-| :ref:`get-heartbeats`       | foo                                                          |
+| :ref:`get-heartbeats`       | Get list of all heartbeats.                                  |
 +-----------------------------+--------------------------------------------------------------+
-| :ref:`post-heartbeat`       | foo                                                          |
+| :ref:`post-heartbeat`       | Create a new heartbeat.                                      |
 +-----------------------------+--------------------------------------------------------------+
-| :ref:`delete-heartbeat-id`  | foo                                                          |
+| :ref:`delete-heartbeat-id`  | Delete a heartbeat.                                          |
 +-----------------------------+--------------------------------------------------------------+
 
 Users
