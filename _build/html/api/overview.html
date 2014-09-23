@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Version &mdash; alerta 3.2.0 documentation</title>
+    <title>Overview &mdash; alerta 3.2.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -23,7 +23,9 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="alerta 3.2.0 documentation" href="../index.html" /> 
+    <link rel="top" title="alerta 3.2.0 documentation" href="../index.html" />
+    <link rel="next" title="REST API v3 Resources" href="resources.html" />
+    <link rel="prev" title="alert command-line tool" href="../client.html" /> 
   </head>
   <body>
     <div class="related">
@@ -32,6 +34,15 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="resources.html" title="REST API v3 Resources"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../client.html" title="alert command-line tool"
+             accesskey="P">previous</a> |</li>
         <li><a href="../index.html">alerta 3.2.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -41,11 +52,13 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="version">
-<h1>Version<a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="version">
+<h2>Version<a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="base-url">
-<h1>Base URL<a class="headerlink" href="#base-url" title="Permalink to this headline">¶</a></h1>
+<h2>Base URL<a class="headerlink" href="#base-url" title="Permalink to this headline">¶</a></h2>
 <p>Get list of all endpoints...</p>
 <p>$ curl <a class="reference external" href="https://api.alerta.io">https://api.alerta.io</a></p>
 <p>-&gt; Alerts
@@ -53,56 +66,57 @@
 -&gt; ...</p>
 </div>
 <div class="section" id="authentication">
-<h1>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h1>
+<h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h2>
 <p>Google OAuth2</p>
 </div>
 <div class="section" id="api-keys">
-<h1>API Keys<a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h1>
+<h2>API Keys<a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h2>
 <p>Create your own key when logged in.</p>
 </div>
 <div class="section" id="instance-references">
-<h1>Instance References<a class="headerlink" href="#instance-references" title="Permalink to this headline">¶</a></h1>
+<h2>Instance References<a class="headerlink" href="#instance-references" title="Permalink to this headline">¶</a></h2>
 <p>&#8220;href&#8221; attributes.</p>
 </div>
 <div class="section" id="post-response">
-<h1>POST Response<a class="headerlink" href="#post-response" title="Permalink to this headline">¶</a></h1>
+<h2>POST Response<a class="headerlink" href="#post-response" title="Permalink to this headline">¶</a></h2>
 <p>The body of a resource is returned in the response body so that it can be used immediately. For example, from that you can know the alert id, whether it is a duplicate or not, whether the severity has increased or decreased, etc.</p>
 </div>
 <div class="section" id="deleting">
-<h1>Deleting<a class="headerlink" href="#deleting" title="Permalink to this headline">¶</a></h1>
+<h2>Deleting<a class="headerlink" href="#deleting" title="Permalink to this headline">¶</a></h2>
 <p>DELETE or _method=DELETE</p>
 </div>
 <div class="section" id="dates-times">
-<h1>Dates &amp; Times<a class="headerlink" href="#dates-times" title="Permalink to this headline">¶</a></h1>
+<h2>Dates &amp; Times<a class="headerlink" href="#dates-times" title="Permalink to this headline">¶</a></h2>
 <p>All dates and times are in ISO8601 format.</p>
 <p>YYYY-MM-DDTHH-mm-ss.fffZ</p>
 </div>
 <div class="section" id="camel-case">
-<h1>Camel Case<a class="headerlink" href="#camel-case" title="Permalink to this headline">¶</a></h1>
+<h2>Camel Case<a class="headerlink" href="#camel-case" title="Permalink to this headline">¶</a></h2>
 <p>Standard attributes are camel case. If user-defined attributes are also camel case then auto formating will occur in the alert web UI. eg. &#8220;myCamelCaseKey&#8221; -&gt; My Camel Case Key</p>
 </div>
 <div class="section" id="jsonp">
-<h1>JSONP<a class="headerlink" href="#jsonp" title="Permalink to this headline">¶</a></h1>
+<h2>JSONP<a class="headerlink" href="#jsonp" title="Permalink to this headline">¶</a></h2>
 <p>callback=</p>
 </div>
 <div class="section" id="caching">
-<h1>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h1>
+<h2>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h2>
 <p>Not supported.</p>
 </div>
 <div class="section" id="embedding">
-<h1>Embedding<a class="headerlink" href="#embedding" title="Permalink to this headline">¶</a></h1>
+<h2>Embedding<a class="headerlink" href="#embedding" title="Permalink to this headline">¶</a></h2>
 <p>widgets</p>
 </div>
 <div class="section" id="explorer">
-<h1>Explorer<a class="headerlink" href="#explorer" title="Permalink to this headline">¶</a></h1>
+<h2>Explorer<a class="headerlink" href="#explorer" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="http://explorer.alerta.io">http://explorer.alerta.io</a></p>
 </div>
 <div class="section" id="libraries">
-<h1>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">¶</a></h1>
+<h2>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">¶</a></h2>
 <p>Python</p>
 <p>python-alerta</p>
 <p>Ruby</p>
 <p>ruby-gem-alerta</p>
+</div>
 </div>
 
 
@@ -113,7 +127,8 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Version</a></li>
+<li><a class="reference internal" href="#">Overview</a><ul>
+<li><a class="reference internal" href="#version">Version</a></li>
 <li><a class="reference internal" href="#base-url">Base URL</a></li>
 <li><a class="reference internal" href="#authentication">Authentication</a></li>
 <li><a class="reference internal" href="#api-keys">API Keys</a></li>
@@ -128,7 +143,15 @@
 <li><a class="reference internal" href="#explorer">Explorer</a></li>
 <li><a class="reference internal" href="#libraries">Libraries</a></li>
 </ul>
+</li>
+</ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../client.html"
+                        title="previous chapter">alert command-line tool</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="resources.html"
+                        title="next chapter">REST API v3 Resources</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/api/overview.txt"
@@ -157,6 +180,15 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="resources.html" title="REST API v3 Resources"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../client.html" title="alert command-line tool"
+             >previous</a> |</li>
         <li><a href="../index.html">alerta 3.2.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
