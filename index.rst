@@ -3,10 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Alerta : Monitoring Tool
+Alerta monitoring system
 ========================
 
-Alerta accepts alerts from any monitoring system, correlates and deduplicates them, and then presents them via a web console.
+Alerta accepts alerts from any monitoring system, correlates and de-duplicates them, and then presents them via an API. A web console and a command-line tool are used for visualisation and operational tasks.
+
+There is a standard alert format that all systems need to support
 
 Alert format::
 
@@ -79,6 +81,24 @@ API
    api/users
    api/keys
    api/webhooks
+
+Contribute
+----------
+
+- Issue Tracker: github.com/guardian/alerta/issues
+- Source Code: github.com/guardian/alerta and github.com/alerta
+
+Support
+-------
+
+If you have any issues, please let us know.
+We have a mailing list located at: alerta-users@google-groups.com
+Visit the forum at: https://groups.google.com/d/forum/alerta-users
+
+License
+-------
+
+This project is licensed under the Apache license.
 
 
 Indices and tables
