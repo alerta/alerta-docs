@@ -42,9 +42,16 @@ Improvements
 * Add support for server-side plug-ins with pre_receive() and post_receive() hooks
 * Add sample plug-ins for alert reject policy, normalisation, enhancement etc
 
+Documentation
++++++++++++++
+
+* Updated README and fixed Heroku button (`#68`_)
+
 Bugfixes
 ++++++++
 
 * PagerDuty web hook deprecated and removed
 * Lots of pylint fixes
 * Fixed tests
+
+.. _`#68`: https://github.com/guardian/alerta/issues/68
