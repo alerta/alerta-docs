@@ -39,7 +39,7 @@ Improvements
 ++++++++++++
 
 * Major refactor and simplification
-* Add support for server-side plug-ins with pre_receive() and post_receive() hooks
+* Add support for server-side plug-ins with ``pre_receive()`` and ``post_receive()`` hooks
 * Add sample plug-ins for alert reject policy, normalisation, enhancement etc
 
 Documentation
