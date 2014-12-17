@@ -1,0 +1,50 @@
+
+Release History
+===============
+
+3.3.2 (17-12-2014)
+------------------
+
+Improvements
+++++++++++++
+
+* Add Pingdom web hook integration
+
+Bugfixes
+++++++++
+
+* Update Attributes and Tags for correlated alerts
+
+3.3.1 (16-12-2014)
+------------------
+
+Improvements
+++++++++++++
+
+* Refactor Webhooks to reuse common alert processing code
+* Add example scripts for test alert generation
+
+3.3.0 (16-12-2014)
+------------------
+
+Improvements
+++++++++++++
+
+* Add Amazon AWS Cloudwatch web hook integration
+
+3.2.x (11-10-2014)
+------------------
+
+Improvements
+++++++++++++
+
+* Major refactor and simplification
+* Add support for server-side plug-ins with pre_receive() and post_receive() hooks
+* Add sample plug-ins for alert reject policy, normalisation, enhancement etc
+
+Bugfixes
+++++++++
+
+* PagerDuty web hook deprecated and removed
+* Lots of pylint fixes
+* Fixed tests
