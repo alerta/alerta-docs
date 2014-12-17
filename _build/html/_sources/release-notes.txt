@@ -9,7 +9,6 @@ Improvements
 ++++++++++++
 
 * Add Pingdom web hook integration
-* Plug-in for Slack (see alerta-contrib repo)
 
 Bugfixes
 ++++++++

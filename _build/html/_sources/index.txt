@@ -50,6 +50,8 @@ Server
    :maxdepth: 2
 
    server
+   integrations
+   release-notes
 
 Web UI
 ------
