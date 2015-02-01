@@ -9,7 +9,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Alerta CLI &mdash; alerta 4.0 documentation</title>
+    <title>alerta CLI &mdash; alerta 4.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -53,20 +53,270 @@
           <div class="body">
             
   <div class="section" id="alerta-cli">
-<h1>Alerta CLI<a class="headerlink" href="#alerta-cli" title="Permalink to this headline">¶</a></h1>
-<blockquote>
-<div><ul class="simple">
-<li>CLI / console</li>
+<h1>alerta CLI<a class="headerlink" href="#alerta-cli" title="Permalink to this headline">¶</a></h1>
+<p><tt class="docutils literal"><span class="pre">alerta</span></tt> is the unified command-line tool for the alerta monitoring system. It can be used to
+send and query alerts, tag alerts and change alert status, delete alerts,
+dump alert history or see the raw alert data.</p>
+<p><tt class="docutils literal"><span class="pre">alerta</span></tt> can also be used to send heartbeats to the alerta server.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>To install the <tt class="docutils literal"><span class="pre">alerta</span></tt> client the tool can be installed using pip:</p>
+<div class="highlight-python"><pre>$ pip install alerta</pre>
+</div>
+<p>Or, by cloning the git repository:</p>
+<div class="highlight-python"><pre>$ git clone https://github.com/alerta/python-alerta.git
+$ cd python-alerta
+$ python setup.py install</pre>
+</div>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>Options can be set in a configuration file, as environment variables or
+on the command line. Profiles can be used to easily switch between different
+configuration settings.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="30%" />
+<col width="25%" />
+<col width="23%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Option</th>
+<th class="head">Config File</th>
+<th class="head">Environment Variable</th>
+<th class="head">Optional Argument</th>
+<th class="head">Default</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>file</td>
+<td>n/a</td>
+<td><span class="target" id="index-0"></span><tt class="xref std std-envvar docutils literal"><span class="pre">ALERTA_CONF_FILE</span></tt></td>
+<td>n/a</td>
+<td><tt class="file docutils literal"><span class="pre">~/.alerta.conf</span></tt></td>
+</tr>
+<tr class="row-odd"><td>profile</td>
+<td>profile*</td>
+<td><span class="target" id="index-1"></span><tt class="xref std std-envvar docutils literal"><span class="pre">ALERTA_DEFAULT_PROFILE</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">--profile</span> <span class="pre">PROFILE</span></tt></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>endpoint</td>
+<td>endpoint</td>
+<td><span class="target" id="index-2"></span><tt class="xref std std-envvar docutils literal"><span class="pre">ALERTA_ENDPOINT</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">--endpoint-url</span> <span class="pre">URL</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">http://localhost:8080</span></tt></td>
+</tr>
+<tr class="row-odd"><td>key</td>
+<td>key</td>
+<td><span class="target" id="index-3"></span><tt class="xref std std-envvar docutils literal"><span class="pre">ALERTA_API_KEY</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">--key</span> <span class="pre">API-KEY</span></tt></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>timezone</td>
+<td>timezone</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>Europe/London</td>
+</tr>
+<tr class="row-odd"><td>output</td>
+<td>output</td>
+<td>n/a</td>
+<td colspan="2"><tt class="docutils literal"><span class="pre">--output</span> <span class="pre">OUTPUT</span></tt>, <tt class="docutils literal"><span class="pre">--json</span></tt> | text</td>
+</tr>
+<tr class="row-even"><td>color</td>
+<td>color</td>
+<td><span class="target" id="index-4"></span><tt class="xref std std-envvar docutils literal"><span class="pre">CLICOLOR</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">--color</span></tt>, <tt class="docutils literal"><span class="pre">--no-color</span></tt></td>
+<td>color on</td>
+</tr>
+<tr class="row-odd"><td>debug</td>
+<td>debug</td>
+<td><span class="target" id="index-5"></span><tt class="xref std std-envvar docutils literal"><span class="pre">DEBUG</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">--debug</span></tt></td>
+<td>no debug</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li>only in <cite>[DEFAULT]</cite> section</li>
 </ul>
-</div></blockquote>
-<div class="section" id="getting-started">
-<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p><strong>Examples</strong></p>
+<p>Configuration file <tt class="file docutils literal"><span class="pre">~/.alerta.conf</span></tt>:</p>
+<div class="highlight-python"><pre>[DEFAULT]
+timezone = Australia/Sydney
+output = json
+
+[profile production]
+endpoint = http://alerta.prod.com:8080
+
+[profile development]
+endpoint = http://alerta.dev.com:8080
+debug = yes</pre>
 </div>
-<div class="section" id="cli-reference">
-<h2>CLI Reference<a class="headerlink" href="#cli-reference" title="Permalink to this headline">¶</a></h2>
+<p>Set environment variables:</p>
+<div class="highlight-python"><pre>$ export ALERTA_CONF_FILE=~/.alerta/config
+$ export ALERTA_DEFAULT_PROFILE=production</pre>
 </div>
-<div class="section" id="github-project">
-<h2>GitHub Project<a class="headerlink" href="#github-project" title="Permalink to this headline">¶</a></h2>
+<p>Use production configuration settings by default:</p>
+<div class="highlight-python"><pre>$ alert query</pre>
+</div>
+<p>Switch to development configuration settings when required:</p>
+<div class="highlight-python"><pre>$ alert --profile development query</pre>
+</div>
+</div>
+<div class="section" id="precedence">
+<h2>Precedence<a class="headerlink" href="#precedence" title="Permalink to this headline">¶</a></h2>
+<p>Command-line configuration options have precedence over environment
+variables, which have precedence over the configuration file. Within
+the configuration file profile-specific sections have precedence over
+the <tt class="docutils literal"><span class="pre">[DEFAULT]</span></tt> section.</p>
+<p><strong>Examples</strong></p>
+<ol class="arabic simple">
+<li><tt class="docutils literal"><span class="pre">--endpoint</span> <span class="pre">http://foo</span></tt> overrides <tt class="docutils literal"><span class="pre">ALERTA_DEFAULT_ENDPOINT=http://bar</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">ALERTA_DEFAULT_ENDPOINT=http://bar</span></tt> overrides a configuration file option <tt class="docutils literal"><span class="pre">endpoint=http://baz</span></tt>, whether in <tt class="docutils literal"><span class="pre">[DEFAULT]</span></tt> or <tt class="docutils literal"><span class="pre">[profile]</span></tt> sections</li>
+<li><tt class="docutils literal"><span class="pre">[profile</span> <span class="pre">quux]</span> <span class="pre">endpoint=http://quux</span></tt> overrides <tt class="docutils literal"><span class="pre">[DEFAULT]</span> <span class="pre">endpoint=http://baz</span></tt> if <tt class="docutils literal"><span class="pre">--profile</span> <span class="pre">quux</span></tt> is used</li>
+</ol>
+</div>
+<div class="section" id="commands">
+<h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div>Some stuff about sub-commands.</div></blockquote>
+<div class="section" id="send">
+<h3><strong class="command">send</strong><a class="headerlink" href="#send" title="Permalink to this headline">¶</a></h3>
+<p>Send alert to server</p>
+<p>The only mandatory options are <tt class="docutils literal"><span class="pre">resource</span></tt> and <tt class="docutils literal"><span class="pre">event</span></tt>. All the others will
+be set to sensible defaults.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="44%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Default</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>environment</td>
+<td>empty string</td>
+</tr>
+<tr class="row-odd"><td>severity</td>
+<td><tt class="docutils literal"><span class="pre">normal</span></tt></td>
+</tr>
+<tr class="row-even"><td>status</td>
+<td><tt class="docutils literal"><span class="pre">unknown</span></tt></td>
+</tr>
+<tr class="row-odd"><td>group</td>
+<td><tt class="docutils literal"><span class="pre">Misc</span></tt></td>
+</tr>
+<tr class="row-even"><td>correlate</td>
+<td>empty list</td>
+</tr>
+<tr class="row-odd"><td>value</td>
+<td><tt class="docutils literal"><span class="pre">n/a</span></tt></td>
+</tr>
+<tr class="row-even"><td>text</td>
+<td>empty list</td>
+</tr>
+<tr class="row-odd"><td>tags</td>
+<td>empty list</td>
+</tr>
+<tr class="row-even"><td>attributes</td>
+<td>empty hash map</td>
+</tr>
+<tr class="row-odd"><td>origin</td>
+<td>program/host</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td><tt class="docutils literal"><span class="pre">exceptionAlert</span></tt></td>
+</tr>
+<tr class="row-odd"><td>timeout</td>
+<td>86400 (1 day)</td>
+</tr>
+<tr class="row-even"><td>raw data</td>
+<td>empty string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Examples</strong></p>
+<p>To send a minor alert followed by a normal:</p>
+<div class="highlight-python"><pre>alert send --resource web01 --event HttpError --group Web --severity minor
+
+alert send --resource web01 --event HttpOK --group Web --severity normal</pre>
+</div>
+</div>
+<div class="section" id="query">
+<h3><strong class="command">query</strong><a class="headerlink" href="#query" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>query               List alerts based on query filter</div></blockquote>
+</div>
+<div class="section" id="watch">
+<h3><strong class="command">watch</strong><a class="headerlink" href="#watch" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>watch               Watch alerts based on query filter</div></blockquote>
+</div>
+<div class="section" id="raw">
+<h3><strong class="command">raw</strong><a class="headerlink" href="#raw" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>raw                 Show alert raw data</div></blockquote>
+</div>
+<div class="section" id="history">
+<h3><strong class="command">history</strong><a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>history             Show alert history</div></blockquote>
+</div>
+<div class="section" id="tag">
+<h3><strong class="command">tag</strong><a class="headerlink" href="#tag" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>tag                 Tag alerts</div></blockquote>
+</div>
+<div class="section" id="ack">
+<h3><strong class="command">ack</strong><a class="headerlink" href="#ack" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>ack                 Acknowledge alerts</div></blockquote>
+</div>
+<div class="section" id="unack">
+<h3><strong class="command">unack</strong><a class="headerlink" href="#unack" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>unack               Unacknowledge alerts</div></blockquote>
+</div>
+<div class="section" id="close">
+<h3><strong class="command">close</strong><a class="headerlink" href="#close" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>close               Close alerts</div></blockquote>
+</div>
+<div class="section" id="delete">
+<h3><strong class="command">delete</strong><a class="headerlink" href="#delete" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>delete              Delete alerts</div></blockquote>
+</div>
+<div class="section" id="heartbeat">
+<h3><strong class="command">heartbeat</strong><a class="headerlink" href="#heartbeat" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>heartbeat           Send heartbeat to server</div></blockquote>
+</div>
+<div class="section" id="config">
+<h3><strong class="command">config</strong><a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>config              Show config</div></blockquote>
+</div>
+<div class="section" id="help">
+<h3><strong class="command">help</strong><a class="headerlink" href="#help" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>help                Show help</div></blockquote>
+</div>
+<div class="section" id="version">
+<h3><strong class="command">version</strong><a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>version             Show alerta version info</div></blockquote>
+</div>
+</div>
+<div class="section" id="bugs">
+<h2>Bugs<a class="headerlink" href="#bugs" title="Permalink to this headline">¶</a></h2>
+<p>Log any issues on <a class="reference external" href="https://github.com/alerta/python-alerta-client/issues">GitHub</a> or just fix it yourself and submit a <a class="reference external" href="https://github.com/alerta/python-alerta-client/pulls">pull request</a>.</p>
 </div>
 </div>
 
@@ -81,10 +331,28 @@
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webui.html">Web Console</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Alerta CLI</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#cli-reference">CLI Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#github-project">GitHub Project</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">alerta CLI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#precedence">Precedence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#commands">Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#send"><strong class="command">send</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#query"><strong class="command">query</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#watch"><strong class="command">watch</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#raw"><strong class="command">raw</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#history"><strong class="command">history</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tag"><strong class="command">tag</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ack"><strong class="command">ack</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unack"><strong class="command">unack</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#close"><strong class="command">close</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delete"><strong class="command">delete</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#heartbeat"><strong class="command">heartbeat</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#config"><strong class="command">config</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#help"><strong class="command">help</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version"><strong class="command">version</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#bugs">Bugs</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
