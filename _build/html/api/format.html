@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>alert: format &mdash; alerta 4.0 documentation</title>
+    <title>Alert Format &mdash; alerta 4.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -51,17 +51,192 @@
           <div class="body">
             
   <div class="section" id="alert-format">
-<h1>alert: format<a class="headerlink" href="#alert-format" title="Permalink to this headline">¶</a></h1>
-<p>environment and resource</p>
-<p>event, group, correlate, group</p>
-<p>service</p>
-<p>severity, status</p>
-<p>value, text</p>
-<p>tags</p>
-<p>attributes</p>
-<p>origin, type, timeout</p>
-<p>raw data</p>
-<p>create time</p>
+<h1>Alert Format<a class="headerlink" href="#alert-format" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="alert-attributes-populated-at-source">
+<h2>Alert attributes populated at source<a class="headerlink" href="#alert-attributes-populated-at-source" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">id</span></tt></td>
+<td>globally unique random UUID</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">resource</span></tt></td>
+<td>the resource under alarm, deliberately not host-centric</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">event</span></tt></td>
+<td>event name eg. <tt class="docutils literal"><span class="pre">NodeDown</span></tt>, <tt class="docutils literal"><span class="pre">QUEUE:LENGTH:EXCEEDED</span></tt>, <tt class="docutils literal"><span class="pre">AppStatus</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">environment</span></tt></td>
+<td>effected environment, used to namespace the defined resource</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">severity</span></tt></td>
+<td>severity of alert eg. <tt class="docutils literal"><span class="pre">critical</span></tt> see full list below</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">correlate</span></tt></td>
+<td>list of related event names</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">status</span></tt> *</td>
+<td>one of <tt class="docutils literal"><span class="pre">open</span></tt>, <tt class="docutils literal"><span class="pre">ack</span></tt>, <tt class="docutils literal"><span class="pre">closed</span></tt>, or <tt class="docutils literal"><span class="pre">expired</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">service</span></tt></td>
+<td>list of effected services</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">group</span></tt></td>
+<td>event group</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">value</span></tt></td>
+<td>event value eg. 100%, Down, PingFail, 55ms, ORA-1664</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">text</span></tt></td>
+<td>freeform text description</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">tags</span></tt></td>
+<td>list of tags in any format eg. <tt class="docutils literal"><span class="pre">aTag</span></tt>, <tt class="docutils literal"><span class="pre">aDouble:Tag</span></tt>, <tt class="docutils literal"><span class="pre">a:Triple=Tag</span></tt></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">attributes</span></tt></td>
+<td>dictionary of key-value pairs</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">origin</span></tt></td>
+<td>name of monitoring component that generated the alert</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">type</span></tt></td>
+<td>alert type eg. snmptrapAlert, syslogAlert, gangliaAlert</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">createTime</span></tt></td>
+<td>UTC date and time the alert was generated in ISO 8601 format</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">timeout</span></tt></td>
+<td>number of seconds before alert is deleted from database</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">rawData</span></tt></td>
+<td>unprocessed data eg. full syslog message or SNMP trap</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="alert-attributes-added-when-processing-alerts">
+<h2>Alert attributes added when processing alerts<a class="headerlink" href="#alert-attributes-added-when-processing-alerts" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">duplicateCount</span></tt></td>
+<td>a count of the number of times this event has been received for a resource</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">repeat</span></tt></td>
+<td>if duplicateCount is 0 or the alert status has changed then repeat is False,
+otherwise it is True</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">previousSeverity</span></tt></td>
+<td>the previous severity of the same event for this resource. if no event or
+<tt class="docutils literal"><span class="pre">correlate</span></tt> events exist in the database for this resource then it
+will be <tt class="docutils literal"><span class="pre">unknown</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">trendIndication</span></tt></td>
+<td>based on <tt class="docutils literal"><span class="pre">severity</span></tt> and <tt class="docutils literal"><span class="pre">previousSeverity</span></tt> will be one of <tt class="docutils literal"><span class="pre">moreSevere</span></tt>,
+<tt class="docutils literal"><span class="pre">lessSevere</span></tt> or <tt class="docutils literal"><span class="pre">noChange</span></tt></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">receiveTime</span></tt></td>
+<td>UTC date and time the alert was received by the Alerta server daemon</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">lastReceiveId</span></tt></td>
+<td>the last alert <tt class="docutils literal"><span class="pre">id</span></tt> received for this event</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">lastReceiveTime</span></tt></td>
+<td>the last time this alert was received. only different to receiveTime if the
+alert is a duplicate</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">history</span></tt></td>
+<td>whenever an alert changes severity or status then a list of key alert
+attributes are appended to the history log</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="alert-severities">
+<h2>Alert Severities<a class="headerlink" href="#alert-severities" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="45%" />
+<col width="36%" />
+<col width="19%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Severity</th>
+<th class="head">Severity Code</th>
+<th class="head">Colour</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">critical</span></tt></td>
+<td>1</td>
+<td>Red</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">major</span></tt></td>
+<td>2</td>
+<td>Orange</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">minor</span></tt></td>
+<td>3</td>
+<td>Yellow</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">warning</span></tt></td>
+<td>4</td>
+<td>Blue</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">indeterminate</span></tt></td>
+<td>5</td>
+<td>Green</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">cleared</span></tt></td>
+<td>5</td>
+<td>Green</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">normal</span></tt></td>
+<td>5</td>
+<td>Green</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">ok</span></tt></td>
+<td>5</td>
+<td>Green</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">informational</span></tt></td>
+<td>6</td>
+<td>Green</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">debug</span></tt></td>
+<td>7</td>
+<td>?</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">security</span></tt></td>
+<td>8</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">unknown</span></tt></td>
+<td>9</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="history-entries">
+<h2>History Entries<a class="headerlink" href="#history-entries" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
@@ -81,7 +256,9 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alerts.html">Alerts API</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">alert: format</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Alert Format</a><ul class="simple">
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="heartbeats.html">Heartbeats API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="keys.html">Keys API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">REST API v3 Resources</a></li>
