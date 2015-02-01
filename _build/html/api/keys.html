@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,7 +9,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Keys API &mdash; alerta 3.2.0 documentation</title>
+    <title>Keys API &mdash; alerta 4.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '3.2.0',
+        VERSION:     '4.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,9 +26,9 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="alerta 3.2.0 documentation" href="../index.html" />
-    <link rel="next" title="Webhooks" href="webhooks.html" />
-    <link rel="prev" title="Users API" href="users.html" /> 
+    <link rel="top" title="alerta 4.0 documentation" href="../index.html" />
+    <link rel="next" title="REST API v3 Resources" href="resources.html" />
+    <link rel="prev" title="Heartbeats API" href="heartbeats.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,15 +38,12 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="webhooks.html" title="Webhooks"
+          <a href="resources.html" title="REST API v3 Resources"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="users.html" title="Users API"
+          <a href="heartbeats.html" title="Heartbeats API"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">alerta 3.2.0 documentation</a> &raquo;</li> 
+        <li><a href="../index.html">alerta 4.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -75,23 +74,33 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Keys API</a><ul>
-<li><a class="reference internal" href="#get-keys">GET /keys</a></li>
-<li><a class="reference internal" href="#get-keys-user">GET /keys/&lt;user&gt;</a></li>
-<li><a class="reference internal" href="#post-key">POST /key</a></li>
-<li><a class="reference internal" href="#delete-key-id">DELETE /key/&lt;id&gt;</a></li>
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../integrations.html">Integrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui.html">Web Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">Alerta CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alerts.html">Alerts API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="format.html">alert: format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heartbeats.html">Heartbeats API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Keys API</a><ul class="simple">
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">REST API v3 Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users.html">Users API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webhooks.html">Webhooks</a></li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="users.html"
-                        title="previous chapter">Users API</a></p>
+  <p class="topless"><a href="heartbeats.html"
+                        title="previous chapter">Heartbeats API</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="webhooks.html"
-                        title="next chapter">Webhooks</a></p>
+  <p class="topless"><a href="resources.html"
+                        title="next chapter">REST API v3 Resources</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/api/keys.txt"
@@ -121,34 +130,19 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="webhooks.html" title="Webhooks"
+          <a href="resources.html" title="REST API v3 Resources"
              >next</a> |</li>
         <li class="right" >
-          <a href="users.html" title="Users API"
+          <a href="heartbeats.html" title="Heartbeats API"
              >previous</a> |</li>
-        <li><a href="../index.html">alerta 3.2.0 documentation</a> &raquo;</li> 
+        <li><a href="../index.html">alerta 4.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
 
-
     <div class="footer">
         &copy; Copyright 2014, Nick Satterly.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-44644195-3', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
