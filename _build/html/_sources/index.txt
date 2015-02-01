@@ -5,7 +5,6 @@ The alerta monitoring system is a tool used to consolidate and de-duplicate aler
 
 .. toctree::
    :hidden:
-   :glob:
 
    getting-started
    integrations
@@ -39,6 +38,11 @@ License
 -------
 
 This project is licensed under the Apache license.
+
+.. toctree::
+   :hidden:
+
+   release-notes
 
 Indices and tables
 ==================
