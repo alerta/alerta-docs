@@ -1,5 +1,4 @@
-
-alerta CLI
+Alerta CLI
 ==========
 
 ``alerta`` is the unified command-line tool for the alerta monitoring system. It can be used to
@@ -207,7 +206,7 @@ To send a minor alert followed by a normal::
 Bugs
 ----
 
-Log any issues on `GitHub`_ or just fix it yourself and submit a `pull request`_.
+Log any issues on `GitHub`_ or submit a `pull request`_.
 
-.. _`github`: https://github.com/alerta/python-alerta-client/issues
-.. _`pull request`: https://github.com/alerta/python-alerta-client/pulls
+.. _`github`: https://github.com/alerta/python-alerta/issues
+.. _`pull request`: https://github.com/alerta/python-alerta/pulls
