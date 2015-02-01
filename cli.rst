@@ -49,10 +49,10 @@ configuration settings.
 | debug       |  debug      | :envvar:`DEBUG`                   | ``--debug``                     | no debug                  |
 +-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
 
-* only in `[DEFAULT]` section
+.. note:: The ``profile`` option can only be set in the ``[DEFAULT]`` section.
 
 
-**Examples**
+**Example**
 
 Configuration file :file:`~/.alerta.conf`::
 
@@ -61,38 +61,30 @@ Configuration file :file:`~/.alerta.conf`::
     output = json
 
     [profile production]
-    endpoint = http://alerta.prod.com:8080
+    endpoint = https://api.alerta.io
+    key = demo-key
 
     [profile development]
-    endpoint = http://alerta.dev.com:8080
+    endpoint = http://localhost:8080
     debug = yes
 
 Set environment variables::
 
-    $ export ALERTA_CONF_FILE=~/.alerta/config
+    $ export ALERTA_CONF_FILE=~/.alerta.conf
     $ export ALERTA_DEFAULT_PROFILE=production
 
 Use production configuration settings by default::
 
-    $ alert query
+    $ alerta query
 
 Switch to development configuration settings when required::
 
-    $ alert --profile development query
+    $ alerta --profile development query
 
 Precedence
 ----------
 
-Command-line configuration options have precedence over environment
-variables, which have precedence over the configuration file. Within
-the configuration file profile-specific sections have precedence over
-the ``[DEFAULT]`` section.
-
-**Examples**
-
-1. ``--endpoint http://foo`` overrides ``ALERTA_DEFAULT_ENDPOINT=http://bar``
-2. ``ALERTA_DEFAULT_ENDPOINT=http://bar`` overrides a configuration file option ``endpoint=http://baz``, whether in ``[DEFAULT]`` or ``[profile]`` sections
-3. ``[profile quux] endpoint=http://quux`` overrides ``[DEFAULT] endpoint=http://baz`` if ``--profile quux`` is used
+Command-line configuration options have precedence over environment variables, which have precedence over the configuration file. Within the configuration file profile-specific sections have precedence over the ``[DEFAULT]`` section.
 
 
 Commands

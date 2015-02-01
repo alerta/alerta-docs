@@ -78,9 +78,9 @@ configuration settings.</p>
 <colgroup>
 <col width="11%" />
 <col width="11%" />
-<col width="30%" />
-<col width="25%" />
-<col width="23%" />
+<col width="29%" />
+<col width="27%" />
+<col width="22%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Option</th>
@@ -98,7 +98,7 @@ configuration settings.</p>
 <td><tt class="file docutils literal"><span class="pre">~/.alerta.conf</span></tt></td>
 </tr>
 <tr class="row-odd"><td>profile</td>
-<td>profile*</td>
+<td>profile</td>
 <td><span class="target" id="index-1"></span><tt class="xref std std-envvar docutils literal"><span class="pre">ALERTA_DEFAULT_PROFILE</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">--profile</span> <span class="pre">PROFILE</span></tt></td>
 <td>None</td>
@@ -112,7 +112,7 @@ configuration settings.</p>
 <tr class="row-odd"><td>key</td>
 <td>key</td>
 <td><span class="target" id="index-3"></span><tt class="xref std std-envvar docutils literal"><span class="pre">ALERTA_API_KEY</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">--key</span> <span class="pre">API-KEY</span></tt></td>
+<td>n/a</td>
 <td>None</td>
 </tr>
 <tr class="row-even"><td>timezone</td>
@@ -124,7 +124,8 @@ configuration settings.</p>
 <tr class="row-odd"><td>output</td>
 <td>output</td>
 <td>n/a</td>
-<td colspan="2"><tt class="docutils literal"><span class="pre">--output</span> <span class="pre">OUTPUT</span></tt>, <tt class="docutils literal"><span class="pre">--json</span></tt> | text</td>
+<td><tt class="docutils literal"><span class="pre">--output</span> <span class="pre">OUTPUT</span></tt>, <tt class="docutils literal"><span class="pre">--json</span></tt></td>
+<td>text</td>
 </tr>
 <tr class="row-even"><td>color</td>
 <td>color</td>
@@ -140,45 +141,38 @@ configuration settings.</p>
 </tr>
 </tbody>
 </table>
-<ul class="simple">
-<li>only in <cite>[DEFAULT]</cite> section</li>
-</ul>
-<p><strong>Examples</strong></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <tt class="docutils literal"><span class="pre">profile</span></tt> option can only be set in the <tt class="docutils literal"><span class="pre">[DEFAULT]</span></tt> section.</p>
+</div>
+<p><strong>Example</strong></p>
 <p>Configuration file <tt class="file docutils literal"><span class="pre">~/.alerta.conf</span></tt>:</p>
 <div class="highlight-python"><pre>[DEFAULT]
 timezone = Australia/Sydney
 output = json
 
 [profile production]
-endpoint = http://alerta.prod.com:8080
+endpoint = https://api.alerta.io
+key = demo-key
 
 [profile development]
-endpoint = http://alerta.dev.com:8080
+endpoint = http://localhost:8080
 debug = yes</pre>
 </div>
 <p>Set environment variables:</p>
-<div class="highlight-python"><pre>$ export ALERTA_CONF_FILE=~/.alerta/config
+<div class="highlight-python"><pre>$ export ALERTA_CONF_FILE=~/.alerta.conf
 $ export ALERTA_DEFAULT_PROFILE=production</pre>
 </div>
 <p>Use production configuration settings by default:</p>
-<div class="highlight-python"><pre>$ alert query</pre>
+<div class="highlight-python"><pre>$ alerta query</pre>
 </div>
 <p>Switch to development configuration settings when required:</p>
-<div class="highlight-python"><pre>$ alert --profile development query</pre>
+<div class="highlight-python"><pre>$ alerta --profile development query</pre>
 </div>
 </div>
 <div class="section" id="precedence">
 <h2>Precedence<a class="headerlink" href="#precedence" title="Permalink to this headline">¶</a></h2>
-<p>Command-line configuration options have precedence over environment
-variables, which have precedence over the configuration file. Within
-the configuration file profile-specific sections have precedence over
-the <tt class="docutils literal"><span class="pre">[DEFAULT]</span></tt> section.</p>
-<p><strong>Examples</strong></p>
-<ol class="arabic simple">
-<li><tt class="docutils literal"><span class="pre">--endpoint</span> <span class="pre">http://foo</span></tt> overrides <tt class="docutils literal"><span class="pre">ALERTA_DEFAULT_ENDPOINT=http://bar</span></tt></li>
-<li><tt class="docutils literal"><span class="pre">ALERTA_DEFAULT_ENDPOINT=http://bar</span></tt> overrides a configuration file option <tt class="docutils literal"><span class="pre">endpoint=http://baz</span></tt>, whether in <tt class="docutils literal"><span class="pre">[DEFAULT]</span></tt> or <tt class="docutils literal"><span class="pre">[profile]</span></tt> sections</li>
-<li><tt class="docutils literal"><span class="pre">[profile</span> <span class="pre">quux]</span> <span class="pre">endpoint=http://quux</span></tt> overrides <tt class="docutils literal"><span class="pre">[DEFAULT]</span> <span class="pre">endpoint=http://baz</span></tt> if <tt class="docutils literal"><span class="pre">--profile</span> <span class="pre">quux</span></tt> is used</li>
-</ol>
+<p>Command-line configuration options have precedence over environment variables, which have precedence over the configuration file. Within the configuration file profile-specific sections have precedence over the <tt class="docutils literal"><span class="pre">[DEFAULT]</span></tt> section.</p>
 </div>
 <div class="section" id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
