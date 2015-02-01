@@ -44,6 +44,8 @@ Alert attributes populated at source
 | ``rawData``          | unprocessed data eg. full syslog message or SNMP trap                           |
 +----------------------+---------------------------------------------------------------------------------+
 
+.. note:: Only ``event`` and ``resource`` are mandatory.
+
 Alert attributes added when processing alerts
 ---------------------------------------------
 
