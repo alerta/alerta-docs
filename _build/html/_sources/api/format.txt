@@ -1,6 +1,8 @@
 Alert Format
 ============
 
+Alerts received and sent by Alerta conform to a common alert format. All components of alerta use this message format and any external systems must produce or consume messages in this format also.
+
 Alert attributes populated at source
 ------------------------------------
 
@@ -108,4 +110,13 @@ Alert Severities
 
 History Entries
 ---------------
+
+
+Example
+-------
+
+References
+----------
+
+http://tools.ietf.org/html/rfc5674#section-2
 
