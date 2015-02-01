@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -9,14 +7,14 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Integrations &mdash; alerta 4.0 documentation</title>
+    <title>Integrations &amp; Plugins &mdash; alerta 4.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    './',
         VERSION:     '4.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -52,17 +50,67 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="integrations">
-<h1>Integrations<a class="headerlink" href="#integrations" title="Permalink to this headline">¶</a></h1>
-<p>Plugins</p>
-<p>Core - amqp, enhance, logstash, normalise, reject, sns
-Contrib - geoip, hipchat, influxdb, slack</p>
-<p>Integrations</p>
-<p>Core - kibana, riemann, sensu, zabbix, nagios3
-Contrib - sqs, amqp, cloudwatch, opsweekly, pinger, snmptrap, supervisor, syslog, urlmon</p>
-<p>Webhooks</p>
-<p>cloudwatch
-pingdom</p>
+  <div class="section" id="integrations-plugins">
+<h1>Integrations &amp; Plugins<a class="headerlink" href="#integrations-plugins" title="Permalink to this headline">¶</a></h1>
+<p>There are several different ways to integrate other alert sources into Alerta. Integrations with key open source monitoring tools have been developed and provide good starting points for other, perhaps bespoke, monitoring tools.</p>
+<div class="section" id="integrations">
+<h2>Integrations<a class="headerlink" href="#integrations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="core">
+<h3>Core<a class="headerlink" href="#core" title="Permalink to this headline">¶</a></h3>
+<p>There are a few core integrations which have been developed to showcase how easy it is to quickly get alerts or events from other tools into Alerta. They are:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/alerta/nagios3-alerta">Nagios Event Broker</a> (C)</li>
+<li><a class="reference external" href="https://github.com/alerta/zabbix-alerta">Zabbix Alert Script</a> (Python)</li>
+<li><a class="reference external" href="https://github.com/alerta/sensu-alerta">Sensu Plugin</a> (Ruby)</li>
+<li><a class="reference external" href="https://github.com/alerta/riemann-alerta">Riemann Integration</a> (Clojure)</li>
+</ul>
+</div>
+<div class="section" id="contrib">
+<h3>Contrib<a class="headerlink" href="#contrib" title="Permalink to this headline">¶</a></h3>
+<p>There are several more integrations available in the <cite>contrib</cite> repo. They are:</p>
+<ul class="simple">
+<li>Amazon SQS (Python)</li>
+<li>AMQP (Python)</li>
+<li>AWS Cloudwatch (Python)</li>
+<li>Opsweekly (PHP)</li>
+<li>Pinger (Python)</li>
+<li>SNMP Trap (Python)</li>
+<li>Supervisor (Python)</li>
+<li>Syslog</li>
+<li>URL monitor</li>
+</ul>
+</div>
+</div>
+<div class="section" id="webhooks">
+<h2>Webhooks<a class="headerlink" href="#webhooks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>AWS Cloudwatch</li>
+<li>Pingdom</li>
+</ul>
+</div>
+<div class="section" id="plugins">
+<h2>Plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Core<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>AMQP</li>
+<li>Enhance</li>
+<li>Logstash/Kibana</li>
+<li>Normalise</li>
+<li>Reject</li>
+<li>AWS SNS</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h3>Contrib<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>GeoIP Location</li>
+<li>HipChat</li>
+<li>InfluxDB</li>
+<li>Slack</li>
+</ul>
+</div>
+</div>
 </div>
 
 
@@ -74,9 +122,22 @@ pingdom</p>
 <h3><a href="index.html">Table Of Contents</a></h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Integrations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Integrations &amp; Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#integrations">Integrations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#core">Core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#contrib">Contrib</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#webhooks">Webhooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plugins">Plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Contrib</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="webui.html">Web Console</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cli.html">alerta CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 </ul>
 <ul>
@@ -88,6 +149,9 @@ pingdom</p>
 <li class="toctree-l1"><a class="reference internal" href="api/resources.html">REST API v3 Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/users.html">Users API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/webhooks.html">Webhooks</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release-notes.html">Release History</a></li>
 </ul>
 
   <h4>Previous topic</h4>
@@ -136,7 +200,7 @@ pingdom</p>
 
     <div class="footer">
         &copy; Copyright 2014, Nick Satterly.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
