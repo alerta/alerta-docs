@@ -1,6 +1,17 @@
 Overview
 ========
 
+REST API   http://api.alerta.io
+resources: alerts, heartbeats, keys, users
+alert and heartbeat JSON formats
+methods, attributes and responses
+JSONP, CORS, Caching “Last-Modified” (wip)
+
+
+alerts - CRUD, query, services, environments
+heartbeats - CRUD
+auth - google oauth, github oauth, api keys, specified users
+
 Version
 -------
 
