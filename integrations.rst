@@ -57,6 +57,7 @@ Contrib
 * GeoIP Location
 * HipChat
 * InfluxDB
+* Pushover.net
 * Slack
 * Twilio SMS
 
