@@ -58,6 +58,7 @@ Contrib
 * HipChat
 * InfluxDB
 * Slack
+* Twilio SMS
 
 
 .. _Nagios Event Broker: https://github.com/alerta/nagios3-alerta
