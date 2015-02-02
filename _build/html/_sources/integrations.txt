@@ -68,6 +68,6 @@ Contrib
 .. _Riemann Integration: https://github.com/alerta/riemann-alerta
 
 .. _Amazon SQS: http://aws.amazon.com/sqs/
-.. _AWS Clouwatch: http://aws.amazon.com/cloudwatch/
+.. _AWS Cloudwatch: http://aws.amazon.com/cloudwatch/
 .. _Opsweekly: https://codeascraft.com/2014/06/19/opsweekly-measuring-on-call-experience-with-alert-classification/
 .. _Supervisor: http://supervisord.org/events.html
