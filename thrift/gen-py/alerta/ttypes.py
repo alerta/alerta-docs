@@ -142,6 +142,151 @@ class EventType:
   }
 
 
+class History:
+  """
+  Attributes:
+   - id
+   - event
+   - severity
+   - status
+   - value
+   - text
+   - updateTime
+  """
+
+  thrift_spec = (
+    None, # 0
+    (1, TType.STRING, 'id', None, None, ), # 1
+    (2, TType.STRING, 'event', None, None, ), # 2
+    (3, TType.I32, 'severity', None, None, ), # 3
+    (4, TType.I32, 'status', None, None, ), # 4
+    (5, TType.STRING, 'value', None, None, ), # 5
+    (6, TType.STRING, 'text', None, None, ), # 6
+    (7, TType.STRING, 'updateTime', None, None, ), # 7
+  )
+
+  def __init__(self, id=None, event=None, severity=None, status=None, value=None, text=None, updateTime=None,):
+    self.id = id
+    self.event = event
+    self.severity = severity
+    self.status = status
+    self.value = value
+    self.text = text
+    self.updateTime = updateTime
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 1:
+        if ftype == TType.STRING:
+          self.id = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 2:
+        if ftype == TType.STRING:
+          self.event = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 3:
+        if ftype == TType.I32:
+          self.severity = iprot.readI32();
+        else:
+          iprot.skip(ftype)
+      elif fid == 4:
+        if ftype == TType.I32:
+          self.status = iprot.readI32();
+        else:
+          iprot.skip(ftype)
+      elif fid == 5:
+        if ftype == TType.STRING:
+          self.value = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 6:
+        if ftype == TType.STRING:
+          self.text = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 7:
+        if ftype == TType.STRING:
+          self.updateTime = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('History')
+    if self.id is not None:
+      oprot.writeFieldBegin('id', TType.STRING, 1)
+      oprot.writeString(self.id)
+      oprot.writeFieldEnd()
+    if self.event is not None:
+      oprot.writeFieldBegin('event', TType.STRING, 2)
+      oprot.writeString(self.event)
+      oprot.writeFieldEnd()
+    if self.severity is not None:
+      oprot.writeFieldBegin('severity', TType.I32, 3)
+      oprot.writeI32(self.severity)
+      oprot.writeFieldEnd()
+    if self.status is not None:
+      oprot.writeFieldBegin('status', TType.I32, 4)
+      oprot.writeI32(self.status)
+      oprot.writeFieldEnd()
+    if self.value is not None:
+      oprot.writeFieldBegin('value', TType.STRING, 5)
+      oprot.writeString(self.value)
+      oprot.writeFieldEnd()
+    if self.text is not None:
+      oprot.writeFieldBegin('text', TType.STRING, 6)
+      oprot.writeString(self.text)
+      oprot.writeFieldEnd()
+    if self.updateTime is not None:
+      oprot.writeFieldBegin('updateTime', TType.STRING, 7)
+      oprot.writeString(self.updateTime)
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    if self.event is None:
+      raise TProtocol.TProtocolException(message='Required field event is unset!')
+    return
+
+
+  def __hash__(self):
+    value = 17
+    value = (value * 31) ^ hash(self.id)
+    value = (value * 31) ^ hash(self.event)
+    value = (value * 31) ^ hash(self.severity)
+    value = (value * 31) ^ hash(self.status)
+    value = (value * 31) ^ hash(self.value)
+    value = (value * 31) ^ hash(self.text)
+    value = (value * 31) ^ hash(self.updateTime)
+    return value
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
 class Alert:
   """
   Attributes:
@@ -200,7 +345,7 @@ class Alert:
     (23, TType.STRING, 'receiveTime', None, None, ), # 23
     (24, TType.STRING, 'lastReceiveId', None, None, ), # 24
     (25, TType.STRING, 'lastReceiveTime', None, None, ), # 25
-    (26, TType.MAP, 'history', (TType.STRING,None,TType.STRING,None), None, ), # 26
+    (26, TType.STRUCT, 'history', (History, History.thrift_spec), None, ), # 26
   )
 
   def __init__(self, id=None, resource=None, event=None, environment=None, severity=thrift_spec[5][4], correlate=None, status=None, service_=None, group=None, value=None, text=None, tags=None, attributes=None, origin=None, type=thrift_spec[15][4], createTime=None, timeout=thrift_spec[17][4], rawData=None, duplicateCount=None, repeat=None, previousSeverity=None, trendIndication=None, receiveTime=None, lastReceiveId=None, lastReceiveTime=None, history=None,):
@@ -387,14 +532,9 @@ class Alert:
         else:
           iprot.skip(ftype)
       elif fid == 26:
-        if ftype == TType.MAP:
-          self.history = {}
-          (_ktype26, _vtype27, _size25 ) = iprot.readMapBegin()
-          for _i29 in xrange(_size25):
-            _key30 = iprot.readString();
-            _val31 = iprot.readString();
-            self.history[_key30] = _val31
-          iprot.readMapEnd()
+        if ftype == TType.STRUCT:
+          self.history = History()
+          self.history.read(iprot)
         else:
           iprot.skip(ftype)
       else:
@@ -430,8 +570,8 @@ class Alert:
     if self.correlate is not None:
       oprot.writeFieldBegin('correlate', TType.LIST, 6)
       oprot.writeListBegin(TType.STRING, len(self.correlate))
-      for iter32 in self.correlate:
-        oprot.writeString(iter32)
+      for iter25 in self.correlate:
+        oprot.writeString(iter25)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.status is not None:
@@ -441,8 +581,8 @@ class Alert:
     if self.service_ is not None:
       oprot.writeFieldBegin('service_', TType.LIST, 8)
       oprot.writeListBegin(TType.STRING, len(self.service_))
-      for iter33 in self.service_:
-        oprot.writeString(iter33)
+      for iter26 in self.service_:
+        oprot.writeString(iter26)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.group is not None:
@@ -460,16 +600,16 @@ class Alert:
     if self.tags is not None:
       oprot.writeFieldBegin('tags', TType.LIST, 12)
       oprot.writeListBegin(TType.STRING, len(self.tags))
-      for iter34 in self.tags:
-        oprot.writeString(iter34)
+      for iter27 in self.tags:
+        oprot.writeString(iter27)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.attributes is not None:
       oprot.writeFieldBegin('attributes', TType.MAP, 13)
       oprot.writeMapBegin(TType.STRING, TType.STRING, len(self.attributes))
-      for kiter35,viter36 in self.attributes.items():
-        oprot.writeString(kiter35)
-        oprot.writeString(viter36)
+      for kiter28,viter29 in self.attributes.items():
+        oprot.writeString(kiter28)
+        oprot.writeString(viter29)
       oprot.writeMapEnd()
       oprot.writeFieldEnd()
     if self.origin is not None:
@@ -521,12 +661,8 @@ class Alert:
       oprot.writeString(self.lastReceiveTime)
       oprot.writeFieldEnd()
     if self.history is not None:
-      oprot.writeFieldBegin('history', TType.MAP, 26)
-      oprot.writeMapBegin(TType.STRING, TType.STRING, len(self.history))
-      for kiter37,viter38 in self.history.items():
-        oprot.writeString(kiter37)
-        oprot.writeString(viter38)
-      oprot.writeMapEnd()
+      oprot.writeFieldBegin('history', TType.STRUCT, 26)
+      self.history.write(oprot)
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
     oprot.writeStructEnd()
@@ -634,10 +770,10 @@ class Heartbeat:
       elif fid == 3:
         if ftype == TType.LIST:
           self.tags = []
-          (_etype42, _size39) = iprot.readListBegin()
-          for _i43 in xrange(_size39):
-            _elem44 = iprot.readString();
-            self.tags.append(_elem44)
+          (_etype33, _size30) = iprot.readListBegin()
+          for _i34 in xrange(_size30):
+            _elem35 = iprot.readString();
+            self.tags.append(_elem35)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -682,8 +818,8 @@ class Heartbeat:
     if self.tags is not None:
       oprot.writeFieldBegin('tags', TType.LIST, 3)
       oprot.writeListBegin(TType.STRING, len(self.tags))
-      for iter45 in self.tags:
-        oprot.writeString(iter45)
+      for iter36 in self.tags:
+        oprot.writeString(iter36)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.type is not None:

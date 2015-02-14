@@ -46,6 +46,16 @@ enum EventType {
 typedef string UUIDType  /* UUID(4) */
 typedef string Timestamp /* ISO-8601 */
 
+struct History {
+  1: UUIDType id,
+  2: required string event,
+  3: optional Severity severity,
+  4: optional Status status,
+  5: optional string value,
+  6: optional string text,
+  7: optional Timestamp updateTime,
+}
+
 struct Alert {
   1: UUIDType id,
   2: required string resource,
@@ -72,7 +82,7 @@ struct Alert {
   23: optional Timestamp receiveTime,
   24: optional UUIDType lastReceiveId,
   25: optional Timestamp lastReceiveTime,
-  26: optional map<string,string> history
+  26: optional History history
 }
 
 struct Heartbeat {
