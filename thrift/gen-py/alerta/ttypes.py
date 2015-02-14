@@ -103,6 +103,44 @@ class Status:
     "UNKNOWN": 9,
   }
 
+class EventType:
+  ALERT = 0
+  SNMP_TRAP = 1
+  SNMP_NOTIF = 2
+  IPMI_PET = 3
+  SYSLOG = 4
+  CHECK = 5
+  PROBE = 6
+  ENVIRON = 7
+  OTHER = 8
+  HEARTBEAT = 9
+
+  _VALUES_TO_NAMES = {
+    0: "ALERT",
+    1: "SNMP_TRAP",
+    2: "SNMP_NOTIF",
+    3: "IPMI_PET",
+    4: "SYSLOG",
+    5: "CHECK",
+    6: "PROBE",
+    7: "ENVIRON",
+    8: "OTHER",
+    9: "HEARTBEAT",
+  }
+
+  _NAMES_TO_VALUES = {
+    "ALERT": 0,
+    "SNMP_TRAP": 1,
+    "SNMP_NOTIF": 2,
+    "IPMI_PET": 3,
+    "SYSLOG": 4,
+    "CHECK": 5,
+    "PROBE": 6,
+    "ENVIRON": 7,
+    "OTHER": 8,
+    "HEARTBEAT": 9,
+  }
+
 
 class Alert:
   """
@@ -151,7 +189,7 @@ class Alert:
     (12, TType.LIST, 'tags', (TType.STRING,None), None, ), # 12
     (13, TType.MAP, 'attributes', (TType.STRING,None,TType.STRING,None), None, ), # 13
     (14, TType.STRING, 'origin', None, None, ), # 14
-    (15, TType.STRING, 'type', None, None, ), # 15
+    (15, TType.I32, 'type', None,     0, ), # 15
     (16, TType.STRING, 'createTime', None, None, ), # 16
     (17, TType.I32, 'timeout', None, 0, ), # 17
     (18, TType.STRING, 'rawData', None, None, ), # 18
@@ -165,7 +203,7 @@ class Alert:
     (26, TType.MAP, 'history', (TType.STRING,None,TType.STRING,None), None, ), # 26
   )
 
-  def __init__(self, id=None, resource=None, event=None, environment=None, severity=thrift_spec[5][4], correlate=None, status=None, service_=None, group=None, value=None, text=None, tags=None, attributes=None, origin=None, type=None, createTime=None, timeout=thrift_spec[17][4], rawData=None, duplicateCount=None, repeat=None, previousSeverity=None, trendIndication=None, receiveTime=None, lastReceiveId=None, lastReceiveTime=None, history=None,):
+  def __init__(self, id=None, resource=None, event=None, environment=None, severity=thrift_spec[5][4], correlate=None, status=None, service_=None, group=None, value=None, text=None, tags=None, attributes=None, origin=None, type=thrift_spec[15][4], createTime=None, timeout=thrift_spec[17][4], rawData=None, duplicateCount=None, repeat=None, previousSeverity=None, trendIndication=None, receiveTime=None, lastReceiveId=None, lastReceiveTime=None, history=None,):
     self.id = id
     self.resource = resource
     self.event = event
@@ -294,8 +332,8 @@ class Alert:
         else:
           iprot.skip(ftype)
       elif fid == 15:
-        if ftype == TType.STRING:
-          self.type = iprot.readString();
+        if ftype == TType.I32:
+          self.type = iprot.readI32();
         else:
           iprot.skip(ftype)
       elif fid == 16:
@@ -439,8 +477,8 @@ class Alert:
       oprot.writeString(self.origin)
       oprot.writeFieldEnd()
     if self.type is not None:
-      oprot.writeFieldBegin('type', TType.STRING, 15)
-      oprot.writeString(self.type)
+      oprot.writeFieldBegin('type', TType.I32, 15)
+      oprot.writeI32(self.type)
       oprot.writeFieldEnd()
     if self.createTime is not None:
       oprot.writeFieldBegin('createTime', TType.STRING, 16)
@@ -529,6 +567,161 @@ class Alert:
     value = (value * 31) ^ hash(self.lastReceiveId)
     value = (value * 31) ^ hash(self.lastReceiveTime)
     value = (value * 31) ^ hash(self.history)
+    return value
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class Heartbeat:
+  """
+  Attributes:
+   - id
+   - origin
+   - tags
+   - type
+   - createTime
+   - timeout
+   - receiveTime
+  """
+
+  thrift_spec = (
+    None, # 0
+    (1, TType.STRING, 'id', None, None, ), # 1
+    (2, TType.STRING, 'origin', None, None, ), # 2
+    (3, TType.LIST, 'tags', (TType.STRING,None), None, ), # 3
+    (4, TType.I32, 'type', None,     9, ), # 4
+    (5, TType.STRING, 'createTime', None, None, ), # 5
+    (6, TType.I32, 'timeout', None, 0, ), # 6
+    (7, TType.STRING, 'receiveTime', None, None, ), # 7
+  )
+
+  def __init__(self, id=None, origin=None, tags=None, type=thrift_spec[4][4], createTime=None, timeout=thrift_spec[6][4], receiveTime=None,):
+    self.id = id
+    self.origin = origin
+    self.tags = tags
+    self.type = type
+    self.createTime = createTime
+    self.timeout = timeout
+    self.receiveTime = receiveTime
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 1:
+        if ftype == TType.STRING:
+          self.id = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 2:
+        if ftype == TType.STRING:
+          self.origin = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 3:
+        if ftype == TType.LIST:
+          self.tags = []
+          (_etype42, _size39) = iprot.readListBegin()
+          for _i43 in xrange(_size39):
+            _elem44 = iprot.readString();
+            self.tags.append(_elem44)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      elif fid == 4:
+        if ftype == TType.I32:
+          self.type = iprot.readI32();
+        else:
+          iprot.skip(ftype)
+      elif fid == 5:
+        if ftype == TType.STRING:
+          self.createTime = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 6:
+        if ftype == TType.I32:
+          self.timeout = iprot.readI32();
+        else:
+          iprot.skip(ftype)
+      elif fid == 7:
+        if ftype == TType.STRING:
+          self.receiveTime = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('Heartbeat')
+    if self.id is not None:
+      oprot.writeFieldBegin('id', TType.STRING, 1)
+      oprot.writeString(self.id)
+      oprot.writeFieldEnd()
+    if self.origin is not None:
+      oprot.writeFieldBegin('origin', TType.STRING, 2)
+      oprot.writeString(self.origin)
+      oprot.writeFieldEnd()
+    if self.tags is not None:
+      oprot.writeFieldBegin('tags', TType.LIST, 3)
+      oprot.writeListBegin(TType.STRING, len(self.tags))
+      for iter45 in self.tags:
+        oprot.writeString(iter45)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    if self.type is not None:
+      oprot.writeFieldBegin('type', TType.I32, 4)
+      oprot.writeI32(self.type)
+      oprot.writeFieldEnd()
+    if self.createTime is not None:
+      oprot.writeFieldBegin('createTime', TType.STRING, 5)
+      oprot.writeString(self.createTime)
+      oprot.writeFieldEnd()
+    if self.timeout is not None:
+      oprot.writeFieldBegin('timeout', TType.I32, 6)
+      oprot.writeI32(self.timeout)
+      oprot.writeFieldEnd()
+    if self.receiveTime is not None:
+      oprot.writeFieldBegin('receiveTime', TType.STRING, 7)
+      oprot.writeString(self.receiveTime)
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    if self.origin is None:
+      raise TProtocol.TProtocolException(message='Required field origin is unset!')
+    if self.type is None:
+      raise TProtocol.TProtocolException(message='Required field type is unset!')
+    return
+
+
+  def __hash__(self):
+    value = 17
+    value = (value * 31) ^ hash(self.id)
+    value = (value * 31) ^ hash(self.origin)
+    value = (value * 31) ^ hash(self.tags)
+    value = (value * 31) ^ hash(self.type)
+    value = (value * 31) ^ hash(self.createTime)
+    value = (value * 31) ^ hash(self.timeout)
+    value = (value * 31) ^ hash(self.receiveTime)
     return value
 
   def __repr__(self):
