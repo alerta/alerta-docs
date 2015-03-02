@@ -24,7 +24,6 @@ The API Explorer website can be used to query for, and send alerts to, the http:
 
 - http://explorer.alerta.io
 
-
 .. toctree::
    :hidden:
 
@@ -35,7 +34,6 @@ The API Explorer website can be used to query for, and send alerts to, the http:
    integrations
    authentication
    development
-   faq
 
 .. toctree::
   :glob:
@@ -55,7 +53,8 @@ Contribute
 Support
 -------
 
-- Issue Tracker: http://github.com/guardian/alerta/issues
+* :ref:`Frequently Asked Questions <faq>`
+* Issue Tracker: http://github.com/guardian/alerta/issues
 
 License
 -------

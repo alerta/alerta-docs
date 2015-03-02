@@ -77,8 +77,19 @@
 </div>
 <div class="section" id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id2">
-<h3>Google<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="google-oauth2">
+<span id="id2"></span><h3>Google OAuth2<a class="headerlink" href="#google-oauth2" title="Permalink to this headline">¶</a></h3>
+<p>To use Google as the OAuth2 provider for <tt class="docutils literal"><span class="pre">alerta</span></tt>, login to <a class="reference external" href="https://console.developers.google.com">Google Developer Console</a> and create a new project for alerta.</p>
+<ul class="simple">
+<li>Project Name: alerta</li>
+<li>Project ID: (automatically assigned)</li>
+</ul>
+<p>Go to <em>APIs and auth -&gt; APIs</em> and set <em>Google+ API</em> to <strong>ON</strong>. Next go to <em>APIs and auth -&gt; Credentials</em> and click <strong>Create New Client ID</strong> and choose <strong>Web Application</strong>.</p>
+<ul class="simple">
+<li>Authorized Javscript Origins: <a class="reference external" href="http://alerta.example.com">http://alerta.example.com</a></li>
+<li>Authorized Redirect URIs: <a class="reference external" href="http://alerta.example.com">http://alerta.example.com</a></li>
+</ul>
+<p>Click <strong>Create Client ID</strong> and take note of the Client ID and Client Secret. The configuration settins for <tt class="docutils literal"><span class="pre">alerta</span></tt> server are as follows:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s">&#39;379647311730-sj130ru952o3o7ig8u0ts8np2ojivr8d.apps.googleusercontent.com&#39;</span>
 <span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s">&#39;8HrqJhbrYn9oDtaJqExample&#39;</span>
 <span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;example.com&#39;</span><span class="p">]</span>
@@ -89,8 +100,8 @@
 <p class="last"><tt class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></tt> can be an asterisk (<tt class="docutils literal"><span class="pre">*</span></tt>) to force login but <em>not</em> restrict who can login.</p>
 </div>
 </div>
-<div class="section" id="id3">
-<h3>GitHub<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="github-oauth2">
+<span id="id3"></span><h3>GitHub OAuth2<a class="headerlink" href="#github-oauth2" title="Permalink to this headline">¶</a></h3>
 <p>To use GitHub as the OAuth2 provider for <tt class="docutils literal"><span class="pre">alerta</span></tt>, login to GitHub and go to <em>Settings -&gt; Applications -&gt; Register New Application</em>.</p>
 <ul class="simple">
 <li>Application Name: Alerta</li>
@@ -102,8 +113,7 @@
 <p class="first admonition-title">Note</p>
 <p class="last">The <cite>Authorization callback URL</cite> is the most important setting and it is nothing more than the URL domain (ie. without any path) where the alerta Web UI is being hosted.</p>
 </div>
-<p>Click Register Application and take note of the Client ID and Client Secret.</p>
-<p>Then configuration settings for <tt class="docutils literal"><span class="pre">alertad</span></tt> are as follows:</p>
+<p>Click Register Application and take note of the Client ID and Client Secret. Then configuration settings for <tt class="docutils literal"><span class="pre">alerta</span></tt> server are as follows:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s">&#39;f7b0c15e2b722e0e38f4&#39;</span>
 <span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s">&#39;7aa9094369b72937910badab0424dc7393x8mpl3&#39;</span>
 <span class="n">ALLOWED_GITHUB_ORGS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;example&#39;</span><span class="p">]</span>
@@ -188,8 +198,8 @@ HEAD, OPTIONS, GET  /users  get_users</p>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Authentication</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#oauth2-authentication">OAuth2 Authentication</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Google</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">GitHub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#google-oauth2">Google OAuth2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#github-oauth2">GitHub OAuth2</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cross-origin">Cross-Origin</a></li>
 </ul>
 </li>
@@ -200,7 +210,6 @@ HEAD, OPTIONS, GET  /users  get_users</p>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
-<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/overview.html">API Overview</a></li>

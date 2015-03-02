@@ -1,15 +1,12 @@
 .. _faq:
 
-FAQ
-===
+Frequently Asked Questions
+==========================
 
-.. contents:: Resource Types
-   :local:
-   :depth: 1
+**Can I define custom severity codes and levels?**
 
+Yes, though it is not recommended.
 
-1. Can I define custom severity codes and levels?
+**How can I add a priority attribute eg. High, Medium, Low?**
 
-2. Can I add a priority attribute eg. High, Medium, Low?
-
-3.
+Use custom attributes.

@@ -29,8 +29,24 @@ User authentication for the web console is provided by Google_ or GitHub_ `OAuth
 Configuration
 -------------
 
-Google
-~~~~~~
+.. _google_oauth2:
+
+Google OAuth2
+~~~~~~~~~~~~~
+
+To use Google as the OAuth2 provider for ``alerta``, login to `Google Developer Console`_ and create a new project for alerta.
+
+.. _Google Developer Console: https://console.developers.google.com
+
+- Project Name: alerta
+- Project ID: (automatically assigned)
+
+Go to *APIs and auth -> APIs* and set *Google+ API* to **ON**. Next go to *APIs and auth -> Credentials* and click **Create New Client ID** and choose **Web Application**.
+
+- Authorized Javscript Origins: http://alerta.example.com
+- Authorized Redirect URIs: http://alerta.example.com
+
+Click **Create Client ID** and take note of the Client ID and Client Secret. The configuration settins for ``alerta`` server are as follows:
 
 ::
 
@@ -40,8 +56,10 @@ Google
 
 .. note:: ``ALLOWED_EMAIL_DOMAINS`` can be an asterisk (``*``) to force login but *not* restrict who can login.
 
-GitHub
-~~~~~~
+.. _github_oauth2:
+
+GitHub OAuth2
+~~~~~~~~~~~~~
 
 To use GitHub as the OAuth2 provider for ``alerta``, login to GitHub and go to *Settings -> Applications -> Register New Application*.
 
@@ -52,9 +70,7 @@ To use GitHub as the OAuth2 provider for ``alerta``, login to GitHub and go to *
 
 .. note:: The `Authorization callback URL` is the most important setting and it is nothing more than the URL domain (ie. without any path) where the alerta Web UI is being hosted.
 
-Click Register Application and take note of the Client ID and Client Secret.
-
-Then configuration settings for ``alertad`` are as follows:
+Click Register Application and take note of the Client ID and Client Secret. Then configuration settings for ``alerta`` server are as follows:
 
 ::
 
