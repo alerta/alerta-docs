@@ -15,7 +15,7 @@ To update the docs website:
     $ git push
 
 
-Dependencies
+Requirements
 ------------
 
   * ReadTheDocs: https://readthedocs.org/

@@ -56,21 +56,48 @@
             
   <div class="section" id="getting-started">
 <span id="id1"></span><h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<p>Deploy Server &gt;&gt; Learn more</p>
-<p>Collect alerts &gt;&gt; Learn more</p>
-<p>DEPLOY</p>
-<p>try.alerta.io
-explorer.io
-alerta.herokuapp.com</p>
-<p>cloudformation
-docker
-packer
-google app engine
-heroku
-pypi
-openshift
-vagrant
-RPM &amp; deb packages using fpm (wip)</p>
+<p>This is a quick-start guide to running Alerta in a test environment.</p>
+<div class="section" id="install-mongodb">
+<h2>Install MongoDB<a class="headerlink" href="#install-mongodb" title="Permalink to this headline">¶</a></h2>
+<p>For Debian, run:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install -y mongodb-org
+$ mongod
+</pre></div>
+</div>
+<p>For other operating systems, see the <a class="reference external" href="http://docs.mongodb.org/manual/installation/">installation</a> steps on the MongoDB web site.</p>
+</div>
+<div class="section" id="install-the-alerta-server">
+<h2>Install the Alerta Server<a class="headerlink" href="#install-the-alerta-server" title="Permalink to this headline">¶</a></h2>
+<p>To install the alerta server:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ pip install alerta-server
+$ alertad
+</pre></div>
+</div>
+<p>You should see something like:</p>
+<div class="highlight-python"><div class="highlight"><pre>Starting alerta version 4.1.2 ...
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-the-web-console">
+<h2>Install the Web Console<a class="headerlink" href="#install-the-web-console" title="Permalink to this headline">¶</a></h2>
+<p>To install the web console:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ wget -O alerta-web.tgz https://github.com/alerta/angular-alerta-webui/tarball/master
+$ tar zxvf alerta-web.tgz
+$ cd alerta-angular-alerta-webui-*/app
+$ python -m SimpleHTTPServer 8000
+
+&gt;&gt; browse to http://localhost:8000
+</pre></div>
+</div>
+</div>
+<div class="section" id="generate-test-alerts">
+<h2>Generate test alerts<a class="headerlink" href="#generate-test-alerts" title="Permalink to this headline">¶</a></h2>
+<p>To send an alert to the server:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta send -r web01 -e NodeDown -E Production -S Website -s major -t &quot;Web server is down.&quot; -v ERROR
+</pre></div>
+</div>
+<p>The alert should appear almost immediately in the console. If it doesn&#8217;t it a <a class="reference external" href="https://github.com/alerta/alerta-docs/issues/new">bug</a> in alerta or the documentation.</p>
+</div>
 </div>
 
 
@@ -109,7 +136,13 @@ Links
 
 <h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install-mongodb">Install MongoDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-the-alerta-server">Install the Alerta Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-the-web-console">Install the Web Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-test-alerts">Generate test alerts</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="server.html">Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webui.html">Web UI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>

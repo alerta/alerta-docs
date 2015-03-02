@@ -34,6 +34,25 @@ nginx -> https://github.com/alerta/docker-alerta/blob/master/nginx.conf
 
 CORS if not same origin
 
+Configure WSGI App
+------------------
+
+
+Configure Authentication
+------------------------
+
+- login
+- add any special users
+- create API keys
+
+Configure a Plug-in
+-------------------
+
+
+Configure an Integration
+------------------------
+
+
 Deployment
 ----------
 
