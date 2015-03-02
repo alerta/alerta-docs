@@ -54,10 +54,10 @@
 <h3>Can I define custom severity codes and levels?<a class="headerlink" href="#can-i-define-custom-severity-codes-and-levels" title="Permalink to this headline">¶</a></h3>
 <p>Yes, though it is not recommended. There is nothing stopping you from using any string as the severity for a submitted alert. The only aspect of <tt class="docutils literal"><span class="pre">alerta</span></tt> that would not work as expected would be the <tt class="docutils literal"><span class="pre">trendIndication</span></tt> assigned to an alert that indicates whether it is more or less severe than the last alert for that <tt class="docutils literal"><span class="pre">resource</span></tt> and <tt class="docutils literal"><span class="pre">event</span></tt>. To fix this, <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/app/severity_code.py">severity code</a> mappings would need to be updated to include the new severity or to rename an existing one.</p>
 </div>
-<div class="section" id="how-can-i-add-a-priority-attribute-eg-high-medium-low">
-<h3>How can I add a priority attribute eg. High, Medium, Low?<a class="headerlink" href="#how-can-i-add-a-priority-attribute-eg-high-medium-low" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="how-can-i-add-a-priority-to-an-alert-eg-high-medium-low">
+<h3>How can I add a priority to an alert eg. High, Medium, Low?<a class="headerlink" href="#how-can-i-add-a-priority-to-an-alert-eg-high-medium-low" title="Permalink to this headline">¶</a></h3>
 <p>Use a custom attribute called <tt class="docutils literal"><span class="pre">priority</span></tt> when sending alerts to alerta:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta send --attributes priority=high ...
+<div class="highlight-python"><div class="highlight"><pre>$ alerta send ... --attributes priority=high ...
 </pre></div>
 </div>
 <p>Alerts of differing priority could be queried by <tt class="docutils literal"><span class="pre">alerta</span></tt> command-line tool using:</p>
@@ -98,6 +98,20 @@
 </p>
 
 
+
+
+<h3>
+Links
+</h3>
+<ul>
+  <li>
+    <a href="http://alerta.io" rel="me">Web</a>
+  </li>
+  <li>
+    <a href="https://twitter.com/alertaio" rel="me">Twitter</a>
+  </li>
+</ul>
+
 <h3>Navigation</h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
@@ -137,7 +151,7 @@
     </div>
 
     <div class="footer">
-      &copy;2014, Nick Satterly.
+      &copy;2015, Nick Satterly.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.2.3</a>
@@ -154,7 +168,7 @@
     <script type="text/javascript">
 
       var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'xUA-44644195-3']);
+      _gaq.push(['_setAccount', 'UA-44644195-3']);
       _gaq.push(['_setDomainName', 'none']);
       _gaq.push(['_setAllowLinker', true]);
       _gaq.push(['_trackPageview']);

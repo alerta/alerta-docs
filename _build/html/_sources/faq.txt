@@ -13,12 +13,12 @@ Yes, though it is not recommended. There is nothing stopping you from using any 
 
 .. _`severity code`: https://github.com/guardian/alerta/blob/master/alerta/app/severity_code.py
 
-How can I add a priority attribute eg. High, Medium, Low?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+How can I add a priority to an alert eg. High, Medium, Low?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use a custom attribute called ``priority`` when sending alerts to alerta::
 
-    $ alerta send --attributes priority=high ...
+    $ alerta send ... --attributes priority=high ...
 
 Alerts of differing priority could be queried by ``alerta`` command-line tool using::
 

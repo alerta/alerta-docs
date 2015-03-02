@@ -47,7 +47,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'alerta'
-copyright = u'2014, Nick Satterly'
+copyright = u'2015, Nick Satterly'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -269,7 +269,7 @@ extensions = ['alabaster']
 html_theme = 'alabaster'
 html_sidebars = {
     '**': [
-        'about.html', 'navigation.html', 'searchbox.html', 'donate.html',
+        'about.html', 'links.html', 'navigation.html', 'searchbox.html', 'donate.html',
     ]
 }
 html_theme_options = {
@@ -277,7 +277,7 @@ html_theme_options = {
     'github_user': 'guardian',
     'github_repo': 'alerta',
     'gittip_user': '',
-    'analytics_id': 'xUA-44644195-3',
+    'analytics_id': 'UA-44644195-3',
     'travis_button': False,
 }
 
