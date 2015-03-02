@@ -5,7 +5,7 @@ The alerta monitoring system is a tool used to consolidate and de-duplicate aler
 
 Alerta combines a JSON API :ref:`server` for receiving, manipulating and rendering alerts with a simple, yet effective :ref:`webui` and :ref:`command-line tool <cli>`. There are numerous :ref:`integrations <integrations>` with popular monitoring tools and it is easy to add your own using the :ref:`API <api>` directly, the :ref:`Python SDK <development>` or the same command-line tool to :ref:`send alerts <cli_send>`. Access to the API and command-line tool can be restricted using :ref:`API keys <api_keys>` and to the web console using Google or GitHub :ref:`OAuth2 <oauth2>`.
 
-:ref:`Get started <getting_started>` today!
+:ref:`Get started <quick_start>` today!
 
 Demo Sites
 ----------
@@ -27,7 +27,7 @@ The API Explorer website can be used to query for, and send alerts to, the http:
 .. toctree::
    :hidden:
 
-   getting-started
+   quick-start
    server
    webui
    cli

@@ -1,9 +1,9 @@
-.. _getting_started:
+.. _quick_start:
 
-Getting Started
-===============
+Quickstart
+==========
 
-This is a quick-start guide to running Alerta in a test environment.
+This is a quick-start guide that will get you running Alerta in under 5 minutes  .
 
 Install MongoDB
 ---------------
