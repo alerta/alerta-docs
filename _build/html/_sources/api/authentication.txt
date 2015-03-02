@@ -1,0 +1,4 @@
+API Authentication
+==================
+
+Authentication is optional however there are some features that are not availabe unless users login.

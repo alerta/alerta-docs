@@ -9,7 +9,7 @@
     
     <title>Alert Format &mdash; alerta 4.0 documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -25,8 +25,12 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="alerta 4.0 documentation" href="../index.html" />
-    <link rel="next" title="Heartbeats API" href="heartbeats.html" />
-    <link rel="prev" title="Alerts API" href="alerts.html" /> 
+    <link rel="next" title="Webhooks" href="webhooks.html" />
+    <link rel="prev" title="API Reference" href="reference.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
   </head>
   <body>
     <div class="related">
@@ -36,10 +40,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="heartbeats.html" title="Heartbeats API"
+          <a href="webhooks.html" title="Webhooks"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="alerts.html" title="Alerts API"
+          <a href="reference.html" title="API Reference"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">alerta 4.0 documentation</a> &raquo;</li> 
       </ul>
@@ -53,8 +57,9 @@
   <div class="section" id="alert-format">
 <h1>Alert Format<a class="headerlink" href="#alert-format" title="Permalink to this headline">¶</a></h1>
 <p>Alerts received and sent by Alerta conform to a common alert format. All components of alerta use this message format and any external systems must produce or consume messages in this format also.</p>
-<div class="section" id="alert-attributes-populated-at-source">
-<h2>Alert attributes populated at source<a class="headerlink" href="#alert-attributes-populated-at-source" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="attributes">
+<span id="alert-attributes"></span><h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
+<p>The following alert attributes are populated at source:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="21%" />
@@ -175,6 +180,7 @@ attributes are appended to the history log</td>
 </div>
 <div class="section" id="alert-severities">
 <h2>Alert Severities<a class="headerlink" href="#alert-severities" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="http://tools.ietf.org/html/rfc5674#section-2">Alarms in Syslog</a> RFC was referenced when defining alert severities.</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="45%" />
@@ -245,10 +251,6 @@ attributes are appended to the history log</td>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="http://tools.ietf.org/html/rfc5674#section-2">http://tools.ietf.org/html/rfc5674#section-2</a></p>
-</div>
 </div>
 
 
@@ -257,7 +259,21 @@ attributes are appended to the history log</td>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-<h3><a href="../index.html">Table Of Contents</a></h3>
+<h1 class="logo"><a href="../index.html">alerta</a></h1>
+
+
+
+<p class="blurb">monitoring system</p>
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+<h3>Navigation</h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../integrations.html">Integrations &amp; Plugins</a></li>
@@ -267,31 +283,17 @@ attributes are appended to the history log</td>
 </ul>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alerts.html">Alerts API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">API Reference</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Alert Format</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="heartbeats.html">Heartbeats API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="keys.html">Keys API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="resources.html">REST API v3 Resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="users.html">Users API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webhooks.html">Webhooks</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Release History</a></li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="alerts.html"
-                        title="previous chapter">Alerts API</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="heartbeats.html"
-                        title="next chapter">Heartbeats API</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/api/format.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
+
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -309,26 +311,38 @@ attributes are appended to the history log</td>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="heartbeats.html" title="Heartbeats API"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="alerts.html" title="Alerts API"
-             >previous</a> |</li>
-        <li><a href="../index.html">alerta 4.0 documentation</a> &raquo;</li> 
-      </ul>
-    </div>
 
     <div class="footer">
-        &copy; Copyright 2014, Nick Satterly.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      &copy;2014, Nick Satterly.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.2.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.1</a>
+      
+      |
+      <a href="../_sources/api/format.txt"
+          rel="nofollow">Page source</a></li>
     </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-44644195-3']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

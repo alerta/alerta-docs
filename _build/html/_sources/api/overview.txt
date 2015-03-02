@@ -1,5 +1,5 @@
-Overview
-========
+API Overview
+============
 
 REST API   http://api.alerta.io
 resources: alerts, heartbeats, keys, users
@@ -79,10 +79,35 @@ Caching
 Not supported.
 
 
+.. _status_codes:
+
+HTTP Status Codes
+-----------------
+
++------------------+---------------------------------------------------------------------+
+| Code             | Description                                                         |
++==================+=====================================================================+
+| 200 OK           | No error.                                                           |
++------------------+---------------------------------------------------------------------+
+| 201 Created      | Resource created successfully.                                      |
++------------------+---------------------------------------------------------------------+
+| 400 Bad Request  | Mandatory parameter or data missing.                                |
++------------------+---------------------------------------------------------------------+
+| 401 Unauthorized | Authorization required.                                             |
++------------------+---------------------------------------------------------------------+
+| 403 Forbidden    | Pre-receive hook rejected request or authorization failed.          |
++------------------+---------------------------------------------------------------------+
+| 404 Not Found    | Resource (such as alert or heartbeat) not found.                    |
++------------------+---------------------------------------------------------------------+
+| 500 Server Error | Internal error. Default code used for all unexpected server errors. |
++------------------+---------------------------------------------------------------------+
+
+
+
 Embedding
 ---------
 
-widgets
+See oEmbed
 
 Explorer
 --------
@@ -97,8 +122,5 @@ Python
 
 python-alerta
 
-Ruby
-
-ruby-gem-alerta
 
 

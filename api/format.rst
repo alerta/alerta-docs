@@ -3,8 +3,12 @@ Alert Format
 
 Alerts received and sent by Alerta conform to a common alert format. All components of alerta use this message format and any external systems must produce or consume messages in this format also.
 
-Alert attributes populated at source
-------------------------------------
+.. _alert_attributes:
+
+Attributes
+----------
+
+The following alert attributes are populated at source:
 
 +----------------------+---------------------------------------------------------------------------------+
 | Attribute            | Description                                                                     |
@@ -80,6 +84,8 @@ Alert attributes added when processing alerts
 Alert Severities
 ----------------
 
+The `Alarms in Syslog`_ RFC was referenced when defining alert severities.
+
 +-------------------+---------------+--------+
 | Severity          | Severity Code | Colour |
 +===================+===============+========+
@@ -108,6 +114,8 @@ Alert Severities
 | ``unknown``       | 9             |        |
 +-------------------+---------------+--------+
 
+.. _Alarms in Syslog: http://tools.ietf.org/html/rfc5674#section-2
+
 History Entries
 ---------------
 
@@ -115,8 +123,5 @@ History Entries
 Example
 -------
 
-References
-----------
 
-http://tools.ietf.org/html/rfc5674#section-2
 

@@ -8,7 +8,7 @@ Integrations
 ------------
 
 Core
-++++
+~~~~
 
 There are a few core integrations which have been developed to showcase how easy it is to quickly get alerts or events from other tools into Alerta. They are:
 
@@ -18,7 +18,7 @@ There are a few core integrations which have been developed to showcase how easy
 * `Riemann Integration`_ (Clojure)
 
 Contrib
-+++++++
+~~~~~~~
 
 There are several more integrations available in the `contrib` repo. They are:
 
@@ -35,14 +35,28 @@ There are several more integrations available in the `contrib` repo. They are:
 Webhooks
 --------
 
-* AWS Cloudwatch
-* Pingdom
+POST, OPTIONS  /webhooks/cloudwatch  cloudwatch
+HEAD, OPTIONS, GET  /webhooks/pingdom  pingdom
+
+AWS Cloudwatch
+~~~~~~~~~~~~~~
+
+See AwsCloudwatch_
+
+Pingdom
+~~~~~~~
+
+See Pingdom_
+
+.. _AwsCloudwatch: http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html
+.. _Pingdom: https://support.pingdom.com/Knowledgebase/Article/View/94/0/users-and-alerting-end-points
+
 
 Plugins
 -------
 
 Core
-++++
+~~~~
 
 * AMQP
 * Enhance
@@ -52,7 +66,7 @@ Core
 * AWS SNS
 
 Contrib
-+++++++
+~~~~~~~
 
 * GeoIP Location
 * HipChat
@@ -71,3 +85,12 @@ Contrib
 .. _AWS Cloudwatch: http://aws.amazon.com/cloudwatch/
 .. _Opsweekly: https://codeascraft.com/2014/06/19/opsweekly-measuring-on-call-experience-with-alert-classification/
 .. _Supervisor: http://supervisord.org/events.html
+
+
+oEmbed
+------
+
+HEAD, OPTIONS, GET  /embed.js  embed_js
+HEAD, OPTIONS, GET  /oembed.json  oembed
+
+

@@ -96,7 +96,6 @@ pygments_style = 'sphinx'
 # If true, keep warnings as "system message" paragraphs in the built documents.
 #keep_warnings = False
 
-
 # -- Options for HTML output ----------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -260,3 +259,25 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
+
+# -- Options for Alabaster HTML output ----------------------------------------------
+
+import alabaster
+
+html_theme_path = [alabaster.get_path()]
+extensions = ['alabaster']
+html_theme = 'alabaster'
+html_sidebars = {
+    '**': [
+        'about.html', 'navigation.html', 'searchbox.html', 'donate.html',
+    ]
+}
+html_theme_options = {
+    'description': "monitoring system",
+    'github_user': 'guardian',
+    'github_repo': 'alerta',
+    'gittip_user': '',
+    'analytics_id': 'UA-44644195-3',
+    'travis_button': False,
+}
+

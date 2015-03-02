@@ -1,4 +1,4 @@
-REST API v3 Resources
+API v3 Resources
 =====================
 
 Alerts

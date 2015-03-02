@@ -7,11 +7,12 @@ The alerta monitoring system is a tool used to consolidate and de-duplicate aler
    :hidden:
 
    getting-started
-   integrations
    webui
    cli
+   integrations
+   authentication
    development
-   *
+   faq
 
 API Reference
 -------------
@@ -21,7 +22,8 @@ API Reference
   :titlesonly:
 
   api/overview
-  api/*
+  api/reference
+  api/format
 
 Contribute
 ----------
