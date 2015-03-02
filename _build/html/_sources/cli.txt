@@ -94,6 +94,8 @@ The ``alerta`` tool is invoked by specifying a command using the following forma
 
     $ alerta [OPTIONS] COMMAND [FILTERS]
 
+.. _cli_send:
+
 :command:`send`
 ~~~~~~~~~~~~~~~
 
