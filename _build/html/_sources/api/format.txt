@@ -107,11 +107,11 @@ The `Alarms in Syslog`_ RFC was referenced when defining alert severities.
 +-------------------+---------------+--------+
 | ``informational`` | 6             | Green  |
 +-------------------+---------------+--------+
-| ``debug``         | 7             | ?      |
+| ``debug``         | 7             | Purple |
 +-------------------+---------------+--------+
-| ``security``      | 8             |        |
+| ``security``      | 8             | Grey   |
 +-------------------+---------------+--------+
-| ``unknown``       | 9             |        |
+| ``unknown``       | 9             | Grey   |
 +-------------------+---------------+--------+
 
 .. _Alarms in Syslog: http://tools.ietf.org/html/rfc5674#section-2
