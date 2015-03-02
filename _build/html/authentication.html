@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Authentication &mdash; alerta 4.0 documentation</title>
+    <title>Authentication &mdash; alerta 4.1 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '4.0',
+        VERSION:     '4.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="alerta 4.0 documentation" href="index.html" />
+    <link rel="top" title="alerta 4.1 documentation" href="index.html" />
     <link rel="next" title="Development" href="development.html" />
     <link rel="prev" title="Integrations &amp; Plugins" href="integrations.html" />
    
@@ -45,7 +45,7 @@
         <li class="right" >
           <a href="integrations.html" title="Integrations &amp; Plugins"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">alerta 4.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">alerta 4.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -55,23 +55,103 @@
           <div class="body">
             
   <div class="section" id="authentication">
-<h1>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h1>
-<p>By default, authentication is not enabled. However, in production it would be</p>
-<p>Authentication is optional however there are some features that are not availabe unless users login.</p>
+<span id="id1"></span><h1>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h1>
+<p>By default, authentication is not enabled, however there are some features that are <a class="reference internal" href="webui.html#watched-alerts"><em>not available</em></a> unless users login. To enforce authentication set <tt class="docutils literal"><span class="pre">AUTH_REQUIRED</span></tt> to <tt class="docutils literal"><span class="pre">True</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">AUTH_REQUIRED</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Ensure that the <span class="target" id="index-0"></span><tt class="xref std std-envvar docutils literal"><span class="pre">SECRET_KEY</span></tt> that is used to encode cookies is a unique, randomly generated sequence of ASCII characters. The following command generates a suitable 32-character random string:</p>
+<div class="last highlight-python"><div class="highlight"><pre>$ LC_CTYPE=C tr -dc A-Za-z0-9_\!\@\#\$\%\^\&amp;\*\(\)-+= &lt; /dev/urandom | head -c 32 &amp;&amp; echo
+</pre></div>
+</div>
+</div>
+<div class="section" id="oauth2-authentication">
+<span id="oauth2"></span><h2>OAuth2 Authentication<a class="headerlink" href="#oauth2-authentication" title="Permalink to this headline">¶</a></h2>
+<p>User authentication for the web console is provided by <a class="reference external" href="https://developers.google.com/accounts/docs/OpenIDConnect">Google</a> or <a class="reference external" href="https://developer.github.com/v3/oauth/">GitHub</a> <a class="reference external" href="http://tools.ietf.org/html/draft-ietf-oauth-v2-22">OAuth 2.0</a> <a class="reference external" href="http://openid.net/connect/">OpenID</a> connect service.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If alerta is deployed to a publicly accessible web server it is important to configure the OAuth2 settings correctly to ensure that only authorised users can access and modify your alerts.</p>
+</div>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3>Google<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s">&#39;379647311730-sj130ru952o3o7ig8u0ts8np2ojivr8d.apps.googleusercontent.com&#39;</span>
+<span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s">&#39;8HrqJhbrYn9oDtaJqExample&#39;</span>
+<span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;example.com&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><tt class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></tt> can be an asterisk (<tt class="docutils literal"><span class="pre">*</span></tt>) to force login but <em>not</em> restrict who can login.</p>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>GitHub<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>To use GitHub as the OAuth2 provider for <tt class="docutils literal"><span class="pre">alerta</span></tt>, login to GitHub and go to <em>Settings -&gt; Applications -&gt; Register New Application</em>.</p>
+<ul class="simple">
+<li>Application Name: Alerta</li>
+<li>Homepage URL: <a class="reference external" href="http://alerta.io">http://alerta.io</a></li>
+<li>Application description (optional): Guardian Alerta monitoring system</li>
+<li>Authorization callback URL: <a class="reference external" href="http://alerta.example.com">http://alerta.example.com</a></li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <cite>Authorization callback URL</cite> is the most important setting and it is nothing more than the URL domain (ie. without any path) where the alerta Web UI is being hosted.</p>
+</div>
+<p>Click Register Application and take note of the Client ID and Client Secret.</p>
+<p>Then configuration settings for <tt class="docutils literal"><span class="pre">alertad</span></tt> are as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s">&#39;f7b0c15e2b722e0e38f4&#39;</span>
+<span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s">&#39;7aa9094369b72937910badab0424dc7393x8mpl3&#39;</span>
+<span class="n">ALLOWED_GITHUB_ORGS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;example&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><tt class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></tt> can be an asterisk (<tt class="docutils literal"><span class="pre">*</span></tt>) to force login but <em>not</em> restrict who can login.</p>
+</div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">To revoke access of your instance of alerta to your GitHub user info at any time go to <em>Settings -&gt; Applications -&gt; Authorized</em> applications, find alerta in the list of applications and click the <strong>Revoke</strong> button.</p>
+</div>
+</div>
+<div class="section" id="cross-origin">
+<h3>Cross-Origin<a class="headerlink" href="#cross-origin" title="Permalink to this headline">¶</a></h3>
+<p>If the Alerta API is not being served from the same domain as the Alerta Web UI then the <tt class="docutils literal"><span class="pre">CORS_ORIGINS</span></tt> setting needs to be updated to prevent <a class="reference external" href="http://enable-cors.org/client.html">modern browsers</a> from blocking the cross-origin requests.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">CORS_ORIGINS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">&#39;http://try.alerta.io&#39;</span><span class="p">,</span>
+    <span class="s">&#39;http://explorer.alerta.io&#39;</span><span class="p">,</span>
+    <span class="s">&#39;chrome-extension://jplkjnjaegjgacpfafdopnpnhmobhlaf&#39;</span><span class="p">,</span>
+    <span class="s">&#39;http://localhost&#39;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="api-keys">
+<span id="id4"></span><h2>API Keys<a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h2>
+<p>For programatic access API keys are used to restrict access to the alerta API.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">API_KEY_EXPIRE_DAYS</span> <span class="o">=</span> <span class="mi">365</span>  <span class="c"># 1 year</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="api-endpoints">
 <h2>API Endpoints<a class="headerlink" href="#api-endpoints" title="Permalink to this headline">¶</a></h2>
 <p>POST, OPTIONS  /auth/github  github
 POST, OPTIONS  /auth/google  google</p>
 </div>
-<div class="section" id="api-keys">
-<span id="id1"></span><h2>API Keys<a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>API Keys<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>POST, OPTIONS  /key  create_key
 POST, OPTIONS, DELETE  /key/&lt;path:key&gt;  delete_key
 HEAD, OPTIONS, GET  /keys  get_keys
 HEAD, OPTIONS, GET  /keys/&lt;user&gt;  get_user_keys</p>
 </div>
 <div class="section" id="users">
-<span id="id2"></span><h2>Users<a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
+<span id="id6"></span><h2>Users<a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
 <p>POST, OPTIONS  /user  create_user
 POST, OPTIONS, DELETE  /user/&lt;user&gt;  delete_user
 HEAD, OPTIONS, GET  /users  get_users</p>
@@ -101,12 +181,21 @@ HEAD, OPTIONS, GET  /users  get_users</p>
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webui.html">Web Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui.html">Web UI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Authentication</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#api-endpoints">API Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#oauth2-authentication">OAuth2 Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Google</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">GitHub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cross-origin">Cross-Origin</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#api-keys">API Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api-endpoints">API Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">API Keys</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#users">Users</a></li>
 </ul>
 </li>
@@ -159,7 +248,7 @@ HEAD, OPTIONS, GET  /users  get_users</p>
     <script type="text/javascript">
 
       var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-44644195-3']);
+      _gaq.push(['_setAccount', 'xUA-44644195-3']);
       _gaq.push(['_setDomainName', 'none']);
       _gaq.push(['_setAllowLinker', true]);
       _gaq.push(['_trackPageview']);

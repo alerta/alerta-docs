@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Getting Started &mdash; alerta 4.1 documentation</title>
+    <title>Server &mdash; alerta 4.1 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="alerta 4.1 documentation" href="index.html" />
-    <link rel="next" title="Server" href="server.html" />
-    <link rel="prev" title="Alerta monitoring system" href="index.html" />
+    <link rel="next" title="Web UI" href="webui.html" />
+    <link rel="prev" title="Getting Started" href="getting-started.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -40,10 +40,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="server.html" title="Server"
+          <a href="webui.html" title="Web UI"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Alerta monitoring system"
+          <a href="getting-started.html" title="Getting Started"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">alerta 4.1 documentation</a> &raquo;</li> 
       </ul>
@@ -54,23 +54,38 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="getting-started">
-<span id="id1"></span><h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<p>Deploy Server &gt;&gt; Learn more</p>
-<p>Collect alerts &gt;&gt; Learn more</p>
-<p>DEPLOY</p>
-<p>try.alerta.io
-explorer.io
-alerta.herokuapp.com</p>
-<p>cloudformation
-docker
-packer
-google app engine
-heroku
-pypi
-openshift
-vagrant
-RPM &amp; deb packages using fpm (wip)</p>
+  <div class="section" id="server">
+<span id="id1"></span><h1>Server<a class="headerlink" href="#server" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="correlation">
+<h2>Correlation<a class="headerlink" href="#correlation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="de-duplication">
+<h3>De-duplication<a class="headerlink" href="#de-duplication" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="simple-correlation">
+<h3>Simple Correlation<a class="headerlink" href="#simple-correlation" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="plug-ins">
+<h2>Plug-ins<a class="headerlink" href="#plug-ins" title="Permalink to this headline">¶</a></h2>
+<p>pre-receive, post-receive hooks</p>
+<p>Query</p>
+</div>
+<div class="section" id="production">
+<h2>Production<a class="headerlink" href="#production" title="Permalink to this headline">¶</a></h2>
+<p>don&#8217;t run in foreground
+Web server</p>
+<p>example configs
+nginx -&gt; <a class="reference external" href="https://github.com/alerta/docker-alerta/blob/master/nginx.conf">https://github.com/alerta/docker-alerta/blob/master/nginx.conf</a></p>
+<p>CORS if not same origin</p>
+</div>
+<div class="section" id="deployment">
+<h2>Deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h2>
+<p>Heroku</p>
+<p>OpenShift</p>
+<p>AWS</p>
+<p>Docker</p>
+<p>Packer</p>
+</div>
 </div>
 
 
@@ -95,9 +110,19 @@ RPM &amp; deb packages using fpm (wip)</p>
 
 <h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="server.html">Server</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webui.html">Web Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#correlation">Correlation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#de-duplication">De-duplication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simple-correlation">Simple Correlation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#plug-ins">Plug-ins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#production">Production</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deployment">Deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="webui.html">Web UI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
@@ -140,7 +165,7 @@ RPM &amp; deb packages using fpm (wip)</p>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.1</a>
       
       |
-      <a href="_sources/getting-started.txt"
+      <a href="_sources/server.txt"
           rel="nofollow">Page source</a></li>
     </div>
 

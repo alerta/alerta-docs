@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Alerta monitoring system &mdash; alerta 4.0 documentation</title>
+    <title>Alerta monitoring system &mdash; alerta 4.1 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '4.0',
+        VERSION:     '4.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="alerta 4.0 documentation" href="#" />
+    <link rel="top" title="alerta 4.1 documentation" href="#" />
     <link rel="next" title="Getting Started" href="getting-started.html" />
    
   
@@ -41,7 +41,7 @@
         <li class="right" >
           <a href="getting-started.html" title="Getting Started"
              accesskey="N">next</a> |</li>
-        <li><a href="#">alerta 4.0 documentation</a> &raquo;</li> 
+        <li><a href="#">alerta 4.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -52,8 +52,27 @@
             
   <div class="section" id="alerta-monitoring-system">
 <h1>Alerta monitoring system<a class="headerlink" href="#alerta-monitoring-system" title="Permalink to this headline">¶</a></h1>
-<p>The alerta monitoring system is a tool used to consolidate and de-duplicate alerts from multiple sources for quick &#8216;at-a-glance&#8217; visualisation. With just one system you can monitor alerts from many other monitoring tools into one screen.</p>
+<p>The alerta monitoring system is a tool used to consolidate and de-duplicate alerts from multiple sources for quick &#8216;at-a-glance&#8217; visualisation. With just one system you can monitor alerts from many other monitoring tools on a single screen.</p>
+<p>Alerta combines a JSON API <a class="reference internal" href="server.html#server"><em>Server</em></a> for receiving, manipulating and rendering alerts with a simple, yet effective <a class="reference internal" href="webui.html#webui"><em>Web UI</em></a> and <a class="reference internal" href="cli.html#cli"><em>command-line tool</em></a>. There are numerous <a class="reference internal" href="integrations.html#integrations"><em>integrations</em></a> with popular monitoring tools and it is easy to add your own using the <a class="reference internal" href="api/overview.html#api"><em>API</em></a> directly or the <a class="reference internal" href="development.html#development"><em>Python SDK</em></a>. Access to the API and command-line tool can be restricted using <a class="reference internal" href="authentication.html#api-keys"><em>API keys</em></a> and to the web console using Google or GitHub <a class="reference internal" href="authentication.html#oauth2"><em>OAuth2</em></a>.</p>
+<p><a class="reference internal" href="getting-started.html#getting-started"><em>Get started</em></a> today!</p>
+<div class="section" id="demo-sites">
+<h2>Demo Sites<a class="headerlink" href="#demo-sites" title="Permalink to this headline">¶</a></h2>
+<p>There are two demonstration and testing sites &#8211; one for Google OAuth and one for GitHub OAuth:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://try.alerta.io">http://try.alerta.io</a> (Google OAuth)</li>
+<li><a class="reference external" href="http://alerta.herokuapp.com">http://alerta.herokuapp.com</a> (GitHub OAuth)</li>
+</ul>
+<p>And two API servers, configured to support Google and GitHub OAuth2:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://api.alerta.io">http://api.alerta.io</a></li>
+<li><a class="reference external" href="http://alerta-api.herokuapp.com">http://alerta-api.herokuapp.com</a></li>
+</ul>
+<p>The API Explorer website can be used to query for, and send alerts to, the <a class="reference external" href="http://api.alerta.io">http://api.alerta.io</a> API server. The command-line tool <tt class="docutils literal"><span class="pre">alerta</span></tt> can also be used to generate alerts. The required API key is <tt class="docutils literal"><span class="pre">demo-key</span></tt>.</p>
+<ul class="simple">
+<li><a class="reference external" href="http://explorer.alerta.io">http://explorer.alerta.io</a></li>
+</ul>
 <div class="toctree-wrapper compound">
+</div>
 </div>
 <div class="section" id="api-reference">
 <h2>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h2>
@@ -123,7 +142,8 @@
 <h3>Navigation</h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webui.html">Web Console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui.html">Web UI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
@@ -176,7 +196,7 @@
     <script type="text/javascript">
 
       var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-44644195-3']);
+      _gaq.push(['_setAccount', 'xUA-44644195-3']);
       _gaq.push(['_setDomainName', 'none']);
       _gaq.push(['_setAllowLinker', true]);
       _gaq.push(['_trackPageview']);

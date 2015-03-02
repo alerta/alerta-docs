@@ -1,3 +1,5 @@
+.. _integrations:
+
 Integrations & Plugins
 ======================
 
@@ -20,7 +22,7 @@ There are a few core integrations which have been developed to showcase how easy
 Contrib
 ~~~~~~~
 
-There are several more integrations available in the `contrib` repo. They are:
+There are several more integrations available in the `contrib`_ repo. They are:
 
 * `Amazon SQS`_
 * AMQP
@@ -31,6 +33,8 @@ There are several more integrations available in the `contrib` repo. They are:
 * Supervisor_
 * Syslog
 * URL monitor
+
+.. _contrib: https://github.com/alerta/alerta-contrib
 
 Webhooks
 --------
