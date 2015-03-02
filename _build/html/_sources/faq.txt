@@ -1,6 +1,10 @@
 FAQ
 ===
 
+.. contents:: Resource Types
+   :local:
+   :depth: 1
+
 
 1. Can I define custom severity codes and levels?
 

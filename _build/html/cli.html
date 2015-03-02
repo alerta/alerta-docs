@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="alerta 4.0 documentation" href="index.html" />
-    <link rel="next" title="Development" href="development.html" />
+    <link rel="next" title="Integrations &amp; Plugins" href="integrations.html" />
     <link rel="prev" title="Web Console" href="webui.html" />
    
   
@@ -40,7 +40,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="development.html" title="Development"
+          <a href="integrations.html" title="Integrations &amp; Plugins"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="webui.html" title="Web Console"
@@ -62,7 +62,7 @@ dump alert history or see the raw alert data.</p>
 <p><tt class="docutils literal"><span class="pre">alerta</span></tt> can also be used to send heartbeats to the alerta server.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>To install the <tt class="docutils literal"><span class="pre">alerta</span></tt> client the tool can be installed using pip:</p>
+<p>The <tt class="docutils literal"><span class="pre">alerta</span></tt> client tool can be installed using pip:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ pip install alerta
 </pre></div>
 </div>
@@ -184,11 +184,54 @@ $ export ALERTA_DEFAULT_PROFILE=production
 </div>
 <div class="section" id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div>Some stuff about sub-commands.</div></blockquote>
+<p>The <tt class="docutils literal"><span class="pre">alerta</span></tt> tool is invoked by specifying a command using the following format:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] COMMAND [FILTERS]
+</pre></div>
+</div>
 <div class="section" id="send">
 <h3><strong class="command">send</strong><a class="headerlink" href="#send" title="Permalink to this headline">¶</a></h3>
-<p>Send alert to server</p>
+<p>Send an alert to the server:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] send [-r RESOURCE] [-e EVENT] [-E ENVIRONMENT]
+                        [-s SEVERITY] [-C CORRELATE] [--status STATUS]
+                        [-S SERVICE] [-g GROUP] [-v VALUE] [-t TEXT]
+                        [-T TAG] [-A ATTRIBUTES] [-O ORIGIN]
+                        [--type EVENT_TYPE] [--timeout TIMEOUT]
+                        [--raw-data RAW_DATA]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -r RESOURCE, --resource RESOURCE
+                        resource under alarm
+  -e EVENT, --event EVENT
+                        event
+  -E ENVIRONMENT, --environment ENVIRONMENT
+                        environment eg. &quot;production&quot;, &quot;development&quot;, &quot;testing&quot;
+  -s SEVERITY, --severity SEVERITY
+                        severity
+  -C CORRELATE, --correlate CORRELATE
+                        correlate
+  --status STATUS       status should not normally be defined as it is server-
+                        assigned eg. &quot;open&quot;, &quot;closed&quot;
+  -S SERVICE, --service SERVICE
+                        service affected eg. the application name, &quot;Web&quot;,
+                        &quot;Network&quot;, &quot;Storage&quot;, &quot;Database&quot;, &quot;Security&quot;
+  -g GROUP, --group GROUP
+                        group
+  -v VALUE, --value VALUE
+                        value
+  -t TEXT, --text TEXT  Freeform alert text eg. &quot;Host not responding to ping.&quot;
+  -T TAG, --tag TAG     List of tags eg. &quot;London&quot;, &quot;os:linux&quot;, &quot;AWS/EC2&quot;.
+  -A ATTRIBUTES, --attribute ATTRIBUTES
+                        List of Key=Value attribute pairs eg. &quot;priority=high&quot;,
+                        &quot;moreInfo=...&quot;
+  -O ORIGIN, --origin ORIGIN
+                        Origin of alert. Usually in form of &quot;app/host&quot;
+  --type EVENT_TYPE     event type eg. &quot;exceptionAlert&quot;, &quot;serviceAlert&quot;
+  --timeout TIMEOUT     Timeout in seconds before an &quot;open&quot; alert will be
+                        automatically &quot;expired&quot; or &quot;deleted&quot;
+  --raw-data RAW_DATA   raw data
+</pre></div>
+</div>
 <p>The only mandatory options are <tt class="docutils literal"><span class="pre">resource</span></tt> and <tt class="docutils literal"><span class="pre">event</span></tt>. All the others will
 be set to sensible defaults.</p>
 <table border="1" class="docutils">
@@ -208,113 +251,201 @@ be set to sensible defaults.</p>
 <tr class="row-odd"><td>severity</td>
 <td><tt class="docutils literal"><span class="pre">normal</span></tt></td>
 </tr>
-<tr class="row-even"><td>status</td>
+<tr class="row-even"><td>correlate</td>
+<td>empty list</td>
+</tr>
+<tr class="row-odd"><td>status</td>
 <td><tt class="docutils literal"><span class="pre">unknown</span></tt></td>
+</tr>
+<tr class="row-even"><td>service</td>
+<td>empty list</td>
 </tr>
 <tr class="row-odd"><td>group</td>
 <td><tt class="docutils literal"><span class="pre">Misc</span></tt></td>
 </tr>
-<tr class="row-even"><td>correlate</td>
-<td>empty list</td>
-</tr>
-<tr class="row-odd"><td>value</td>
+<tr class="row-even"><td>value</td>
 <td><tt class="docutils literal"><span class="pre">n/a</span></tt></td>
 </tr>
-<tr class="row-even"><td>text</td>
+<tr class="row-odd"><td>text</td>
+<td>empty string</td>
+</tr>
+<tr class="row-even"><td>tags</td>
 <td>empty list</td>
 </tr>
-<tr class="row-odd"><td>tags</td>
-<td>empty list</td>
+<tr class="row-odd"><td>attributes</td>
+<td>empty dictionary</td>
 </tr>
-<tr class="row-even"><td>attributes</td>
-<td>empty hash map</td>
-</tr>
-<tr class="row-odd"><td>origin</td>
+<tr class="row-even"><td>origin</td>
 <td>program/host</td>
 </tr>
-<tr class="row-even"><td>type</td>
+<tr class="row-odd"><td>type</td>
 <td><tt class="docutils literal"><span class="pre">exceptionAlert</span></tt></td>
 </tr>
-<tr class="row-odd"><td>timeout</td>
+<tr class="row-even"><td>timeout</td>
 <td>86400 (1 day)</td>
 </tr>
-<tr class="row-even"><td>raw data</td>
+<tr class="row-odd"><td>raw data</td>
 <td>empty string</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Examples</strong></p>
-<p>To send a minor alert followed by a normal:</p>
-<div class="highlight-python"><div class="highlight"><pre>alert send --resource web01 --event HttpError --group Web --severity minor
-
-alert send --resource web01 --event HttpOK --group Web --severity normal
+<p>To send a <tt class="docutils literal"><span class="pre">minor</span></tt> alert followed by a <tt class="docutils literal"><span class="pre">normal</span></tt> alert that correlates:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta send --resource web01 --event HttpError --correlate HttpOK --group Web --severity minor
+$ alerta send --resource web01 --event HttpOK --correlate HttpError --group Web --severity normal
+</pre></div>
+</div>
+<p>To send an alert with custom attribute called <tt class="docutils literal"><span class="pre">customer</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta send -r web01 -e HttpError -g Web -s major --attributes customer=&quot;Tyrell Corp&quot;
 </pre></div>
 </div>
 </div>
 <div class="section" id="query">
 <h3><strong class="command">query</strong><a class="headerlink" href="#query" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div>query               List alerts based on query filter</div></blockquote>
+<p>Search for alerts:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] query [--details] [--id ID] [--filters FILTERS]
+
+optional arguments:
+  -h, --help         show this help message and exit
+  --details          Show alert details
+  -i ID, --id ID     List of alert IDs (can use short 8-char id).
+  --filters FILTERS  KEY=VALUE eg. id=5108bc20
+</pre></div>
+</div>
 </div>
 <div class="section" id="watch">
 <h3><strong class="command">watch</strong><a class="headerlink" href="#watch" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div>watch               Watch alerts based on query filter</div></blockquote>
+<p>Watch for new alerts:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] watch [--id ID] [--filters FILTERS]
+
+optional arguments:
+  -h, --help         show this help message and exit
+  --details          Show alert details
+  -i ID, --id ID     List of alert IDs (can use short 8-char id).
+  --filters FILTERS  KEY=VALUE eg. id=5108bc20
+</pre></div>
+</div>
 </div>
 <div class="section" id="raw">
 <h3><strong class="command">raw</strong><a class="headerlink" href="#raw" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div>raw                 Show alert raw data</div></blockquote>
+<p>Show raw data for alerts:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] raw [--id ID] [--filters FILTERS]
+
+optional arguments:
+  -h, --help         show this help message and exit
+  -i ID, --id ID     List of alert IDs (can use short 8-char id).
+  --filters FILTERS  KEY=VALUE eg. id=5108bc20
+</pre></div>
+</div>
 </div>
 <div class="section" id="history">
 <h3><strong class="command">history</strong><a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div>history             Show alert history</div></blockquote>
+<p>Show alert history:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] history [--id ID] [--filters FILTERS]
+
+optional arguments:
+  -h, --help         show this help message and exit
+  -i ID, --id ID     List of alert IDs (can use short 8-char id).
+  --filters FILTERS  KEY=VALUE eg. id=5108bc20
+</pre></div>
+</div>
 </div>
 <div class="section" id="tag">
 <h3><strong class="command">tag</strong><a class="headerlink" href="#tag" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div>tag                 Tag alerts</div></blockquote>
+<p>Tag alerts:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] tag -T TAG [--id ID] [--filters FILTERS]
+
+optional arguments:
+  -h, --help         show this help message and exit
+  -T TAG, --tag TAG  List of tags eg. &quot;London&quot;, &quot;os:linux&quot;, &quot;AWS/EC2&quot;.
+  -i ID, --id ID     List of alert IDs (can use short 8-char id).
+  --filters FILTERS  KEY=VALUE eg. id=5108bc20
+</pre></div>
+</div>
+</div>
+<div class="section" id="untag">
+<h3><strong class="command">untag</strong><a class="headerlink" href="#untag" title="Permalink to this headline">¶</a></h3>
+<p>Untag alerts ie. remove an assigned tag from alert tag list:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] untag -T TAG [--id ID] [--filters FILTERS]
+
+optional arguments:
+  -h, --help         show this help message and exit
+  -T TAG, --tag TAG  List of tags eg. &quot;London&quot;, &quot;os:linux&quot;, &quot;AWS/EC2&quot;.
+  -i ID, --id ID     List of alert IDs (can use short 8-char id).
+  --filters FILTERS  KEY=VALUE eg. id=5108bc20
+</pre></div>
+</div>
 </div>
 <div class="section" id="ack">
 <h3><strong class="command">ack</strong><a class="headerlink" href="#ack" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div>ack                 Acknowledge alerts</div></blockquote>
+<p>Acknowlege alerts ie. change alert <tt class="docutils literal"><span class="pre">status</span></tt> to <tt class="docutils literal"><span class="pre">ack</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] ack [--id ID] [--filters FILTERS]
+
+optional arguments:
+  -h, --help         show this help message and exit
+  -i ID, --id ID     List of alert IDs (can use short 8-char id).
+  --filters FILTERS  KEY=VALUE eg. id=5108bc20
+</pre></div>
+</div>
 </div>
 <div class="section" id="unack">
 <h3><strong class="command">unack</strong><a class="headerlink" href="#unack" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div>unack               Unacknowledge alerts</div></blockquote>
+<p>Unacknowledge alerts ie. change alert <tt class="docutils literal"><span class="pre">status</span></tt> to <tt class="docutils literal"><span class="pre">open</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] unack [--id ID] [--filters FILTERS]
+
+optional arguments:
+  -h, --help         show this help message and exit
+  -i ID, --id ID     List of alert IDs (can use short 8-char id).
+  --filters FILTERS  KEY=VALUE eg. id=5108bc20
+</pre></div>
+</div>
 </div>
 <div class="section" id="close">
 <h3><strong class="command">close</strong><a class="headerlink" href="#close" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div>close               Close alerts</div></blockquote>
+<p>Close alerts ie. change alert <tt class="docutils literal"><span class="pre">status</span></tt> to <tt class="docutils literal"><span class="pre">closed</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] close [--id ID] [--filters FILTERS]
+
+optional arguments:
+  -h, --help         show this help message and exit
+  -i ID, --id ID     List of alert IDs (can use short 8-char id).
+  --filters FILTERS  KEY=VALUE eg. id=5108bc20
+</pre></div>
+</div>
 </div>
 <div class="section" id="delete">
 <h3><strong class="command">delete</strong><a class="headerlink" href="#delete" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div>delete              Delete alerts</div></blockquote>
+<p>Delete alerts from server:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] delete [--id ID] [--filters FILTERS]
+
+optional arguments:
+  -h, --help         show this help message and exit
+  -i ID, --id ID     List of alert IDs (can use short 8-char id).
+  --filters FILTERS  KEY=VALUE eg. id=5108bc20
+</pre></div>
+</div>
 </div>
 <div class="section" id="heartbeat">
 <h3><strong class="command">heartbeat</strong><a class="headerlink" href="#heartbeat" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div>heartbeat           Send heartbeat to server</div></blockquote>
+<p>Send a heartbeat to the server:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] heartbeat [-T TAG] [-O ORIGIN] [--timeout TIMEOUT]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -T TAG, --tag TAG     List of tags eg. &quot;London&quot;, &quot;os:linux&quot;, &quot;AWS/EC2&quot;.
+  -O ORIGIN, --origin ORIGIN
+                        Origin of heartbeat. Usually in form of &quot;app/host&quot;
+  --timeout TIMEOUT     Timeout in seconds before a heartbeat will be
+                        considered stale
+</pre></div>
 </div>
-<div class="section" id="config">
-<h3><strong class="command">config</strong><a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div>config              Show config</div></blockquote>
 </div>
 <div class="section" id="help">
 <h3><strong class="command">help</strong><a class="headerlink" href="#help" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div>help                Show help</div></blockquote>
+<p>Show all <tt class="docutils literal"><span class="pre">OPTIONS</span></tt>, <tt class="docutils literal"><span class="pre">COMMANDS</span></tt> and some example <tt class="docutils literal"><span class="pre">FILTERS</span></tt>.</p>
 </div>
 <div class="section" id="version">
 <h3><strong class="command">version</strong><a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div>version             Show alerta version info</div></blockquote>
+<p>Show version information for <tt class="docutils literal"><span class="pre">alerta</span></tt> and dependencies.</p>
 </div>
 </div>
 <div class="section" id="bugs">
@@ -346,7 +477,6 @@ alert send --resource web01 --event HttpOK --group Web --severity normal
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webui.html">Web Console</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Alerta CLI</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
@@ -359,12 +489,12 @@ alert send --resource web01 --event HttpOK --group Web --severity normal
 <li class="toctree-l3"><a class="reference internal" href="#raw"><strong class="command">raw</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#history"><strong class="command">history</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tag"><strong class="command">tag</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#untag"><strong class="command">untag</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ack"><strong class="command">ack</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#unack"><strong class="command">unack</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#close"><strong class="command">close</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#delete"><strong class="command">delete</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#heartbeat"><strong class="command">heartbeat</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#config"><strong class="command">config</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#help"><strong class="command">help</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#version"><strong class="command">version</strong></a></li>
 </ul>
@@ -372,14 +502,15 @@ alert send --resource web01 --event HttpOK --group Web --severity normal
 <li class="toctree-l2"><a class="reference internal" href="#bugs">Bugs</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="api/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/overview.html">API Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/reference.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/format.html">Alert Format</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/webhooks.html">Webhooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api/authentication.html">API Authentication</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes.html">Release History</a></li>

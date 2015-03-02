@@ -10,7 +10,7 @@ dump alert history or see the raw alert data.
 Installation
 ------------
 
-To install the ``alerta`` client the tool can be installed using pip::
+The ``alerta`` client tool can be installed using pip::
 
     $ pip install alerta
 
@@ -50,7 +50,6 @@ configuration settings.
 
 .. note:: The ``profile`` option can only be set in the ``[DEFAULT]`` section.
 
-
 **Example**
 
 Configuration file :file:`~/.alerta.conf`::
@@ -89,12 +88,54 @@ Command-line configuration options have precedence over environment variables, w
 Commands
 --------
 
- Some stuff about sub-commands.
+The ``alerta`` tool is invoked by specifying a command using the following format::
+
+    $ alerta [OPTIONS] COMMAND [FILTERS]
 
 :command:`send`
-^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~
 
-Send alert to server
+Send an alert to the server::
+
+    $ alerta [OPTIONS] send [-r RESOURCE] [-e EVENT] [-E ENVIRONMENT]
+                            [-s SEVERITY] [-C CORRELATE] [--status STATUS]
+                            [-S SERVICE] [-g GROUP] [-v VALUE] [-t TEXT]
+                            [-T TAG] [-A ATTRIBUTES] [-O ORIGIN]
+                            [--type EVENT_TYPE] [--timeout TIMEOUT]
+                            [--raw-data RAW_DATA]
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -r RESOURCE, --resource RESOURCE
+                            resource under alarm
+      -e EVENT, --event EVENT
+                            event
+      -E ENVIRONMENT, --environment ENVIRONMENT
+                            environment eg. "production", "development", "testing"
+      -s SEVERITY, --severity SEVERITY
+                            severity
+      -C CORRELATE, --correlate CORRELATE
+                            correlate
+      --status STATUS       status should not normally be defined as it is server-
+                            assigned eg. "open", "closed"
+      -S SERVICE, --service SERVICE
+                            service affected eg. the application name, "Web",
+                            "Network", "Storage", "Database", "Security"
+      -g GROUP, --group GROUP
+                            group
+      -v VALUE, --value VALUE
+                            value
+      -t TEXT, --text TEXT  Freeform alert text eg. "Host not responding to ping."
+      -T TAG, --tag TAG     List of tags eg. "London", "os:linux", "AWS/EC2".
+      -A ATTRIBUTES, --attribute ATTRIBUTES
+                            List of Key=Value attribute pairs eg. "priority=high",
+                            "moreInfo=..."
+      -O ORIGIN, --origin ORIGIN
+                            Origin of alert. Usually in form of "app/host"
+      --type EVENT_TYPE     event type eg. "exceptionAlert", "serviceAlert"
+      --timeout TIMEOUT     Timeout in seconds before an "open" alert will be
+                            automatically "expired" or "deleted"
+      --raw-data RAW_DATA   raw data
 
 The only mandatory options are ``resource`` and ``event``. All the others will
 be set to sensible defaults.
@@ -106,19 +147,21 @@ be set to sensible defaults.
 +------------------+-----------------------+
 | severity         | ``normal``            |
 +------------------+-----------------------+
+| correlate        | empty list            |
++------------------+-----------------------+
 | status           | ``unknown``           |
++------------------+-----------------------+
+| service          | empty list            |
 +------------------+-----------------------+
 | group            | ``Misc``              |
 +------------------+-----------------------+
-| correlate        | empty list            |
-+------------------+-----------------------+
 | value            | ``n/a``               |
 +------------------+-----------------------+
-| text             | empty list            |
+| text             | empty string          |
 +------------------+-----------------------+
 | tags             | empty list            |
 +------------------+-----------------------+
-| attributes       | empty hash map        |
+| attributes       | empty dictionary      |
 +------------------+-----------------------+
 | origin           | program/host          |
 +------------------+-----------------------+
@@ -131,77 +174,165 @@ be set to sensible defaults.
 
 **Examples**
 
-To send a minor alert followed by a normal::
+To send a ``minor`` alert followed by a ``normal`` alert that correlates::
 
-    alert send --resource web01 --event HttpError --group Web --severity minor
+    $ alerta send --resource web01 --event HttpError --correlate HttpOK --group Web --severity minor
+    $ alerta send --resource web01 --event HttpOK --correlate HttpError --group Web --severity normal
 
-    alert send --resource web01 --event HttpOK --group Web --severity normal
+To send an alert with custom attribute called ``customer``::
+
+    $ alerta send -r web01 -e HttpError -g Web -s major --attributes customer="Tyrell Corp"
 
 
 :command:`query`
-^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~
 
-    query               List alerts based on query filter
+Search for alerts::
+
+    $ alerta [OPTIONS] query [--details] [--id ID] [--filters FILTERS]
+
+    optional arguments:
+      -h, --help         show this help message and exit
+      --details          Show alert details
+      -i ID, --id ID     List of alert IDs (can use short 8-char id).
+      --filters FILTERS  KEY=VALUE eg. id=5108bc20
+
 
 :command:`watch`
-^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~
 
-    watch               Watch alerts based on query filter
+Watch for new alerts::
+
+    $ alerta [OPTIONS] watch [--id ID] [--filters FILTERS]
+
+    optional arguments:
+      -h, --help         show this help message and exit
+      --details          Show alert details
+      -i ID, --id ID     List of alert IDs (can use short 8-char id).
+      --filters FILTERS  KEY=VALUE eg. id=5108bc20
 
 :command:`raw`
-^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~
 
-    raw                 Show alert raw data
+Show raw data for alerts::
+
+    $ alerta [OPTIONS] raw [--id ID] [--filters FILTERS]
+
+    optional arguments:
+      -h, --help         show this help message and exit
+      -i ID, --id ID     List of alert IDs (can use short 8-char id).
+      --filters FILTERS  KEY=VALUE eg. id=5108bc20
 
 :command:`history`
-^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~
 
-    history             Show alert history
+Show alert history::
+
+    $ alerta [OPTIONS] history [--id ID] [--filters FILTERS]
+
+    optional arguments:
+      -h, --help         show this help message and exit
+      -i ID, --id ID     List of alert IDs (can use short 8-char id).
+      --filters FILTERS  KEY=VALUE eg. id=5108bc20
 
 :command:`tag`
-^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~
 
-    tag                 Tag alerts
+Tag alerts::
+
+    $ alerta [OPTIONS] tag -T TAG [--id ID] [--filters FILTERS]
+
+    optional arguments:
+      -h, --help         show this help message and exit
+      -T TAG, --tag TAG  List of tags eg. "London", "os:linux", "AWS/EC2".
+      -i ID, --id ID     List of alert IDs (can use short 8-char id).
+      --filters FILTERS  KEY=VALUE eg. id=5108bc20
+
+:command:`untag`
+~~~~~~~~~~~~~~~~
+
+Untag alerts ie. remove an assigned tag from alert tag list::
+
+    $ alerta [OPTIONS] untag -T TAG [--id ID] [--filters FILTERS]
+
+    optional arguments:
+      -h, --help         show this help message and exit
+      -T TAG, --tag TAG  List of tags eg. "London", "os:linux", "AWS/EC2".
+      -i ID, --id ID     List of alert IDs (can use short 8-char id).
+      --filters FILTERS  KEY=VALUE eg. id=5108bc20
 
 :command:`ack`
-^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~
 
-    ack                 Acknowledge alerts
+Acknowlege alerts ie. change alert ``status`` to ``ack``::
+
+    $ alerta [OPTIONS] ack [--id ID] [--filters FILTERS]
+
+    optional arguments:
+      -h, --help         show this help message and exit
+      -i ID, --id ID     List of alert IDs (can use short 8-char id).
+      --filters FILTERS  KEY=VALUE eg. id=5108bc20
 
 :command:`unack`
-^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~
 
-    unack               Unacknowledge alerts
+Unacknowledge alerts ie. change alert ``status`` to ``open``::
+
+    $ alerta [OPTIONS] unack [--id ID] [--filters FILTERS]
+
+    optional arguments:
+      -h, --help         show this help message and exit
+      -i ID, --id ID     List of alert IDs (can use short 8-char id).
+      --filters FILTERS  KEY=VALUE eg. id=5108bc20
 
 :command:`close`
-^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~
 
-    close               Close alerts
+Close alerts ie. change alert ``status`` to ``closed``::
+
+    $ alerta [OPTIONS] close [--id ID] [--filters FILTERS]
+
+    optional arguments:
+      -h, --help         show this help message and exit
+      -i ID, --id ID     List of alert IDs (can use short 8-char id).
+      --filters FILTERS  KEY=VALUE eg. id=5108bc20
 
 :command:`delete`
-^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~
 
-    delete              Delete alerts
+Delete alerts from server::
+
+    $ alerta [OPTIONS] delete [--id ID] [--filters FILTERS]
+
+    optional arguments:
+      -h, --help         show this help message and exit
+      -i ID, --id ID     List of alert IDs (can use short 8-char id).
+      --filters FILTERS  KEY=VALUE eg. id=5108bc20
 
 :command:`heartbeat`
-^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~
 
-    heartbeat           Send heartbeat to server
+Send a heartbeat to the server::
 
-:command:`config`
-^^^^^^^^^^^^^^^^^
+    $ alerta [OPTIONS] heartbeat [-T TAG] [-O ORIGIN] [--timeout TIMEOUT]
 
-    config              Show config
+    optional arguments:
+      -h, --help            show this help message and exit
+      -T TAG, --tag TAG     List of tags eg. "London", "os:linux", "AWS/EC2".
+      -O ORIGIN, --origin ORIGIN
+                            Origin of heartbeat. Usually in form of "app/host"
+      --timeout TIMEOUT     Timeout in seconds before a heartbeat will be
+                            considered stale
 
 :command:`help`
-^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~
 
-    help                Show help
+Show all ``OPTIONS``, ``COMMANDS`` and some example ``FILTERS``.
 
 :command:`version`
-^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~
 
-    version             Show alerta version info
+Show version information for ``alerta`` and dependencies.
 
 Bugs
 ----
