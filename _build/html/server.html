@@ -1,0 +1,306 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Server &mdash; alerta 4.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '4.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="alerta 4.1 documentation" href="index.html" />
+    <link rel="next" title="Web UI" href="webui.html" />
+    <link rel="prev" title="Quickstart" href="quick-start.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="webui.html" title="Web UI"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="quick-start.html" title="Quickstart"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">alerta 4.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="server">
+<span id="id1"></span><h1>Server<a class="headerlink" href="#server" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="correlation">
+<h2>Correlation<a class="headerlink" href="#correlation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="de-duplication">
+<h3>De-duplication<a class="headerlink" href="#de-duplication" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="simple-correlation">
+<h3>Simple Correlation<a class="headerlink" href="#simple-correlation" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="plug-ins">
+<h2>Plug-ins<a class="headerlink" href="#plug-ins" title="Permalink to this headline">¶</a></h2>
+<p>pre-receive, post-receive hooks</p>
+<p>Query</p>
+</div>
+<div class="section" id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">#</span>
+<span class="c"># ***** ALERTA SERVER DEFAULT SETTINGS -- DO NOT MODIFY THIS FILE *****</span>
+<span class="c">#</span>
+<span class="c"># To override these settings use /etc/alertad.conf or the contents of the</span>
+<span class="c"># configuration file set by the environment variable ALERTA_SVR_CONF_FILE.</span>
+
+<span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">r&#39;0Afk\(,8$cr(Y8:MA&quot;&quot;knd&gt;[@$U[G.eQL6DjAmVs&#39;</span>
+
+<span class="n">QUERY_LIMIT</span> <span class="o">=</span> <span class="mi">10000</span>  <span class="c"># maximum number of alerts returned by a single query</span>
+<span class="n">HISTORY_LIMIT</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c">#</span>
+
+<span class="c"># MongoDB</span>
+<span class="n">MONGO_HOST</span> <span class="o">=</span> <span class="s">&#39;localhost&#39;</span>
+<span class="n">MONGO_PORT</span> <span class="o">=</span> <span class="mi">27017</span>
+<span class="n">MONGO_DATABASE</span> <span class="o">=</span> <span class="s">&#39;monitoring&#39;</span>
+<span class="n">MONGO_REPLSET</span> <span class="o">=</span> <span class="bp">None</span>  <span class="c"># &#39;alerta&#39;</span>
+
+<span class="n">MONGO_USERNAME</span> <span class="o">=</span> <span class="s">&#39;alerta&#39;</span>
+<span class="n">MONGO_PASSWORD</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="n">AUTH_REQUIRED</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s">&#39;INSERT-OAUTH2-CLIENT-ID-HERE&#39;</span>  <span class="c"># Google or GitHub OAuth2 client ID and secret</span>
+<span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s">&#39;INSERT-OAUTH2-CLIENT-SECRET-HERE&#39;</span>
+<span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;gmail.com&#39;</span><span class="p">]</span>
+<span class="n">ALLOWED_GITHUB_ORGS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;guardian&#39;</span><span class="p">]</span>
+<span class="n">API_KEY_EXPIRE_DAYS</span> <span class="o">=</span> <span class="mi">365</span>  <span class="c"># 1 year</span>
+
+<span class="n">CORS_ALLOW_HEADERS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="s">&#39;Authorization&#39;</span><span class="p">,</span> <span class="s">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">]</span>
+<span class="n">CORS_ORIGINS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">&#39;http://try.alerta.io&#39;</span><span class="p">,</span>
+    <span class="s">&#39;http://explorer.alerta.io&#39;</span><span class="p">,</span>
+    <span class="s">&#39;chrome-extension://jplkjnjaegjgacpfafdopnpnhmobhlaf&#39;</span><span class="p">,</span>
+    <span class="s">&#39;http://localhost&#39;</span>
+<span class="p">]</span>
+<span class="n">CORS_SUPPORTS_CREDENTIALS</span> <span class="o">=</span> <span class="n">AUTH_REQUIRED</span>
+
+<span class="c"># Plug-ins</span>
+<span class="n">PLUGINS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;reject&#39;</span><span class="p">,</span> <span class="s">&#39;amqp&#39;</span><span class="p">]</span>
+<span class="c"># PLUGINS = [&#39;amqp&#39;, &#39;enhance&#39;, &#39;logstash&#39;, &#39;normalise&#39;, &#39;reject&#39;, &#39;sns&#39;]</span>
+
+<span class="c"># AMQP Credentials</span>
+<span class="n">AMQP_URL</span> <span class="o">=</span> <span class="s">&#39;mongodb://localhost:27017/kombu&#39;</span>        <span class="c"># MongoDB</span>
+<span class="c"># AMQP_URL = &#39;amqp://guest:guest@localhost:5672//&#39;  # RabbitMQ</span>
+<span class="c"># AMQP_URL = &#39;redis://localhost:6379/&#39;              # Redis</span>
+
+<span class="c"># AWS Credentials</span>
+<span class="n">AWS_ACCESS_KEY_ID</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+<span class="n">AWS_SECRET_ACCESS_KEY</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+<span class="n">AWS_REGION</span> <span class="o">=</span> <span class="s">&#39;eu-west-1&#39;</span>
+
+<span class="c"># Inbound</span>
+<span class="n">AMQP_QUEUE</span> <span class="o">=</span> <span class="s">&#39;alerts&#39;</span>
+<span class="n">AWS_SQS_QUEUE</span> <span class="o">=</span> <span class="s">&#39;alerts&#39;</span>
+
+<span class="c"># Outbound</span>
+<span class="n">AMQP_TOPIC</span> <span class="o">=</span> <span class="s">&#39;notify&#39;</span>
+<span class="n">AWS_SNS_TOPIC</span> <span class="o">=</span> <span class="s">&#39;notify&#39;</span>
+
+<span class="c"># Logstash</span>
+<span class="n">LOGSTASH_HOST</span> <span class="o">=</span> <span class="s">&#39;localhost&#39;</span>
+<span class="n">LOGSTASH_PORT</span> <span class="o">=</span> <span class="mi">6379</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="production">
+<h2>Production<a class="headerlink" href="#production" title="Permalink to this headline">¶</a></h2>
+<p>don&#8217;t run in foreground
+Web server</p>
+<p>example configs
+nginx -&gt; <a class="reference external" href="https://github.com/alerta/docker-alerta/blob/master/nginx.conf">https://github.com/alerta/docker-alerta/blob/master/nginx.conf</a></p>
+<p>CORS if not same origin</p>
+</div>
+<div class="section" id="configure-wsgi-app">
+<h2>Configure WSGI App<a class="headerlink" href="#configure-wsgi-app" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="configure-authentication">
+<h2>Configure Authentication<a class="headerlink" href="#configure-authentication" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>login</li>
+<li>add any special users</li>
+<li>create API keys</li>
+</ul>
+</div>
+<div class="section" id="configure-a-plug-in">
+<h2>Configure a Plug-in<a class="headerlink" href="#configure-a-plug-in" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="configure-an-integration">
+<h2>Configure an Integration<a class="headerlink" href="#configure-an-integration" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="deployment">
+<h2>Deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h2>
+<p>Heroku</p>
+<p>OpenShift</p>
+<p>AWS</p>
+<p>Docker</p>
+<p>Packer</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">alerta</a></h1>
+
+
+
+<p class="blurb">monitoring system</p>
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+<h3>
+Links
+</h3>
+<ul>
+  <li>
+    <a href="http://alerta.io" rel="me">Web</a>
+  </li>
+  <li>
+    <a href="https://twitter.com/alertaio" rel="me">Twitter</a>
+  </li>
+</ul>
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#correlation">Correlation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#de-duplication">De-duplication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simple-correlation">Simple Correlation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#plug-ins">Plug-ins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#settings">Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#production">Production</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-wsgi-app">Configure WSGI App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-authentication">Configure Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-a-plug-in">Configure a Plug-in</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-an-integration">Configure an Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deployment">Deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="webui.html">Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/overview.html">API Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/format.html">Alert Format</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release-notes.html">Release History</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+      &copy;2015, Nick Satterly.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.2.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.1</a>
+      
+      |
+      <a href="_sources/server.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-44644195-3']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-44644195-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>
