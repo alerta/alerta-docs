@@ -90,6 +90,11 @@ Settings
     LOGSTASH_PORT = 6379
 
 
+Dynamic Settings
+----------------
+switch.auto_refresh_allow
+
+
 Production
 ----------
 
@@ -105,6 +110,7 @@ CORS if not same origin
 Configure WSGI App
 ------------------
 
+http://flask.pocoo.org/docs/0.10/deploying/#deployment
 
 Configure Authentication
 ------------------------

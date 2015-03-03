@@ -1093,3 +1093,159 @@ Response
     {
       "status": "ok"
     }
+
+.. _api_keys:
+
+API Keys
+--------
+
+Create an API Key
+~~~~~~~~~~~~~~~~~
+
+::
+
+  POST /key
+
+Input
++++++
+
++---------------+-------------+------------------------------------------------------------+
+| Name          | Type        | Description                                                |
++===============+=============+============================================================+
+| ``user``      | string      |                                                            |
++---------------+-------------+------------------------------------------------------------+
+| ``text``      | string      |                                                            |
++---------------+-------------+------------------------------------------------------------+
+
+Example
++++++++
+
+::
+
+    {
+      "user": "foo",
+      "text": "test key"
+    }
+
+Response
+++++++++
+
+::
+
+  201 CREATED
+
+::
+
+    {
+      "status": "ok",
+      "key": "Vz4dE04QiRYWL82f1N-FRlidML0PnvGqjkNOkqy_"
+    }
+
+List all API keys
+~~~~~~~~~~~~~~~~~
+
+::
+
+  GET /keys
+
+Response
+++++++++
+
+::
+
+    {
+      "status": "ok",
+      "keys": [
+        {
+          "count": 0,
+          "lastUsedTime": null,
+          "text": "test key",
+          "expireTime": "2016-03-02T22:30:15.520Z",
+          "user": "foo",
+          "key": "Vz4dE04QiRYWL82f1N-FRlidML0PnvGqjkNOkqy_"
+        },
+        {
+          "count": 1745,
+          "lastUsedTime": "2015-03-03T22:33:21.975Z",
+          "text": "demo key",
+          "expireTime": "2016-02-06T14:21:53.458Z",
+          "user": "test user",
+          "key": "demo-key"
+        }
+      ],
+      "total": 2,
+      "time": "2015-03-03T22:33:21.979Z"
+    }
+
+List all API keys for a user
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+  GET /keys/:user
+
+Parameters
+++++++++++
+
++---------------+-------------+------------------------------------------------------------+
+| Name          | Type        | Description                                                |
++===============+=============+============================================================+
+| ``user``      | string      |                                                            |
++---------------+-------------+------------------------------------------------------------+
+
+Example
++++++++
+
+::
+
+  http://api.alerta.io/keys/Bob%20Down
+
+Response
+++++++++
+
+::
+
+    {
+      "status": "ok",
+      "keys": [
+        {
+          "count": 0,
+          "lastUsedTime": null,
+          "text": "asdf",
+          "expireTime": "2016-03-02T12:44:53.490Z",
+          "user": "Bob Down",
+          "key": "yKmspmfBODEKWla6mu5iuqLvsDHD8oz0apuJPwMH"
+        },
+        {
+          "count": 0,
+          "lastUsedTime": null,
+          "text": "sdf",
+          "expireTime": "2016-02-06T16:20:58.473Z",
+          "user": "Bob Down",
+          "key": "UpKueVVCYJ2KDNDPILtMyl5c3wcaIRmfCk-eOHOK"
+        }
+      ],
+      "total": 2,
+      "time": "2015-03-03T22:39:36.191Z"
+    }
+
+Delete an API key
+~~~~~~~~~~~~~~~~~
+
+::
+
+  DELETE /key/:id
+
+Response
+++++++++
+
+::
+
+    200 OK
+
+::
+
+    {
+      "status": "ok"
+    }
+

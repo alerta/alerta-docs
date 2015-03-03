@@ -101,17 +101,12 @@ If the Alerta API is not being served from the same domain as the Alerta Web UI 
 API Keys
 --------
 
-For programatic access API keys are used to restrict access to the alerta API.
+If authentication is enforced, then an API key is needed to access the alerta API.
 
 ::
 
     API_KEY_EXPIRE_DAYS = 365  # 1 year
 
-API Endpoints
---------------
-
-POST, OPTIONS  /auth/github  github
-POST, OPTIONS  /auth/google  google
 
 API Keys
 --------
