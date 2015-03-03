@@ -107,15 +107,6 @@ If authentication is enforced, then an API key is needed to access the alerta AP
 
     API_KEY_EXPIRE_DAYS = 365  # 1 year
 
-
-API Keys
---------
-
-POST, OPTIONS  /key  create_key
-POST, OPTIONS, DELETE  /key/<path:key>  delete_key
-HEAD, OPTIONS, GET  /keys  get_keys
-HEAD, OPTIONS, GET  /keys/<user>  get_user_keys
-
 .. _users:
 
 Users

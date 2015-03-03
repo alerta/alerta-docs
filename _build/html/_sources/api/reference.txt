@@ -1234,7 +1234,123 @@ Delete an API key
 
 ::
 
-  DELETE /key/:id
+  DELETE /key/:key
+
+Response
+++++++++
+
+::
+
+    200 OK
+
+::
+
+    {
+      "status": "ok"
+    }
+
+.. _users:
+
+Users
+-----
+
+Create a user
+~~~~~~~~~~~~~
+
+::
+
+  POST /user
+
+Input
++++++
+
++---------------+-------------+------------------------------------------------------------+
+| Name          | Type        | Description                                                |
++===============+=============+============================================================+
+| ``name``      | string      |                                                            |
++---------------+-------------+------------------------------------------------------------+
+| ``login``     | string      |                                                            |
++---------------+-------------+------------------------------------------------------------+
+| ``provider``  | string      |                                                            |
++---------------+-------------+------------------------------------------------------------+
+| ``text``      | string      |                                                            |
++---------------+-------------+------------------------------------------------------------+
+
+Example
++++++++
+
+::
+
+    {
+      "name": "user1",
+      "login": "user@1",
+      "provider": "google",
+      "text": "test user 1"
+    }
+
+Response
+++++++++
+
+::
+
+  201 CREATED
+
+::
+
+    {
+      "status": "ok",
+      "user": "41f7e0af-5bc1-437a-b486-9b12286d643b"
+    }
+
+List all users
+~~~~~~~~~~~~~~
+
+::
+
+  GET /users
+
+Response
+++++++++
+
+::
+
+    {
+      "status": "ok",
+      "users": [
+        {
+          "name": "Nick 2",
+          "text": "Added by Nick Satterly",
+          "createTime": "2015-03-03T20:58:29.239Z",
+          "provider": "github",
+          "login": "nfs4",
+          "id": "8b0ca7bb-a56d-4c80-8331-c51c0dc3536f"
+        },
+        {
+          "name": "user1",
+          "text": "test user 1",
+          "createTime": "2015-03-03T22:54:33.299Z",
+          "provider": "google",
+          "login": "user@1",
+          "id": "41f7e0af-5bc1-437a-b486-9b12286d643b"
+        }
+      ],
+      "time": "2015-03-03T22:56:26.369Z",
+      "domains": [
+        "guardian.co.uk",
+        "gmail.com"
+      ],
+      "orgs": [
+        "guardian"
+      ],
+      "total": 2
+    }
+
+Delete a user
+~~~~~~~~~~~~~
+
+::
+
+  DELETE /user/:user
 
 Response
 ++++++++
