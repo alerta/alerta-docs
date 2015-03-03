@@ -41,8 +41,8 @@ To install the web console::
 
     >> browse to http://localhost:8000
 
-Generate test alerts
---------------------
+Send some alerts
+----------------
 
 To send an alert to the server::
 
