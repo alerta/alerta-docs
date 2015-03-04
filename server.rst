@@ -1,7 +1,7 @@
 .. _server:
 
-Server
-======
+Server & API
+============
 
 The ``alertad`` server receives alerts from multiple sources, :ref:`correlates <correlation>` and :ref:`de-duplicates  <deduplication>` them, and makes the alerts available via a JSON API.
 
@@ -10,52 +10,14 @@ Alerts can be intercepted as they are received to modify, enhance or reject them
 There are several integrations with popular monitoring tools available and webhooks can be used to trivially integrate with Pingdom and AWS Cloudwatch.
 
 
-Alert Database
---------------
-
-The document-oriented datastore MongoDB_ is used as the backend for Alerta to store alerts, heartbeats, API keys and the :ref:`user exception list <user_exception_list>`. It can be used as a stand-alone server or in a replicaset for high availability.
-
-.. _MongoDB: https://www.mongodb.com
-
-MongoDB Settings
-~~~~~~~~~~~~~~~~
-
-::
-
-    # MongoDB
-    MONGO_HOST = 'localhost'
-    MONGO_PORT = 27017
-    MONGO_DATABASE = 'monitoring'
-
-    MONGO_USERNAME = 'alerta'
-    MONGO_PASSWORD = None
-
-MongoDB Replica Set Setup
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-:file:/etc/mongod.conf
-
-::
-
-    replSetName=alerta
-::
-
-    > rs.initiate()
-    > rs.add("mongodb1.example.net")
-    > rs.add("mongodb1.example.net")
-
-
-.. _MongoDB_Replica: http://docs.mongodb.org/manual/tutorial/deploy-replica-set/
-
-::
-
-    MONGO_REPLSET = None  # 'alerta'
 
 
 .. _event_processing:
 
 Event Processing
 ----------------
+
+
 
 .. _deduplication:
 
@@ -72,6 +34,8 @@ Simple Correlation
 Plug-ins
 --------
 
+Plug-ins are small python scripts that can run either before or after an alert is saved to the database. This is achieved by registering *prereceive* and *post-receive hooks*.
+
 .. _pre_receive:
 
 Pre-Receive Hooks
@@ -82,34 +46,32 @@ Pre-Receive Hooks
 Post Receive Hooks
 ~~~~~~~~~~~~~~~~~~
 
-Query
+Alert Database
+--------------
 
+The document-oriented datastore MongoDB_ is used as the backend for Alerta to store alerts, heartbeats, API keys and the :ref:`user exception list <users>`. It can be used as a stand-alone server or in a `replica set`_ for high availability.
 
-Settings
---------
+.. _MongoDB: https://www.mongodb.com
+.. _`replica set`: http://docs.mongodb.org/manual/core/replica-set-high-availability/
+
+MongoDB Settings
+~~~~~~~~~~~~~~~~
 
 ::
 
-    #
-    # ***** ALERTA SERVER DEFAULT SETTINGS -- DO NOT MODIFY THIS FILE *****
-    #
-    # To override these settings use /etc/alertad.conf or the contents of the
-    # configuration file set by the environment variable ALERTA_SVR_CONF_FILE.
+    # MongoDB
+    MONGO_HOST = 'localhost'
+    MONGO_PORT = 27017
+    MONGO_DATABASE = 'monitoring'
 
-    DEBUG = False
-
-    SECRET_KEY = r'0Afk\(,8$cr(Y8:MA""knd>[@$U[G.eQL6DjAmVs'
-
-    QUERY_LIMIT = 10000  # maximum number of alerts returned by a single query
-    HISTORY_LIMIT = 100  #
+    MONGO_USERNAME = 'alerta'
+    MONGO_PASSWORD = None
 
 
-    AUTH_REQUIRED = False
-    OAUTH2_CLIENT_ID = 'INSERT-OAUTH2-CLIENT-ID-HERE'  # Google or GitHub OAuth2 client ID and secret
-    OAUTH2_CLIENT_SECRET = 'INSERT-OAUTH2-CLIENT-SECRET-HERE'
-    ALLOWED_EMAIL_DOMAINS = ['gmail.com']
-    ALLOWED_GITHUB_ORGS = ['guardian']
-    API_KEY_EXPIRE_DAYS = 365  # 1 year
+CORS
+----
+
+::
 
     CORS_ALLOW_HEADERS = ['Content-Type', 'Authorization', 'Access-Control-Allow-Origin']
     CORS_ORIGINS = [
@@ -119,6 +81,38 @@ Settings
         'http://localhost'
     ]
     CORS_SUPPORTS_CREDENTIALS = AUTH_REQUIRED
+
+
+API Settings
+------------
+
+::
+
+    QUERY_LIMIT = 10000  # maximum number of alerts returned by a single query
+    HISTORY_LIMIT = 100  #
+    API_KEY_EXPIRE_DAYS = 365  # 1 year
+
+Dynamic Settings
+----------------
+switch.auto_refresh_allow
+
+Authentication
+--------------
+
+::
+
+    AUTH_REQUIRED = True
+
+See :ref:`Authentication <authentication>`
+
+
+
+
+
+Settings
+--------
+
+::
 
     # Plug-ins
     PLUGINS = ['reject', 'amqp']
@@ -147,27 +141,6 @@ Settings
     LOGSTASH_PORT = 6379
 
 
-Dynamic Settings
-----------------
-switch.auto_refresh_allow
-
-
-Production
-----------
-
-don't run in foreground
-Web server
-
-
-example configs
-nginx -> https://github.com/alerta/docker-alerta/blob/master/nginx.conf
-
-CORS if not same origin
-
-Configure WSGI App
-------------------
-
-http://flask.pocoo.org/docs/0.10/deploying/#deployment
 
 Configure Authentication
 ------------------------
@@ -184,8 +157,54 @@ Configure an Integration
 ------------------------
 
 
-Deployment
-----------
+Production Deployment
+---------------------
+
+::
+
+    DEBUG = False
+    SECRET_KEY = ...
+
+Configure WSGI App
+~~~~~~~~~~~~~~~~~~
+
+http://flask.pocoo.org/docs/0.10/deploying/#deployment
+
+
+don't run in foreground
+Web server
+
+
+example configs
+nginx -> https://github.com/alerta/docker-alerta/blob/master/nginx.conf
+
+CORS if not same origin
+
+MongoDB Replica Set Setup
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:file:/etc/mongod.conf
+
+::
+
+    replSetName=alerta
+::
+
+    > rs.initiate()
+    > rs.add("mongodb1.example.net")
+    > rs.add("mongodb1.example.net")
+
+
+.. _MongoDB_Replica: http://docs.mongodb.org/manual/tutorial/deploy-replica-set/
+
+::
+
+    MONGO_REPLSET = None  # 'alerta'
+
+
+
+
+
 
 Heroku
 

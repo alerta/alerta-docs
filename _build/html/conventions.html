@@ -1,0 +1,296 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Conventions &mdash; alerta 4.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '4.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="alerta 4.1 documentation" href="index.html" />
+    <link rel="next" title="Development" href="development.html" />
+    <link rel="prev" title="Authentication" href="authentication.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="development.html" title="Development"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="authentication.html" title="Authentication"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">alerta 4.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="conventions">
+<span id="id1"></span><h1>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h1>
+<p>Always favour convention over configuration. And any configuration should have sensible defaults.</p>
+<div class="section" id="naming-conventions">
+<h2>Naming Conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="event-names">
+<h3>Event Names<a class="headerlink" href="#event-names" title="Permalink to this headline">¶</a></h3>
+<p>It can be useful to define a convention when it comes to naming events. Possible options are:</p>
+<ul class="simple">
+<li>Camel case - <tt class="docutils literal"><span class="pre">DiskUtilHigh</span></tt></li>
+<li>Hierarchy - <tt class="docutils literal"><span class="pre">NW:INTERFACE:DOWN</span></tt></li>
+<li>SNMP - <tt class="docutils literal"><span class="pre">cpuAlarmHigh</span></tt></li>
+</ul>
+<p>Querying for all disk alerts then becomes <tt class="docutils literal"><span class="pre">event=~disk</span></tt>.</p>
+</div>
+<div class="section" id="event-groups">
+<h3>Event Groups<a class="headerlink" href="#event-groups" title="Permalink to this headline">¶</a></h3>
+<p>Another consideration is to ensure you make use of the event group which gives you the ability to group related alerts like so:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Event Groups</th>
+<th class="head">Events (examples)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Service</span></tt></td>
+<td>failures with entire services</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Application</span></tt></td>
+<td>errors from application logs</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">OS</span></tt></td>
+<td>disk space, time sync failing</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Performance</span></tt></td>
+<td>system load, swap utilisation high</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Configuration</span></tt></td>
+<td>config mgmt tool alerts eg. Puppet or Chef</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Web</span></tt></td>
+<td>web server errors</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Syslog</span></tt></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Hardware</span></tt></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Storage</span></tt></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Database</span></tt></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Security</span></tt></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Network</span></tt></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Cloud</span></tt></td>
+<td>cloud-based services or infrastructure</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="environments-services">
+<h3>Environments &amp; Services<a class="headerlink" href="#environments-services" title="Permalink to this headline">¶</a></h3>
+<p>Choose a set of environments and enforce them. ie. <tt class="docutils literal"><span class="pre">PROD</span></tt>, <tt class="docutils literal"><span class="pre">DEV</span></tt> or <tt class="docutils literal"><span class="pre">Production</span></tt>, <tt class="docutils literal"><span class="pre">Developement</span></tt> but not both. The same for services eg. <tt class="docutils literal"><span class="pre">MobileAPI</span></tt>, <tt class="docutils literal"><span class="pre">Mobile-API</span></tt> and <tt class="docutils literal"><span class="pre">mobile</span> <span class="pre">api</span></tt> are all valid but needlessly different and difficult to impossible to trigger on reliably.</p>
+</div>
+</div>
+<div class="section" id="severity-levels">
+<h2>Severity Levels<a class="headerlink" href="#severity-levels" title="Permalink to this headline">¶</a></h2>
+<p>Agree on a subset of severity levels and be consistent with what they mean. For example, if severity levels are used consistently then integrating with a paging or email system becomes easier.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="43%" />
+<col width="40%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Severity</th>
+<th class="head">Service Level</th>
+<th class="head">Notification</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">critical</span></tt></td>
+<td>service unavailable</td>
+<td>immediate page out</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">major</span></tt></td>
+<td>service impaired still available</td>
+<td>page during business hours</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">minor</span></tt></td>
+<td>component failure</td>
+<td>email only</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">warning</span></tt></td>
+<td>everything else</td>
+<td>consolidate into daily email</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">alerta</a></h1>
+
+
+
+<p class="blurb">monitoring system</p>
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+<h3>
+Links
+</h3>
+<ul>
+  <li>
+    <a href="http://alerta.io" rel="me">Web</a>
+  </li>
+  <li>
+    <a href="https://twitter.com/alertaio" rel="me">Twitter</a>
+  </li>
+</ul>
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui.html">Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Conventions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#naming-conventions">Naming Conventions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#event-names">Event Names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#event-groups">Event Groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#environments-services">Environments &amp; Services</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#severity-levels">Severity Levels</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/overview.html">API Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/format.html">Alert Format</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release-notes.html">Release History</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+      &copy;2015, Nick Satterly.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.2.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.1</a>
+      
+      |
+      <a href="_sources/conventions.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-44644195-3']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-44644195-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>

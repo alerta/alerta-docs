@@ -1,0 +1,18 @@
+.. _principles:
+
+Principles
+==========
+
+This is possible because Alerta attempts to be as flexible as possible when injesting alerts while still imposing a structure. For example, there is a clearly defined alert format but that format does impose a certain "world view".
+
+  * resource under alarm -- a resource is any entity that it makes sense for you to receive alerts for. You shouldn't be forced to repurpose a "host" field for a service or application, or a even a URL.
+
+  * many severity levels -- you are free to use as many or as few as you like eg. if you only integrate with Nagios only use ``critical``, ``warning`` and ``ok``. If you are integrating with telephony management system you might want to use the six `ISO perceived severity levels`_ or alternatively, if you are pushing application alerts you might want to use the ``debug`` severity level.
+
+  .. _`ISO perceived severity levels`: http://www.itu.int/rec/T-REC-X.733/en
+
+  * robust alert reception -- in accordance with the `robustness principle`_ which is to "be liberal in what you accept from others", alerta will accept any alert as long as it meets the alert format specification. ie. no field needs to be defined in advance for it to be accepted, however the benefits of following a standard convention for such attributes as ``environment``, ``service``, ``event`` and ``resource`` (as internally defined by and useful to you) are many.
+
+  .. _`robustness principle`: http://en.wikipedia.org/wiki/Robustness_principle
+
+  * alert sources -- all alerts should have a corresponding ``cleared`` or ``normal`` state so that non-normal alerts can be automatically cleared down by the system. Where an alert cannot send a corresponding clear an alert timeout can be defined or a default timeout of 6? hours will be applied. Alerts are resent if they are still active which means if all data is lost after a certain amount of time (eg. 2 hours?) you are back to where you were. This will be generally true, however, for some alert sources this isn't possible eg. SNMP traps, log errors (if we decide to monitor logs)

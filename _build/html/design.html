@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Index &mdash; alerta 4.1 documentation</title>
+    <title>Design Principles &mdash; alerta 4.1 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,6 +25,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="alerta 4.1 documentation" href="index.html" />
+    <link rel="next" title="Server &amp; API" href="server.html" />
+    <link rel="prev" title="Quickstart" href="quick-start.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -35,8 +37,14 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="#" title="General Index"
+          <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="server.html" title="Server &amp; API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="quick-start.html" title="Quickstart"
+             accesskey="P">previous</a> |</li>
         <li><a href="index.html">alerta 4.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -46,112 +54,24 @@
         <div class="bodywrapper">
           <div class="body">
             
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- <a href="#A"><strong>A</strong></a>
- | <a href="#C"><strong>C</strong></a>
- | <a href="#D"><strong>D</strong></a>
- | <a href="#E"><strong>E</strong></a>
- | <a href="#S"><strong>S</strong></a>
- 
+  <div class="section" id="design-principles">
+<span id="design"></span><h1>Design Principles<a class="headerlink" href="#design-principles" title="Permalink to this headline">¶</a></h1>
+<p>The following principles guided the design and development of the Alerta monitoring system.</p>
+<blockquote>
+<div><ul class="simple">
+<li>resource under alarm &#8211; a <a href="#id1"><span class="problematic" id="id2">resource_</span></a> is any entity that it makes sense for you to receive alerts for. You shouldn&#8217;t be forced to accept a certain &#8220;world view&#8221; when using a monitoring tool or to repurpose a &#8220;host&#8221; field for a service or application, or a even a URL. Host-centric monitoring tools belong in the 90&#8217;s.</li>
+<li>many severity levels &#8211; you are free to use as many or as few as you like eg. if you plan to only integrate with Nagios then only use <tt class="docutils literal"><span class="pre">critical</span></tt>, <tt class="docutils literal"><span class="pre">warning</span></tt> and <tt class="docutils literal"><span class="pre">ok</span></tt>. If you are integrating with a fault management system for a telco you might want to use the six <a class="reference external" href="http://www.itu.int/rec/T-REC-X.733/en">ISO perceived severity levels</a> or alternatively, if you are pushing application alerts you might want to consider using the <tt class="docutils literal"><span class="pre">debug</span></tt> severity level.</li>
+</ul>
+<ul class="simple">
+<li>robust alert reception &#8211; in accordance with the <a class="reference external" href="http://en.wikipedia.org/wiki/Robustness_principle">robustness principle</a> which is to &#8220;be liberal in what you accept from others&#8221;, alerta will accept any alert as long as it meets the alert format specification. ie. no field needs to be defined in advance for it to be accepted, however the benefits of following a standard convention for such attributes as <tt class="docutils literal"><span class="pre">environment</span></tt>, <tt class="docutils literal"><span class="pre">service</span></tt>, <tt class="docutils literal"><span class="pre">event</span></tt> and <tt class="docutils literal"><span class="pre">resource</span></tt> (as internally defined by and useful to you) are many.</li>
+</ul>
+<ul class="simple">
+<li>self-clearing alerts &#8211; all alerts should have a corresponding <tt class="docutils literal"><span class="pre">cleared</span></tt> or <tt class="docutils literal"><span class="pre">normal</span></tt> state so that non-normal alerts can be automatically cleared down by the system. Where an alert cannot send a corresponding clear an alert should specify a <tt class="docutils literal"><span class="pre">timeout</span></tt> (or have a default assigned) after which it will be deleted.</li>
+<li>alerts are cheap &#8211; alerts should be resent at regular intervals if they are still active which means that if all data is lost after a certain amount of time (eg. 2 hours?) you are back to where you were. This will be generally true, however, for some alert sources this isn&#8217;t possible eg. SNMP traps, log errors. Alerts in a normal state can be resent at a longer interval.</li>
+<li>tags and custom attributes &#8211; dynamic &#8216;scale up&#8217;/&#8217;scale down&#8217; environments are the defacto standard now. naming individual servers is lame, use dynamically generated metadata to tag alerts and dynamically assign custom attributes based on requirements</li>
+</ul>
+</div></blockquote>
 </div>
-<h2 id="A">A</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="cli.html#index-3">ALERTA_API_KEY</a>
-  </dt>
-
-      
-  <dt><a href="cli.html#index-0">ALERTA_CONF_FILE</a>
-  </dt>
-
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="cli.html#index-1">ALERTA_DEFAULT_PROFILE</a>
-  </dt>
-
-      
-  <dt><a href="cli.html#index-2">ALERTA_ENDPOINT</a>
-  </dt>
-
-  </dl></td>
-</tr></table>
-
-<h2 id="C">C</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="cli.html#index-4">CLICOLOR</a>
-  </dt>
-
-  </dl></td>
-</tr></table>
-
-<h2 id="D">D</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="cli.html#index-5">DEBUG</a>
-  </dt>
-
-  </dl></td>
-</tr></table>
-
-<h2 id="E">E</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt>
-    environment variable
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="cli.html#index-3">ALERTA_API_KEY</a>
-  </dt>
-
-        
-  <dt><a href="cli.html#index-0">ALERTA_CONF_FILE</a>
-  </dt>
-
-        
-  <dt><a href="cli.html#index-1">ALERTA_DEFAULT_PROFILE</a>
-  </dt>
-
-        
-  <dt><a href="cli.html#index-2">ALERTA_ENDPOINT</a>
-  </dt>
-
-        
-  <dt><a href="cli.html#index-4">CLICOLOR</a>
-  </dt>
-
-        
-  <dt><a href="cli.html#index-5">DEBUG</a>
-  </dt>
-
-        
-  <dt><a href="authentication.html#index-0">SECRET_KEY</a>
-  </dt>
-
-      </dl></dd>
-  </dl></td>
-</tr></table>
-
-<h2 id="S">S</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="authentication.html#index-0">SECRET_KEY</a>
-  </dt>
-
-  </dl></td>
-</tr></table>
-
 
 
           </div>
@@ -188,15 +108,14 @@ Links
 </ul>
 
 <h3>Navigation</h3>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Design Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webui.html">Web UI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 </ul>
 <ul>
@@ -226,6 +145,7 @@ Links
       </div>
       <div class="clearer"></div>
     </div>
+
     <div class="footer">
       &copy;2015, Nick Satterly.
       
@@ -233,6 +153,9 @@ Links
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.2.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.1</a>
       
+      |
+      <a href="_sources/design.txt"
+          rel="nofollow">Page source</a></li>
     </div>
 
     
@@ -254,5 +177,16 @@ Links
 
     </script>
     
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-44644195-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
   </body>
 </html>
