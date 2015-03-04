@@ -56,19 +56,58 @@
             
   <div class="section" id="server">
 <span id="id1"></span><h1>Server<a class="headerlink" href="#server" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="correlation">
-<h2>Correlation<a class="headerlink" href="#correlation" title="Permalink to this headline">¶</a></h2>
+<p>The <tt class="docutils literal"><span class="pre">alertad</span></tt> server receives alerts from multiple sources, <a class="reference internal" href="#correlation"><em>correlates</em></a> and <a class="reference internal" href="#deduplication"><em>de-duplicates</em></a> them, and makes the alerts available via a JSON API.</p>
+<p>Alerts can be intercepted as they are received to modify, enhance or reject them using <a class="reference internal" href="#pre-receive"><em>pre-receive hooks</em></a>. Alerts can also be used to trigger actions in other systems after the alert has been processed using <a class="reference internal" href="#post-receive"><em>post-receive hooks</em></a>.</p>
+<p>There are several integrations with popular monitoring tools available and webhooks can be used to trivially integrate with Pingdom and AWS Cloudwatch.</p>
+<div class="section" id="alert-database">
+<h2>Alert Database<a class="headerlink" href="#alert-database" title="Permalink to this headline">¶</a></h2>
+<p>The document-oriented datastore <a class="reference external" href="https://www.mongodb.com">MongoDB</a> is used as the backend for Alerta to store alerts, heartbeats, API keys and the <em class="xref std std-ref">user exception list</em>. It can be used as a stand-alone server or in a replicaset for high availability.</p>
+<div class="section" id="mongodb-settings">
+<h3>MongoDB Settings<a class="headerlink" href="#mongodb-settings" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># MongoDB</span>
+<span class="n">MONGO_HOST</span> <span class="o">=</span> <span class="s">&#39;localhost&#39;</span>
+<span class="n">MONGO_PORT</span> <span class="o">=</span> <span class="mi">27017</span>
+<span class="n">MONGO_DATABASE</span> <span class="o">=</span> <span class="s">&#39;monitoring&#39;</span>
+
+<span class="n">MONGO_USERNAME</span> <span class="o">=</span> <span class="s">&#39;alerta&#39;</span>
+<span class="n">MONGO_PASSWORD</span> <span class="o">=</span> <span class="bp">None</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mongodb-replica-set-setup">
+<h3>MongoDB Replica Set Setup<a class="headerlink" href="#mongodb-replica-set-setup" title="Permalink to this headline">¶</a></h3>
+<p>:<a class="reference external" href="file:/etc/mongod.conf">file:/etc/mongod.conf</a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">replSetName</span><span class="o">=</span><span class="n">alerta</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>&gt; rs.initiate()
+&gt; rs.add(&quot;mongodb1.example.net&quot;)
+&gt; rs.add(&quot;mongodb1.example.net&quot;)
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">MONGO_REPLSET</span> <span class="o">=</span> <span class="bp">None</span>  <span class="c"># &#39;alerta&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="event-processing">
+<span id="id2"></span><h2>Event Processing<a class="headerlink" href="#event-processing" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="de-duplication">
-<h3>De-duplication<a class="headerlink" href="#de-duplication" title="Permalink to this headline">¶</a></h3>
+<span id="deduplication"></span><h3>De-duplication<a class="headerlink" href="#de-duplication" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="simple-correlation">
-<h3>Simple Correlation<a class="headerlink" href="#simple-correlation" title="Permalink to this headline">¶</a></h3>
+<span id="correlation"></span><h3>Simple Correlation<a class="headerlink" href="#simple-correlation" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 <div class="section" id="plug-ins">
-<h2>Plug-ins<a class="headerlink" href="#plug-ins" title="Permalink to this headline">¶</a></h2>
-<p>pre-receive, post-receive hooks</p>
+<span id="plugins"></span><h2>Plug-ins<a class="headerlink" href="#plug-ins" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pre-receive-hooks">
+<span id="pre-receive"></span><h3>Pre-Receive Hooks<a class="headerlink" href="#pre-receive-hooks" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="post-receive-hooks">
+<span id="post-receive"></span><h3>Post Receive Hooks<a class="headerlink" href="#post-receive-hooks" title="Permalink to this headline">¶</a></h3>
 <p>Query</p>
+</div>
 </div>
 <div class="section" id="settings">
 <h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
@@ -85,14 +124,6 @@
 <span class="n">QUERY_LIMIT</span> <span class="o">=</span> <span class="mi">10000</span>  <span class="c"># maximum number of alerts returned by a single query</span>
 <span class="n">HISTORY_LIMIT</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c">#</span>
 
-<span class="c"># MongoDB</span>
-<span class="n">MONGO_HOST</span> <span class="o">=</span> <span class="s">&#39;localhost&#39;</span>
-<span class="n">MONGO_PORT</span> <span class="o">=</span> <span class="mi">27017</span>
-<span class="n">MONGO_DATABASE</span> <span class="o">=</span> <span class="s">&#39;monitoring&#39;</span>
-<span class="n">MONGO_REPLSET</span> <span class="o">=</span> <span class="bp">None</span>  <span class="c"># &#39;alerta&#39;</span>
-
-<span class="n">MONGO_USERNAME</span> <span class="o">=</span> <span class="s">&#39;alerta&#39;</span>
-<span class="n">MONGO_PASSWORD</span> <span class="o">=</span> <span class="bp">None</span>
 
 <span class="n">AUTH_REQUIRED</span> <span class="o">=</span> <span class="bp">False</span>
 <span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s">&#39;INSERT-OAUTH2-CLIENT-ID-HERE&#39;</span>  <span class="c"># Google or GitHub OAuth2 client ID and secret</span>
@@ -216,12 +247,21 @@ Links
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Server</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#correlation">Correlation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#alert-database">Alert Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mongodb-settings">MongoDB Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mongodb-replica-set-setup">MongoDB Replica Set Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#event-processing">Event Processing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#de-duplication">De-duplication</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#simple-correlation">Simple Correlation</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#plug-ins">Plug-ins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plug-ins">Plug-ins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pre-receive-hooks">Pre-Receive Hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-receive-hooks">Post Receive Hooks</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#settings">Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dynamic-settings">Dynamic Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#production">Production</a></li>

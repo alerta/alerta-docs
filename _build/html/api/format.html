@@ -75,7 +75,7 @@
 <td>globally unique random UUID</td>
 </tr>
 <tr class="row-odd"><td><tt class="docutils literal"><span class="pre">resource</span></tt></td>
-<td>the resource under alarm, deliberately not host-centric</td>
+<td>resource under alarm, deliberately not host-centric</td>
 </tr>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">event</span></tt></td>
 <td>event name eg. <tt class="docutils literal"><span class="pre">NodeDown</span></tt>, <tt class="docutils literal"><span class="pre">QUEUE:LENGTH:EXCEEDED</span></tt>, <tt class="docutils literal"><span class="pre">AppStatus</span></tt></td>
@@ -84,13 +84,13 @@
 <td>effected environment, used to namespace the defined resource</td>
 </tr>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">severity</span></tt></td>
-<td>severity of alert eg. <tt class="docutils literal"><span class="pre">critical</span></tt> see full list below</td>
+<td>severity of alert (default <tt class="docutils literal"><span class="pre">normal</span></tt>). see <a class="reference internal" href="#severity-table"><em>Alert Severities</em></a> table</td>
 </tr>
 <tr class="row-odd"><td><tt class="docutils literal"><span class="pre">correlate</span></tt></td>
 <td>list of related event names</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">status</span></tt> *</td>
-<td>one of <tt class="docutils literal"><span class="pre">open</span></tt>, <tt class="docutils literal"><span class="pre">ack</span></tt>, <tt class="docutils literal"><span class="pre">closed</span></tt>, or <tt class="docutils literal"><span class="pre">expired</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">status</span></tt></td>
+<td>status of alert (default <tt class="docutils literal"><span class="pre">open</span></tt>). see <a class="reference internal" href="#status-table"><em>Alert Status</em></a> table</td>
 </tr>
 <tr class="row-odd"><td><tt class="docutils literal"><span class="pre">service</span></tt></td>
 <td>list of effected services</td>
@@ -99,13 +99,13 @@
 <td>event group</td>
 </tr>
 <tr class="row-odd"><td><tt class="docutils literal"><span class="pre">value</span></tt></td>
-<td>event value eg. 100%, Down, PingFail, 55ms, ORA-1664</td>
+<td>event value eg. <tt class="docutils literal"><span class="pre">100%</span></tt>, <tt class="docutils literal"><span class="pre">Down</span></tt>, <tt class="docutils literal"><span class="pre">PingFail</span></tt>, <tt class="docutils literal"><span class="pre">55ms</span></tt>, <tt class="docutils literal"><span class="pre">ORA-1664</span></tt></td>
 </tr>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">text</span></tt></td>
 <td>freeform text description</td>
 </tr>
 <tr class="row-odd"><td><tt class="docutils literal"><span class="pre">tags</span></tt></td>
-<td>list of tags in any format eg. <tt class="docutils literal"><span class="pre">aTag</span></tt>, <tt class="docutils literal"><span class="pre">aDouble:Tag</span></tt>, <tt class="docutils literal"><span class="pre">a:Triple=Tag</span></tt></td>
+<td>set of tags in any format eg. <tt class="docutils literal"><span class="pre">aTag</span></tt>, <tt class="docutils literal"><span class="pre">aDouble:Tag</span></tt>, <tt class="docutils literal"><span class="pre">a:Triple=Tag</span></tt></td>
 </tr>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">attributes</span></tt></td>
 <td>dictionary of key-value pairs</td>
@@ -178,8 +178,42 @@ attributes are appended to the history log</td>
 </tbody>
 </table>
 </div>
+<div class="section" id="alert-status">
+<span id="status-table"></span><h2>Alert Status<a class="headerlink" href="#alert-status" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="53%" />
+<col width="47%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Status</th>
+<th class="head">Status Code</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">open</span></tt></td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">assign</span></tt></td>
+<td>2</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">ack</span></tt></td>
+<td>3</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">closed</span></tt></td>
+<td>4</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">expired</span></tt></td>
+<td>5</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">unknown</span></tt></td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="alert-severities">
-<h2>Alert Severities<a class="headerlink" href="#alert-severities" title="Permalink to this headline">¶</a></h2>
+<span id="severity-table"></span><h2>Alert Severities<a class="headerlink" href="#alert-severities" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="http://tools.ietf.org/html/rfc5674#section-2">Alarms in Syslog</a> RFC was referenced when defining alert severities.</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -250,6 +284,81 @@ attributes are appended to the history log</td>
 </div>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;web-elb-01&quot;</span><span class="p">,</span>
+  <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;HttpServerError&quot;</span><span class="p">,</span>
+  <span class="s">&quot;origin&quot;</span><span class="p">:</span> <span class="s">&quot;curl&quot;</span><span class="p">,</span>
+  <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;The site is down.&quot;</span><span class="p">,</span>
+  <span class="s">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-01T23:34:30.635Z&quot;</span><span class="p">,</span>
+  <span class="s">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-01T23:34:28.118Z&quot;</span><span class="p">,</span>
+  <span class="s">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s">&quot;moreSevere&quot;</span><span class="p">,</span>
+  <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/f26b3695-0e67-402f-81be-ba966bcb9603&quot;</span><span class="p">,</span>
+  <span class="s">&quot;rawData&quot;</span><span class="p">:</span> <span class="s">&quot;curl: (7) Failed connect to localhost:8080; Connection refused&quot;</span><span class="p">,</span>
+  <span class="s">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s">&quot;unknown&quot;</span><span class="p">,</span>
+  <span class="s">&quot;group&quot;</span><span class="p">:</span> <span class="s">&quot;Web&quot;</span><span class="p">,</span>
+  <span class="s">&quot;severity&quot;</span><span class="p">:</span> <span class="s">&quot;major&quot;</span><span class="p">,</span>
+  <span class="s">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s">&quot;example.com&quot;</span>
+  <span class="p">],</span>
+  <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;f26b3695-0e67-402f-81be-ba966bcb9603&quot;</span><span class="p">,</span>
+  <span class="s">&quot;environment&quot;</span><span class="p">:</span> <span class="s">&quot;Production&quot;</span><span class="p">,</span>
+  <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;webAlert&quot;</span><span class="p">,</span>
+  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;closed&quot;</span><span class="p">,</span>
+  <span class="s">&quot;repeat&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+  <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s">&quot;eu-west-1&quot;</span><span class="p">,</span>
+    <span class="s">&quot;AWS/EC2&quot;</span>
+  <span class="p">],</span>
+  <span class="s">&quot;createTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-01T23:34:27.467Z&quot;</span><span class="p">,</span>
+  <span class="s">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s">&quot;1637de1f-eac5-48dd-a4dd-8a10e4c89843&quot;</span><span class="p">,</span>
+  <span class="s">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s">&quot;HttpServerError&quot;</span><span class="p">,</span>
+    <span class="s">&quot;HttpServerOK&quot;</span>
+  <span class="p">],</span>
+  <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;Bad Gateway (501)&quot;</span><span class="p">,</span>
+  <span class="s">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
+  <span class="s">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;city&quot;</span><span class="p">:</span> <span class="s">&quot;London&quot;</span><span class="p">,</span>
+    <span class="s">&quot;region_code&quot;</span><span class="p">:</span> <span class="s">&quot;ENG&quot;</span><span class="p">,</span>
+    <span class="s">&quot;region_name&quot;</span><span class="p">:</span> <span class="s">&quot;England&quot;</span><span class="p">,</span>
+    <span class="s">&quot;ip&quot;</span><span class="p">:</span> <span class="s">&quot;86.156.104.171&quot;</span><span class="p">,</span>
+    <span class="s">&quot;company&quot;</span><span class="p">:</span> <span class="s">&quot;ACME Corp&quot;</span><span class="p">,</span>
+    <span class="s">&quot;time_zone&quot;</span><span class="p">:</span> <span class="s">&quot;Europe/London&quot;</span><span class="p">,</span>
+    <span class="s">&quot;longitude&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.124</span><span class="p">,</span>
+    <span class="s">&quot;metro_code&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s">&quot;latitude&quot;</span><span class="p">:</span> <span class="mf">51.453</span><span class="p">,</span>
+    <span class="s">&quot;country_code&quot;</span><span class="p">:</span> <span class="s">&quot;GB&quot;</span><span class="p">,</span>
+    <span class="s">&quot;country_name&quot;</span><span class="p">:</span> <span class="s">&quot;United Kingdom&quot;</span><span class="p">,</span>
+    <span class="s">&quot;zip_code&quot;</span><span class="p">:</span> <span class="s">&quot;SW2&quot;</span>
+  <span class="p">},</span>
+  <span class="s">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-01T23:34:27.467Z&quot;</span><span class="p">,</span>
+      <span class="s">&quot;severity&quot;</span><span class="p">:</span> <span class="s">&quot;major&quot;</span><span class="p">,</span>
+      <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;The site is down.&quot;</span><span class="p">,</span>
+      <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;Bad Gateway (501)&quot;</span><span class="p">,</span>
+      <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;HttpServerError&quot;</span><span class="p">,</span>
+      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;f26b3695-0e67-402f-81be-ba966bcb9603&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ack&quot;</span><span class="p">,</span>
+      <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;status change via console&quot;</span><span class="p">,</span>
+      <span class="s">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-02T02:49:10.297Z&quot;</span><span class="p">,</span>
+      <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;HttpServerError&quot;</span><span class="p">,</span>
+      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;f26b3695-0e67-402f-81be-ba966bcb9603&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;closed&quot;</span><span class="p">,</span>
+      <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;status change via console&quot;</span><span class="p">,</span>
+      <span class="s">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-02T02:49:11.719Z&quot;</span><span class="p">,</span>
+      <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;HttpServerError&quot;</span><span class="p">,</span>
+      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;f26b3695-0e67-402f-81be-ba966bcb9603&quot;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -289,7 +398,7 @@ Links
 
 <h3>Navigation</h3>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../quick-start.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick-start.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../server.html">Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui.html">Web UI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cli.html">Alerta CLI</a></li>

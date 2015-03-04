@@ -92,7 +92,10 @@
 <p>Click <strong>Create Client ID</strong> and take note of the Client ID and Client Secret. The configuration settins for <tt class="docutils literal"><span class="pre">alerta</span></tt> server are as follows:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s">&#39;379647311730-sj130ru952o3o7ig8u0ts8np2ojivr8d.apps.googleusercontent.com&#39;</span>
 <span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s">&#39;8HrqJhbrYn9oDtaJqExample&#39;</span>
-<span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;example.com&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p id="allowed-email-domains">To restrict access to users with particular <a class="reference external" href="https://www.google.co.uk/intx/en_au/work/apps/business/">Google apps domains</a> use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;example.org&#39;</span><span class="p">,</span> <span class="s">&#39;mycompany.com&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -116,7 +119,10 @@
 <p>Click Register Application and take note of the Client ID and Client Secret. Then configuration settings for <tt class="docutils literal"><span class="pre">alerta</span></tt> server are as follows:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s">&#39;f7b0c15e2b722e0e38f4&#39;</span>
 <span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s">&#39;7aa9094369b72937910badab0424dc7393x8mpl3&#39;</span>
-<span class="n">ALLOWED_GITHUB_ORGS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;example&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p id="allowed-github-orgs">To restrict access to users who are members of particular <a class="reference external" href="https://github.com/blog/674-introducing-organizations">GitHub organisations</a> use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ALLOWED_GITHUB_ORGS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;example&#39;</span><span class="p">,</span> <span class="s">&#39;mycompany&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -148,11 +154,41 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="users">
-<span id="id5"></span><h2>Users<a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
-<p>POST, OPTIONS  /user  create_user
-POST, OPTIONS, DELETE  /user/&lt;user&gt;  delete_user
-HEAD, OPTIONS, GET  /users  get_users</p>
+<div class="section" id="user-authorisation">
+<span id="users"></span><h2>User Authorisation<a class="headerlink" href="#user-authorisation" title="Permalink to this headline">¶</a></h2>
+<p>Google and GitHub OAuth2 are used for user authentication, not user authorisation. Authentication proves that you are who you say you are.</p>
+<p>To control who has access to Alerta you can restrict access to users with a <a class="reference internal" href="#allowed-email-domains"><em>certain email domain name</em></a> by setting <tt class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></tt> or who belong to a <a class="reference internal" href="#allowed-github-orgs"><em>particular GitHub organisation</em></a> by setting <tt class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></tt>.</p>
+<p>For those situations where it is not possible to group users in this way it is possible to selectively allow access on a per-user basis. How this is done depends on whether you are using Google or GitHub as OAuth2 provider for user login.</p>
+<div class="section" id="per-user-authorisation-using-google">
+<h3>Per-User Authorisation using Google<a class="headerlink" href="#per-user-authorisation-using-google" title="Permalink to this headline">¶</a></h3>
+<p>This assumes that the user wanting access to Alerta either does not have an email address in the configured Google app email domains:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;onlyus.com&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Or that the list of allowed email domains is empty:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Manaully add the user email address by selecting <em>Configuration -&gt; Users</em> from the alerta console.</p>
+<p>Name: a name to associate with the address, does not need to match registered name
+Login: email address of the user wanting access eg. <tt class="docutils literal"><span class="pre">let.me.in&#64;gmail.com</span></tt></p>
+<p>This user will now be able to login to alerta using <tt class="docutils literal"><span class="pre">let.me.in&#64;gmail.com</span></tt> account eventhough <tt class="docutils literal"><span class="pre">gmail.com</span></tt> is not listed in the <tt class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></tt> setting.</p>
+</div>
+<div class="section" id="per-user-authorisation-using-github">
+<h3>Per-User Authorisation using GitHub<a class="headerlink" href="#per-user-authorisation-using-github" title="Permalink to this headline">¶</a></h3>
+<p>This assumes that the user wanting access to Alerta is either not a member of the configured GitHub orgs:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ALLOWED_GITHUB_ORGS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;onlyus&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Or that the list of allowed GitHub organisations is empty:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ALLOWED_GITHUB_ORGS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Manaully add the user GitHub username by selecting <em>Configuration -&gt; Users</em> from the alerta console.</p>
+<p>Name: a name to associate with the address, does not need to match registered name
+Login: GitHub username of user wanting access eg. <tt class="docutils literal"><span class="pre">letmein</span></tt></p>
+<p>This user will now be able to login to alerta using <tt class="docutils literal"><span class="pre">letmein</span></tt> GitHub account eventhough they are not members of the organisations listed in the <tt class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></tt> setting.</p>
+</div>
 </div>
 </div>
 
@@ -206,7 +242,11 @@ Links
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#api-keys">API Keys</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#users">Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#user-authorisation">User Authorisation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#per-user-authorisation-using-google">Per-User Authorisation using Google</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#per-user-authorisation-using-github">Per-User Authorisation using GitHub</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
