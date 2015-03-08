@@ -100,7 +100,7 @@ To use Twitter as the OAuth provider for Alerta, login to `Twitter Application M
 - Name: Alerta for *Organisation*
 - Description: Alerta monitoring system
 - Website: http://alerta.io
-- Callback URL: any valid web address
+- Callback URL: http://alerta.example.com
 
 Create your twitter application, switch to *Settings* tab and enable *Allow this application to be used to Sign in with Twitter*.
 
