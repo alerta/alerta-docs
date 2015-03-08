@@ -111,7 +111,7 @@ Select the *Keys and Access Tokens* tab and take note of the Consumer Key (API K
 
 .. _`Twitter Application Management`: https://dev.twitter.com/apps
 
-To restrict access to particular users use the *circle of trust* approach. That is, add yourself to the list of allowed users, ensure ``AUTH_REQUIRED`` is set to ``True`` and restart ``alertad``. To gain access now, a user will need to be listed in the *Users* page. Note that any authorised user can add anyone else.
+To restrict access to particular users use the *circle of trust* approach. That is, add yourself to the list of allowed users, ensure ``AUTH_REQUIRED`` is set to ``True`` and restart ``alertad``. To gain access now, a user will need to be manually added to the *Users* page. Note that any existing user can add and remove users for the list of authorised users.
 
 .. note:: Twitter does not support OAuth2 for user
 
