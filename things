@@ -1,0 +1,69 @@
+ALERTA DOCS
+
+clients
+server
+
+CLIENTS
+
+web ui
+CLI / console
+chrome extension
+Python SDK
+oembed - wip
+android app
+IOS app
+
+SERVER
+
+REST API   http://api.alerta.io
+resources: alerts, heartbeats, keys, users
+alert and heartbeat JSON formats
+methods, attributes and responses
+JSONP, CORS, Caching “Last-Modified” (wip)
+
+
+alerts - CRUD, query, services, environments
+heartbeats - CRUD
+auth - google oauth, github oauth, api keys, specified users
+
+Plugins
+
+Core - amqp, enhance, logstash, normalise, reject, sns
+Contrib - geoip, hipchat, influxdb, slack
+
+Integrations
+
+Core - kibana, riemann, sensu, zabbix, nagios3
+Contrib - sqs, amqp, cloudwatch, opsweekly, pinger, snmptrap, supervisor, syslog, urlmon
+
+Webhooks
+
+cloudwatch
+pingdom
+
+
+DEPLOY
+
+Running in production
+wsgi app
+or gunicorn
+not as single threaded process
+
+try.alerta.io
+explorer.io
+alerta.herokuapp.com
+
+cloudformation
+docker
+packer
+google app engine
+heroku
+pypi
+openshift
+vagrant
+RPM & deb packages using fpm (wip)
+
+DEVELOPMENT
+
+Scala SDK
+Ruby SDK

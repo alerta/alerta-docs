@@ -125,6 +125,39 @@ HEAD, OPTIONS, GET  /webhooks/pingdom  pingdom</p>
 </div>
 <div class="section" id="oembed">
 <h2>oEmbed<a class="headerlink" href="#oembed" title="Permalink to this headline">¶</a></h2>
+<p>From <a class="reference external" href="https://github.com/guardian/alerta/blob/master/examples/oembed.html">https://github.com/guardian/alerta/blob/master/examples/oembed.html</a></p>
+<div class="code html highlight-python"><div class="highlight"><pre>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css&quot; /&gt;
+  &lt;link href=&#39;http://fonts.googleapis.com/css?family=Sintony:700&#39; rel=&#39;stylesheet&#39; type=&#39;text/css&#39;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class=&quot;mobile-alerts&quot;&gt;Loading...&lt;/div&gt;
+
+&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;http://api.alerta.io/embed.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+$(function() {
+
+  // $.alerta.defaults.endpoint = &#39;http://localhost:8080&#39;;
+  // $.alerta.defaults.key = &#39;demo-key&#39;;
+  // or
+  $.alerta.defaults = {
+      endpoint: &#39;http://api.alerta.io&#39;, // oEmbed endpoint becomes http://api.alerta.io/oembed.json
+      key: &#39;demo-key&#39;
+  };
+
+  $(&#39;.mobile-alerts&#39;).alerta(&#39;http://api.alerta.io/alerts/count?service=Mobile&amp;status=open&#39;, {title:&#39;Mobile Service&#39;});
+
+});
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+</div>
 <p>HEAD, OPTIONS, GET  /embed.js  embed_js
 HEAD, OPTIONS, GET  /oembed.json  oembed</p>
 </div>

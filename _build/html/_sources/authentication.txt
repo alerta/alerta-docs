@@ -34,7 +34,7 @@ Configuration
 Google OAuth2
 ~~~~~~~~~~~~~
 
-To use Google as the OAuth2 provider for ``alerta``, login to `Google Developer Console`_ and create a new project for alerta.
+To use Google as the OAuth2 provider for Alerta, login to `Google Developer Console`_ and create a new project for alerta.
 
 .. _Google Developer Console: https://console.developers.google.com
 
@@ -46,9 +46,7 @@ Go to *APIs and auth -> APIs* and set *Google+ API* to **ON**. Next go to *APIs 
 - Authorized Javscript Origins: http://alerta.example.com
 - Authorized Redirect URIs: http://alerta.example.com
 
-Click **Create Client ID** and take note of the Client ID and Client Secret. The configuration settins for ``alerta`` server are as follows:
-
-::
+Click **Create Client ID** and take note of the Client ID and Client Secret. The configuration settins for ``alerta`` server are as follows::
 
     OAUTH2_CLIENT_ID = '379647311730-sj130ru952o3o7ig8u0ts8np2ojivr8d.apps.googleusercontent.com'
     OAUTH2_CLIENT_SECRET = '8HrqJhbrYn9oDtaJqExample'
@@ -68,7 +66,7 @@ To restrict access to users with particular `Google apps domains`_ use::
 GitHub OAuth2
 ~~~~~~~~~~~~~
 
-To use GitHub as the OAuth2 provider for ``alerta``, login to GitHub and go to *Settings -> Applications -> Register New Application*.
+To use GitHub as the OAuth2 provider for Alerta, login to GitHub and go to *Settings -> Applications -> Register New Application*.
 
 - Application Name: Alerta
 - Homepage URL: http://alerta.io
@@ -77,9 +75,7 @@ To use GitHub as the OAuth2 provider for ``alerta``, login to GitHub and go to *
 
 .. note:: The `Authorization callback URL` is the most important setting and it is nothing more than the URL domain (ie. without any path) where the alerta Web UI is being hosted.
 
-Click Register Application and take note of the Client ID and Client Secret. Then configuration settings for ``alerta`` server are as follows:
-
-::
+Click Register Application and take note of the Client ID and Client Secret. Then configuration settings for ``alerta`` server are as follows::
 
     OAUTH2_CLIENT_ID = 'f7b0c15e2b722e0e38f4'
     OAUTH2_CLIENT_SECRET = '7aa9094369b72937910badab0424dc7393x8mpl3'
@@ -95,6 +91,29 @@ To restrict access to users who are members of particular `GitHub organisations`
 .. note:: ``ALLOWED_GITHUB_ORGS`` can be an asterisk (``*``) to force login but *not* restrict who can login.
 
 .. important:: To revoke access of your instance of alerta to your GitHub user info at any time go to *Settings -> Applications -> Authorized* applications, find alerta in the list of applications and click the **Revoke** button.
+
+Twitter OAuth
+~~~~~~~~~~~~~
+
+To use Twitter as the OAuth provider for Alerta, login to `Twitter Application Management`_ and create a new App.
+
+- Name: Alerta for *Organisation*
+- Description: Alerta monitoring system
+- Website: http://alerta.io
+- Callback URL: any valid web address
+
+Create your twitter application, switch to *Settings* tab and enable *Allow this application to be used to Sign in with Twitter*.
+
+Select the *Keys and Access Tokens* tab and take note of the Consumer Key (API Key), for the OAuth Client ID, and the Consumer Secret (API Secret), for the OAuth Client Secret. Then update the ``alertad`` configuration settings as follows::
+
+    OAUTH2_CLIENT_ID = '1Hfs7vUYPI1krKNFr2Pdg'  # consumer key
+    OAUTH2_CLIENT_SECRET = 'C0PthnGzCYzICnjG2dXaS6GhU4qqHEtcPMy33x8mpl3'  # consumer secret
+
+.. _`Twitter Application Management`: https://dev.twitter.com/apps
+
+To restrict access to particular users use the *circle of trust* approach. That is, add yourself to the list of allowed users, ensure ``AUTH_REQUIRED`` is set to ``True`` and restart ``alertad``. To gain access now, a user will need to be listed in the *Users* page. Note that any authorised user can add anyone else.
+
+.. note:: Twitter does not support OAuth2 for user
 
 Cross-Origin
 ~~~~~~~~~~~~

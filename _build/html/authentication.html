@@ -79,7 +79,7 @@
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="google-oauth2">
 <span id="id2"></span><h3>Google OAuth2<a class="headerlink" href="#google-oauth2" title="Permalink to this headline">¶</a></h3>
-<p>To use Google as the OAuth2 provider for <tt class="docutils literal"><span class="pre">alerta</span></tt>, login to <a class="reference external" href="https://console.developers.google.com">Google Developer Console</a> and create a new project for alerta.</p>
+<p>To use Google as the OAuth2 provider for Alerta, login to <a class="reference external" href="https://console.developers.google.com">Google Developer Console</a> and create a new project for alerta.</p>
 <ul class="simple">
 <li>Project Name: alerta</li>
 <li>Project ID: (automatically assigned)</li>
@@ -105,7 +105,7 @@
 </div>
 <div class="section" id="github-oauth2">
 <span id="id3"></span><h3>GitHub OAuth2<a class="headerlink" href="#github-oauth2" title="Permalink to this headline">¶</a></h3>
-<p>To use GitHub as the OAuth2 provider for <tt class="docutils literal"><span class="pre">alerta</span></tt>, login to GitHub and go to <em>Settings -&gt; Applications -&gt; Register New Application</em>.</p>
+<p>To use GitHub as the OAuth2 provider for Alerta, login to GitHub and go to <em>Settings -&gt; Applications -&gt; Register New Application</em>.</p>
 <ul class="simple">
 <li>Application Name: Alerta</li>
 <li>Homepage URL: <a class="reference external" href="http://alerta.io">http://alerta.io</a></li>
@@ -132,6 +132,27 @@
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
 <p class="last">To revoke access of your instance of alerta to your GitHub user info at any time go to <em>Settings -&gt; Applications -&gt; Authorized</em> applications, find alerta in the list of applications and click the <strong>Revoke</strong> button.</p>
+</div>
+</div>
+<div class="section" id="twitter-oauth">
+<h3>Twitter OAuth<a class="headerlink" href="#twitter-oauth" title="Permalink to this headline">¶</a></h3>
+<p>To use Twitter as the OAuth provider for Alerta, login to <a class="reference external" href="https://dev.twitter.com/apps">Twitter Application Management</a> and create a new App.</p>
+<ul class="simple">
+<li>Name: Alerta for <em>Organisation</em></li>
+<li>Description: Alerta monitoring system</li>
+<li>Website: <a class="reference external" href="http://alerta.io">http://alerta.io</a></li>
+<li>Callback URL: any valid web address</li>
+</ul>
+<p>Create your twitter application, switch to <em>Settings</em> tab and enable <em>Allow this application to be used to Sign in with Twitter</em>.</p>
+<p>Select the <em>Keys and Access Tokens</em> tab and take note of the Consumer Key (API Key), for the OAuth Client ID, and the Consumer Secret (API Secret), for the OAuth Client Secret. Then update the <tt class="docutils literal"><span class="pre">alertad</span></tt> configuration settings as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s">&#39;1Hfs7vUYPI1krKNFr2Pdg&#39;</span>  <span class="c"># consumer key</span>
+<span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s">&#39;C0PthnGzCYzICnjG2dXaS6GhU4qqHEtcPMy33x8mpl3&#39;</span>  <span class="c"># consumer secret</span>
+</pre></div>
+</div>
+<p>To restrict access to particular users use the <em>circle of trust</em> approach. That is, add yourself to the list of allowed users, ensure <tt class="docutils literal"><span class="pre">AUTH_REQUIRED</span></tt> is set to <tt class="docutils literal"><span class="pre">True</span></tt> and restart <tt class="docutils literal"><span class="pre">alertad</span></tt>. To gain access now, a user will need to be listed in the <em>Users</em> page. Note that any authorised user can add anyone else.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Twitter does not support OAuth2 for user</p>
 </div>
 </div>
 <div class="section" id="cross-origin">
@@ -239,6 +260,7 @@ Links
 <li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#google-oauth2">Google OAuth2</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#github-oauth2">GitHub OAuth2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#twitter-oauth">Twitter OAuth</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cross-origin">Cross-Origin</a></li>
 </ul>
 </li>
