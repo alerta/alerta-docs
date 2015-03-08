@@ -16,13 +16,15 @@ By default, authentication is not enabled, however there are some features that 
 OAuth2 Authentication
 ---------------------
 
-User authentication for the web console is provided by Google_ or GitHub_ `OAuth 2.0`_ OpenID_ connect service.
+User authentication for the web console is provided by Google_ or GitHub_ `OAuth 2.0`_ OpenID_ connect service or Twitter_ `OAuth 1.0a`_ service.
 
 .. note:: If alerta is deployed to a publicly accessible web server it is important to configure the OAuth2 settings correctly to ensure that only authorised users can access and modify your alerts.
 
 .. _Google: https://developers.google.com/accounts/docs/OpenIDConnect
 .. _GitHub: https://developer.github.com/v3/oauth/
+.. _Twitter: https://dev.twitter.com/web/sign-in/implementing
 .. _`OAuth 2.0`: http://tools.ietf.org/html/draft-ietf-oauth-v2-22
+.. _`OAuth 1.0a`: http://oauth.net/core/1.0a/
 .. _OpenID: http://openid.net/connect/
 
 
