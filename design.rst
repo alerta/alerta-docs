@@ -37,4 +37,4 @@ Alerts should be resent at regular intervals if they are still active which mean
 Tags and custom attributes
 --------------------------
 
-Dynamic 'scale up'/'scale down' environments are the defacto standard now. naming individual servers is lame, use dynamically generated metadata to tag alerts and dynamically assign custom attributes based on requirements
+Dynamic 'scale up'/'scale down' environments are the defacto standard now; naming individual servers is lame. Use service discovery and dynamically generated metadata to tag alerts and dynamically assign custom attributes.

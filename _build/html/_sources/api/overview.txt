@@ -41,6 +41,8 @@ API Keys
 
 Create your own key when logged in.
 
+read-write and read-only keys
+
 
 Instance References
 ----------

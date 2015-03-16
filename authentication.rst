@@ -142,6 +142,8 @@ If authentication is enforced, then an API key is needed to access the alerta AP
 
     API_KEY_EXPIRE_DAYS = 365  # 1 year
 
+ `read-write` and `read-only` API keys
+
 .. _users:
 
 User Authorisation

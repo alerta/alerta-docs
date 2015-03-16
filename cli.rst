@@ -188,18 +188,29 @@ To send an alert with custom attribute called ``customer``::
     $ alerta send -r web01 -e HttpError -g Web -s major --attributes customer="Tyrell Corp"
 
 
+To query for major and minor open alerts for the Production environment of the Mobile API service::
+
+    $ alerta query --filters severity=major severity=minor status=open environment=Production service="Mobile API"
+
+To query for all alerts with "disk" in the alert text::
+
+    $ alerta query --filters text=~disk
+
+
 :command:`query`
 ~~~~~~~~~~~~~~~~
 
 Search for alerts::
 
-    $ alerta [OPTIONS] query [--details] [--id ID] [--filters FILTERS]
+    $ alerta [OPTIONS] query [--details] [--ids IDs] [--filters FILTERS]
 
     optional arguments:
-      -h, --help         show this help message and exit
-      --details          Show alert details
-      -i ID, --id ID     List of alert IDs (can use short 8-char id).
-      --filters FILTERS  KEY=VALUE eg. id=5108bc20
+      -h, --help            show this help message and exit
+      --details             Show alert details
+      -i IDs [IDs ...], --ids IDs [IDs ...]
+                            List of alert IDs (can use short 8-char id).
+      --filters FILTERS [FILTERS ...]
+                            KEY=VALUE eg. serverity=warning resource=web
 
 
 :command:`watch`

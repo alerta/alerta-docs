@@ -299,17 +299,27 @@ $ alerta send --resource web01 --event HttpOK --correlate HttpError --group Web 
 <div class="highlight-python"><div class="highlight"><pre>$ alerta send -r web01 -e HttpError -g Web -s major --attributes customer=&quot;Tyrell Corp&quot;
 </pre></div>
 </div>
+<p>To query for major and minor open alerts for the Production environment of the Mobile API service:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta query --filters severity=major severity=minor status=open environment=Production service=&quot;Mobile API&quot;
+</pre></div>
+</div>
+<p>To query for all alerts with &#8220;disk&#8221; in the alert text:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta query --filters text=~disk
+</pre></div>
+</div>
 </div>
 <div class="section" id="query">
 <h3><strong class="command">query</strong><a class="headerlink" href="#query" title="Permalink to this headline">¶</a></h3>
 <p>Search for alerts:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] query [--details] [--id ID] [--filters FILTERS]
+<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] query [--details] [--ids IDs] [--filters FILTERS]
 
 optional arguments:
-  -h, --help         show this help message and exit
-  --details          Show alert details
-  -i ID, --id ID     List of alert IDs (can use short 8-char id).
-  --filters FILTERS  KEY=VALUE eg. id=5108bc20
+  -h, --help            show this help message and exit
+  --details             Show alert details
+  -i IDs [IDs ...], --ids IDs [IDs ...]
+                        List of alert IDs (can use short 8-char id).
+  --filters FILTERS [FILTERS ...]
+                        KEY=VALUE eg. serverity=warning resource=web
 </pre></div>
 </div>
 </div>
