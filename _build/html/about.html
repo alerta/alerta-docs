@@ -58,11 +58,17 @@
   <div class="section" id="about">
 <span id="id1"></span><h1>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h1>
 <p>Alerta started out of necessity as a replacement for a legacy monitoring tool but only after exhaustively evaluating all credible alternatives first.</p>
-<p>Initially all we wanted was to be able to create alert thresholds for our significant Ganglia install base <a href="#id3"><span class="problematic" id="id4"><span id="id2"></span>[#]_</span></a> and view the alerts in a web console &#8211; ie. a Ganglia &#8220;alerter&#8221;. Not having a proper name for the project the working name of &#8220;an alerter&#8221; stuck and a simple homophone was chosen to aid future Google searches.</p>
+<p>Initially all we wanted was to be able to create alert thresholds for our significant Ganglia install base <a class="footnote-reference" href="#id3" id="id2">[1]</a> and view the alerts in a web console &#8211; ie. a Ganglia &#8220;alerter&#8221;. Not having a proper name for the project the working name of &#8220;an alerter&#8221; stuck and a simple homophone was chosen to aid future Google searches.</p>
 <p>In the end, the thresholding of metrics proved very difficult to scale so we eventually split the project in two and metric thresholding was given to Riemann (see riemann-config) and the alert correlation, de-duplication and visualisation became &#8220;alerta&#8221;.</p>
 <p>Over the years the project has evovled to meet the needs of the Guardian development teams as they moved to a more agile, dynamic, &#8220;<a class="reference external" href="http://akfpartners.com/techblog/2008/05/30/fault-isolative-architectures-or-%E2%80%9Cswimlaning%E2%80%9D/">swimlaned</a>&#8221; architecture which has meant, for the operations team, a shift from static, self-hosted infrastructure to an internal OpenStack cloud to finally an external cloud service.</p>
 <p>In that time certain key features of alerta have been deprecated as requirements changed (eg. the message bus, Ganglia, Riemann) and others added (eg. OAuth2 login, CloudWatch, Pingdom, PagerDuty integration). In the process it has been slimmed down with fewer components making it easier to understand, deploy and manage.</p>
 <p>As such, alerta is now quite different to the somewhat &#8220;over engineered&#8221; initial solution but the core concepts of being a flexible, easy-to-use tool remain and it is now a &#8220;cloud-ready&#8221; solution adapted to challenges of a fast changing environment.</p>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>A monitoring tool should not need to collect it&#8217;s own metrics, you should alert from what you already collect with metric tools.</td></tr>
+</tbody>
+</table>
 </div>
 
 
