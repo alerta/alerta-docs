@@ -20,3 +20,8 @@ Requirements
 
   * ReadTheDocs: https://readthedocs.org/
   * Alabaster: https://github.com/bitprophet/alabaster
+
+License
+-------
+
+Copyright (c) 2015 by Nick Satterly.
