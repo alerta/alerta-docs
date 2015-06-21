@@ -12,6 +12,8 @@ The website will be automatically updated whenever an `.rst` file changes.
 To update the docs website:
 
     $ make html
+    $ git add .
+    $ git commit -m '...'
     $ git push
 
 
