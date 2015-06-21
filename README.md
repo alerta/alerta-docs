@@ -1,5 +1,5 @@
-Alerta Documentation
-====================
+Alerta Docs
+===========
 
 To view the docs locally:
 
