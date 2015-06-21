@@ -17,4 +17,4 @@ As such, alerta is now quite different to the somewhat "over engineered" initial
 
 .. _`swimlaned`: http://akfpartners.com/techblog/2008/05/30/fault-isolative-architectures-or-%E2%80%9Cswimlaning%E2%80%9D/
 
-.. [#] A monitoring tool should not need to collect it's own metrics, you should alert from what you already collect with metric tools.
+.. [#] A monitoring tool should not need to collect its own metrics, it should alert from what is already collected with metric tools.
