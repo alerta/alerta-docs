@@ -53,7 +53,7 @@ Contribute
 ----------
 
 - Core project: http://github.com/guardian/alerta
-- Integrations, etc: http://github.com/alerta
+- Web UI, Python SDK, integrations: http://github.com/alerta
 
 Support
 -------
