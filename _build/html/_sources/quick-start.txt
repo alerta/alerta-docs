@@ -8,7 +8,7 @@ This is a quick-start guide that will get you running Alerta in under 5 minutes 
 Install MongoDB
 ---------------
 
-For Debian, run::
+For Debian/Ubuntu, run::
 
     $ sudo apt-get install -y mongodb-org
     $ mongod
