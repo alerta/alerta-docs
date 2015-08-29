@@ -59,29 +59,35 @@ There are several more integrations available in the `contrib`_ repo. They are:
 Webhooks
 --------
 
-** webhooks are the thing **
+Webhooks are a popular and easy way of integrating with other systems to configuring API callbacks from other tools to the Alerta server API. When an alarm is triggered in Cloudwatch, an alert is generated in Pingdom or a alarm is acknowledged in PagerDuty, Alerta can be notified.
 
 AWS Cloudwatch
 ~~~~~~~~~~~~~~
 
 ** go into detail here **
 
-See AwsCloudwatch_
+See Cloudwatch_webhook_
+
+.. _Cloudwatch_webhook: http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html
 
 Pingdom
 ~~~~~~~
 
 ** go into detail here **
 
-See Pingdom_
+See Pingdom_webhook_
 
-.. _AwsCloudwatch: http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html
-.. _Pingdom: https://support.pingdom.com/Knowledgebase/Article/View/94/0/users-and-alerting-end-points
+
+.. _Pingdom_webhook: https://support.pingdom.com/Knowledgebase/Article/View/94/0/users-and-alerting-end-points
 
 PagerDuty
 ~~~~~~~~~
 
 ** go into detail here **
+
+See PagerDuty_webhook_
+
+.. _PagerDuty_webhook: https://developer.pagerduty.com/documentation/rest/webhooks
 
 .. _plugins:
 

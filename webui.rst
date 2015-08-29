@@ -36,5 +36,10 @@ Watching Alerts
 Only logged-in users can watch alerts.
 
 
+About
+~~~~~
+
+Server version and stats
+
 chrome extension
 ----------------
