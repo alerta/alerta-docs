@@ -3,13 +3,9 @@
 Integrations & Plugins
 ======================
 
-There are several different ways to integrate other alert sources into Alerta. Integrations with key open source monitoring tools have been developed and provide good starting points for other, lesser-known or internally developed, monitoring tools.
+There are several different ways to integrate other alert sources into Alerta. Integrations with key open source monitoring tools make use of the Alerta API and can form the starting points for integrating other lesser-known monitoring tools.
 
-These integration are built around the Alerta API which is used to create new alerts.
-
-There are built-in webhooks for AWS Cloudwatch, Pingdom and PagerDuty.
-
-Plugins can be used to quickly and easily forward alerts to or notify other systems.
+There are built-in webhooks for AWS Cloudwatch, Pingdom and PagerDuty. Plugins can be used to quickly and easily forward alerts to or notify other systems.
 
 .. _integrations:
 
