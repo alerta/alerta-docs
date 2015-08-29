@@ -32,7 +32,7 @@ Contrib
 
 There are several more integrations available in the `contrib`_ repo. They are:
 
-* `Amazon SQS`_ - example script to demo how to receive alerts sent to sns/sqs by the SNS core plugin
+* `Amazon SQS`_ - receive alerts from SQS that were sent using the SNS core plugin
 * E-mail and PagerDuty integrations use the `AMQP`_ message queue core plugin
 * `AWS Cloudwatch`_ - receive cloudwatch alarms from SQS (deprecated, use the cloudwatch webhook instead)
 * Opsweekly_ - query Alerta to generate Opsweekly reports
