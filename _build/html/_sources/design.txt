@@ -20,7 +20,7 @@ You are free to use as many or as few as you like eg. if you plan to only integr
 Robust alert reception
 ----------------------
 
-In accordance with the `robustness principle`_ which is to "be liberal in what you accept from others", alerta will accept any alert as long as it meets the alert format specification. ie. no field needs to be defined in advance for it to be accepted, however the benefits of following a standard convention for such attributes as ``environment``, ``service``, ``event`` and ``resource`` (as internally defined by and useful to you) are many.
+In accordance with the `robustness principle`_ which is to "be liberal in what you accept from others", alerta will accept any alert as long as it meets the alert format specification. ie. no field needs to be defined in advance for it to be accepted, however the benefits of following a standard :ref:`convention <conventions>` for such attributes as ``environment``, ``service``, ``event`` and ``resource`` (as internally defined by and useful to you) are many.
 
 .. _`robustness principle`: http://en.wikipedia.org/wiki/Robustness_principle
 

@@ -103,22 +103,22 @@
 <td>web server errors</td>
 </tr>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">Syslog</span></tt></td>
-<td>&nbsp;</td>
+<td>unix system log messages</td>
 </tr>
 <tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Hardware</span></tt></td>
-<td>&nbsp;</td>
+<td>hardware errors</td>
 </tr>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">Storage</span></tt></td>
-<td>&nbsp;</td>
+<td>NFS, SAN, NAS storage infrastructure</td>
 </tr>
 <tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Database</span></tt></td>
-<td>&nbsp;</td>
+<td>database errors, table space utilisation</td>
 </tr>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">Security</span></tt></td>
-<td>&nbsp;</td>
+<td>security/authorization messages</td>
 </tr>
 <tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Network</span></tt></td>
-<td>&nbsp;</td>
+<td>network devices and infrastructure</td>
 </tr>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">Cloud</span></tt></td>
 <td>cloud-based services or infrastructure</td>
@@ -165,6 +165,10 @@
 </tr>
 </tbody>
 </table>
+</div>
+<div class="section" id="enforcing-conventions">
+<h2>Enforcing Conventions<a class="headerlink" href="#enforcing-conventions" title="Permalink to this headline">¶</a></h2>
+<p>Once a set of naming conventions are agreed, they can be enforced by writing a simple <a class="reference internal" href="server.html#pre-receive"><em>pre-receive</em></a> plug-in. An example called <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py">reject</a> can be found in the plug-ins directory of the project code repository.</p>
 </div>
 </div>
 
@@ -219,6 +223,7 @@ Links
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#severity-levels">Severity Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#enforcing-conventions">Enforcing Conventions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>

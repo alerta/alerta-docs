@@ -39,17 +39,17 @@ Another consideration is to ensure you make use of the event group which gives y
 +--------------------+--------------------------------------------+
 | ``Web``            | web server errors                          |
 +--------------------+--------------------------------------------+
-| ``Syslog``         |                                            |
+| ``Syslog``         | unix system log messages                   |
 +--------------------+--------------------------------------------+
-| ``Hardware``       |                                            |
+| ``Hardware``       | hardware errors                            |
 +--------------------+--------------------------------------------+
-| ``Storage``        |                                            |
+| ``Storage``        | NFS, SAN, NAS storage infrastructure       |
 +--------------------+--------------------------------------------+
-| ``Database``       |                                            |
+| ``Database``       | database errors, table space utilisation   |
 +--------------------+--------------------------------------------+
-| ``Security``       |                                            |
+| ``Security``       | security/authorization messages            |
 +--------------------+--------------------------------------------+
-| ``Network``        |                                            |
+| ``Network``        | network devices and infrastructure         |
 +--------------------+--------------------------------------------+
 | ``Cloud``          | cloud-based services or infrastructure     |
 +--------------------+--------------------------------------------+
@@ -76,3 +76,9 @@ Agree on a subset of severity levels and be consistent with what they mean. For 
 | ``warning``  | everything else                  | consolidate into daily email   |
 +--------------+----------------------------------+--------------------------------+
 
+Enforcing Conventions
+---------------------
+
+Once a set of naming conventions are agreed, they can be enforced by writing a simple :ref:`pre-receive <pre_receive>` plug-in. An example called `reject`_ can be found in the plug-ins directory of the project code repository.
+
+.. _`reject`: https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py
