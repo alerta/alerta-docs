@@ -6,6 +6,26 @@ Web UI
 Alert Web Console
 -----------------
 
+Recent
+~~~~~~
+
+Sorting
+
+
+Alert Details
+
+
+Action Buttons
+
+Raw Data
+
+JSON format
+
+Alert History
+
+Top 10
+~~~~~~
+
 
 
 .. _watched_alerts:

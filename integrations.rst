@@ -1,10 +1,12 @@
-.. _integrations:
+.. _integrations_plugins:
 
 Integrations & Plugins
 ======================
 
 There are several different ways to integrate other alert sources into Alerta. Integrations with key open source monitoring tools have been developed and provide good starting points for other, perhaps bespoke, monitoring tools.
 
+
+.. _integrations:
 
 Integrations
 ------------
@@ -36,6 +38,8 @@ There are several more integrations available in the `contrib`_ repo. They are:
 
 .. _contrib: https://github.com/alerta/alerta-contrib
 
+.. _webhooks:
+
 Webhooks
 --------
 
@@ -55,6 +59,7 @@ See Pingdom_
 .. _AwsCloudwatch: http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html
 .. _Pingdom: https://support.pingdom.com/Knowledgebase/Article/View/94/0/users-and-alerting-end-points
 
+.. _plugins:
 
 Plugins
 -------

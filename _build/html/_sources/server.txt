@@ -7,27 +7,35 @@ The ``alertad`` server receives alerts from multiple sources, :ref:`correlates <
 
 Alerts can be intercepted as they are received to modify, enhance or reject them using :ref:`pre-receive hooks <pre_receive>`. Alerts can also be used to trigger actions in other systems after the alert has been processed using :ref:`post-receive hooks <post_receive>`.
 
-There are several integrations with popular monitoring tools available and webhooks can be used to trivially integrate with Pingdom and AWS Cloudwatch.
-
-
-
+There are several :ref:`integrations <integrations>` with popular monitoring tools available and :ref:`webhooks <webhooks>` can be used to trivially integrate with AWS Cloudwatch, Pingdom, and PagerDuty.
 
 .. _event_processing:
 
 Event Processing
 ----------------
 
-
-
 .. _deduplication:
 
 De-duplication
 ~~~~~~~~~~~~~~
 
+Same event/resource combination, same severity simply increases the duplicate count.
+
 .. _correlation:
 
 Simple Correlation
 ~~~~~~~~~~~~~~~~~~
+
+Same event/resource, different severity
+Correlated list of related events. eg. NodeUp NodeDown
+
+
+Auto-closing
+~~~~~~~~~~~~
+
+Alerts cleared, normal, ok change status to `closed`
+
+
 
 .. _plugins:
 

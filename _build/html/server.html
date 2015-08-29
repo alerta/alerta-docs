@@ -59,14 +59,21 @@
 <span id="server"></span><h1>Server &amp; API<a class="headerlink" href="#server-api" title="Permalink to this headline">¶</a></h1>
 <p>The <tt class="docutils literal"><span class="pre">alertad</span></tt> server receives alerts from multiple sources, <a class="reference internal" href="#correlation"><em>correlates</em></a> and <a class="reference internal" href="#deduplication"><em>de-duplicates</em></a> them, and makes the alerts available via a JSON API.</p>
 <p>Alerts can be intercepted as they are received to modify, enhance or reject them using <a class="reference internal" href="#pre-receive"><em>pre-receive hooks</em></a>. Alerts can also be used to trigger actions in other systems after the alert has been processed using <a class="reference internal" href="#post-receive"><em>post-receive hooks</em></a>.</p>
-<p>There are several integrations with popular monitoring tools available and webhooks can be used to trivially integrate with Pingdom and AWS Cloudwatch.</p>
+<p>There are several <a class="reference internal" href="integrations.html#integrations"><em>integrations</em></a> with popular monitoring tools available and <a class="reference internal" href="integrations.html#webhooks"><em>webhooks</em></a> can be used to trivially integrate with AWS Cloudwatch, Pingdom, and PagerDuty.</p>
 <div class="section" id="event-processing">
 <span id="id1"></span><h2>Event Processing<a class="headerlink" href="#event-processing" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="de-duplication">
 <span id="deduplication"></span><h3>De-duplication<a class="headerlink" href="#de-duplication" title="Permalink to this headline">¶</a></h3>
+<p>Same event/resource combination, same severity simply increases the duplicate count.</p>
 </div>
 <div class="section" id="simple-correlation">
 <span id="correlation"></span><h3>Simple Correlation<a class="headerlink" href="#simple-correlation" title="Permalink to this headline">¶</a></h3>
+<p>Same event/resource, different severity
+Correlated list of related events. eg. NodeUp NodeDown</p>
+</div>
+<div class="section" id="auto-closing">
+<h3>Auto-closing<a class="headerlink" href="#auto-closing" title="Permalink to this headline">¶</a></h3>
+<p>Alerts cleared, normal, ok change status to <cite>closed</cite></p>
 </div>
 </div>
 <div class="section" id="plug-ins">
@@ -252,6 +259,7 @@ Links
 <li class="toctree-l2"><a class="reference internal" href="#event-processing">Event Processing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#de-duplication">De-duplication</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#simple-correlation">Simple Correlation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auto-closing">Auto-closing</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#plug-ins">Plug-ins</a><ul>
