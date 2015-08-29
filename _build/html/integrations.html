@@ -75,20 +75,20 @@
 <h3>Contrib<a class="headerlink" href="#contrib" title="Permalink to this headline">¶</a></h3>
 <p>There are several more integrations available in the <a class="reference external" href="https://github.com/alerta/alerta-contrib">contrib</a> repo. They are:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/amqp">Amazon SQS</a> is this used to publish or receive alerts? even i don&#8217;t know</li>
-<li>E-mail and PagerDuty via an <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/amqp">AMQP</a> message queue</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/opsweekly">AWS Cloudwatch</a> - how is this different to the cw webhook?</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/opsweekly">Opsweekly</a> - what is it?</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/supervisor">Pinger</a> - generate alerts from list of nw resources being pinged. ICMP unreachable</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/supervisor">SNMP Trap</a> - process SNMPv1, SNMPv2 but not SNMPv3. IPMI ???</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/supervisor">Supervisor</a></li>
-<li><a class="reference internal" href="#syslog">Syslog</a> - BSD, Syslog and Cisco syslog</li>
-<li><a class="reference internal" href="#url-monitor">URL monitor</a> - probe URLs</li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/amazon-sqs">Amazon SQS</a> - example script to demo how to receive alerts sent to sns/sqs by the SNS core plugin</li>
+<li>E-mail and PagerDuty daemones that make use of the the <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/amqp">AMQP</a> message queue core plugin</li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/cloudwatch">AWS Cloudwatch</a> - receive cloudwatch alarms from SQS (deprecated, use the cloudwatch webhook instead)</li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/opsweekly">Opsweekly</a> - query Alerta to generate Opsweekly reports</li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/pinger">Pinger</a> - generate ping alerts from list of network resources being pinged</li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/snmptrap">SNMP Trap</a> - generate alerts from SNMPv1 and SNMPv2 sources</li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/supervisor">Supervisor</a> - trigger alerts and heartbeats based on process deamon events</li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/syslog">Syslog</a> - receive RFC 5424, RFC 3164 syslog and Cisco syslog messages</li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/urlmon">URL monitor</a> - trigger alerts from web service query responses</li>
 </ul>
 </div>
 </div>
 <div class="section" id="webhooks">
-<span id="url-monitor"></span><span id="syslog"></span><span id="id4"></span><h2>Webhooks<a class="headerlink" href="#webhooks" title="Permalink to this headline">¶</a></h2>
+<span id="id4"></span><h2>Webhooks<a class="headerlink" href="#webhooks" title="Permalink to this headline">¶</a></h2>
 <p>** webhooks are the thing **</p>
 <div class="section" id="id5">
 <h3>AWS Cloudwatch<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>

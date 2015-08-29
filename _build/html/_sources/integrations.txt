@@ -32,27 +32,27 @@ Contrib
 
 There are several more integrations available in the `contrib`_ repo. They are:
 
-* `Amazon SQS`_ is this used to publish or receive alerts? even i don't know
-* E-mail and PagerDuty via an `AMQP`_ message queue
-* `AWS Cloudwatch`_ - how is this different to the cw webhook?
-* Opsweekly_ - what is it?
-* Pinger_ - generate alerts from list of nw resources being pinged. ICMP unreachable
-* `SNMP Trap`_ - process SNMPv1, SNMPv2 but not SNMPv3. IPMI ???
-* Supervisor_
-* Syslog_ - BSD, Syslog and Cisco syslog
-* `URL monitor`_ - probe URLs
+* `Amazon SQS`_ - example script to demo how to receive alerts sent to sns/sqs by the SNS core plugin
+* E-mail and PagerDuty daemones that make use of the the `AMQP`_ message queue core plugin
+* `AWS Cloudwatch`_ - receive cloudwatch alarms from SQS (deprecated, use the cloudwatch webhook instead)
+* Opsweekly_ - query Alerta to generate Opsweekly reports
+* Pinger_ - generate ping alerts from list of network resources being pinged
+* `SNMP Trap`_ - generate alerts from SNMPv1 and SNMPv2 sources
+* Supervisor_ - trigger alerts and heartbeats based on process deamon events
+* Syslog_ - receive RFC 5424, RFC 3164 syslog and Cisco syslog messages
+* `URL monitor`_ - trigger alerts from web service query responses
 
 .. _contrib: https://github.com/alerta/alerta-contrib
 
-.. _Amazon SQS:
+.. _Amazon SQS: https://github.com/alerta/alerta-contrib/tree/master/integrations/amazon-sqs
 .. _AMQP: https://github.com/alerta/alerta-contrib/tree/master/integrations/amqp
-.. _AWS Cloudwatch:
+.. _AWS Cloudwatch: https://github.com/alerta/alerta-contrib/tree/master/integrations/cloudwatch
 .. _Opsweekly: https://github.com/alerta/alerta-contrib/tree/master/integrations/opsweekly
-.. _Pinger:
-.. _SNMP Trap:
+.. _Pinger: https://github.com/alerta/alerta-contrib/tree/master/integrations/pinger
+.. _SNMP Trap: https://github.com/alerta/alerta-contrib/tree/master/integrations/snmptrap
 .. _Supervisor: https://github.com/alerta/alerta-contrib/tree/master/integrations/supervisor
-.. _Syslog:
-.. _URL monitor:
+.. _Syslog: https://github.com/alerta/alerta-contrib/tree/master/integrations/syslog
+.. _URL monitor: https://github.com/alerta/alerta-contrib/tree/master/integrations/urlmon
 
 .. _webhooks:
 
