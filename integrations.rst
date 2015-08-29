@@ -80,7 +80,7 @@ Contrib
 * Twilio SMS
 
 
-.. _Nagios Event Broker: https://github.com/alerta/nagios3-alerta
+.. _Nagios Event Broker: https://github.com/alerta/nagios-alerta
 .. _Zabbix Alert Script: https://github.com/alerta/zabbix-alerta
 .. _Sensu Plugin: https://github.com/alerta/sensu-alerta
 .. _Riemann Integration: https://github.com/alerta/riemann-alerta
