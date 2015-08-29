@@ -65,10 +65,10 @@
 <h3>Core<a class="headerlink" href="#core" title="Permalink to this headline">¶</a></h3>
 <p>There are a few core integrations which have been developed to showcase how easy it is to quickly get alerts or events from other tools into Alerta. They are:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/alerta/nagios-alerta">Nagios Event Broker</a> (C)</li>
-<li><a class="reference external" href="https://github.com/alerta/zabbix-alerta">Zabbix Alert Script</a> (Python)</li>
-<li><a class="reference external" href="https://github.com/alerta/sensu-alerta">Sensu Plugin</a> (Ruby)</li>
-<li><a class="reference external" href="https://github.com/alerta/riemann-alerta">Riemann Plugin</a> (Clojure)</li>
+<li><a class="reference external" href="https://github.com/alerta/nagios-alerta">Nagios Event Broker</a> - host and service check with alert suppression during downtime</li>
+<li><a class="reference external" href="https://github.com/alerta/zabbix-alerta">Zabbix Alert Script</a> - ???</li>
+<li><a class="reference external" href="https://github.com/alerta/sensu-alerta">Sensu Plugin</a> - ???</li>
+<li><a class="reference external" href="https://github.com/alerta/riemann-alerta">Riemann Plugin</a> - generate alerts from thresholds defined against metric streams</li>
 </ul>
 </div>
 <div class="section" id="contrib">
@@ -89,7 +89,7 @@
 </div>
 <div class="section" id="webhooks">
 <span id="id4"></span><h2>Webhooks<a class="headerlink" href="#webhooks" title="Permalink to this headline">¶</a></h2>
-<p>Webhooks are a popular and easy way of integrating with other systems to configuring API callbacks from other tools to the Alerta server API. When an alarm is triggered in Cloudwatch, an alert is generated in Pingdom or a alarm is acknowledged in PagerDuty, Alerta can be notified.</p>
+<p>Webhooks are a way of integrating with other systems by triggering web callbacks to the Alerta server API when an event occurs.</p>
 <div class="section" id="id5">
 <h3>AWS Cloudwatch<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>** go into detail here **</p>
@@ -111,25 +111,25 @@
 <div class="section" id="id7">
 <h3>Core<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>AMQP</li>
-<li>Enhance</li>
-<li>Logstash/Kibana</li>
-<li>Normalise</li>
-<li>Reject</li>
-<li>AWS SNS</li>
+<li>AMQP - ???</li>
+<li>Enhance - ???</li>
+<li>Logstash/Kibana - ???</li>
+<li>Normalise - ???</li>
+<li>Reject - used to enforce custom alert format policies</li>
+<li>AWS SNS - ???</li>
 </ul>
 <p>** go into detail here **</p>
 </div>
 <div class="section" id="id8">
 <h3>Contrib<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/geoip">GeoIP Location</a></li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/hipchat">HipChat</a></li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/influxdb">InfluxDB</a></li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty">PagerDuty</a> &#8211; send alerts to pagerduty (webhooks used to receive acks)</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pushover">Pushover.net</a></li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/slack">Slack</a></li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/twilio">Twilio SMS</a></li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/geoip">GeoIP Location</a> - use remote IP address to submitted alert to add location data</li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/hipchat">HipChat</a> - send alerts to HipChat room</li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/influxdb">InfluxDB</a> - send alerts to InfluxDB for graphing with Grafana</li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty">PagerDuty</a> - send alerts to PagerDuty (webhooks used to receive callbacks)</li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pushover">Pushover.net</a> - send alerts to Pushover.net</li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/slack">Slack</a> - send alerts to Slack room</li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/twilio">Twilio SMS</a> - sene alerts via SMS using Twilio</li>
 </ul>
 </div>
 </div>

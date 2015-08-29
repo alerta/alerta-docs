@@ -17,10 +17,10 @@ Core
 
 There are a few core integrations which have been developed to showcase how easy it is to quickly get alerts or events from other tools into Alerta. They are:
 
-* `Nagios Event Broker`_ (C)
-* `Zabbix Alert Script`_ (Python)
-* `Sensu Plugin`_ (Ruby)
-* `Riemann Plugin`_ (Clojure)
+* `Nagios Event Broker`_ - host and service check with alert suppression during downtime
+* `Zabbix Alert Script`_ - ???
+* `Sensu Plugin`_ - ???
+* `Riemann Plugin`_ - generate alerts from thresholds defined against metric streams
 
 .. _Nagios Event Broker: https://github.com/alerta/nagios-alerta
 .. _Zabbix Alert Script: https://github.com/alerta/zabbix-alerta
@@ -59,7 +59,7 @@ There are several more integrations available in the `contrib`_ repo. They are:
 Webhooks
 --------
 
-Webhooks are a popular and easy way of integrating with other systems to configuring API callbacks from other tools to the Alerta server API. When an alarm is triggered in Cloudwatch, an alert is generated in Pingdom or a alarm is acknowledged in PagerDuty, Alerta can be notified.
+Webhooks are a way of integrating with other systems by triggering web callbacks to the Alerta server API when an event occurs.
 
 AWS Cloudwatch
 ~~~~~~~~~~~~~~
@@ -97,25 +97,25 @@ Plugins
 Core
 ~~~~
 
-* AMQP
-* Enhance
-* Logstash/Kibana
-* Normalise
-* Reject
-* AWS SNS
+* AMQP - ???
+* Enhance - ???
+* Logstash/Kibana - ???
+* Normalise - ???
+* Reject - used to enforce custom alert format policies
+* AWS SNS - ???
 
 ** go into detail here **
 
 Contrib
 ~~~~~~~
 
-* `GeoIP Location`_
-* HipChat_
-* InfluxDB_
-* PagerDuty_ -- send alerts to pagerduty (webhooks used to receive acks)
-* `Pushover.net`_
-* Slack_
-* `Twilio SMS`_
+* `GeoIP Location`_ - use remote IP address to submitted alert to add location data
+* HipChat_ - send alerts to HipChat room
+* InfluxDB_ - send alerts to InfluxDB for graphing with Grafana
+* PagerDuty_ - send alerts to PagerDuty (webhooks used to receive callbacks)
+* `Pushover.net`_ - send alerts to Pushover.net
+* Slack_ - send alerts to Slack room
+* `Twilio SMS`_ - sene alerts via SMS using Twilio
 
 .. _`GeoIP Location`: https://github.com/alerta/alerta-contrib/tree/master/plugins/geoip
 .. _HipChat: https://github.com/alerta/alerta-contrib/tree/master/plugins/hipchat
