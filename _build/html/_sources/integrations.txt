@@ -66,28 +66,28 @@ AWS Cloudwatch
 
 ** go into detail here **
 
-See Cloudwatch_webhook_
+See `Cloudwatch webhook`_
 
-.. _Cloudwatch_webhook: http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html
+.. _Cloudwatch webhook: http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html
 
 Pingdom
 ~~~~~~~
 
 ** go into detail here **
 
-See Pingdom_webhook_
+See `Pingdom webhook`_
 
 
-.. _Pingdom_webhook: https://support.pingdom.com/Knowledgebase/Article/View/94/0/users-and-alerting-end-points
+.. _Pingdom webhook: https://support.pingdom.com/Knowledgebase/Article/View/94/0/users-and-alerting-end-points
 
 PagerDuty
 ~~~~~~~~~
 
 ** go into detail here **
 
-See PagerDuty_webhook_
+See `PagerDuty webhook`_
 
-.. _PagerDuty_webhook: https://developer.pagerduty.com/documentation/rest/webhooks
+.. _PagerDuty webhook: https://developer.pagerduty.com/documentation/rest/webhooks
 
 .. _plugins:
 
