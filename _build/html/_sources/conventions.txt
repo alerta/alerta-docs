@@ -79,6 +79,15 @@ Agree on a subset of severity levels and be consistent with what they mean. For 
 Enforcing Conventions
 ---------------------
 
-Once a set of naming conventions are agreed, they can be enforced by writing a simple :ref:`pre-receive <pre_receive>` plug-in. An example called `reject`_ can be found in the plug-ins directory of the project code repository.
+Once a set of naming conventions are agreed, they can be enforced by writing a simple :ref:`pre-receive <pre_receive>` plug-in.
+
+.. code-block:: python
+
+    def pre_receive(self, alert):
+
+        if alert.environment not in ['Production', 'Development']:
+            raise RejectException("[POLICY] Alert environment must be one of Production or Development"))
+
+A full working example called `reject`_ can be found in the plug-ins directory of the project code repository and is installed by default. It should be modified for your circumstances.
 
 .. _`reject`: https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py

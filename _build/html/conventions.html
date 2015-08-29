@@ -168,7 +168,14 @@
 </div>
 <div class="section" id="enforcing-conventions">
 <h2>Enforcing Conventions<a class="headerlink" href="#enforcing-conventions" title="Permalink to this headline">¶</a></h2>
-<p>Once a set of naming conventions are agreed, they can be enforced by writing a simple <a class="reference internal" href="server.html#pre-receive"><em>pre-receive</em></a> plug-in. An example called <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py">reject</a> can be found in the plug-ins directory of the project code repository.</p>
+<p>Once a set of naming conventions are agreed, they can be enforced by writing a simple <a class="reference internal" href="server.html#pre-receive"><em>pre-receive</em></a> plug-in.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">pre_receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">alert</span><span class="o">.</span><span class="n">environment</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;Production&#39;</span><span class="p">,</span> <span class="s">&#39;Development&#39;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="n">RejectException</span><span class="p">(</span><span class="s">&quot;[POLICY] Alert environment must be one of Production or Development&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>A full working example called <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py">reject</a> can be found in the plug-ins directory of the project code repository and is installed by default. It should be modified for your circumstances.</p>
 </div>
 </div>
 
