@@ -13,7 +13,6 @@ Initialise the alerta API client:
 .. code-block:: python
 
     >>> from alerta.api import ApiClient
-    >>>
     >>> api = ApiClient(endpoint='http://api.alerta.io', key='tiPMW41QA+cVy05E7fQA/roxAAwHqZq/jznh8MOk')
 
 Send an alert:
