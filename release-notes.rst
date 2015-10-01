@@ -3,73 +3,80 @@
 Release History
 ===============
 
-4.0.5 (30-1-2015)
------------------
+Release 4.5 (9-9-2015)
+----------------------
 
-4.0.4 ()
+* Added ability to blackout alerts for defined periods
 
-4.0.3 ()
+Release 4.4 (11-6-2015)
+-----------------------
 
-4.0.2 ()
+* MongoDB version 3 support
 
-4.0.1 ()
+Release 4.3 (12-5-2015)
+-----------------------
 
+* Support Basic Auth for user logins
 
-4.0.0 (15-1-2015)
------------------
+Release 4.2 (13-3-2015)
+-----------------------
 
-3.3.7 ()
+* API keys can be `read-only` as well as `read-write`
 
-3.3.2 (17-12-2014)
-------------------
+Release 4.1 (25-2-2015)
+-----------------------
 
-Improvements
-++++++++++++
+* Twitter OAuth login
+* API response pagination
 
-* Add Pingdom web hook integration
+Release 4.0 (15-1-2015)
+-----------------------
 
-Bugfixes
-++++++++
+* Change web browser authentication to use JWT tokens
+* Add support for Google and GitHub OAuth/OpenID Connect
 
-* Update Attributes and Tags for correlated alerts
-
-3.3.1 (16-12-2014)
-------------------
-
-Improvements
-++++++++++++
-
-* Refactor Webhooks to reuse common alert processing code
-* Add example scripts for test alert generation
-
-3.3.0 (16-12-2014)
-------------------
-
-Improvements
-++++++++++++
+Release 3.3 (16-12-2014)
+------------------------
 
 * Add Amazon AWS Cloudwatch web hook integration
 
-3.2.x (11-10-2014)
-------------------
+Release 3.2 (11-10-2014)
+------------------------
 
-Improvements
-++++++++++++
+* Major refactor and simplification of server architecture
+* Add server-side plug-ins with ``pre_receive()`` and ``post_receive()`` hooks
 
-* Major refactor and simplification
-* Add support for server-side plug-ins with ``pre_receive()`` and ``post_receive()`` hooks
-* Add sample plug-ins for alert reject policy, normalisation, enhancement etc
+Release 3.1 (9-5-2014)
+----------------------
 
-Documentation
-+++++++++++++
+* Extend API to support new dashboard
+* Stability and performance enhancements
 
-* Updated README and fixed Heroku button (`#68`_)
+Release 3.0 (25-3-2014)
+-----------------------
 
-Bugfixes
-++++++++
+* Deploy server and dashboard as Python WSGI apps
+* Add AWS Cloudwatch, PagerDuty and Solarwinds integrations
+* Pinger module for host availablity checks
+* Start development of `version 3`_ console based on AngularJS
 
-* PagerDuty web hook deprecated and removed
-* Lots of pylint fixes
-* Fixed tests
+Release 2.0 (11-3-2013)
+-----------------------
+
+* Major refactoring into python modules
+* Replace CGI scripts with Flask microframework
+* Dashboard_ rewritten using Flask server-side templates
+* Integrations for AWS SNS, Syslog, Dynect and URL monitoring
+
+Release 1.0 (27-3-2012)
+-----------------------
+
+* CGI script receives alerts and pushes to ActiveMQ message bus
+* Background daemon reads message bus, processes and stores to MongoDB
+* HTML/JavaScript console displays alerts on web dashboard
+* Integrations for AWS EC2, Ganglia, IRC, Kibana, Email and SNMP
 
 .. _`#68`: https://github.com/guardian/alerta/issues/68
+.. _version 3: https://github.com/alerta/angular-alerta-webui
+.. _Dashboard: https://github.com/alerta/alerta-dashboard
+.. _first commit: https://github.com/guardian/alerta/commit/a4473ecd39d992deb00c66f454b3a76147dfb38b

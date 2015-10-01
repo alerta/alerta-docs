@@ -1,5 +1,13 @@
 ALERTA DOCS
 
+docs
+- pagerduty webhooks config
+- config for mongo db env vars
+- running using web server
+- configurable alert severity colours
+
+
+
 clients
 server
 

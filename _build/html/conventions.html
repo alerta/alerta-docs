@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Conventions &mdash; alerta 4.4 documentation</title>
+    <title>Conventions &mdash; alerta 4.5 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -15,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '4.4',
+        VERSION:     '4.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
-    <link rel="top" title="alerta 4.4 documentation" href="index.html" />
+    <link rel="top" title="alerta 4.5 documentation" href="index.html" />
     <link rel="next" title="Development" href="development.html" />
     <link rel="prev" title="Authentication" href="authentication.html" />
    
@@ -33,27 +32,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 
   </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="development.html" title="Development"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="authentication.html" title="Authentication"
-             accesskey="P">previous</a> |</li>
-        <li><a href="index.html">alerta 4.4 documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
+  <body role="document">  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="conventions">
 <span id="id1"></span><h1>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h1>
@@ -64,11 +48,11 @@
 <h3>Event Names<a class="headerlink" href="#event-names" title="Permalink to this headline">¶</a></h3>
 <p>It can be useful to define a convention when it comes to naming events. Possible options are:</p>
 <ul class="simple">
-<li>Camel case - <tt class="docutils literal"><span class="pre">DiskUtilHigh</span></tt></li>
-<li>Hierarchy - <tt class="docutils literal"><span class="pre">NW:INTERFACE:DOWN</span></tt></li>
-<li>SNMP - <tt class="docutils literal"><span class="pre">cpuAlarmHigh</span></tt></li>
+<li>Camel case - <code class="docutils literal"><span class="pre">DiskUtilHigh</span></code></li>
+<li>Hierarchy - <code class="docutils literal"><span class="pre">NW:INTERFACE:DOWN</span></code></li>
+<li>SNMP - <code class="docutils literal"><span class="pre">cpuAlarmHigh</span></code></li>
 </ul>
-<p>Querying for all disk alerts then becomes <tt class="docutils literal"><span class="pre">event=~disk</span></tt>.</p>
+<p>Querying for all disk alerts then becomes <code class="docutils literal"><span class="pre">event=~disk</span></code>.</p>
 </div>
 <div class="section" id="event-groups">
 <h3>Event Groups<a class="headerlink" href="#event-groups" title="Permalink to this headline">¶</a></h3>
@@ -84,43 +68,43 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Service</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">Service</span></code></td>
 <td>failures with entire services</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Application</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Application</span></code></td>
 <td>errors from application logs</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">OS</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">OS</span></code></td>
 <td>disk space, time sync failing</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Performance</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Performance</span></code></td>
 <td>system load, swap utilisation high</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Configuration</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">Configuration</span></code></td>
 <td>config mgmt tool alerts eg. Puppet or Chef</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Web</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Web</span></code></td>
 <td>web server errors</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Syslog</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">Syslog</span></code></td>
 <td>unix system log messages</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Hardware</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Hardware</span></code></td>
 <td>hardware errors</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Storage</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">Storage</span></code></td>
 <td>NFS, SAN, NAS storage infrastructure</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Database</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Database</span></code></td>
 <td>database errors, table space utilisation</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Security</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">Security</span></code></td>
 <td>security/authorization messages</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Network</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Network</span></code></td>
 <td>network devices and infrastructure</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Cloud</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">Cloud</span></code></td>
 <td>cloud-based services or infrastructure</td>
 </tr>
 </tbody>
@@ -128,7 +112,7 @@
 </div>
 <div class="section" id="environments-services">
 <h3>Environments &amp; Services<a class="headerlink" href="#environments-services" title="Permalink to this headline">¶</a></h3>
-<p>Choose a set of environments and enforce them. ie. <tt class="docutils literal"><span class="pre">PROD</span></tt>, <tt class="docutils literal"><span class="pre">DEV</span></tt> or <tt class="docutils literal"><span class="pre">Production</span></tt>, <tt class="docutils literal"><span class="pre">Development</span></tt> but not both. The same for services eg. <tt class="docutils literal"><span class="pre">MobileAPI</span></tt>, <tt class="docutils literal"><span class="pre">Mobile-API</span></tt> and <tt class="docutils literal"><span class="pre">mobile</span> <span class="pre">api</span></tt> are all valid but needlessly different and impossible to trigger on reliably.</p>
+<p>Choose a set of environments and enforce them. ie. <code class="docutils literal"><span class="pre">PROD</span></code>, <code class="docutils literal"><span class="pre">DEV</span></code> or <code class="docutils literal"><span class="pre">Production</span></code>, <code class="docutils literal"><span class="pre">Development</span></code> but not both. The same for services eg. <code class="docutils literal"><span class="pre">MobileAPI</span></code>, <code class="docutils literal"><span class="pre">Mobile-API</span></code> and <code class="docutils literal"><span class="pre">mobile</span> <span class="pre">api</span></code> are all valid but needlessly different and impossible to trigger on reliably.</p>
 </div>
 </div>
 <div class="section" id="severity-levels">
@@ -147,19 +131,19 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">critical</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">critical</span></code></td>
 <td>service unavailable</td>
 <td>immediate page out</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">major</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">major</span></code></td>
 <td>service impaired still available</td>
 <td>page during business hours</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">minor</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">minor</span></code></td>
 <td>component failure</td>
 <td>email only</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">warning</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">warning</span></code></td>
 <td>everything else</td>
 <td>consolidate into daily email</td>
 </tr>
@@ -168,7 +152,7 @@
 </div>
 <div class="section" id="enforcing-conventions">
 <h2>Enforcing Conventions<a class="headerlink" href="#enforcing-conventions" title="Permalink to this headline">¶</a></h2>
-<p>Once a set of naming conventions are agreed, they can be enforced by writing a simple <a class="reference internal" href="server.html#pre-receive"><em>pre-receive</em></a> plug-in.</p>
+<p>Once a set of naming conventions are agreed, they can be enforced by writing a simple <a class="reference internal" href="server.html#pre-receive"><span>pre-receive</span></a> plug-in.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">pre_receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">):</span>
 
     <span class="k">if</span> <span class="n">alert</span><span class="o">.</span><span class="n">environment</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;Production&#39;</span><span class="p">,</span> <span class="s">&#39;Development&#39;</span><span class="p">]:</span>
@@ -183,7 +167,7 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="index.html">alerta</a></h1>
 
@@ -201,6 +185,18 @@
 
 
 
+    
+
+<p>
+<a href="https://travis-ci.org/guardian/alerta">
+    <img
+        alt="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
+        src="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
+    >
+</a>
+</p>
+
+
 <h3>
 Links
 </h3>
@@ -210,6 +206,9 @@ Links
   </li>
   <li>
     <a href="https://twitter.com/alertaio" rel="me">Twitter</a>
+  </li>
+  <li>
+    <a href="https://gitter.im/alerta/chat" rel="me">Gitter</a>
   </li>
 </ul>
 
@@ -246,7 +245,7 @@ Links
 </ul>
 
 
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -263,17 +262,16 @@ Links
       </div>
       <div class="clearer"></div>
     </div>
-
     <div class="footer">
       &copy;2015, Nick Satterly.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.2.3</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
       
       |
       <a href="_sources/conventions.txt"
-          rel="nofollow">Page source</a></li>
+          rel="nofollow">Page source</a>
     </div>
 
     
@@ -295,16 +293,5 @@ Links
 
     </script>
     
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-44644195-3', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
   </body>
 </html>

@@ -48,6 +48,6 @@ To send an alert to the server::
 
     $ alerta send -r web01 -e NodeDown -E Production -S Website -s major -t "Web server is down." -v ERROR
 
-The alert should appear almost immediately in the console. If it doesn't it's a bug_ in alerta or the documentation.
+The alert should appear almost immediately in the console. If it doesn't it's either a :ref:`CORS issues <cross_origin>` or a bug_.
 
 .. _bug: https://github.com/alerta/alerta-docs/issues/new

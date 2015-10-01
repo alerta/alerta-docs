@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>API Reference &mdash; alerta 4.4 documentation</title>
+    <title>API Reference &mdash; alerta 4.5 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -15,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '4.4',
+        VERSION:     '4.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +24,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
-    <link rel="top" title="alerta 4.4 documentation" href="../index.html" />
+    <link rel="top" title="alerta 4.5 documentation" href="../index.html" />
     <link rel="next" title="Alert Format" href="format.html" />
     <link rel="prev" title="API Overview" href="overview.html" />
    
@@ -33,27 +32,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 
   </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="format.html" title="Alert Format"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="overview.html" title="API Overview"
-             accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">alerta 4.4 documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
+  <body role="document">  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="api-reference">
 <span id="reference"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
@@ -111,7 +95,7 @@
 </div>
 <div class="section" id="input">
 <h4>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h4>
-<p>Only <tt class="docutils literal"><span class="pre">resource</span></tt> and <tt class="docutils literal"><span class="pre">event</span></tt> are required. See <a class="reference internal" href="format.html#alert-attributes"><em>Alert Attributes</em></a> for a full list of valid inputs.</p>
+<p>Only <code class="docutils literal"><span class="pre">resource</span></code> and <code class="docutils literal"><span class="pre">event</span></code> are required. See <a class="reference internal" href="format.html#alert-attributes"><span>Alert Attributes</span></a> for a full list of valid inputs.</p>
 </div>
 <div class="section" id="example">
 <h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
@@ -298,11 +282,11 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">status</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">status</span></code></td>
 <td>string</td>
-<td><strong>Required</strong> New status from <tt class="docutils literal"><span class="pre">open</span></tt>, <tt class="docutils literal"><span class="pre">ack</span></tt>, <tt class="docutils literal"><span class="pre">closed</span></tt></td>
+<td><strong>Required</strong> New status from <code class="docutils literal"><span class="pre">open</span></code>, <code class="docutils literal"><span class="pre">ack</span></code>, <code class="docutils literal"><span class="pre">closed</span></code></td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">text</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">text</span></code></td>
 <td>string</td>
 <td>&nbsp;</td>
 </tr>
@@ -352,7 +336,7 @@ POST /alert/:id/untag
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">tags</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">tags</span></code></td>
 <td>list</td>
 <td>&nbsp;</td>
 </tr>
@@ -409,51 +393,51 @@ POST /alert/:id/untag
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">&lt;attr&gt;</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;attr&gt;</span></code></td>
 <td>string</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">q</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">q</span></code></td>
 <td>json</td>
 <td>mongo query see <a class="reference external" href="http://docs.mongodb.org/manual/reference/operator/query/">Mongo Query Operators</a></td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">from-date</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">from-date</span></code></td>
 <td>date</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">to-date</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">to-date</span></code></td>
 <td>date</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">sort-by</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">sort-by</span></code></td>
 <td>string</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">reverse</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">reverse</span></code></td>
 <td>boolean</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">group-by</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">group-by</span></code></td>
 <td>string</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">page</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">page</span></code></td>
 <td>integer</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">limit</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">limit</span></code></td>
 <td>integer</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">api-key</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">api-key</span></code></td>
 <td>string</td>
 <td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
-<p>The <tt class="docutils literal"><span class="pre">attr</span></tt> parameter is any alert attribute.</p>
+<p>The <code class="docutils literal"><span class="pre">attr</span></code> parameter is any alert attribute.</p>
 <p>Any alert attribute can be queried. To query tags do this, to query attributes key/value do this.</p>
-<p>Default is not to use exact match. To use regex <tt class="docutils literal"><span class="pre">=~</span></tt> and to negate use <tt class="docutils literal"><span class="pre">!=</span></tt>.</p>
+<p>Default is not to use exact match. To use regex <code class="docutils literal"><span class="pre">=~</span></code> and to negate use <code class="docutils literal"><span class="pre">!=</span></code>.</p>
 </div>
 <div class="section" id="id9">
 <h4>Example<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
@@ -561,7 +545,7 @@ POST /alert/:id/untag
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">&lt;attr&gt;</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;attr&gt;</span></code></td>
 <td>string</td>
 <td>&nbsp;</td>
 </tr>
@@ -649,7 +633,7 @@ POST /alert/:id/untag
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">&lt;attr&gt;</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;attr&gt;</span></code></td>
 <td>string</td>
 <td>&nbsp;</td>
 </tr>
@@ -685,7 +669,7 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="top-10-alerts-by-resource">
 <h3><a class="toc-backref" href="#id59">Top 10 alerts by resource</a><a class="headerlink" href="#top-10-alerts-by-resource" title="Permalink to this headline">¶</a></h3>
-<p>The top 10 resources are grouped by <tt class="docutils literal"><span class="pre">event</span></tt> by default but this can be any valid attribute.</p>
+<p>The top 10 resources are grouped by <code class="docutils literal"><span class="pre">event</span></code> by default but this can be any valid attribute.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">top10</span>
 </pre></div>
 </div>
@@ -704,9 +688,9 @@ POST /alert/:id/untag
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">group-by</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">group-by</span></code></td>
 <td>string</td>
-<td>Any valid alert attribute. Default: <tt class="docutils literal"><span class="pre">event</span></tt></td>
+<td>Any valid alert attribute. Default: <code class="docutils literal"><span class="pre">event</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -999,7 +983,7 @@ POST /alert/:id/untag
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">&lt;attr&gt;</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;attr&gt;</span></code></td>
 <td>string</td>
 <td>&nbsp;</td>
 </tr>
@@ -1057,7 +1041,7 @@ POST /alert/:id/untag
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">&lt;attr&gt;</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;attr&gt;</span></code></td>
 <td>string</td>
 <td>&nbsp;</td>
 </tr>
@@ -1102,7 +1086,7 @@ POST /alert/:id/untag
 <span id="id28"></span><h2><a class="toc-backref" href="#id64">Heartbeats</a><a class="headerlink" href="#heartbeats" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="send-a-heartbeat">
 <h3><a class="toc-backref" href="#id65">Send a heartbeat</a><a class="headerlink" href="#send-a-heartbeat" title="Permalink to this headline">¶</a></h3>
-<p>Update a heartbeat or create a new one if it doesn&#8217;t already exist for the heartbeat <tt class="docutils literal"><span class="pre">origin</span></tt>.</p>
+<p>Update a heartbeat or create a new one if it doesn&#8217;t already exist for the heartbeat <code class="docutils literal"><span class="pre">origin</span></code>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">POST</span> <span class="o">/</span><span class="n">heartbeat</span>
 </pre></div>
 </div>
@@ -1121,15 +1105,15 @@ POST /alert/:id/untag
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">origin</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">origin</span></code></td>
 <td>string</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">tags</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">tags</span></code></td>
 <td>list</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">timeout</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">timeout</span></code></td>
 <td>integer</td>
 <td>&nbsp;</td>
 </tr>
@@ -1277,11 +1261,11 @@ POST /alert/:id/untag
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">user</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">user</span></code></td>
 <td>string</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">text</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">text</span></code></td>
 <td>string</td>
 <td>&nbsp;</td>
 </tr>
@@ -1364,7 +1348,7 @@ POST /alert/:id/untag
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">user</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">user</span></code></td>
 <td>string</td>
 <td>&nbsp;</td>
 </tr>
@@ -1446,19 +1430,19 @@ POST /alert/:id/untag
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">name</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">name</span></code></td>
 <td>string</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">login</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">login</span></code></td>
 <td>string</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">provider</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">provider</span></code></td>
 <td>string</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">text</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">text</span></code></td>
 <td>string</td>
 <td>&nbsp;</td>
 </tr>
@@ -1554,7 +1538,7 @@ POST /alert/:id/untag
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="../index.html">alerta</a></h1>
 
@@ -1572,6 +1556,18 @@ POST /alert/:id/untag
 
 
 
+    
+
+<p>
+<a href="https://travis-ci.org/guardian/alerta">
+    <img
+        alt="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
+        src="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
+    >
+</a>
+</p>
+
+
 <h3>
 Links
 </h3>
@@ -1581,6 +1577,9 @@ Links
   </li>
   <li>
     <a href="https://twitter.com/alertaio" rel="me">Twitter</a>
+  </li>
+  <li>
+    <a href="https://gitter.im/alerta/chat" rel="me">Gitter</a>
   </li>
 </ul>
 
@@ -1609,7 +1608,7 @@ Links
 </ul>
 
 
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
       <input type="text" name="q" />
@@ -1626,17 +1625,16 @@ Links
       </div>
       <div class="clearer"></div>
     </div>
-
     <div class="footer">
       &copy;2015, Nick Satterly.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.2.3</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
       
       |
       <a href="../_sources/api/reference.txt"
-          rel="nofollow">Page source</a></li>
+          rel="nofollow">Page source</a>
     </div>
 
     
@@ -1658,16 +1656,5 @@ Links
 
     </script>
     
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-44644195-3', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
   </body>
 </html>
