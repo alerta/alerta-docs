@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Frequently Asked Questions &mdash; alerta 4.4 documentation</title>
+    <title>Frequently Asked Questions &mdash; alerta 4.5 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -15,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '4.4',
+        VERSION:     '4.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,27 +24,18 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
-    <link rel="top" title="alerta 4.4 documentation" href="index.html" />
+    <link rel="top" title="alerta 4.5 documentation" href="index.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 
   </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li><a href="index.html">alerta 4.4 documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
+  <body role="document">  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="frequently-asked-questions">
 <span id="faq"></span><h1>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h1>
@@ -53,15 +43,15 @@
 <h2>Alerta<a class="headerlink" href="#alerta" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="can-i-define-custom-severity-codes-and-levels">
 <h3>Can I define custom severity codes and levels?<a class="headerlink" href="#can-i-define-custom-severity-codes-and-levels" title="Permalink to this headline">¶</a></h3>
-<p>Yes, though it is not recommended. There is nothing stopping you from using any string as the severity for a submitted alert. The only aspect of <tt class="docutils literal"><span class="pre">alerta</span></tt> that would not work as expected would be the <tt class="docutils literal"><span class="pre">trendIndication</span></tt> assigned to an alert that indicates whether it is more or less severe than the last alert for that <tt class="docutils literal"><span class="pre">resource</span></tt> and <tt class="docutils literal"><span class="pre">event</span></tt>. To fix this, <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/app/severity_code.py">severity code</a> mappings would need to be updated to include the new severity or to rename an existing one.</p>
+<p>Yes, though it is not recommended. There is nothing stopping you from using any string as the severity for a submitted alert. The only aspect of <code class="docutils literal"><span class="pre">alerta</span></code> that would not work as expected would be the <code class="docutils literal"><span class="pre">trendIndication</span></code> assigned to an alert that indicates whether it is more or less severe than the last alert for that <code class="docutils literal"><span class="pre">resource</span></code> and <code class="docutils literal"><span class="pre">event</span></code>. To fix this, <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/app/severity_code.py">severity code</a> mappings would need to be updated to include the new severity or to rename an existing one.</p>
 </div>
 <div class="section" id="how-can-i-add-a-priority-to-an-alert-eg-high-medium-low">
 <h3>How can I add a priority to an alert eg. High, Medium, Low?<a class="headerlink" href="#how-can-i-add-a-priority-to-an-alert-eg-high-medium-low" title="Permalink to this headline">¶</a></h3>
-<p>Use a custom attribute called <tt class="docutils literal"><span class="pre">priority</span></tt> when sending alerts to alerta:</p>
+<p>Use a custom attribute called <code class="docutils literal"><span class="pre">priority</span></code> when sending alerts to alerta:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ alerta send ... --attributes priority=high ...
 </pre></div>
 </div>
-<p>Alerts of differing priority could be queried by <tt class="docutils literal"><span class="pre">alerta</span></tt> command-line tool using:</p>
+<p>Alerts of differing priority could be queried by <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool using:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ alerta query --filters attributes.priority=high
 </pre></div>
 </div>
@@ -83,7 +73,7 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="index.html">alerta</a></h1>
 
@@ -101,6 +91,18 @@
 
 
 
+    
+
+<p>
+<a href="https://travis-ci.org/guardian/alerta">
+    <img
+        alt="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
+        src="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
+    >
+</a>
+</p>
+
+
 <h3>
 Links
 </h3>
@@ -110,6 +112,9 @@ Links
   </li>
   <li>
     <a href="https://twitter.com/alertaio" rel="me">Twitter</a>
+  </li>
+  <li>
+    <a href="https://gitter.im/alerta/chat" rel="me">Gitter</a>
   </li>
 </ul>
 
@@ -136,7 +141,7 @@ Links
 </ul>
 
 
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -153,17 +158,16 @@ Links
       </div>
       <div class="clearer"></div>
     </div>
-
     <div class="footer">
       &copy;2015, Nick Satterly.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.2.3</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
       
       |
       <a href="_sources/faq.txt"
-          rel="nofollow">Page source</a></li>
+          rel="nofollow">Page source</a>
     </div>
 
     
@@ -185,16 +189,5 @@ Links
 
     </script>
     
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-44644195-3', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
   </body>
 </html>

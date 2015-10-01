@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Design Principles &mdash; alerta 4.4 documentation</title>
+    <title>Design Principles &mdash; alerta 4.5 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -15,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '4.4',
+        VERSION:     '4.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
-    <link rel="top" title="alerta 4.4 documentation" href="index.html" />
+    <link rel="top" title="alerta 4.5 documentation" href="index.html" />
     <link rel="next" title="Server &amp; API" href="server.html" />
     <link rel="prev" title="Quickstart" href="quick-start.html" />
    
@@ -33,46 +32,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 
   </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="server.html" title="Server &amp; API"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="quick-start.html" title="Quickstart"
-             accesskey="P">previous</a> |</li>
-        <li><a href="index.html">alerta 4.4 documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
+  <body role="document">  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="design-principles">
 <span id="design"></span><h1>Design Principles<a class="headerlink" href="#design-principles" title="Permalink to this headline">¶</a></h1>
 <p>The following principles guided the design and development of the Alerta monitoring system.</p>
 <div class="section" id="resource-under-alarm">
 <h2>Resource under alarm<a class="headerlink" href="#resource-under-alarm" title="Permalink to this headline">¶</a></h2>
-<p>A <a class="reference internal" href="api/format.html#alert-attributes"><em>resource</em></a> is any entity that it makes sense for you to receive alerts for. You shouldn&#8217;t be forced to accept a certain &#8220;world view&#8221; when using a monitoring tool or to repurpose a &#8220;host&#8221; field for a service or application, or a even a URL. Host-centric monitoring tools belong in the 90&#8217;s.</p>
+<p>A <a class="reference internal" href="api/format.html#alert-attributes"><span>resource</span></a> is any entity that it makes sense for you to receive alerts for. You shouldn&#8217;t be forced to accept a certain &#8220;world view&#8221; when using a monitoring tool or to repurpose a &#8220;host&#8221; field for a service or application, or a even a URL. Host-centric monitoring tools belong in the 90&#8217;s.</p>
 </div>
 <div class="section" id="many-severity-levels">
 <h2>Many severity levels<a class="headerlink" href="#many-severity-levels" title="Permalink to this headline">¶</a></h2>
-<p>You are free to use as many or as few as you like eg. if you plan to only integrate with Nagios then only use <tt class="docutils literal"><span class="pre">critical</span></tt>, <tt class="docutils literal"><span class="pre">warning</span></tt> and <tt class="docutils literal"><span class="pre">ok</span></tt>. If you are integrating with a fault management system for a telco you might want to use the six <a class="reference external" href="http://www.itu.int/rec/T-REC-X.733/en">ISO perceived severity levels</a> or alternatively, if you are pushing application alerts you might want to consider using the <tt class="docutils literal"><span class="pre">debug</span></tt> severity level.</p>
+<p>You are free to use as many or as few as you like eg. if you plan to only integrate with Nagios then only use <code class="docutils literal"><span class="pre">critical</span></code>, <code class="docutils literal"><span class="pre">warning</span></code> and <code class="docutils literal"><span class="pre">ok</span></code>. If you are integrating with a fault management system for a telco you might want to use the six <a class="reference external" href="http://www.itu.int/rec/T-REC-X.733/en">ISO perceived severity levels</a> or alternatively, if you are pushing application alerts you might want to consider using the <code class="docutils literal"><span class="pre">debug</span></code> severity level.</p>
 </div>
 <div class="section" id="robust-alert-reception">
 <h2>Robust alert reception<a class="headerlink" href="#robust-alert-reception" title="Permalink to this headline">¶</a></h2>
-<p>In accordance with the <a class="reference external" href="http://en.wikipedia.org/wiki/Robustness_principle">robustness principle</a> which is to &#8220;be liberal in what you accept from others&#8221;, alerta will accept any alert as long as it meets the alert format specification. ie. no field needs to be defined in advance for it to be accepted, however the benefits of following a standard <a class="reference internal" href="conventions.html#conventions"><em>convention</em></a> for such attributes as <tt class="docutils literal"><span class="pre">environment</span></tt>, <tt class="docutils literal"><span class="pre">service</span></tt>, <tt class="docutils literal"><span class="pre">event</span></tt> and <tt class="docutils literal"><span class="pre">resource</span></tt> (as internally defined by and useful to you) are many.</p>
+<p>In accordance with the <a class="reference external" href="http://en.wikipedia.org/wiki/Robustness_principle">robustness principle</a> which is to &#8220;be liberal in what you accept from others&#8221;, alerta will accept any alert as long as it meets the alert format specification. ie. no field needs to be defined in advance for it to be accepted, however the benefits of following a standard <a class="reference internal" href="conventions.html#conventions"><span>convention</span></a> for such attributes as <code class="docutils literal"><span class="pre">environment</span></code>, <code class="docutils literal"><span class="pre">service</span></code>, <code class="docutils literal"><span class="pre">event</span></code> and <code class="docutils literal"><span class="pre">resource</span></code> (as internally defined by and useful to you) are many.</p>
 </div>
 <div class="section" id="self-clearing-alerts">
 <h2>Self-clearing alerts<a class="headerlink" href="#self-clearing-alerts" title="Permalink to this headline">¶</a></h2>
-<p>All alerts should have a corresponding <tt class="docutils literal"><span class="pre">cleared</span></tt> or <tt class="docutils literal"><span class="pre">normal</span></tt> state so that non-normal alerts can be automatically cleared down by the system. Where an alert cannot send a corresponding clear an alert should specify a <tt class="docutils literal"><span class="pre">timeout</span></tt> (or have a default assigned) after which it will be deleted.</p>
+<p>All alerts should have a corresponding <code class="docutils literal"><span class="pre">cleared</span></code> or <code class="docutils literal"><span class="pre">normal</span></code> state so that non-normal alerts can be automatically cleared down by the system. Where an alert cannot send a corresponding clear an alert should specify a <code class="docutils literal"><span class="pre">timeout</span></code> (or have a default assigned) after which it will be deleted.</p>
 </div>
 <div class="section" id="alerts-are-cheap">
 <h2>Alerts are cheap<a class="headerlink" href="#alerts-are-cheap" title="Permalink to this headline">¶</a></h2>
@@ -88,7 +72,7 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="index.html">alerta</a></h1>
 
@@ -106,6 +90,18 @@
 
 
 
+    
+
+<p>
+<a href="https://travis-ci.org/guardian/alerta">
+    <img
+        alt="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
+        src="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
+    >
+</a>
+</p>
+
+
 <h3>
 Links
 </h3>
@@ -115,6 +111,9 @@ Links
   </li>
   <li>
     <a href="https://twitter.com/alertaio" rel="me">Twitter</a>
+  </li>
+  <li>
+    <a href="https://gitter.im/alerta/chat" rel="me">Gitter</a>
   </li>
 </ul>
 
@@ -149,7 +148,7 @@ Links
 </ul>
 
 
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -166,17 +165,16 @@ Links
       </div>
       <div class="clearer"></div>
     </div>
-
     <div class="footer">
       &copy;2015, Nick Satterly.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.2.3</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
       
       |
       <a href="_sources/design.txt"
-          rel="nofollow">Page source</a></li>
+          rel="nofollow">Page source</a>
     </div>
 
     
@@ -198,16 +196,5 @@ Links
 
     </script>
     
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-44644195-3', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
   </body>
 </html>

@@ -117,6 +117,8 @@ To restrict access to particular users use the *circle of trust* approach. That 
 
 .. note:: Twitter does not support OAuth2 for user
 
+.. _cross_origin:
+
 Cross-Origin
 ~~~~~~~~~~~~
 

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Authentication &mdash; alerta 4.4 documentation</title>
+    <title>Authentication &mdash; alerta 4.5 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -15,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '4.4',
+        VERSION:     '4.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
-    <link rel="top" title="alerta 4.4 documentation" href="index.html" />
+    <link rel="top" title="alerta 4.5 documentation" href="index.html" />
     <link rel="next" title="Conventions" href="conventions.html" />
     <link rel="prev" title="Integrations &amp; Plugins" href="integrations.html" />
    
@@ -33,37 +32,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 
   </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="conventions.html" title="Conventions"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="integrations.html" title="Integrations &amp; Plugins"
-             accesskey="P">previous</a> |</li>
-        <li><a href="index.html">alerta 4.4 documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
+  <body role="document">  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="authentication">
 <span id="id1"></span><h1>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h1>
-<p>By default, authentication is not enabled, however there are some features that are <a class="reference internal" href="webui.html#watched-alerts"><em>not available</em></a> unless users login. To enforce authentication set <tt class="docutils literal"><span class="pre">AUTH_REQUIRED</span></tt> to <tt class="docutils literal"><span class="pre">True</span></tt>:</p>
+<p>By default, authentication is not enabled, however there are some features that are <a class="reference internal" href="webui.html#watched-alerts"><span>not available</span></a> unless users login. To enforce authentication set <code class="docutils literal"><span class="pre">AUTH_REQUIRED</span></code> to <code class="docutils literal"><span class="pre">True</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">AUTH_REQUIRED</span> <span class="o">=</span> <span class="bp">True</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>Ensure that the <span class="target" id="index-0"></span><tt class="xref std std-envvar docutils literal"><span class="pre">SECRET_KEY</span></tt> that is used to encode cookies is a unique, randomly generated sequence of ASCII characters. The following command generates a suitable 32-character random string:</p>
+<p>Ensure that the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">SECRET_KEY</span></code> that is used to encode cookies is a unique, randomly generated sequence of ASCII characters. The following command generates a suitable 32-character random string:</p>
 <div class="last highlight-python"><div class="highlight"><pre>$ LC_CTYPE=C tr -dc A-Za-z0-9_\!\@\#\$\%\^\&amp;\*\(\)-+= &lt; /dev/urandom | head -c 32 &amp;&amp; echo
 </pre></div>
 </div>
@@ -90,7 +74,7 @@
 <li>Authorized Javscript Origins: <a class="reference external" href="http://alerta.example.com">http://alerta.example.com</a></li>
 <li>Authorized Redirect URIs: <a class="reference external" href="http://alerta.example.com">http://alerta.example.com</a></li>
 </ul>
-<p>Click <strong>Create Client ID</strong> and take note of the Client ID and Client Secret. The configuration settins for <tt class="docutils literal"><span class="pre">alerta</span></tt> server are as follows:</p>
+<p>Click <strong>Create Client ID</strong> and take note of the Client ID and Client Secret. The configuration settins for <code class="docutils literal"><span class="pre">alerta</span></code> server are as follows:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s">&#39;379647311730-sj130ru952o3o7ig8u0ts8np2ojivr8d.apps.googleusercontent.com&#39;</span>
 <span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s">&#39;8HrqJhbrYn9oDtaJqExample&#39;</span>
 </pre></div>
@@ -101,7 +85,7 @@
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last"><tt class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></tt> can be an asterisk (<tt class="docutils literal"><span class="pre">*</span></tt>) to force login but <em>not</em> restrict who can login.</p>
+<p class="last"><code class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code> can be an asterisk (<code class="docutils literal"><span class="pre">*</span></code>) to force login but <em>not</em> restrict who can login.</p>
 </div>
 </div>
 <div class="section" id="github-oauth2">
@@ -117,7 +101,7 @@
 <p class="first admonition-title">Note</p>
 <p class="last">The <cite>Authorization callback URL</cite> is the most important setting and it is nothing more than the URL domain (ie. without any path) where the alerta Web UI is being hosted.</p>
 </div>
-<p>Click Register Application and take note of the Client ID and Client Secret. Then configuration settings for <tt class="docutils literal"><span class="pre">alerta</span></tt> server are as follows:</p>
+<p>Click Register Application and take note of the Client ID and Client Secret. Then configuration settings for <code class="docutils literal"><span class="pre">alerta</span></code> server are as follows:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s">&#39;f7b0c15e2b722e0e38f4&#39;</span>
 <span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s">&#39;7aa9094369b72937910badab0424dc7393x8mpl3&#39;</span>
 </pre></div>
@@ -128,7 +112,7 @@
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last"><tt class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></tt> can be an asterisk (<tt class="docutils literal"><span class="pre">*</span></tt>) to force login but <em>not</em> restrict who can login.</p>
+<p class="last"><code class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code> can be an asterisk (<code class="docutils literal"><span class="pre">*</span></code>) to force login but <em>not</em> restrict who can login.</p>
 </div>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
@@ -145,20 +129,20 @@
 <li>Callback URL: <a class="reference external" href="http://alerta.example.com">http://alerta.example.com</a></li>
 </ul>
 <p>Create your twitter application, switch to <em>Settings</em> tab and enable <em>Allow this application to be used to Sign in with Twitter</em>.</p>
-<p>Select the <em>Keys and Access Tokens</em> tab and take note of the Consumer Key (API Key), for the OAuth Client ID, and the Consumer Secret (API Secret), for the OAuth Client Secret. Then update the <tt class="docutils literal"><span class="pre">alertad</span></tt> configuration settings as follows:</p>
+<p>Select the <em>Keys and Access Tokens</em> tab and take note of the Consumer Key (API Key), for the OAuth Client ID, and the Consumer Secret (API Secret), for the OAuth Client Secret. Then update the <code class="docutils literal"><span class="pre">alertad</span></code> configuration settings as follows:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s">&#39;1Hfs7vUYPI1krKNFr2Pdg&#39;</span>  <span class="c"># consumer key</span>
 <span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s">&#39;C0PthnGzCYzICnjG2dXaS6GhU4qqHEtcPMy33x8mpl3&#39;</span>  <span class="c"># consumer secret</span>
 </pre></div>
 </div>
-<p>To restrict access to particular users use the <em>circle of trust</em> approach. That is, add yourself to the list of allowed users, ensure <tt class="docutils literal"><span class="pre">AUTH_REQUIRED</span></tt> is set to <tt class="docutils literal"><span class="pre">True</span></tt> and restart <tt class="docutils literal"><span class="pre">alertad</span></tt>. To gain access now, a user will need to be manually added to the <em>Users</em> page. Note that any existing user can add and remove users for the list of authorised users.</p>
+<p>To restrict access to particular users use the <em>circle of trust</em> approach. That is, add yourself to the list of allowed users, ensure <code class="docutils literal"><span class="pre">AUTH_REQUIRED</span></code> is set to <code class="docutils literal"><span class="pre">True</span></code> and restart <code class="docutils literal"><span class="pre">alertad</span></code>. To gain access now, a user will need to be manually added to the <em>Users</em> page. Note that any existing user can add and remove users for the list of authorised users.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Twitter does not support OAuth2 for user</p>
 </div>
 </div>
 <div class="section" id="cross-origin">
-<h3>Cross-Origin<a class="headerlink" href="#cross-origin" title="Permalink to this headline">¶</a></h3>
-<p>If the Alerta API is not being served from the same domain as the Alerta Web UI then the <tt class="docutils literal"><span class="pre">CORS_ORIGINS</span></tt> setting needs to be updated to prevent <a class="reference external" href="http://enable-cors.org/client.html">modern browsers</a> from blocking the cross-origin requests.</p>
+<span id="id4"></span><h3>Cross-Origin<a class="headerlink" href="#cross-origin" title="Permalink to this headline">¶</a></h3>
+<p>If the Alerta API is not being served from the same domain as the Alerta Web UI then the <code class="docutils literal"><span class="pre">CORS_ORIGINS</span></code> setting needs to be updated to prevent <a class="reference external" href="http://enable-cors.org/client.html">modern browsers</a> from blocking the cross-origin requests.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">CORS_ORIGINS</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s">&#39;http://try.alerta.io&#39;</span><span class="p">,</span>
     <span class="s">&#39;http://explorer.alerta.io&#39;</span><span class="p">,</span>
@@ -170,7 +154,7 @@
 </div>
 </div>
 <div class="section" id="api-keys">
-<span id="id4"></span><h2>API Keys<a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h2>
+<span id="id5"></span><h2>API Keys<a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h2>
 <p>If authentication is enforced, then an API key is needed to access the alerta API.</p>
 <div class="highlight-python"><div class="highlight"><pre>   API_KEY_EXPIRE_DAYS = 365  # 1 year
 
@@ -181,7 +165,7 @@
 <div class="section" id="user-authorisation">
 <span id="users"></span><h2>User Authorisation<a class="headerlink" href="#user-authorisation" title="Permalink to this headline">¶</a></h2>
 <p>Google and GitHub OAuth2 are used for user authentication, not user authorisation. Authentication proves that you are who you say you are.</p>
-<p>To control who has access to Alerta you can restrict access to users with a <a class="reference internal" href="#allowed-email-domains"><em>certain email domain name</em></a> by setting <tt class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></tt> or who belong to a <a class="reference internal" href="#allowed-github-orgs"><em>particular GitHub organisation</em></a> by setting <tt class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></tt>.</p>
+<p>To control who has access to Alerta you can restrict access to users with a <a class="reference internal" href="#allowed-email-domains"><span>certain email domain name</span></a> by setting <code class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code> or who belong to a <a class="reference internal" href="#allowed-github-orgs"><span>particular GitHub organisation</span></a> by setting <code class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code>.</p>
 <p>For those situations where it is not possible to group users in this way it is possible to selectively allow access on a per-user basis. How this is done depends on whether you are using Google or GitHub as OAuth2 provider for user login.</p>
 <div class="section" id="per-user-authorisation-using-google">
 <h3>Per-User Authorisation using Google<a class="headerlink" href="#per-user-authorisation-using-google" title="Permalink to this headline">¶</a></h3>
@@ -195,8 +179,8 @@
 </div>
 <p>Manaully add the user email address by selecting <em>Configuration -&gt; Users</em> from the alerta console.</p>
 <p>Name: a name to associate with the address, does not need to match registered name
-Login: email address of the user wanting access eg. <tt class="docutils literal"><span class="pre">let.me.in&#64;gmail.com</span></tt></p>
-<p>This user will now be able to login to alerta using <tt class="docutils literal"><span class="pre">let.me.in&#64;gmail.com</span></tt> account eventhough <tt class="docutils literal"><span class="pre">gmail.com</span></tt> is not listed in the <tt class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></tt> setting.</p>
+Login: email address of the user wanting access eg. <code class="docutils literal"><span class="pre">let.me.in&#64;gmail.com</span></code></p>
+<p>This user will now be able to login to alerta using <code class="docutils literal"><span class="pre">let.me.in&#64;gmail.com</span></code> account eventhough <code class="docutils literal"><span class="pre">gmail.com</span></code> is not listed in the <code class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code> setting.</p>
 </div>
 <div class="section" id="per-user-authorisation-using-github">
 <h3>Per-User Authorisation using GitHub<a class="headerlink" href="#per-user-authorisation-using-github" title="Permalink to this headline">¶</a></h3>
@@ -210,8 +194,8 @@ Login: email address of the user wanting access eg. <tt class="docutils literal"
 </div>
 <p>Manaully add the user GitHub username by selecting <em>Configuration -&gt; Users</em> from the alerta console.</p>
 <p>Name: a name to associate with the address, does not need to match registered name
-Login: GitHub username of user wanting access eg. <tt class="docutils literal"><span class="pre">letmein</span></tt></p>
-<p>This user will now be able to login to alerta using <tt class="docutils literal"><span class="pre">letmein</span></tt> GitHub account eventhough they are not members of the organisations listed in the <tt class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></tt> setting.</p>
+Login: GitHub username of user wanting access eg. <code class="docutils literal"><span class="pre">letmein</span></code></p>
+<p>This user will now be able to login to alerta using <code class="docutils literal"><span class="pre">letmein</span></code> GitHub account eventhough they are not members of the organisations listed in the <code class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code> setting.</p>
 </div>
 </div>
 <div class="section" id="mongodb-authentication">
@@ -223,7 +207,7 @@ Login: GitHub username of user wanting access eg. <tt class="docutils literal"><
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="index.html">alerta</a></h1>
 
@@ -241,6 +225,18 @@ Login: GitHub username of user wanting access eg. <tt class="docutils literal"><
 
 
 
+    
+
+<p>
+<a href="https://travis-ci.org/guardian/alerta">
+    <img
+        alt="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
+        src="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
+    >
+</a>
+</p>
+
+
 <h3>
 Links
 </h3>
@@ -250,6 +246,9 @@ Links
   </li>
   <li>
     <a href="https://twitter.com/alertaio" rel="me">Twitter</a>
+  </li>
+  <li>
+    <a href="https://gitter.im/alerta/chat" rel="me">Gitter</a>
   </li>
 </ul>
 
@@ -293,7 +292,7 @@ Links
 </ul>
 
 
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -310,17 +309,16 @@ Links
       </div>
       <div class="clearer"></div>
     </div>
-
     <div class="footer">
       &copy;2015, Nick Satterly.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.2.3</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
       
       |
       <a href="_sources/authentication.txt"
-          rel="nofollow">Page source</a></li>
+          rel="nofollow">Page source</a>
     </div>
 
     
@@ -342,16 +340,5 @@ Links
 
     </script>
     
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-44644195-3', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
   </body>
 </html>

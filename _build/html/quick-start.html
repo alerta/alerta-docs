@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Quickstart &mdash; alerta 4.4 documentation</title>
+    <title>Quickstart &mdash; alerta 4.5 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -15,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '4.4',
+        VERSION:     '4.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
-    <link rel="top" title="alerta 4.4 documentation" href="index.html" />
+    <link rel="top" title="alerta 4.5 documentation" href="index.html" />
     <link rel="next" title="Design Principles" href="design.html" />
     <link rel="prev" title="Alerta monitoring system" href="index.html" />
    
@@ -33,27 +32,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 
   </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="design.html" title="Design Principles"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="Alerta monitoring system"
-             accesskey="P">previous</a> |</li>
-        <li><a href="index.html">alerta 4.4 documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
+  <body role="document">  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="quickstart">
 <span id="quick-start"></span><h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
@@ -97,7 +81,7 @@ $ python -m SimpleHTTPServer 8000
 <div class="highlight-python"><div class="highlight"><pre>$ alerta send -r web01 -e NodeDown -E Production -S Website -s major -t &quot;Web server is down.&quot; -v ERROR
 </pre></div>
 </div>
-<p>The alert should appear almost immediately in the console. If it doesn&#8217;t it&#8217;s a <a class="reference external" href="https://github.com/alerta/alerta-docs/issues/new">bug</a> in alerta or the documentation.</p>
+<p>The alert should appear almost immediately in the console. If it doesn&#8217;t it&#8217;s either a <a class="reference internal" href="authentication.html#cross-origin"><span>CORS issues</span></a> or a <a class="reference external" href="https://github.com/alerta/alerta-docs/issues/new">bug</a>.</p>
 </div>
 </div>
 
@@ -105,7 +89,7 @@ $ python -m SimpleHTTPServer 8000
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="index.html">alerta</a></h1>
 
@@ -123,6 +107,18 @@ $ python -m SimpleHTTPServer 8000
 
 
 
+    
+
+<p>
+<a href="https://travis-ci.org/guardian/alerta">
+    <img
+        alt="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
+        src="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
+    >
+</a>
+</p>
+
+
 <h3>
 Links
 </h3>
@@ -132,6 +128,9 @@ Links
   </li>
   <li>
     <a href="https://twitter.com/alertaio" rel="me">Twitter</a>
+  </li>
+  <li>
+    <a href="https://gitter.im/alerta/chat" rel="me">Gitter</a>
   </li>
 </ul>
 
@@ -164,7 +163,7 @@ Links
 </ul>
 
 
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -181,17 +180,16 @@ Links
       </div>
       <div class="clearer"></div>
     </div>
-
     <div class="footer">
       &copy;2015, Nick Satterly.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.2.3</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
       
       |
       <a href="_sources/quick-start.txt"
-          rel="nofollow">Page source</a></li>
+          rel="nofollow">Page source</a>
     </div>
 
     
@@ -213,16 +211,5 @@ Links
 
     </script>
     
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-44644195-3', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
   </body>
 </html>

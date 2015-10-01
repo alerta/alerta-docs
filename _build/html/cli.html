@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Alerta CLI &mdash; alerta 4.4 documentation</title>
+    <title>Alerta CLI &mdash; alerta 4.5 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -15,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '4.4',
+        VERSION:     '4.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
-    <link rel="top" title="alerta 4.4 documentation" href="index.html" />
+    <link rel="top" title="alerta 4.5 documentation" href="index.html" />
     <link rel="next" title="Integrations &amp; Plugins" href="integrations.html" />
     <link rel="prev" title="Web UI" href="webui.html" />
    
@@ -33,37 +32,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 
   </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="integrations.html" title="Integrations &amp; Plugins"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="webui.html" title="Web UI"
-             accesskey="P">previous</a> |</li>
-        <li><a href="index.html">alerta 4.4 documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
+  <body role="document">  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="alerta-cli">
 <span id="cli"></span><h1>Alerta CLI<a class="headerlink" href="#alerta-cli" title="Permalink to this headline">¶</a></h1>
-<p><tt class="docutils literal"><span class="pre">alerta</span></tt> is the unified command-line tool for the alerta monitoring system. It can be used to
+<p><code class="docutils literal"><span class="pre">alerta</span></code> is the unified command-line tool for the alerta monitoring system. It can be used to
 send and query alerts, tag alerts and change alert status, delete alerts,
 dump alert history or see the raw alert data.</p>
-<p><tt class="docutils literal"><span class="pre">alerta</span></tt> can also be used to send heartbeats to the alerta server.</p>
+<p><code class="docutils literal"><span class="pre">alerta</span></code> can also be used to send heartbeats to the alerta server.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>The <tt class="docutils literal"><span class="pre">alerta</span></tt> client tool can be installed using pip:</p>
+<p>The <code class="docutils literal"><span class="pre">alerta</span></code> client tool can be installed using pip:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ pip install alerta
 </pre></div>
 </div>
@@ -98,25 +82,25 @@ configuration settings.</p>
 <tbody valign="top">
 <tr class="row-even"><td>file</td>
 <td>n/a</td>
-<td><span class="target" id="index-0"></span><tt class="xref std std-envvar docutils literal"><span class="pre">ALERTA_CONF_FILE</span></tt></td>
+<td><span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALERTA_CONF_FILE</span></code></td>
 <td>n/a</td>
-<td><tt class="file docutils literal"><span class="pre">~/.alerta.conf</span></tt></td>
+<td><code class="file docutils literal"><span class="pre">~/.alerta.conf</span></code></td>
 </tr>
 <tr class="row-odd"><td>profile</td>
 <td>profile</td>
-<td><span class="target" id="index-1"></span><tt class="xref std std-envvar docutils literal"><span class="pre">ALERTA_DEFAULT_PROFILE</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">--profile</span> <span class="pre">PROFILE</span></tt></td>
+<td><span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALERTA_DEFAULT_PROFILE</span></code></td>
+<td><code class="docutils literal"><span class="pre">--profile</span> <span class="pre">PROFILE</span></code></td>
 <td>None</td>
 </tr>
 <tr class="row-even"><td>endpoint</td>
 <td>endpoint</td>
-<td><span class="target" id="index-2"></span><tt class="xref std std-envvar docutils literal"><span class="pre">ALERTA_ENDPOINT</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">--endpoint-url</span> <span class="pre">URL</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">http://localhost:8080</span></tt></td>
+<td><span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALERTA_ENDPOINT</span></code></td>
+<td><code class="docutils literal"><span class="pre">--endpoint-url</span> <span class="pre">URL</span></code></td>
+<td><code class="docutils literal"><span class="pre">http://localhost:8080</span></code></td>
 </tr>
 <tr class="row-odd"><td>key</td>
 <td>key</td>
-<td><span class="target" id="index-3"></span><tt class="xref std std-envvar docutils literal"><span class="pre">ALERTA_API_KEY</span></tt></td>
+<td><span class="target" id="index-3"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALERTA_API_KEY</span></code></td>
 <td>n/a</td>
 <td>None</td>
 </tr>
@@ -129,29 +113,29 @@ configuration settings.</p>
 <tr class="row-odd"><td>output</td>
 <td>output</td>
 <td>n/a</td>
-<td><tt class="docutils literal"><span class="pre">--output</span> <span class="pre">OUTPUT</span></tt>, <tt class="docutils literal"><span class="pre">--json</span></tt></td>
+<td><code class="docutils literal"><span class="pre">--output</span> <span class="pre">OUTPUT</span></code>, <code class="docutils literal"><span class="pre">--json</span></code></td>
 <td>text</td>
 </tr>
 <tr class="row-even"><td>color</td>
 <td>color</td>
-<td><span class="target" id="index-4"></span><tt class="xref std std-envvar docutils literal"><span class="pre">CLICOLOR</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">--color</span></tt>, <tt class="docutils literal"><span class="pre">--no-color</span></tt></td>
+<td><span class="target" id="index-4"></span><code class="xref std std-envvar docutils literal"><span class="pre">CLICOLOR</span></code></td>
+<td><code class="docutils literal"><span class="pre">--color</span></code>, <code class="docutils literal"><span class="pre">--no-color</span></code></td>
 <td>color on</td>
 </tr>
 <tr class="row-odd"><td>debug</td>
 <td>debug</td>
-<td><span class="target" id="index-5"></span><tt class="xref std std-envvar docutils literal"><span class="pre">DEBUG</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">--debug</span></tt></td>
+<td><span class="target" id="index-5"></span><code class="xref std std-envvar docutils literal"><span class="pre">DEBUG</span></code></td>
+<td><code class="docutils literal"><span class="pre">--debug</span></code></td>
 <td>no debug</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The <tt class="docutils literal"><span class="pre">profile</span></tt> option can only be set in the <tt class="docutils literal"><span class="pre">[DEFAULT]</span></tt> section.</p>
+<p class="last">The <code class="docutils literal"><span class="pre">profile</span></code> option can only be set in the <code class="docutils literal"><span class="pre">[DEFAULT]</span></code> section.</p>
 </div>
 <p><strong>Example</strong></p>
-<p>Configuration file <tt class="file docutils literal"><span class="pre">~/.alerta.conf</span></tt>:</p>
+<p>Configuration file <code class="file docutils literal"><span class="pre">~/.alerta.conf</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre>[DEFAULT]
 timezone = Australia/Sydney
 output = json
@@ -181,11 +165,11 @@ $ export ALERTA_DEFAULT_PROFILE=production
 </div>
 <div class="section" id="precedence">
 <h2>Precedence<a class="headerlink" href="#precedence" title="Permalink to this headline">¶</a></h2>
-<p>Command-line configuration options have precedence over environment variables, which have precedence over the configuration file. Within the configuration file profile-specific sections have precedence over the <tt class="docutils literal"><span class="pre">[DEFAULT]</span></tt> section.</p>
+<p>Command-line configuration options have precedence over environment variables, which have precedence over the configuration file. Within the configuration file profile-specific sections have precedence over the <code class="docutils literal"><span class="pre">[DEFAULT]</span></code> section.</p>
 </div>
 <div class="section" id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
-<p>The <tt class="docutils literal"><span class="pre">alerta</span></tt> tool is invoked by specifying a command using the following format:</p>
+<p>The <code class="docutils literal"><span class="pre">alerta</span></code> tool is invoked by specifying a command using the following format:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] COMMAND [FILTERS]
 </pre></div>
 </div>
@@ -233,7 +217,7 @@ optional arguments:
   --raw-data RAW_DATA   raw data
 </pre></div>
 </div>
-<p>The only mandatory options are <tt class="docutils literal"><span class="pre">resource</span></tt> and <tt class="docutils literal"><span class="pre">event</span></tt>. All the others will
+<p>The only mandatory options are <code class="docutils literal"><span class="pre">resource</span></code> and <code class="docutils literal"><span class="pre">event</span></code>. All the others will
 be set to sensible defaults.</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -250,22 +234,22 @@ be set to sensible defaults.</p>
 <td>empty string</td>
 </tr>
 <tr class="row-odd"><td>severity</td>
-<td><tt class="docutils literal"><span class="pre">normal</span></tt></td>
+<td><code class="docutils literal"><span class="pre">normal</span></code></td>
 </tr>
 <tr class="row-even"><td>correlate</td>
 <td>empty list</td>
 </tr>
 <tr class="row-odd"><td>status</td>
-<td><tt class="docutils literal"><span class="pre">unknown</span></tt></td>
+<td><code class="docutils literal"><span class="pre">unknown</span></code></td>
 </tr>
 <tr class="row-even"><td>service</td>
 <td>empty list</td>
 </tr>
 <tr class="row-odd"><td>group</td>
-<td><tt class="docutils literal"><span class="pre">Misc</span></tt></td>
+<td><code class="docutils literal"><span class="pre">Misc</span></code></td>
 </tr>
 <tr class="row-even"><td>value</td>
-<td><tt class="docutils literal"><span class="pre">n/a</span></tt></td>
+<td><code class="docutils literal"><span class="pre">n/a</span></code></td>
 </tr>
 <tr class="row-odd"><td>text</td>
 <td>empty string</td>
@@ -280,7 +264,7 @@ be set to sensible defaults.</p>
 <td>program/host</td>
 </tr>
 <tr class="row-odd"><td>type</td>
-<td><tt class="docutils literal"><span class="pre">exceptionAlert</span></tt></td>
+<td><code class="docutils literal"><span class="pre">exceptionAlert</span></code></td>
 </tr>
 <tr class="row-even"><td>timeout</td>
 <td>86400 (1 day)</td>
@@ -291,12 +275,12 @@ be set to sensible defaults.</p>
 </tbody>
 </table>
 <p><strong>Examples</strong></p>
-<p>To send a <tt class="docutils literal"><span class="pre">minor</span></tt> alert followed by a <tt class="docutils literal"><span class="pre">normal</span></tt> alert that correlates:</p>
+<p>To send a <code class="docutils literal"><span class="pre">minor</span></code> alert followed by a <code class="docutils literal"><span class="pre">normal</span></code> alert that correlates:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ alerta send --resource web01 --event HttpError --correlate HttpOK --group Web --severity minor
 $ alerta send --resource web01 --event HttpOK --correlate HttpError --group Web --severity normal
 </pre></div>
 </div>
-<p>To send an alert with custom attribute called <tt class="docutils literal"><span class="pre">customer</span></tt>:</p>
+<p>To send an alert with custom attribute called <code class="docutils literal"><span class="pre">customer</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ alerta send -r web01 -e HttpError -g Web -s major --attributes customer=&quot;Tyrell Corp&quot;
 </pre></div>
 </div>
@@ -389,7 +373,7 @@ optional arguments:
 </div>
 <div class="section" id="ack">
 <h3><strong class="command">ack</strong><a class="headerlink" href="#ack" title="Permalink to this headline">¶</a></h3>
-<p>Acknowlege alerts ie. change alert <tt class="docutils literal"><span class="pre">status</span></tt> to <tt class="docutils literal"><span class="pre">ack</span></tt>:</p>
+<p>Acknowlege alerts ie. change alert <code class="docutils literal"><span class="pre">status</span></code> to <code class="docutils literal"><span class="pre">ack</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] ack [--id ID] [--filters FILTERS]
 
 optional arguments:
@@ -401,7 +385,7 @@ optional arguments:
 </div>
 <div class="section" id="unack">
 <h3><strong class="command">unack</strong><a class="headerlink" href="#unack" title="Permalink to this headline">¶</a></h3>
-<p>Unacknowledge alerts ie. change alert <tt class="docutils literal"><span class="pre">status</span></tt> to <tt class="docutils literal"><span class="pre">open</span></tt>:</p>
+<p>Unacknowledge alerts ie. change alert <code class="docutils literal"><span class="pre">status</span></code> to <code class="docutils literal"><span class="pre">open</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] unack [--id ID] [--filters FILTERS]
 
 optional arguments:
@@ -413,7 +397,7 @@ optional arguments:
 </div>
 <div class="section" id="close">
 <h3><strong class="command">close</strong><a class="headerlink" href="#close" title="Permalink to this headline">¶</a></h3>
-<p>Close alerts ie. change alert <tt class="docutils literal"><span class="pre">status</span></tt> to <tt class="docutils literal"><span class="pre">closed</span></tt>:</p>
+<p>Close alerts ie. change alert <code class="docutils literal"><span class="pre">status</span></code> to <code class="docutils literal"><span class="pre">closed</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] close [--id ID] [--filters FILTERS]
 
 optional arguments:
@@ -452,11 +436,11 @@ optional arguments:
 </div>
 <div class="section" id="help">
 <h3><strong class="command">help</strong><a class="headerlink" href="#help" title="Permalink to this headline">¶</a></h3>
-<p>Show all <tt class="docutils literal"><span class="pre">OPTIONS</span></tt>, <tt class="docutils literal"><span class="pre">COMMANDS</span></tt> and some example <tt class="docutils literal"><span class="pre">FILTERS</span></tt>.</p>
+<p>Show all <code class="docutils literal"><span class="pre">OPTIONS</span></code>, <code class="docutils literal"><span class="pre">COMMANDS</span></code> and some example <code class="docutils literal"><span class="pre">FILTERS</span></code>.</p>
 </div>
 <div class="section" id="version">
 <h3><strong class="command">version</strong><a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h3>
-<p>Show version information for <tt class="docutils literal"><span class="pre">alerta</span></tt> and dependencies.</p>
+<p>Show version information for <code class="docutils literal"><span class="pre">alerta</span></code> and dependencies.</p>
 </div>
 </div>
 <div class="section" id="bugs">
@@ -469,7 +453,7 @@ optional arguments:
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="index.html">alerta</a></h1>
 
@@ -487,6 +471,18 @@ optional arguments:
 
 
 
+    
+
+<p>
+<a href="https://travis-ci.org/guardian/alerta">
+    <img
+        alt="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
+        src="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
+    >
+</a>
+</p>
+
+
 <h3>
 Links
 </h3>
@@ -496,6 +492,9 @@ Links
   </li>
   <li>
     <a href="https://twitter.com/alertaio" rel="me">Twitter</a>
+  </li>
+  <li>
+    <a href="https://gitter.im/alerta/chat" rel="me">Gitter</a>
   </li>
 </ul>
 
@@ -545,7 +544,7 @@ Links
 </ul>
 
 
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -562,17 +561,16 @@ Links
       </div>
       <div class="clearer"></div>
     </div>
-
     <div class="footer">
       &copy;2015, Nick Satterly.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.2.3</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
       
       |
       <a href="_sources/cli.txt"
-          rel="nofollow">Page source</a></li>
+          rel="nofollow">Page source</a>
     </div>
 
     
@@ -594,16 +592,5 @@ Links
 
     </script>
     
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-44644195-3', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
   </body>
 </html>

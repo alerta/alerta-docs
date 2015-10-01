@@ -3,9 +3,9 @@
 About
 =====
 
-Alerta started out of necessity as a replacement for a legacy monitoring tool but only after exhaustively evaluating all credible alternatives first.
+Alerta started at `The Guardian`_ out of necessity as a replacement for a legacy monitoring tool but only after exhaustively evaluating all credible alternatives first.
 
-Initially all we wanted was to be able to create alert thresholds against the Ganglia metrics collected for the `Guardian website`_ and view the alerts in a web console ie. a Ganglia "alerter". Not having a proper name for this `metrics and monitoring system`_ the working name of "an alerter" stuck and a simple homophone was chosen to aid future Google searches.
+Initially all we wanted was to be able to create alert thresholds against the Ganglia metrics collected for the website and view the alerts in a web console ie. a Ganglia "alerter". Not having a proper name for this `metrics and monitoring system`_ the working name of "an alerter" stuck and a simple homophone was chosen to aid future Google searches.
 
 In the end, the thresholding of metrics proved very difficult to scale so we eventually split the project in two and metric thresholding was given to Riemann (see `riemann-config`_) and the alert correlation, de-duplication and visualisation became "alerta".
 
@@ -15,7 +15,7 @@ In that time certain key features of alerta have been deprecated as requirements
 
 As such, alerta is now quite different to the somewhat "over engineered" initial solution but the core concepts of being a flexible, easy-to-use tool remain and it is now a "cloud-ready" solution adapted to the challenges of a fast changing environment.
 
-.. _`Guardian website`: http://www.theguardian.com/
+.. _`The Guardian`: http://www.theguardian.com/
 .. _`metrics and monitoring system`: https://www.theguardian.com/info/developer-blog/2012/oct/04/winning-the-metrics-battle
 .. _`swimlaned`: http://akfpartners.com/techblog/2008/05/30/fault-isolative-architectures-or-%E2%80%9Cswimlaning%E2%80%9D/
 .. _`riemann-config`: https://github.com/guardian/riemann-config
