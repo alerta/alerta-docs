@@ -52,7 +52,10 @@
 <li>Hierarchy - <code class="docutils literal"><span class="pre">NW:INTERFACE:DOWN</span></code></li>
 <li>SNMP - <code class="docutils literal"><span class="pre">cpuAlarmHigh</span></code></li>
 </ul>
-<p>Querying for all disk alerts then becomes <code class="docutils literal"><span class="pre">event=~disk</span></code>.</p>
+<p>Querying for all CPU alerts using the alerta CLI could then becomes:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta query --filter event=~cpu
+</pre></div>
+</div>
 </div>
 <div class="section" id="event-groups">
 <h3>Event Groups<a class="headerlink" href="#event-groups" title="Permalink to this headline">¶</a></h3>
@@ -109,10 +112,14 @@
 </tr>
 </tbody>
 </table>
+<p>Querying for all performance-related alerts using the alerta CLI could then become:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta query --filter group=Performance
+</pre></div>
+</div>
 </div>
 <div class="section" id="environments-services">
 <h3>Environments &amp; Services<a class="headerlink" href="#environments-services" title="Permalink to this headline">¶</a></h3>
-<p>Choose a set of environments and enforce them. ie. <code class="docutils literal"><span class="pre">PROD</span></code>, <code class="docutils literal"><span class="pre">DEV</span></code> or <code class="docutils literal"><span class="pre">Production</span></code>, <code class="docutils literal"><span class="pre">Development</span></code> but not both. The same for services eg. <code class="docutils literal"><span class="pre">MobileAPI</span></code>, <code class="docutils literal"><span class="pre">Mobile-API</span></code> and <code class="docutils literal"><span class="pre">mobile</span> <span class="pre">api</span></code> are all valid but needlessly different and impossible to trigger on reliably.</p>
+<p>Choose a set of environments and enforce them. ie. <code class="docutils literal"><span class="pre">PROD</span></code>, <code class="docutils literal"><span class="pre">DEV</span></code> or <code class="docutils literal"><span class="pre">Production</span></code>, <code class="docutils literal"><span class="pre">Development</span></code> but not both. The same for services eg. <code class="docutils literal"><span class="pre">MobileAPI</span></code>, <code class="docutils literal"><span class="pre">Mobile-API</span></code> and <code class="docutils literal"><span class="pre">mobile</span> <span class="pre">api</span></code> are all valid but needlessly different and impossible to query for reliably.</p>
 </div>
 </div>
 <div class="section" id="severity-levels">
@@ -152,14 +159,8 @@
 </div>
 <div class="section" id="enforcing-conventions">
 <h2>Enforcing Conventions<a class="headerlink" href="#enforcing-conventions" title="Permalink to this headline">¶</a></h2>
-<p>Once a set of naming conventions are agreed, they can be enforced by writing a simple <a class="reference internal" href="server.html#pre-receive"><span>pre-receive</span></a> plug-in.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">pre_receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">):</span>
-
-    <span class="k">if</span> <span class="n">alert</span><span class="o">.</span><span class="n">environment</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;Production&#39;</span><span class="p">,</span> <span class="s">&#39;Development&#39;</span><span class="p">]:</span>
-        <span class="k">raise</span> <span class="n">RejectException</span><span class="p">(</span><span class="s">&quot;[POLICY] Alert environment must be one of Production or Development&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-<p>A full working example called <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py">reject</a> can be found in the plug-ins directory of the project code repository and is installed by default. It should be modified for your circumstances.</p>
+<p>Once a set of naming conventions are agreed, they can be enforced by using a simple <a class="reference internal" href="server.html#pre-receive"><span>pre-receive</span></a> plug-in.</p>
+<p>A full working example called <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py">reject</a> can be found in the plug-ins directory of the project code repository and is installed by default. The server configuration settings <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">ORIGIN_BLACKLIST</span></code> and <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_ENVIRONMENTS</span></code> can be used to tailor it for your circumstances.</p>
 </div>
 </div>
 

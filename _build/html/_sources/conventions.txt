@@ -17,7 +17,9 @@ It can be useful to define a convention when it comes to naming events. Possible
 * Hierarchy - ``NW:INTERFACE:DOWN``
 * SNMP - ``cpuAlarmHigh``
 
-Querying for all disk alerts then becomes ``event=~disk``.
+Querying for all CPU alerts using the alerta CLI could then becomes::
+
+    $ alerta query --filter event=~cpu
 
 Event Groups
 ~~~~~~~~~~~~
@@ -54,10 +56,14 @@ Another consideration is to ensure you make use of the event group which gives y
 | ``Cloud``          | cloud-based services or infrastructure     |
 +--------------------+--------------------------------------------+
 
+Querying for all performance-related alerts using the alerta CLI could then become::
+
+    $ alerta query --filter group=Performance
+
 Environments & Services
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Choose a set of environments and enforce them. ie. ``PROD``, ``DEV`` or ``Production``, ``Development`` but not both. The same for services eg. ``MobileAPI``, ``Mobile-API`` and ``mobile api`` are all valid but needlessly different and impossible to trigger on reliably.
+Choose a set of environments and enforce them. ie. ``PROD``, ``DEV`` or ``Production``, ``Development`` but not both. The same for services eg. ``MobileAPI``, ``Mobile-API`` and ``mobile api`` are all valid but needlessly different and impossible to query for reliably.
 
 Severity Levels
 ---------------
@@ -79,15 +85,8 @@ Agree on a subset of severity levels and be consistent with what they mean. For 
 Enforcing Conventions
 ---------------------
 
-Once a set of naming conventions are agreed, they can be enforced by writing a simple :ref:`pre-receive <pre_receive>` plug-in.
+Once a set of naming conventions are agreed, they can be enforced by using a simple :ref:`pre-receive <pre_receive>` plug-in.
 
-.. code-block:: python
-
-    def pre_receive(self, alert):
-
-        if alert.environment not in ['Production', 'Development']:
-            raise RejectException("[POLICY] Alert environment must be one of Production or Development"))
-
-A full working example called `reject`_ can be found in the plug-ins directory of the project code repository and is installed by default. It should be modified for your circumstances.
+A full working example called `reject`_ can be found in the plug-ins directory of the project code repository and is installed by default. The server configuration settings :envvar:`ORIGIN_BLACKLIST` and :envvar:`ALLOWED_ENVIRONMENTS` can be used to tailor it for your circumstances.
 
 .. _`reject`: https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py
