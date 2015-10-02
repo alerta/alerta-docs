@@ -8,6 +8,22 @@ Always favour convention over configuration. And any configuration should have s
 Naming Conventions
 ------------------
 
+Resources
+~~~~~~~~~
+
+The key alert attribute name of ``resource`` was specifically chosen so as not to be host centric. A resource *can* be a hostname, but it might also be an EC2 instance ID, a Docker container ID or some other type of non-host unique identifier.
+
+Environments & Services
+~~~~~~~~~~~~~~~~~~~~~~~
+
+The environment attribute is used to namespace_ the alert resource. This allows you to have two resources with the same name (eg. ``web01``) but that are differentiated by their environments (eg. ``prod`` and ``dev``).
+
+.. _namespace: https://en.wikipedia.org/wiki/Namespace
+
+Choose a set of environments and enforce them. ie. ``PROD``, ``DEV`` or ``Production``, ``Development`` but not both. The same for services eg. ``MobileAPI``, ``Mobile-API`` and ``mobile api`` are all valid but needlessly different and impossible to query for reliably.
+
+Note that the service attribute can be a list because it is common for infrastructure (ie. some resource) to be used by more than one service. That is, if a component failure occurs that problem could cause an outage in multiple services.
+
 Event Names
 ~~~~~~~~~~~
 
@@ -59,11 +75,6 @@ Another consideration is to ensure you make use of the event group which gives y
 Querying for all performance-related alerts using the alerta CLI could then become::
 
     $ alerta query --filter group=Performance
-
-Environments & Services
-~~~~~~~~~~~~~~~~~~~~~~~
-
-Choose a set of environments and enforce them. ie. ``PROD``, ``DEV`` or ``Production``, ``Development`` but not both. The same for services eg. ``MobileAPI``, ``Mobile-API`` and ``mobile api`` are all valid but needlessly different and impossible to query for reliably.
 
 Severity Levels
 ---------------

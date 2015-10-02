@@ -3,7 +3,9 @@
 Server & API
 ============
 
-The ``alertad`` server receives alerts from multiple sources, :ref:`correlates <correlation>` and :ref:`de-duplicates  <deduplication>` them, and makes the alerts available via a JSON API.
+The ``alertad`` server receives alerts from multiple sources, :ref:`correlates <correlation>`, :ref:`de-duplicates  <deduplication>` or :ref:`suppresses <blackouts>` them, and makes the alerts available via a RESTful_ JSON API.
+
+.. _RESTful: http://apigee.com/about/resources/webcasts/restful-api-design-second-edition
 
 Alerts can be intercepted as they are received to modify, enhance or reject them using :ref:`pre-receive hooks <pre_receive>`. Alerts can also be used to trigger actions in other systems after the alert has been processed using :ref:`post-receive hooks <post_receive>`.
 
@@ -14,212 +16,64 @@ There are several :ref:`integrations <integrations>` with popular monitoring too
 Event Processing
 ----------------
 
+Alerta comes `out-of-the-box` with key features designed to reduce the burden of alert management. When an event is received it it is processed in the following manner:
+
+1. all plugins pre-receive hooks are run in alphabetical order, alert immediately rejected if any return a Reject Exception
+2. alert is checked against any active blackout periods, alert suppressed if any match
+3. alert is checked if duplicate, if so duplicate count ++, repeat=True
+4. alert is checked if correlated, if so change severity and/or status etc
+5. alert is added as new
+6. all plugin post-receive hooks are run in alphabetical order
+7. new or updated alert returned in reponse
+8. timeout used to expire alerts from the console
+
+
+.. _transformers:
+
+Transformers
+------------
+
+Using pre-receive hooks, plugins provide the ability to transform raw alert data from sources before alerts are created. For example, alerts can be *normalised* to ensure they all have specific attributes or tags or only have a specific value from a range of allowed values. This is demonstrated in the reject plugin that enforces an alert policy.
+
+Plugins can also be used to *enhance* alerts, for example, to add Geo location data to alerts based on the sending IP address. See geoip plugin or a customer attribute based on information contained in the alert. See enhance plugin.
+
+.. _blackouts:
+
+Blackout Periods
+----------------
+
+
 .. _deduplication:
 
-De-duplication
-~~~~~~~~~~~~~~
+De-Duplication
+--------------
 
-Same event/resource combination, same severity simply increases the duplicate count.
+
 
 .. _correlation:
 
 Simple Correlation
-~~~~~~~~~~~~~~~~~~
-
-Same event/resource, different severity
-Correlated list of related events. eg. NodeUp NodeDown
+------------------
 
 
-Auto-closing
-~~~~~~~~~~~~
-
-Alerts cleared, normal, ok change status to `closed`
-
-
-
-.. _plugins:
-
-Plug-ins
---------
-
-Plug-ins are small python scripts that can run either before or after an alert is saved to the database. This is achieved by registering *prereceive* and *post-receive hooks*.
-
-.. _pre_receive:
-
-Pre-Receive Hooks
-~~~~~~~~~~~~~~~~~
-
-.. _post_receive:
-
-Post Receive Hooks
-~~~~~~~~~~~~~~~~~~
-
-Alert Database
---------------
-
-The document-oriented datastore MongoDB_ is used as the backend for Alerta to store alerts, heartbeats, API keys and the :ref:`user exception list <users>`. It can be used as a stand-alone server or in a `replica set`_ for high availability.
-
-.. _MongoDB: https://www.mongodb.com
-.. _`replica set`: http://docs.mongodb.org/manual/core/replica-set-high-availability/
-
-MongoDB Settings
-~~~~~~~~~~~~~~~~
-
-::
-
-    # MongoDB
-    MONGO_HOST = 'localhost'
-    MONGO_PORT = 27017
-    MONGO_DATABASE = 'monitoring'
-
-    MONGO_USERNAME = 'alerta'
-    MONGO_PASSWORD = None
-
-
-CORS
-----
-
-::
-
-    CORS_ALLOW_HEADERS = ['Content-Type', 'Authorization', 'Access-Control-Allow-Origin']
-    CORS_ORIGINS = [
-        'http://try.alerta.io',
-        'http://explorer.alerta.io',
-        'chrome-extension://jplkjnjaegjgacpfafdopnpnhmobhlaf',
-        'http://localhost'
-    ]
-    CORS_SUPPORTS_CREDENTIALS = AUTH_REQUIRED
-
-
-API Settings
-------------
-
-::
-
-    QUERY_LIMIT = 10000  # maximum number of alerts returned by a single query
-    HISTORY_LIMIT = 100  #
-    API_KEY_EXPIRE_DAYS = 365  # 1 year
-
-Dynamic Settings
-----------------
-switch.auto_refresh_allow
-
-Authentication
---------------
-
-::
-
-    AUTH_REQUIRED = True
-
-See :ref:`Authentication <authentication>`
-
-
-
-
-
-Settings
---------
-
-::
-
-    # Plug-ins
-    PLUGINS = ['reject', 'amqp']
-    # PLUGINS = ['amqp', 'enhance', 'logstash', 'normalise', 'reject', 'sns']
-
-    # AMQP Credentials
-    AMQP_URL = 'mongodb://localhost:27017/kombu'        # MongoDB
-    # AMQP_URL = 'amqp://guest:guest@localhost:5672//'  # RabbitMQ
-    # AMQP_URL = 'redis://localhost:6379/'              # Redis
-
-    # AWS Credentials
-    AWS_ACCESS_KEY_ID = ''
-    AWS_SECRET_ACCESS_KEY = ''
-    AWS_REGION = 'eu-west-1'
-
-    # Inbound
-    AMQP_QUEUE = 'alerts'
-    AWS_SQS_QUEUE = 'alerts'
-
-    # Outbound
-    AMQP_TOPIC = 'notify'
-    AWS_SNS_TOPIC = 'notify'
-
-    # Logstash
-    LOGSTASH_HOST = 'localhost'
-    LOGSTASH_PORT = 6379
-
-
-
-Configure Authentication
-------------------------
-
-- login
-- add any special users
-- create API keys
-
-Configure a Plug-in
+State-based Browser
 -------------------
 
-
-Configure an Integration
-------------------------
-
-
-Production Deployment
----------------------
-
-::
-
-    DEBUG = False
-    SECRET_KEY = ...
-
-Configure WSGI App
-~~~~~~~~~~~~~~~~~~
-
-http://flask.pocoo.org/docs/0.10/deploying/#deployment
-
-
-don't run in foreground
-Web server
-
-
-example configs
-nginx -> https://github.com/alerta/docker-alerta/blob/master/nginx.conf
-
-CORS if not same origin
-
-MongoDB Replica Set Setup
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-:file:/etc/mongod.conf
-
-::
-
-    replSetName=alerta
-::
-
-    > rs.initiate()
-    > rs.add("mongodb1.example.net")
-    > rs.add("mongodb1.example.net")
-
-
-.. _MongoDB_Replica: http://docs.mongodb.org/manual/tutorial/deploy-replica-set/
-
-::
-
-    MONGO_REPLSET = None  # 'alerta'
+auto status change (open->closed->open)
+status / severity change & history log
+duplicate count, repeat flag
+previous severity & trend indication
 
 
 
+Downstream
+----------
 
-Vagrant
+Using post-receive hooks, plugins can be used to provide downstream systems with alerts in realtime. For example, pushing alerts onto an AWS SNS topic, AMQP queue, logging to a Logstash/Kibana stack, or sending notifications to HipChat, Slack or Twilio.
 
-Heroku
 
-OpenShift
+Timeout
+-------
 
-AWS
 
-Docker
 
-Packer

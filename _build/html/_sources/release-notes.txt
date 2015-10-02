@@ -83,8 +83,8 @@ Release 3.0 (25-3-2014)
 Release 2.0 (11-3-2013)
 -----------------------
 
-* Major refactoring into python modules
-* Replace CGI scripts with Flask microframework
+* Major refactoring into python modules and classes
+* API rewrite based on Flask microframework
 * Dashboard_ rewritten using Flask server-side templates
 * Integrations for AWS SNS, Syslog, Dynect and URL monitoring
 
