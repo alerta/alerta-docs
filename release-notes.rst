@@ -1,7 +1,22 @@
+
+Releases
+========
+
+Roadmap
++++++++
+
+* Web UI redesign using `Google material design`_
+* Custom alert filters and dashboard views
+* Python 3 support
+* Prometheus_ integration
+
+.. _Google material design: https://www.google.com/design/spec/material-design/introduction.html
+.. _Prometheus: http://prometheus.io/docs/alerting/alertmanager/
+
 .. _releases:
 
 Release History
-===============
++++++++++++++++
 
 Release 4.5 (9-9-2015)
 ----------------------
@@ -21,6 +36,7 @@ Release 4.3 (12-5-2015)
 Release 4.2 (13-3-2015)
 -----------------------
 
+* PagerDuty webhook integration
 * API keys can be `read-only` as well as `read-write`
 
 Release 4.1 (25-2-2015)
@@ -33,18 +49,22 @@ Release 4.0 (15-1-2015)
 -----------------------
 
 * Change web browser authentication to use JWT tokens
-* Add support for Google and GitHub OAuth/OpenID Connect
+* Improve Google OAuth login and add GitHub OAuth
 
 Release 3.3 (16-12-2014)
 ------------------------
 
-* Add Amazon AWS Cloudwatch web hook integration
+* Add Amazon AWS CloudWatch, Pingdom web hook integration
+* Slack and HipChat plugins
 
 Release 3.2 (11-10-2014)
 ------------------------
 
 * Major refactor and simplification of server architecture
-* Add server-side plug-ins with ``pre_receive()`` and ``post_receive()`` hooks
+* Add Google OAuth user logins
+* API keys for controlling programatic access
+* Add support for server-side custom plug-ins eg. Logstash, AWS SNS, AMQP
+* Deprecated RabbitMQ as a dependency
 
 Release 3.1 (9-5-2014)
 ----------------------

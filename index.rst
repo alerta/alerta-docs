@@ -67,6 +67,7 @@ License
 This project is licensed under the Apache license.
 
 .. toctree::
+   :maxdepth: 2
    :hidden:
 
    release-notes
