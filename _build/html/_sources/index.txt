@@ -27,6 +27,7 @@ The API Explorer website can be used to query for, and send alerts to, the http:
 - http://explorer.alerta.io
 
 .. toctree::
+   :maxdepth: 2
    :hidden:
 
    quick-start
