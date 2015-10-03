@@ -1,4 +1,4 @@
-.. _format:
+.. _alert_format:
 
 Alert Format
 ============
@@ -47,15 +47,15 @@ The following alert attributes are populated at source:
 +----------------------+---------------------------------------------------------------------------------+
 | ``createTime``       | UTC date and time the alert was generated in ISO 8601 format                    |
 +----------------------+---------------------------------------------------------------------------------+
-| ``timeout``          | number of seconds before alert is deleted from database                         |
+| ``timeout``          | number of seconds before alert is considered stale                              |
 +----------------------+---------------------------------------------------------------------------------+
 | ``rawData``          | unprocessed data eg. full syslog message or SNMP trap                           |
 +----------------------+---------------------------------------------------------------------------------+
 
 .. note:: Only ``event`` and ``resource`` are mandatory.
 
-Alert attributes added when processing alerts
----------------------------------------------
+Attributes added when processing alerts
+---------------------------------------
 
 +----------------------+---------------------------------------------------------------------------------+
 | Attribute            | Description                                                                     |

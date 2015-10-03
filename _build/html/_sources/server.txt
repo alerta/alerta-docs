@@ -76,4 +76,11 @@ Timeout
 -------
 
 
+Heartbeats
+----------
+
+
+alerting on stale heartbeats
+
+
 

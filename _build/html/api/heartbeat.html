@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>API Overview &mdash; alerta 4.5 documentation</title>
+    <title>Heartbeat Format &mdash; alerta 4.5 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="top" title="alerta 4.5 documentation" href="../index.html" />
-    <link rel="next" title="API Reference" href="reference.html" />
-    <link rel="prev" title="About" href="../about.html" />
+    <link rel="next" title="Releases" href="../release-notes.html" />
+    <link rel="prev" title="Alert Format" href="alert.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -39,114 +39,85 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="api-overview">
-<span id="api"></span><h1>API Overview<a class="headerlink" href="#api-overview" title="Permalink to this headline">¶</a></h1>
-<p>REST API   <a class="reference external" href="http://api.alerta.io">http://api.alerta.io</a>
-resources: alerts, heartbeats, keys, users
-alert and heartbeat JSON formats
-methods, attributes and responses
-JSONP, CORS, Caching “Last-Modified” (wip)</p>
-<p>alerts - CRUD, query, services, environments
-heartbeats - CRUD
-auth - google oauth, github oauth, api keys, specified users</p>
-<div class="section" id="version">
-<h2>Version<a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="base-url">
-<h2>Base URL<a class="headerlink" href="#base-url" title="Permalink to this headline">¶</a></h2>
-<p>Get list of all endpoints...</p>
-<p>$ curl <a class="reference external" href="https://api.alerta.io">https://api.alerta.io</a></p>
-<p>-&gt; Alerts
--&gt; Heartbeats
--&gt; ...</p>
-</div>
-<div class="section" id="authentication">
-<h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h2>
-<p>Google OAuth2</p>
-</div>
-<div class="section" id="api-keys">
-<h2>API Keys<a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h2>
-<p>Create your own key when logged in.</p>
-<p>read-write and read-only keys</p>
-</div>
-<div class="section" id="instance-references">
-<h2>Instance References<a class="headerlink" href="#instance-references" title="Permalink to this headline">¶</a></h2>
-<p>&#8220;href&#8221; attributes.</p>
-</div>
-<div class="section" id="post-response">
-<h2>POST Response<a class="headerlink" href="#post-response" title="Permalink to this headline">¶</a></h2>
-<p>The body of a resource is returned in the response body so that it can be used immediately. For example, from that you can know the alert id, whether it is a duplicate or not, whether the severity has increased or decreased, etc.</p>
-</div>
-<div class="section" id="deleting">
-<h2>Deleting<a class="headerlink" href="#deleting" title="Permalink to this headline">¶</a></h2>
-<p>DELETE or _method=DELETE</p>
-</div>
-<div class="section" id="dates-times">
-<h2>Dates &amp; Times<a class="headerlink" href="#dates-times" title="Permalink to this headline">¶</a></h2>
-<p>All dates and times are in ISO8601 format.</p>
-<p>YYYY-MM-DDTHH-mm-ss.fffZ</p>
-</div>
-<div class="section" id="camel-case">
-<h2>Camel Case<a class="headerlink" href="#camel-case" title="Permalink to this headline">¶</a></h2>
-<p>Standard attributes are camel case. If user-defined attributes are also camel case then auto formating will occur in the alert web UI. eg. &#8220;myCamelCaseKey&#8221; -&gt; My Camel Case Key</p>
-</div>
-<div class="section" id="jsonp">
-<h2>JSONP<a class="headerlink" href="#jsonp" title="Permalink to this headline">¶</a></h2>
-<p>callback=</p>
-</div>
-<div class="section" id="caching">
-<h2>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h2>
-<p>Not supported.</p>
-</div>
-<div class="section" id="http-status-codes">
-<span id="status-codes"></span><h2>HTTP Status Codes<a class="headerlink" href="#http-status-codes" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="heartbeat-format">
+<span id="id1"></span><h1>Heartbeat Format<a class="headerlink" href="#heartbeat-format" title="Permalink to this headline">¶</a></h1>
+<p>Heartbeats ...</p>
+<div class="section" id="attributes">
+<span id="heartbeat-attributes"></span><h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
+<p>The following heartbeat attributes are populated at source:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="21%" />
 <col width="79%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Code</th>
+<tr class="row-odd"><th class="head">Attribute</th>
 <th class="head">Description</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>200 OK</td>
-<td>No error.</td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">id</span></code></td>
+<td>globally unique random UUID</td>
 </tr>
-<tr class="row-odd"><td>201 Created</td>
-<td>Resource created successfully.</td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">origin</span></code></td>
+<td>name of monitoring component that generated the heartbeat</td>
 </tr>
-<tr class="row-even"><td>400 Bad Request</td>
-<td>Mandatory parameter or data missing.</td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">tags</span></code></td>
+<td>set of tags in any format eg. <code class="docutils literal"><span class="pre">aTag</span></code>, <code class="docutils literal"><span class="pre">aDouble:Tag</span></code>, <code class="docutils literal"><span class="pre">a:Triple=Tag</span></code></td>
 </tr>
-<tr class="row-odd"><td>401 Unauthorized</td>
-<td>Authorization required.</td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">type</span></code></td>
+<td>heartbeat type. only <code class="docutils literal"><span class="pre">Heartbeat</span></code> is currently supported</td>
 </tr>
-<tr class="row-even"><td>403 Forbidden</td>
-<td>Pre-receive hook rejected request or authorization failed.</td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">createTime</span></code></td>
+<td>UTC date and time the heartbeat was generated in ISO 8601 format</td>
 </tr>
-<tr class="row-odd"><td>404 Not Found</td>
-<td>Resource (such as alert or heartbeat) not found.</td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">timeout</span></code></td>
+<td>number of seconds before heartbeat is considered stale</td>
 </tr>
-<tr class="row-even"><td>500 Server Error</td>
-<td>Internal error. Default code used for all unexpected server errors.</td>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Only <code class="docutils literal"><span class="pre">origin</span></code> is mandatory.</p>
+</div>
+</div>
+<div class="section" id="attributes-added-when-processing-heartbeats">
+<h2>Attributes added when processing heartbeats<a class="headerlink" href="#attributes-added-when-processing-heartbeats" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">receiveTime</span></code></td>
+<td>UTC date and time the heartbeat was received by the Alerta server daemon</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section" id="embedding">
-<h2>Embedding<a class="headerlink" href="#embedding" title="Permalink to this headline">¶</a></h2>
-<p>See oEmbed</p>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s">&quot;origin&quot;</span><span class="p">:</span> <span class="s">&quot;macbook&quot;</span><span class="p">,</span>
+  <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s">&quot;foo&quot;</span><span class="p">,</span>
+    <span class="s">&quot;bar&quot;</span><span class="p">,</span>
+    <span class="s">&quot;baz&quot;</span>
+  <span class="p">],</span>
+  <span class="s">&quot;createTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-10-03T00:00:59.055Z&quot;</span><span class="p">,</span>
+  <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/heartbeat/a8b97056-8415-4b4f-83c8-e84ffcc676a3&quot;</span><span class="p">,</span>
+  <span class="s">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+  <span class="s">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-10-03T00:00:59.681Z&quot;</span><span class="p">,</span>
+  <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;Heartbeat&quot;</span><span class="p">,</span>
+  <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;a8b97056-8415-4b4f-83c8-e84ffcc676a3&quot;</span>
+<span class="p">}</span>
+</pre></div>
 </div>
-<div class="section" id="explorer">
-<h2>Explorer<a class="headerlink" href="#explorer" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="http://explorer.alerta.io">http://explorer.alerta.io</a></p>
-</div>
-<div class="section" id="libraries">
-<h2>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">¶</a></h2>
-<p>Python</p>
-<p>python-alerta</p>
 </div>
 </div>
 
@@ -213,12 +184,12 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">API Overview</a><ul class="simple">
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">API Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alert.html">Alert Format</a></li>
-<li class="toctree-l1"><a class="reference internal" href="heartbeat.html">Heartbeat Format</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Heartbeat Format</a><ul class="simple">
+</ul>
+</li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Releases</a></li>
@@ -250,7 +221,7 @@ Links
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
       
       |
-      <a href="../_sources/api/overview.txt"
+      <a href="../_sources/api/heartbeat.txt"
           rel="nofollow">Page source</a>
     </div>
 

@@ -48,7 +48,8 @@ The API Explorer website can be used to query for, and send alerts to, the http:
 
   api/overview
   api/reference
-  api/format
+  api/alert
+  api/heartbeat
 
 Contribute
 ----------
