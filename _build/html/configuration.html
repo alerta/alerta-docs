@@ -57,9 +57,9 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 </pre></div>
 </div>
 <dl class="docutils">
-<dt><span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal"><span class="pre">DEBUG</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">DEBUG</span></code></dt>
 <dd>debug mode. Set to <code class="docutils literal"><span class="pre">True</span></code> for increased logging.</dd>
-<dt><span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal"><span class="pre">SECRET_KEY</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">SECRET_KEY</span></code></dt>
 <dd>a unique, randomly generated sequence of ASCII characters.</dd>
 </dl>
 </div>
@@ -71,11 +71,11 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 </pre></div>
 </div>
 <dl class="docutils">
-<dt><span class="target" id="index-3"></span><code class="xref std std-envvar docutils literal"><span class="pre">QUERY_LIMIT</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">QUERY_LIMIT</span></code></dt>
 <dd>maximum number of alerts returned in a single query.</dd>
-<dt><span class="target" id="index-4"></span><code class="xref std std-envvar docutils literal"><span class="pre">HISTORY_LIMIT</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">HISTORY_LIMIT</span></code></dt>
 <dd>number of history entries returned in alert details.</dd>
-<dt><span class="target" id="index-5"></span><code class="xref std std-envvar docutils literal"><span class="pre">API_KEY_EXPIRE_DAYS</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">API_KEY_EXPIRE_DAYS</span></code></dt>
 <dd>number of days an API key is valid for.</dd>
 </dl>
 </div>
@@ -92,17 +92,17 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 </pre></div>
 </div>
 <dl class="docutils">
-<dt><span class="target" id="index-6"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_HOST</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">MONGO_HOST</span></code></dt>
 <dd>hostname of the database.</dd>
-<dt><span class="target" id="index-7"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_PORT</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">MONGO_PORT</span></code></dt>
 <dd>TCP port the database is listening on.</dd>
-<dt><span class="target" id="index-8"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_DATABASE</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">MONGO_DATABASE</span></code></dt>
 <dd>database name.</dd>
-<dt><span class="target" id="index-9"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_REPLSET</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">MONGO_REPLSET</span></code></dt>
 <dd>replica set name.</dd>
-<dt><span class="target" id="index-10"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_USERNAME</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">MONGO_USERNAME</span></code></dt>
 <dd>username.</dd>
-<dt><span class="target" id="index-11"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_PASSWORD</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">MONGO_PASSWORD</span></code></dt>
 <dd>password.</dd>
 </dl>
 <p>The MongoDB configuration can be overridden in a number of different ways to ensure that Alerta can be easily deployed in many different environments.</p>
@@ -118,15 +118,15 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 </pre></div>
 </div>
 <dl class="docutils">
-<dt><span class="target" id="index-12"></span><code class="xref std std-envvar docutils literal"><span class="pre">AUTH_REQUIRED</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">AUTH_REQUIRED</span></code></dt>
 <dd>set to <code class="docutils literal"><span class="pre">True</span></code> to force users to authenticate when using web UI or command-line tool</dd>
-<dt><span class="target" id="index-13"></span><code class="xref std std-envvar docutils literal"><span class="pre">OAUTH2_CLIENT_ID</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">OAUTH2_CLIENT_ID</span></code></dt>
 <dd>client ID required by OAuth2 provider for Google, Github or Twitter.</dd>
-<dt><span class="target" id="index-14"></span><code class="xref std std-envvar docutils literal"><span class="pre">OAUTH2_CLIENT_SECRET</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">OAUTH2_CLIENT_SECRET</span></code></dt>
 <dd>client secret required by OAuth2 provider for Google, Github or Twitter.</dd>
-<dt><span class="target" id="index-15"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code></dt>
 <dd>list of authorised email domains when using Google as OAuth2 provider.</dd>
-<dt><span class="target" id="index-16"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code></dt>
 <dd>list of authorised Github organisations user must belong to when using Github as OAuth2 provider.</dd>
 </dl>
 </div>
@@ -141,7 +141,7 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 </pre></div>
 </div>
 <dl class="docutils">
-<dt><span class="target" id="index-17"></span><code class="xref std std-envvar docutils literal"><span class="pre">CORS_ORIGINS</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">CORS_ORIGINS</span></code></dt>
 <dd>list of URL origins that can access the API</dd>
 </dl>
 </div>
@@ -151,7 +151,7 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 </pre></div>
 </div>
 <dl class="docutils">
-<dt><span class="target" id="index-18"></span><code class="xref std std-envvar docutils literal"><span class="pre">BLACKOUT_DURATION</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">BLACKOUT_DURATION</span></code></dt>
 <dd>default period for an alert blackout</dd>
 </dl>
 </div>
@@ -188,11 +188,11 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 </pre></div>
 </div>
 <dl class="docutils">
-<dt><span class="target" id="index-19"></span><code class="xref std std-envvar docutils literal"><span class="pre">PLUGINS</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">PLUGINS</span></code></dt>
 <dd>list of enabled plugins</dd>
-<dt><span class="target" id="index-20"></span><code class="xref std std-envvar docutils literal"><span class="pre">ORIGIN_BLACKLIST</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">ORIGIN_BLACKLIST</span></code></dt>
 <dd><code class="docutils literal"><span class="pre">reject</span></code> plugin list of alert origins blacklisted from submitting alerts. useful for rouge alert sources.</dd>
-<dt><span class="target" id="index-21"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_ENVIRONMENTS</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">ALLOWED_ENVIRONMENTS</span></code></dt>
 <dd><code class="docutils literal"><span class="pre">reject</span></code> plugin list of allowed environments. useful for enforcing discrete set of environments.</dd>
 </dl>
 </div>
@@ -207,30 +207,30 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 <div class="section" id="id1">
 <h3>General Settings<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
-<dt><span class="target" id="index-22"></span><code class="xref std std-envvar docutils literal"><span class="pre">SECRET_KEY</span></code></dt>
+<dt><span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal"><span class="pre">SECRET_KEY</span></code></dt>
 <dd>see above</dd>
-<dt><span class="target" id="index-23"></span><code class="xref std std-envvar docutils literal"><span class="pre">OAUTH2_CLIENT_ID</span></code></dt>
+<dt><span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal"><span class="pre">OAUTH2_CLIENT_ID</span></code></dt>
 <dd>see above</dd>
-<dt><span class="target" id="index-24"></span><code class="xref std std-envvar docutils literal"><span class="pre">OAUTH2_CLIENT_SECRET</span></code></dt>
+<dt><span class="target" id="index-3"></span><code class="xref std std-envvar docutils literal"><span class="pre">OAUTH2_CLIENT_SECRET</span></code></dt>
 <dd>see above</dd>
-<dt><span class="target" id="index-25"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code></dt>
+<dt><span class="target" id="index-4"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code></dt>
 <dd>see above</dd>
-<dt><span class="target" id="index-26"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code></dt>
+<dt><span class="target" id="index-5"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code></dt>
 <dd>see above</dd>
-<dt><span class="target" id="index-27"></span><code class="xref std std-envvar docutils literal"><span class="pre">CORS_ORIGINS</span></code></dt>
+<dt><span class="target" id="index-6"></span><code class="xref std std-envvar docutils literal"><span class="pre">CORS_ORIGINS</span></code></dt>
 <dd>see above</dd>
 </dl>
 </div>
 <div class="section" id="id2">
 <h3>MongoDB Settings<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
-<dt><span class="target" id="index-28"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_URI</span></code></dt>
+<dt><span class="target" id="index-7"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_URI</span></code></dt>
 <dd>override all of the MongoDB config file settings using the standard <a class="reference external" href="https://docs.mongodb.org/v3.0/reference/connection-string/#standard-connection-string-format">connection string format</a></dd>
-<dt><span class="target" id="index-29"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGOHQ_URL</span></code></dt>
+<dt><span class="target" id="index-8"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGOHQ_URL</span></code></dt>
 <dd>automatically set when using <a class="reference external" href="https://devcenter.heroku.com/articles/mongohq">Heroku MongoHQ</a> managed service</dd>
-<dt><span class="target" id="index-30"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGOLAB_URI</span></code></dt>
+<dt><span class="target" id="index-9"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGOLAB_URI</span></code></dt>
 <dd>automatically set when using <a class="reference external" href="https://devcenter.heroku.com/articles/mongolab">Heroku MongoLab</a> managed service</dd>
-<dt><span class="target" id="index-31"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_PORT</span></code></dt>
+<dt><span class="target" id="index-10"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_PORT</span></code></dt>
 <dd>automatically set when deploying <a class="reference external" href="https://github.com/alerta/docker-alerta">Alerta to a Docker</a> linked mongo container</dd>
 </dl>
 </div>

@@ -22,9 +22,9 @@ General Settings
     DEBUG = False
     SECRET_KEY = r'0Afk\(,8$cr(Y8:MA""knd>[@$U[G.eQL6DjAmVs'
 
-:envvar:`DEBUG`
+``DEBUG``
     debug mode. Set to ``True`` for increased logging.
-:envvar:`SECRET_KEY`
+``SECRET_KEY``
     a unique, randomly generated sequence of ASCII characters.
 
 .. _api config:
@@ -37,11 +37,11 @@ API Settings
     HISTORY_LIMIT = 100
     API_KEY_EXPIRE_DAYS = 365
 
-:envvar:`QUERY_LIMIT`
+``QUERY_LIMIT``
     maximum number of alerts returned in a single query.
-:envvar:`HISTORY_LIMIT`
+``HISTORY_LIMIT``
     number of history entries returned in alert details.
-:envvar:`API_KEY_EXPIRE_DAYS`
+``API_KEY_EXPIRE_DAYS``
     number of days an API key is valid for.
 
 .. _mongo_config:
@@ -64,17 +64,17 @@ The document-oriented datastore MongoDB_ is used for persistent data. It can be 
     MONGO_USERNAME = 'alerta'
     MONGO_PASSWORD = None
 
-:envvar:`MONGO_HOST`
+``MONGO_HOST``
     hostname of the database.
-:envvar:`MONGO_PORT`
+``MONGO_PORT``
     TCP port the database is listening on.
-:envvar:`MONGO_DATABASE`
+``MONGO_DATABASE``
     database name.
-:envvar:`MONGO_REPLSET`
+``MONGO_REPLSET``
     replica set name.
-:envvar:`MONGO_USERNAME`
+``MONGO_USERNAME``
     username.
-:envvar:`MONGO_PASSWORD`
+``MONGO_PASSWORD``
     password.
 
 The MongoDB configuration can be overridden in a number of different ways to ensure that Alerta can be easily deployed in many different environments.
@@ -94,15 +94,15 @@ Authentication Settings
     ALLOWED_EMAIL_DOMAINS = ['gmail.com']
     ALLOWED_GITHUB_ORGS = ['guardian']
 
-:envvar:`AUTH_REQUIRED`
+``AUTH_REQUIRED``
     set to ``True`` to force users to authenticate when using web UI or command-line tool
-:envvar:`OAUTH2_CLIENT_ID`
+``OAUTH2_CLIENT_ID``
     client ID required by OAuth2 provider for Google, Github or Twitter.
-:envvar:`OAUTH2_CLIENT_SECRET`
+``OAUTH2_CLIENT_SECRET``
     client secret required by OAuth2 provider for Google, Github or Twitter.
-:envvar:`ALLOWED_EMAIL_DOMAINS`
+``ALLOWED_EMAIL_DOMAINS``
     list of authorised email domains when using Google as OAuth2 provider.
-:envvar:`ALLOWED_GITHUB_ORGS`
+``ALLOWED_GITHUB_ORGS``
     list of authorised Github organisations user must belong to when using Github as OAuth2 provider.
 
 .. _CORS config:
@@ -119,7 +119,7 @@ CORS Settings
         'http://localhost'
     ]
 
-:envvar:`CORS_ORIGINS`
+``CORS_ORIGINS``
     list of URL origins that can access the API
 
 .. _blackout config:
@@ -131,7 +131,7 @@ Blackout Periods Settings
 
     BLACKOUT_DURATION = 3600
 
-:envvar:`BLACKOUT_DURATION`
+``BLACKOUT_DURATION``
     default period for an alert blackout
 
 .. _plugin config:
@@ -170,11 +170,11 @@ Plug-in Settings
     LOGSTASH_HOST = 'localhost'
     LOGSTASH_PORT = 6379
 
-:envvar:`PLUGINS`
+``PLUGINS``
     list of enabled plugins
-:envvar:`ORIGIN_BLACKLIST`
+``ORIGIN_BLACKLIST``
     ``reject`` plugin list of alert origins blacklisted from submitting alerts. useful for rouge alert sources.
-:envvar:`ALLOWED_ENVIRONMENTS`
+``ALLOWED_ENVIRONMENTS``
     ``reject`` plugin list of allowed environments. useful for enforcing discrete set of environments.
 
 Environment Variables
