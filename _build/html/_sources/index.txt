@@ -37,9 +37,10 @@ The API Explorer website can be used to query for, and send alerts to, the http:
    cli
    integrations
    authentication
+   configuration
+   deployment
    conventions
    development
-   about
 
 .. toctree::
   :glob:
@@ -63,6 +64,12 @@ Support
 * :ref:`Frequently Asked Questions <faq>`
 * Issue Tracker: http://github.com/guardian/alerta/issues
 
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+
+   faq
+
 License
 -------
 
@@ -73,6 +80,7 @@ This project is licensed under the Apache license.
    :hidden:
 
    release-notes
+   about
 
 Indices and tables
 ==================

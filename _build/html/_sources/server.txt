@@ -72,8 +72,8 @@ Downstream
 Using post-receive hooks, plugins can be used to provide downstream systems with alerts in realtime. For example, pushing alerts onto an AWS SNS topic, AMQP queue, logging to a Logstash/Kibana stack, or sending notifications to HipChat, Slack or Twilio.
 
 
-Timeout
--------
+Timeouts
+--------
 
 
 Heartbeats

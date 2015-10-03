@@ -6,6 +6,21 @@ Frequently Asked Questions
 Alerta
 ------
 
+Why can't I see any alerts in the web browser?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you can send and query for alerts using the ``alerta`` CLI tool this problem is almost certainly related to cross-origin browser errors. Open up the Javascript developer console in your browser of choice and look for CORS_ errors like::
+
+    XMLHttpRequest cannot load http://api.alerta.io/alerts?status=open.
+    No 'Access-Control-Allow-Origin' header is present on the requested
+    resource. Origin 'http://web.alerta.io' is therefore not allowed access.
+
+To fix this you can either serve the web UI from the `same origin`_ as the API using a web server to :ref:`reverse proxy <reverse proxy>` the web UI or ensure that the API server `allows the origin`_ where the web UI is hosted by adding it to the :envvar:`CORS_ORIGINS` :ref:`server configuration <CORS config>` setting.
+
+.. _CORS: https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
+.. _same origin: https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy
+.. _allows the origin: https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin
+
 Can I define custom severity codes and levels?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -25,6 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="top" title="alerta 4.5 documentation" href="index.html" />
+    <link rel="next" title="Releases" href="release-notes.html" />
+    <link rel="prev" title="Heartbeat Format" href="api/heartbeat.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -41,6 +43,16 @@
 <span id="faq"></span><h1>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="alerta">
 <h2>Alerta<a class="headerlink" href="#alerta" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="why-can-t-i-see-any-alerts-in-the-web-browser">
+<h3>Why can&#8217;t I see any alerts in the web browser?<a class="headerlink" href="#why-can-t-i-see-any-alerts-in-the-web-browser" title="Permalink to this headline">¶</a></h3>
+<p>If you can send and query for alerts using the <code class="docutils literal"><span class="pre">alerta</span></code> CLI tool this problem is almost certainly related to cross-origin browser errors. Open up the Javascript developer console in your browser of choice and look for <a class="reference external" href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS</a> errors like:</p>
+<div class="highlight-python"><div class="highlight"><pre>XMLHttpRequest cannot load http://api.alerta.io/alerts?status=open.
+No &#39;Access-Control-Allow-Origin&#39; header is present on the requested
+resource. Origin &#39;http://web.alerta.io&#39; is therefore not allowed access.
+</pre></div>
+</div>
+<p>To fix this you can either serve the web UI from the <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">same origin</a> as the API using a web server to <a class="reference internal" href="deployment.html#reverse-proxy"><span>reverse proxy</span></a> the web UI or ensure that the API server <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin">allows the origin</a> where the web UI is hosted by adding it to the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">CORS_ORIGINS</span></code> <a class="reference internal" href="configuration.html#cors-config"><span>server configuration</span></a> setting.</p>
+</div>
 <div class="section" id="can-i-define-custom-severity-codes-and-levels">
 <h3>Can I define custom severity codes and levels?<a class="headerlink" href="#can-i-define-custom-severity-codes-and-levels" title="Permalink to this headline">¶</a></h3>
 <p>Yes, though it is not recommended. There is nothing stopping you from using any string as the severity for a submitted alert. The only aspect of <code class="docutils literal"><span class="pre">alerta</span></code> that would not work as expected would be the <code class="docutils literal"><span class="pre">trendIndication</span></code> assigned to an alert that indicates whether it is more or less severe than the last alert for that <code class="docutils literal"><span class="pre">resource</span></code> and <code class="docutils literal"><span class="pre">event</span></code>. To fix this, <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/app/severity_code.py">severity code</a> mappings would need to be updated to include the new severity or to rename an existing one.</p>
@@ -127,9 +139,10 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
-<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/overview.html">API Overview</a></li>
@@ -137,8 +150,12 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="api/alert.html">Alert Format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/heartbeat.html">Heartbeat Format</a></li>
 </ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Frequently Asked Questions</a></li>
+</ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
 </ul>
 
 
