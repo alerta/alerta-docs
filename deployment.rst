@@ -46,6 +46,8 @@ nginx -> https://github.com/alerta/docker-alerta/blob/master/nginx.conf
 
 CORS if not same origin
 
+.. _deploy replicaset:
+
 MongoDB Replica Set Setup
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 

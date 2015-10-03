@@ -55,6 +55,8 @@ The document-oriented datastore MongoDB_ is used for persistent data. It can be 
 
 The MongoDB configuration can be overridden in a number of different ways to ensure that Alerta can be easily deployed in many different environments.
 
+For information about deploying Alerta using a MongoDB replica set see the examples in :ref:`production deployment <deploy replicaset>`.
+
 .. _auth config:
 
 Authentication Settings
