@@ -1,7 +1,7 @@
 Configuration
 =============
 
-The following settings **only** apply to the Alerta server. For ``alerta`` CLI configuration options see :ref:`command-line reference <cli>`.
+The following settings **only** apply to the Alerta server. For ``alerta`` CLI configuration options see :ref:`command-line reference <cli>` and for Web UI configuration options see :ref:`web UI reference <webui>`.
 
 The default settings **should not** be modified directly. To change any of these settings create a configuration file that overrides these default settings. The default location for the server configuration file is ``/etc/alertad.conf`` however the location itself can be overridden by using a environment variable :envvar:`ALERTA_SVR_CONF_FILE`.
 

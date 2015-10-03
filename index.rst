@@ -15,12 +15,12 @@ Demo Sites
 There are two demonstration and testing sites -- one for Google OAuth and one for GitHub OAuth:
 
 -  http://try.alerta.io (Google OAuth)
--  http://alerta.herokuapp.com (GitHub OAuth)
+-  https://alerta.herokuapp.com (GitHub OAuth over SSL)
 
 And two API servers, configured to support Google and GitHub OAuth2:
 
 -  http://api.alerta.io
--  http://alerta-api.herokuapp.com
+-  https://alerta-api.herokuapp.com (SSL)
 
 The API Explorer website can be used to query for, and send alerts to, the http://api.alerta.io API server. The command-line tool ``alerta`` can also be used to generate alerts. The required API key is ``demo-key``.
 

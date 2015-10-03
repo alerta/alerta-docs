@@ -1,32 +1,32 @@
 .. _webui:
 
-Web UI
-======
+Alerta Web UI
+=============
 
-Alert Web Console
------------------
+State-based alert browser
 
-Recent
-~~~~~~
+Managing Alerts
+---------------
 
-Sorting
+View Recent Alerts
+~~~~~~~~~~~~~~~~~~
 
+Filter by env, svc
+Search by any text
+Sort by any attribute
 
-Alert Details
+Multi-select by cmd-click
+Action Buttons - open, watch, unwatch, ack, close, delete
 
-
-Action Buttons
-
+Alert Details by click
 Raw Data
-
 JSON format
-
 Alert History
 
 Top 10
 ~~~~~~
 
-
+List resources grouped by event, order by count and then dupCount
 
 .. _watched_alerts:
 
@@ -36,10 +36,35 @@ Watching Alerts
 Only logged-in users can watch alerts.
 
 
-About
-~~~~~
+Users
+-----
+
+Managing users ...
+
+API Keys
+--------
+
+Managing API Keys ...
+
+Blackout Periods
+----------------
+
+Managing blackout periods ...
+
+
+Authentication
+--------------
+
+Login
+User Profile
+Logout
+
+Metrics & Heartbeats
+--------------------
 
 Server version and stats
 
-chrome extension
+
+Chrome Extension
 ----------------
+

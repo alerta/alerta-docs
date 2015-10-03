@@ -42,19 +42,19 @@
 <h1>Alerta monitoring system<a class="headerlink" href="#alerta-monitoring-system" title="Permalink to this headline">¶</a></h1>
 <p>The alerta monitoring system is a tool used to consolidate and de-duplicate alerts from multiple sources for quick &#8216;at-a-glance&#8217; visualisation. With just one system you can monitor alerts from many other monitoring tools on a single screen.</p>
 <img alt="_images/alerta.png" src="_images/alerta.png" />
-<p>Alerta combines a JSON API <a class="reference internal" href="server.html#server"><span>server</span></a> for receiving, manipulating and rendering alerts with a simple, yet effective <a class="reference internal" href="webui.html#webui"><span>Web UI</span></a> and <a class="reference internal" href="cli.html#cli"><span>command-line tool</span></a>. There are numerous <a class="reference internal" href="integrations.html#integrations"><span>integrations</span></a> with popular monitoring tools and it is easy to add your own using the <a class="reference internal" href="api/overview.html#api"><span>API</span></a> directly, the <a class="reference internal" href="development.html#development"><span>Python SDK</span></a> or the same command-line tool to <a class="reference internal" href="cli.html#cli-send"><span>send alerts</span></a>. Access to the API and command-line tool can be restricted using <a class="reference internal" href="authentication.html#api-keys"><span>API keys</span></a> and to the web console using Google or GitHub <a class="reference internal" href="authentication.html#oauth2"><span>OAuth2</span></a>.</p>
+<p>Alerta combines a JSON API <a class="reference internal" href="server.html#server"><span>server</span></a> for receiving, manipulating and rendering alerts with a simple, yet effective <a class="reference internal" href="webui.html#webui"><span>Alerta Web UI</span></a> and <a class="reference internal" href="cli.html#cli"><span>command-line tool</span></a>. There are numerous <a class="reference internal" href="integrations.html#integrations"><span>integrations</span></a> with popular monitoring tools and it is easy to add your own using the <a class="reference internal" href="api/overview.html#api"><span>API</span></a> directly, the <a class="reference internal" href="development.html#development"><span>Python SDK</span></a> or the same command-line tool to <a class="reference internal" href="cli.html#cli-send"><span>send alerts</span></a>. Access to the API and command-line tool can be restricted using <a class="reference internal" href="authentication.html#api-keys"><span>API keys</span></a> and to the web console using Google or GitHub <a class="reference internal" href="authentication.html#oauth2"><span>OAuth2</span></a>.</p>
 <p><a class="reference internal" href="quick-start.html#quick-start"><span>Get started</span></a> today!</p>
 <div class="section" id="demo-sites">
 <h2>Demo Sites<a class="headerlink" href="#demo-sites" title="Permalink to this headline">¶</a></h2>
 <p>There are two demonstration and testing sites &#8211; one for Google OAuth and one for GitHub OAuth:</p>
 <ul class="simple">
 <li><a class="reference external" href="http://try.alerta.io">http://try.alerta.io</a> (Google OAuth)</li>
-<li><a class="reference external" href="http://alerta.herokuapp.com">http://alerta.herokuapp.com</a> (GitHub OAuth)</li>
+<li><a class="reference external" href="https://alerta.herokuapp.com">https://alerta.herokuapp.com</a> (GitHub OAuth over SSL)</li>
 </ul>
 <p>And two API servers, configured to support Google and GitHub OAuth2:</p>
 <ul class="simple">
 <li><a class="reference external" href="http://api.alerta.io">http://api.alerta.io</a></li>
-<li><a class="reference external" href="http://alerta-api.herokuapp.com">http://alerta-api.herokuapp.com</a></li>
+<li><a class="reference external" href="https://alerta-api.herokuapp.com">https://alerta-api.herokuapp.com</a> (SSL)</li>
 </ul>
 <p>The API Explorer website can be used to query for, and send alerts to, the <a class="reference external" href="http://api.alerta.io">http://api.alerta.io</a> API server. The command-line tool <code class="docutils literal"><span class="pre">alerta</span></code> can also be used to generate alerts. The required API key is <code class="docutils literal"><span class="pre">demo-key</span></code>.</p>
 <ul class="simple">
@@ -151,7 +151,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webui.html">Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui.html">Alerta Web UI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
