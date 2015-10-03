@@ -58,30 +58,38 @@
 <li>timeout used to expire alerts from the console</li>
 </ol>
 </div>
+<div class="section" id="plug-ins">
+<h2>Plug-ins<a class="headerlink" href="#plug-ins" title="Permalink to this headline">¶</a></h2>
+<p>Plug-ins are small python scripts that can run either before or after an alert is saved to the database. This is achieved by registering <em>pre-receive hooks</em> for transformers and <em>post-receive hooks</em> for downstream integration.</p>
 <div class="section" id="transformers">
-<span id="id2"></span><h2>Transformers<a class="headerlink" href="#transformers" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h3>Transformers<a class="headerlink" href="#transformers" title="Permalink to this headline">¶</a></h3>
 <p>Using pre-receive hooks, plugins provide the ability to transform raw alert data from sources before alerts are created. For example, alerts can be <em>normalised</em> to ensure they all have specific attributes or tags or only have a specific value from a range of allowed values. This is demonstrated in the reject plugin that enforces an alert policy.</p>
 <p>Plugins can also be used to <em>enhance</em> alerts, for example, to add Geo location data to alerts based on the sending IP address. See geoip plugin or a customer attribute based on information contained in the alert. See enhance plugin.</p>
+</div>
+<div class="section" id="downstream">
+<h3>Downstream<a class="headerlink" href="#downstream" title="Permalink to this headline">¶</a></h3>
+<p>Using post-receive hooks, plugins can be used to provide downstream systems with alerts in realtime. For example, pushing alerts onto an AWS SNS topic, AMQP queue, logging to a Logstash/Kibana stack, or sending notifications to HipChat, Slack or Twilio.</p>
+</div>
 </div>
 <div class="section" id="blackout-periods">
 <span id="blackouts"></span><h2>Blackout Periods<a class="headerlink" href="#blackout-periods" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="de-duplication">
 <span id="deduplication"></span><h2>De-Duplication<a class="headerlink" href="#de-duplication" title="Permalink to this headline">¶</a></h2>
+<p>Same event/resource combination, same severity simply increases the duplicate count.</p>
 </div>
 <div class="section" id="simple-correlation">
 <span id="correlation"></span><h2>Simple Correlation<a class="headerlink" href="#simple-correlation" title="Permalink to this headline">¶</a></h2>
+<p>Same event/resource, different severity
+Correlated list of related events. eg. NodeUp NodeDown</p>
 </div>
 <div class="section" id="state-based-browser">
 <h2>State-based Browser<a class="headerlink" href="#state-based-browser" title="Permalink to this headline">¶</a></h2>
-<p>auto status change (open-&gt;closed-&gt;open)
+<p>Alerts cleared, normal, ok change status to <cite>closed</cite>
+auto status change (open-&gt;closed-&gt;open)
 status / severity change &amp; history log
 duplicate count, repeat flag
 previous severity &amp; trend indication</p>
-</div>
-<div class="section" id="downstream">
-<h2>Downstream<a class="headerlink" href="#downstream" title="Permalink to this headline">¶</a></h2>
-<p>Using post-receive hooks, plugins can be used to provide downstream systems with alerts in realtime. For example, pushing alerts onto an AWS SNS topic, AMQP queue, logging to a Logstash/Kibana stack, or sending notifications to HipChat, Slack or Twilio.</p>
 </div>
 <div class="section" id="timeouts">
 <h2>Timeouts<a class="headerlink" href="#timeouts" title="Permalink to this headline">¶</a></h2>
@@ -147,12 +155,11 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Server &amp; API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#event-processing">Event Processing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#transformers">Transformers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plug-ins">Plug-ins</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#blackout-periods">Blackout Periods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#de-duplication">De-Duplication</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#simple-correlation">Simple Correlation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#state-based-browser">State-based Browser</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#downstream">Downstream</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#timeouts">Timeouts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#heartbeats">Heartbeats</a></li>
 </ul>

@@ -156,3 +156,14 @@ MongoDB Settings
     MONGOHQ_URL
     MONGOLAB_URI
     MONGO_PORT
+
+Dynamic Settings
+----------------
+
+Using the management switchboard dynamic settings can be switched on and off without restarting the Alerta server daemon.
+
+http://api.alerta.io/management/switchboard
+
+switch.auto_refresh_allow
+
+

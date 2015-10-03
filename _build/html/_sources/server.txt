@@ -28,15 +28,24 @@ Alerta comes `out-of-the-box` with key features designed to reduce the burden of
 7. new or updated alert returned in reponse
 8. timeout used to expire alerts from the console
 
+Plug-ins
+--------
+
+Plug-ins are small python scripts that can run either before or after an alert is saved to the database. This is achieved by registering *pre-receive hooks* for transformers and *post-receive hooks* for downstream integration.
 
 .. _transformers:
 
 Transformers
-------------
+~~~~~~~~~~~~
 
 Using pre-receive hooks, plugins provide the ability to transform raw alert data from sources before alerts are created. For example, alerts can be *normalised* to ensure they all have specific attributes or tags or only have a specific value from a range of allowed values. This is demonstrated in the reject plugin that enforces an alert policy.
 
 Plugins can also be used to *enhance* alerts, for example, to add Geo location data to alerts based on the sending IP address. See geoip plugin or a customer attribute based on information contained in the alert. See enhance plugin.
+
+Downstream
+~~~~~~~~~~
+
+Using post-receive hooks, plugins can be used to provide downstream systems with alerts in realtime. For example, pushing alerts onto an AWS SNS topic, AMQP queue, logging to a Logstash/Kibana stack, or sending notifications to HipChat, Slack or Twilio.
 
 .. _blackouts:
 
@@ -49,6 +58,7 @@ Blackout Periods
 De-Duplication
 --------------
 
+Same event/resource combination, same severity simply increases the duplicate count.
 
 
 .. _correlation:
@@ -56,22 +66,17 @@ De-Duplication
 Simple Correlation
 ------------------
 
+Same event/resource, different severity
+Correlated list of related events. eg. NodeUp NodeDown
 
 State-based Browser
 -------------------
 
+Alerts cleared, normal, ok change status to `closed`
 auto status change (open->closed->open)
 status / severity change & history log
 duplicate count, repeat flag
 previous severity & trend indication
-
-
-
-Downstream
-----------
-
-Using post-receive hooks, plugins can be used to provide downstream systems with alerts in realtime. For example, pushing alerts onto an AWS SNS topic, AMQP queue, logging to a Logstash/Kibana stack, or sending notifications to HipChat, Slack or Twilio.
-
 
 Timeouts
 --------
