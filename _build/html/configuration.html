@@ -42,39 +42,56 @@
   <div class="section" id="configuration">
 <h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
 <p>The following settings <strong>only</strong> apply to the Alerta server. For <code class="docutils literal"><span class="pre">alerta</span></code> CLI configuration options see <a class="reference internal" href="cli.html#cli"><span>command-line reference</span></a>.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="c">#</span>
-<span class="c"># ***** ALERTA SERVER DEFAULT SETTINGS -- DO NOT MODIFY THIS FILE *****</span>
-<span class="c">#</span>
-<span class="c"># To override these settings use /etc/alertad.conf or the contents of the</span>
-<span class="c"># configuration file set by the environment variable ALERTA_SVR_CONF_FILE.</span>
-<span class="c">#</span>
-<span class="c"># Further information on settings can be found at http://docs.alerta.io</span>
-
-<span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">False</span>
+<p>The default settings <strong>should not</strong> be modified directly. To change any of these settings create a configuration file that overrides these default settings. The default location for the server configuration file is <code class="docutils literal"><span class="pre">/etc/alertad.conf</span></code> however the location itself can be overridden by using a environment variable <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALERTA_SVR_CONF_FILE</span></code>.</p>
+<p>For example, to set the blackout period default duration to 1 day (ie. 86400 seconds):</p>
+<div class="highlight-python"><div class="highlight"><pre>$ export ALERTA_SVR_CONF_FILE=~/.alertad.conf
+$ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
+</pre></div>
+</div>
+<div class="section" id="file-settings">
+<h2>File Settings<a class="headerlink" href="#file-settings" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="general-settings">
+<span id="general-config"></span><h3>General Settings<a class="headerlink" href="#general-settings" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">False</span>
 
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">r&#39;0Afk\(,8$cr(Y8:MA&quot;&quot;knd&gt;[@$U[G.eQL6DjAmVs&#39;</span>
-
-<span class="n">QUERY_LIMIT</span> <span class="o">=</span> <span class="mi">10000</span>  <span class="c"># maximum number of alerts returned by a single query</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="api-settings">
+<span id="api-config"></span><h3>API Settings<a class="headerlink" href="#api-settings" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">QUERY_LIMIT</span> <span class="o">=</span> <span class="mi">10000</span>  <span class="c"># maximum number of alerts returned by a single query</span>
 <span class="n">HISTORY_LIMIT</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c">#</span>
-
-<span class="c"># MongoDB</span>
-<span class="n">MONGO_HOST</span> <span class="o">=</span> <span class="s">&#39;localhost&#39;</span>
+<span class="n">API_KEY_EXPIRE_DAYS</span> <span class="o">=</span> <span class="mi">365</span>  <span class="c"># 1 year</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mongodb-settings">
+<span id="mongo-config"></span><h3>MongoDB Settings<a class="headerlink" href="#mongodb-settings" title="Permalink to this headline">¶</a></h3>
+<p>The document-oriented datastore <a class="reference external" href="https://www.mongodb.com">MongoDB</a> is used for persistent data. It can be set-up as a stand-alone server or in a <a class="reference external" href="http://docs.mongodb.org/manual/core/replica-set-high-availability/">replica set</a> for high availability.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">MONGO_HOST</span> <span class="o">=</span> <span class="s">&#39;localhost&#39;</span>
 <span class="n">MONGO_PORT</span> <span class="o">=</span> <span class="mi">27017</span>
 <span class="n">MONGO_DATABASE</span> <span class="o">=</span> <span class="s">&#39;monitoring&#39;</span>
 <span class="n">MONGO_REPLSET</span> <span class="o">=</span> <span class="bp">None</span>  <span class="c"># &#39;alerta&#39;</span>
 
 <span class="n">MONGO_USERNAME</span> <span class="o">=</span> <span class="s">&#39;alerta&#39;</span>
 <span class="n">MONGO_PASSWORD</span> <span class="o">=</span> <span class="bp">None</span>
-
-<span class="n">AUTH_REQUIRED</span> <span class="o">=</span> <span class="bp">False</span>
+</pre></div>
+</div>
+<p>The MongoDB configuration can be overridden in a number of different ways to ensure that Alerta can be easily deployed in many different environments.</p>
+</div>
+<div class="section" id="authentication-settings">
+<span id="auth-config"></span><h3>Authentication Settings<a class="headerlink" href="#authentication-settings" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">AUTH_REQUIRED</span> <span class="o">=</span> <span class="bp">False</span>
 <span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s">&#39;INSERT-OAUTH2-CLIENT-ID-HERE&#39;</span>  <span class="c"># Google or GitHub OAuth2 client ID and secret</span>
 <span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s">&#39;INSERT-OAUTH2-CLIENT-SECRET-HERE&#39;</span>
 <span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;gmail.com&#39;</span><span class="p">]</span>
 <span class="n">ALLOWED_GITHUB_ORGS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;guardian&#39;</span><span class="p">]</span>
-<span class="n">API_KEY_EXPIRE_DAYS</span> <span class="o">=</span> <span class="mi">365</span>  <span class="c"># 1 year</span>
 </pre></div>
 </div>
-<p id="cors-config">CORS configuration settings:</p>
+</div>
+<div class="section" id="cors-settings">
+<span id="cors-config"></span><h3>CORS Settings<a class="headerlink" href="#cors-settings" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">CORS_ALLOW_HEADERS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="s">&#39;Authorization&#39;</span><span class="p">,</span> <span class="s">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">]</span>
 <span class="n">CORS_ORIGINS</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s">&#39;http://try.alerta.io&#39;</span><span class="p">,</span>
@@ -85,10 +102,16 @@
 <span class="n">CORS_SUPPORTS_CREDENTIALS</span> <span class="o">=</span> <span class="n">AUTH_REQUIRED</span>
 </pre></div>
 </div>
-<p id="blackout-config">Blackout periods configuration:</p>
+</div>
+<div class="section" id="blackout-periods-settings">
+<span id="blackout-config"></span><h3>Blackout Periods Settings<a class="headerlink" href="#blackout-periods-settings" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">BLACKOUT_DURATION</span> <span class="o">=</span> <span class="mi">3600</span>  <span class="c"># default period = 1 hour</span>
-
-<span class="c"># Plug-ins</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="plug-in-settings">
+<span id="plugin-config"></span><h3>Plug-in Settings<a class="headerlink" href="#plug-in-settings" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Plug-ins</span>
 <span class="n">PLUGINS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;reject&#39;</span><span class="p">]</span>
 <span class="c"># PLUGINS = [&#39;amqp&#39;, &#39;enhance&#39;, &#39;logstash&#39;, &#39;normalise&#39;, &#39;reject&#39;, &#39;sns&#39;]</span>
 
@@ -117,6 +140,36 @@
 <span class="n">LOGSTASH_HOST</span> <span class="o">=</span> <span class="s">&#39;localhost&#39;</span>
 <span class="n">LOGSTASH_PORT</span> <span class="o">=</span> <span class="mi">6379</span>
 </pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="environment-variables">
+<h2>Environment Variables<a class="headerlink" href="#environment-variables" title="Permalink to this headline">¶</a></h2>
+<p>Some configuration settings are special because they can be overridden by environment variables. This is to make deployment to different platforms and managed environments easier. eg. RedHat OpenShift, Heroku, Packer, Docker, and AWS or to make use of managed MongoDB services. Note that not all would need to be used to deploy to each different environment.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Environment variables are read after configuration files so they will always override any other setting.</p>
+</div>
+<div class="section" id="id1">
+<h3>General Settings<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">SECRET_KEY</span>
+<span class="n">OAUTH2_CLIENT_ID</span>
+<span class="n">OAUTH2_CLIENT_SECRET</span>
+<span class="n">ALLOWED_EMAIL_DOMAINS</span>
+<span class="n">ALLOWED_GITHUB_ORGS</span>
+<span class="n">CORS_ORIGINS</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>MongoDB Settings<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">MONGO_URI</span>
+<span class="n">MONGOHQ_URL</span>
+<span class="n">MONGOLAB_URI</span>
+<span class="n">MONGO_PORT</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
@@ -178,7 +231,11 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#file-settings">File Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#environment-variables">Environment Variables</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>

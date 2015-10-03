@@ -1,26 +1,50 @@
 Configuration
--------------
+=============
 
 The following settings **only** apply to the Alerta server. For ``alerta`` CLI configuration options see :ref:`command-line reference <cli>`.
 
-::
+The default settings **should not** be modified directly. To change any of these settings create a configuration file that overrides these default settings. The default location for the server configuration file is ``/etc/alertad.conf`` however the location itself can be overridden by using a environment variable :envvar:`ALERTA_SVR_CONF_FILE`.
 
-    #
-    # ***** ALERTA SERVER DEFAULT SETTINGS -- DO NOT MODIFY THIS FILE *****
-    #
-    # To override these settings use /etc/alertad.conf or the contents of the
-    # configuration file set by the environment variable ALERTA_SVR_CONF_FILE.
-    #
-    # Further information on settings can be found at http://docs.alerta.io
+For example, to set the blackout period default duration to 1 day (ie. 86400 seconds)::
+
+    $ export ALERTA_SVR_CONF_FILE=~/.alertad.conf
+    $ echo "BLACKOUT_DURATION = 86400" >$ALERTA_SVR_CONF_FILE
+
+File Settings
+-------------
+
+.. _general config:
+
+General Settings
+~~~~~~~~~~~~~~~~
+::
 
     DEBUG = False
 
     SECRET_KEY = r'0Afk\(,8$cr(Y8:MA""knd>[@$U[G.eQL6DjAmVs'
 
+.. _api config:
+
+API Settings
+~~~~~~~~~~~~
+::
+
     QUERY_LIMIT = 10000  # maximum number of alerts returned by a single query
     HISTORY_LIMIT = 100  #
+    API_KEY_EXPIRE_DAYS = 365  # 1 year
 
-    # MongoDB
+.. _mongo_config:
+
+MongoDB Settings
+~~~~~~~~~~~~~~~~
+
+The document-oriented datastore MongoDB_ is used for persistent data. It can be set-up as a stand-alone server or in a `replica set`_ for high availability.
+
+.. _MongoDB: https://www.mongodb.com
+.. _replica set: http://docs.mongodb.org/manual/core/replica-set-high-availability/
+
+::
+
     MONGO_HOST = 'localhost'
     MONGO_PORT = 27017
     MONGO_DATABASE = 'monitoring'
@@ -29,16 +53,27 @@ The following settings **only** apply to the Alerta server. For ``alerta`` CLI c
     MONGO_USERNAME = 'alerta'
     MONGO_PASSWORD = None
 
+The MongoDB configuration can be overridden in a number of different ways to ensure that Alerta can be easily deployed in many different environments.
+
+.. _auth config:
+
+Authentication Settings
+~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
     AUTH_REQUIRED = False
     OAUTH2_CLIENT_ID = 'INSERT-OAUTH2-CLIENT-ID-HERE'  # Google or GitHub OAuth2 client ID and secret
     OAUTH2_CLIENT_SECRET = 'INSERT-OAUTH2-CLIENT-SECRET-HERE'
     ALLOWED_EMAIL_DOMAINS = ['gmail.com']
     ALLOWED_GITHUB_ORGS = ['guardian']
-    API_KEY_EXPIRE_DAYS = 365  # 1 year
 
 .. _CORS config:
 
-CORS configuration settings::
+CORS Settings
+~~~~~~~~~~~~~
+
+::
 
     CORS_ALLOW_HEADERS = ['Content-Type', 'Authorization', 'Access-Control-Allow-Origin']
     CORS_ORIGINS = [
@@ -52,9 +87,19 @@ CORS configuration settings::
 
 .. _blackout config:
 
-Blackout periods configuration::
+Blackout Periods Settings
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+::
 
     BLACKOUT_DURATION = 3600  # default period = 1 hour
+
+.. _plugin config:
+
+Plug-in Settings
+~~~~~~~~~~~~~~~~
+
+::
 
     # Plug-ins
     PLUGINS = ['reject']
@@ -84,3 +129,30 @@ Blackout periods configuration::
     # Logstash
     LOGSTASH_HOST = 'localhost'
     LOGSTASH_PORT = 6379
+
+Environment Variables
+---------------------
+
+Some configuration settings are special because they can be overridden by environment variables. This is to make deployment to different platforms and managed environments easier. eg. RedHat OpenShift, Heroku, Packer, Docker, and AWS or to make use of managed MongoDB services. Note that not all would need to be used to deploy to each different environment.
+
+.. note:: Environment variables are read after configuration files so they will always override any other setting.
+
+General Settings
+~~~~~~~~~~~~~~~~
+::
+
+    SECRET_KEY
+    OAUTH2_CLIENT_ID
+    OAUTH2_CLIENT_SECRET
+    ALLOWED_EMAIL_DOMAINS
+    ALLOWED_GITHUB_ORGS
+    CORS_ORIGINS
+
+MongoDB Settings
+~~~~~~~~~~~~~~~~
+::
+
+    MONGO_URI
+    MONGOHQ_URL
+    MONGOLAB_URI
+    MONGO_PORT

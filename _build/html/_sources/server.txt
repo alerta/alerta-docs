@@ -3,9 +3,10 @@
 Server & API
 ============
 
-The ``alertad`` server receives alerts from multiple sources, :ref:`correlates <correlation>`, :ref:`de-duplicates  <deduplication>` or :ref:`suppresses <blackouts>` them, and makes the alerts available via a RESTful_ JSON API.
+The ``alertad`` server receives alerts from multiple sources, :ref:`correlates <correlation>`, :ref:`de-duplicates  <deduplication>` or :ref:`suppresses <blackouts>` them, and makes the alerts available via a RESTful_ JSON_ API.
 
 .. _RESTful: http://apigee.com/about/resources/webcasts/restful-api-design-second-edition
+.. _JSON: http://developers.squarespace.com/what-is-json/
 
 Alerts can be intercepted as they are received to modify, enhance or reject them using :ref:`pre-receive hooks <pre_receive>`. Alerts can also be used to trigger actions in other systems after the alert has been processed using :ref:`post-receive hooks <post_receive>`.
 
