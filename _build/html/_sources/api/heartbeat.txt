@@ -3,7 +3,7 @@
 Heartbeat Format
 ================
 
-Heartbeats ...
+Heartbeats received by Alerta conform to the following format.
 
 .. _heartbeat_attributes:
 
