@@ -5,6 +5,8 @@ Deployment
 
 run as WSGI app, not a background process
 
+.. _flask deployment: http://flask.pocoo.org/docs/0.10/deploying/#deployment
+
 only ever run `alertad` like you are now during development. Alerta is designed to run as a WSGI application behind Apache or nginx and that's the only way I've ever run it in production environments.
 
 There are quite a few examples of how to run it as a WSGI app behind a web server (or using gunicorn) [here](https://github.com/alerta/vagrant-try-alerta/blob/master/scripts/alerta.sh), [here](https://github.com/alerta/alerta-cfn/blob/master/Alerta_Single_Instance.template), [here](https://github.com/alerta/openshift-api-alerta/blob/master/wsgi.py), and [here](https://github.com/alerta/docker-alerta/blob/master/supervisord.conf)

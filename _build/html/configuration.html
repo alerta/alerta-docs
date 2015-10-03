@@ -48,23 +48,36 @@
 $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 </pre></div>
 </div>
-<div class="section" id="file-settings">
-<h2>File Settings<a class="headerlink" href="#file-settings" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="config-file-settings">
+<h2>Config File Settings<a class="headerlink" href="#config-file-settings" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="general-settings">
 <span id="general-config"></span><h3>General Settings<a class="headerlink" href="#general-settings" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">False</span>
-
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">False</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">r&#39;0Afk\(,8$cr(Y8:MA&quot;&quot;knd&gt;[@$U[G.eQL6DjAmVs&#39;</span>
 </pre></div>
 </div>
+<dl class="docutils">
+<dt><span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal"><span class="pre">DEBUG</span></code></dt>
+<dd>debug mode. Set to <code class="docutils literal"><span class="pre">True</span></code> for increased logging.</dd>
+<dt><span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal"><span class="pre">SECRET_KEY</span></code></dt>
+<dd>a unique, randomly generated sequence of ASCII characters.</dd>
+</dl>
 </div>
 <div class="section" id="api-settings">
 <span id="api-config"></span><h3>API Settings<a class="headerlink" href="#api-settings" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">QUERY_LIMIT</span> <span class="o">=</span> <span class="mi">10000</span>  <span class="c"># maximum number of alerts returned by a single query</span>
-<span class="n">HISTORY_LIMIT</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c">#</span>
-<span class="n">API_KEY_EXPIRE_DAYS</span> <span class="o">=</span> <span class="mi">365</span>  <span class="c"># 1 year</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">QUERY_LIMIT</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">HISTORY_LIMIT</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">API_KEY_EXPIRE_DAYS</span> <span class="o">=</span> <span class="mi">365</span>
 </pre></div>
 </div>
+<dl class="docutils">
+<dt><span class="target" id="index-3"></span><code class="xref std std-envvar docutils literal"><span class="pre">QUERY_LIMIT</span></code></dt>
+<dd>maximum number of alerts returned in a single query.</dd>
+<dt><span class="target" id="index-4"></span><code class="xref std std-envvar docutils literal"><span class="pre">HISTORY_LIMIT</span></code></dt>
+<dd>number of history entries returned in alert details.</dd>
+<dt><span class="target" id="index-5"></span><code class="xref std std-envvar docutils literal"><span class="pre">API_KEY_EXPIRE_DAYS</span></code></dt>
+<dd>number of days an API key is valid for.</dd>
+</dl>
 </div>
 <div class="section" id="mongodb-settings">
 <span id="mongo-config"></span><h3>MongoDB Settings<a class="headerlink" href="#mongodb-settings" title="Permalink to this headline">¶</a></h3>
@@ -78,6 +91,20 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 <span class="n">MONGO_PASSWORD</span> <span class="o">=</span> <span class="bp">None</span>
 </pre></div>
 </div>
+<dl class="docutils">
+<dt><span class="target" id="index-6"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_HOST</span></code></dt>
+<dd>hostname of the database.</dd>
+<dt><span class="target" id="index-7"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_PORT</span></code></dt>
+<dd>TCP port the database is listening on.</dd>
+<dt><span class="target" id="index-8"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_DATABASE</span></code></dt>
+<dd>database name.</dd>
+<dt><span class="target" id="index-9"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_REPLSET</span></code></dt>
+<dd>replica set name.</dd>
+<dt><span class="target" id="index-10"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_USERNAME</span></code></dt>
+<dd>username.</dd>
+<dt><span class="target" id="index-11"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_PASSWORD</span></code></dt>
+<dd>password.</dd>
+</dl>
 <p>The MongoDB configuration can be overridden in a number of different ways to ensure that Alerta can be easily deployed in many different environments.</p>
 <p>For information about deploying Alerta using a MongoDB replica set see the examples in <a class="reference internal" href="deployment.html#deploy-replicaset"><span>production deployment</span></a>.</p>
 </div>
@@ -90,25 +117,43 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 <span class="n">ALLOWED_GITHUB_ORGS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;guardian&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
+<dl class="docutils">
+<dt><span class="target" id="index-12"></span><code class="xref std std-envvar docutils literal"><span class="pre">AUTH_REQUIRED</span></code></dt>
+<dd>set to <code class="docutils literal"><span class="pre">True</span></code> to force users to authenticate when using web UI or command-line tool</dd>
+<dt><span class="target" id="index-13"></span><code class="xref std std-envvar docutils literal"><span class="pre">OAUTH2_CLIENT_ID</span></code></dt>
+<dd>client ID required by OAuth2 provider for Google, Github or Twitter.</dd>
+<dt><span class="target" id="index-14"></span><code class="xref std std-envvar docutils literal"><span class="pre">OAUTH2_CLIENT_SECRET</span></code></dt>
+<dd>client secret required by OAuth2 provider for Google, Github or Twitter.</dd>
+<dt><span class="target" id="index-15"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code></dt>
+<dd>list of authorised email domains when using Google as OAuth2 provider.</dd>
+<dt><span class="target" id="index-16"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code></dt>
+<dd>list of authorised Github organisations user must belong to when using Github as OAuth2 provider.</dd>
+</dl>
 </div>
 <div class="section" id="cors-settings">
 <span id="cors-config"></span><h3>CORS Settings<a class="headerlink" href="#cors-settings" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">CORS_ALLOW_HEADERS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="s">&#39;Authorization&#39;</span><span class="p">,</span> <span class="s">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">]</span>
-<span class="n">CORS_ORIGINS</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">CORS_ORIGINS</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s">&#39;http://try.alerta.io&#39;</span><span class="p">,</span>
     <span class="s">&#39;http://explorer.alerta.io&#39;</span><span class="p">,</span>
     <span class="s">&#39;chrome-extension://jplkjnjaegjgacpfafdopnpnhmobhlaf&#39;</span><span class="p">,</span>
     <span class="s">&#39;http://localhost&#39;</span>
 <span class="p">]</span>
-<span class="n">CORS_SUPPORTS_CREDENTIALS</span> <span class="o">=</span> <span class="n">AUTH_REQUIRED</span>
 </pre></div>
 </div>
+<dl class="docutils">
+<dt><span class="target" id="index-17"></span><code class="xref std std-envvar docutils literal"><span class="pre">CORS_ORIGINS</span></code></dt>
+<dd>list of URL origins that can access the API</dd>
+</dl>
 </div>
 <div class="section" id="blackout-periods-settings">
 <span id="blackout-config"></span><h3>Blackout Periods Settings<a class="headerlink" href="#blackout-periods-settings" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">BLACKOUT_DURATION</span> <span class="o">=</span> <span class="mi">3600</span>  <span class="c"># default period = 1 hour</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">BLACKOUT_DURATION</span> <span class="o">=</span> <span class="mi">3600</span>
 </pre></div>
 </div>
+<dl class="docutils">
+<dt><span class="target" id="index-18"></span><code class="xref std std-envvar docutils literal"><span class="pre">BLACKOUT_DURATION</span></code></dt>
+<dd>default period for an alert blackout</dd>
+</dl>
 </div>
 <div class="section" id="plug-in-settings">
 <span id="plugin-config"></span><h3>Plug-in Settings<a class="headerlink" href="#plug-in-settings" title="Permalink to this headline">¶</a></h3>
@@ -142,6 +187,14 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 <span class="n">LOGSTASH_PORT</span> <span class="o">=</span> <span class="mi">6379</span>
 </pre></div>
 </div>
+<dl class="docutils">
+<dt><span class="target" id="index-19"></span><code class="xref std std-envvar docutils literal"><span class="pre">PLUGINS</span></code></dt>
+<dd>list of enabled plugins</dd>
+<dt><span class="target" id="index-20"></span><code class="xref std std-envvar docutils literal"><span class="pre">ORIGIN_BLACKLIST</span></code></dt>
+<dd><code class="docutils literal"><span class="pre">reject</span></code> plugin list of alert origins blacklisted from submitting alerts. useful for rouge alert sources.</dd>
+<dt><span class="target" id="index-21"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_ENVIRONMENTS</span></code></dt>
+<dd><code class="docutils literal"><span class="pre">reject</span></code> plugin list of allowed environments. useful for enforcing discrete set of environments.</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="environment-variables">
@@ -153,23 +206,33 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 </div>
 <div class="section" id="id1">
 <h3>General Settings<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">SECRET_KEY</span>
-<span class="n">OAUTH2_CLIENT_ID</span>
-<span class="n">OAUTH2_CLIENT_SECRET</span>
-<span class="n">ALLOWED_EMAIL_DOMAINS</span>
-<span class="n">ALLOWED_GITHUB_ORGS</span>
-<span class="n">CORS_ORIGINS</span>
-</pre></div>
-</div>
+<dl class="docutils">
+<dt><span class="target" id="index-22"></span><code class="xref std std-envvar docutils literal"><span class="pre">SECRET_KEY</span></code></dt>
+<dd>see above</dd>
+<dt><span class="target" id="index-23"></span><code class="xref std std-envvar docutils literal"><span class="pre">OAUTH2_CLIENT_ID</span></code></dt>
+<dd>see above</dd>
+<dt><span class="target" id="index-24"></span><code class="xref std std-envvar docutils literal"><span class="pre">OAUTH2_CLIENT_SECRET</span></code></dt>
+<dd>see above</dd>
+<dt><span class="target" id="index-25"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code></dt>
+<dd>see above</dd>
+<dt><span class="target" id="index-26"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code></dt>
+<dd>see above</dd>
+<dt><span class="target" id="index-27"></span><code class="xref std std-envvar docutils literal"><span class="pre">CORS_ORIGINS</span></code></dt>
+<dd>see above</dd>
+</dl>
 </div>
 <div class="section" id="id2">
 <h3>MongoDB Settings<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">MONGO_URI</span>
-<span class="n">MONGOHQ_URL</span>
-<span class="n">MONGOLAB_URI</span>
-<span class="n">MONGO_PORT</span>
-</pre></div>
-</div>
+<dl class="docutils">
+<dt><span class="target" id="index-28"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_URI</span></code></dt>
+<dd>override all of the MongoDB config file settings using the standard <a class="reference external" href="https://docs.mongodb.org/v3.0/reference/connection-string/#standard-connection-string-format">connection string format</a></dd>
+<dt><span class="target" id="index-29"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGOHQ_URL</span></code></dt>
+<dd>automatically set when using <a class="reference external" href="https://devcenter.heroku.com/articles/mongohq">Heroku MongoHQ</a> managed service</dd>
+<dt><span class="target" id="index-30"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGOLAB_URI</span></code></dt>
+<dd>automatically set when using <a class="reference external" href="https://devcenter.heroku.com/articles/mongolab">Heroku MongoLab</a> managed service</dd>
+<dt><span class="target" id="index-31"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_PORT</span></code></dt>
+<dd>automatically set when deploying <a class="reference external" href="https://github.com/alerta/docker-alerta">Alerta to a Docker</a> linked mongo container</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="dynamic-settings">
@@ -239,7 +302,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#file-settings">File Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#config-file-settings">Config File Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#environment-variables">Environment Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dynamic-settings">Dynamic Settings</a></li>
 </ul>
