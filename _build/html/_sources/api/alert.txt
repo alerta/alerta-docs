@@ -109,7 +109,7 @@ Alert Status
 Alert Severities
 ----------------
 
-The `Alarms in Syslog`_ RFC was referenced when defining alert severities.
+The `Alarms in Syslog`_ :RFC:`5674` was referenced when defining alert severities.
 
 +-------------------+---------------+--------+
 | Severity          | Severity Code | Colour |

@@ -39,7 +39,7 @@ There are several more integrations available in the `contrib`_ repo. They are:
 * Pinger_ - generate ping alerts from list of network resources being pinged
 * `SNMP Trap`_ - generate alerts from SNMPv1 and SNMPv2 sources
 * Supervisor_ - trigger alerts and heartbeats based on process deamon events
-* Syslog_ - receive RFC 5424, RFC 3164 syslog and Cisco syslog messages
+* Syslog_ - receive :RFC:`5424`, :RFC:`3164` syslog and Cisco syslog messages
 * `URL monitor`_ - trigger alerts from web service query responses
 
 .. _contrib: https://github.com/alerta/alerta-contrib
