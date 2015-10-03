@@ -192,9 +192,3 @@ Name: a name to associate with the address, does not need to match registered na
 Login: GitHub username of user wanting access eg. ``letmein``
 
 This user will now be able to login to alerta using ``letmein`` GitHub account eventhough they are not members of the organisations listed in the ``ALLOWED_GITHUB_ORGS`` setting.
-
-
-MongoDB Authentication
-----------------------
-
-
