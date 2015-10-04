@@ -42,16 +42,33 @@ Using pre-receive hooks, plugins provide the ability to transform raw alert data
 
 Plugins can also be used to *enhance* alerts, for example, to add Geo location data to alerts based on the sending IP address. See geoip plugin or a customer attribute based on information contained in the alert. See enhance plugin.
 
-Downstream
-~~~~~~~~~~
+Integrations
+~~~~~~~~~~~~
 
-Using post-receive hooks, plugins can be used to provide downstream systems with alerts in realtime. For example, pushing alerts onto an AWS SNS topic, AMQP queue, logging to a Logstash/Kibana stack, or sending notifications to HipChat, Slack or Twilio.
+Using post-receive hooks, plugin integrations can be used to provide downstream systems with alerts in realtime. For example, pushing alerts onto an AWS SNS topic, AMQP queue, logging to a Logstash/Kibana stack, or sending notifications to HipChat, Slack or Twilio.
 
 .. _blackouts:
 
 Blackout Periods
 ----------------
 
+An alert that is received during a blackout period is accepted by Alerta and a 202 Accepted status code returned. However, it will not be added to the Alerta database.
+
+Alerta defines many different alert attributes that can be used to group alerts and it is these attributes that can be used to define rules eg. environment, service, group. However, resource and event attributes are still supported for situations that require that level of granularity.
+
+Tags can also be used to define a blackout rule which should allow a lot of flexibility -- one or more tags can be required to match an alert for the suppression to apply. And tags can be added at source, using the alerta CLI, or using a plug-in.
+
+In summary, blackout rules can be any of:
+
+* an entire environment eg. environment=Production
+* a particular resource eg. resource=host55
+* an entire service eg. service=Web
+* every occurrence of a specific event eg. event=DiskFull
+* a group of events eg. group=Syslog
+* a specific event for a resource eg. resource=host55 and event=DiskFull
+* all events that have a specific set of tags eg. tags=[ blackout, london ]
+
+Note that an environment is always required to be defined for a blackout rule.
 
 .. _deduplication:
 
