@@ -21,11 +21,13 @@ There are a few core integrations which have been developed to showcase how easy
 * `Zabbix Alert Script`_ - ???
 * `Sensu Plugin`_ - ???
 * `Riemann Plugin`_ - generate alerts from thresholds defined against metric streams
+* `Kibana Logging`_ - log alerts to Elasticsearch for historical visualisation of alert trends
 
 .. _Nagios Event Broker: https://github.com/alerta/nagios-alerta
 .. _Zabbix Alert Script: https://github.com/alerta/zabbix-alerta
 .. _Sensu Plugin: https://github.com/alerta/sensu-alerta
 .. _Riemann Plugin: https://github.com/alerta/riemann-alerta
+.. _Kibana Logging: https://github.com/alerta/kibana-alerta
 
 Contrib
 ~~~~~~~
