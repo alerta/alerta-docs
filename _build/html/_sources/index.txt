@@ -47,7 +47,6 @@ The API Explorer website can be used to query for, and send alerts to, the http:
   :titlesonly:
   :hidden:
 
-  api/overview
   api/reference
   api/alert
   api/heartbeat

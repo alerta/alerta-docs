@@ -5,7 +5,7 @@ Integrations & Plugins
 
 There are several different ways to integrate other alert sources into Alerta. Integrations with key open source monitoring tools make use of the Alerta API and can form the starting points for integrating other lesser-known monitoring tools.
 
-There are built-in webhooks for AWS Cloudwatch, Pingdom and PagerDuty. Plugins can be used to quickly and easily forward alerts to or notify other systems.
+There are also built-in webhooks for AWS Cloudwatch, Pingdom and PagerDuty. Plugins can be used to quickly and easily forward alerts to or notify other systems.
 
 .. _integrations:
 
@@ -15,10 +15,10 @@ Integrations
 Core
 ~~~~
 
-There are a few core integrations which have been developed to showcase how easy it is to quickly get alerts or events from other tools into Alerta. They are:
+There are a few core integrations which have been developed to showcase how easy it is to get alerts or events from other tools into Alerta. They are:
 
-* `Nagios Event Broker`_ - host and service check with alert suppression during downtime
-* `Zabbix Alert Script`_ - ???
+* `Nagios Event Broker`_ - forward host and service check with alert suppression during downtime
+* `Zabbix Alert Script`_ - forward problems, acknowledged and OK events
 * `Sensu Plugin`_ - ???
 * `Riemann Plugin`_ - generate alerts from thresholds defined against metric streams
 * `Kibana Logging`_ - log alerts to Elasticsearch for historical visualisation of alert trends
