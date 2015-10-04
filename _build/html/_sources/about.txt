@@ -11,7 +11,7 @@ In the end, the thresholding of metrics proved very difficult to scale so we eve
 
 Over the years the project has evovled to meet the needs of the Guardian development teams as they moved to a more agile, dynamic, "`swimlaned`_" architecture which has meant, for the operations team, a shift from static, self-hosted infrastructure to an internal OpenStack cloud to finally an external cloud service.
 
-In that time certain key features of alerta have been deprecated as requirements changed (eg. the message bus, Ganglia, Riemann) and others added (eg. OAuth2 login, CloudWatch, Pingdom, PagerDuty integration). In the process it has been slimmed down with fewer components making it easier to understand, deploy and manage.
+In that time certain key features of alerta have been deprecated as requirements changed (eg. the message bus, Ganglia, Riemann) and others added (eg. OAuth2 login, CloudWatch, Pingdom, PagerDuty integration). In the process it has been slimmed down to fewer core components making it easier to understand, deploy and manage.
 
 As such, alerta is now quite different to the somewhat "over engineered" initial solution but the core concepts of being a flexible, easy-to-use tool remain and it is now a "cloud-ready" solution adapted to the challenges of a fast changing environment.
 
