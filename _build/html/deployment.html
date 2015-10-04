@@ -40,32 +40,29 @@
           <div class="body" role="main">
             
   <div class="section" id="deployment">
-<h1>Deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h1>
-<p>run as WSGI app, not a background process</p>
-<p>only ever run <cite>alertad</cite> like you are now during development. Alerta is designed to run as a WSGI application behind Apache or nginx and that&#8217;s the only way I&#8217;ve ever run it in production environments.</p>
-<p>There are quite a few examples of how to run it as a WSGI app behind a web server (or using gunicorn) [here](<a class="reference external" href="https://github.com/alerta/vagrant-try-alerta/blob/master/scripts/alerta.sh">https://github.com/alerta/vagrant-try-alerta/blob/master/scripts/alerta.sh</a>), [here](<a class="reference external" href="https://github.com/alerta/alerta-cfn/blob/master/Alerta_Single_Instance.template">https://github.com/alerta/alerta-cfn/blob/master/Alerta_Single_Instance.template</a>), [here](<a class="reference external" href="https://github.com/alerta/openshift-api-alerta/blob/master/wsgi.py">https://github.com/alerta/openshift-api-alerta/blob/master/wsgi.py</a>), and [here](<a class="reference external" href="https://github.com/alerta/docker-alerta/blob/master/supervisord.conf">https://github.com/alerta/docker-alerta/blob/master/supervisord.conf</a>)</p>
-<p id="reverse-proxy">serve web UI from same domain as API, if possible to avoid potential CORS errors</p>
+<span id="id1"></span><h1>Deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="wsgi-server">
+<h2>WSGI Server<a class="headerlink" href="#wsgi-server" title="Permalink to this headline">¶</a></h2>
+<p>There are many ways to deploy Alerta. It can be run as <code class="docutils literal"><span class="pre">alertad</span></code> during development or testing but when run in a production environment, it should <a class="reference external" href="http://flask.pocoo.org/docs/0.10/deploying/#deployment">always be deployed</a> as a WSGI application. See the list of <a class="reference internal" href="#real-world">real world</a> examples below.</p>
+</div>
+<div class="section" id="reverse-proxy-web-ui">
+<span id="reverse-proxy"></span><h2>Reverse Proxy Web UI<a class="headerlink" href="#reverse-proxy-web-ui" title="Permalink to this headline">¶</a></h2>
+<p>serve web UI from same domain as API, if possible to avoid potential CORS errors</p>
 <p>(example apache and nginx and gunicorn configs)</p>
+</div>
+<div class="section" id="static-website">
+<span id="id2"></span><h2>Static Website<a class="headerlink" href="#static-website" title="Permalink to this headline">¶</a></h2>
+<p>The Alerta web UI is just a directory of static assets that can be served from any location. An easy way to serve the web UI is from an <a class="reference external" href="http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html">Amazon S3 bucket</a>. Ensure that the domain is listed in the <code class="docutils literal"><span class="pre">CORS_ORIGINS</span></code> server configuration setting though.</p>
+</div>
+<div class="section" id="authentication-ssl">
+<span id="auth-ssl"></span><h2>Authentication &amp; SSL<a class="headerlink" href="#authentication-ssl" title="Permalink to this headline">¶</a></h2>
 <p>choose an auth provider</p>
 <p>decide whether to use HTTPS or not</p>
 <p>if multiple web servers ensure same SECRET_KEY is used</p>
+</div>
+<div class="section" id="mongodb-replica-set">
+<span id="replicaset"></span><h2>MongoDB Replica Set<a class="headerlink" href="#mongodb-replica-set" title="Permalink to this headline">¶</a></h2>
 <p>multiple instances backed by mongo replica set</p>
-<p>choose plugins, enable/disable core, install contrib and enable</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">False</span>
-<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="o">...</span>
-</pre></div>
-</div>
-<div class="section" id="configure-wsgi-app">
-<h2>Configure WSGI App<a class="headerlink" href="#configure-wsgi-app" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="http://flask.pocoo.org/docs/0.10/deploying/#deployment">http://flask.pocoo.org/docs/0.10/deploying/#deployment</a></p>
-<p>don&#8217;t run in foreground
-Web server</p>
-<p>example configs
-nginx -&gt; <a class="reference external" href="https://github.com/alerta/docker-alerta/blob/master/nginx.conf">https://github.com/alerta/docker-alerta/blob/master/nginx.conf</a></p>
-<p>CORS if not same origin</p>
-</div>
-<div class="section" id="mongodb-replica-set-setup">
-<span id="deploy-replicaset"></span><h2>MongoDB Replica Set Setup<a class="headerlink" href="#mongodb-replica-set-setup" title="Permalink to this headline">¶</a></h2>
 <p>:<a class="reference external" href="file:/etc/mongod.conf">file:/etc/mongod.conf</a></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">replSetName</span><span class="o">=</span><span class="n">alerta</span>
 </pre></div>
@@ -78,12 +75,18 @@ nginx -&gt; <a class="reference external" href="https://github.com/alerta/docker
 <div class="highlight-python"><div class="highlight"><pre><span class="n">MONGO_REPLSET</span> <span class="o">=</span> <span class="bp">None</span>  <span class="c"># &#39;alerta&#39;</span>
 </pre></div>
 </div>
-<p>Vagrant</p>
-<p>Heroku</p>
-<p>OpenShift</p>
-<p>AWS</p>
-<p>Docker</p>
-<p>Packer</p>
+</div>
+<div class="section" id="real-world-examples">
+<span id="real-world"></span><h2>Real World Examples<a class="headerlink" href="#real-world-examples" title="Permalink to this headline">¶</a></h2>
+<p>There are several examples of how to run Alerta as a WSGI app on a Debian vagrant host, on an AWS EC2 instance, on RedHat Openshift and Docker.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/alerta/vagrant-try-alerta">Vagrant</a></li>
+<li><a class="reference external" href="https://github.com/guardian/alerta#deploy-to-the-cloud">Heroku</a></li>
+<li><a class="reference external" href="https://github.com/alerta/openshift-api-alerta">OpenShift</a></li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-cloudformation">AWS EC2</a></li>
+<li><a class="reference external" href="https://github.com/alerta/docker-alerta">Docker</a></li>
+<li><a class="reference external" href="https://github.com/alerta/packer-templates">Packer</a></li>
+</ul>
 </div>
 </div>
 
@@ -147,15 +150,18 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Deployment</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#configure-wsgi-app">Configure WSGI App</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#mongodb-replica-set-setup">MongoDB Replica Set Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wsgi-server">WSGI Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reverse-proxy-web-ui">Reverse Proxy Web UI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#static-website">Static Website</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authentication-ssl">Authentication &amp; SSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mongodb-replica-set">MongoDB Replica Set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#real-world-examples">Real World Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="api/overview.html">API Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/reference.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/alert.html">Alert Format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/heartbeat.html">Heartbeat Format</a></li>
