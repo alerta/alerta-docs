@@ -3,9 +3,13 @@
 Integrations & Plugins
 ======================
 
-There are several different ways to integrate other alert sources into Alerta. Integrations with key open source monitoring tools make use of the Alerta API and can form the starting points for integrating other lesser-known monitoring tools.
+There are several different ways to integrate other alert sources into Alerta.
 
-There are also built-in webhooks for AWS Cloudwatch, Pingdom and PagerDuty. Plugins can be used to quickly and easily forward alerts to or notify other systems.
+Firstly, integrations with key open source monitoring tools like Nagios and Zabbix make use of the Alerta API and demonstrate how to build integrations with other monitoring tools.
+
+Secondly, there are built-in webhooks for AWS Cloudwatch, Pingdom and PagerDuty which provide 'out-of-the-box' integrations for some of the most popular monitoring systems available.
+
+Lastly, plugins can be used to quickly and easily forward alerts to or notify other systems like Slack or Hipchat.
 
 .. _integrations:
 
@@ -17,9 +21,9 @@ Core
 
 There are a few core integrations which have been developed to showcase how easy it is to get alerts or events from other tools into Alerta. They are:
 
-* `Nagios Event Broker`_ - forward host and service check with alert suppression during downtime
+* `Nagios Event Broker`_ - forward host/service check results with suppression during downtime
 * `Zabbix Alert Script`_ - forward problems, acknowledged and OK events
-* `Sensu Plugin`_ - ???
+* `Sensu Plugin`_ - forward sensu events
 * `Riemann Plugin`_ - generate alerts from thresholds defined against metric streams
 * `Kibana Logging`_ - log alerts to Elasticsearch for historical visualisation of alert trends
 
@@ -32,28 +36,28 @@ There are a few core integrations which have been developed to showcase how easy
 Contrib
 ~~~~~~~
 
-There are several more integrations available in the `contrib`_ repo. They are:
+There are several more integrations available in the `contrib`_ repo which may be useful. They are:
 
 * `Amazon SQS`_ - receive alerts from SQS that were sent using the SNS core plugin
-* E-mail and PagerDuty integrations use the `AMQP`_ message queue core plugin
+* `E-mail`_ - send emails after a hold-time has expired (requires the `AMQP`_ message queue core plugin)
 * `AWS Cloudwatch`_ - receive cloudwatch alarms from SQS (deprecated, use the cloudwatch webhook instead)
 * Opsweekly_ - query Alerta to generate Opsweekly reports
 * Pinger_ - generate ping alerts from list of network resources being pinged
 * `SNMP Trap`_ - generate alerts from SNMPv1 and SNMPv2 sources
 * Supervisor_ - trigger alerts and heartbeats based on process deamon events
-* Syslog_ - receive :RFC:`5424`, :RFC:`3164` syslog and Cisco syslog messages
+* Syslog_ - receive :RFC:`5424`, :RFC:`3164` syslog and Cisco_ syslog messages
 * `URL monitor`_ - trigger alerts from web service query responses
 
 .. _contrib: https://github.com/alerta/alerta-contrib
-
 .. _Amazon SQS: https://github.com/alerta/alerta-contrib/tree/master/integrations/amazon-sqs
-.. _AMQP: https://github.com/alerta/alerta-contrib/tree/master/integrations/amqp
+.. _E-mail: https://github.com/alerta/alerta-contrib/blob/master/integrations/amqp/mailer.py
 .. _AWS Cloudwatch: https://github.com/alerta/alerta-contrib/tree/master/integrations/cloudwatch
 .. _Opsweekly: https://github.com/alerta/alerta-contrib/tree/master/integrations/opsweekly
 .. _Pinger: https://github.com/alerta/alerta-contrib/tree/master/integrations/pinger
 .. _SNMP Trap: https://github.com/alerta/alerta-contrib/tree/master/integrations/snmptrap
 .. _Supervisor: https://github.com/alerta/alerta-contrib/tree/master/integrations/supervisor
 .. _Syslog: https://github.com/alerta/alerta-contrib/tree/master/integrations/syslog
+.. _Cisco: http://www.cisco.com/c/en/us/td/docs/routers/access/wireless/software/guide/SysMsgLogging.html
 .. _URL monitor: https://github.com/alerta/alerta-contrib/tree/master/integrations/urlmon
 
 .. _webhooks:
@@ -61,7 +65,9 @@ There are several more integrations available in the `contrib`_ repo. They are:
 Webhooks
 --------
 
-Webhooks are a way of integrating with other systems by triggering web callbacks to the Alerta server API when an event occurs.
+`Webhook callbacks`_ are a way of integrating with other systems by triggering web callbacks to the Alerta server API when an event occurs.
+
+.. _Webhook callbacks: https://en.wikipedia.org/wiki/Webhook
 
 AWS Cloudwatch
 ~~~~~~~~~~~~~~
@@ -96,20 +102,37 @@ See `PagerDuty webhook`_
 Plugins
 -------
 
+`Plugin extensions`_ are an easy way of adding new features to Alerta that meet a specific end-user requirement.
+
+.. _Plugin extensions: https://en.wikipedia.org/wiki/Plug-in_(computing)
+
 Core
 ~~~~
 
-* AMQP - ???
-* Enhance - ???
-* Logstash/Kibana - ???
-* Normalise - ???
-* Reject - used to enforce custom alert format policies
-* AWS SNS - ???
+`Core plugins`_ have been developed as examples of common use-cases.
 
-** go into detail here **
+.. _Core plugins: https://github.com/guardian/alerta/tree/master/alerta/plugins
+
+* `AMQP`_ - publish alerts to an AMQP fanout topic after processing
+* `Enhance`_ - add new information to an alert based on existing information
+* `Logstash/Kibana`_ - send alerts to logstash agent after processing
+* `Normalise`_ - ensure alerts a formatted in a consistent manner
+* `Reject`_ - reject alerts before processing. used to enforce custom alert format policies
+* `AWS SNS`_ - publish alerts to SNS topic after processing
+
+.. _AMQP: https://github.com/guardian/alerta/blob/master/alerta/plugins/amqp.py
+.. _Enhance: https://github.com/guardian/alerta/blob/master/alerta/plugins/enhance.py
+.. _Logstash/Kibana: https://github.com/guardian/alerta/blob/master/alerta/plugins/logstash.py
+.. _Normalise: https://github.com/guardian/alerta/blob/master/alerta/plugins/normalise.py
+.. _Reject: https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py
+.. _AWS SNS: https://github.com/guardian/alerta/blob/master/alerta/plugins/sns.py
 
 Contrib
 ~~~~~~~
+
+`Contributed plugins`_ are made available for popular tools but implementation-specific requirements.
+
+.. _Contributed plugins: https://github.com/alerta/alerta-contrib/tree/master/plugins
 
 * `GeoIP Location`_ - use remote IP address to submitted alert to add location data
 * HipChat_ - send alerts to HipChat room

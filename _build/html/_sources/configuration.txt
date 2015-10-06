@@ -66,7 +66,7 @@ The document-oriented datastore MongoDB_ is used for persistent data. It can be 
     MONGO_USERNAME = 'alerta'
     MONGO_PASSWORD = None
 
-.. index:: MONGO_HOST, MONGO_PORT, MONGO_DATABASE, MONGO_REPLSET, MONGO_USERNAME, MONGO_PASSWORD, AAA
+.. index:: MONGO_HOST, MONGO_PORT, MONGO_DATABASE, MONGO_REPLSET, MONGO_USERNAME, MONGO_PASSWORD
 ``MONGO_HOST``
     hostname of the database.
 ``MONGO_PORT``

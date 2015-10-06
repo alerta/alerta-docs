@@ -41,40 +41,42 @@
             
   <div class="section" id="integrations-plugins">
 <span id="id1"></span><h1>Integrations &amp; Plugins<a class="headerlink" href="#integrations-plugins" title="Permalink to this headline">¶</a></h1>
-<p>There are several different ways to integrate other alert sources into Alerta. Integrations with key open source monitoring tools make use of the Alerta API and can form the starting points for integrating other lesser-known monitoring tools.</p>
-<p>There are also built-in webhooks for AWS Cloudwatch, Pingdom and PagerDuty. Plugins can be used to quickly and easily forward alerts to or notify other systems.</p>
+<p>There are several different ways to integrate other alert sources into Alerta.</p>
+<p>Firstly, integrations with key open source monitoring tools like Nagios and Zabbix make use of the Alerta API and demonstrate how to build integrations with other monitoring tools.</p>
+<p>Secondly, there are built-in webhooks for AWS Cloudwatch, Pingdom and PagerDuty which provide &#8216;out-of-the-box&#8217; integrations for some of the most popular monitoring systems available.</p>
+<p>Lastly, plugins can be used to quickly and easily forward alerts to or notify other systems like Slack or Hipchat.</p>
 <div class="section" id="integrations">
 <span id="id2"></span><h2>Integrations<a class="headerlink" href="#integrations" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="core">
 <h3>Core<a class="headerlink" href="#core" title="Permalink to this headline">¶</a></h3>
 <p>There are a few core integrations which have been developed to showcase how easy it is to get alerts or events from other tools into Alerta. They are:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/alerta/nagios-alerta">Nagios Event Broker</a> - forward host and service check with alert suppression during downtime</li>
+<li><a class="reference external" href="https://github.com/alerta/nagios-alerta">Nagios Event Broker</a> - forward host/service check results with suppression during downtime</li>
 <li><a class="reference external" href="https://github.com/alerta/zabbix-alerta">Zabbix Alert Script</a> - forward problems, acknowledged and OK events</li>
-<li><a class="reference external" href="https://github.com/alerta/sensu-alerta">Sensu Plugin</a> - ???</li>
+<li><a class="reference external" href="https://github.com/alerta/sensu-alerta">Sensu Plugin</a> - forward sensu events</li>
 <li><a class="reference external" href="https://github.com/alerta/riemann-alerta">Riemann Plugin</a> - generate alerts from thresholds defined against metric streams</li>
 <li><a class="reference external" href="https://github.com/alerta/kibana-alerta">Kibana Logging</a> - log alerts to Elasticsearch for historical visualisation of alert trends</li>
 </ul>
 </div>
 <div class="section" id="contrib">
 <h3>Contrib<a class="headerlink" href="#contrib" title="Permalink to this headline">¶</a></h3>
-<p>There are several more integrations available in the <a class="reference external" href="https://github.com/alerta/alerta-contrib">contrib</a> repo. They are:</p>
+<p>There are several more integrations available in the <a class="reference external" href="https://github.com/alerta/alerta-contrib">contrib</a> repo which may be useful. They are:</p>
 <ul class="simple">
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/amazon-sqs">Amazon SQS</a> - receive alerts from SQS that were sent using the SNS core plugin</li>
-<li>E-mail and PagerDuty integrations use the <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/amqp">AMQP</a> message queue core plugin</li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/integrations/amqp/mailer.py">E-mail</a> - send emails after a hold-time has expired (requires the <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/amqp.py">AMQP</a> message queue core plugin)</li>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/cloudwatch">AWS Cloudwatch</a> - receive cloudwatch alarms from SQS (deprecated, use the cloudwatch webhook instead)</li>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/opsweekly">Opsweekly</a> - query Alerta to generate Opsweekly reports</li>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/pinger">Pinger</a> - generate ping alerts from list of network resources being pinged</li>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/snmptrap">SNMP Trap</a> - generate alerts from SNMPv1 and SNMPv2 sources</li>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/supervisor">Supervisor</a> - trigger alerts and heartbeats based on process deamon events</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/syslog">Syslog</a> - receive <span class="target" id="index-0"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc5424.html"><strong>RFC 5424</strong></a>, <span class="target" id="index-1"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc3164.html"><strong>RFC 3164</strong></a> syslog and Cisco syslog messages</li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/syslog">Syslog</a> - receive <span class="target" id="index-0"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc5424.html"><strong>RFC 5424</strong></a>, <span class="target" id="index-1"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc3164.html"><strong>RFC 3164</strong></a> syslog and <a class="reference external" href="http://www.cisco.com/c/en/us/td/docs/routers/access/wireless/software/guide/SysMsgLogging.html">Cisco</a> syslog messages</li>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/urlmon">URL monitor</a> - trigger alerts from web service query responses</li>
 </ul>
 </div>
 </div>
 <div class="section" id="webhooks">
 <span id="id4"></span><h2>Webhooks<a class="headerlink" href="#webhooks" title="Permalink to this headline">¶</a></h2>
-<p>Webhooks are a way of integrating with other systems by triggering web callbacks to the Alerta server API when an event occurs.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Webhook">Webhook callbacks</a> are a way of integrating with other systems by triggering web callbacks to the Alerta server API when an event occurs.</p>
 <div class="section" id="id5">
 <h3>AWS Cloudwatch<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>** go into detail here **</p>
@@ -93,20 +95,22 @@
 </div>
 <div class="section" id="plugins">
 <span id="id6"></span><h2>Plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Plug-in_(computing)">Plugin extensions</a> are an easy way of adding new features to Alerta that meet a specific end-user requirement.</p>
 <div class="section" id="id7">
 <h3>Core<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/guardian/alerta/tree/master/alerta/plugins">Core plugins</a> have been developed as examples of common use-cases.</p>
 <ul class="simple">
-<li>AMQP - ???</li>
-<li>Enhance - ???</li>
-<li>Logstash/Kibana - ???</li>
-<li>Normalise - ???</li>
-<li>Reject - used to enforce custom alert format policies</li>
-<li>AWS SNS - ???</li>
+<li><a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/amqp.py">AMQP</a> - publish alerts to an AMQP fanout topic after processing</li>
+<li><a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/enhance.py">Enhance</a> - add new information to an alert based on existing information</li>
+<li><a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/logstash.py">Logstash/Kibana</a> - send alerts to logstash agent after processing</li>
+<li><a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/normalise.py">Normalise</a> - ensure alerts a formatted in a consistent manner</li>
+<li><a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py">Reject</a> - reject alerts before processing. used to enforce custom alert format policies</li>
+<li><a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/sns.py">AWS SNS</a> - publish alerts to SNS topic after processing</li>
 </ul>
-<p>** go into detail here **</p>
 </div>
 <div class="section" id="id8">
 <h3>Contrib<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins">Contributed plugins</a> are made available for popular tools but implementation-specific requirements.</p>
 <ul class="simple">
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/geoip">GeoIP Location</a> - use remote IP address to submitted alert to add location data</li>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/hipchat">HipChat</a> - send alerts to HipChat room</li>
