@@ -65,9 +65,9 @@ The web UI configuration file :file:`config.js` for this setup would simply be `
 Static Website
 --------------
 
-The Alerta web UI is just a directory of static assets that can be served from any location. An easy way to serve the web UI is from an `Amazon S3 bucket`_ as a static website.
+The Alerta web UI is just a directory of static assets that can be served from any location. An easy and cheap way to serve the web UI is from an `Amazon S3 bucket`_ as a static website.
 
-.. note:: Serving the Alerta web UI from a static web hosting site **will not work** unless that the domain is listed in the ``CORS_ORIGINS`` server configuration settings.
+.. note:: Serving the Alerta web UI from a static web hosting site **will not work** unless that domain is listed in the ``CORS_ORIGINS`` Alerta API server configuration settings.
 
 .. _Amazon S3 bucket: http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html
 
@@ -76,17 +76,18 @@ The Alerta web UI is just a directory of static assets that can be served from a
 Authentication & SSL
 --------------------
 
-choose an auth provider
+Alerta supports several authentication mechanisms for both the API and the web UI and some key features of the web UI, like watching alerts, are only available if authentication is enabled.
 
-decide whether to use HTTPS or not
+The API can be secured using API keys and the web UI can be secured using Basic Auth or an OAuth provider from either Google, Github or Twitter.
 
-if multiple web servers ensure same SECRET_KEY is used
+If you plan to make the web UI accessible from a public URL it is strongly avised to enforce authentication and use HTTPS/SSL endpoints.
 
 .. _replicaset:
 
 Horizontal Scalability
 ----------------------
 
+if multiple web servers ensure same SECRET_KEY is used
 
 
 MongoDB Replica Set

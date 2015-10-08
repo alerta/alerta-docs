@@ -87,20 +87,21 @@ angular.module(&#39;config&#39;, [])
 </div>
 <div class="section" id="static-website">
 <span id="id2"></span><h2>Static Website<a class="headerlink" href="#static-website" title="Permalink to this headline">¶</a></h2>
-<p>The Alerta web UI is just a directory of static assets that can be served from any location. An easy way to serve the web UI is from an <a class="reference external" href="http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html">Amazon S3 bucket</a> as a static website.</p>
+<p>The Alerta web UI is just a directory of static assets that can be served from any location. An easy and cheap way to serve the web UI is from an <a class="reference external" href="http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html">Amazon S3 bucket</a> as a static website.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Serving the Alerta web UI from a static web hosting site <strong>will not work</strong> unless that the domain is listed in the <code class="docutils literal"><span class="pre">CORS_ORIGINS</span></code> server configuration settings.</p>
+<p class="last">Serving the Alerta web UI from a static web hosting site <strong>will not work</strong> unless that domain is listed in the <code class="docutils literal"><span class="pre">CORS_ORIGINS</span></code> Alerta API server configuration settings.</p>
 </div>
 </div>
 <div class="section" id="authentication-ssl">
 <span id="auth-ssl"></span><h2>Authentication &amp; SSL<a class="headerlink" href="#authentication-ssl" title="Permalink to this headline">¶</a></h2>
-<p>choose an auth provider</p>
-<p>decide whether to use HTTPS or not</p>
-<p>if multiple web servers ensure same SECRET_KEY is used</p>
+<p>Alerta supports several authentication mechanisms for both the API and the web UI and some key features of the web UI, like watching alerts, are only available if authentication is enabled.</p>
+<p>The API can be secured using API keys and the web UI can be secured using Basic Auth or an OAuth provider from either Google, Github or Twitter.</p>
+<p>If you plan to make the web UI accessible from a public URL it is strongly avised to enforce authentication and use HTTPS/SSL endpoints.</p>
 </div>
 <div class="section" id="horizontal-scalability">
 <span id="replicaset"></span><h2>Horizontal Scalability<a class="headerlink" href="#horizontal-scalability" title="Permalink to this headline">¶</a></h2>
+<p>if multiple web servers ensure same SECRET_KEY is used</p>
 </div>
 <div class="section" id="mongodb-replica-set">
 <h2>MongoDB Replica Set<a class="headerlink" href="#mongodb-replica-set" title="Permalink to this headline">¶</a></h2>
