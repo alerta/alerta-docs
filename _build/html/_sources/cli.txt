@@ -23,6 +23,8 @@ Or, by cloning the git repository::
     $ python setup.py install
 
 
+.. _cli config:
+
 Configuration
 -------------
 
@@ -62,10 +64,11 @@ Configuration file :file:`~/.alerta.conf`::
 
     [profile production]
     endpoint = https://api.alerta.io
-    key = demo-key
+    key = LMvzLsfJyGpSuLmaB9kp-8gCl4I3YZkV4i7IGb6S
 
     [profile development]
     endpoint = http://localhost:8080
+    key = demo-key
     debug = yes
 
 Set environment variables::
