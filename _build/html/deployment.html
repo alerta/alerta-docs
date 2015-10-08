@@ -45,8 +45,8 @@
 <h2>WSGI Server<a class="headerlink" href="#wsgi-server" title="Permalink to this headline">¶</a></h2>
 <p>There are many ways to deploy Alerta. It can be run as <code class="docutils literal"><span class="pre">alertad</span></code> during development or testing but when run in a production environment, it should <a class="reference external" href="http://flask.pocoo.org/docs/0.10/deploying/#deployment">always be deployed</a> as a WSGI application. See the list of <a class="reference internal" href="#real-world">real world</a> examples below.</p>
 </div>
-<div class="section" id="reverse-proxy-web-ui">
-<span id="reverse-proxy"></span><h2>Reverse Proxy Web UI<a class="headerlink" href="#reverse-proxy-web-ui" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="web-proxy">
+<span id="reverse-proxy"></span><h2>Web Proxy<a class="headerlink" href="#web-proxy" title="Permalink to this headline">¶</a></h2>
 <p>serve web UI from same domain as API, if possible to avoid potential CORS errors</p>
 <p>(example apache and nginx and gunicorn configs)</p>
 </div>
@@ -151,7 +151,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Deployment</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#wsgi-server">WSGI Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#reverse-proxy-web-ui">Reverse Proxy Web UI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#web-proxy">Web Proxy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#static-website">Static Website</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#authentication-ssl">Authentication &amp; SSL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mongodb-replica-set">MongoDB Replica Set</a></li>

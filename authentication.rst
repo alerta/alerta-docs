@@ -138,9 +138,9 @@ If the Alerta API is not being served from the same domain as the Alerta Web UI 
 API Keys
 --------
 
-If authentication is enforced, then an API key is needed to access the alerta API programatically or using the :ref:`alerta CLI <cli>`. Keys can be easy generated from the Alerta web UI and can be `read-write` or `read-only`. They are valid for 1 year but this period is configurable using ``API_KEY_EXPIRE_DAYS`` in the server settings.
+If authentication is enforced, then an API key is needed to access the alerta API programatically or using the :ref:`alerta CLI <cli>`. Keys can be easily generated from the Alerta web UI and can be `read-write` or `read-only`. They are valid for 1 year but this period is configurable using ``API_KEY_EXPIRE_DAYS`` in the server settings.
 
-See the :ref:`example CLI config <cli config>` for how to use the API key and the :ref:`server configuration <api config>` for setting the number of days before an API key expires.
+See the :ref:`example CLI config <cli config>` for how to set the API key for the command-line tool and the :ref:`server configuration <api config>` for setting the number of days before an API key expires.
 
 .. _users:
 

@@ -18,8 +18,8 @@ There are many ways to deploy Alerta. It can be run as ``alertad`` during develo
 
 .. _reverse proxy:
 
-Reverse Proxy Web UI
---------------------
+Web Proxy
+---------
 
 serve web UI from same domain as API, if possible to avoid potential CORS errors
 
