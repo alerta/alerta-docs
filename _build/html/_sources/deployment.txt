@@ -6,31 +6,68 @@ Deployment
 WSGI Server
 -----------
 
-There are many ways to deploy Alerta. It can be run as ``alertad`` during development or testing but when run in a production environment, it should `always be deployed`_ as a WSGI application. See the list of `real world`_ examples below.
+There are many ways to deploy Alerta. It can be run as ``alertad`` during development or testing but when run in a production environment, it should `always be deployed`_ as a WSGI application. See the list of `real world`_ examples below for different ways to run Alerta as a WSGI application.
 
 .. _always be deployed: http://flask.pocoo.org/docs/0.10/deploying/#deployment
 .. _WSGI: http://www.fullstackpython.com/wsgi-servers.html
-
-.. _one: https://github.com/alerta/vagrant-try-alerta/blob/master/scripts/alerta.sh
-.. _two: https://github.com/alerta/openshift-api-alerta/blob/master/wsgi.py
-.. _three: https://github.com/alerta/alerta-cfn/blob/master/Alerta_Single_Instance.template
-.. _four: https://github.com/alerta/docker-alerta/blob/master/supervisord.conf
 
 .. _reverse proxy:
 
 Web Proxy
 ---------
 
-serve web UI from same domain as API, if possible to avoid potential CORS errors
+Running the Alerta API behind a web proxy can greatly simplify the Web UI setup which means you can completely `avoid`_ the potential for any cross-origin issues.
 
-(example apache and nginx and gunicorn configs)
+.. _avoid: http://oskarhane.com/avoid-cors-with-nginx-proxy_pass/
+
+Also, if you run the API on an HTTPS/SSL endpoint then it can reduce the possibility of `mixed content`_ errors when a web application hosted on a HTTP endpoint tries to access resources on an HTTPS endpoint.
+
+.. _mixed content: https://developer.mozilla.org/en-US/docs/Security/MixedContent/How_to_fix_website_with_mixed_content
+
+**Example API configuration (extract)**
+
+This example nginx server is configured to serve the web UI from the root ``/`` path and reverse-proxy API requests to ``/api`` to the WSGI application running on port 8080::
+
+    server {
+
+            listen 80 default_server deferred;
+
+            access_log /dev/stdout main;
+
+            location /api/ {
+                    proxy_pass http://backend/;
+                    proxy_set_header Host $host:$server_port;
+                    proxy_set_header X-Real-IP $remote_addr;
+                    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            }
+
+            location / {
+                    root /app;
+            }
+    }
+
+    upstream backend {
+            server localhost:8080 fail_timeout=0;
+    }
+
+The web UI configuration file :file:`config.js` for this setup would simply be ``/api`` for the ``endpoint`` value, as follows::
+
+    'use strict';
+    angular.module('config', [])
+      .constant('config', {
+        'endpoint'    : "/api",
+        'provider'    : "basic"
+      })
+      .constant('colors', {});
 
 .. _static website:
 
 Static Website
 --------------
 
-The Alerta web UI is just a directory of static assets that can be served from any location. An easy way to serve the web UI is from an `Amazon S3 bucket`_. Ensure that the domain is listed in the ``CORS_ORIGINS`` server configuration setting though.
+The Alerta web UI is just a directory of static assets that can be served from any location. An easy way to serve the web UI is from an `Amazon S3 bucket`_ as a static website.
+
+.. note:: Serving the Alerta web UI from a static web hosting site **will not work** unless that the domain is listed in the ``CORS_ORIGINS`` server configuration settings.
 
 .. _Amazon S3 bucket: http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html
 
@@ -46,6 +83,11 @@ decide whether to use HTTPS or not
 if multiple web servers ensure same SECRET_KEY is used
 
 .. _replicaset:
+
+Horizontal Scalability
+----------------------
+
+
 
 MongoDB Replica Set
 -------------------
@@ -75,7 +117,12 @@ multiple instances backed by mongo replica set
 Real World Examples
 -------------------
 
-There are several examples of how to run Alerta as a WSGI app on a Debian vagrant host, on an AWS EC2 instance, on RedHat Openshift and Docker.
+Below are several different examples of how to run Alerta in production from a Debian `vagrant box`_, an `AWS EC2 instance`_, `RedHat Openshift PaaS`_ to a `Docker container`_.
+
+.. _vagrant box: https://docs.vagrantup.com/v2/boxes.html
+.. _AWS EC2 instance: https://aws.amazon.com/ec2/
+.. _RedHat OpenShift PaaS: https://www.openshift.com/products
+.. _Docker container: https://www.docker.com/whatisdocker
 
 * Vagrant_
 * Heroku_
