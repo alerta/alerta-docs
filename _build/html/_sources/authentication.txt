@@ -33,7 +33,7 @@ To use Basic Auth set the ``provider`` configuration setting in the Web UI :file
       })
       .constant('colors', {});
 
-.. note:: HTTP Basic auth does not provide any encryption of the HTTP traffic so it is strongly advised to only use Basic auth over HTTPS.
+.. note:: HTTP Basic auth does not provide any encryption of the username or password so it is strongly advised to only use Basic auth over HTTPS.
 
 .. _oauth2:
 
