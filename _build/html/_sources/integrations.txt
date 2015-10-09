@@ -69,31 +69,42 @@ Webhooks
 
 .. _Webhook callbacks: https://en.wikipedia.org/wiki/Webhook
 
-AWS Cloudwatch
+AWS CloudWatch
 ~~~~~~~~~~~~~~
 
-** go into detail here **
+Alerta can be configured to receive AWS CloudWatch alarms by subscribing the Alerta API endpoint to an SNS topic.
 
-See `Cloudwatch webhook`_
+For details on how to set this up see the `Sending Amazon SNS Messages to HTTP/HTTPS Endpoints`_ page and in the `Endpoint` input box append :file:`/webhooks/cloudwatch` to the Alerta API URL.
 
-.. _Cloudwatch webhook: http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html
+**Example AWS CloudWatch Webhook URL**
+
+:file:`https://alerta.example.com/api/webhooks/cloudwatch`
+
+.. _Sending Amazon SNS Messages to HTTP/HTTPS Endpoints: http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html
 
 Pingdom
 ~~~~~~~
 
-** go into detail here **
+Alerta can be configured to receive Pingdom URL check alerts by adding a webhook alerting endpoint that calls the Alerta API.
 
-See `Pingdom webhook`_
+For details on how to set this up see the `Pingdom webhook`_ page and in the `webhook URL` input box append :file:`/webhooks/pingdom` to the Alerta API URL.
 
+**Example Pingdom Webhook URL**
+
+:file:`https://alerta.example.com/api/webhooks/pingdom`
 
 .. _Pingdom webhook: https://support.pingdom.com/Knowledgebase/Article/View/94/0/users-and-alerting-end-points
 
 PagerDuty
 ~~~~~~~~~
 
-** go into detail here **
+Alerta can be configured to receive PagerDuty incident-based webhooks -- any change to the ``status`` or ``assigned_to_user`` of an incident will cause an outgoing message to be sent.
 
-See `PagerDuty webhook`_
+For details on how to set this up see the `PagerDuty webhook`_ page and where it requires the webhook URL append :file:`/webhooks/pagerduty` to the Alerta API URL.
+
+**Example PagerDuty Webhook URL**
+
+:file:`https://alerta.example.com/api/webhooks/pagerduty`
 
 .. _PagerDuty webhook: https://developer.pagerduty.com/documentation/rest/webhooks
 

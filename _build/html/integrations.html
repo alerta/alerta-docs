@@ -78,19 +78,25 @@
 <span id="id4"></span><h2>Webhooks<a class="headerlink" href="#webhooks" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Webhook">Webhook callbacks</a> are a way of integrating with other systems by triggering web callbacks to the Alerta server API when an event occurs.</p>
 <div class="section" id="id5">
-<h3>AWS Cloudwatch<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-<p>** go into detail here **</p>
-<p>See <a class="reference external" href="http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html">Cloudwatch webhook</a></p>
+<h3>AWS CloudWatch<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>Alerta can be configured to receive AWS CloudWatch alarms by subscribing the Alerta API endpoint to an SNS topic.</p>
+<p>For details on how to set this up see the <a class="reference external" href="http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html">Sending Amazon SNS Messages to HTTP/HTTPS Endpoints</a> page and in the <cite>Endpoint</cite> input box append <code class="file docutils literal"><span class="pre">/webhooks/cloudwatch</span></code> to the Alerta API URL.</p>
+<p><strong>Example AWS CloudWatch Webhook URL</strong></p>
+<p><code class="file docutils literal"><span class="pre">https://alerta.example.com/api/webhooks/cloudwatch</span></code></p>
 </div>
 <div class="section" id="pingdom">
 <h3>Pingdom<a class="headerlink" href="#pingdom" title="Permalink to this headline">¶</a></h3>
-<p>** go into detail here **</p>
-<p>See <a class="reference external" href="https://support.pingdom.com/Knowledgebase/Article/View/94/0/users-and-alerting-end-points">Pingdom webhook</a></p>
+<p>Alerta can be configured to receive Pingdom URL check alerts by adding a webhook alerting endpoint that calls the Alerta API.</p>
+<p>For details on how to set this up see the <a class="reference external" href="https://support.pingdom.com/Knowledgebase/Article/View/94/0/users-and-alerting-end-points">Pingdom webhook</a> page and in the <cite>webhook URL</cite> input box append <code class="file docutils literal"><span class="pre">/webhooks/pingdom</span></code> to the Alerta API URL.</p>
+<p><strong>Example Pingdom Webhook URL</strong></p>
+<p><code class="file docutils literal"><span class="pre">https://alerta.example.com/api/webhooks/pingdom</span></code></p>
 </div>
 <div class="section" id="pagerduty">
 <h3>PagerDuty<a class="headerlink" href="#pagerduty" title="Permalink to this headline">¶</a></h3>
-<p>** go into detail here **</p>
-<p>See <a class="reference external" href="https://developer.pagerduty.com/documentation/rest/webhooks">PagerDuty webhook</a></p>
+<p>Alerta can be configured to receive PagerDuty incident-based webhooks &#8211; any change to the <code class="docutils literal"><span class="pre">status</span></code> or <code class="docutils literal"><span class="pre">assigned_to_user</span></code> of an incident will cause an outgoing message to be sent.</p>
+<p>For details on how to set this up see the <a class="reference external" href="https://developer.pagerduty.com/documentation/rest/webhooks">PagerDuty webhook</a> page and where it requires the webhook URL append <code class="file docutils literal"><span class="pre">/webhooks/pagerduty</span></code> to the Alerta API URL.</p>
+<p><strong>Example PagerDuty Webhook URL</strong></p>
+<p><code class="file docutils literal"><span class="pre">https://alerta.example.com/api/webhooks/pagerduty</span></code></p>
 </div>
 </div>
 <div class="section" id="plugins">
