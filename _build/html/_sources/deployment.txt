@@ -120,6 +120,14 @@ House Keeping
 Timeout expired alerts
 Delete stale alerts
 
+
+.. _metrics:
+
+Management & Metrics
+--------------------
+
+management switchboard and metrics
+
 .. _real world:
 
 Real World Examples

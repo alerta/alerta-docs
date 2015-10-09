@@ -226,8 +226,13 @@ MongoDB Settings
 Dynamic Settings
 ----------------
 
-Using the management switchboard dynamic settings can be switched on and off without restarting the Alerta server daemon.
+Using the :ref:`management switchboard <metrics>` on the API some dynamic settings can be switched on and off without restarting the Alerta server daemon.
 
-http://api.alerta.io/management/switchboard
+Currently, there is only one setting that can be toggled in this way and it is the Auto-refresh allow switch.
 
-switch.auto_refresh_allow
+Auto-Refresh Allow
+~~~~~~~~~~~~~~~~~~
+
+The Alerta Web UI will automatically referesh the list of alerts in the alert console every 5 seconds.
+
+If for whatever reason, the Alerta API is experiencing heavy load the ``auto_refresh_allow`` switch can be turned off and the Web UI will respect that and switch to manual refresh mode. The Alerta web UI will start auto-refereshing again if the ``auto_refresh_allow`` switch is turned back on.

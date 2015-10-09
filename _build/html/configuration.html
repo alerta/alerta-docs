@@ -237,9 +237,13 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 </div>
 <div class="section" id="dynamic-settings">
 <h2>Dynamic Settings<a class="headerlink" href="#dynamic-settings" title="Permalink to this headline">¶</a></h2>
-<p>Using the management switchboard dynamic settings can be switched on and off without restarting the Alerta server daemon.</p>
-<p><a class="reference external" href="http://api.alerta.io/management/switchboard">http://api.alerta.io/management/switchboard</a></p>
-<p>switch.auto_refresh_allow</p>
+<p>Using the <a class="reference internal" href="deployment.html#metrics"><span>management switchboard</span></a> on the API some dynamic settings can be switched on and off without restarting the Alerta server daemon.</p>
+<p>Currently, there is only one setting that can be toggled in this way and it is the Auto-refresh allow switch.</p>
+<div class="section" id="auto-refresh-allow">
+<h3>Auto-Refresh Allow<a class="headerlink" href="#auto-refresh-allow" title="Permalink to this headline">¶</a></h3>
+<p>The Alerta Web UI will automatically referesh the list of alerts in the alert console every 5 seconds.</p>
+<p>If for whatever reason, the Alerta API is experiencing heavy load the <code class="docutils literal"><span class="pre">auto_refresh_allow</span></code> switch can be turned off and the Web UI will respect that and switch to manual refresh mode. The Alerta web UI will start auto-refereshing again if the <code class="docutils literal"><span class="pre">auto_refresh_allow</span></code> switch is turned back on.</p>
+</div>
 </div>
 </div>
 
