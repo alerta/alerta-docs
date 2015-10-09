@@ -113,6 +113,13 @@ multiple instances backed by mongo replica set
 
     MONGO_REPLSET = None  # 'alerta'
 
+
+House Keeping
+-------------
+
+Timeout expired alerts
+Delete stale alerts
+
 .. _real world:
 
 Real World Examples
