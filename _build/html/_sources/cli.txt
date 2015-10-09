@@ -327,6 +327,44 @@ Delete alerts from server::
       -i ID, --id ID     List of alert IDs (can use short 8-char id).
       --filters FILTERS  KEY=VALUE eg. id=5108bc20
 
+:command:`blackout`
+~~~~~~~~~~~~~~~~~~~
+
+Blackout alerts based on attributes::
+
+    $ alerta blackout --help
+    usage: alerta [OPTIONS] blackout [-r RESOURCE] [-e EVENT] [-E ENVIRONMENT]
+                                [-S SERVICE] [-g GROUP] [-T TAG]
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -r RESOURCE, --resource RESOURCE
+                            resource under alarm
+      -e EVENT, --event EVENT
+                            event
+      -E ENVIRONMENT, --environment ENVIRONMENT
+                            environment eg. "production", "development", "testing"
+      -S SERVICE, --service SERVICE
+                            service affected eg. the application name, "Web",
+                            "Network", "Storage", "Database", "Security"
+      -g GROUP, --group GROUP
+                            group
+      -T TAG, --tag TAG     List of tags eg. "London", "os:linux", "AWS/EC2".
+      --start START         Start of blackout period
+      --duration DURATION   Duration of blackout period (default: 1 hour)
+
+:command:`blackouts`
+~~~~~~~~~~~~~~~~~~~~
+
+List all blackout periods::
+
+    $ alerta blackouts --help
+    usage: alerta [OPTIONS] blackouts [-h]
+
+    optional arguments:
+      -h, --help  show this help message and exit
+      --purge     Delete all expired blackout periods
+
 :command:`heartbeat`
 ~~~~~~~~~~~~~~~~~~~~
 
@@ -342,15 +380,49 @@ Send a heartbeat to the server::
       --timeout TIMEOUT     Timeout in seconds before a heartbeat will be
                             considered stale
 
-:command:`help`
-~~~~~~~~~~~~~~~
+:command:`heartbeats`
+~~~~~~~~~~~~~~~~~~~~~
 
-Show all ``OPTIONS``, ``COMMANDS`` and some example ``FILTERS``.
+List all heartbeats::
+
+    $ alerta heartbeats --help
+    usage: alerta [OPTIONS] heartbeats [-h]
+
+    optional arguments:
+      -h, --help  show this help message and exit
+      --alert     Send alerts on stale or slow heartbeats
+
+:command:`status`
+~~~~~~~~~~~~~~~~~
+
+Show status and metrics::
+
+    $ alerta status --help
+    usage: alerta [OPTIONS] status [-h]
+
+    optional arguments:
+      -h, --help  show this help message and exit
+
+:command:`uptime`
+~~~~~~~~~~~~~~~~~
+
+Show server uptime::
+
+    $ alerta uptime --help
+    usage: alerta [OPTIONS] uptime [-h]
+
+    optional arguments:
+      -h, --help  show this help message and exit
 
 :command:`version`
 ~~~~~~~~~~~~~~~~~~
 
 Show version information for ``alerta`` and dependencies.
+
+:command:`help`
+~~~~~~~~~~~~~~~
+
+Show all ``OPTIONS``, ``COMMANDS`` and some example ``FILTERS``.
 
 Bugs
 ----

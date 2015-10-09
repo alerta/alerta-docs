@@ -420,6 +420,44 @@ optional arguments:
 </pre></div>
 </div>
 </div>
+<div class="section" id="blackout">
+<h3><strong class="command">blackout</strong><a class="headerlink" href="#blackout" title="Permalink to this headline">¶</a></h3>
+<p>Blackout alerts based on attributes:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta blackout --help
+usage: alerta [OPTIONS] blackout [-r RESOURCE] [-e EVENT] [-E ENVIRONMENT]
+                            [-S SERVICE] [-g GROUP] [-T TAG]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -r RESOURCE, --resource RESOURCE
+                        resource under alarm
+  -e EVENT, --event EVENT
+                        event
+  -E ENVIRONMENT, --environment ENVIRONMENT
+                        environment eg. &quot;production&quot;, &quot;development&quot;, &quot;testing&quot;
+  -S SERVICE, --service SERVICE
+                        service affected eg. the application name, &quot;Web&quot;,
+                        &quot;Network&quot;, &quot;Storage&quot;, &quot;Database&quot;, &quot;Security&quot;
+  -g GROUP, --group GROUP
+                        group
+  -T TAG, --tag TAG     List of tags eg. &quot;London&quot;, &quot;os:linux&quot;, &quot;AWS/EC2&quot;.
+  --start START         Start of blackout period
+  --duration DURATION   Duration of blackout period (default: 1 hour)
+</pre></div>
+</div>
+</div>
+<div class="section" id="blackouts">
+<h3><strong class="command">blackouts</strong><a class="headerlink" href="#blackouts" title="Permalink to this headline">¶</a></h3>
+<p>List all blackout periods:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta blackouts --help
+usage: alerta [OPTIONS] blackouts [-h]
+
+optional arguments:
+  -h, --help  show this help message and exit
+  --purge     Delete all expired blackout periods
+</pre></div>
+</div>
+</div>
 <div class="section" id="heartbeat">
 <h3><strong class="command">heartbeat</strong><a class="headerlink" href="#heartbeat" title="Permalink to this headline">¶</a></h3>
 <p>Send a heartbeat to the server:</p>
@@ -435,13 +473,47 @@ optional arguments:
 </pre></div>
 </div>
 </div>
-<div class="section" id="help">
-<h3><strong class="command">help</strong><a class="headerlink" href="#help" title="Permalink to this headline">¶</a></h3>
-<p>Show all <code class="docutils literal"><span class="pre">OPTIONS</span></code>, <code class="docutils literal"><span class="pre">COMMANDS</span></code> and some example <code class="docutils literal"><span class="pre">FILTERS</span></code>.</p>
+<div class="section" id="heartbeats">
+<h3><strong class="command">heartbeats</strong><a class="headerlink" href="#heartbeats" title="Permalink to this headline">¶</a></h3>
+<p>List all heartbeats:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta heartbeats --help
+usage: alerta [OPTIONS] heartbeats [-h]
+
+optional arguments:
+  -h, --help  show this help message and exit
+  --alert     Send alerts on stale or slow heartbeats
+</pre></div>
+</div>
+</div>
+<div class="section" id="status">
+<h3><strong class="command">status</strong><a class="headerlink" href="#status" title="Permalink to this headline">¶</a></h3>
+<p>Show status and metrics:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta status --help
+usage: alerta [OPTIONS] status [-h]
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="uptime">
+<h3><strong class="command">uptime</strong><a class="headerlink" href="#uptime" title="Permalink to this headline">¶</a></h3>
+<p>Show server uptime:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ alerta uptime --help
+usage: alerta [OPTIONS] uptime [-h]
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre></div>
+</div>
 </div>
 <div class="section" id="version">
 <h3><strong class="command">version</strong><a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h3>
 <p>Show version information for <code class="docutils literal"><span class="pre">alerta</span></code> and dependencies.</p>
+</div>
+<div class="section" id="help">
+<h3><strong class="command">help</strong><a class="headerlink" href="#help" title="Permalink to this headline">¶</a></h3>
+<p>Show all <code class="docutils literal"><span class="pre">OPTIONS</span></code>, <code class="docutils literal"><span class="pre">COMMANDS</span></code> and some example <code class="docutils literal"><span class="pre">FILTERS</span></code>.</p>
 </div>
 </div>
 <div class="section" id="bugs">
