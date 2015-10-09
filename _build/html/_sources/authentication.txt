@@ -11,27 +11,59 @@ By default, authentication is not enabled, however there are some features that 
 
     $ LC_CTYPE=C tr -dc A-Za-z0-9_\!\@\#\$\%\^\&\*\(\)-+= < /dev/urandom | head -c 32 && echo
 
+Alerta supports two types of authentication for the web UI (:ref:`Basic Auth <basic auth>` and :ref:`OAuth <oauth2>`) as well as :ref:`API keys <api keys>` for direct access to the API.
+
+.. _basic auth:
+
+Basic Authentication
+--------------------
+
+HTTP `Basic authentication`_ is a very simple method for enforcing access control.
+
+.. _Basic authentication: https://en.wikipedia.org/wiki/Basic_access_authentication
+
+To use Basic Auth set the ``provider`` configuration setting in the Web UI :file:`config.js` file to ``basic``. There is no configuration required of the Alerta server::
+
+    'use strict';
+
+    angular.module('config', [])
+      .constant('config', {
+        'endpoint'    : "/api",
+        'provider'    : "basic"
+      })
+      .constant('colors', {});
+
+.. note:: HTTP Basic auth does not provide any encryption of the HTTP traffic so it is strongly advised to only use Basic auth over HTTPS.
+
 .. _oauth2:
 
 OAuth2 Authentication
 ---------------------
 
-User authentication for the web console is provided by Google_ or GitHub_ `OAuth 2.0`_ OpenID_ connect service or Twitter_ `OAuth 1.0a`_ service.
+OAuth authentication is provided by Google_ or GitHub_ `OAuth 2.0`_ OpenID_ connect service or Twitter_ `OAuth 1.0a`_ service.
 
 .. note:: If alerta is deployed to a publicly accessible web server it is important to configure the OAuth2 settings correctly to ensure that only authorised users can access and modify your alerts.
 
 .. _Google: https://developers.google.com/accounts/docs/OpenIDConnect
 .. _GitHub: https://developer.github.com/v3/oauth/
 .. _Twitter: https://dev.twitter.com/web/sign-in/implementing
-.. _`OAuth 2.0`: http://tools.ietf.org/html/draft-ietf-oauth-v2-22
-.. _`OAuth 1.0a`: http://oauth.net/core/1.0a/
+.. _OAuth 2.0: http://tools.ietf.org/html/draft-ietf-oauth-v2-22
+.. _OAuth 1.0a: http://oauth.net/core/1.0a/
 .. _OpenID: http://openid.net/connect/
 
-
-Configuration
--------------
-
 .. _google_oauth2:
+
+To use OAuth set the ``provider`` configuration setting in the Web UI :file:`config.js` file to ``google``, ``github`` or ``twitter`` and then follow the steps below to setup the Alert server::
+
+    'use strict';
+
+    angular.module('config', [])
+      .constant('config', {
+        'endpoint'    : "/api",
+        'provider'    : "google",
+        'client_id'   : "INSERT-CLIENT-ID-HERE" // replace with the client id for your OAuth provider
+      })
+      .constant('colors', {});
 
 Google OAuth2
 ~~~~~~~~~~~~~
@@ -115,7 +147,10 @@ Select the *Keys and Access Tokens* tab and take note of the Consumer Key (API K
 
 To restrict access to particular users use the *circle of trust* approach. That is, add yourself to the list of allowed users, ensure ``AUTH_REQUIRED`` is set to ``True`` and restart ``alertad``. To gain access now, a user will need to be manually added to the *Users* page. Note that any existing user can add and remove users for the list of authorised users.
 
-.. note:: Twitter does not support OAuth2 for user
+.. note:: Twitter does not support OAuth2 for user logins.
+
+
+
 
 .. _cross_origin:
 
@@ -133,7 +168,7 @@ If the Alerta API is not being served from the same domain as the Alerta Web UI 
         'http://localhost'
     ]
 
-.. _api_keys:
+.. _api keys:
 
 API Keys
 --------
