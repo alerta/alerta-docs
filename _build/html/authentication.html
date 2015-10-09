@@ -155,12 +155,24 @@
 </div>
 <div class="section" id="api-keys">
 <span id="id5"></span><h2>API Keys<a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h2>
-<p>If authentication is enforced, then an API key is needed to access the alerta API programatically or using the <a class="reference internal" href="cli.html#cli"><span>alerta CLI</span></a>. Keys can be easily generated from the Alerta web UI and can be <cite>read-write</cite> or <cite>read-only</cite>. They are valid for 1 year but this period is configurable using <code class="docutils literal"><span class="pre">API_KEY_EXPIRE_DAYS</span></code> in the server settings.</p>
-<p>See the <a class="reference internal" href="cli.html#cli-config"><span>example CLI config</span></a> for how to set the API key for the command-line tool and the <a class="reference internal" href="configuration.html#api-config"><span>server configuration</span></a> for setting the number of days before an API key expires.</p>
+<p>If authentication is enforced, then an API key is needed to access the alerta API programatically or to use the <a class="reference internal" href="cli.html#cli"><span>alerta CLI</span></a>. Keys can be easily generated from the Alerta web UI and can be <cite>read-write</cite> or <cite>read-only</cite>. They are valid for 1 year but this period is configurable using <code class="docutils literal"><span class="pre">API_KEY_EXPIRE_DAYS</span></code> in the <a class="reference internal" href="configuration.html#api-config"><span>server configuration</span></a>.</p>
+<p>See the <a class="reference internal" href="cli.html#cli-config"><span>example CLI config</span></a> for how to set the API key for the command-line tool.</p>
+<p>To use an API key in an API query you must set the correct HTTP <code class="docutils literal"><span class="pre">Authorization</span></code> header:</p>
+<div class="highlight-python"><div class="highlight"><pre>curl &#39;http://api.alerta.io/alerts&#39; -H &#39;Authorization: Key demo-key&#39; -H &#39;Accept: application/json&#39;
+</pre></div>
+</div>
+<p>or use the <code class="docutils literal"><span class="pre">api-key</span></code> GET parameter:</p>
+<div class="highlight-python"><div class="highlight"><pre>curl &#39;http://api.alerta.io/alerts?api-key=demo-key&#39; -H &#39;Accept: application/json&#39;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Using the HTTP <code class="docutils literal"><span class="pre">Authorization</span></code> header is preferred so that API keys are not inadvertently captured in log files and accidentally exposed.</p>
+</div>
 </div>
 <div class="section" id="user-authorisation">
 <span id="users"></span><h2>User Authorisation<a class="headerlink" href="#user-authorisation" title="Permalink to this headline">¶</a></h2>
-<p>Google and GitHub OAuth2 are used for user authentication, not user authorisation. Authentication proves that you are who you say you are.</p>
+<p>Google and GitHub OAuth2 are used for user authentication, not user authorisation. Authentication proves that you are who you say you are. Authorization says that you are allowed to access what you have requested.</p>
 <p>To control who has access to Alerta you can restrict access to users with a <a class="reference internal" href="#allowed-email-domains"><span>certain email domain name</span></a> by setting <code class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code> or who belong to a <a class="reference internal" href="#allowed-github-orgs"><span>particular GitHub organisation</span></a> by setting <code class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code>.</p>
 <p>For those situations where it is not possible to group users in this way it is possible to selectively allow access on a per-user basis. How this is done depends on whether you are using Google or GitHub as OAuth2 provider for user login.</p>
 <div class="section" id="per-user-authorisation-using-google">

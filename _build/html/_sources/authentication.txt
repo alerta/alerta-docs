@@ -138,16 +138,26 @@ If the Alerta API is not being served from the same domain as the Alerta Web UI 
 API Keys
 --------
 
-If authentication is enforced, then an API key is needed to access the alerta API programatically or using the :ref:`alerta CLI <cli>`. Keys can be easily generated from the Alerta web UI and can be `read-write` or `read-only`. They are valid for 1 year but this period is configurable using ``API_KEY_EXPIRE_DAYS`` in the server settings.
+If authentication is enforced, then an API key is needed to access the alerta API programatically or to use the :ref:`alerta CLI <cli>`. Keys can be easily generated from the Alerta web UI and can be `read-write` or `read-only`. They are valid for 1 year but this period is configurable using ``API_KEY_EXPIRE_DAYS`` in the :ref:`server configuration <api config>`.
 
-See the :ref:`example CLI config <cli config>` for how to set the API key for the command-line tool and the :ref:`server configuration <api config>` for setting the number of days before an API key expires.
+See the :ref:`example CLI config <cli config>` for how to set the API key for the command-line tool.
+
+To use an API key in an API query you must set the correct HTTP ``Authorization`` header::
+
+    curl 'http://api.alerta.io/alerts' -H 'Authorization: Key demo-key' -H 'Accept: application/json'
+
+or use the ``api-key`` GET parameter::
+
+    curl 'http://api.alerta.io/alerts?api-key=demo-key' -H 'Accept: application/json'
+
+.. note:: Using the HTTP ``Authorization`` header is preferred so that API keys are not inadvertently captured in log files and accidentally exposed.
 
 .. _users:
 
 User Authorisation
 ------------------
 
-Google and GitHub OAuth2 are used for user authentication, not user authorisation. Authentication proves that you are who you say you are.
+Google and GitHub OAuth2 are used for user authentication, not user authorisation. Authentication proves that you are who you say you are. Authorization says that you are allowed to access what you have requested.
 
 To control who has access to Alerta you can restrict access to users with a :ref:`certain email domain name <allowed_email_domains>` by setting ``ALLOWED_EMAIL_DOMAINS`` or who belong to a :ref:`particular GitHub organisation <allowed_github_orgs>` by setting ``ALLOWED_GITHUB_ORGS``.
 
