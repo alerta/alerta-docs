@@ -82,43 +82,30 @@ The API can be secured using API keys and the web UI can be secured using Basic 
 
 If you plan to make the web UI accessible from a public URL it is strongly avised to enforce authentication and use HTTPS/SSL endpoints.
 
-.. _replicaset:
+.. _scalability:
 
-Horizontal Scalability
-----------------------
+Scalability
+-----------
 
-if multiple web servers ensure same SECRET_KEY is used
+Alerta can scale horizontally, in the same way any other web application scales horizontally -- a load balancer handles the HTTP requests and distributes those requests between all available application servers.
 
+.. _scale horizontally: https://blog.openshift.com/best-practices-for-horizontal-application-scaling/
 
-MongoDB Replica Set
--------------------
+.. note:: If using multiple API servers ensure the same ``SECRET_KEY`` is used across all servers otherwise there will be problems with web UI user logins.
 
-multiple instances backed by mongo replica set
+High Availability
+-----------------
 
-:file:/etc/mongod.conf
+To achieve high system availability the Alerta API should be deployed to scale out :ref:`horizontally <scalability>` and the MongoDB should be deployed as a `replica set`_.
 
-::
-
-    replSetName=alerta
-::
-
-    > rs.initiate()
-    > rs.add("mongodb1.example.net")
-    > rs.add("mongodb1.example.net")
-
-
-.. _MongoDB_Replica: http://docs.mongodb.org/manual/tutorial/deploy-replica-set/
-
-::
-
-    MONGO_REPLSET = None  # 'alerta'
-
+.. _replica set: http://docs.mongodb.org/manual/tutorial/deploy-replica-set/#overview
 
 House Keeping
 -------------
 
-Timeout expired alerts
-Delete stale alerts
+* Timeout expired alerts
+* Delete stale alerts
+* Alert stale heartbeats
 
 
 .. _metrics:

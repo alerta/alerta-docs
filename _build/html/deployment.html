@@ -99,30 +99,25 @@ angular.module(&#39;config&#39;, [])
 <p>The API can be secured using API keys and the web UI can be secured using Basic Auth or an OAuth provider from either Google, Github or Twitter.</p>
 <p>If you plan to make the web UI accessible from a public URL it is strongly avised to enforce authentication and use HTTPS/SSL endpoints.</p>
 </div>
-<div class="section" id="horizontal-scalability">
-<span id="replicaset"></span><h2>Horizontal Scalability<a class="headerlink" href="#horizontal-scalability" title="Permalink to this headline">¶</a></h2>
-<p>if multiple web servers ensure same SECRET_KEY is used</p>
+<div class="section" id="scalability">
+<span id="id3"></span><h2>Scalability<a class="headerlink" href="#scalability" title="Permalink to this headline">¶</a></h2>
+<p>Alerta can scale horizontally, in the same way any other web application scales horizontally &#8211; a load balancer handles the HTTP requests and distributes those requests between all available application servers.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If using multiple API servers ensure the same <code class="docutils literal"><span class="pre">SECRET_KEY</span></code> is used across all servers otherwise there will be problems with web UI user logins.</p>
 </div>
-<div class="section" id="mongodb-replica-set">
-<h2>MongoDB Replica Set<a class="headerlink" href="#mongodb-replica-set" title="Permalink to this headline">¶</a></h2>
-<p>multiple instances backed by mongo replica set</p>
-<p>:<a class="reference external" href="file:/etc/mongod.conf">file:/etc/mongod.conf</a></p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">replSetName</span><span class="o">=</span><span class="n">alerta</span>
-</pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&gt; rs.initiate()
-&gt; rs.add(&quot;mongodb1.example.net&quot;)
-&gt; rs.add(&quot;mongodb1.example.net&quot;)
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">MONGO_REPLSET</span> <span class="o">=</span> <span class="bp">None</span>  <span class="c"># &#39;alerta&#39;</span>
-</pre></div>
-</div>
+<div class="section" id="high-availability">
+<h2>High Availability<a class="headerlink" href="#high-availability" title="Permalink to this headline">¶</a></h2>
+<p>To achieve high system availability the Alerta API should be deployed to scale out <a class="reference internal" href="#scalability"><span>horizontally</span></a> and the MongoDB should be deployed as a <a class="reference external" href="http://docs.mongodb.org/manual/tutorial/deploy-replica-set/#overview">replica set</a>.</p>
 </div>
 <div class="section" id="house-keeping">
 <h2>House Keeping<a class="headerlink" href="#house-keeping" title="Permalink to this headline">¶</a></h2>
-<p>Timeout expired alerts
-Delete stale alerts</p>
+<ul class="simple">
+<li>Timeout expired alerts</li>
+<li>Delete stale alerts</li>
+<li>Alert stale heartbeats</li>
+</ul>
 </div>
 <div class="section" id="management-metrics">
 <span id="metrics"></span><h2>Management &amp; Metrics<a class="headerlink" href="#management-metrics" title="Permalink to this headline">¶</a></h2>
@@ -206,8 +201,8 @@ Links
 <li class="toctree-l2"><a class="reference internal" href="#web-proxy">Web Proxy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#static-website">Static Website</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#authentication-ssl">Authentication &amp; SSL</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#horizontal-scalability">Horizontal Scalability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#mongodb-replica-set">MongoDB Replica Set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scalability">Scalability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#high-availability">High Availability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#house-keeping">House Keeping</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#management-metrics">Management &amp; Metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#real-world-examples">Real World Examples</a></li>
