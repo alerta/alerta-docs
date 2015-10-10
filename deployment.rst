@@ -116,7 +116,7 @@ Heartbeats can be sent from any source to ensure that a system is 'alive'. To ge
 Management & Metrics
 --------------------
 
-management switchboard and metrics
+Use the management endpoint :file:`/management/status` to keep track of realtime statistics on the performance of the Alerta API like alert counts and average processing time. For convenience, these statistics can be viewed in the *About* page of the Alerta web UI.
 
 .. _real world:
 
