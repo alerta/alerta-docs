@@ -103,10 +103,13 @@ To achieve high system availability the Alerta API should be deployed to scale o
 House Keeping
 -------------
 
-* Timeout expired alerts
-* Delete stale alerts
-* Alert stale heartbeats
+There are some jobs that should be run periodically to keep the Alerta console clutter free. To timeout expired alerts and delete stale alerts run this_ MongoDB script using ``cron``.
 
+.. _this: https://github.com/guardian/alerta/blob/master/contrib/mongo/housekeepingAlerts.js
+
+Heartbeats can be sent from any source to ensure that a system is 'alive'. To generate alerts for stale heartbeats the ``alerta`` command-line tool can be regularly run from ``cron`` using the following command::
+
+    $ alerta heartbeats --alert
 
 .. _metrics:
 
