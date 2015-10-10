@@ -3,7 +3,7 @@
 Server & API
 ============
 
-The ``alertad`` server receives alerts from multiple sources, :ref:`correlates <correlation>`, :ref:`de-duplicates  <deduplication>` or :ref:`suppresses <blackouts>` them, and makes the alerts available via a RESTful_ JSON_ API.
+The Alerta API receives alerts from multiple sources, :ref:`correlates <correlation>`, :ref:`de-duplicates  <deduplication>` or :ref:`suppresses <blackouts>` them, and makes the alerts available via a RESTful_ JSON_ API.
 
 .. _RESTful: http://apigee.com/about/resources/webcasts/restful-api-design-second-edition
 .. _JSON: http://developers.squarespace.com/what-is-json/
@@ -38,9 +38,14 @@ Plug-ins are small python scripts that can run either before or after an alert i
 Transformers
 ~~~~~~~~~~~~
 
-Using pre-receive hooks, plugins provide the ability to transform raw alert data from sources before alerts are created. For example, alerts can be *normalised* to ensure they all have specific attributes or tags or only have a specific value from a range of allowed values. This is demonstrated in the reject plugin that enforces an alert policy.
+Using pre-receive hooks, plugins provide the ability to transform raw alert data from sources before alerts are created. For example, alerts can be *normalised* to ensure they all have specific attributes or tags or only have a specific value from a range of allowed values. This is demonstrated in the `reject plugin`_ that enforces an alert policy.
 
-Plugins can also be used to *enhance* alerts, for example, to add Geo location data to alerts based on the sending IP address. See geoip plugin or a customer attribute based on information contained in the alert. See enhance plugin.
+.. _reject plugin: https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py
+
+Plugins can also be used to *enhance* alerts  -- like the `Geo location plugin`_ which adds location data to alerts based on the sending IP address, or this generic `enhance plugin`_ which adds a ``customer`` attribute based on information contained in the alert.
+
+.. _Geo location plugin: https://github.com/alerta/alerta-contrib/blob/master/plugins/geoip/geoip.py
+.. _enhance plugin: https://github.com/guardian/alerta/blob/master/alerta/plugins/enhance.py
 
 Integrations
 ~~~~~~~~~~~~
@@ -52,23 +57,23 @@ Using post-receive hooks, plugin integrations can be used to provide downstream 
 Blackout Periods
 ----------------
 
-An alert that is received during a blackout period is accepted by Alerta and a 202 Accepted status code returned. However, it will not be added to the Alerta database.
+An alert that is received during a blackout period is suppressed. That is, it is received by Alerta and a ``202 Accepted`` status code is returned however this means that eventhough the alert has been accepted, it won't be processed.
 
-Alerta defines many different alert attributes that can be used to group alerts and it is these attributes that can be used to define rules eg. environment, service, group. However, resource and event attributes are still supported for situations that require that level of granularity.
+Alerta defines many different alert attributes that can be used to group alerts and it is these attributes that can be used to define rules eg. environment, service and group. However, it is possible to define blackout rules based on resource and event attributes for situations that require that level of granularity.
 
-Tags can also be used to define a blackout rule which should allow a lot of flexibility -- one or more tags can be required to match an alert for the suppression to apply. And tags can be added at source, using the alerta CLI, or using a plug-in.
+Tags can also be used to define a blackout rule which should allow a lot of flexibility -- one or more tags can be required to match an alert for the suppression to apply -- because tags can be added at source, using the alerta CLI, or using a plug-in.
 
 In summary, blackout rules can be any of:
 
-* an entire environment eg. environment=Production
-* a particular resource eg. resource=host55
-* an entire service eg. service=Web
-* every occurrence of a specific event eg. event=DiskFull
-* a group of events eg. group=Syslog
-* a specific event for a resource eg. resource=host55 and event=DiskFull
-* all events that have a specific set of tags eg. tags=[ blackout, london ]
+* an entire environment eg. ``environment=Production``
+* a particular resource eg. ``resource=host55``
+* an entire service eg. ``service=Web``
+* every occurrence of a specific event eg. ``event=DiskFull``
+* a group of events eg. ``group=Syslog``
+* a specific event for a resource eg. ``resource=host55 and event=DiskFull``
+* all events that have a specific set of tags eg. ``tags=[ blackout, london ]``
 
-Note that an environment is always required to be defined for a blackout rule.
+Note that an ``environment`` is always required to be defined for a blackout rule.
 
 .. _deduplication:
 
@@ -76,7 +81,6 @@ De-Duplication
 --------------
 
 Same event/resource combination, same severity simply increases the duplicate count.
-
 
 .. _correlation:
 
@@ -94,14 +98,10 @@ auto status change (open->closed->open)
 status / severity change & history log
 duplicate count, repeat flag
 previous severity & trend indication
-
-Timeouts
---------
-
+timeout stale alerts
 
 Heartbeats
 ----------
-
 
 alerting on stale heartbeats
 

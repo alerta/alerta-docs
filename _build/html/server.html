@@ -41,7 +41,7 @@
             
   <div class="section" id="server-api">
 <span id="server"></span><h1>Server &amp; API<a class="headerlink" href="#server-api" title="Permalink to this headline">¶</a></h1>
-<p>The <code class="docutils literal"><span class="pre">alertad</span></code> server receives alerts from multiple sources, <a class="reference internal" href="#correlation"><span>correlates</span></a>, <a class="reference internal" href="#deduplication"><span>de-duplicates</span></a> or <a class="reference internal" href="#blackouts"><span>suppresses</span></a> them, and makes the alerts available via a <a class="reference external" href="http://apigee.com/about/resources/webcasts/restful-api-design-second-edition">RESTful</a> <a class="reference external" href="http://developers.squarespace.com/what-is-json/">JSON</a> API.</p>
+<p>The Alerta API receives alerts from multiple sources, <a class="reference internal" href="#correlation"><span>correlates</span></a>, <a class="reference internal" href="#deduplication"><span>de-duplicates</span></a> or <a class="reference internal" href="#blackouts"><span>suppresses</span></a> them, and makes the alerts available via a <a class="reference external" href="http://apigee.com/about/resources/webcasts/restful-api-design-second-edition">RESTful</a> <a class="reference external" href="http://developers.squarespace.com/what-is-json/">JSON</a> API.</p>
 <p>Alerts can be intercepted as they are received to modify, enhance or reject them using <span class="xref std std-ref">pre-receive hooks</span>. Alerts can also be used to trigger actions in other systems after the alert has been processed using <span class="xref std std-ref">post-receive hooks</span>.</p>
 <p>There are several <a class="reference internal" href="integrations.html#integrations"><span>integrations</span></a> with popular monitoring tools available and <a class="reference internal" href="integrations.html#webhooks"><span>webhooks</span></a> can be used to trivially integrate with AWS Cloudwatch, Pingdom, and PagerDuty.</p>
 <div class="section" id="event-processing">
@@ -63,8 +63,8 @@
 <p>Plug-ins are small python scripts that can run either before or after an alert is saved to the database. This is achieved by registering <em>pre-receive hooks</em> for transformers and <em>post-receive hooks</em> for downstream integration.</p>
 <div class="section" id="transformers">
 <span id="id2"></span><h3>Transformers<a class="headerlink" href="#transformers" title="Permalink to this headline">¶</a></h3>
-<p>Using pre-receive hooks, plugins provide the ability to transform raw alert data from sources before alerts are created. For example, alerts can be <em>normalised</em> to ensure they all have specific attributes or tags or only have a specific value from a range of allowed values. This is demonstrated in the reject plugin that enforces an alert policy.</p>
-<p>Plugins can also be used to <em>enhance</em> alerts, for example, to add Geo location data to alerts based on the sending IP address. See geoip plugin or a customer attribute based on information contained in the alert. See enhance plugin.</p>
+<p>Using pre-receive hooks, plugins provide the ability to transform raw alert data from sources before alerts are created. For example, alerts can be <em>normalised</em> to ensure they all have specific attributes or tags or only have a specific value from a range of allowed values. This is demonstrated in the <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py">reject plugin</a> that enforces an alert policy.</p>
+<p>Plugins can also be used to <em>enhance</em> alerts  &#8211; like the <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/geoip/geoip.py">Geo location plugin</a> which adds location data to alerts based on the sending IP address, or this generic <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/enhance.py">enhance plugin</a> which adds a <code class="docutils literal"><span class="pre">customer</span></code> attribute based on information contained in the alert.</p>
 </div>
 <div class="section" id="integrations">
 <h3>Integrations<a class="headerlink" href="#integrations" title="Permalink to this headline">¶</a></h3>
@@ -73,20 +73,20 @@
 </div>
 <div class="section" id="blackout-periods">
 <span id="blackouts"></span><h2>Blackout Periods<a class="headerlink" href="#blackout-periods" title="Permalink to this headline">¶</a></h2>
-<p>An alert that is received during a blackout period is accepted by Alerta and a 202 Accepted status code returned. However, it will not be added to the Alerta database.</p>
-<p>Alerta defines many different alert attributes that can be used to group alerts and it is these attributes that can be used to define rules eg. environment, service, group. However, resource and event attributes are still supported for situations that require that level of granularity.</p>
-<p>Tags can also be used to define a blackout rule which should allow a lot of flexibility &#8211; one or more tags can be required to match an alert for the suppression to apply. And tags can be added at source, using the alerta CLI, or using a plug-in.</p>
+<p>An alert that is received during a blackout period is suppressed. That is, it is received by Alerta and a <code class="docutils literal"><span class="pre">202</span> <span class="pre">Accepted</span></code> status code is returned however this means that eventhough the alert has been accepted, it won&#8217;t be processed.</p>
+<p>Alerta defines many different alert attributes that can be used to group alerts and it is these attributes that can be used to define rules eg. environment, service and group. However, it is possible to define blackout rules based on resource and event attributes for situations that require that level of granularity.</p>
+<p>Tags can also be used to define a blackout rule which should allow a lot of flexibility &#8211; one or more tags can be required to match an alert for the suppression to apply &#8211; because tags can be added at source, using the alerta CLI, or using a plug-in.</p>
 <p>In summary, blackout rules can be any of:</p>
 <ul class="simple">
-<li>an entire environment eg. environment=Production</li>
-<li>a particular resource eg. resource=host55</li>
-<li>an entire service eg. service=Web</li>
-<li>every occurrence of a specific event eg. event=DiskFull</li>
-<li>a group of events eg. group=Syslog</li>
-<li>a specific event for a resource eg. resource=host55 and event=DiskFull</li>
-<li>all events that have a specific set of tags eg. tags=[ blackout, london ]</li>
+<li>an entire environment eg. <code class="docutils literal"><span class="pre">environment=Production</span></code></li>
+<li>a particular resource eg. <code class="docutils literal"><span class="pre">resource=host55</span></code></li>
+<li>an entire service eg. <code class="docutils literal"><span class="pre">service=Web</span></code></li>
+<li>every occurrence of a specific event eg. <code class="docutils literal"><span class="pre">event=DiskFull</span></code></li>
+<li>a group of events eg. <code class="docutils literal"><span class="pre">group=Syslog</span></code></li>
+<li>a specific event for a resource eg. <code class="docutils literal"><span class="pre">resource=host55</span> <span class="pre">and</span> <span class="pre">event=DiskFull</span></code></li>
+<li>all events that have a specific set of tags eg. <code class="docutils literal"><span class="pre">tags=[</span> <span class="pre">blackout,</span> <span class="pre">london</span> <span class="pre">]</span></code></li>
 </ul>
-<p>Note that an environment is always required to be defined for a blackout rule.</p>
+<p>Note that an <code class="docutils literal"><span class="pre">environment</span></code> is always required to be defined for a blackout rule.</p>
 </div>
 <div class="section" id="de-duplication">
 <span id="deduplication"></span><h2>De-Duplication<a class="headerlink" href="#de-duplication" title="Permalink to this headline">¶</a></h2>
@@ -103,10 +103,8 @@ Correlated list of related events. eg. NodeUp NodeDown</p>
 auto status change (open-&gt;closed-&gt;open)
 status / severity change &amp; history log
 duplicate count, repeat flag
-previous severity &amp; trend indication</p>
-</div>
-<div class="section" id="timeouts">
-<h2>Timeouts<a class="headerlink" href="#timeouts" title="Permalink to this headline">¶</a></h2>
+previous severity &amp; trend indication
+timeout stale alerts</p>
 </div>
 <div class="section" id="heartbeats">
 <h2>Heartbeats<a class="headerlink" href="#heartbeats" title="Permalink to this headline">¶</a></h2>
@@ -174,7 +172,6 @@ Links
 <li class="toctree-l2"><a class="reference internal" href="#de-duplication">De-Duplication</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#simple-correlation">Simple Correlation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#state-based-browser">State-based Browser</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#timeouts">Timeouts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#heartbeats">Heartbeats</a></li>
 </ul>
 </li>
