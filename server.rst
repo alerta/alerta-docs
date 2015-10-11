@@ -84,28 +84,20 @@ When an alert with the same ``event``-``resource`` is received with the **same**
 
 This means that information from the de-duplicated alert is used to update key attributes of the existing alert (like ``value``, ``text`` and ``lastReceiveTime``) and the new alert is not shown.
 
-**Example of De-duplication**
-
-*INSERT EXAMPLE HERE*
-
 .. _correlation:
 
 Simple Correlation
 ------------------
 
-There are two ways alerts can be correlated.
+Alerta implements "simple correlation" as opposed to `complex correlation`_ (which is much_ more_ involved_). With Alerta, there are two ways alerts can be correlated, namely:
 
-Firstly, when an alert with the same ``event``-``resource`` is received with a **different** ``severity``, the alert is correlated.
+1. when an alert with the same ``event``-``resource`` is received with a **different** ``severity``, then the alert is correlated.
+2. when a alert with the same ``resource`` is received with an ``event`` in the ``correlate`` list of related events with **any** severity, then the alert is correlated.
 
-**Example of Correlation (same event)**
-
-*INSERT EXAMPLE HERE*
-
-Secondly, when a alert with the same ``resource`` is received with an ``event`` in the ``correlate`` list of related events with **any** severity, the alert is correlated.
-
-**Example of Correlation (related event)**
-
-*INSERT EXAMPLE HERE*
+.. _complex correlation: https://en.wikipedia.org/wiki/Complex_event_processing
+.. _much: http://www.espertech.com/
+.. _more: http://riemann.io/
+.. _involved: http://www.drools.org/
 
 In both cases, this means that information from the correlated alert is used to update key attributes of the existing alert (like ``event``, ``value``, ``text`` and ``lastReceiveTime``) and the new alert is not shown.
 

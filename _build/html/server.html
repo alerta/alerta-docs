@@ -92,18 +92,14 @@
 <span id="deduplication"></span><h2>De-Duplication<a class="headerlink" href="#de-duplication" title="Permalink to this headline">¶</a></h2>
 <p>When an alert with the same <code class="docutils literal"><span class="pre">event</span></code>-<code class="docutils literal"><span class="pre">resource</span></code> is received with the <strong>same</strong> <code class="docutils literal"><span class="pre">severity</span></code>, the alert is de-duplicated.</p>
 <p>This means that information from the de-duplicated alert is used to update key attributes of the existing alert (like <code class="docutils literal"><span class="pre">value</span></code>, <code class="docutils literal"><span class="pre">text</span></code> and <code class="docutils literal"><span class="pre">lastReceiveTime</span></code>) and the new alert is not shown.</p>
-<p><strong>Example of De-duplication</strong></p>
-<p><em>INSERT EXAMPLE HERE</em></p>
 </div>
 <div class="section" id="simple-correlation">
 <span id="correlation"></span><h2>Simple Correlation<a class="headerlink" href="#simple-correlation" title="Permalink to this headline">¶</a></h2>
-<p>There are two ways alerts can be correlated.</p>
-<p>Firstly, when an alert with the same <code class="docutils literal"><span class="pre">event</span></code>-<code class="docutils literal"><span class="pre">resource</span></code> is received with a <strong>different</strong> <code class="docutils literal"><span class="pre">severity</span></code>, the alert is correlated.</p>
-<p><strong>Example of Correlation (same event)</strong></p>
-<p><em>INSERT EXAMPLE HERE</em></p>
-<p>Secondly, when a alert with the same <code class="docutils literal"><span class="pre">resource</span></code> is received with an <code class="docutils literal"><span class="pre">event</span></code> in the <code class="docutils literal"><span class="pre">correlate</span></code> list of related events with <strong>any</strong> severity, the alert is correlated.</p>
-<p><strong>Example of Correlation (related event)</strong></p>
-<p><em>INSERT EXAMPLE HERE</em></p>
+<p>Alerta implements &#8220;simple correlation&#8221; as opposed to <a class="reference external" href="https://en.wikipedia.org/wiki/Complex_event_processing">complex correlation</a> (which is <a class="reference external" href="http://www.espertech.com/">much</a> <a class="reference external" href="http://riemann.io/">more</a> <a class="reference external" href="http://www.drools.org/">involved</a>). With Alerta, there are two ways alerts can be correlated, namely:</p>
+<ol class="arabic simple">
+<li>when an alert with the same <code class="docutils literal"><span class="pre">event</span></code>-<code class="docutils literal"><span class="pre">resource</span></code> is received with a <strong>different</strong> <code class="docutils literal"><span class="pre">severity</span></code>, then the alert is correlated.</li>
+<li>when a alert with the same <code class="docutils literal"><span class="pre">resource</span></code> is received with an <code class="docutils literal"><span class="pre">event</span></code> in the <code class="docutils literal"><span class="pre">correlate</span></code> list of related events with <strong>any</strong> severity, then the alert is correlated.</li>
+</ol>
 <p>In both cases, this means that information from the correlated alert is used to update key attributes of the existing alert (like <code class="docutils literal"><span class="pre">event</span></code>, <code class="docutils literal"><span class="pre">value</span></code>, <code class="docutils literal"><span class="pre">text</span></code> and <code class="docutils literal"><span class="pre">lastReceiveTime</span></code>) and the new alert is not shown.</p>
 </div>
 <div class="section" id="state-based-browser">
