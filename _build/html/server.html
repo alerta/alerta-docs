@@ -95,7 +95,8 @@
 </div>
 <div class="section" id="simple-correlation">
 <span id="correlation"></span><h2>Simple Correlation<a class="headerlink" href="#simple-correlation" title="Permalink to this headline">¶</a></h2>
-<p>Alerta implements &#8220;simple correlation&#8221; as opposed to <a class="reference external" href="https://en.wikipedia.org/wiki/Complex_event_processing">complex correlation</a> (which is <a class="reference external" href="http://www.espertech.com/">much</a> <a class="reference external" href="http://riemann.io/">more</a> <a class="reference external" href="http://www.drools.org/">involved</a>). With Alerta, there are two ways alerts can be correlated, namely:</p>
+<p>Alerta implements &#8220;simple correlation&#8221; as opposed to <a class="reference external" href="https://en.wikipedia.org/wiki/Complex_event_processing">complex correlation</a> (which is <a class="reference external" href="http://www.espertech.com/">much</a> <a class="reference external" href="http://riemann.io/">more</a> <a class="reference external" href="http://www.drools.org/">involved</a>).</p>
+<p>With Alerta, there are two ways alerts can be correlated, namely:</p>
 <ol class="arabic simple">
 <li>when an alert with the same <code class="docutils literal"><span class="pre">event</span></code>-<code class="docutils literal"><span class="pre">resource</span></code> is received with a <strong>different</strong> <code class="docutils literal"><span class="pre">severity</span></code>, then the alert is correlated.</li>
 <li>when a alert with the same <code class="docutils literal"><span class="pre">resource</span></code> is received with an <code class="docutils literal"><span class="pre">event</span></code> in the <code class="docutils literal"><span class="pre">correlate</span></code> list of related events with <strong>any</strong> severity, then the alert is correlated.</li>

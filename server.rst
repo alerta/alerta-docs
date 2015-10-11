@@ -91,7 +91,9 @@ This means that information from the de-duplicated alert is used to update key a
 Simple Correlation
 ------------------
 
-Alerta implements "simple correlation" as opposed to `complex correlation`_ (which is much_ more_ involved_). With Alerta, there are two ways alerts can be correlated, namely:
+Alerta implements "simple correlation" as opposed to `complex correlation`_ (which is much_ more_ involved_).
+
+With Alerta, there are two ways alerts can be correlated, namely:
 
 1. when an alert with the same ``event``-``resource`` is received with a **different** ``severity``, then the alert is correlated.
 2. when a alert with the same ``resource`` is received with an ``event`` in the ``correlate`` list of related events with **any** severity, then the alert is correlated.
