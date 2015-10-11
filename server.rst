@@ -80,30 +80,53 @@ Note that an ``environment`` is always required to be defined for a blackout rul
 De-Duplication
 --------------
 
-Same event/resource combination, same severity simply increases the duplicate count.
+When an alert with the same ``event``-``resource`` is received with the **same** ``severity``, the alert is de-duplicated.
+
+This means that information from the de-duplicated alert is used to update key attributes of the existing alert (like ``value``, ``text`` and ``lastReceiveTime``) and the new alert is not shown.
+
+**Example of De-duplication**
+
+*INSERT EXAMPLE HERE*
 
 .. _correlation:
 
 Simple Correlation
 ------------------
 
-Same event/resource, different severity
-Correlated list of related events. eg. NodeUp NodeDown
+There are two ways alerts can be correlated.
+
+Firstly, when an alert with the same ``event``-``resource`` is received with a **different** ``severity``, the alert is correlated.
+
+**Example of Correlation (same event)**
+
+*INSERT EXAMPLE HERE*
+
+Secondly, when a alert with the same ``resource`` is received with an ``event`` in the ``correlate`` list of related events with **any** severity, the alert is correlated.
+
+**Example of Correlation (related event)**
+
+*INSERT EXAMPLE HERE*
+
+In both cases, this means that information from the correlated alert is used to update key attributes of the existing alert (like ``event``, ``value``, ``text`` and ``lastReceiveTime``) and the new alert is not shown.
+
 
 State-based Browser
 -------------------
 
 Alerts cleared, normal, ok change status to `closed`
 auto status change (open->closed->open)
+previousSeverity & trendIndication
 status / severity change & history log
 duplicate count, repeat flag
-previous severity & trend indication
 timeout stale alerts
 
 Heartbeats
 ----------
 
 alerting on stale heartbeats
+
+::
+
 
 
 

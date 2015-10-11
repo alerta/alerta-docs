@@ -90,20 +90,29 @@
 </div>
 <div class="section" id="de-duplication">
 <span id="deduplication"></span><h2>De-Duplication<a class="headerlink" href="#de-duplication" title="Permalink to this headline">¶</a></h2>
-<p>Same event/resource combination, same severity simply increases the duplicate count.</p>
+<p>When an alert with the same <code class="docutils literal"><span class="pre">event</span></code>-<code class="docutils literal"><span class="pre">resource</span></code> is received with the <strong>same</strong> <code class="docutils literal"><span class="pre">severity</span></code>, the alert is de-duplicated.</p>
+<p>This means that information from the de-duplicated alert is used to update key attributes of the existing alert (like <code class="docutils literal"><span class="pre">value</span></code>, <code class="docutils literal"><span class="pre">text</span></code> and <code class="docutils literal"><span class="pre">lastReceiveTime</span></code>) and the new alert is not shown.</p>
+<p><strong>Example of De-duplication</strong></p>
+<p><em>INSERT EXAMPLE HERE</em></p>
 </div>
 <div class="section" id="simple-correlation">
 <span id="correlation"></span><h2>Simple Correlation<a class="headerlink" href="#simple-correlation" title="Permalink to this headline">¶</a></h2>
-<p>Same event/resource, different severity
-Correlated list of related events. eg. NodeUp NodeDown</p>
+<p>There are two ways alerts can be correlated.</p>
+<p>Firstly, when an alert with the same <code class="docutils literal"><span class="pre">event</span></code>-<code class="docutils literal"><span class="pre">resource</span></code> is received with a <strong>different</strong> <code class="docutils literal"><span class="pre">severity</span></code>, the alert is correlated.</p>
+<p><strong>Example of Correlation (same event)</strong></p>
+<p><em>INSERT EXAMPLE HERE</em></p>
+<p>Secondly, when a alert with the same <code class="docutils literal"><span class="pre">resource</span></code> is received with an <code class="docutils literal"><span class="pre">event</span></code> in the <code class="docutils literal"><span class="pre">correlate</span></code> list of related events with <strong>any</strong> severity, the alert is correlated.</p>
+<p><strong>Example of Correlation (related event)</strong></p>
+<p><em>INSERT EXAMPLE HERE</em></p>
+<p>In both cases, this means that information from the correlated alert is used to update key attributes of the existing alert (like <code class="docutils literal"><span class="pre">event</span></code>, <code class="docutils literal"><span class="pre">value</span></code>, <code class="docutils literal"><span class="pre">text</span></code> and <code class="docutils literal"><span class="pre">lastReceiveTime</span></code>) and the new alert is not shown.</p>
 </div>
 <div class="section" id="state-based-browser">
 <h2>State-based Browser<a class="headerlink" href="#state-based-browser" title="Permalink to this headline">¶</a></h2>
 <p>Alerts cleared, normal, ok change status to <cite>closed</cite>
 auto status change (open-&gt;closed-&gt;open)
+previousSeverity &amp; trendIndication
 status / severity change &amp; history log
 duplicate count, repeat flag
-previous severity &amp; trend indication
 timeout stale alerts</p>
 </div>
 <div class="section" id="heartbeats">
