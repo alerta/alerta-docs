@@ -93,12 +93,16 @@ Alerta can scale horizontally, in the same way any other web application scales 
 
 .. note:: If using multiple API servers ensure the same ``SECRET_KEY`` is used across all servers otherwise there will be problems with web UI user logins.
 
+.. _high availability:
+
 High Availability
 -----------------
 
 To achieve high system availability the Alerta API should be deployed to scale out :ref:`horizontally <scalability>` and the MongoDB should be deployed as a `replica set`_.
 
 .. _replica set: http://docs.mongodb.org/manual/tutorial/deploy-replica-set/#overview
+
+.. _housekeeping:
 
 House Keeping
 -------------

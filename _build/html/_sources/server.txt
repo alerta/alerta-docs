@@ -82,7 +82,7 @@ De-Duplication
 
 When an alert with the same ``event``-``resource`` is received with the **same** ``severity``, the alert is de-duplicated.
 
-This means that information from the de-duplicated alert is used to update key attributes of the existing alert (like ``value``, ``text`` and ``lastReceiveTime``) and the new alert is not shown.
+This means that information from the de-duplicated alert is used to update key attributes of the existing alert (like ``duplicateCount``, ``repeat`` flag, ``value``, ``text`` and ``lastReceiveTime``) and the new alert is not shown.
 
 .. _correlation:
 
@@ -99,18 +99,26 @@ Alerta implements "simple correlation" as opposed to `complex correlation`_ (whi
 .. _more: http://riemann.io/
 .. _involved: http://www.drools.org/
 
-In both cases, this means that information from the correlated alert is used to update key attributes of the existing alert (like ``event``, ``value``, ``text`` and ``lastReceiveTime``) and the new alert is not shown.
-
+In both cases, this means that information from the correlated alert is used to update key attributes of the existing alert (like ``event``, ``value``, ``text``, ``lastReceiveTime`` and ``history``) and the new alert is not shown.
 
 State-based Browser
 -------------------
 
-Alerts cleared, normal, ok change status to `closed`
-auto status change (open->closed->open)
-previousSeverity & trendIndication
-status / severity change & history log
-duplicate count, repeat flag
-timeout stale alerts
+Alerta is considered state-based because it will *automatically change the alert status* based on current and previous severity and user actions. As a result, the Alert web UI will:
+
+* only show the most recent state of any alert
+* change the status of an alert to ``closed`` if a ``normal``, ``ok`` or ``cleared`` is received
+* change the status of a ``closed`` alert to ``open`` if the event reoccurs
+* change the status of an ``acknowledged`` alert to ``open`` if the new severity is higher than the current ``severity``
+* update the ``severity`` and other key attributes of an alert when a more recent alert is received (see correlation_)
+
+In addition, the following attributes are updated whenever an alert changes ``status`` or ``severity``:
+
+* ``previousSeverity``
+* ``trendIndication`` - ``moreSevere``, ``lessSevere`` or ``noChange``
+* ``history``
+
+To take full advantage of the state-based browser it is recommended to implement the timeout of ``expired`` alerts using the :ref:`housekeeping` script.
 
 Heartbeats
 ----------

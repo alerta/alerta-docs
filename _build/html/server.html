@@ -91,7 +91,7 @@
 <div class="section" id="de-duplication">
 <span id="deduplication"></span><h2>De-Duplication<a class="headerlink" href="#de-duplication" title="Permalink to this headline">¶</a></h2>
 <p>When an alert with the same <code class="docutils literal"><span class="pre">event</span></code>-<code class="docutils literal"><span class="pre">resource</span></code> is received with the <strong>same</strong> <code class="docutils literal"><span class="pre">severity</span></code>, the alert is de-duplicated.</p>
-<p>This means that information from the de-duplicated alert is used to update key attributes of the existing alert (like <code class="docutils literal"><span class="pre">value</span></code>, <code class="docutils literal"><span class="pre">text</span></code> and <code class="docutils literal"><span class="pre">lastReceiveTime</span></code>) and the new alert is not shown.</p>
+<p>This means that information from the de-duplicated alert is used to update key attributes of the existing alert (like <code class="docutils literal"><span class="pre">duplicateCount</span></code>, <code class="docutils literal"><span class="pre">repeat</span></code> flag, <code class="docutils literal"><span class="pre">value</span></code>, <code class="docutils literal"><span class="pre">text</span></code> and <code class="docutils literal"><span class="pre">lastReceiveTime</span></code>) and the new alert is not shown.</p>
 </div>
 <div class="section" id="simple-correlation">
 <span id="correlation"></span><h2>Simple Correlation<a class="headerlink" href="#simple-correlation" title="Permalink to this headline">¶</a></h2>
@@ -100,16 +100,25 @@
 <li>when an alert with the same <code class="docutils literal"><span class="pre">event</span></code>-<code class="docutils literal"><span class="pre">resource</span></code> is received with a <strong>different</strong> <code class="docutils literal"><span class="pre">severity</span></code>, then the alert is correlated.</li>
 <li>when a alert with the same <code class="docutils literal"><span class="pre">resource</span></code> is received with an <code class="docutils literal"><span class="pre">event</span></code> in the <code class="docutils literal"><span class="pre">correlate</span></code> list of related events with <strong>any</strong> severity, then the alert is correlated.</li>
 </ol>
-<p>In both cases, this means that information from the correlated alert is used to update key attributes of the existing alert (like <code class="docutils literal"><span class="pre">event</span></code>, <code class="docutils literal"><span class="pre">value</span></code>, <code class="docutils literal"><span class="pre">text</span></code> and <code class="docutils literal"><span class="pre">lastReceiveTime</span></code>) and the new alert is not shown.</p>
+<p>In both cases, this means that information from the correlated alert is used to update key attributes of the existing alert (like <code class="docutils literal"><span class="pre">event</span></code>, <code class="docutils literal"><span class="pre">value</span></code>, <code class="docutils literal"><span class="pre">text</span></code>, <code class="docutils literal"><span class="pre">lastReceiveTime</span></code> and <code class="docutils literal"><span class="pre">history</span></code>) and the new alert is not shown.</p>
 </div>
 <div class="section" id="state-based-browser">
 <h2>State-based Browser<a class="headerlink" href="#state-based-browser" title="Permalink to this headline">¶</a></h2>
-<p>Alerts cleared, normal, ok change status to <cite>closed</cite>
-auto status change (open-&gt;closed-&gt;open)
-previousSeverity &amp; trendIndication
-status / severity change &amp; history log
-duplicate count, repeat flag
-timeout stale alerts</p>
+<p>Alerta is considered state-based because it will <em>automatically change the alert status</em> based on current and previous severity and user actions. As a result, the Alert web UI will:</p>
+<ul class="simple">
+<li>only show the most recent state of any alert</li>
+<li>change the status of an alert to <code class="docutils literal"><span class="pre">closed</span></code> if a <code class="docutils literal"><span class="pre">normal</span></code>, <code class="docutils literal"><span class="pre">ok</span></code> or <code class="docutils literal"><span class="pre">cleared</span></code> is received</li>
+<li>change the status of a <code class="docutils literal"><span class="pre">closed</span></code> alert to <code class="docutils literal"><span class="pre">open</span></code> if the event reoccurs</li>
+<li>change the status of an <code class="docutils literal"><span class="pre">acknowledged</span></code> alert to <code class="docutils literal"><span class="pre">open</span></code> if the new severity is higher than the current <code class="docutils literal"><span class="pre">severity</span></code></li>
+<li>update the <code class="docutils literal"><span class="pre">severity</span></code> and other key attributes of an alert when a more recent alert is received (see <a class="reference internal" href="#correlation">correlation</a>)</li>
+</ul>
+<p>In addition, the following attributes are updated whenever an alert changes <code class="docutils literal"><span class="pre">status</span></code> or <code class="docutils literal"><span class="pre">severity</span></code>:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">previousSeverity</span></code></li>
+<li><code class="docutils literal"><span class="pre">trendIndication</span></code> - <code class="docutils literal"><span class="pre">moreSevere</span></code>, <code class="docutils literal"><span class="pre">lessSevere</span></code> or <code class="docutils literal"><span class="pre">noChange</span></code></li>
+<li><code class="docutils literal"><span class="pre">history</span></code></li>
+</ul>
+<p>To take full advantage of the state-based browser it is recommended to implement the timeout of <code class="docutils literal"><span class="pre">expired</span></code> alerts using the <a class="reference internal" href="deployment.html#housekeeping"><span>House Keeping</span></a> script.</p>
 </div>
 <div class="section" id="heartbeats">
 <h2>Heartbeats<a class="headerlink" href="#heartbeats" title="Permalink to this headline">¶</a></h2>
