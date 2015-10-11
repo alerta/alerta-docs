@@ -3,12 +3,12 @@
 Server & API
 ============
 
-The Alerta API receives alerts from multiple sources, :ref:`correlates <correlation>`, :ref:`de-duplicates  <deduplication>` or :ref:`suppresses <blackouts>` them, and makes the alerts available via a RESTful_ JSON_ API.
+The Alerta API receives alerts from multiple sources, :ref:`correlates <correlation>`, :ref:`de-duplicates  <deduplication>` or :ref:`suppresses <blackout periods>` them, and makes the alerts available via a RESTful_ JSON_ API.
 
 .. _RESTful: http://apigee.com/about/resources/webcasts/restful-api-design-second-edition
 .. _JSON: http://developers.squarespace.com/what-is-json/
 
-Alerts can be intercepted as they are received to modify, enhance or reject them using :ref:`pre-receive hooks <pre_receive>`. Alerts can also be used to trigger actions in other systems after the alert has been processed using :ref:`post-receive hooks <post_receive>`.
+Alerts can be intercepted as they are received to modify, enhance or reject them using :ref:`pre-receive hooks <prereceive>`. Alerts can also be used to trigger actions in other systems after the alert has been processed using :ref:`post-receive hooks <postreceive>`.
 
 There are several :ref:`integrations <integrations>` with popular monitoring tools available and :ref:`webhooks <webhooks>` can be used to trivially integrate with AWS Cloudwatch, Pingdom, and PagerDuty.
 
@@ -33,7 +33,7 @@ Plug-ins
 
 Plug-ins are small python scripts that can run either before or after an alert is saved to the database. This is achieved by registering *pre-receive hooks* for transformers and *post-receive hooks* for downstream integration.
 
-.. _transformers:
+.. _prereceive:
 
 Transformers
 ~~~~~~~~~~~~
@@ -47,12 +47,14 @@ Plugins can also be used to *enhance* alerts  -- like the `Geo location plugin`_
 .. _Geo location plugin: https://github.com/alerta/alerta-contrib/blob/master/plugins/geoip/geoip.py
 .. _enhance plugin: https://github.com/guardian/alerta/blob/master/alerta/plugins/enhance.py
 
+.. _postreceive:
+
 Integrations
 ~~~~~~~~~~~~
 
 Using post-receive hooks, plugin integrations can be used to provide downstream systems with alerts in realtime. For example, pushing alerts onto an AWS SNS topic, AMQP queue, logging to a Logstash/Kibana stack, or sending notifications to HipChat, Slack or Twilio.
 
-.. _blackouts:
+.. _blackout periods:
 
 Blackout Periods
 ----------------
@@ -101,31 +103,46 @@ Alerta implements "simple correlation" as opposed to `complex correlation`_ (whi
 
 In both cases, this means that information from the correlated alert is used to update key attributes of the existing alert (like ``event``, ``value``, ``text``, ``lastReceiveTime`` and ``history``) and the new alert is not shown.
 
+.. _state based browser:
+
 State-based Browser
 -------------------
 
-Alerta is considered state-based because it will *automatically change the alert status* based on current and previous severity and user actions. As a result, the Alert web UI will:
+Alerta is called state-based because it will **automatically** *change the alert status* based on the current and previous severity of alerts and subsequent user actions.
+
+The Alerta API will:
 
 * only show the most recent state of any alert
 * change the status of an alert to ``closed`` if a ``normal``, ``ok`` or ``cleared`` is received
 * change the status of a ``closed`` alert to ``open`` if the event reoccurs
 * change the status of an ``acknowledged`` alert to ``open`` if the new severity is higher than the current ``severity``
 * update the ``severity`` and other key attributes of an alert when a more recent alert is received (see correlation_)
+* update the ``trendIndication`` attribute based on ``previousSeverity`` and current ``severity`` with either ``moreSevere``, ``lessSevere`` or ``noChange``
+* update the ``history`` log following a ``severity`` or ``status`` change (see `alert history`_)
 
-In addition, the following attributes are updated whenever an alert changes ``status`` or ``severity``:
+All of these automatic actions combine to ensure that important alerts are given the priority they deserve.
 
-* ``previousSeverity``
-* ``trendIndication`` - ``moreSevere``, ``lessSevere`` or ``noChange``
-* ``history``
+.. note:: To take full advantage of the state-based browser it is recommended to implement the timeout of ``expired`` alerts using the :ref:`housekeeping` script.
 
-To take full advantage of the state-based browser it is recommended to implement the timeout of ``expired`` alerts using the :ref:`housekeeping` script.
+Alert History
+-------------
+
+Whenever an alert status or severity changes, that change is recorded in the alert :ref:`history <history>` log. This is to allow operations staff follow the lifecycle of a particular alert, if necessary.
+
+The alert history is visible in the *Alert Details* page of any alert and also by using the ``alerta`` command-line tool ``history`` sub-command.
+
+For example, it will show whether an alert status change happened as a result of operator action or an automatic correlation_ action.
 
 Heartbeats
 ----------
 
-alerting on stale heartbeats
+An Alerta :ref:`heartbeat <Heartbeats>` is a periodic HTTP request sent to the Alerta API to indicate normal operation of the origin of the heartbeat.
 
-::
+They can be used to ensure components of the Alerta monitoring system are operating normally or sent from any other source. As well as an ``origin`` they include a ``timeout`` in seconds (after which they will be considered stale), and optional ``tags``.
+
+They are visible in the Alerta console (*About* page) and via the ``alerta`` command-line tool using the ``heartbeat`` sub-command to send them, and the ``heartbeats`` sub-command to view them.
+
+.. _wiki: https://en.wikipedia.org/wiki/Heartbeat_(computing)
 
 
 

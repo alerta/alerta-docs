@@ -111,13 +111,11 @@ There are some jobs that should be run periodically to keep the Alerta console c
 
 .. _script: https://github.com/guardian/alerta/blob/master/contrib/mongo/housekeepingAlerts.js
 
-Heartbeats_ can be sent from any source to ensure that a system is 'alive'. To generate alerts for stale heartbeats the ``alerta`` command-line tool can be used::
+:ref:`Heartbeats <heartbeats>` can be sent from any source to ensure that a system is 'alive'. To generate alerts for stale heartbeats the ``alerta`` command-line tool can be used::
 
     $ alerta heartbeats --alert
 
 Again, this should be run at regular intervals via ``cron`` or some other sceduler.
-
-.. _Heartbeats: https://en.wikipedia.org/wiki/Heartbeat_(computing)
 
 .. _metrics:
 

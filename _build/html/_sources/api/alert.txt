@@ -141,6 +141,8 @@ The `Alarms in Syslog`_ :RFC:`5674` was referenced when defining alert severitie
 
 .. _Alarms in Syslog: http://tools.ietf.org/html/rfc5674#section-2
 
+.. _history:
+
 History Entries
 ---------------
 
