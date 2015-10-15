@@ -15,8 +15,13 @@ Filter by env, svc
 Search by any text
 Sort by any attribute
 
+showing x out of x (click for another 20 or less)
+
 Multi-select by cmd-click
 Action Buttons - open, watch, unwatch, ack, close, delete
+
+
+.. image:: _static/images/alerta-multi-select-2.png
 
 Alert Details by click
 Raw Data
