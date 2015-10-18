@@ -114,7 +114,7 @@ angular.module(&#39;config&#39;, [])
 <div class="section" id="house-keeping">
 <span id="housekeeping"></span><h2>House Keeping<a class="headerlink" href="#house-keeping" title="Permalink to this headline">¶</a></h2>
 <p>There are some jobs that should be run periodically to keep the Alerta console clutter free. To timeout <em>expired</em> alerts and delete old <em>closed</em> alerts run a contributed MongoDB <a class="reference external" href="https://github.com/guardian/alerta/blob/master/contrib/mongo/housekeepingAlerts.js">script</a> called <code class="file docutils literal"><span class="pre">housekeepingAlerts.js</span></code> at regular intervals via <code class="docutils literal"><span class="pre">cron</span></code>.</p>
-<p><span class="xref std std-ref">Heartbeats</span> can be sent from any source to ensure that a system is &#8216;alive&#8217;. To generate alerts for stale heartbeats the <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool can be used:</p>
+<p><a class="reference internal" href="api/reference.html#heartbeats"><span>Heartbeats</span></a> can be sent from any source to ensure that a system is &#8216;alive&#8217;. To generate alerts for stale heartbeats the <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool can be used:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ alerta heartbeats --alert
 </pre></div>
 </div>
@@ -128,12 +128,12 @@ angular.module(&#39;config&#39;, [])
 <span id="real-world"></span><h2>Real World Examples<a class="headerlink" href="#real-world-examples" title="Permalink to this headline">¶</a></h2>
 <p>Below are several different examples of how to run Alerta in production from a Debian <a class="reference external" href="https://docs.vagrantup.com/v2/boxes.html">vagrant box</a>, an <a class="reference external" href="https://aws.amazon.com/ec2/">AWS EC2 instance</a>, <a class="reference external" href="https://www.openshift.com/products">RedHat Openshift PaaS</a> to a <a class="reference external" href="https://www.docker.com/whatisdocker">Docker container</a>.</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/alerta/vagrant-try-alerta">Vagrant</a></li>
-<li><a class="reference external" href="https://github.com/guardian/alerta#deploy-to-the-cloud">Heroku</a></li>
-<li><a class="reference external" href="https://github.com/alerta/openshift-api-alerta">OpenShift</a></li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-cloudformation">AWS EC2</a></li>
-<li><a class="reference external" href="https://github.com/alerta/docker-alerta">Docker</a></li>
-<li><a class="reference external" href="https://github.com/alerta/packer-templates">Packer</a></li>
+<li><a class="reference external" href="https://github.com/alerta/vagrant-try-alerta">Vagrant</a> - deploy Alerta stand-alone or with Nagios, Zabbix, Riemann, Sensu or Kibana</li>
+<li><a class="reference external" href="https://github.com/guardian/alerta#deploy-to-the-cloud">Heroku</a> - deploy the Alerta API and the <a class="reference external" href="https://github.com/alerta/angular-alerta-webui#deploy-to-the-cloud">web ui to Heroku</a> PaaS</li>
+<li><a class="reference external" href="https://github.com/alerta/openshift-api-alerta">OpenShift</a> - deploy the Alerta API to OpenShift Paas</li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-cloudformation">AWS EC2</a> - deploy Alerta to EC2 using AWS Cloudformation</li>
+<li><a class="reference external" href="https://github.com/alerta/docker-alerta">Docker</a> - deploy Alerta to a docker container</li>
+<li><a class="reference external" href="https://github.com/alerta/packer-templates">Packer</a> - deploy Alerta to EC2 using Amazon AMIs</li>
 </ul>
 </div>
 </div>

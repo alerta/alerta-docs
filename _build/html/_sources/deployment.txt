@@ -136,15 +136,16 @@ Below are several different examples of how to run Alerta in production from a D
 .. _RedHat OpenShift PaaS: https://www.openshift.com/products
 .. _Docker container: https://www.docker.com/whatisdocker
 
-* Vagrant_
-* Heroku_
-* OpenShift_
-* `AWS EC2`_
-* Docker_
-* Packer_
+* Vagrant_ - deploy Alerta stand-alone or with Nagios, Zabbix, Riemann, Sensu or Kibana
+* Heroku_ - deploy the Alerta API and the `web ui to Heroku`_ PaaS
+* OpenShift_ - deploy the Alerta API to OpenShift Paas
+* `AWS EC2`_ - deploy Alerta to EC2 using AWS Cloudformation
+* Docker_ - deploy Alerta to a docker container
+* Packer_ - deploy Alerta to EC2 using Amazon AMIs
 
 .. _Vagrant: https://github.com/alerta/vagrant-try-alerta
 .. _Heroku: https://github.com/guardian/alerta#deploy-to-the-cloud
+.. _web UI to Heroku: https://github.com/alerta/angular-alerta-webui#deploy-to-the-cloud
 .. _Openshift: https://github.com/alerta/openshift-api-alerta
 .. _AWS EC2: https://github.com/alerta/alerta-cloudformation
 .. _Docker: https://github.com/alerta/docker-alerta

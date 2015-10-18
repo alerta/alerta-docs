@@ -42,6 +42,39 @@
   <div class="section" id="alerta-web-ui">
 <span id="webui"></span><h1>Alerta Web UI<a class="headerlink" href="#alerta-web-ui" title="Permalink to this headline">¶</a></h1>
 <p>State-based alert browser</p>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>See ??? for authentication settings.</p>
+<p>To configure alert severity colours and highlight colour, use:</p>
+<div class="highlight-python"><div class="highlight"><pre>&#39;use strict&#39;;
+
+angular.module(&#39;config&#39;, [])
+  .constant(&#39;config&#39;, {
+    &#39;endpoint&#39;    : &quot;http://&quot;+window.location.hostname+&quot;:8080&quot;,
+    &#39;provider&#39;    : &quot;basic&quot;, // google, github, twitter or basic
+    &#39;client_id&#39;   : &quot;INSERT-CLIENT-ID-HERE&quot;
+  })
+  .constant(&#39;colors&#39;, {
+    &#39;severity&#39;: {
+      &#39;critical&#39;     : &#39;#D8122A&#39;,
+      &#39;major&#39;        : &#39;#EA680F&#39;,
+      &#39;minor&#39;        : &#39;#FFBE1E&#39;,
+      &#39;warning&#39;      : &#39;#BA2222&#39;,
+      &#39;indeterminate&#39;: &#39;#A6ACA8&#39;,
+      &#39;cleared&#39;      : &#39;#00AA5A&#39;,
+      &#39;normal&#39;       : &#39;#00AA5A&#39;,
+      &#39;ok&#39;           : &#39;#00AA5A&#39;,
+      &#39;informational&#39;: &#39;#00A1BC&#39;,
+      &#39;debug&#39;        : &#39;#9D006D&#39;,
+      &#39;security&#39;     : &#39;#333333&#39;,
+      &#39;unknown&#39;      : &#39;#A6ACA8&#39;
+    },
+    &#39;text&#39;: &#39;white&#39;,
+    &#39;highlight&#39;: &#39;lightgray&#39;
+  });
+</pre></div>
+</div>
+</div>
 <div class="section" id="managing-alerts">
 <h2>Managing Alerts<a class="headerlink" href="#managing-alerts" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="view-recent-alerts">
@@ -149,6 +182,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Alerta Web UI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#managing-alerts">Managing Alerts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#users">Users</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#api-keys">API Keys</a></li>
