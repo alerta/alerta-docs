@@ -67,6 +67,8 @@ An example web UI :file:`config.js` configuration file that assumes that the Ale
 Managing Alerts
 ---------------
 
+The browser supports viewing the most recent alerts, a list of the top 10 "worst offenders", and a list of watched alerts.
+
 View Recent Alerts
 ~~~~~~~~~~~~~~~~~~
 
@@ -90,7 +92,11 @@ Alert History
 Top 10
 ~~~~~~
 
-List resources grouped by event, order by count and then dupCount
+One of the most important things that can be done to improve the usefulness of an alert console is to reduce the number of alerts to only those that matter.
+
+The top 10 report helps identify alert sources that are the "worst offenders" by grouping by ``event`` name and then sorting by ``count`` and ``duplicateCount``. This report should help operators take corrective action to ensure that the root cause is fixed and reduce the burden of alert management.
+
+In future, this report will support grouping alerts by ``origin``, ``resource``, and event ``group`` and filtering by date range.
 
 .. _watched_alerts:
 

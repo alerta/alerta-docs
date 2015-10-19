@@ -130,6 +130,7 @@
 </div>
 <div class="section" id="managing-alerts">
 <h2>Managing Alerts<a class="headerlink" href="#managing-alerts" title="Permalink to this headline">¶</a></h2>
+<p>The browser supports viewing the most recent alerts, a list of the top 10 &#8220;worst offenders&#8221;, and a list of watched alerts.</p>
 <div class="section" id="view-recent-alerts">
 <h3>View Recent Alerts<a class="headerlink" href="#view-recent-alerts" title="Permalink to this headline">¶</a></h3>
 <p>Filter by env, svc
@@ -146,7 +147,9 @@ Alert History</p>
 </div>
 <div class="section" id="top-10">
 <h3>Top 10<a class="headerlink" href="#top-10" title="Permalink to this headline">¶</a></h3>
-<p>List resources grouped by event, order by count and then dupCount</p>
+<p>One of the most important things that can be done to improve the usefulness of an alert console is to reduce the number of alerts to only those that matter.</p>
+<p>The top 10 report helps identify alert sources that are the &#8220;worst offenders&#8221; by grouping by <code class="docutils literal"><span class="pre">event</span></code> name and then sorting by <code class="docutils literal"><span class="pre">count</span></code> and <code class="docutils literal"><span class="pre">duplicateCount</span></code>. This report should help operators take corrective action to ensure that the root cause is fixed and reduce the burden of alert management.</p>
+<p>In future, this report will support grouping alerts by <code class="docutils literal"><span class="pre">origin</span></code>, <code class="docutils literal"><span class="pre">resource</span></code>, and event <code class="docutils literal"><span class="pre">group</span></code> and filtering by date range.</p>
 </div>
 <div class="section" id="watching-alerts">
 <span id="watched-alerts"></span><h3>Watching Alerts<a class="headerlink" href="#watching-alerts" title="Permalink to this headline">¶</a></h3>
