@@ -51,7 +51,7 @@ OAuth authentication is provided by Google_ or GitHub_ `OAuth 2.0`_ OpenID_ conn
 .. _OAuth 1.0a: http://oauth.net/core/1.0a/
 .. _OpenID: http://openid.net/connect/
 
-.. _google_oauth2:
+.. _google oauth2:
 
 To use OAuth set the ``provider`` configuration setting in the Web UI :file:`config.js` file to ``google``, ``github`` or ``twitter`` and then follow the steps below to setup the Alert server::
 

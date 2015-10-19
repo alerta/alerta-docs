@@ -41,39 +41,92 @@
             
   <div class="section" id="alerta-web-ui">
 <span id="webui"></span><h1>Alerta Web UI<a class="headerlink" href="#alerta-web-ui" title="Permalink to this headline">¶</a></h1>
-<p>State-based alert browser</p>
+<p>The Alerta web UI console takes full advantage of the <a class="reference internal" href="server.html#state-based-browser"><span>state-based Alerta API</span></a> to ensure that the most important events at the current time are brought to the attention of operators.</p>
 <div class="section" id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
-<p>See ??? for authentication settings.</p>
-<p>To configure alert severity colours and highlight colour, use:</p>
-<div class="highlight-python"><div class="highlight"><pre>&#39;use strict&#39;;
+<p>The three main areas for configuration are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>defining the Alerta API endpoint</li>
+<li>enforcing a security strategy</li>
+<li>selecting colors for severity, highlighting and text</li>
+</ul>
+</div></blockquote>
+<p>The default web UI <code class="file docutils literal"><span class="pre">config.js</span></code> configuration file is included below. It assumes that the Alerta API is running on the same host (but different port) that the web UI static html files are being served from (line 5), that <a class="reference internal" href="authentication.html#basic-auth"><span>Basic Authentication</span></a> will be used (line 6) and no client id needs to be defined (line 7). Note also that default colours for alert severity, highlighting for multi-select and text are used (line 9):</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
 
-angular.module(&#39;config&#39;, [])
-  .constant(&#39;config&#39;, {
-    &#39;endpoint&#39;    : &quot;http://&quot;+window.location.hostname+&quot;:8080&quot;,
-    &#39;provider&#39;    : &quot;basic&quot;, // google, github, twitter or basic
-    &#39;client_id&#39;   : &quot;INSERT-CLIENT-ID-HERE&quot;
-  })
-  .constant(&#39;colors&#39;, {
-    &#39;severity&#39;: {
-      &#39;critical&#39;     : &#39;#D8122A&#39;,
-      &#39;major&#39;        : &#39;#EA680F&#39;,
-      &#39;minor&#39;        : &#39;#FFBE1E&#39;,
-      &#39;warning&#39;      : &#39;#BA2222&#39;,
-      &#39;indeterminate&#39;: &#39;#A6ACA8&#39;,
-      &#39;cleared&#39;      : &#39;#00AA5A&#39;,
-      &#39;normal&#39;       : &#39;#00AA5A&#39;,
-      &#39;ok&#39;           : &#39;#00AA5A&#39;,
-      &#39;informational&#39;: &#39;#00A1BC&#39;,
-      &#39;debug&#39;        : &#39;#9D006D&#39;,
-      &#39;security&#39;     : &#39;#333333&#39;,
-      &#39;unknown&#39;      : &#39;#A6ACA8&#39;
-    },
-    &#39;text&#39;: &#39;white&#39;,
-    &#39;highlight&#39;: &#39;lightgray&#39;
-  });
+<span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">[])</span>
+  <span class="p">.</span><span class="nx">constant</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="s1">&#39;endpoint&#39;</span>    <span class="o">:</span> <span class="s2">&quot;http://&quot;</span><span class="o">+</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hostname</span><span class="o">+</span><span class="s2">&quot;:8080&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;provider&#39;</span>    <span class="o">:</span> <span class="s2">&quot;basic&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;client_id&#39;</span>   <span class="o">:</span> <span class="s2">&quot;&quot;</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">constant</span><span class="p">(</span><span class="s1">&#39;colors&#39;</span><span class="p">,</span> <span class="p">{});</span> <span class="c1">// use default colors</span>
 </pre></div>
-</div>
+</td></tr></table></div>
+<p><strong>Example</strong></p>
+<p>An example web UI <code class="file docutils literal"><span class="pre">config.js</span></code> configuration file that assumes that the Alerta API is running on the same host <em>and port</em>, but on a path called <code class="docutils literal"><span class="pre">/api</span></code> (line 5), that <a class="reference internal" href="authentication.html#google-oauth2"><span>Google OAuth2</span></a> is used for authentication (line 6, which requires a valid Google client ID, line 7), and defines different colors for severity levels, highlighting and text (lines 9-26):</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></div></td><td class="code"><div class="highlight"><pre><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+<span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">[])</span>
+  <span class="p">.</span><span class="nx">constant</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="s1">&#39;endpoint&#39;</span>    <span class="o">:</span> <span class="s2">&quot;/api&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;provider&#39;</span>    <span class="o">:</span> <span class="s2">&quot;google&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;client_id&#39;</span>   <span class="o">:</span> <span class="s2">&quot;379647311730-sj130ru952o3o7ig8u0ts8np2example.apps.googleusercontent.com&quot;</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">constant</span><span class="p">(</span><span class="s1">&#39;colors&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="s1">&#39;severity&#39;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s1">&#39;critical&#39;</span>     <span class="o">:</span> <span class="s1">&#39;#D8122A&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;major&#39;</span>        <span class="o">:</span> <span class="s1">&#39;#EA680F&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;minor&#39;</span>        <span class="o">:</span> <span class="s1">&#39;#FFBE1E&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;warning&#39;</span>      <span class="o">:</span> <span class="s1">&#39;#BA2222&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;indeterminate&#39;</span><span class="o">:</span> <span class="s1">&#39;#A6ACA8&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;cleared&#39;</span>      <span class="o">:</span> <span class="s1">&#39;#00AA5A&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;normal&#39;</span>       <span class="o">:</span> <span class="s1">&#39;#00AA5A&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;ok&#39;</span>           <span class="o">:</span> <span class="s1">&#39;#00AA5A&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;informational&#39;</span><span class="o">:</span> <span class="s1">&#39;#00A1BC&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;debug&#39;</span>        <span class="o">:</span> <span class="s1">&#39;#9D006D&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;security&#39;</span>     <span class="o">:</span> <span class="s1">&#39;#333333&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;unknown&#39;</span>      <span class="o">:</span> <span class="s1">&#39;#A6ACA8&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;text&#39;</span><span class="o">:</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;highlight&#39;</span><span class="o">:</span> <span class="s1">&#39;lightgray&#39;</span>
+  <span class="p">});</span>
+</pre></div>
+</td></tr></table></div>
 </div>
 <div class="section" id="managing-alerts">
 <h2>Managing Alerts<a class="headerlink" href="#managing-alerts" title="Permalink to this headline">¶</a></h2>
