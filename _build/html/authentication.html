@@ -200,7 +200,7 @@ angular.module(&#39;config&#39;, [])
 </div>
 </div>
 <div class="section" id="user-authorisation">
-<span id="users"></span><h2>User Authorisation<a class="headerlink" href="#user-authorisation" title="Permalink to this headline">¶</a></h2>
+<span id="user-auth"></span><h2>User Authorisation<a class="headerlink" href="#user-authorisation" title="Permalink to this headline">¶</a></h2>
 <p>Google and GitHub OAuth2 are used for user authentication, not user authorisation. Authentication proves that you are who you say you are. Authorization says that you are allowed to access what you have requested.</p>
 <p>To control who has access to Alerta you can restrict access to users with a <a class="reference internal" href="#allowed-email-domains"><span>certain email domain name</span></a> by setting <code class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code> or who belong to a <a class="reference internal" href="#allowed-github-orgs"><span>particular GitHub organisation</span></a> by setting <code class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code>.</p>
 <p>For those situations where it is not possible to group users in this way it is possible to selectively allow access on a per-user basis. How this is done depends on whether you are using Google or GitHub as OAuth2 provider for user login.</p>

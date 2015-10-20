@@ -23,6 +23,7 @@ General Settings
     SECRET_KEY = r'0Afk\(,8$cr(Y8:MA""knd>[@$U[G.eQL6DjAmVs'
 
 .. index:: DEBUG, SECRET_KEY
+
 ``DEBUG``
     debug mode. Set to ``True`` for increased logging.
 ``SECRET_KEY``
@@ -39,6 +40,7 @@ API Settings
     API_KEY_EXPIRE_DAYS = 365
 
 .. index:: QUERY_LIMIT, HISTORY_LIMIT, API_KEY_EXPIRE_DAYS
+
 ``QUERY_LIMIT``
     maximum number of alerts returned in a single query.
 ``HISTORY_LIMIT``
@@ -67,6 +69,7 @@ The document-oriented datastore MongoDB_ is used for persistent data. It can be 
     MONGO_PASSWORD = None
 
 .. index:: MONGO_HOST, MONGO_PORT, MONGO_DATABASE, MONGO_REPLSET, MONGO_USERNAME, MONGO_PASSWORD
+
 ``MONGO_HOST``
     hostname of the database.
 ``MONGO_PORT``
@@ -82,7 +85,7 @@ The document-oriented datastore MongoDB_ is used for persistent data. It can be 
 
 The MongoDB configuration can be overridden in a number of different ways to ensure that Alerta can be easily deployed in many different environments.
 
-For information about deploying Alerta using a MongoDB replica set see the examples in :ref:`production deployment <deploy replicaset>`.
+For information about deploying Alerta using a MongoDB replica set refer to the :ref:`high availability <high availability>` recommendations for a production deployment.
 
 .. _auth config:
 
@@ -98,6 +101,7 @@ Authentication Settings
     ALLOWED_GITHUB_ORGS = ['guardian']
 
 .. index:: AUTH_REQUIRED, OAUTH2_CLIENT_ID, OAUTH2_CLIENT_SECRET, ALLOWED_EMAIL_DOMAINS, ALLOWED_GITHUB_ORGS
+
 ``AUTH_REQUIRED``
     set to ``True`` to force users to authenticate when using web UI or command-line tool
 ``OAUTH2_CLIENT_ID``
@@ -124,6 +128,7 @@ CORS Settings
     ]
 
 .. index:: CORS_ORIGINS
+
 ``CORS_ORIGINS``
     list of URL origins that can access the API
 
@@ -137,6 +142,7 @@ Blackout Periods Settings
     BLACKOUT_DURATION = 3600
 
 .. index:: BLACKOUT_DURATION
+
 ``BLACKOUT_DURATION``
     default period for an alert blackout
 

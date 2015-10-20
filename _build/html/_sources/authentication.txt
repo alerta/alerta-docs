@@ -187,7 +187,7 @@ or use the ``api-key`` GET parameter::
 
 .. note:: Using the HTTP ``Authorization`` header is preferred so that API keys are not inadvertently captured in log files and accidentally exposed.
 
-.. _users:
+.. _user auth:
 
 User Authorisation
 ------------------
