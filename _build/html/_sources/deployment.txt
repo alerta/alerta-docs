@@ -76,11 +76,11 @@ The Alerta web UI is just a directory of static assets that can be served from a
 Authentication & SSL
 --------------------
 
-Alerta supports several authentication mechanisms for both the API and the web UI and some key features of the web UI, like watching alerts, are only available if authentication is enabled.
+Alerta supports several authentication mechanisms for both the API and the web UI and some key features of the web UI, like :ref:`watching alerts <watched alerts>`, are only available if authentication is enabled.
 
-The API can be secured using API keys and the web UI can be secured using Basic Auth or an OAuth provider from either Google, Github or Twitter.
+The API can be secured using :ref:`API keys` and the web UI can be secured using :ref:`Basic Auth <basic auth>` or an :ref:`OAuth <oauth2>` provider from either Google, Github or Twitter.
 
-If you plan to make the web UI accessible from a public URL it is strongly avised to enforce authentication and use HTTPS/SSL endpoints.
+If you plan to make the web UI accessible from a public URL it is strongly advised to :ref:`enforce authentication <Authentication>` and use HTTPS/SSL connections to the Alerta API to protect private alert data.
 
 .. _scalability:
 
@@ -98,7 +98,7 @@ Alerta can scale horizontally, in the same way any other web application scales 
 High Availability
 -----------------
 
-To achieve high system availability the Alerta API should be deployed to scale out :ref:`horizontally <scalability>` and the MongoDB should be deployed as a `replica set`_.
+To achieve high system availability the Alerta API should be deployed to scale out :ref:`horizontally <scalability>` and the MongoDB database should be deployed as a `replica set`_.
 
 .. _replica set: http://docs.mongodb.org/manual/tutorial/deploy-replica-set/#overview
 

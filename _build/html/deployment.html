@@ -95,9 +95,9 @@ angular.module(&#39;config&#39;, [])
 </div>
 <div class="section" id="authentication-ssl">
 <span id="auth-ssl"></span><h2>Authentication &amp; SSL<a class="headerlink" href="#authentication-ssl" title="Permalink to this headline">¶</a></h2>
-<p>Alerta supports several authentication mechanisms for both the API and the web UI and some key features of the web UI, like watching alerts, are only available if authentication is enabled.</p>
-<p>The API can be secured using API keys and the web UI can be secured using Basic Auth or an OAuth provider from either Google, Github or Twitter.</p>
-<p>If you plan to make the web UI accessible from a public URL it is strongly avised to enforce authentication and use HTTPS/SSL endpoints.</p>
+<p>Alerta supports several authentication mechanisms for both the API and the web UI and some key features of the web UI, like <a class="reference internal" href="webui.html#watched-alerts"><span>watching alerts</span></a>, are only available if authentication is enabled.</p>
+<p>The API can be secured using <a class="reference internal" href="authentication.html#api-keys"><span>API Keys</span></a> and the web UI can be secured using <a class="reference internal" href="authentication.html#basic-auth"><span>Basic Auth</span></a> or an <a class="reference internal" href="authentication.html#oauth2"><span>OAuth</span></a> provider from either Google, Github or Twitter.</p>
+<p>If you plan to make the web UI accessible from a public URL it is strongly advised to <a class="reference internal" href="authentication.html#authentication"><span>enforce authentication</span></a> and use HTTPS/SSL connections to the Alerta API to protect private alert data.</p>
 </div>
 <div class="section" id="scalability">
 <span id="id3"></span><h2>Scalability<a class="headerlink" href="#scalability" title="Permalink to this headline">¶</a></h2>
@@ -109,7 +109,7 @@ angular.module(&#39;config&#39;, [])
 </div>
 <div class="section" id="high-availability">
 <span id="id4"></span><h2>High Availability<a class="headerlink" href="#high-availability" title="Permalink to this headline">¶</a></h2>
-<p>To achieve high system availability the Alerta API should be deployed to scale out <a class="reference internal" href="#scalability"><span>horizontally</span></a> and the MongoDB should be deployed as a <a class="reference external" href="http://docs.mongodb.org/manual/tutorial/deploy-replica-set/#overview">replica set</a>.</p>
+<p>To achieve high system availability the Alerta API should be deployed to scale out <a class="reference internal" href="#scalability"><span>horizontally</span></a> and the MongoDB database should be deployed as a <a class="reference external" href="http://docs.mongodb.org/manual/tutorial/deploy-replica-set/#overview">replica set</a>.</p>
 </div>
 <div class="section" id="house-keeping">
 <span id="housekeeping"></span><h2>House Keeping<a class="headerlink" href="#house-keeping" title="Permalink to this headline">¶</a></h2>

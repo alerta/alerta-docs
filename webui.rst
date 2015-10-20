@@ -98,7 +98,7 @@ The top 10 report helps identify alert sources that are the "worst offenders" by
 
 In future, this report will support grouping alerts by ``origin``, ``resource``, and event ``group`` and filtering by date range.
 
-.. _watched_alerts:
+.. _watched alerts:
 
 Watching Alerts
 ~~~~~~~~~~~~~~~
