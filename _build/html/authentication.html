@@ -79,7 +79,7 @@ angular.module(&#39;config&#39;, [])
 <p class="first admonition-title">Note</p>
 <p class="last">If alerta is deployed to a publicly accessible web server it is important to configure the OAuth2 settings correctly to ensure that only authorised users can access and modify your alerts.</p>
 </div>
-<p id="google-oauth2">To use OAuth set the <code class="docutils literal"><span class="pre">provider</span></code> configuration setting in the Web UI <code class="file docutils literal"><span class="pre">config.js</span></code> file to <code class="docutils literal"><span class="pre">google</span></code>, <code class="docutils literal"><span class="pre">github</span></code> or <code class="docutils literal"><span class="pre">twitter</span></code> and then follow the steps below to setup the Alert server:</p>
+<p id="google-oauth2">To use OAuth set the <code class="docutils literal"><span class="pre">provider</span></code> configuration setting in the Web UI <code class="file docutils literal"><span class="pre">config.js</span></code> file to <code class="docutils literal"><span class="pre">google</span></code>, <code class="docutils literal"><span class="pre">github</span></code>, <code class="docutils literal"><span class="pre">gitlab</span></code> or <code class="docutils literal"><span class="pre">twitter</span></code> and then follow the steps below to setup the Alert server:</p>
 <div class="highlight-python"><div class="highlight"><pre>&#39;use strict&#39;;
 
 angular.module(&#39;config&#39;, [])
@@ -231,9 +231,9 @@ angular.module(&#39;config&#39;, [])
 </div>
 <div class="section" id="user-authorisation">
 <span id="user-auth"></span><h2>User Authorisation<a class="headerlink" href="#user-authorisation" title="Permalink to this headline">¶</a></h2>
-<p>Google and GitHub OAuth2 are used for user authentication, not user authorisation. Authentication proves that you are who you say you are. Authorization says that you are allowed to access what you have requested.</p>
-<p>To control who has access to Alerta you can restrict access to users with a <a class="reference internal" href="#allowed-email-domains"><span>certain email domain name</span></a> by setting <code class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code> or who belong to a <a class="reference internal" href="#allowed-github-orgs"><span>particular GitHub organisation</span></a> by setting <code class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code>.</p>
-<p>For those situations where it is not possible to group users in this way it is possible to selectively allow access on a per-user basis. How this is done depends on whether you are using Google or GitHub as OAuth2 provider for user login.</p>
+<p>Google, GitHub and GitLab OAuth are used for user authentication, not user authorisation. Authentication proves that you are who you say you are. Authorization says that you are allowed to access what you have requested.</p>
+<p>To control who has access to Alerta you can restrict access to users with a <a class="reference internal" href="#allowed-email-domains"><span>certain email domain name</span></a> by setting <code class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code> when using Google OAuth2, or who belong to a <a class="reference internal" href="#allowed-github-orgs"><span>particular GitHub organisation</span></a> by setting <code class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code> when using GitHub OAuth, or who belong to a <a class="reference internal" href="#allowed-gitlab-groups"><span>particular GitLab group</span></a> by setting <code class="docutils literal"><span class="pre">ALLOWED_GITLAB_GROUPS</span></code> when using GitLab OAuth2.</p>
+<p>For those situations where it is not possible to group users in this way it is possible to selectively allow access on a per-user basis. How this is done depends on whether you are using Google, GitHub, GitLab or Twitter as OAuth2 provider for user login.</p>
 <div class="section" id="per-user-authorisation-using-google">
 <h3>Per-User Authorisation using Google<a class="headerlink" href="#per-user-authorisation-using-google" title="Permalink to this headline">¶</a></h3>
 <p>This assumes that the user wanting access to Alerta either does not have an email address in the configured Google app email domains:</p>
@@ -247,7 +247,7 @@ angular.module(&#39;config&#39;, [])
 <p>Manaully add the user email address by selecting <em>Configuration -&gt; Users</em> from the alerta console.</p>
 <p>Name: a name to associate with the address, does not need to match registered name
 Login: email address of the user wanting access eg. <code class="docutils literal"><span class="pre">let.me.in&#64;gmail.com</span></code></p>
-<p>This user will now be able to login to alerta using <code class="docutils literal"><span class="pre">let.me.in&#64;gmail.com</span></code> account eventhough <code class="docutils literal"><span class="pre">gmail.com</span></code> is not listed in the <code class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code> setting.</p>
+<p>This user will now be able to login to Alerta using <code class="docutils literal"><span class="pre">let.me.in&#64;gmail.com</span></code> account eventhough <code class="docutils literal"><span class="pre">gmail.com</span></code> is not listed in the <code class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code> setting.</p>
 </div>
 <div class="section" id="per-user-authorisation-using-github">
 <h3>Per-User Authorisation using GitHub<a class="headerlink" href="#per-user-authorisation-using-github" title="Permalink to this headline">¶</a></h3>
@@ -260,9 +260,24 @@ Login: email address of the user wanting access eg. <code class="docutils litera
 </pre></div>
 </div>
 <p>Manaully add the user GitHub username by selecting <em>Configuration -&gt; Users</em> from the alerta console.</p>
-<p>Name: a name to associate with the address, does not need to match registered name
+<p>Name: a name to associate with the username, does not need to match registered name
 Login: GitHub username of user wanting access eg. <code class="docutils literal"><span class="pre">letmein</span></code></p>
-<p>This user will now be able to login to alerta using <code class="docutils literal"><span class="pre">letmein</span></code> GitHub account eventhough they are not members of the organisations listed in the <code class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code> setting.</p>
+<p>This user will now be able to login to Alerta using <code class="docutils literal"><span class="pre">letmein</span></code> GitHub account eventhough they are not members of the organisations listed in the <code class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code> setting.</p>
+</div>
+<div class="section" id="per-user-authorisation-using-gitlab">
+<h3>Per-User Authorisation using GitLab<a class="headerlink" href="#per-user-authorisation-using-gitlab" title="Permalink to this headline">¶</a></h3>
+<p>This assumes that the user wanting access to Alerta is either not a member of the configured GitLab groups:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ALLOWED_GITLAB_GROUPS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;onlyus&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Or that the list of allowed GitLab organisations is empty:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ALLOWED_GITLAB_GROUPS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Manaully add the user GitLab username by selecting <em>Configuration -&gt; Users</em> from the alerta console.</p>
+<p>Name: a name to associate with the username, does not need to match registered name
+Login: GitLab username of user wanting access eg. <code class="docutils literal"><span class="pre">letmein</span></code></p>
+<p>This user will now be able to login to Alerta using <code class="docutils literal"><span class="pre">letmein</span></code> GitLab account eventhough they are not members of the groups listed in the <code class="docutils literal"><span class="pre">ALLOWED_GITLAB_GROUPS</span></code> setting.</p>
 </div>
 </div>
 </div>
