@@ -95,23 +95,28 @@ Authentication Settings
 ::
 
     AUTH_REQUIRED = False
-    OAUTH2_CLIENT_ID = 'INSERT-OAUTH2-CLIENT-ID-HERE'  # Google or GitHub OAuth2 client ID and secret
+    OAUTH2_CLIENT_ID = 'INSERT-OAUTH2-CLIENT-ID-HERE'  # Google, GitHub, GitLab or Twitter OAuth2 client ID and secret
     OAUTH2_CLIENT_SECRET = 'INSERT-OAUTH2-CLIENT-SECRET-HERE'
     ALLOWED_EMAIL_DOMAINS = ['gmail.com']
     ALLOWED_GITHUB_ORGS = ['guardian']
+    ALLOWED_GITLAB_GROUPS = ['acmecorp']
 
-.. index:: AUTH_REQUIRED, OAUTH2_CLIENT_ID, OAUTH2_CLIENT_SECRET, ALLOWED_EMAIL_DOMAINS, ALLOWED_GITHUB_ORGS
+.. index:: AUTH_REQUIRED, OAUTH2_CLIENT_ID, OAUTH2_CLIENT_SECRET, ALLOWED_EMAIL_DOMAINS, ALLOWED_GITHUB_ORGS, GITLAB_URL, ALLOWED_GITLAB_GROUPS
 
 ``AUTH_REQUIRED``
     set to ``True`` to force users to authenticate when using web UI or command-line tool
 ``OAUTH2_CLIENT_ID``
-    client ID required by OAuth2 provider for Google, Github or Twitter.
+    client ID required by OAuth2 provider for Google, Github, GitLab or Twitter.
 ``OAUTH2_CLIENT_SECRET``
-    client secret required by OAuth2 provider for Google, Github or Twitter.
+    client secret required by OAuth2 provider for Google, Github, GitLab or Twitter.
 ``ALLOWED_EMAIL_DOMAINS``
     list of authorised email domains when using Google as OAuth2 provider.
 ``ALLOWED_GITHUB_ORGS``
-    list of authorised Github organisations user must belong to when using Github as OAuth2 provider.
+    list of authorised GitHub organisations a user must belong to when using Github as OAuth2 provider.
+``GITLAB_URL``
+    GitLab website URL for public or privately run GitLab server when using GitLab as OAuth2 provider.
+``ALLOWED_GITLAB_GROUPS``
+    list of authorised GitLab groups a user must belong to when using GitLab as OAuth2 provider.
 
 .. _CORS config:
 
@@ -208,6 +213,10 @@ General Settings
 :envvar:`ALLOWED_EMAIL_DOMAINS`
     see above
 :envvar:`ALLOWED_GITHUB_ORGS`
+    see above
+:envvar:`GITLAB_URL`
+    see above
+:envvar:`ALLOWED_GITLAB_GROUPS`
     see above
 :envvar:`CORS_ORIGINS`
     see above

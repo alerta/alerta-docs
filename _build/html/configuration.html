@@ -111,23 +111,28 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 <div class="section" id="authentication-settings">
 <span id="auth-config"></span><h3>Authentication Settings<a class="headerlink" href="#authentication-settings" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">AUTH_REQUIRED</span> <span class="o">=</span> <span class="bp">False</span>
-<span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s">&#39;INSERT-OAUTH2-CLIENT-ID-HERE&#39;</span>  <span class="c"># Google or GitHub OAuth2 client ID and secret</span>
+<span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s">&#39;INSERT-OAUTH2-CLIENT-ID-HERE&#39;</span>  <span class="c"># Google, GitHub, GitLab or Twitter OAuth2 client ID and secret</span>
 <span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s">&#39;INSERT-OAUTH2-CLIENT-SECRET-HERE&#39;</span>
 <span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;gmail.com&#39;</span><span class="p">]</span>
 <span class="n">ALLOWED_GITHUB_ORGS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;guardian&#39;</span><span class="p">]</span>
+<span class="n">ALLOWED_GITLAB_GROUPS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;acmecorp&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <dl class="docutils" id="index-4">
 <dt><code class="docutils literal"><span class="pre">AUTH_REQUIRED</span></code></dt>
 <dd>set to <code class="docutils literal"><span class="pre">True</span></code> to force users to authenticate when using web UI or command-line tool</dd>
 <dt><code class="docutils literal"><span class="pre">OAUTH2_CLIENT_ID</span></code></dt>
-<dd>client ID required by OAuth2 provider for Google, Github or Twitter.</dd>
+<dd>client ID required by OAuth2 provider for Google, Github, GitLab or Twitter.</dd>
 <dt><code class="docutils literal"><span class="pre">OAUTH2_CLIENT_SECRET</span></code></dt>
-<dd>client secret required by OAuth2 provider for Google, Github or Twitter.</dd>
+<dd>client secret required by OAuth2 provider for Google, Github, GitLab or Twitter.</dd>
 <dt><code class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code></dt>
 <dd>list of authorised email domains when using Google as OAuth2 provider.</dd>
 <dt><code class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code></dt>
-<dd>list of authorised Github organisations user must belong to when using Github as OAuth2 provider.</dd>
+<dd>list of authorised GitHub organisations a user must belong to when using Github as OAuth2 provider.</dd>
+<dt><code class="docutils literal"><span class="pre">GITLAB_URL</span></code></dt>
+<dd>GitLab website URL for public or privately run GitLab server when using GitLab as OAuth2 provider.</dd>
+<dt><code class="docutils literal"><span class="pre">ALLOWED_GITLAB_GROUPS</span></code></dt>
+<dd>list of authorised GitLab groups a user must belong to when using GitLab as OAuth2 provider.</dd>
 </dl>
 </div>
 <div class="section" id="cors-settings">
@@ -217,20 +222,24 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 <dd>see above</dd>
 <dt><span class="target" id="index-11"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code></dt>
 <dd>see above</dd>
-<dt><span class="target" id="index-12"></span><code class="xref std std-envvar docutils literal"><span class="pre">CORS_ORIGINS</span></code></dt>
+<dt><span class="target" id="index-12"></span><code class="xref std std-envvar docutils literal"><span class="pre">GITLAB_URL</span></code></dt>
+<dd>see above</dd>
+<dt><span class="target" id="index-13"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_GITLAB_GROUPS</span></code></dt>
+<dd>see above</dd>
+<dt><span class="target" id="index-14"></span><code class="xref std std-envvar docutils literal"><span class="pre">CORS_ORIGINS</span></code></dt>
 <dd>see above</dd>
 </dl>
 </div>
 <div class="section" id="id2">
 <h3>MongoDB Settings<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
-<dt><span class="target" id="index-13"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_URI</span></code></dt>
+<dt><span class="target" id="index-15"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_URI</span></code></dt>
 <dd>override all of the MongoDB config file settings using the standard <a class="reference external" href="https://docs.mongodb.org/v3.0/reference/connection-string/#standard-connection-string-format">connection string format</a></dd>
-<dt><span class="target" id="index-14"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGOHQ_URL</span></code></dt>
+<dt><span class="target" id="index-16"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGOHQ_URL</span></code></dt>
 <dd>automatically set when using <a class="reference external" href="https://devcenter.heroku.com/articles/mongohq">Heroku MongoHQ</a> managed service</dd>
-<dt><span class="target" id="index-15"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGOLAB_URI</span></code></dt>
+<dt><span class="target" id="index-17"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGOLAB_URI</span></code></dt>
 <dd>automatically set when using <a class="reference external" href="https://devcenter.heroku.com/articles/mongolab">Heroku MongoLab</a> managed service</dd>
-<dt><span class="target" id="index-16"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_PORT</span></code></dt>
+<dt><span class="target" id="index-18"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_PORT</span></code></dt>
 <dd>automatically set when deploying <a class="reference external" href="https://github.com/alerta/docker-alerta">Alerta to a Docker</a> linked mongo container</dd>
 </dl>
 </div>
