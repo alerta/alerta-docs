@@ -128,7 +128,6 @@ CORS Settings
     CORS_ORIGINS = [
         'http://try.alerta.io',
         'http://explorer.alerta.io',
-        'chrome-extension://jplkjnjaegjgacpfafdopnpnhmobhlaf',
         'http://localhost'
     ]
 
