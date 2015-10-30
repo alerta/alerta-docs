@@ -53,6 +53,13 @@ Why don't you have a plugin or integration for X, where X is whatever you use in
 
 We could spend countless hours writing plugins for everything and never finish or we could focus on building an easily extensible system with great documentation and let the end-user build the plugins they need. Having said that, we have still created_ many_ `plugins`_ and integrations_ as working examples and we are not against writing more if there is popular_ demand_. We are also happy to accept submissions.
 
+Does Alerta support Python 3?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Yes, however due to dependencies on Flask the minimum version is Python 3.3 and even then there may still be issues. For example, running Flask apps as a WSGI application using Python 3 may be problematic and so it is currently recommended_ to run Alerta using Python 2.7 in production environments.
+
+.. _recommended: http://flask.pocoo.org/docs/0.10/python3/#recommendations
+
 .. _created: https://github.com/alerta/nagios3-alerta
 .. _many: https://github.com/guardian/alerta/tree/master/alerta/plugins
 .. _plugins: https://github.com/alerta/alerta-contrib/tree/master/plugins
