@@ -7,7 +7,6 @@ Roadmap
 
 * Web UI redesign using `Google material design`_
 * Custom alert filters and dashboard views
-* Python 3 support
 * Prometheus_ integration
 
 .. _Google material design: https://www.google.com/design/spec/material-design/introduction.html
@@ -22,6 +21,8 @@ Release 4.5 (9-9-2015)
 ----------------------
 
 * Added ability to blackout alerts for defined periods
+* Use GitLab for OAuth2 login
+* Python 3 support (both ``alerta`` client and WSGI server)
 
 Release 4.4 (11-6-2015)
 -----------------------
