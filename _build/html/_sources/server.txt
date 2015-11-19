@@ -144,4 +144,6 @@ They can be used to ensure components of the Alerta monitoring system are operat
 
 They are visible in the Alerta console (*About* page) and via the ``alerta`` command-line tool using the ``heartbeat`` sub-command to send them, and the ``heartbeats`` sub-command to view them.
 
+Alerts can be generated from :ref:`stale heartbeats` using the ``alerta`` command-line tool.
+
 .. _wiki: https://en.wikipedia.org/wiki/Heartbeat_(computing)

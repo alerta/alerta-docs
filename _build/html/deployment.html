@@ -114,11 +114,11 @@ angular.module(&#39;config&#39;, [])
 <div class="section" id="house-keeping">
 <span id="housekeeping"></span><h2>House Keeping<a class="headerlink" href="#house-keeping" title="Permalink to this headline">¶</a></h2>
 <p>There are some jobs that should be run periodically to keep the Alerta console clutter free. To timeout <em>expired</em> alerts and delete old <em>closed</em> alerts run a contributed MongoDB <a class="reference external" href="https://github.com/guardian/alerta/blob/master/contrib/mongo/housekeepingAlerts.js">script</a> called <code class="file docutils literal"><span class="pre">housekeepingAlerts.js</span></code> at regular intervals via <code class="docutils literal"><span class="pre">cron</span></code>.</p>
-<p><a class="reference internal" href="api/reference.html#heartbeats"><span>Heartbeats</span></a> can be sent from any source to ensure that a system is &#8216;alive&#8217;. To generate alerts for stale heartbeats the <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool can be used:</p>
+<p id="stale-heartbeats"><a class="reference internal" href="api/reference.html#heartbeats"><span>Heartbeats</span></a> can be sent from any source to ensure that a system is &#8216;alive&#8217;. To generate alerts for stale heartbeats the <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool can be used:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ alerta heartbeats --alert
 </pre></div>
 </div>
-<p>Again, this should be run at regular intervals via <code class="docutils literal"><span class="pre">cron</span></code> or some other sceduler.</p>
+<p>Again, this should be run at regular intervals via <code class="docutils literal"><span class="pre">cron</span></code> or some other scheduler.</p>
 </div>
 <div class="section" id="management-metrics">
 <span id="metrics"></span><h2>Management &amp; Metrics<a class="headerlink" href="#management-metrics" title="Permalink to this headline">¶</a></h2>

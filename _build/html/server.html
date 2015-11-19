@@ -133,6 +133,7 @@
 <p>An Alerta <a class="reference internal" href="api/reference.html#heartbeats"><span>heartbeat</span></a> is a periodic HTTP request sent to the Alerta API to indicate normal operation of the origin of the heartbeat.</p>
 <p>They can be used to ensure components of the Alerta monitoring system are operating normally or sent from any other source. As well as an <code class="docutils literal"><span class="pre">origin</span></code> they include a <code class="docutils literal"><span class="pre">timeout</span></code> in seconds (after which they will be considered stale), and optional <code class="docutils literal"><span class="pre">tags</span></code>.</p>
 <p>They are visible in the Alerta console (<em>About</em> page) and via the <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool using the <code class="docutils literal"><span class="pre">heartbeat</span></code> sub-command to send them, and the <code class="docutils literal"><span class="pre">heartbeats</span></code> sub-command to view them.</p>
+<p>Alerts can be generated from <span class="xref std std-ref">stale heartbeats</span> using the <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool.</p>
 </div>
 </div>
 
