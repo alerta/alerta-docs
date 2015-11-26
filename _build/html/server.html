@@ -73,7 +73,7 @@
 </div>
 <div class="section" id="blackout-periods">
 <span id="id2"></span><h2>Blackout Periods<a class="headerlink" href="#blackout-periods" title="Permalink to this headline">¶</a></h2>
-<p>An alert that is received during a blackout period is suppressed. That is, it is received by Alerta and a <code class="docutils literal"><span class="pre">202</span> <span class="pre">Accepted</span></code> status code is returned however this means that eventhough the alert has been accepted, it won&#8217;t be processed.</p>
+<p>An alert that is received during a <span class="target" id="index-0"></span>blackout period is suppressed. That is, it is received by Alerta and a <code class="docutils literal"><span class="pre">202</span> <span class="pre">Accepted</span></code> status code is returned however this means that eventhough the alert has been accepted, it won&#8217;t be processed.</p>
 <p>Alerta defines many different alert attributes that can be used to group alerts and it is these attributes that can be used to define rules eg. environment, service and group. However, it is possible to define blackout rules based on resource and event attributes for situations that require that level of granularity.</p>
 <p>Tags can also be used to define a blackout rule which should allow a lot of flexibility &#8211; one or more tags can be required to match an alert for the suppression to apply &#8211; because tags can be added at source, using the alerta CLI, or using a plug-in.</p>
 <p>In summary, blackout rules can be any of:</p>
@@ -133,7 +133,7 @@
 <p>An Alerta <a class="reference internal" href="api/reference.html#heartbeats"><span>heartbeat</span></a> is a periodic HTTP request sent to the Alerta API to indicate normal operation of the origin of the heartbeat.</p>
 <p>They can be used to ensure components of the Alerta monitoring system are operating normally or sent from any other source. As well as an <code class="docutils literal"><span class="pre">origin</span></code> they include a <code class="docutils literal"><span class="pre">timeout</span></code> in seconds (after which they will be considered stale), and optional <code class="docutils literal"><span class="pre">tags</span></code>.</p>
 <p>They are visible in the Alerta console (<em>About</em> page) and via the <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool using the <code class="docutils literal"><span class="pre">heartbeat</span></code> sub-command to send them, and the <code class="docutils literal"><span class="pre">heartbeats</span></code> sub-command to view them.</p>
-<p>Alerts can be generated from <span class="target" id="index-0"></span>stale heartbeats using the <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool.</p>
+<p>Alerts can be generated from <span class="target" id="index-1"></span>stale heartbeats using the <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool.</p>
 </div>
 </div>
 

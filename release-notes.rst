@@ -17,6 +17,13 @@ Roadmap
 Release History
 +++++++++++++++
 
+Release 4.6 (26-11-2015)
+------------------------
+
+* Added customer views for mutlitenancy_ support
+
+.. _mutlitenancy: https://en.wikipedia.org/wiki/Multitenancy
+
 Release 4.5 (9-9-2015)
 ----------------------
 

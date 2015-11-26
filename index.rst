@@ -39,6 +39,7 @@ The API Explorer website can be used to query for, and send alerts to, the http:
    authentication
    configuration
    deployment
+   customerviews
    conventions
    development
 

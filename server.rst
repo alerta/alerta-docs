@@ -59,7 +59,7 @@ Using post-receive hooks, plugin integrations can be used to provide downstream 
 Blackout Periods
 ----------------
 
-An alert that is received during a blackout period is suppressed. That is, it is received by Alerta and a ``202 Accepted`` status code is returned however this means that eventhough the alert has been accepted, it won't be processed.
+An alert that is received during a :index:`blackout period <single: blackouts>` is suppressed. That is, it is received by Alerta and a ``202 Accepted`` status code is returned however this means that eventhough the alert has been accepted, it won't be processed.
 
 Alerta defines many different alert attributes that can be used to group alerts and it is these attributes that can be used to define rules eg. environment, service and group. However, it is possible to define blackout rules based on resource and event attributes for situations that require that level of granularity.
 
