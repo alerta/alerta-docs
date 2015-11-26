@@ -31,8 +31,7 @@ To configure customer views follow these three easy steps:
 
 2. Define administrators that will have a global view of all customers and will have no restrictions on generating API keys or blackout periods, so in ``alertad.conf``::
 
-    ADMIN_USERS=['foo@bar.com']
-
+    ADMIN_USERS = ['foo@bar.com']
 
 3. Populate the Customer Lookup table in the web console to map Google email domains or Github/Gitlab orgs and groups to customers
 
