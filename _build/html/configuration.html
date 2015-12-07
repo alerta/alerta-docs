@@ -26,7 +26,7 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="top" title="alerta 4.5 documentation" href="index.html" />
     <link rel="next" title="Deployment" href="deployment.html" />
-    <link rel="prev" title="Authorisation" href="authorisation.html" />
+    <link rel="prev" title="Authentication" href="authentication.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -53,14 +53,11 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 <div class="section" id="general-settings">
 <span id="general-config"></span><h3>General Settings<a class="headerlink" href="#general-settings" title="Permalink to this headline">¶</a></h3>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">False</span>
-<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">r&#39;0Afk\(,8$cr(Y8:MA&quot;&quot;knd&gt;[@$U[G.eQL6DjAmVs&#39;</span>
 </pre></div>
 </div>
 <dl class="docutils" id="index-1">
 <dt><code class="docutils literal"><span class="pre">DEBUG</span></code></dt>
 <dd>debug mode. Set to <code class="docutils literal"><span class="pre">True</span></code> for increased logging.</dd>
-<dt><code class="docutils literal"><span class="pre">SECRET_KEY</span></code></dt>
-<dd>a unique, randomly generated sequence of ASCII characters.</dd>
 </dl>
 </div>
 <div class="section" id="api-settings">
@@ -111,6 +108,7 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 <div class="section" id="authentication-settings">
 <span id="auth-config"></span><h3>Authentication Settings<a class="headerlink" href="#authentication-settings" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">AUTH_REQUIRED</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">r&#39;0Afk\(,8$cr(Y8:MA&quot;&quot;knd&gt;[@$U[G.eQL6DjAmVs&#39;</span>
 <span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s">&#39;INSERT-OAUTH2-CLIENT-ID-HERE&#39;</span>  <span class="c"># Google, GitHub, GitLab or Twitter OAuth2 client ID and secret</span>
 <span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s">&#39;INSERT-OAUTH2-CLIENT-SECRET-HERE&#39;</span>
 <span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;gmail.com&#39;</span><span class="p">]</span>
@@ -121,6 +119,8 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 <dl class="docutils" id="index-4">
 <dt><code class="docutils literal"><span class="pre">AUTH_REQUIRED</span></code></dt>
 <dd>set to <code class="docutils literal"><span class="pre">True</span></code> to force users to authenticate when using web UI or command-line tool</dd>
+<dt><code class="docutils literal"><span class="pre">SECRET_KEY</span></code></dt>
+<dd>a unique, randomly generated sequence of ASCII characters.</dd>
 <dt><code class="docutils literal"><span class="pre">OAUTH2_CLIENT_ID</span></code></dt>
 <dd>client ID required by OAuth2 provider for Google, Github, GitLab or Twitter.</dd>
 <dt><code class="docutils literal"><span class="pre">OAUTH2_CLIENT_SECRET</span></code></dt>
@@ -313,7 +313,6 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="authorisation.html">Authorisation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#config-file-settings">Config File Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#environment-variables">Environment Variables</a></li>

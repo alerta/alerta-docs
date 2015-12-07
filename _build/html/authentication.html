@@ -41,13 +41,14 @@
             
   <div class="section" id="authentication">
 <span id="id1"></span><h1>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h1>
-<p>By default, authentication is not enabled, however there are some features that are <span class="xref std std-ref">not available</span> unless users login. To enforce authentication set <code class="docutils literal"><span class="pre">AUTH_REQUIRED</span></code> to <code class="docutils literal"><span class="pre">True</span></code>:</p>
+<p>By default, authentication is not enabled, however there are some features that are <span class="xref std std-ref">not available</span> unless users login. To enforce authentication set <code class="docutils literal"><span class="pre">AUTH_REQUIRED</span></code> to <code class="docutils literal"><span class="pre">True</span></code> in the <code class="docutils literal"><span class="pre">alertad.conf</span></code> file:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">AUTH_REQUIRED</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">&#39;UszE5hI_hx5pXKcsCP_2&amp;1DIs&amp;9_Ve*k&#39;</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>Ensure that the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">SECRET_KEY</span></code> that is used to encode cookies is a unique, randomly generated sequence of ASCII characters. The following command generates a suitable 32-character random string:</p>
+<p>Ensure that the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">SECRET_KEY</span></code> that is used to encode cookies is a unique, randomly generated sequence of ASCII characters. The following command generates a suitable 32-character random string on Mac or Linux:</p>
 <div class="last highlight-python"><div class="highlight"><pre>$ LC_CTYPE=C tr -dc A-Za-z0-9_\!\@\#\$\%\^\&amp;\*\(\)-+= &lt; /dev/urandom | head -c 32 &amp;&amp; echo
 </pre></div>
 </div>
@@ -56,7 +57,7 @@
 <div class="section" id="basic-authentication">
 <span id="basic-auth"></span><h2>Basic Authentication<a class="headerlink" href="#basic-authentication" title="Permalink to this headline">¶</a></h2>
 <p>HTTP <a class="reference external" href="https://en.wikipedia.org/wiki/Basic_access_authentication">Basic authentication</a> is a very simple method for enforcing access control.</p>
-<p>To use Basic Auth set the <code class="docutils literal"><span class="pre">provider</span></code> configuration setting in the Web UI <code class="file docutils literal"><span class="pre">config.js</span></code> file to <code class="docutils literal"><span class="pre">basic</span></code>. There is no configuration required of the Alerta server:</p>
+<p>To use Basic Auth set the <code class="docutils literal"><span class="pre">provider</span></code> configuration setting in the Web UI <code class="file docutils literal"><span class="pre">config.js</span></code> file to <code class="docutils literal"><span class="pre">basic</span></code>. There is no additional configuration required of the Alerta server to use Basic Auth:</p>
 <div class="highlight-python"><div class="highlight"><pre>&#39;use strict&#39;;
 
 angular.module(&#39;config&#39;, [])
@@ -348,6 +349,7 @@ Links
 </li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customerviews.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 </ul>

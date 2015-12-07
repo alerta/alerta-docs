@@ -3,11 +3,12 @@
 Authentication
 ==============
 
-By default, authentication is not enabled, however there are some features that are :ref:`not available <watched_alerts>` unless users login. To enforce authentication set ``AUTH_REQUIRED`` to ``True``::
+By default, authentication is not enabled, however there are some features that are :ref:`not available <watched_alerts>` unless users login. To enforce authentication set ``AUTH_REQUIRED`` to ``True`` in the ``alertad.conf`` file::
 
     AUTH_REQUIRED = True
+    SECRET_KEY = 'UszE5hI_hx5pXKcsCP_2&1DIs&9_Ve*k'
 
-.. note:: Ensure that the :envvar:`SECRET_KEY` that is used to encode cookies is a unique, randomly generated sequence of ASCII characters. The following command generates a suitable 32-character random string::
+.. note:: Ensure that the :envvar:`SECRET_KEY` that is used to encode cookies is a unique, randomly generated sequence of ASCII characters. The following command generates a suitable 32-character random string on Mac or Linux::
 
     $ LC_CTYPE=C tr -dc A-Za-z0-9_\!\@\#\$\%\^\&\*\(\)-+= < /dev/urandom | head -c 32 && echo
 
@@ -22,7 +23,7 @@ HTTP `Basic authentication`_ is a very simple method for enforcing access contro
 
 .. _Basic authentication: https://en.wikipedia.org/wiki/Basic_access_authentication
 
-To use Basic Auth set the ``provider`` configuration setting in the Web UI :file:`config.js` file to ``basic``. There is no configuration required of the Alerta server::
+To use Basic Auth set the ``provider`` configuration setting in the Web UI :file:`config.js` file to ``basic``. There is no additional configuration required of the Alerta server to use Basic Auth::
 
     'use strict';
 

@@ -22,14 +22,11 @@ General Settings
 .. code:: python
 
     DEBUG = False
-    SECRET_KEY = r'0Afk\(,8$cr(Y8:MA""knd>[@$U[G.eQL6DjAmVs'
 
-.. index:: DEBUG, SECRET_KEY
+.. index:: DEBUG
 
 ``DEBUG``
     debug mode. Set to ``True`` for increased logging.
-``SECRET_KEY``
-    a unique, randomly generated sequence of ASCII characters.
 
 .. _api config:
 
@@ -97,16 +94,19 @@ Authentication Settings
 ::
 
     AUTH_REQUIRED = False
+    SECRET_KEY = r'0Afk\(,8$cr(Y8:MA""knd>[@$U[G.eQL6DjAmVs'
     OAUTH2_CLIENT_ID = 'INSERT-OAUTH2-CLIENT-ID-HERE'  # Google, GitHub, GitLab or Twitter OAuth2 client ID and secret
     OAUTH2_CLIENT_SECRET = 'INSERT-OAUTH2-CLIENT-SECRET-HERE'
     ALLOWED_EMAIL_DOMAINS = ['gmail.com']
     ALLOWED_GITHUB_ORGS = ['guardian']
     ALLOWED_GITLAB_GROUPS = ['acmecorp']
 
-.. index:: AUTH_REQUIRED, OAUTH2_CLIENT_ID, OAUTH2_CLIENT_SECRET, ALLOWED_EMAIL_DOMAINS, ALLOWED_GITHUB_ORGS, GITLAB_URL, ALLOWED_GITLAB_GROUPS
+.. index:: AUTH_REQUIRED, SECRET_KEY, OAUTH2_CLIENT_ID, OAUTH2_CLIENT_SECRET, ALLOWED_EMAIL_DOMAINS, ALLOWED_GITHUB_ORGS, GITLAB_URL, ALLOWED_GITLAB_GROUPS
 
 ``AUTH_REQUIRED``
     set to ``True`` to force users to authenticate when using web UI or command-line tool
+``SECRET_KEY``
+    a unique, randomly generated sequence of ASCII characters.
 ``OAUTH2_CLIENT_ID``
     client ID required by OAuth2 provider for Google, Github, GitLab or Twitter.
 ``OAUTH2_CLIENT_SECRET``

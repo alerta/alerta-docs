@@ -64,6 +64,9 @@ An example web UI :file:`config.js` configuration file that assumes that the Ale
       });
 
 
+Customer Views
+--------------
+
 Managing Alerts
 ---------------
 
