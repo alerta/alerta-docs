@@ -41,7 +41,7 @@
             
   <div class="section" id="alerta-web-ui">
 <span id="webui"></span><h1>Alerta Web UI<a class="headerlink" href="#alerta-web-ui" title="Permalink to this headline">¶</a></h1>
-<p>The Alerta web UI console takes full advantage of the <a class="reference internal" href="server.html#state-based-browser"><span>state-based Alerta API</span></a> to ensure that the most important events at the current time are brought to the attention of operators.</p>
+<p>The Alerta web UI console takes full advantage of the <a class="reference internal" href="server.html#state-based-browser"><span>state-based Alerta API</span></a> to ensure that the most important events at any given time are brought to the attention of operators.</p>
 <div class="section" id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
 <p>The three main areas for configuration are:</p>
@@ -52,7 +52,7 @@
 <li>selecting colors for severity, highlighting and text</li>
 </ul>
 </div></blockquote>
-<p>The default web UI <code class="file docutils literal"><span class="pre">config.js</span></code> configuration file is included below. It assumes that the Alerta API is running on the same host (but different port) that the web UI static html files are being served from (line 5), that <a class="reference internal" href="authentication.html#basic-auth"><span>Basic Authentication</span></a> will be used (line 6) and no client id needs to be defined (line 7). Note also that default colours for alert severity, highlighting for multi-select and text are used (line 9):</p>
+<p>The default web UI <code class="file docutils literal"><span class="pre">config.js</span></code> configuration file is included below. It assumes that the Alerta API is running on the same host (but different port) that the web UI static html files are being served from (line 5), that <a class="reference internal" href="authentication.html#basic-auth"><span>Basic Authentication</span></a> will be used (line 6) and so no client id needs to be defined (line 7). Note also that default colours for alert severity, highlighting for multi-select and text are used (line 9):</p>
 <div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -73,7 +73,7 @@
 </pre></div>
 </td></tr></table></div>
 <p><strong>Example</strong></p>
-<p>An example web UI <code class="file docutils literal"><span class="pre">config.js</span></code> configuration file that assumes that the Alerta API is running on the same host <em>and port</em>, but on a path called <code class="docutils literal"><span class="pre">/api</span></code> (line 5), that <a class="reference internal" href="authentication.html#google-oauth2"><span>Google OAuth2</span></a> is used for authentication (line 6, which requires a valid Google client ID, line 7), and defines different colors for severity levels, highlighting and text (lines 9-26):</p>
+<p>An example web UI <code class="file docutils literal"><span class="pre">config.js</span></code> configuration file that assumes that the Alerta API is running on the same host <em>and port</em>, but on a different path called <code class="docutils literal"><span class="pre">/api</span></code> (line 5), that <a class="reference internal" href="authentication.html#google-oauth2"><span>Google OAuth2</span></a> is used for authentication (line 6, which requires a valid Google client ID, line 7), and defines different colors for severity levels, highlighting and text (lines 9-26):</p>
 <div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -253,6 +253,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customerviews.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 </ul>

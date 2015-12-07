@@ -3,7 +3,7 @@
 Alerta Web UI
 =============
 
-The Alerta web UI console takes full advantage of the :ref:`state-based Alerta API <state based browser>` to ensure that the most important events at the current time are brought to the attention of operators.
+The Alerta web UI console takes full advantage of the :ref:`state-based Alerta API <state based browser>` to ensure that the most important events at any given time are brought to the attention of operators.
 
 Configuration
 -------------
@@ -14,7 +14,7 @@ The three main areas for configuration are:
   * enforcing a security strategy
   * selecting colors for severity, highlighting and text
 
-The default web UI :file:`config.js` configuration file is included below. It assumes that the Alerta API is running on the same host (but different port) that the web UI static html files are being served from (line 5), that :ref:`basic auth` will be used (line 6) and no client id needs to be defined (line 7). Note also that default colours for alert severity, highlighting for multi-select and text are used (line 9):
+The default web UI :file:`config.js` configuration file is included below. It assumes that the Alerta API is running on the same host (but different port) that the web UI static html files are being served from (line 5), that :ref:`basic auth` will be used (line 6) and so no client id needs to be defined (line 7). Note also that default colours for alert severity, highlighting for multi-select and text are used (line 9):
 
 .. code-block:: javascript
     :linenos:
@@ -31,7 +31,7 @@ The default web UI :file:`config.js` configuration file is included below. It as
 
 **Example**
 
-An example web UI :file:`config.js` configuration file that assumes that the Alerta API is running on the same host *and port*, but on a path called ``/api`` (line 5), that :ref:`Google OAuth2 <google oauth2>` is used for authentication (line 6, which requires a valid Google client ID, line 7), and defines different colors for severity levels, highlighting and text (lines 9-26):
+An example web UI :file:`config.js` configuration file that assumes that the Alerta API is running on the same host *and port*, but on a different path called ``/api`` (line 5), that :ref:`Google OAuth2 <google oauth2>` is used for authentication (line 6, which requires a valid Google client ID, line 7), and defines different colors for severity levels, highlighting and text (lines 9-26):
 
 .. code-block:: javascript
     :linenos:
