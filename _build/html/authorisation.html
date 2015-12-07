@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Quickstart &mdash; alerta 4.5 documentation</title>
+    <title>Authorisation &mdash; alerta 4.5 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="top" title="alerta 4.5 documentation" href="index.html" />
-    <link rel="next" title="Design Principles" href="design.html" />
-    <link rel="prev" title="Alerta monitoring system" href="index.html" />
+    <link rel="next" title="Configuration" href="configuration.html" />
+    <link rel="prev" title="Authentication" href="authentication.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -39,54 +39,13 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="quickstart">
-<span id="quick-start"></span><h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
-<p>This is a quick-start guide that will get you running Alerta in under 5 minutes  .</p>
-<div class="section" id="install-mongodb">
-<h2>Install MongoDB<a class="headerlink" href="#install-mongodb" title="Permalink to this headline">¶</a></h2>
-<p>For Debian/Ubuntu, run:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install -y mongodb-org
-$ mongod
-</pre></div>
+  <div class="section" id="authorisation">
+<span id="id1"></span><h1>Authorisation<a class="headerlink" href="#authorisation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="admin-role">
+<h2>Admin Role<a class="headerlink" href="#admin-role" title="Permalink to this headline">¶</a></h2>
 </div>
-<p>For other operating systems, see the <a class="reference external" href="http://docs.mongodb.org/manual/installation/">installation</a> steps on the MongoDB web site.</p>
-</div>
-<div class="section" id="install-the-alerta-server">
-<h2>Install the Alerta Server<a class="headerlink" href="#install-the-alerta-server" title="Permalink to this headline">¶</a></h2>
-<p>To install the alerta server:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ pip install alerta-server
-$ alertad
-</pre></div>
-</div>
-<p>You should see something like:</p>
-<div class="highlight-python"><div class="highlight"><pre>Starting alerta version 4.1.2 ...
-</pre></div>
-</div>
-</div>
-<div class="section" id="install-the-web-console">
-<h2>Install the Web Console<a class="headerlink" href="#install-the-web-console" title="Permalink to this headline">¶</a></h2>
-<p>To install the web console:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ wget -O alerta-web.tgz https://github.com/alerta/angular-alerta-webui/tarball/master
-$ tar zxvf alerta-web.tgz
-$ cd alerta-angular-alerta-webui-*/app
-$ python -m SimpleHTTPServer 8000
-
-&gt;&gt; browse to http://localhost:8000
-</pre></div>
-</div>
-</div>
-<div class="section" id="send-some-alerts">
-<h2>Send some alerts<a class="headerlink" href="#send-some-alerts" title="Permalink to this headline">¶</a></h2>
-<p>To send an alert to the server:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta send -r web01 -e NodeDown -E Production -S Website -s major -t &quot;Web server is down.&quot; -v ERROR
-</pre></div>
-</div>
-<p>The alert should appear almost immediately in the console. If it doesn&#8217;t it&#8217;s either a <a class="reference internal" href="authentication.html#cross-origin"><span>CORS issues</span></a> or a <a class="reference external" href="https://github.com/alerta/alerta-docs/issues/new">bug</a>.</p>
-</div>
-<div class="section" id="what-s-next">
-<h2>What&#8217;s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
-<p>To configure the Alerta API server create an <code class="docutils literal"><span class="pre">alertad.conf</span></code> configuration file in <code class="docutils literal"><span class="pre">/etc</span></code> or wherever the environment variable <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALERTA_SVR_CONF_FILE</span></code> is pointing. It uses standard python syntax for setting variables. All possible settings are listed on the <a class="reference internal" href="configuration.html#configuration"><span>server configuration</span></a> page.</p>
-<p>To configure the Alerta web UI modify &#8220;in place&#8221; the <code class="docutils literal"><span class="pre">config.js</span></code> file that is supplied with the web application. It uses <a class="reference external" href="https://docs.angularjs.org/guide/module#configuration-blocks">AngularJS configuration block</a> syntax. More information can be found on the <a class="reference internal" href="webui.html#webui"><span>web UI</span></a> page.</p>
+<div class="section" id="user-role">
+<h2>User Role<a class="headerlink" href="#user-role" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -141,21 +100,18 @@ Links
 
 <h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Quickstart</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#install-mongodb">Install MongoDB</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-the-alerta-server">Install the Alerta Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-the-web-console">Install the Web Console</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#send-some-alerts">Send some alerts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#what-s-next">What&#8217;s next?</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webui.html">Alerta Web UI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="authorisation.html">Authorisation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Authorisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#admin-role">Admin Role</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#user-role">User Role</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customerviews.html">Customer Views</a></li>
@@ -201,7 +157,7 @@ Links
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
       
       |
-      <a href="_sources/quick-start.txt"
+      <a href="_sources/authorisation.txt"
           rel="nofollow">Page source</a>
     </div>
 

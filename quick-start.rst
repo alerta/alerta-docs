@@ -51,3 +51,12 @@ To send an alert to the server::
 The alert should appear almost immediately in the console. If it doesn't it's either a :ref:`CORS issues <cross_origin>` or a bug_.
 
 .. _bug: https://github.com/alerta/alerta-docs/issues/new
+
+What's next?
+------------
+
+To configure the Alerta API server create an ``alertad.conf`` configuration file in ``/etc`` or wherever the environment variable :envvar:`ALERTA_SVR_CONF_FILE` is pointing. It uses standard python syntax for setting variables. All possible settings are listed on the :ref:`server configuration <configuration>` page.
+
+To configure the Alerta web UI modify "in place" the ``config.js`` file that is supplied with the web application. It uses `AngularJS configuration block`_ syntax. More information can be found on the :ref:`web UI <webui>` page.
+
+.. _AngularJS configuration block: https://docs.angularjs.org/guide/module#configuration-blocks

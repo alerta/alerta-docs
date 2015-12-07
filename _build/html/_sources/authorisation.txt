@@ -1,0 +1,15 @@
+.. _authorisation:
+
+Authorisation
+=============
+
+
+Admin Role
+----------
+
+
+
+User Role
+---------
+
+

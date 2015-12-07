@@ -7,6 +7,12 @@ Multitenancy is acheived using Customer views that are a way of ensuring logged 
 
 This is for Alerta deployments that are used to manage multiple customer sites.
 
+Roles
+-----
+The role of an API key is assumed to be "user" if it is a customer generated key. The role of admin
+
+You can have a customer/user API key and an admin API key, but not a customer/admin API key -- this makes no sense.
+
 
 How it works
 ------------

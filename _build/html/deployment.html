@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="top" title="alerta 4.5 documentation" href="index.html" />
-    <link rel="next" title="Conventions" href="conventions.html" />
+    <link rel="next" title="Customer Views" href="customerviews.html" />
     <link rel="prev" title="Configuration" href="configuration.html" />
    
   
@@ -99,6 +99,10 @@ angular.module(&#39;config&#39;, [])
 <p>The API can be secured using <a class="reference internal" href="authentication.html#api-keys"><span>API Keys</span></a> and the web UI can be secured using <a class="reference internal" href="authentication.html#basic-auth"><span>Basic Auth</span></a> or an <a class="reference internal" href="authentication.html#oauth2"><span>OAuth</span></a> provider from either Google, Github or Twitter.</p>
 <p>If you plan to make the web UI accessible from a public URL it is strongly advised to <a class="reference internal" href="authentication.html#authentication"><span>enforce authentication</span></a> and use HTTPS/SSL connections to the Alerta API to protect private alert data.</p>
 </div>
+<div class="section" id="authorisation-customer-views">
+<span id="auth-cv"></span><h2>Authorisation &amp; Customer Views<a class="headerlink" href="#authorisation-customer-views" title="Permalink to this headline">¶</a></h2>
+<p>To restrict access to certain features use roles and customer views.</p>
+</div>
 <div class="section" id="scalability">
 <span id="id3"></span><h2>Scalability<a class="headerlink" href="#scalability" title="Permalink to this headline">¶</a></h2>
 <p>Alerta can scale horizontally, in the same way any other web application scales horizontally &#8211; a load balancer handles the HTTP requests and distributes those requests between all available application servers.</p>
@@ -122,7 +126,15 @@ angular.module(&#39;config&#39;, [])
 </div>
 <div class="section" id="management-metrics">
 <span id="metrics"></span><h2>Management &amp; Metrics<a class="headerlink" href="#management-metrics" title="Permalink to this headline">¶</a></h2>
-<p>Use the management endpoint <code class="file docutils literal"><span class="pre">/management/status</span></code> to keep track of realtime statistics on the performance of the Alerta API like alert counts and average processing time. For convenience, these statistics can be viewed in the <em>About</em> page of the Alerta web UI.</p>
+<p>Use the management endpoint <code class="file docutils literal"><span class="pre">/management/status</span></code> to keep track of realtime statistics on the performance of the Alerta API like alert counts and average processing time. For convenience, these statistics can be viewed in the <em>About</em> page of the Alerta web UI or using the <cite>alerta</cite> command-line tool <a class="reference internal" href="cli.html#cli-status"><span>status</span></a> command.</p>
+</div>
+<div class="section" id="web-ui-analytics">
+<h2>Web UI Analytics<a class="headerlink" href="#web-ui-analytics" title="Permalink to this headline">¶</a></h2>
+<p>Google analytics can be used to track usage of the Alerta web UI console. Just create a new tracking code with the <a class="reference external" href="https://analytics.google.com/analytics/web/">Google analytics</a> console and replace the <code class="docutils literal"><span class="pre">&#64;&#64;TRACKING_ID</span></code> placeholder in the <cite>index.html</cite> file during deployment of the web UI:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ export GOOGLE_TRACKING_ID=UA-xxxxxxxx-x
+$ sed -i s/@@TRACKING_ID/${GOOGLE_TRACKING_ID}/ index.html
+</pre></div>
+</div>
 </div>
 <div class="section" id="real-world-examples">
 <span id="real-world"></span><h2>Real World Examples<a class="headerlink" href="#real-world-examples" title="Permalink to this headline">¶</a></h2>
@@ -196,19 +208,23 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authorisation.html">Authorisation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Deployment</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#wsgi-server">WSGI Server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#web-proxy">Web Proxy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#static-website">Static Website</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#authentication-ssl">Authentication &amp; SSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authorisation-customer-views">Authorisation &amp; Customer Views</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#scalability">Scalability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#high-availability">High Availability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#house-keeping">House Keeping</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#management-metrics">Management &amp; Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#web-ui-analytics">Web UI Analytics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#real-world-examples">Real World Examples</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="customerviews.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 </ul>

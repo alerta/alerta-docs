@@ -26,7 +26,7 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="top" title="alerta 4.5 documentation" href="index.html" />
     <link rel="next" title="Deployment" href="deployment.html" />
-    <link rel="prev" title="Authentication" href="authentication.html" />
+    <link rel="prev" title="Authorisation" href="authorisation.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
@@ -40,7 +40,7 @@
           <div class="body" role="main">
             
   <div class="section" id="configuration">
-<h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
 <p>The following settings <strong>only</strong> apply to the Alerta server. For <code class="docutils literal"><span class="pre">alerta</span></code> CLI configuration options see <a class="reference internal" href="cli.html#cli"><span>command-line reference</span></a> and for Web UI configuration options see <a class="reference internal" href="webui.html#webui"><span>web UI reference</span></a>.</p>
 <p>The default settings <strong>should not</strong> be modified directly. To change any of these settings create a configuration file that overrides these default settings. The default location for the server configuration file is <code class="docutils literal"><span class="pre">/etc/alertad.conf</span></code> however the location itself can be overridden by using a environment variable <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALERTA_SVR_CONF_FILE</span></code>.</p>
 <p>For example, to set the blackout period default duration to 1 day (ie. 86400 seconds):</p>
@@ -208,8 +208,8 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 <p class="first admonition-title">Note</p>
 <p class="last">Environment variables are read after configuration files so they will always override any other setting.</p>
 </div>
-<div class="section" id="id1">
-<h3>General Settings<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3>General Settings<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
 <dt><span class="target" id="index-7"></span><code class="xref std std-envvar docutils literal"><span class="pre">SECRET_KEY</span></code></dt>
 <dd>see above</dd>
@@ -229,8 +229,8 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 <dd>see above</dd>
 </dl>
 </div>
-<div class="section" id="id2">
-<h3>MongoDB Settings<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>MongoDB Settings<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
 <dt><span class="target" id="index-15"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_URI</span></code></dt>
 <dd>override all of the MongoDB config file settings using the standard <a class="reference external" href="https://docs.mongodb.org/v3.0/reference/connection-string/#standard-connection-string-format">connection string format</a></dd>
@@ -313,6 +313,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authorisation.html">Authorisation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#config-file-settings">Config File Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#environment-variables">Environment Variables</a></li>
@@ -320,6 +321,7 @@ Links
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customerviews.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 </ul>

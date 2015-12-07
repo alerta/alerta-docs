@@ -392,6 +392,8 @@ List all heartbeats::
       -h, --help  show this help message and exit
       --alert     Send alerts on stale or slow heartbeats
 
+.. _cli_status:
+
 :command:`status`
 ~~~~~~~~~~~~~~~~~
 

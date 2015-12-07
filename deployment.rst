@@ -82,6 +82,16 @@ The API can be secured using :ref:`API keys` and the web UI can be secured using
 
 If you plan to make the web UI accessible from a public URL it is strongly advised to :ref:`enforce authentication <Authentication>` and use HTTPS/SSL connections to the Alerta API to protect private alert data.
 
+.. _auth_cv:
+
+Authorisation & Customer Views
+------------------------------
+
+To restrict access to certain features use roles and customer views.
+
+
+
+
 .. _scalability:
 
 Scalability
@@ -124,7 +134,17 @@ Again, this should be run at regular intervals via ``cron`` or some other schedu
 Management & Metrics
 --------------------
 
-Use the management endpoint :file:`/management/status` to keep track of realtime statistics on the performance of the Alerta API like alert counts and average processing time. For convenience, these statistics can be viewed in the *About* page of the Alerta web UI.
+Use the management endpoint :file:`/management/status` to keep track of realtime statistics on the performance of the Alerta API like alert counts and average processing time. For convenience, these statistics can be viewed in the *About* page of the Alerta web UI or using the `alerta` command-line tool :ref:`status <cli_status>` command.
+
+Web UI Analytics
+----------------
+
+Google analytics can be used to track usage of the Alerta web UI console. Just create a new tracking code with the `Google analytics`_ console and replace the ``@@TRACKING_ID`` placeholder in the `index.html` file during deployment of the web UI::
+
+    $ export GOOGLE_TRACKING_ID=UA-xxxxxxxx-x
+    $ sed -i s/@@TRACKING_ID/${GOOGLE_TRACKING_ID}/ index.html
+
+.. _Google analytics: https://analytics.google.com/analytics/web/
 
 .. _real world:
 

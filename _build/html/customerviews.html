@@ -43,6 +43,11 @@
 <span id="id1"></span><h1>Customer Views<a class="headerlink" href="#customer-views" title="Permalink to this headline">¶</a></h1>
 <p>Multitenancy is acheived using Customer views that are a way of ensuring logged in users only see alerts that relate to their organisation.</p>
 <p>This is for Alerta deployments that are used to manage multiple customer sites.</p>
+<div class="section" id="roles">
+<h2>Roles<a class="headerlink" href="#roles" title="Permalink to this headline">¶</a></h2>
+<p>The role of an API key is assumed to be &#8220;user&#8221; if it is a customer generated key. The role of admin</p>
+<p>You can have a customer/user API key and an admin API key, but not a customer/admin API key &#8211; this makes no sense.</p>
+</div>
 <div class="section" id="how-it-works">
 <h2>How it works<a class="headerlink" href="#how-it-works" title="Permalink to this headline">¶</a></h2>
 <p>A new top-level alert attribute called <code class="docutils literal"><span class="pre">customer</span></code> is used to partition alerts for particular customers within the same alert database.</p>
@@ -137,9 +142,11 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authorisation.html">Authorisation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Customer Views</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#roles">Roles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-it-works">How it works</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#web-console-for-users">Web Console for Users</a></li>

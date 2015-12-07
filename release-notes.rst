@@ -20,7 +20,8 @@ Release History
 Release 4.6 (26-11-2015)
 ------------------------
 
-* Added customer views for multitenancy_ support
+* Customer views for multitenancy_ support
+* Authorisation using *Admin* and *User* roles
 
 .. _multitenancy: https://en.wikipedia.org/wiki/Multitenancy
 
