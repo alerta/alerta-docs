@@ -41,7 +41,7 @@
             
   <div class="section" id="authentication">
 <span id="id1"></span><h1>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h1>
-<p>By default, authentication is not enabled, however there are some features that are <span class="xref std std-ref">not available</span> unless users login. To enforce authentication set <code class="docutils literal"><span class="pre">AUTH_REQUIRED</span></code> to <code class="docutils literal"><span class="pre">True</span></code> in the <code class="docutils literal"><span class="pre">alertad.conf</span></code> file:</p>
+<p>By default, authentication is not enabled, however there are some features that are <span class="xref std std-ref">not available</span> unless users login. To enforce authentication set <code class="docutils literal"><span class="pre">AUTH_REQUIRED</span></code> to <code class="docutils literal"><span class="pre">True</span></code> in the <code class="docutils literal"><span class="pre">alertad.conf</span></code> file and <code class="docutils literal"><span class="pre">SECRET_KEY</span></code> to some random string:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">AUTH_REQUIRED</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">&#39;UszE5hI_hx5pXKcsCP_2&amp;1DIs&amp;9_Ve*k&#39;</span>
 </pre></div>
@@ -53,7 +53,7 @@
 </pre></div>
 </div>
 </div>
-<p>Alerta supports two types of authentication for the web UI (<a class="reference internal" href="#basic-auth"><span>Basic Auth</span></a> and <a class="reference internal" href="#oauth2"><span>OAuth</span></a>) as well as <a class="reference internal" href="#api-keys"><span>API keys</span></a> for direct access to the API.</p>
+<p>Alerta supports two types of authentication for the web UI (<a class="reference internal" href="#basic-auth"><span>Basic Auth</span></a> and <a class="reference internal" href="#oauth2"><span>OAuth</span></a>) as well as <a class="reference internal" href="#api-keys"><span>API keys</span></a> for direct access to the API. The most straight-forward of the two to implement is Basic Auth.</p>
 <div class="section" id="basic-authentication">
 <span id="basic-auth"></span><h2>Basic Authentication<a class="headerlink" href="#basic-authentication" title="Permalink to this headline">¶</a></h2>
 <p>HTTP <a class="reference external" href="https://en.wikipedia.org/wiki/Basic_access_authentication">Basic authentication</a> is a very simple method for enforcing access control.</p>
@@ -75,12 +75,12 @@ angular.module(&#39;config&#39;, [])
 </div>
 <div class="section" id="oauth2-authentication">
 <span id="oauth2"></span><h2>OAuth2 Authentication<a class="headerlink" href="#oauth2-authentication" title="Permalink to this headline">¶</a></h2>
-<p>OAuth authentication is provided by <a class="reference external" href="https://developers.google.com/accounts/docs/OpenIDConnect">Google</a> <a class="reference external" href="http://openid.net/connect/">OpenID Connect</a>, <a class="reference external" href="https://developer.github.com/v3/oauth/">GitHub</a> or <a class="reference external" href="http://doc.gitlab.com/ce/integration/oauth_provider.html">GitLab</a> <a class="reference external" href="http://tools.ietf.org/html/draft-ietf-oauth-v2-22">OAuth 2.0</a> or <a class="reference external" href="https://dev.twitter.com/web/sign-in/implementing">Twitter</a> <a class="reference external" href="http://oauth.net/core/1.0a/">OAuth 1.0a</a>.</p>
+<p>OAuth authentication is provided by <a class="reference external" href="https://developers.google.com/accounts/docs/OpenIDConnect">Google</a> <a class="reference external" href="http://openid.net/connect/">OpenID Connect</a>, <a class="reference external" href="https://developer.github.com/v3/oauth/">GitHub</a> or <a class="reference external" href="http://doc.gitlab.com/ce/integration/oauth_provider.html">GitLab</a> <a class="reference external" href="http://tools.ietf.org/html/draft-ietf-oauth-v2-22">OAuth 2.0</a> or <a class="reference external" href="https://dev.twitter.com/web/sign-in/implementing">Twitter</a> <a class="reference external" href="http://oauth.net/core/1.0a/">OAuth 1.0a</a> and configuration is more involved than the Basic Auth setup.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">If alerta is deployed to a publicly accessible web server it is important to configure the OAuth2 settings correctly to ensure that only authorised users can access and modify your alerts.</p>
 </div>
-<p id="google-oauth2">To use OAuth set the <code class="docutils literal"><span class="pre">provider</span></code> configuration setting in the Web UI <code class="file docutils literal"><span class="pre">config.js</span></code> file to <code class="docutils literal"><span class="pre">google</span></code>, <code class="docutils literal"><span class="pre">github</span></code>, <code class="docutils literal"><span class="pre">gitlab</span></code> or <code class="docutils literal"><span class="pre">twitter</span></code> and then follow the steps below to setup the Alert server:</p>
+<p id="google-oauth2">To use OAuth set the <code class="docutils literal"><span class="pre">provider</span></code> configuration setting in the Web UI <code class="file docutils literal"><span class="pre">config.js</span></code> file to one of <code class="docutils literal"><span class="pre">google</span></code>, <code class="docutils literal"><span class="pre">github</span></code>, <code class="docutils literal"><span class="pre">gitlab</span></code> or <code class="docutils literal"><span class="pre">twitter</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre>&#39;use strict&#39;;
 
 angular.module(&#39;config&#39;, [])
@@ -92,6 +92,7 @@ angular.module(&#39;config&#39;, [])
   .constant(&#39;colors&#39;, {});
 </pre></div>
 </div>
+<p>Next, follow the steps below for the chosen OAuth provider to create an OAuth client ID and client secret. The client ID will need to be added to the web UI <code class="docutils literal"><span class="pre">config.js</span></code> and both the client ID and client secret will need to be added to the <code class="docutils literal"><span class="pre">alertad.conf</span></code> file for the Alerta server.</p>
 <div class="section" id="id3">
 <h3>Google OAuth2<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>To use Google as the OAuth2 provider for Alerta, login to <a class="reference external" href="https://console.developers.google.com">Google Developer Console</a> and create a new project for alerta.</p>

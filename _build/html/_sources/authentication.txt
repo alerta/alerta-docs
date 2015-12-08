@@ -3,7 +3,7 @@
 Authentication
 ==============
 
-By default, authentication is not enabled, however there are some features that are :ref:`not available <watched_alerts>` unless users login. To enforce authentication set ``AUTH_REQUIRED`` to ``True`` in the ``alertad.conf`` file::
+By default, authentication is not enabled, however there are some features that are :ref:`not available <watched_alerts>` unless users login. To enforce authentication set ``AUTH_REQUIRED`` to ``True`` in the ``alertad.conf`` file and ``SECRET_KEY`` to some random string::
 
     AUTH_REQUIRED = True
     SECRET_KEY = 'UszE5hI_hx5pXKcsCP_2&1DIs&9_Ve*k'
@@ -12,7 +12,7 @@ By default, authentication is not enabled, however there are some features that 
 
     $ LC_CTYPE=C tr -dc A-Za-z0-9_\!\@\#\$\%\^\&\*\(\)-+= < /dev/urandom | head -c 32 && echo
 
-Alerta supports two types of authentication for the web UI (:ref:`Basic Auth <basic auth>` and :ref:`OAuth <oauth2>`) as well as :ref:`API keys <api keys>` for direct access to the API.
+Alerta supports two types of authentication for the web UI (:ref:`Basic Auth <basic auth>` and :ref:`OAuth <oauth2>`) as well as :ref:`API keys <api keys>` for direct access to the API. The most straight-forward of the two to implement is Basic Auth.
 
 .. _basic auth:
 
@@ -41,7 +41,7 @@ To use Basic Auth set the ``provider`` configuration setting in the Web UI :file
 OAuth2 Authentication
 ---------------------
 
-OAuth authentication is provided by Google_ `OpenID Connect`_, GitHub_ or GitLab_ `OAuth 2.0`_ or Twitter_ `OAuth 1.0a`_.
+OAuth authentication is provided by Google_ `OpenID Connect`_, GitHub_ or GitLab_ `OAuth 2.0`_ or Twitter_ `OAuth 1.0a`_ and configuration is more involved than the Basic Auth setup.
 
 .. note:: If alerta is deployed to a publicly accessible web server it is important to configure the OAuth2 settings correctly to ensure that only authorised users can access and modify your alerts.
 
@@ -55,7 +55,7 @@ OAuth authentication is provided by Google_ `OpenID Connect`_, GitHub_ or GitLab
 
 .. _google oauth2:
 
-To use OAuth set the ``provider`` configuration setting in the Web UI :file:`config.js` file to ``google``, ``github``, ``gitlab`` or ``twitter`` and then follow the steps below to setup the Alert server::
+To use OAuth set the ``provider`` configuration setting in the Web UI :file:`config.js` file to one of ``google``, ``github``, ``gitlab`` or ``twitter``::
 
     'use strict';
 
@@ -66,6 +66,8 @@ To use OAuth set the ``provider`` configuration setting in the Web UI :file:`con
         'client_id'   : "INSERT-CLIENT-ID-HERE" // replace with the client id for your OAuth provider
       })
       .constant('colors', {});
+
+Next, follow the steps below for the chosen OAuth provider to create an OAuth client ID and client secret. The client ID will need to be added to the web UI ``config.js`` and both the client ID and client secret will need to be added to the ``alertad.conf`` file for the Alerta server.
 
 Google OAuth2
 ~~~~~~~~~~~~~
