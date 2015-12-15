@@ -50,7 +50,7 @@ There are several more integrations available in the `contrib`_ repo which may b
 
 .. _contrib: https://github.com/alerta/alerta-contrib
 .. _Amazon SQS: https://github.com/alerta/alerta-contrib/tree/master/integrations/amazon-sqs
-.. _E-mail: https://github.com/alerta/alerta-contrib/blob/master/integrations/amqp/mailer.py
+.. _E-mail: https://github.com/alerta/alerta-contrib/tree/master/integrations/mailer
 .. _AWS Cloudwatch: https://github.com/alerta/alerta-contrib/tree/master/integrations/cloudwatch
 .. _Opsweekly: https://github.com/alerta/alerta-contrib/tree/master/integrations/opsweekly
 .. _Pinger: https://github.com/alerta/alerta-contrib/tree/master/integrations/pinger
