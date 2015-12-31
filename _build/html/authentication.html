@@ -75,12 +75,12 @@ angular.module(&#39;config&#39;, [])
 </div>
 <div class="section" id="oauth2-authentication">
 <span id="oauth2"></span><h2>OAuth2 Authentication<a class="headerlink" href="#oauth2-authentication" title="Permalink to this headline">¶</a></h2>
-<p>OAuth authentication is provided by <a class="reference external" href="https://developers.google.com/accounts/docs/OpenIDConnect">Google</a> <a class="reference external" href="http://openid.net/connect/">OpenID Connect</a>, <a class="reference external" href="https://developer.github.com/v3/oauth/">GitHub</a> or <a class="reference external" href="http://doc.gitlab.com/ce/integration/oauth_provider.html">GitLab</a> <a class="reference external" href="http://tools.ietf.org/html/draft-ietf-oauth-v2-22">OAuth 2.0</a> or <a class="reference external" href="https://dev.twitter.com/web/sign-in/implementing">Twitter</a> <a class="reference external" href="http://oauth.net/core/1.0a/">OAuth 1.0a</a> and configuration is more involved than the Basic Auth setup.</p>
+<p>OAuth authentication is provided by <a class="reference external" href="https://developers.google.com/accounts/docs/OpenIDConnect">Google</a> <a class="reference external" href="http://openid.net/connect/">OpenID Connect</a>, <a class="reference external" href="https://developer.github.com/v3/oauth/">GitHub</a> or <a class="reference external" href="http://doc.gitlab.com/ce/integration/oauth_provider.html">GitLab</a> <a class="reference external" href="http://tools.ietf.org/html/draft-ietf-oauth-v2-22">OAuth 2.0</a> and configuration is more involved than the Basic Auth setup.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">If alerta is deployed to a publicly accessible web server it is important to configure the OAuth2 settings correctly to ensure that only authorised users can access and modify your alerts.</p>
 </div>
-<p id="google-oauth2">To use OAuth set the <code class="docutils literal"><span class="pre">provider</span></code> configuration setting in the Web UI <code class="file docutils literal"><span class="pre">config.js</span></code> file to one of <code class="docutils literal"><span class="pre">google</span></code>, <code class="docutils literal"><span class="pre">github</span></code>, <code class="docutils literal"><span class="pre">gitlab</span></code> or <code class="docutils literal"><span class="pre">twitter</span></code>:</p>
+<p id="google-oauth2">To use OAuth2 set the <code class="docutils literal"><span class="pre">provider</span></code> configuration setting in the Web UI <code class="file docutils literal"><span class="pre">config.js</span></code> file to one of <code class="docutils literal"><span class="pre">google</span></code>, <code class="docutils literal"><span class="pre">github</span></code> or <code class="docutils literal"><span class="pre">gitlab</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre>&#39;use strict&#39;;
 
 angular.module(&#39;config&#39;, [])
@@ -180,27 +180,6 @@ angular.module(&#39;config&#39;, [])
 <p class="last">To revoke access of your instance of alerta to your GitLab user info at any time go to <em>Profile Settings -&gt; Applications -&gt; Authorized appliations</em>, find alerta in the list of applications and click the <strong>Revoke</strong> button.</p>
 </div>
 </div>
-<div class="section" id="twitter-oauth">
-<h3>Twitter OAuth<a class="headerlink" href="#twitter-oauth" title="Permalink to this headline">¶</a></h3>
-<p>To use Twitter as the OAuth provider for Alerta, login to <a class="reference external" href="https://dev.twitter.com/apps">Twitter Application Management</a> and create a new App.</p>
-<ul class="simple">
-<li>Name: Alerta for <em>Organisation</em></li>
-<li>Description: Alerta monitoring system</li>
-<li>Website: <a class="reference external" href="http://alerta.io">http://alerta.io</a></li>
-<li>Callback URL: <a class="reference external" href="http://alerta.example.com">http://alerta.example.com</a></li>
-</ul>
-<p>Create your twitter application, switch to <em>Settings</em> tab and enable <em>Allow this application to be used to Sign in with Twitter</em>.</p>
-<p>Select the <em>Keys and Access Tokens</em> tab and take note of the Consumer Key (API Key), for the OAuth Client ID, and the Consumer Secret (API Secret), for the OAuth Client Secret. Then update the <code class="docutils literal"><span class="pre">alertad</span></code> configuration settings as follows:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s">&#39;1Hfs7vUYPI1krKNFr2Pdg&#39;</span>  <span class="c"># consumer key</span>
-<span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s">&#39;C0PthnGzCYzICnjG2dXaS6GhU4qqHEtcPMy33x8mpl3&#39;</span>  <span class="c"># consumer secret</span>
-</pre></div>
-</div>
-<p>To restrict access to particular users use the <em>circle of trust</em> approach. That is, add yourself to the list of allowed users, ensure <code class="docutils literal"><span class="pre">AUTH_REQUIRED</span></code> is set to <code class="docutils literal"><span class="pre">True</span></code> and restart <code class="docutils literal"><span class="pre">alertad</span></code>. To gain access now, a user will need to be manually added to the <em>Users</em> page. Note that any existing user can add and remove users for the list of authorised users.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Twitter does not support OAuth2 for user logins.</p>
-</div>
-</div>
 <div class="section" id="cross-origin">
 <span id="id5"></span><h3>Cross-Origin<a class="headerlink" href="#cross-origin" title="Permalink to this headline">¶</a></h3>
 <p>If the Alerta API is not being served from the same domain as the Alerta Web UI then the <code class="docutils literal"><span class="pre">CORS_ORIGINS</span></code> setting needs to be updated to prevent <a class="reference external" href="http://enable-cors.org/client.html">modern browsers</a> from blocking the cross-origin requests.</p>
@@ -235,52 +214,7 @@ angular.module(&#39;config&#39;, [])
 <span id="user-auth"></span><h2>User Authorisation<a class="headerlink" href="#user-authorisation" title="Permalink to this headline">¶</a></h2>
 <p>Google, GitHub and GitLab OAuth are used for user authentication, not user authorisation. Authentication proves that you are who you say you are. Authorization says that you are allowed to access what you have requested.</p>
 <p>To control who has access to Alerta you can restrict access to users with a <a class="reference internal" href="#allowed-email-domains"><span>certain email domain name</span></a> by setting <code class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code> when using Google OAuth2, or who belong to a <a class="reference internal" href="#allowed-github-orgs"><span>particular GitHub organisation</span></a> by setting <code class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code> when using GitHub OAuth, or who belong to a <a class="reference internal" href="#allowed-gitlab-groups"><span>particular GitLab group</span></a> by setting <code class="docutils literal"><span class="pre">ALLOWED_GITLAB_GROUPS</span></code> when using GitLab OAuth2.</p>
-<p>For those situations where it is not possible to group users in this way it is possible to selectively allow access on a per-user basis. How this is done depends on whether you are using Google, GitHub, GitLab or Twitter as OAuth2 provider for user login.</p>
-<div class="section" id="per-user-authorisation-using-google">
-<h3>Per-User Authorisation using Google<a class="headerlink" href="#per-user-authorisation-using-google" title="Permalink to this headline">¶</a></h3>
-<p>This assumes that the user wanting access to Alerta either does not have an email address in the configured Google app email domains:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;onlyus.com&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>Or that the list of allowed email domains is empty:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>Manaully add the user email address by selecting <em>Configuration -&gt; Users</em> from the alerta console.</p>
-<p>Name: a name to associate with the address, does not need to match registered name
-Login: email address of the user wanting access eg. <code class="docutils literal"><span class="pre">let.me.in&#64;gmail.com</span></code></p>
-<p>This user will now be able to login to Alerta using <code class="docutils literal"><span class="pre">let.me.in&#64;gmail.com</span></code> account eventhough <code class="docutils literal"><span class="pre">gmail.com</span></code> is not listed in the <code class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code> setting.</p>
-</div>
-<div class="section" id="per-user-authorisation-using-github">
-<h3>Per-User Authorisation using GitHub<a class="headerlink" href="#per-user-authorisation-using-github" title="Permalink to this headline">¶</a></h3>
-<p>This assumes that the user wanting access to Alerta is either not a member of the configured GitHub orgs:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">ALLOWED_GITHUB_ORGS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;onlyus&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>Or that the list of allowed GitHub organisations is empty:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">ALLOWED_GITHUB_ORGS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>Manaully add the user GitHub username by selecting <em>Configuration -&gt; Users</em> from the alerta console.</p>
-<p>Name: a name to associate with the username, does not need to match registered name
-Login: GitHub username of user wanting access eg. <code class="docutils literal"><span class="pre">letmein</span></code></p>
-<p>This user will now be able to login to Alerta using <code class="docutils literal"><span class="pre">letmein</span></code> GitHub account eventhough they are not members of the organisations listed in the <code class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code> setting.</p>
-</div>
-<div class="section" id="per-user-authorisation-using-gitlab">
-<h3>Per-User Authorisation using GitLab<a class="headerlink" href="#per-user-authorisation-using-gitlab" title="Permalink to this headline">¶</a></h3>
-<p>This assumes that the user wanting access to Alerta is either not a member of the configured GitLab groups:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">ALLOWED_GITLAB_GROUPS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;onlyus&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>Or that the list of allowed GitLab organisations is empty:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">ALLOWED_GITLAB_GROUPS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>Manaully add the user GitLab username by selecting <em>Configuration -&gt; Users</em> from the alerta console.</p>
-<p>Name: a name to associate with the username, does not need to match registered name
-Login: GitLab username of user wanting access eg. <code class="docutils literal"><span class="pre">letmein</span></code></p>
-<p>This user will now be able to login to Alerta using <code class="docutils literal"><span class="pre">letmein</span></code> GitLab account eventhough they are not members of the groups listed in the <code class="docutils literal"><span class="pre">ALLOWED_GITLAB_GROUPS</span></code> setting.</p>
-</div>
+<p>For those situations where it is not possible to group users in this way it is possible to selectively allow access on a per-user basis. How this is done depends on whether you are using Google, GitHub or GitLab as OAuth2 provider for user login.</p>
 </div>
 </div>
 
@@ -336,6 +270,7 @@ Links
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webui.html">Alerta Web UI</a></li>

@@ -41,21 +41,19 @@ To use Basic Auth set the ``provider`` configuration setting in the Web UI :file
 OAuth2 Authentication
 ---------------------
 
-OAuth authentication is provided by Google_ `OpenID Connect`_, GitHub_ or GitLab_ `OAuth 2.0`_ or Twitter_ `OAuth 1.0a`_ and configuration is more involved than the Basic Auth setup.
+OAuth authentication is provided by Google_ `OpenID Connect`_, GitHub_ or GitLab_ `OAuth 2.0`_ and configuration is more involved than the Basic Auth setup.
 
 .. note:: If alerta is deployed to a publicly accessible web server it is important to configure the OAuth2 settings correctly to ensure that only authorised users can access and modify your alerts.
 
 .. _Google: https://developers.google.com/accounts/docs/OpenIDConnect
 .. _GitHub: https://developer.github.com/v3/oauth/
 .. _GitLab: http://doc.gitlab.com/ce/integration/oauth_provider.html
-.. _Twitter: https://dev.twitter.com/web/sign-in/implementing
 .. _OAuth 2.0: http://tools.ietf.org/html/draft-ietf-oauth-v2-22
-.. _OAuth 1.0a: http://oauth.net/core/1.0a/
 .. _OpenID Connect: http://openid.net/connect/
 
 .. _google oauth2:
 
-To use OAuth set the ``provider`` configuration setting in the Web UI :file:`config.js` file to one of ``google``, ``github``, ``gitlab`` or ``twitter``::
+To use OAuth2 set the ``provider`` configuration setting in the Web UI :file:`config.js` file to one of ``google``, ``github`` or ``gitlab``::
 
     'use strict';
 
@@ -158,32 +156,6 @@ To restrict access to users who are members of particular `GitLab groups`_ use::
 
 .. important:: To revoke access of your instance of alerta to your GitLab user info at any time go to *Profile Settings -> Applications -> Authorized appliations*, find alerta in the list of applications and click the **Revoke** button.
 
-Twitter OAuth
-~~~~~~~~~~~~~
-
-To use Twitter as the OAuth provider for Alerta, login to `Twitter Application Management`_ and create a new App.
-
-- Name: Alerta for *Organisation*
-- Description: Alerta monitoring system
-- Website: http://alerta.io
-- Callback URL: http://alerta.example.com
-
-Create your twitter application, switch to *Settings* tab and enable *Allow this application to be used to Sign in with Twitter*.
-
-Select the *Keys and Access Tokens* tab and take note of the Consumer Key (API Key), for the OAuth Client ID, and the Consumer Secret (API Secret), for the OAuth Client Secret. Then update the ``alertad`` configuration settings as follows::
-
-    OAUTH2_CLIENT_ID = '1Hfs7vUYPI1krKNFr2Pdg'  # consumer key
-    OAUTH2_CLIENT_SECRET = 'C0PthnGzCYzICnjG2dXaS6GhU4qqHEtcPMy33x8mpl3'  # consumer secret
-
-.. _`Twitter Application Management`: https://dev.twitter.com/apps
-
-To restrict access to particular users use the *circle of trust* approach. That is, add yourself to the list of allowed users, ensure ``AUTH_REQUIRED`` is set to ``True`` and restart ``alertad``. To gain access now, a user will need to be manually added to the *Users* page. Note that any existing user can add and remove users for the list of authorised users.
-
-.. note:: Twitter does not support OAuth2 for user logins.
-
-
-
-
 .. _cross_origin:
 
 Cross-Origin
@@ -228,58 +200,4 @@ Google, GitHub and GitLab OAuth are used for user authentication, not user autho
 
 To control who has access to Alerta you can restrict access to users with a :ref:`certain email domain name <allowed_email_domains>` by setting ``ALLOWED_EMAIL_DOMAINS`` when using Google OAuth2, or who belong to a :ref:`particular GitHub organisation <allowed_github_orgs>` by setting ``ALLOWED_GITHUB_ORGS`` when using GitHub OAuth, or who belong to a :ref:`particular GitLab group <allowed_gitlab_groups>` by setting ``ALLOWED_GITLAB_GROUPS`` when using GitLab OAuth2.
 
-For those situations where it is not possible to group users in this way it is possible to selectively allow access on a per-user basis. How this is done depends on whether you are using Google, GitHub, GitLab or Twitter as OAuth2 provider for user login.
-
-Per-User Authorisation using Google
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This assumes that the user wanting access to Alerta either does not have an email address in the configured Google app email domains::
-
-    ALLOWED_EMAIL_DOMAINS = ['onlyus.com']
-
-Or that the list of allowed email domains is empty::
-
-    ALLOWED_EMAIL_DOMAINS = ['']
-
-Manaully add the user email address by selecting *Configuration -> Users* from the alerta console.
-
-Name: a name to associate with the address, does not need to match registered name
-Login: email address of the user wanting access eg. ``let.me.in@gmail.com``
-
-This user will now be able to login to Alerta using ``let.me.in@gmail.com`` account eventhough ``gmail.com`` is not listed in the ``ALLOWED_EMAIL_DOMAINS`` setting.
-
-Per-User Authorisation using GitHub
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This assumes that the user wanting access to Alerta is either not a member of the configured GitHub orgs::
-
-    ALLOWED_GITHUB_ORGS = ['onlyus']
-
-Or that the list of allowed GitHub organisations is empty::
-
-    ALLOWED_GITHUB_ORGS = ['']
-
-Manaully add the user GitHub username by selecting *Configuration -> Users* from the alerta console.
-
-Name: a name to associate with the username, does not need to match registered name
-Login: GitHub username of user wanting access eg. ``letmein``
-
-This user will now be able to login to Alerta using ``letmein`` GitHub account eventhough they are not members of the organisations listed in the ``ALLOWED_GITHUB_ORGS`` setting.
-
-Per-User Authorisation using GitLab
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This assumes that the user wanting access to Alerta is either not a member of the configured GitLab groups::
-
-    ALLOWED_GITLAB_GROUPS = ['onlyus']
-
-Or that the list of allowed GitLab organisations is empty::
-
-    ALLOWED_GITLAB_GROUPS = ['']
-
-Manaully add the user GitLab username by selecting *Configuration -> Users* from the alerta console.
-
-Name: a name to associate with the username, does not need to match registered name
-Login: GitLab username of user wanting access eg. ``letmein``
-
-This user will now be able to login to Alerta using ``letmein`` GitLab account eventhough they are not members of the groups listed in the ``ALLOWED_GITLAB_GROUPS`` setting.
+For those situations where it is not possible to group users in this way it is possible to selectively allow access on a per-user basis. How this is done depends on whether you are using Google, GitHub or GitLab as OAuth2 provider for user login.

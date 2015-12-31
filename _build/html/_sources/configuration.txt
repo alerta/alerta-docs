@@ -95,7 +95,7 @@ Authentication Settings
 
     AUTH_REQUIRED = False
     SECRET_KEY = r'0Afk\(,8$cr(Y8:MA""knd>[@$U[G.eQL6DjAmVs'
-    OAUTH2_CLIENT_ID = 'INSERT-OAUTH2-CLIENT-ID-HERE'  # Google, GitHub, GitLab or Twitter OAuth2 client ID and secret
+    OAUTH2_CLIENT_ID = 'INSERT-OAUTH2-CLIENT-ID-HERE'  # Google, GitHub or GitLab OAuth2 client ID and secret
     OAUTH2_CLIENT_SECRET = 'INSERT-OAUTH2-CLIENT-SECRET-HERE'
     ALLOWED_EMAIL_DOMAINS = ['gmail.com']
     ALLOWED_GITHUB_ORGS = ['guardian']
@@ -108,9 +108,9 @@ Authentication Settings
 ``SECRET_KEY``
     a unique, randomly generated sequence of ASCII characters.
 ``OAUTH2_CLIENT_ID``
-    client ID required by OAuth2 provider for Google, Github, GitLab or Twitter.
+    client ID required by OAuth2 provider for Google, Github or GitLab.
 ``OAUTH2_CLIENT_SECRET``
-    client secret required by OAuth2 provider for Google, Github, GitLab or Twitter.
+    client secret required by OAuth2 provider for Google, Github or GitLab.
 ``ALLOWED_EMAIL_DOMAINS``
     list of authorised email domains when using Google as OAuth2 provider.
 ``ALLOWED_GITHUB_ORGS``

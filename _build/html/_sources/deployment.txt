@@ -78,7 +78,7 @@ Authentication & SSL
 
 Alerta supports several authentication mechanisms for both the API and the web UI and some key features of the web UI, like :ref:`watching alerts <watched alerts>`, are only available if authentication is enabled.
 
-The API can be secured using :ref:`API keys` and the web UI can be secured using :ref:`Basic Auth <basic auth>` or an :ref:`OAuth <oauth2>` provider from either Google, Github or Twitter.
+The API can be secured using :ref:`API keys` and the web UI can be secured using :ref:`Basic Auth <basic auth>` or an :ref:`OAuth <oauth2>` provider from either Google or Github.
 
 If you plan to make the web UI accessible from a public URL it is strongly advised to :ref:`enforce authentication <Authentication>` and use HTTPS/SSL connections to the Alerta API to protect private alert data.
 
