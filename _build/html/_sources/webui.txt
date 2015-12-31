@@ -8,6 +8,10 @@ The Alerta web UI console takes full advantage of the :ref:`state-based Alerta A
 Configuration
 -------------
 
+To configure the Alerta web UI modify "in place" the ``config.js`` file that is supplied with the web application. It uses `AngularJS configuration block`_ syntax. More information can be found on the :ref:`web UI <webui>` page.
+
+.. _AngularJS configuration block: https://docs.angularjs.org/guide/module#configuration-blocks
+
 The three main areas for configuration are:
 
   * defining the Alerta API endpoint

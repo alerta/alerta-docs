@@ -8,7 +8,7 @@ WSGI Server
 
 There are many ways to deploy Alerta. It can be run as ``alertad`` during development or testing but when run in a production environment, it should `always be deployed`_ as a WSGI application. See the list of `real world`_ examples below for different ways to run Alerta as a WSGI application.
 
-.. _always be deployed: http://flask.pocoo.org/docs/0.10/deploying/#deployment
+.. _always be deployed: http://flask.pocoo.org/docs/0.10/deploying/
 .. _WSGI: http://www.fullstackpython.com/wsgi-servers.html
 
 .. _reverse proxy:
@@ -164,6 +164,7 @@ Below are several different examples of how to run Alerta in production from a D
 * `AWS EC2`_ - deploy Alerta to EC2 using AWS Cloudformation
 * Docker_ - deploy Alerta to a docker container
 * Packer_ - deploy Alerta to EC2 using Amazon AMIs
+* `Flask deploy`_ - deploy Alerta as a generic Flask app
 
 .. _Vagrant: https://github.com/alerta/vagrant-try-alerta
 .. _Heroku: https://github.com/guardian/alerta#deploy-to-the-cloud
@@ -172,3 +173,4 @@ Below are several different examples of how to run Alerta in production from a D
 .. _AWS EC2: https://github.com/alerta/alerta-cloudformation
 .. _Docker: https://github.com/alerta/docker-alerta
 .. _Packer: https://github.com/alerta/packer-templates
+.. _Flask deploy: http://flask.pocoo.org/docs/0.10/quickstart/#deploying-to-a-web-server

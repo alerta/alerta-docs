@@ -31,6 +31,7 @@ The API Explorer website can be used to query for, and send alerts to, the http:
    :hidden:
 
    quick-start
+   tutorial
    design
    server
    webui

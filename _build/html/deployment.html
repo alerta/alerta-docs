@@ -43,7 +43,7 @@
 <span id="id1"></span><h1>Deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="wsgi-server">
 <h2>WSGI Server<a class="headerlink" href="#wsgi-server" title="Permalink to this headline">¶</a></h2>
-<p>There are many ways to deploy Alerta. It can be run as <code class="docutils literal"><span class="pre">alertad</span></code> during development or testing but when run in a production environment, it should <a class="reference external" href="http://flask.pocoo.org/docs/0.10/deploying/#deployment">always be deployed</a> as a WSGI application. See the list of <a class="reference internal" href="#real-world">real world</a> examples below for different ways to run Alerta as a WSGI application.</p>
+<p>There are many ways to deploy Alerta. It can be run as <code class="docutils literal"><span class="pre">alertad</span></code> during development or testing but when run in a production environment, it should <a class="reference external" href="http://flask.pocoo.org/docs/0.10/deploying/">always be deployed</a> as a WSGI application. See the list of <a class="reference internal" href="#real-world">real world</a> examples below for different ways to run Alerta as a WSGI application.</p>
 </div>
 <div class="section" id="web-proxy">
 <span id="reverse-proxy"></span><h2>Web Proxy<a class="headerlink" href="#web-proxy" title="Permalink to this headline">¶</a></h2>
@@ -146,6 +146,7 @@ $ sed -i s/@@TRACKING_ID/${GOOGLE_TRACKING_ID}/ index.html
 <li><a class="reference external" href="https://github.com/alerta/alerta-cloudformation">AWS EC2</a> - deploy Alerta to EC2 using AWS Cloudformation</li>
 <li><a class="reference external" href="https://github.com/alerta/docker-alerta">Docker</a> - deploy Alerta to a docker container</li>
 <li><a class="reference external" href="https://github.com/alerta/packer-templates">Packer</a> - deploy Alerta to EC2 using Amazon AMIs</li>
+<li><a class="reference external" href="http://flask.pocoo.org/docs/0.10/quickstart/#deploying-to-a-web-server">Flask deploy</a> - deploy Alerta as a generic Flask app</li>
 </ul>
 </div>
 </div>
@@ -202,6 +203,7 @@ Links
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webui.html">Alerta Web UI</a></li>

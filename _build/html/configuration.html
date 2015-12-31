@@ -42,7 +42,7 @@
   <div class="section" id="configuration">
 <span id="id1"></span><h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
 <p>The following settings <strong>only</strong> apply to the Alerta server. For <code class="docutils literal"><span class="pre">alerta</span></code> CLI configuration options see <a class="reference internal" href="cli.html#cli"><span>command-line reference</span></a> and for Web UI configuration options see <a class="reference internal" href="webui.html#webui"><span>web UI reference</span></a>.</p>
-<p>The default settings <strong>should not</strong> be modified directly. To change any of these settings create a configuration file that overrides these default settings. The default location for the server configuration file is <code class="docutils literal"><span class="pre">/etc/alertad.conf</span></code> however the location itself can be overridden by using a environment variable <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALERTA_SVR_CONF_FILE</span></code>.</p>
+<p>The configuration file uses standard python syntax for setting variables. The default settings (defined in <cite>settings.py</cite>) <strong>should not</strong> be modified directly. To change any of these settings create a configuration file that overrides these default settings. The default location for the server configuration file is <code class="docutils literal"><span class="pre">/etc/alertad.conf</span></code> however the location itself can be overridden by using a environment variable <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALERTA_SVR_CONF_FILE</span></code>.</p>
 <p>For example, to set the blackout period default duration to 1 day (ie. 86400 seconds):</p>
 <div class="highlight-python"><div class="highlight"><pre>$ export ALERTA_SVR_CONF_FILE=~/.alertad.conf
 $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
@@ -307,6 +307,7 @@ Links
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webui.html">Alerta Web UI</a></li>
