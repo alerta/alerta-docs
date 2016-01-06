@@ -8,15 +8,15 @@ The Alerta web UI console takes full advantage of the :ref:`state-based Alerta A
 Configuration
 -------------
 
-To configure the Alerta web UI modify "in place" the ``config.js`` file that is supplied with the web application. It uses `AngularJS configuration block`_ syntax. More information can be found on the :ref:`web UI <webui>` page.
+To configure the Alerta web UI modify "in place" the default ``config.js`` file that is supplied with the web application. It uses `AngularJS configuration block`_ syntax. More information can be found on the :ref:`web UI <webui>` page.
 
 .. _AngularJS configuration block: https://docs.angularjs.org/guide/module#configuration-blocks
 
 The three main areas for configuration are:
 
   * defining the Alerta API endpoint
-  * enforcing a security strategy
-  * selecting colors for severity, highlighting and text
+  * enforcing a use authentication strategy
+  * selecting colors for severity, highlighting, text and sound
 
 The default web UI :file:`config.js` configuration file is included below. It assumes that the Alerta API is running on the same host (but different port) that the web UI static html files are being served from (line 5), that :ref:`basic auth` will be used (line 6) and so no client id needs to be defined (line 7). Note also that default colours for alert severity, highlighting for multi-select and text are used (line 9):
 
@@ -30,8 +30,7 @@ The default web UI :file:`config.js` configuration file is included below. It as
         'endpoint'    : "http://"+window.location.hostname+":8080",
         'provider'    : "basic",
         'client_id'   : ""
-      })
-      .constant('colors', {}); // use default colors
+      });
 
 **Example**
 
@@ -47,26 +46,30 @@ An example web UI :file:`config.js` configuration file that assumes that the Ale
         'endpoint'    : "/api",
         'provider'    : "google",
         'client_id'   : "379647311730-sj130ru952o3o7ig8u0ts8np2example.apps.googleusercontent.com"
-      })
-      .constant('colors', {
-        'severity': {
-          'critical'     : '#D8122A',
-          'major'        : '#EA680F',
-          'minor'        : '#FFBE1E',
-          'warning'      : '#BA2222',
-          'indeterminate': '#A6ACA8',
-          'cleared'      : '#00AA5A',
-          'normal'       : '#00AA5A',
-          'ok'           : '#00AA5A',
-          'informational': '#00A1BC',
-          'debug'        : '#9D006D',
-          'security'     : '#333333',
-          'unknown'      : '#A6ACA8'
-        },
-        'text': 'white',
-        'highlight': 'lightgray'
-      });
 
+        'colors'      : {
+          'severity': {
+            'critical'     : '#D8122A',
+            'major'        : '#EA680F',
+            'minor'        : '#FFBE1E',
+            'warning'      : '#BA2222',
+            'indeterminate': '#A6ACA8',
+            'cleared'      : '#00AA5A',
+            'normal'       : '#00AA5A',
+            'ok'           : '#00AA5A',
+            'informational': '#00A1BC',
+            'debug'        : '#9D006D',
+            'security'     : '#333333',
+            'unknown'      : '#A6ACA8'
+          },
+          'text': 'white',
+          'highlight': 'lightgray'
+        },
+
+        'audio'       : {
+          'new'  : '/audio/Bike Horn.mp3'
+        }
+      });
 
 Customer Views
 --------------

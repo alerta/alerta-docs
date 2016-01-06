@@ -44,13 +44,13 @@
 <p>The Alerta web UI console takes full advantage of the <a class="reference internal" href="server.html#state-based-browser"><span>state-based Alerta API</span></a> to ensure that the most important events at any given time are brought to the attention of operators.</p>
 <div class="section" id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
-<p>To configure the Alerta web UI modify &#8220;in place&#8221; the <code class="docutils literal"><span class="pre">config.js</span></code> file that is supplied with the web application. It uses <a class="reference external" href="https://docs.angularjs.org/guide/module#configuration-blocks">AngularJS configuration block</a> syntax. More information can be found on the <a class="reference internal" href="#webui"><span>web UI</span></a> page.</p>
+<p>To configure the Alerta web UI modify &#8220;in place&#8221; the default <code class="docutils literal"><span class="pre">config.js</span></code> file that is supplied with the web application. It uses <a class="reference external" href="https://docs.angularjs.org/guide/module#configuration-blocks">AngularJS configuration block</a> syntax. More information can be found on the <a class="reference internal" href="#webui"><span>web UI</span></a> page.</p>
 <p>The three main areas for configuration are:</p>
 <blockquote>
 <div><ul class="simple">
 <li>defining the Alerta API endpoint</li>
-<li>enforcing a security strategy</li>
-<li>selecting colors for severity, highlighting and text</li>
+<li>enforcing a use authentication strategy</li>
+<li>selecting colors for severity, highlighting, text and sound</li>
 </ul>
 </div></blockquote>
 <p>The default web UI <code class="file docutils literal"><span class="pre">config.js</span></code> configuration file is included below. It assumes that the Alerta API is running on the same host (but different port) that the web UI static html files are being served from (line 5), that <a class="reference internal" href="authentication.html#basic-auth"><span>Basic Authentication</span></a> will be used (line 6) and so no client id needs to be defined (line 7). Note also that default colours for alert severity, highlighting for multi-select and text are used (line 9):</p>
@@ -61,16 +61,14 @@
 5
 6
 7
-8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
 
 <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">[])</span>
   <span class="p">.</span><span class="nx">constant</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">{</span>
     <span class="s1">&#39;endpoint&#39;</span>    <span class="o">:</span> <span class="s2">&quot;http://&quot;</span><span class="o">+</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hostname</span><span class="o">+</span><span class="s2">&quot;:8080&quot;</span><span class="p">,</span>
     <span class="s1">&#39;provider&#39;</span>    <span class="o">:</span> <span class="s2">&quot;basic&quot;</span><span class="p">,</span>
     <span class="s1">&#39;client_id&#39;</span>   <span class="o">:</span> <span class="s2">&quot;&quot;</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="nx">constant</span><span class="p">(</span><span class="s1">&#39;colors&#39;</span><span class="p">,</span> <span class="p">{});</span> <span class="c1">// use default colors</span>
+  <span class="p">});</span>
 </pre></div>
 </td></tr></table></div>
 <p><strong>Example</strong></p>
@@ -100,31 +98,41 @@
 23
 24
 25
-26</pre></div></td><td class="code"><div class="highlight"><pre><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+26
+27
+28
+29
+30
+31</pre></div></td><td class="code"><div class="highlight"><pre><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
 
 <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">[])</span>
   <span class="p">.</span><span class="nx">constant</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">{</span>
     <span class="s1">&#39;endpoint&#39;</span>    <span class="o">:</span> <span class="s2">&quot;/api&quot;</span><span class="p">,</span>
     <span class="s1">&#39;provider&#39;</span>    <span class="o">:</span> <span class="s2">&quot;google&quot;</span><span class="p">,</span>
     <span class="s1">&#39;client_id&#39;</span>   <span class="o">:</span> <span class="s2">&quot;379647311730-sj130ru952o3o7ig8u0ts8np2example.apps.googleusercontent.com&quot;</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="nx">constant</span><span class="p">(</span><span class="s1">&#39;colors&#39;</span><span class="p">,</span> <span class="p">{</span>
-    <span class="s1">&#39;severity&#39;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s1">&#39;critical&#39;</span>     <span class="o">:</span> <span class="s1">&#39;#D8122A&#39;</span><span class="p">,</span>
-      <span class="s1">&#39;major&#39;</span>        <span class="o">:</span> <span class="s1">&#39;#EA680F&#39;</span><span class="p">,</span>
-      <span class="s1">&#39;minor&#39;</span>        <span class="o">:</span> <span class="s1">&#39;#FFBE1E&#39;</span><span class="p">,</span>
-      <span class="s1">&#39;warning&#39;</span>      <span class="o">:</span> <span class="s1">&#39;#BA2222&#39;</span><span class="p">,</span>
-      <span class="s1">&#39;indeterminate&#39;</span><span class="o">:</span> <span class="s1">&#39;#A6ACA8&#39;</span><span class="p">,</span>
-      <span class="s1">&#39;cleared&#39;</span>      <span class="o">:</span> <span class="s1">&#39;#00AA5A&#39;</span><span class="p">,</span>
-      <span class="s1">&#39;normal&#39;</span>       <span class="o">:</span> <span class="s1">&#39;#00AA5A&#39;</span><span class="p">,</span>
-      <span class="s1">&#39;ok&#39;</span>           <span class="o">:</span> <span class="s1">&#39;#00AA5A&#39;</span><span class="p">,</span>
-      <span class="s1">&#39;informational&#39;</span><span class="o">:</span> <span class="s1">&#39;#00A1BC&#39;</span><span class="p">,</span>
-      <span class="s1">&#39;debug&#39;</span>        <span class="o">:</span> <span class="s1">&#39;#9D006D&#39;</span><span class="p">,</span>
-      <span class="s1">&#39;security&#39;</span>     <span class="o">:</span> <span class="s1">&#39;#333333&#39;</span><span class="p">,</span>
-      <span class="s1">&#39;unknown&#39;</span>      <span class="o">:</span> <span class="s1">&#39;#A6ACA8&#39;</span>
+
+    <span class="s1">&#39;colors&#39;</span>      <span class="o">:</span> <span class="p">{</span>
+      <span class="s1">&#39;severity&#39;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s1">&#39;critical&#39;</span>     <span class="o">:</span> <span class="s1">&#39;#D8122A&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;major&#39;</span>        <span class="o">:</span> <span class="s1">&#39;#EA680F&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;minor&#39;</span>        <span class="o">:</span> <span class="s1">&#39;#FFBE1E&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;warning&#39;</span>      <span class="o">:</span> <span class="s1">&#39;#BA2222&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;indeterminate&#39;</span><span class="o">:</span> <span class="s1">&#39;#A6ACA8&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;cleared&#39;</span>      <span class="o">:</span> <span class="s1">&#39;#00AA5A&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;normal&#39;</span>       <span class="o">:</span> <span class="s1">&#39;#00AA5A&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ok&#39;</span>           <span class="o">:</span> <span class="s1">&#39;#00AA5A&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;informational&#39;</span><span class="o">:</span> <span class="s1">&#39;#00A1BC&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;debug&#39;</span>        <span class="o">:</span> <span class="s1">&#39;#9D006D&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;security&#39;</span>     <span class="o">:</span> <span class="s1">&#39;#333333&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;unknown&#39;</span>      <span class="o">:</span> <span class="s1">&#39;#A6ACA8&#39;</span>
+      <span class="p">},</span>
+      <span class="s1">&#39;text&#39;</span><span class="o">:</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;highlight&#39;</span><span class="o">:</span> <span class="s1">&#39;lightgray&#39;</span>
     <span class="p">},</span>
-    <span class="s1">&#39;text&#39;</span><span class="o">:</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;highlight&#39;</span><span class="o">:</span> <span class="s1">&#39;lightgray&#39;</span>
+
+    <span class="s1">&#39;audio&#39;</span>       <span class="o">:</span> <span class="p">{</span>
+      <span class="s1">&#39;new&#39;</span>  <span class="o">:</span> <span class="s1">&#39;/audio/Bike Horn.mp3&#39;</span>
+    <span class="p">}</span>
   <span class="p">});</span>
 </pre></div>
 </td></tr></table></div>
