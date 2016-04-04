@@ -240,6 +240,8 @@ Show top offenders and stats::
     optional arguments:
       -h, --help  show this help message and exit
 
+See :ref:`top` for more information.
+
 :command:`raw`
 ~~~~~~~~~~~~~~
 
