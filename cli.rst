@@ -229,6 +229,17 @@ Watch for new alerts::
       -i ID, --id ID     List of alert IDs (can use short 8-char id).
       --filters FILTERS  KEY=VALUE eg. id=5108bc20
 
+:command:`top`
+~~~~~~~~~~~~~~
+
+Show top offenders and stats::
+
+    $ alerta top --help
+    usage: alerta [OPTIONS] top [-h]
+
+    optional arguments:
+      -h, --help  show this help message and exit
+
 :command:`raw`
 ~~~~~~~~~~~~~~
 
@@ -391,6 +402,62 @@ List all heartbeats::
     optional arguments:
       -h, --help  show this help message and exit
       --alert     Send alerts on stale or slow heartbeats
+
+:command:`user`
+~~~~~~~~~~~~~~~
+
+Manage user details (Basic Auth only)::
+
+    $ alerta user --help
+    usage: alerta [OPTIONS] user --user-name USER [--password PASSWORD]
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -u USER, --user-name USER
+                            User name
+      -p PASSWORD, --password PASSWORD
+                            New password
+
+:command:`key`
+~~~~~~~~~~~~~~
+
+Create API key::
+
+    $ alerta key --help
+    usage: alerta [OPTIONS] key [-u USER] [--readonly] [--customer CUSTOMER|--no-customer] [-t TEXT]
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -u USER, --user-name USER
+                            User name
+      -O, --readonly        read only API key
+      --customer CUSTOMER   customer view
+      --no-customer         do not associate with customer
+      -t TEXT, --text TEXT  text
+
+:command:`keys`
+~~~~~~~~~~~~~~~
+
+List all API keys::
+
+    $ alerta keys --help
+    usage: alerta [OPTIONS] keys [-h]
+
+    optional arguments:
+      -h, --help  show this help message and exit
+
+:command:`revoke`
+~~~~~~~~~~~~~~~~~
+
+Revoke API key::
+
+    $ alerta revoke --help
+    usage: alerta [OPTIONS] revoke [--api-key KEY]
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -K API_KEY, --api-key API_KEY
+                            API key to be revoked.
 
 .. _cli_status:
 
