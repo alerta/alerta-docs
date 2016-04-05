@@ -5,17 +5,30 @@ Releases
 Roadmap
 +++++++
 
-* Web UI redesign using `Google material design`_
 * Custom alert filters and dashboard views
-* Prometheus_ integration
+* Web UI redesign using `Google material design`_
+* GitHub enterprise for OAuth2 logins
 
 .. _Google material design: https://www.google.com/design/spec/material-design/introduction.html
-.. _Prometheus: http://prometheus.io/docs/alerting/alertmanager/
 
 .. _releases:
 
 Release History
 +++++++++++++++
+
+Release 4.7 (24-01-2016)
+------------------------
+
+* Prometheus_ integration
+* Configurable severities
+* Blackout periods by customer
+* Status change hook for plugins
+* Require authentication on webhooks if auth enabled
+* Limit alert history in MongoDB
+* Send email confirmation for Basic Auth sign-ups
+* Removed support for Twitter OAuth1
+
+.. _Prometheus: http://prometheus.io/docs/alerting/alertmanager/
 
 Release 4.6 (26-11-2015)
 ------------------------
