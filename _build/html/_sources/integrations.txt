@@ -108,6 +108,21 @@ For details on how to set this up see the `PagerDuty webhook`_ page and where it
 
 .. _PagerDuty webhook: https://developer.pagerduty.com/documentation/rest/webhooks
 
+.. _stackdriver:
+
+Google Stackdriver
+~~~~~~~~~~~~~~~~~~
+
+Alerta can be configured to receive Google Stackdriver incidents by adding a webhook endpoint to the notifications configuration.
+
+For details on how to set this up see `Stackdriver webhook`_ page and in the `ENDPOINT URL` input box append :file:`/webhooks/stackdriver` to the Alerta API URL.
+
+**Example Stackdriver Webhook URL**
+
+:file:`https://alerta.example.com/api/webhooks/stackdriver`
+
+.. _Stackdriver webhook: https://support.stackdriver.com/customer/portal/articles/1491775-configuring-webhooks
+
 .. _plugins:
 
 Plugins
