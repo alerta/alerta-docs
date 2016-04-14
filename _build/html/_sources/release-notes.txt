@@ -19,7 +19,8 @@ Release History
 Release 4.7 (24-01-2016)
 ------------------------
 
-* Prometheus_ integration
+* Prometheus_ webhook integration
+* `Google Stackdriver`_ webhook integration
 * Configurable severities
 * Blackout periods by customer
 * Status change hook for plugins
@@ -29,6 +30,7 @@ Release 4.7 (24-01-2016)
 * Removed support for Twitter OAuth1
 
 .. _Prometheus: http://prometheus.io/docs/alerting/alertmanager/
+.. _Google Stackdriver: https://cloud.google.com/stackdriver/
 
 Release 4.6 (26-11-2015)
 ------------------------
