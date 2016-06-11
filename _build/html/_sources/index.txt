@@ -5,7 +5,19 @@ The alerta monitoring system is a tool used to consolidate and de-duplicate aler
 
 .. image:: _static/images/alerta-screen-shot-3.png
 
-Alerta combines a JSON API :ref:`server <server>` for receiving, manipulating and rendering alerts with a simple, yet effective :ref:`webui` and :ref:`command-line tool <cli>`. There are numerous :ref:`integrations <integrations>` with popular monitoring tools and it is easy to add your own using the :ref:`API <api>` directly, the :ref:`Python SDK <development>` or the same command-line tool to :ref:`send alerts <cli_send>`. Access to the API and command-line tool can be restricted using :ref:`API keys <api_keys>` and to the web console using Google or GitHub :ref:`OAuth2 <oauth2>`.
+Alerta combines a JSON API :ref:`server <server>` for receiving, processing and
+rendering alerts with a simple, yet effective :ref:`webui` and :ref:`command-line
+tool <cli>`. There are numerous :ref:`integrations <integrations>` with popular_
+monitoring_ tools_ and it is easy to add your own using the :ref:`API <api>`
+directly, the :ref:`Python SDK <development>` or the same command-line tool to
+:ref:`send alerts <cli_send>`. Access to the API and command-line tool can be
+restricted using :ref:`API keys <api_keys>` and to the web console using
+:ref:`Basic Auth <basic auth>` or :ref:`OAuth2 <oauth2>` providers Google,
+GitHub and GitLab.
+
+.. _popular: https://www.pingdom.com/
+.. _monitoring: https://www.nagios.com
+.. _tools: https://www.pagerduty.com
 
 :ref:`Get started <quick_start>` today!
 
@@ -56,12 +68,13 @@ The API Explorer website can be used to query for, and send alerts to, the http:
 Contribute
 ----------
 
-- Core project: http://github.com/guardian/alerta
-- Web UI, Python SDK, integrations: http://github.com/alerta
+* Core project: http://github.com/guardian/alerta
+* Web UI, Python SDK, integrations: http://github.com/alerta
 
 Support
 -------
 
+* Gitter chat room: https://gitter.im/alerta/chat
 * :ref:`Frequently Asked Questions <faq>`
 * Issue Tracker: http://github.com/guardian/alerta/issues
 
