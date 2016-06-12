@@ -277,7 +277,7 @@ html_theme_options = {
     'github_user': 'guardian',
     'github_repo': 'alerta',
     'gittip_user': '',
+    'github_type': 'star',
     'analytics_id': 'UA-44644195-3',
     'travis_button': True,
 }
-
