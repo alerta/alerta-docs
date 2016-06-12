@@ -3,7 +3,7 @@
 Quickstart
 ==========
 
-This is a quick-start guide that will get you running Alerta in under 5 minutes  .
+This is a quick-start guide that will get you running Alerta in under 5 minutes.
 
 Install MongoDB
 ---------------
@@ -15,7 +15,7 @@ For Debian/Ubuntu, run::
 
 For other operating systems, see the installation_ steps on the MongoDB web site.
 
-.. _installation: http://docs.mongodb.org/manual/installation/
+.. _installation: https://docs.mongodb.com/master/installation/#tutorials
 
 Install the Alerta Server
 -------------------------
@@ -48,7 +48,8 @@ To send an alert to the server::
 
     $ alerta send -r web01 -e NodeDown -E Production -S Website -s major -t "Web server is down." -v ERROR
 
-The alert should appear almost immediately in the console. If it doesn't it's either a :ref:`CORS issues <cross_origin>` or a bug_.
+The alert should appear almost immediately in the console. If it doesn't it's
+either a :ref:`CORS issues <cross_origin>` or a bug_.
 
 .. _bug: https://github.com/alerta/alerta-docs/issues/new
 
@@ -56,4 +57,3 @@ What's next?
 ------------
 
 Take the :ref:`step-by-step tutorial <tutorial>` or dive straight into a :ref:`deployment <deployment>`.
-
