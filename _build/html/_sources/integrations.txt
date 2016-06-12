@@ -5,11 +5,25 @@ Integrations & Plugins
 
 There are several different ways to integrate other alert sources into Alerta.
 
-Firstly, integrations with key open source monitoring tools like Nagios and Zabbix make use of the Alerta API and demonstrate how to build integrations with other monitoring tools.
+Firstly, :ref:`integrations <integrations>` with well known monitoring tools like
+Nagios_, Zabbix_ and Sensu_ make use of the Alerta API and demonstrate how to
+build integrations with other monitoring tools.
 
-Secondly, there are built-in webhooks for AWS Cloudwatch, Pingdom and PagerDuty which provide 'out-of-the-box' integrations for some of the most popular monitoring systems available.
+.. _Nagios: https://www.nagios.com
+.. _Zabbix: http://www.zabbix.com
+.. _Sensu: https://sensuapp.org
 
-Lastly, plugins can be used to quickly and easily forward alerts to or notify other systems like Slack or Hipchat.
+Secondly, there are built-in :ref:`webhooks <webhooks>` for `AWS Cloudwatch`_,
+Pingdom_, PagerDuty_, `Google Stackdriver`_ and `Prometheus Alertmanager`_ which
+provide 'out-of-the-box' integrations for some of the most popular monitoring
+systems available.
+
+.. _Pingdom: https://www.pingdom.com
+.. _Google Stackdriver: https://cloud.google.com/stackdriver/
+.. _Prometheus Alertmanager: https://prometheus.io/docs/alerting/alertmanager/
+
+Lastly, :ref:`plugins <plugins>` can be used to quickly and easily forward alerts
+to or notify other systems like Slack or Hipchat.
 
 .. _integrations:
 
@@ -19,15 +33,18 @@ Integrations
 Core
 ~~~~
 
-There are a few core integrations which have been developed to showcase how easy it is to get alerts or events from other tools into Alerta. They are:
+There are a few core integrations which have been developed to showcase how easy
+it is to get alerts or events from other tools into Alerta. They are:
 
 * `Nagios Event Broker`_ - forward host/service check results with suppression during downtime
+* `InfluxData Kapacitor`_ - forward alerts for metric anomalies and dynamic thresholds
 * `Zabbix Alert Script`_ - forward problems, acknowledged and OK events
 * `Sensu Plugin`_ - forward sensu events
 * `Riemann Plugin`_ - generate alerts from thresholds defined against metric streams
 * `Kibana Logging`_ - log alerts to Elasticsearch for historical visualisation of alert trends
 
 .. _Nagios Event Broker: https://github.com/alerta/nagios-alerta
+.. _InfluxData Kapacitor: https://docs.influxdata.com/kapacitor/latest/nodes/alert_node/#alerta
 .. _Zabbix Alert Script: https://github.com/alerta/zabbix-alerta
 .. _Sensu Plugin: https://github.com/alerta/sensu-alerta
 .. _Riemann Plugin: https://github.com/alerta/riemann-alerta
@@ -36,7 +53,8 @@ There are a few core integrations which have been developed to showcase how easy
 Contrib
 ~~~~~~~
 
-There are several more integrations available in the `contrib`_ repo which may be useful. They are:
+There are several more integrations available in the `contrib`_ repo which may
+be useful. They are:
 
 * `Amazon SQS`_ - receive alerts from SQS that were sent using the SNS core plugin
 * `E-mail`_ - send emails after a hold-time has expired (requires the `AMQP`_ message queue core plugin)
@@ -65,16 +83,20 @@ There are several more integrations available in the `contrib`_ repo which may b
 Webhooks
 --------
 
-`Webhook callbacks`_ are a way of integrating with other systems by triggering web callbacks to the Alerta server API when an event occurs.
+Webhooks are a way of integrating with other systems by triggering `HTTP callbacks`_
+to the Alerta server API when an event occurs.
 
-.. _Webhook callbacks: https://en.wikipedia.org/wiki/Webhook
+.. _HTTP callbacks: https://en.wikipedia.org/wiki/Webhook
 
 AWS CloudWatch
 ~~~~~~~~~~~~~~
 
-Alerta can be configured to receive AWS CloudWatch alarms by subscribing the Alerta API endpoint to an SNS topic.
+Alerta can be configured to receive AWS CloudWatch alarms by subscribing the Alerta
+API endpoint to an SNS topic.
 
-For details on how to set this up see the `Sending Amazon SNS Messages to HTTP/HTTPS Endpoints`_ page and in the `Endpoint` input box append :file:`/webhooks/cloudwatch` to the Alerta API URL.
+For details on how to set this up see the `Sending Amazon SNS Messages to
+HTTP/HTTPS Endpoints`_ page and in the `Endpoint` input box append
+:file:`/webhooks/cloudwatch` to the Alerta API URL.
 
 **Example AWS CloudWatch Webhook URL**
 
@@ -85,9 +107,11 @@ For details on how to set this up see the `Sending Amazon SNS Messages to HTTP/H
 Pingdom
 ~~~~~~~
 
-Alerta can be configured to receive Pingdom URL check alerts by adding a webhook alerting endpoint that calls the Alerta API.
+Alerta can be configured to receive Pingdom URL check alerts by adding a webhook
+alerting endpoint that calls the Alerta API.
 
-For details on how to set this up see the `Pingdom webhook`_ page and in the `webhook URL` input box append :file:`/webhooks/pingdom` to the Alerta API URL.
+For details on how to set this up see the `Pingdom webhook`_ page and in the
+`webhook URL` input box append :file:`/webhooks/pingdom` to the Alerta API URL.
 
 **Example Pingdom Webhook URL**
 
@@ -98,9 +122,12 @@ For details on how to set this up see the `Pingdom webhook`_ page and in the `we
 PagerDuty
 ~~~~~~~~~
 
-Alerta can be configured to receive PagerDuty incident-based webhooks -- any change to the ``status`` or ``assigned_to_user`` of an incident will cause an outgoing message to be sent.
+Alerta can be configured to receive PagerDuty incident-based webhooks -- any
+change to the ``status`` or ``assigned_to_user`` of an incident will cause an
+outgoing message to be sent.
 
-For details on how to set this up see the `PagerDuty webhook`_ page and where it requires the webhook URL append :file:`/webhooks/pagerduty` to the Alerta API URL.
+For details on how to set this up see the `PagerDuty webhook`_ page and where it
+requires the webhook URL append :file:`/webhooks/pagerduty` to the Alerta API URL.
 
 **Example PagerDuty Webhook URL**
 
@@ -113,9 +140,11 @@ For details on how to set this up see the `PagerDuty webhook`_ page and where it
 Google Stackdriver
 ~~~~~~~~~~~~~~~~~~
 
-Alerta can be configured to receive Google Stackdriver incidents by adding a webhook endpoint to the notifications configuration.
+Alerta can be configured to receive Google Stackdriver incidents by adding a
+webhook endpoint to the notifications configuration.
 
-For details on how to set this up see `Stackdriver webhook`_ page and in the `ENDPOINT URL` input box append :file:`/webhooks/stackdriver` to the Alerta API URL.
+For details on how to set this up see `Stackdriver webhook`_ page and in the
+`ENDPOINT URL` input box append :file:`/webhooks/stackdriver` to the Alerta API URL.
 
 **Example Stackdriver Webhook URL**
 
@@ -123,12 +152,24 @@ For details on how to set this up see `Stackdriver webhook`_ page and in the `EN
 
 .. _Stackdriver webhook: https://support.stackdriver.com/customer/portal/articles/1491775-configuring-webhooks
 
+.. _alertmanager:
+
+Prometheus Alertmanager
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Alerta can be configured as a webhook receiver in Alertmanager.
+
+For details on how to set this up see the `Prometheus Config GitHub Repo`_
+
+.. _Prometheus Config GitHub Repo: https://github.com/alerta/prometheus-config
+
 .. _plugins:
 
 Plugins
 -------
 
-`Plugin extensions`_ are an easy way of adding new features to Alerta that meet a specific end-user requirement.
+`Plugin extensions`_ are an easy way of adding new features to Alerta that meet
+a specific end-user requirement.
 
 .. _Plugin extensions: https://en.wikipedia.org/wiki/Plug-in_(computing)
 
@@ -156,7 +197,8 @@ Core
 Contrib
 ~~~~~~~
 
-`Contributed plugins`_ are made available for popular tools but implementation-specific requirements.
+`Contributed plugins`_ are made available for popular tools but
+implementation-specific requirements.
 
 .. _Contributed plugins: https://github.com/alerta/alerta-contrib/tree/master/plugins
 

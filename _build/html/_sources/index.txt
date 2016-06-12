@@ -15,7 +15,7 @@ restricted using :ref:`API keys <api_keys>` and to the web console using
 :ref:`Basic Auth <basic auth>` or :ref:`OAuth2 <oauth2>` providers Google,
 GitHub and GitLab.
 
-.. _popular: https://www.pingdom.com/
+.. _popular: https://www.pingdom.com
 .. _monitoring: https://www.nagios.com
 .. _tools: https://www.pagerduty.com
 
