@@ -41,41 +41,82 @@
             
   <div class="section" id="server-api">
 <span id="server"></span><h1>Server &amp; API<a class="headerlink" href="#server-api" title="Permalink to this headline">¶</a></h1>
-<p>The Alerta API receives alerts from multiple sources, <a class="reference internal" href="#correlation"><span>correlates</span></a>, <a class="reference internal" href="#deduplication"><span>de-duplicates</span></a> or <a class="reference internal" href="#blackout-periods"><span>suppresses</span></a> them, and makes the alerts available via a <a class="reference external" href="http://apigee.com/about/resources/webcasts/restful-api-design-second-edition">RESTful</a> <a class="reference external" href="http://developers.squarespace.com/what-is-json/">JSON</a> API.</p>
-<p>Alerts can be intercepted as they are received to modify, enhance or reject them using <a class="reference internal" href="#prereceive"><span>pre-receive hooks</span></a>. Alerts can also be used to trigger actions in other systems after the alert has been processed using <a class="reference internal" href="#postreceive"><span>post-receive hooks</span></a>.</p>
-<p>There are several <a class="reference internal" href="integrations.html#integrations"><span>integrations</span></a> with popular monitoring tools available and <a class="reference internal" href="integrations.html#webhooks"><span>webhooks</span></a> can be used to trivially integrate with AWS Cloudwatch, Pingdom, and PagerDuty.</p>
+<p>The Alerta API receives alerts from multiple sources, <a class="reference internal" href="#correlation"><span>correlates</span></a>,
+<a class="reference internal" href="#deduplication"><span>de-duplicates</span></a> or <a class="reference internal" href="#blackout-periods"><span>suppresses</span></a>
+them, and makes the alerts available via a <a class="reference external" href="http://apigee.com/about/resources/webcasts/restful-api-design-second-edition">RESTful</a> <a class="reference external" href="http://developers.squarespace.com/what-is-json/">JSON</a> API.</p>
+<p>Alerts can be intercepted as they are received to modify, enhance or reject them
+using <a class="reference internal" href="#prereceive"><span>pre-receive hooks</span></a>. Alerts can also be used to trigger
+actions in other systems after the alert has been processed using
+<a class="reference internal" href="#postreceive"><span>post-receive hooks</span></a> or following an alert
+<a class="reference internal" href="#status-change"><span>status change</span></a> for bi-directional integration.</p>
+<p>There are several <a class="reference internal" href="integrations.html#integrations"><span>integrations</span></a> with popular monitoring tools
+available and <a class="reference internal" href="integrations.html#webhooks"><span>webhooks</span></a> can be used to trivially integrate with
+AWS Cloudwatch, Pingdom, and PagerDuty.</p>
 <div class="section" id="event-processing">
 <span id="id1"></span><h2>Event Processing<a class="headerlink" href="#event-processing" title="Permalink to this headline">¶</a></h2>
-<p>Alerta comes <cite>out-of-the-box</cite> with key features designed to reduce the burden of alert management. When an event is received it it is processed in the following manner:</p>
+<p>Alerta comes <cite>out-of-the-box</cite> with key features designed to reduce the burden of
+alert management. When an event is received it it is processed in the following
+way:</p>
 <ol class="arabic simple">
-<li>all plugins pre-receive hooks are run in alphabetical order, alert immediately rejected if any return a Reject Exception</li>
-<li>alert is checked against any active blackout periods, alert suppressed if any match</li>
-<li>alert is checked if duplicate, if so duplicate count ++, repeat=True</li>
+<li>all plugin pre-receive hooks are run in alphabetical order, an alert
+immediately rejected if any plugins return a Reject Exception</li>
+<li>alert is checked against any active blackout periods, alert suppressed if any
+match</li>
+<li>alert is checked if duplicate, if so duplicate count is increased and repeat
+set to <cite>True</cite></li>
 <li>alert is checked if correlated, if so change severity and/or status etc</li>
-<li>alert is added as new</li>
+<li>alert is neither a duplicate or correlated so create new alert</li>
 <li>all plugin post-receive hooks are run in alphabetical order</li>
-<li>new or updated alert returned in reponse</li>
+<li>new or updated alert returned in response</li>
 <li>timeout used to expire alerts from the console</li>
 </ol>
+<p>Each of the above actions are explained in more detail in the following sections.</p>
 </div>
 <div class="section" id="plug-ins">
 <h2>Plug-ins<a class="headerlink" href="#plug-ins" title="Permalink to this headline">¶</a></h2>
-<p>Plug-ins are small python scripts that can run either before or after an alert is saved to the database. This is achieved by registering <em>pre-receive hooks</em> for transformers and <em>post-receive hooks</em> for downstream integration.</p>
+<p>Plug-ins are small python scripts that can run either before or after an alert is
+saved to the database, or before a status change update. This is achieved by
+registering <em>pre-receive hooks</em> for transformers, <em>post-receive hooks</em> for
+external notification and <em>status change hooks</em> for bi-directional integration.</p>
 <div class="section" id="transformers">
 <span id="prereceive"></span><h3>Transformers<a class="headerlink" href="#transformers" title="Permalink to this headline">¶</a></h3>
-<p>Using pre-receive hooks, plugins provide the ability to transform raw alert data from sources before alerts are created. For example, alerts can be <em>normalised</em> to ensure they all have specific attributes or tags or only have a specific value from a range of allowed values. This is demonstrated in the <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py">reject plugin</a> that enforces an alert policy.</p>
-<p>Plugins can also be used to <em>enhance</em> alerts  &#8211; like the <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/geoip/geoip.py">Geo location plugin</a> which adds location data to alerts based on the sending IP address, or this generic <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/enhance.py">enhance plugin</a> which adds a <code class="docutils literal"><span class="pre">customer</span></code> attribute based on information contained in the alert.</p>
+<p>Using pre-receive hooks, plugins provide the ability to transform raw alert data
+from sources before alerts are created. For example, alerts can be <em>normalised</em>
+to ensure they all have specific attributes or tags or only have a specific value
+from a range of allowed values. This is demonstrated in the <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py">reject plugin</a>
+that enforces an alert policy.</p>
+<p>Plugins can also be used to <em>enhance</em> alerts  &#8211; like the <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/geoip/geoip.py">Geo location plugin</a>
+which adds location data to alerts based on the remote IP address of the client,
+or the generic <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/enhance.py">enhance plugin</a> which adds a <code class="docutils literal"><span class="pre">customer</span></code> attribute based on
+information contained in the alert.</p>
 </div>
-<div class="section" id="integrations">
-<span id="postreceive"></span><h3>Integrations<a class="headerlink" href="#integrations" title="Permalink to this headline">¶</a></h3>
-<p>Using post-receive hooks, plugin integrations can be used to provide downstream systems with alerts in realtime. For example, pushing alerts onto an AWS SNS topic, AMQP queue, logging to a Logstash/Kibana stack, or sending notifications to HipChat, Slack or Twilio.</p>
+<div class="section" id="external-notification">
+<span id="postreceive"></span><h3>External Notification<a class="headerlink" href="#external-notification" title="Permalink to this headline">¶</a></h3>
+<p>Using post-receive hooks, plugin integrations can be used to provide downstream
+systems with alerts in realtime for external notification. For example, pushing
+alerts onto an <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/sns.py">AWS SNS topic</a>, <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/amqp.py">AMQP queue</a>, logging to a <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/logstash.py">Logstash/Kibana</a>
+stack, or sending notifications to <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/hipchat">HipChat</a>, <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/slack">Slack</a> or <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/twilio">Twilio</a> and many
+more.</p>
+</div>
+<div class="section" id="bi-directional-integration">
+<span id="status-change"></span><h3>Bi-directional Integration<a class="headerlink" href="#bi-directional-integration" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 <div class="section" id="blackout-periods">
 <span id="id2"></span><h2>Blackout Periods<a class="headerlink" href="#blackout-periods" title="Permalink to this headline">¶</a></h2>
-<p>An alert that is received during a <span class="target" id="index-0"></span>blackout period is suppressed. That is, it is received by Alerta and a <code class="docutils literal"><span class="pre">202</span> <span class="pre">Accepted</span></code> status code is returned however this means that eventhough the alert has been accepted, it won&#8217;t be processed.</p>
-<p>Alerta defines many different alert attributes that can be used to group alerts and it is these attributes that can be used to define rules eg. environment, service and group. However, it is possible to define blackout rules based on resource and event attributes for situations that require that level of granularity.</p>
-<p>Tags can also be used to define a blackout rule which should allow a lot of flexibility &#8211; one or more tags can be required to match an alert for the suppression to apply &#8211; because tags can be added at source, using the alerta CLI, or using a plug-in.</p>
+<p>An alert that is received during a <span class="target" id="index-0"></span>blackout period
+is suppressed. That is, it is received by Alerta and a <code class="docutils literal"><span class="pre">202</span> <span class="pre">Accepted</span></code> status
+code is returned however this means that even though the alert has been accepted,
+it won&#8217;t be processed.</p>
+<p>Alerta defines many different alert attributes that can be used to group alerts
+and it is these attributes that can be used to define blackout rules. For example,
+to suppress alerts from an entire environment, service or group, or a combination
+of these. However, it is possible to define blackout rules based only on resource
+and event attributes for situations that require that level of granularity.</p>
+<p>Tags can also be used to define a blackout rule which should allow a lot of
+flexibility because tags can be added at source, using the <code class="docutils literal"><span class="pre">alerta</span></code> CLI, or
+using a plug-in. Note that one or more tags can be required to match an alert
+for the suppression to apply.</p>
 <p>In summary, blackout rules can be any of:</p>
 <ul class="simple">
 <li>an entire environment eg. <code class="docutils literal"><span class="pre">environment=Production</span></code></li>
@@ -90,50 +131,89 @@
 </div>
 <div class="section" id="de-duplication">
 <span id="deduplication"></span><h2>De-Duplication<a class="headerlink" href="#de-duplication" title="Permalink to this headline">¶</a></h2>
-<p>When an alert with the same <code class="docutils literal"><span class="pre">event</span></code>-<code class="docutils literal"><span class="pre">resource</span></code> is received with the <strong>same</strong> <code class="docutils literal"><span class="pre">severity</span></code>, the alert is de-duplicated.</p>
-<p>This means that information from the de-duplicated alert is used to update key attributes of the existing alert (like <code class="docutils literal"><span class="pre">duplicateCount</span></code>, <code class="docutils literal"><span class="pre">repeat</span></code> flag, <code class="docutils literal"><span class="pre">value</span></code>, <code class="docutils literal"><span class="pre">text</span></code> and <code class="docutils literal"><span class="pre">lastReceiveTime</span></code>) and the new alert is not shown.</p>
+<p>When an alert with the same <code class="docutils literal"><span class="pre">event</span></code>-<code class="docutils literal"><span class="pre">resource</span></code> is received with the <strong>same</strong>
+<code class="docutils literal"><span class="pre">severity</span></code>, the alert is de-duplicated.</p>
+<p>This means that information from the de-duplicated alert is used to update key
+attributes of the existing alert (like <code class="docutils literal"><span class="pre">duplicateCount</span></code>, <code class="docutils literal"><span class="pre">repeat</span></code> flag,
+<code class="docutils literal"><span class="pre">value</span></code>, <code class="docutils literal"><span class="pre">text</span></code> and <code class="docutils literal"><span class="pre">lastReceiveTime</span></code>) and the new alert is not shown.</p>
+<p>Alerts are sorted in the Alerta web UI by <code class="docutils literal"><span class="pre">lastReceiveTime</span></code> by default so that
+the most recent alerts will be displayed at the top regardless of whether they
+were new alerts or de-duplicated alerts.</p>
 </div>
 <div class="section" id="simple-correlation">
 <span id="correlation"></span><h2>Simple Correlation<a class="headerlink" href="#simple-correlation" title="Permalink to this headline">¶</a></h2>
-<p>Alerta implements what we call &#8220;simple correlation&#8221; &#8211; as opposed to <a class="reference external" href="https://en.wikipedia.org/wiki/Complex_event_processing">complex correlation</a> which is <a class="reference external" href="http://www.espertech.com/">much</a> <a class="reference external" href="http://riemann.io/">more</a> <a class="reference external" href="http://www.drools.org/">involved</a>. Simple correlation, in combination with de-duplication, provides straight-forward and effective ways to reduce the burden of managing an alert console.</p>
+<p>Alerta implements what we call &#8220;simple correlation&#8221; &#8211; as opposed to <a class="reference external" href="https://en.wikipedia.org/wiki/Complex_event_processing">complex
+correlation</a> which is <a class="reference external" href="http://www.espertech.com/">much</a> <a class="reference external" href="http://riemann.io/">more</a> <a class="reference external" href="http://www.drools.org/">involved</a>. Simple correlation, in combination
+with de-duplication, provides straight-forward and effective ways to reduce the
+burden of managing an alert console.</p>
 <p>With Alerta, there are two ways alerts can be correlated, namely:</p>
 <ol class="arabic simple">
-<li>when an alert with the same <code class="docutils literal"><span class="pre">event</span></code>-<code class="docutils literal"><span class="pre">resource</span></code> is received with a <strong>different</strong> <code class="docutils literal"><span class="pre">severity</span></code>, then the alert is correlated.</li>
-<li>when a alert with the same <code class="docutils literal"><span class="pre">resource</span></code> is received with an <code class="docutils literal"><span class="pre">event</span></code> in the <code class="docutils literal"><span class="pre">correlate</span></code> list of related events with <strong>any</strong> severity, then the alert is correlated.</li>
+<li>when an alert with the same <code class="docutils literal"><span class="pre">event</span></code>-<code class="docutils literal"><span class="pre">resource</span></code> is received with a</li>
 </ol>
-<p>In both cases, this means that information from the correlated alert is used to update key attributes of the existing alert (like <code class="docutils literal"><span class="pre">severity</span></code>, <code class="docutils literal"><span class="pre">event</span></code>, <code class="docutils literal"><span class="pre">value</span></code>, <code class="docutils literal"><span class="pre">text</span></code> and <code class="docutils literal"><span class="pre">lastReceiveTime</span></code>) and the new alert is not shown.</p>
+<blockquote>
+<div><strong>different</strong> <code class="docutils literal"><span class="pre">severity</span></code>, then the alert is correlated.</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>when a alert with the same <code class="docutils literal"><span class="pre">resource</span></code> is received with an <code class="docutils literal"><span class="pre">event</span></code> in the</li>
+</ol>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">correlate</span></code> list of related events with <strong>any</strong> severity, then the alert is
+correlated.</div></blockquote>
+<p>In both cases, this means that information from the correlated alert is used to
+update key attributes of the existing alert (like <code class="docutils literal"><span class="pre">severity</span></code>, <code class="docutils literal"><span class="pre">event</span></code>,
+<code class="docutils literal"><span class="pre">value</span></code>, <code class="docutils literal"><span class="pre">text</span></code> and <code class="docutils literal"><span class="pre">lastReceiveTime</span></code>) and the new alert is not shown.</p>
 </div>
 <div class="section" id="state-based-browser">
 <span id="id3"></span><h2>State-based Browser<a class="headerlink" href="#state-based-browser" title="Permalink to this headline">¶</a></h2>
-<p>Alerta is called state-based because it will <strong>automatically</strong> <em>change the alert status</em> based on the current and previous severity of alerts and subsequent user actions.</p>
+<p>Alerta is called state-based because it will <strong>automatically</strong> <em>change the alert
+status</em> based on the current and previous severity of alerts and subsequent user
+actions.</p>
 <p>The Alerta API will:</p>
 <ul class="simple">
 <li>only show the most recent state of any alert</li>
-<li>change the status of an alert to <code class="docutils literal"><span class="pre">closed</span></code> if a <code class="docutils literal"><span class="pre">normal</span></code>, <code class="docutils literal"><span class="pre">ok</span></code> or <code class="docutils literal"><span class="pre">cleared</span></code> is received</li>
+<li>change the status of an alert to <code class="docutils literal"><span class="pre">closed</span></code> if a <code class="docutils literal"><span class="pre">normal</span></code>, <code class="docutils literal"><span class="pre">ok</span></code> or
+<code class="docutils literal"><span class="pre">cleared</span></code> is received</li>
 <li>change the status of a <code class="docutils literal"><span class="pre">closed</span></code> alert to <code class="docutils literal"><span class="pre">open</span></code> if the event reoccurs</li>
-<li>change the status of an <code class="docutils literal"><span class="pre">acknowledged</span></code> alert to <code class="docutils literal"><span class="pre">open</span></code> if the new severity is higher than the current <code class="docutils literal"><span class="pre">severity</span></code></li>
-<li>update the <code class="docutils literal"><span class="pre">severity</span></code> and other key attributes of an alert when a more recent alert is received (see <a class="reference internal" href="#correlation">correlation</a>)</li>
-<li>update the <code class="docutils literal"><span class="pre">trendIndication</span></code> attribute based on <code class="docutils literal"><span class="pre">previousSeverity</span></code> and current <code class="docutils literal"><span class="pre">severity</span></code> with either <code class="docutils literal"><span class="pre">moreSevere</span></code>, <code class="docutils literal"><span class="pre">lessSevere</span></code> or <code class="docutils literal"><span class="pre">noChange</span></code></li>
-<li>update the <code class="docutils literal"><span class="pre">history</span></code> log following a <code class="docutils literal"><span class="pre">severity</span></code> or <code class="docutils literal"><span class="pre">status</span></code> change (see <a class="reference internal" href="#alert-history">alert history</a>)</li>
+<li>change the status of an <code class="docutils literal"><span class="pre">acknowledged</span></code> alert to <code class="docutils literal"><span class="pre">open</span></code> if the new severity
+is higher than the current <code class="docutils literal"><span class="pre">severity</span></code></li>
+<li>update the <code class="docutils literal"><span class="pre">severity</span></code> and other key attributes of an alert when a more recent
+alert is received (see <a class="reference internal" href="#correlation">correlation</a> and <a class="reference internal" href="#deduplication">deduplication</a>)</li>
+<li>update the <code class="docutils literal"><span class="pre">trendIndication</span></code> attribute based on <code class="docutils literal"><span class="pre">previousSeverity</span></code> and
+current <code class="docutils literal"><span class="pre">severity</span></code> with either <code class="docutils literal"><span class="pre">moreSevere</span></code>, <code class="docutils literal"><span class="pre">lessSevere</span></code> or <code class="docutils literal"><span class="pre">noChange</span></code></li>
+<li>update the <code class="docutils literal"><span class="pre">history</span></code> log following a <code class="docutils literal"><span class="pre">severity</span></code> or <code class="docutils literal"><span class="pre">status</span></code> change (see
+<a class="reference internal" href="#alert-history">alert history</a>)</li>
 </ul>
-<p>All of these automatic actions combine to ensure that important alerts are given the priority they deserve.</p>
+<p>All of these automatic actions combine to ensure that important alerts are given
+the priority they deserve.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">To take full advantage of the state-based browser it is recommended to implement the timeout of <code class="docutils literal"><span class="pre">expired</span></code> alerts using the <a class="reference internal" href="deployment.html#housekeeping"><span>House Keeping</span></a> script.</p>
+<p class="last">To take full advantage of the state-based browser it is recommended to
+implement the timeout of <code class="docutils literal"><span class="pre">expired</span></code> alerts using the <a class="reference internal" href="deployment.html#housekeeping"><span>House Keeping</span></a>
+script.</p>
 </div>
 </div>
 <div class="section" id="alert-history">
 <h2>Alert History<a class="headerlink" href="#alert-history" title="Permalink to this headline">¶</a></h2>
-<p>Whenever an alert status or severity changes, that change is recorded in the alert <a class="reference internal" href="api/alert.html#history"><span>history</span></a> log. This is to allow operations staff follow the lifecycle of a particular alert, if necessary.</p>
-<p>The alert history is visible in the <em>Alert Details</em> page of any alert and also by using the <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool <code class="docutils literal"><span class="pre">history</span></code> sub-command.</p>
-<p>For example, it will show whether an alert status change happened as a result of operator action or an automatic <a class="reference internal" href="#correlation">correlation</a> action.</p>
+<p>Whenever an alert status or severity changes, that change is recorded in the
+alert <a class="reference internal" href="api/alert.html#history"><span>history</span></a> log. This is to allow operations staff follow the
+lifecycle of a particular alert, if necessary.</p>
+<p>The alert history is visible in the <em>Alert Details</em> page of any alert and also
+by using the <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool <code class="docutils literal"><span class="pre">history</span></code> sub-command.</p>
+<p>For example, it will show whether an alert status change happened as a result of
+operator (external) action or an automatic <a class="reference internal" href="#correlation">correlation</a> (auto) action.</p>
 </div>
 <div class="section" id="heartbeats">
 <h2>Heartbeats<a class="headerlink" href="#heartbeats" title="Permalink to this headline">¶</a></h2>
-<p>An Alerta <a class="reference internal" href="api/reference.html#heartbeats"><span>heartbeat</span></a> is a periodic HTTP request sent to the Alerta API to indicate normal operation of the origin of the heartbeat.</p>
-<p>They can be used to ensure components of the Alerta monitoring system are operating normally or sent from any other source. As well as an <code class="docutils literal"><span class="pre">origin</span></code> they include a <code class="docutils literal"><span class="pre">timeout</span></code> in seconds (after which they will be considered stale), and optional <code class="docutils literal"><span class="pre">tags</span></code>.</p>
-<p>They are visible in the Alerta console (<em>About</em> page) and via the <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool using the <code class="docutils literal"><span class="pre">heartbeat</span></code> sub-command to send them, and the <code class="docutils literal"><span class="pre">heartbeats</span></code> sub-command to view them.</p>
-<p>Alerts can be generated from <span class="target" id="index-1"></span>stale heartbeats using the <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool.</p>
+<p>An Alerta <a class="reference internal" href="api/reference.html#heartbeats"><span>heartbeat</span></a> is a periodic HTTP request sent to the
+Alerta API to indicate normal operation of the origin of the heartbeat.</p>
+<p>They can be used to ensure components of the Alerta monitoring system are
+operating normally or sent from any other source. As well as an <code class="docutils literal"><span class="pre">origin</span></code>
+they include a <code class="docutils literal"><span class="pre">timeout</span></code> in seconds (after which they will be considered stale),
+and optional <code class="docutils literal"><span class="pre">tags</span></code>.</p>
+<p>They are visible in the Alerta console (<em>About</em> page) and via the <code class="docutils literal"><span class="pre">alerta</span></code>
+command-line tool using the <code class="docutils literal"><span class="pre">heartbeat</span></code> sub-command to send them, and the
+<code class="docutils literal"><span class="pre">heartbeats</span></code> sub-command to view them.</p>
+<p>Alerts can be generated from <span class="target" id="index-1"></span>stale heartbeats
+using <code class="docutils literal"><span class="pre">alerta</span> <span class="pre">heartbeats</span> <span class="pre">--alert</span></code>.</p>
 </div>
 </div>
 
