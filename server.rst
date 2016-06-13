@@ -95,7 +95,18 @@ more.
 Bi-directional Integration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Using status change hooks, plugins can be used to complete a two way integration
+with an external system. That is, an external system like Prometheus Alertmanager
+that generates alerts that are forwarded to Alerta can be updated when the status
+of an alert changes in Alerta.
 
+For example, if an operator "acknowledges" a Prometheus alert in the Alerta web
+UI then a status change hook could silence_ the `corresponding alert in Alertmanager`_.
+This requires that external systems provide enough information in the alert created
+in Alerta for that alert to be uniquely identified at a later date.
+
+.. _silence: https://prometheus.io/docs/alerting/alertmanager/#silences
+.. _corresponding alert in Alertmanager: https://github.com/alerta/alerta-contrib/blob/master/plugins/prometheus/prometheus.py
 
 .. _blackout periods:
 

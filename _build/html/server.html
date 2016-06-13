@@ -100,6 +100,14 @@ more.</p>
 </div>
 <div class="section" id="bi-directional-integration">
 <span id="status-change"></span><h3>Bi-directional Integration<a class="headerlink" href="#bi-directional-integration" title="Permalink to this headline">¶</a></h3>
+<p>Using status change hooks, plugins can be used to complete a two way integration
+with an external system. That is, an external system like Prometheus Alertmanager
+that generates alerts that are forwarded to Alerta can be updated when the status
+of an alert changes in Alerta.</p>
+<p>For example, if an operator &#8220;acknowledges&#8221; a Prometheus alert in the Alerta web
+UI then a status change hook could <a class="reference external" href="https://prometheus.io/docs/alerting/alertmanager/#silences">silence</a> the <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/prometheus/prometheus.py">corresponding alert in Alertmanager</a>.
+This requires that external systems provide enough information in the alert created
+in Alerta for that alert to be uniquely identified at a later date.</p>
 </div>
 </div>
 <div class="section" id="blackout-periods">
