@@ -12,14 +12,14 @@ Initialise the alerta API client:
 
 .. code-block:: python
 
-    >>> from alerta.api import ApiClient
+    >>> from alertaclient.api import ApiClient
     >>> api = ApiClient(endpoint='http://api.alerta.io', key='tiPMW41QA+cVy05E7fQA/roxAAwHqZq/jznh8MOk')
 
 Send an alert:
 
 .. code-block:: python
 
-    >>> from alerta.alert import Alert
+    >>> from alertaclient.alert import Alert
     >>> alert = Alert(resource='foo', event='bar')
     >>> alert
     Alert(id='6e625266-fb7c-4c11-bf95-27a6a0be432b', environment='', resource='foo', event='bar', severity='normal', status='unknown')
