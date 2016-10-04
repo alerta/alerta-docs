@@ -45,12 +45,16 @@
 <h2>Python SDK<a class="headerlink" href="#python-sdk" title="Permalink to this headline">¶</a></h2>
 <p>Alerta is developed in Python so the Python SDK is a core component of the monitoring system.</p>
 <p>Initialise the alerta API client:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">alerta.api</span> <span class="kn">import</span> <span class="n">ApiClient</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">alertaclient.api</span> <span class="kn">import</span> <span class="n">ApiClient</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">api</span> <span class="o">=</span> <span class="n">ApiClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s">&#39;http://api.alerta.io&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s">&#39;tiPMW41QA+cVy05E7fQA/roxAAwHqZq/jznh8MOk&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>As of 4.8.5, you can specify ssl verify False (defaults to True) for testing:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">api</span> <span class="o">=</span> <span class="n">ApiClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s">&#39;http://api.alerta.io&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s">&#39;tiPMW41QA+cVy05E7fQA/roxAAwHqZq/jznh8MOk&#39;</span><span class="p">,</span> <span class="n">ssl_verify</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>Send an alert:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">alerta.alert</span> <span class="kn">import</span> <span class="n">Alert</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">alertaclient.alert</span> <span class="kn">import</span> <span class="n">Alert</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">alert</span> <span class="o">=</span> <span class="n">Alert</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="s">&#39;foo&#39;</span><span class="p">,</span> <span class="n">event</span><span class="o">=</span><span class="s">&#39;bar&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">alert</span>
 <span class="go">Alert(id=&#39;6e625266-fb7c-4c11-bf95-27a6a0be432b&#39;, environment=&#39;&#39;, resource=&#39;foo&#39;, event=&#39;bar&#39;, severity=&#39;normal&#39;, status=&#39;unknown&#39;)</span>
@@ -81,11 +85,12 @@
 </pre></div>
 </div>
 <p>Install from GitHub:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git clone git@github.com:alerta/python-alerta.git
+<div class="highlight-python"><div class="highlight"><pre>$ git clone git@github.com:alerta/python-alerta-client.git
 $ cd python-alerta
 $ python setup.py install
 </pre></div>
 </div>
+<p>For more details, visit: (Alerta Python SDK page)[<a class="reference external" href="https://github.com/alerta/python-alerta-client">https://github.com/alerta/python-alerta-client</a>]</p>
 </div>
 </div>
 </div>
