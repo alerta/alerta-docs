@@ -65,6 +65,6 @@ Install from GitHub:
 
 ::
 
-    $ git clone git@github.com:alerta/python-alerta.git
+    $ git clone git@github.com:alerta/python-alerta-client.git
     $ cd python-alerta
     $ python setup.py install
