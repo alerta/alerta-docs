@@ -1,0 +1,237 @@
+.. _tutorial 1:
+
+Deploying an Alerta Server
+==========================
+
+Let's get started by installing the Alerta server, the web console
+and do some basic configuration, customisation and housekeeping.
+
+**Contents**
+
+  * Overview_
+  * Prerequisites_
+  * `Step 1: Install Packages`_
+  * `Step 2: Configuration`_
+  * `Step 3: Customisation`_
+  * `Step 4: Housekeeping`_
+  * `Next Steps`_
+
+Overview
+--------
+
+The server is based on the latest Ubuntu cloud image, `Ubuntu 16.04
+LTS (Xenial)`_. The Alerta server will be installed to run as a `uWsgi`_
+application proxied behind an `nginx`_ web server. The web console will
+be served from the same NGINX server secured behind Basic Auth.
+Configuration will involve forwarding a subset of alerts to Slack and
+Email for notification.
+
+.. _`Ubuntu 16.04 LTS (Xenial)`: https://wiki.ubuntu.com/XenialXerus/ReleaseNotes
+.. _uWsgi: https://uwsgi-docs.readthedocs.io
+.. _nginx: https://www.nginx.com
+
+Prerequisites
+-------------
+
+Before you begin, ensure you are familiar with the Ubuntu/Debian
+operating system, that you have "super user" privileges (ie. a
+``root`` user login) and remote ``ssh`` access to the server you
+are deploying to.
+
+Step 1: Install Packages
+------------------------
+
+To install MongoDB 3.2 run the following commands::
+
+    $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+    $ echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+    $ sudo apt-get update -y && sudo apt-get upgrade -y
+    $ sudo apt-get install -y mongodb-org
+
+Configure MongoDB to run via ``systemd`` and start at boot::
+
+    $ sudo vi /etc/systemd/system/mongodb.service
+
+::
+
+    [Unit]
+    Description=High-performance, schema-free document-oriented database
+    After=network.target
+
+    [Service]
+    User=mongodb
+    ExecStart=/usr/bin/mongod --quiet --config /etc/mongod.conf
+
+    [Install]
+    WantedBy=multi-user.target
+
+Start the MongoDB server, check it is running and set it to start on reboot::
+
+    $ sudo systemctl start mongodb
+    $ sudo systemctl status mongodb
+    $ sudo systemctl enable mongodb
+
+To install the Alerta server and ``alerta`` command-line tool::
+
+    $ sudo apt-get install -y python-pip python-dev nginx
+    $ sudo pip install alerta-server alerta uwsgi
+
+To install the web console run::
+
+    $ cd /var/www/html
+    $ wget -q -O - https://github.com/alerta/angular-alerta-webui/tarball/master | sudo tar zxf -
+    $ sudo mv alerta*/app/* .
+
+Step 2: Configuration
+---------------------
+
+Create a wsgi python file, uWsgi configuration file and ``systemd`` script::
+
+    $ sudo vi /var/www/wsgi.py
+
+::
+
+    from alerta.app import app
+
+The uwsgi server mount the Alerta API on ``/api``, log to syslog and
+use a unix socket to communicate with the nginx web server::
+
+    $ sudo vi /etc/uwsgi.ini
+
+::
+
+    [uwsgi]
+    chdir = /var/www
+    mount = /api=wsgi.py
+    callable = app
+    manage-script-name = true
+
+    master = true
+    processes = 5
+    logger = syslog:alerta
+
+    socket = /tmp/uwsgi.sock
+    chmod-socket = 666
+    uid = www-data
+    gid = www-data
+    vacuum = true
+
+    die-on-term = true
+
+Create a ``systemd`` configuration file for the uwsgi server::
+
+    $ sudo vi /etc/systemd/system/uwsgi.service
+
+::
+
+    [Unit]
+    Description=uWSGI service
+
+    [Service]
+    ExecStart=/usr/local/bin/uwsgi --ini /etc/uwsgi.ini
+
+    [Install]
+    WantedBy=multi-user.target
+
+Start the uwsgi server, check the current status and enable it to start
+on reboot::
+
+    $ sudo systemctl start uwsgi
+    $ sudo systemctl status uwsgi
+    $ sudo systemctl enable uwsgi
+
+::
+
+Configure nginx to serve Alerta as a uWsgi application on ``/api`` and
+the web console as static assets.
+
+.. tip::
+
+    Mounting the Alerta API on ``/api`` and serving the web console static
+    assets from the same domain avoids any problems with CORS or HTTPS
+    mixed content errors.
+
+::
+
+    $ sudo vi /etc/nginx/sites-enabled/default
+
+::
+
+    server {
+            listen 80 default_server;
+            listen [::]:80 default_server;
+
+            location /api { try_files $uri @api; }
+            location @api {
+                include uwsgi_params;
+                uwsgi_pass unix:/tmp/uwsgi.sock;
+            }
+
+            location / {
+                    root /var/www/html;
+            }
+
+    }
+
+Modify the existing web console ``config.js`` configuration file to
+set the ``endpoint`` to ``/api`` and chose ``basic`` as the Authentication
+Provider::
+
+    $ sudo vi /var/www/html/config.js
+
+::
+
+    'use strict';
+
+    angular.module('config', [])
+      .constant('config', {
+        'endpoint'    : "/api",
+        'provider'    : "basic",
+        'colors'      : {},
+        'severity'    : {},
+        'audio'       : {}
+      });
+
+You should be able to view the web console on port 80 in your web browser.
+
+
+Step 3: Customisation
+---------------------
+
+Basic Auth w/ email verification
+
+Email verification for basic auth logins and password reset.
+
+** use https **
+
+API keys
+
+Plugins - Reject, Slack and AMQP/email
+
+Configure the default "reject" plugin to allow additional environments, not
+just ``Production`` and ``Development``::
+
+    $ vi /etc/alertad.conf
+
+    PLUGINS=['reject']
+    ALLOWED_ENVIRONMENTS=['Production', 'Development', 'Infrastructure']
+
+
+
+
+
+
+Step 4: Housekeeping
+--------------------
+
+timeouts
+deleting stale
+
+Next Steps
+----------
+
+After you deploy your Alerta server, you might want to try some of the following tutorials:
+
+  * Configure a plugin to notify a Slack Channel
+  * Add Some bespoke monitoring using the Python SDK
+  *
