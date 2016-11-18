@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
 <<<<<<< HEAD
+<<<<<<< HEAD
     <title>Frequently Asked Questions &#8212; alerta 4.8 documentation</title>
 =======
 <<<<<<< HEAD
@@ -15,6 +16,9 @@
     <title>Frequently Asked Questions &mdash; alerta 4.8 documentation</title>
 >>>>>>> Tutorial 1
 >>>>>>> Tutorial 1
+=======
+    <title>Frequently Asked Questions &#8212; alerta 4.8 documentation</title>
+>>>>>>> make html
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -32,9 +36,9 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
-<<<<<<< HEAD
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+<<<<<<< HEAD
 <<<<<<< HEAD
     <link rel="top" title="alerta 4.8 documentation" href="index.html" />
 =======
@@ -43,6 +47,9 @@
     <link rel="top" title="alerta 4.8 documentation" href="index.html" />
 >>>>>>> Tutorial 1
 >>>>>>> Tutorial 1
+=======
+    <link rel="top" title="alerta 4.8 documentation" href="index.html" />
+>>>>>>> make html
     <link rel="next" title="Releases" href="release-notes.html" />
     <link rel="prev" title="Heartbeat Format" href="api/heartbeat.html" />
    
@@ -66,29 +73,20 @@
 <h2>Alerta<a class="headerlink" href="#alerta" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="why-can-t-i-see-any-alerts-in-the-web-browser">
 <h3>Why can&#8217;t I see any alerts in the web browser?<a class="headerlink" href="#why-can-t-i-see-any-alerts-in-the-web-browser" title="Permalink to this headline">¶</a></h3>
-<<<<<<< HEAD
-<p>If you can send and query for alerts using the <code class="docutils literal"><span class="pre">alerta</span></code> CLI tool this problem is almost certainly related to cross-origin browser errors. Open up the Javascript developer console in your browser of choice and look for <a class="reference external" href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS</a> errors like:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>XMLHttpRequest cannot load http://api.alerta.io/alerts?status=open.
-=======
 <p>If you can send and query for alerts using the <code class="docutils literal"><span class="pre">alerta</span></code> CLI tool this
 problem is almost certainly related to cross-origin browser errors. Open
 up the Javascript developer console in your browser of choice and look
 for <a class="reference external" href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS</a> errors like:</p>
-<div class="highlight-python"><div class="highlight"><pre>XMLHttpRequest cannot load http://api.alerta.io/alerts?status=open.
->>>>>>> Tutorial 1
+<div class="highlight-default"><div class="highlight"><pre><span></span>XMLHttpRequest cannot load http://api.alerta.io/alerts?status=open.
 No &#39;Access-Control-Allow-Origin&#39; header is present on the requested
 resource. Origin &#39;http://web.alerta.io&#39; is therefore not allowed access.
 </pre></div>
 </div>
-<<<<<<< HEAD
-<p>To fix this you can either serve the web UI from the <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">same origin</a> as the API using a web server to <a class="reference internal" href="deployment.html#reverse-proxy"><span class="std std-ref">reverse proxy</span></a> the web UI or ensure that the API server <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin">allows the origin</a> where the web UI is hosted by adding it to the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">CORS_ORIGINS</span></code> <a class="reference internal" href="configuration.html#cors-config"><span class="std std-ref">server configuration</span></a> setting.</p>
-=======
 <p>To fix this you can either serve the web UI from the <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">same origin</a> as
-the API using a web server to <a class="reference internal" href="deployment.html#reverse-proxy"><span>reverse proxy</span></a> the
+the API using a web server to <a class="reference internal" href="deployment.html#reverse-proxy"><span class="std std-ref">reverse proxy</span></a> the
 web UI or ensure that the API server <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin">allows the origin</a> where the
-web UI is hosted by adding it to the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">CORS_ORIGINS</span></code> <a class="reference internal" href="configuration.html#cors-config"><span>server
+web UI is hosted by adding it to the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">CORS_ORIGINS</span></code> <a class="reference internal" href="configuration.html#cors-config"><span class="std std-ref">server
 configuration</span></a> setting.</p>
->>>>>>> Tutorial 1
 </div>
 <div class="section" id="can-i-define-custom-severity-codes-and-levels">
 <h3>Can I define custom severity codes and levels?<a class="headerlink" href="#can-i-define-custom-severity-codes-and-levels" title="Permalink to this headline">¶</a></h3>
@@ -97,23 +95,14 @@ and colours. See :ref:`` for more information.</p>
 </div>
 <div class="section" id="how-can-i-add-a-priority-to-an-alert-eg-high-medium-low">
 <h3>How can I add a priority to an alert eg. High, Medium, Low?<a class="headerlink" href="#how-can-i-add-a-priority-to-an-alert-eg-high-medium-low" title="Permalink to this headline">¶</a></h3>
-<<<<<<< HEAD
-<p>Use a custom attribute called <code class="docutils literal"><span class="pre">priority</span></code> when sending alerts to Alerta:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta send ... --attributes priority=high ...
-</pre></div>
-</div>
-<p>Alerts of differing priority could be queried by <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool using:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta query --filters attributes.priority=high
-=======
 <p>Use a custom attribute called <code class="docutils literal"><span class="pre">priority</span></code> when sending alerts to
 Alerta:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta send ... --attributes priority=high ...
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta send ... --attributes priority=high ...
 </pre></div>
 </div>
 <p>Alerts of differing priority could be queried by <code class="docutils literal"><span class="pre">alerta</span></code>
 command-line tool using:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta query --filters attributes.priority=high
->>>>>>> Tutorial 1
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta query --filters attributes.priority=high
 </pre></div>
 </div>
 <p>Using the web console to sort alerts by priority as well as severity
@@ -212,7 +201,6 @@ Links
 <h3>Navigation</h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Getting Started Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webui.html">Alerta Web UI</a></li>
@@ -224,6 +212,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="customerviews.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/reference.html">API Reference</a></li>
