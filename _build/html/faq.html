@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Frequently Asked Questions &mdash; alerta 4.7 documentation</title>
+    <title>Frequently Asked Questions &#8212; alerta 4.7 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,15 +24,20 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="alerta 4.7 documentation" href="index.html" />
     <link rel="next" title="Releases" href="release-notes.html" />
     <link rel="prev" title="Heartbeat Format" href="api/heartbeat.html" />
    
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">  
+  <body role="document">
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -46,12 +51,12 @@
 <div class="section" id="why-can-t-i-see-any-alerts-in-the-web-browser">
 <h3>Why can&#8217;t I see any alerts in the web browser?<a class="headerlink" href="#why-can-t-i-see-any-alerts-in-the-web-browser" title="Permalink to this headline">¶</a></h3>
 <p>If you can send and query for alerts using the <code class="docutils literal"><span class="pre">alerta</span></code> CLI tool this problem is almost certainly related to cross-origin browser errors. Open up the Javascript developer console in your browser of choice and look for <a class="reference external" href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS</a> errors like:</p>
-<div class="highlight-python"><div class="highlight"><pre>XMLHttpRequest cannot load http://api.alerta.io/alerts?status=open.
+<div class="highlight-default"><div class="highlight"><pre><span></span>XMLHttpRequest cannot load http://api.alerta.io/alerts?status=open.
 No &#39;Access-Control-Allow-Origin&#39; header is present on the requested
 resource. Origin &#39;http://web.alerta.io&#39; is therefore not allowed access.
 </pre></div>
 </div>
-<p>To fix this you can either serve the web UI from the <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">same origin</a> as the API using a web server to <a class="reference internal" href="deployment.html#reverse-proxy"><span>reverse proxy</span></a> the web UI or ensure that the API server <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin">allows the origin</a> where the web UI is hosted by adding it to the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">CORS_ORIGINS</span></code> <a class="reference internal" href="configuration.html#cors-config"><span>server configuration</span></a> setting.</p>
+<p>To fix this you can either serve the web UI from the <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">same origin</a> as the API using a web server to <a class="reference internal" href="deployment.html#reverse-proxy"><span class="std std-ref">reverse proxy</span></a> the web UI or ensure that the API server <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin">allows the origin</a> where the web UI is hosted by adding it to the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">CORS_ORIGINS</span></code> <a class="reference internal" href="configuration.html#cors-config"><span class="std std-ref">server configuration</span></a> setting.</p>
 </div>
 <div class="section" id="can-i-define-custom-severity-codes-and-levels">
 <h3>Can I define custom severity codes and levels?<a class="headerlink" href="#can-i-define-custom-severity-codes-and-levels" title="Permalink to this headline">¶</a></h3>
@@ -60,11 +65,11 @@ resource. Origin &#39;http://web.alerta.io&#39; is therefore not allowed access.
 <div class="section" id="how-can-i-add-a-priority-to-an-alert-eg-high-medium-low">
 <h3>How can I add a priority to an alert eg. High, Medium, Low?<a class="headerlink" href="#how-can-i-add-a-priority-to-an-alert-eg-high-medium-low" title="Permalink to this headline">¶</a></h3>
 <p>Use a custom attribute called <code class="docutils literal"><span class="pre">priority</span></code> when sending alerts to Alerta:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta send ... --attributes priority=high ...
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta send ... --attributes priority=high ...
 </pre></div>
 </div>
 <p>Alerts of differing priority could be queried by <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool using:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta query --filters attributes.priority=high
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta query --filters attributes.priority=high
 </pre></div>
 </div>
 <p>Using the web console to sort alerts by priority as well as severity would require some development effort.</p>
@@ -99,10 +104,12 @@ resource. Origin &#39;http://web.alerta.io&#39; is therefore not allowed access.
 
 
 
+
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=star&count=true&size=large"
+<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=star&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
+
 
 
 
@@ -112,11 +119,13 @@ resource. Origin &#39;http://web.alerta.io&#39; is therefore not allowed access.
 <p>
 <a href="https://travis-ci.org/guardian/alerta">
     <img
-        alt="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
-        src="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
-    >
+        alt="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
+        src="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
+    />
 </a>
 </p>
+
+
 
 
 <h3>
@@ -156,7 +165,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="api/heartbeat.html">Heartbeat Format</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Frequently Asked Questions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Frequently Asked Questions</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release-notes.html">Releases</a></li>
@@ -167,14 +176,11 @@ Links
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -185,8 +191,8 @@ Links
       &copy;2015, Nick Satterly.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
       <a href="_sources/faq.txt"

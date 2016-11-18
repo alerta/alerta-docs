@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>API Reference &mdash; alerta 4.7 documentation</title>
+    <title>API Reference &#8212; alerta 4.7 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -24,15 +24,20 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="top" title="alerta 4.7 documentation" href="../index.html" />
     <link rel="next" title="Alert Format" href="alert.html" />
     <link rel="prev" title="Development" href="../development.html" />
    
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">  
+  <body role="document">
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -96,99 +101,99 @@
 <span id="id1"></span><h2><a class="toc-backref" href="#id55">Alerts</a><a class="headerlink" href="#alerts" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="send-an-alert">
 <span id="post-alert"></span><h3><a class="toc-backref" href="#id56">Send an alert</a><a class="headerlink" href="#send-an-alert" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">POST</span> <span class="o">/</span><span class="n">alert</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">alert</span>
 </pre></div>
 </div>
 <div class="section" id="input">
 <h4>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h4>
-<p>Only <code class="docutils literal"><span class="pre">resource</span></code> and <code class="docutils literal"><span class="pre">event</span></code> are required. See <a class="reference internal" href="alert.html#alert-attributes"><span>Alert Attributes</span></a> for a full list of valid inputs.</p>
+<p>Only <code class="docutils literal"><span class="pre">resource</span></code> and <code class="docutils literal"><span class="pre">event</span></code> are required. See <a class="reference internal" href="alert.html#alert-attributes"><span class="std std-ref">Alert Attributes</span></a> for a full list of valid inputs.</p>
 </div>
 <div class="section" id="example">
 <h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;web01&quot;</span><span class="p">,</span>
-  <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;HttpServerError&quot;</span><span class="p">,</span>
-  <span class="s">&quot;environment&quot;</span><span class="p">:</span> <span class="s">&quot;Production&quot;</span><span class="p">,</span>
-  <span class="s">&quot;severity&quot;</span><span class="p">:</span> <span class="s">&quot;major&quot;</span><span class="p">,</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;open&quot;</span><span class="p">,</span>
-  <span class="s">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s">&quot;HttpServerError&quot;</span><span class="p">,</span>
-    <span class="s">&quot;HttpServerOK&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HttpServerOK&quot;</span>
   <span class="p">],</span>
-  <span class="s">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s">&quot;example.com&quot;</span>
+  <span class="s2">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;example.com&quot;</span>
   <span class="p">],</span>
-  <span class="s">&quot;group&quot;</span><span class="p">:</span> <span class="s">&quot;Web&quot;</span><span class="p">,</span>
-  <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;Bad Gateway (501)&quot;</span><span class="p">,</span>
-  <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;The site is down.&quot;</span><span class="p">,</span>
-  <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s">&quot;london&quot;</span>
+  <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;The site is down.&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;london&quot;</span>
   <span class="p">],</span>
-  <span class="s">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s">&quot;company&quot;</span><span class="p">:</span> <span class="s">&quot;ACME Corp&quot;</span>
+  <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;company&quot;</span><span class="p">:</span> <span class="s2">&quot;ACME Corp&quot;</span>
   <span class="p">},</span>
-  <span class="s">&quot;origin&quot;</span><span class="p">:</span> <span class="s">&quot;curl&quot;</span><span class="p">,</span>
-  <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;webAlert&quot;</span>
+  <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;webAlert&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="response">
 <h4>Response<a class="headerlink" href="#response" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre>201 CREATED
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span><span class="p">,</span>
-  <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;f26b3695-0e67-402f-81be-ba966bcb9603&quot;</span><span class="p">,</span>
-  <span class="s">&quot;alert&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s">&quot;origin&quot;</span><span class="p">:</span> <span class="s">&quot;curl&quot;</span><span class="p">,</span>
-    <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;The site is down.&quot;</span><span class="p">,</span>
-    <span class="s">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-01T23:34:30.635Z&quot;</span><span class="p">,</span>
-    <span class="s">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-01T23:34:28.118Z&quot;</span><span class="p">,</span>
-    <span class="s">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s">&quot;moreSevere&quot;</span><span class="p">,</span>
-    <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/f26b3695-0e67-402f-81be-ba966bcb9603&quot;</span><span class="p">,</span>
-    <span class="s">&quot;rawData&quot;</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
-    <span class="s">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s">&quot;unknown&quot;</span><span class="p">,</span>
-    <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;HttpServerError&quot;</span><span class="p">,</span>
-    <span class="s">&quot;group&quot;</span><span class="p">:</span> <span class="s">&quot;Web&quot;</span><span class="p">,</span>
-    <span class="s">&quot;severity&quot;</span><span class="p">:</span> <span class="s">&quot;major&quot;</span><span class="p">,</span>
-    <span class="s">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="s">&quot;example.com&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;f26b3695-0e67-402f-81be-ba966bcb9603&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;alert&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;The site is down.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-01T23:34:30.635Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-01T23:34:28.118Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s2">&quot;moreSevere&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/f26b3695-0e67-402f-81be-ba966bcb9603&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rawData&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s2">&quot;unknown&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;example.com&quot;</span>
     <span class="p">],</span>
-    <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;f26b3695-0e67-402f-81be-ba966bcb9603&quot;</span><span class="p">,</span>
-    <span class="s">&quot;environment&quot;</span><span class="p">:</span> <span class="s">&quot;Production&quot;</span><span class="p">,</span>
-    <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;webAlert&quot;</span><span class="p">,</span>
-    <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;open&quot;</span><span class="p">,</span>
-    <span class="s">&quot;repeat&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-    <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="s">&quot;london&quot;</span>
+    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;f26b3695-0e67-402f-81be-ba966bcb9603&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;webAlert&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;repeat&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;london&quot;</span>
     <span class="p">],</span>
-    <span class="s">&quot;createTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-01T23:34:27.467Z&quot;</span><span class="p">,</span>
-    <span class="s">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s">&quot;1637de1f-eac5-48dd-a4dd-8a10e4c89843&quot;</span><span class="p">,</span>
-    <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;web01&quot;</span><span class="p">,</span>
-    <span class="s">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="s">&quot;HttpServerError&quot;</span><span class="p">,</span>
-      <span class="s">&quot;HttpServerOK&quot;</span>
+    <span class="s2">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-01T23:34:27.467Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s2">&quot;1637de1f-eac5-48dd-a4dd-8a10e4c89843&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;HttpServerOK&quot;</span>
     <span class="p">],</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;Bad Gateway (501)&quot;</span><span class="p">,</span>
-    <span class="s">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
-    <span class="s">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s">&quot;city&quot;</span><span class="p">:</span> <span class="s">&quot;London&quot;</span><span class="p">,</span>
-      <span class="s">&quot;region_code&quot;</span><span class="p">:</span> <span class="s">&quot;ENG&quot;</span><span class="p">,</span>
-      <span class="s">&quot;region_name&quot;</span><span class="p">:</span> <span class="s">&quot;England&quot;</span><span class="p">,</span>
-      <span class="s">&quot;ip&quot;</span><span class="p">:</span> <span class="s">&quot;86.156.104.171&quot;</span><span class="p">,</span>
-      <span class="s">&quot;company&quot;</span><span class="p">:</span> <span class="s">&quot;ACME Corp&quot;</span><span class="p">,</span>
-      <span class="s">&quot;time_zone&quot;</span><span class="p">:</span> <span class="s">&quot;Europe/London&quot;</span><span class="p">,</span>
-      <span class="s">&quot;longitude&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.124</span><span class="p">,</span>
-      <span class="s">&quot;metro_code&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s">&quot;latitude&quot;</span><span class="p">:</span> <span class="mf">51.453</span><span class="p">,</span>
-      <span class="s">&quot;country_code&quot;</span><span class="p">:</span> <span class="s">&quot;GB&quot;</span><span class="p">,</span>
-      <span class="s">&quot;country_name&quot;</span><span class="p">:</span> <span class="s">&quot;United Kingdom&quot;</span><span class="p">,</span>
-      <span class="s">&quot;zip_code&quot;</span><span class="p">:</span> <span class="s">&quot;SW2&quot;</span>
+    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;London&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;region_code&quot;</span><span class="p">:</span> <span class="s2">&quot;ENG&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;region_name&quot;</span><span class="p">:</span> <span class="s2">&quot;England&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;86.156.104.171&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;company&quot;</span><span class="p">:</span> <span class="s2">&quot;ACME Corp&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;time_zone&quot;</span><span class="p">:</span> <span class="s2">&quot;Europe/London&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.124</span><span class="p">,</span>
+      <span class="s2">&quot;metro_code&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="mf">51.453</span><span class="p">,</span>
+      <span class="s2">&quot;country_code&quot;</span><span class="p">:</span> <span class="s2">&quot;GB&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;country_name&quot;</span><span class="p">:</span> <span class="s2">&quot;United Kingdom&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;zip_code&quot;</span><span class="p">:</span> <span class="s2">&quot;SW2&quot;</span>
     <span class="p">},</span>
-    <span class="s">&quot;history&quot;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="s2">&quot;history&quot;</span><span class="p">:</span> <span class="p">[]</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -197,69 +202,69 @@
 </div>
 <div class="section" id="get-an-alert">
 <span id="get-alert-id"></span><h3><a class="toc-backref" href="#id57">Get an alert</a><a class="headerlink" href="#get-an-alert" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre>GET /alert/:id
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
 </pre></div>
 </div>
 <div class="section" id="id2">
 <h4>Response<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span><span class="p">,</span>
-  <span class="s">&quot;total&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s">&quot;alert&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s">&quot;origin&quot;</span><span class="p">:</span> <span class="s">&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.93 Safari/537.36&quot;</span><span class="p">,</span>
-    <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
-    <span class="s">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-01-30T23:00:13.985Z&quot;</span><span class="p">,</span>
-    <span class="s">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-01-30T23:00:13.985Z&quot;</span><span class="p">,</span>
-    <span class="s">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s">&quot;moreSevere&quot;</span><span class="p">,</span>
-    <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span><span class="p">,</span>
-    <span class="s">&quot;rawData&quot;</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
-    <span class="s">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s">&quot;unknown&quot;</span><span class="p">,</span>
-    <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;HttpError&quot;</span><span class="p">,</span>
-    <span class="s">&quot;group&quot;</span><span class="p">:</span> <span class="s">&quot;Web&quot;</span><span class="p">,</span>
-    <span class="s">&quot;severity&quot;</span><span class="p">:</span> <span class="s">&quot;minor&quot;</span><span class="p">,</span>
-    <span class="s">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="s">&quot;Website&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;alert&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.93 Safari/537.36&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-01-30T23:00:13.985Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-01-30T23:00:13.985Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s2">&quot;moreSevere&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rawData&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s2">&quot;unknown&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpError&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;minor&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;Website&quot;</span>
     <span class="p">],</span>
-    <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span><span class="p">,</span>
-    <span class="s">&quot;environment&quot;</span><span class="p">:</span> <span class="s">&quot;Production&quot;</span><span class="p">,</span>
-    <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;browserAlert&quot;</span><span class="p">,</span>
-    <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;open&quot;</span><span class="p">,</span>
-    <span class="s">&quot;repeat&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="s">&quot;watch:Nick Satterly&quot;</span>
+    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;browserAlert&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;repeat&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;watch:Nick Satterly&quot;</span>
     <span class="p">],</span>
-    <span class="s">&quot;createTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-01-30T23:00:13.978Z&quot;</span><span class="p">,</span>
-    <span class="s">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span><span class="p">,</span>
-    <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;web01&quot;</span><span class="p">,</span>
-    <span class="s">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;n/a&quot;</span><span class="p">,</span>
-    <span class="s">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
-    <span class="s">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s">&quot;ip&quot;</span><span class="p">:</span> <span class="s">&quot;127.2.52.129&quot;</span>
+    <span class="s2">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-01-30T23:00:13.978Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s2">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;n/a&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;127.2.52.129&quot;</span>
     <span class="p">},</span>
-    <span class="s">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
-        <span class="s">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-01-30T23:00:13.978Z&quot;</span><span class="p">,</span>
-        <span class="s">&quot;severity&quot;</span><span class="p">:</span> <span class="s">&quot;minor&quot;</span><span class="p">,</span>
-        <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
-        <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;n/a&quot;</span><span class="p">,</span>
-        <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;HttpError&quot;</span><span class="p">,</span>
-        <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span>
+        <span class="s2">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-01-30T23:00:13.978Z&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;minor&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;n/a&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpError&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span>
       <span class="p">},</span>
       <span class="p">{</span>
-        <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;closed&quot;</span><span class="p">,</span>
-        <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;status change via console&quot;</span><span class="p">,</span>
-        <span class="s">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-02-17T14:51:30.609Z&quot;</span><span class="p">,</span>
-        <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;HttpError&quot;</span><span class="p">,</span>
-        <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span>
+        <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;closed&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;status change via console&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-02-17T14:51:30.609Z&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpError&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span>
       <span class="p">},</span>
       <span class="p">{</span>
-        <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;open&quot;</span><span class="p">,</span>
-        <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;status change via console&quot;</span><span class="p">,</span>
-        <span class="s">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-02-17T14:51:33.169Z&quot;</span><span class="p">,</span>
-        <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;HttpError&quot;</span><span class="p">,</span>
-        <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span>
+        <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;status change via console&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-02-17T14:51:33.169Z&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpError&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span>
       <span class="p">}</span>
     <span class="p">]</span>
   <span class="p">}</span>
@@ -270,7 +275,7 @@
 </div>
 <div class="section" id="set-alert-status">
 <h3><a class="toc-backref" href="#id58">Set alert status</a><a class="headerlink" href="#set-alert-status" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre>POST /alert/:id/status
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">status</span>
 </pre></div>
 </div>
 <div class="section" id="id3">
@@ -301,20 +306,20 @@
 </div>
 <div class="section" id="id4">
 <h4>Example<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ack&quot;</span><span class="p">,</span>
-  <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;disk needs replacing&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ack&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;disk needs replacing&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id5">
 <h4>Response<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre>200 OK
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -323,8 +328,8 @@
 <div class="section" id="tag-and-untag-alerts">
 <h3><a class="toc-backref" href="#id59">Tag and untag alerts</a><a class="headerlink" href="#tag-and-untag-alerts" title="Permalink to this headline">¶</a></h3>
 <p>Tags are a set, not a list, which means that tagging an alert with the same tag does nothing tags can be removed.</p>
-<div class="highlight-python"><div class="highlight"><pre>POST /alert/:id/tag
-POST /alert/:id/untag
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">tag</span>
+<span class="n">POST</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">untag</span>
 </pre></div>
 </div>
 <div class="section" id="id6">
@@ -351,11 +356,11 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="id7">
 <h4>Example<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s">&quot;foo&quot;</span><span class="p">,</span>
-    <span class="s">&quot;bar&quot;</span><span class="p">,</span>
-    <span class="s">&quot;baz&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;bar&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;baz&quot;</span>
   <span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
@@ -364,16 +369,16 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="delete-an-alert">
 <h3><a class="toc-backref" href="#id60">Delete an alert</a><a class="headerlink" href="#delete-an-alert" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre>DELETE /alert/:id
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
 </pre></div>
 </div>
 <div class="section" id="id8">
 <h4>Response<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre>200 OK
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -381,7 +386,7 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="search-alerts">
 <span id="get-alerts"></span><h3><a class="toc-backref" href="#id61">Search alerts</a><a class="headerlink" href="#search-alerts" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span>
 </pre></div>
 </div>
 <div class="section" id="parameters">
@@ -447,85 +452,85 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="id9">
 <h4>Example<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre>http://api.alerta.io/alerts?status=open&amp;severity=critical&amp;severity=major&amp;environment=Production&amp;service=Network
+<div class="highlight-default"><div class="highlight"><pre><span></span>http://api.alerta.io/alerts?status=open&amp;severity=critical&amp;severity=major&amp;environment=Production&amp;service=Network
 </pre></div>
 </div>
 </div>
 <div class="section" id="id10">
 <h4>Response<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span><span class="p">,</span>
-  <span class="s">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-  <span class="s">&quot;pageSize&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s">&quot;statusCounts&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s">&quot;open&quot;</span><span class="p">:</span> <span class="mi">2</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s2">&quot;pageSize&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;statusCounts&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;open&quot;</span><span class="p">:</span> <span class="mi">2</span>
   <span class="p">},</span>
-  <span class="s">&quot;alerts&quot;</span><span class="p">:</span> <span class="p">[</span>
+  <span class="s2">&quot;alerts&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s">&quot;origin&quot;</span><span class="p">:</span> <span class="s">&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.93 Safari/537.36&quot;</span><span class="p">,</span>
-      <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
-      <span class="s">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-01-30T23:00:13.985Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-01-30T23:00:13.985Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s">&quot;moreSevere&quot;</span><span class="p">,</span>
-      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span><span class="p">,</span>
-      <span class="s">&quot;rawData&quot;</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
-      <span class="s">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s">&quot;unknown&quot;</span><span class="p">,</span>
-      <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;HttpError&quot;</span><span class="p">,</span>
-      <span class="s">&quot;group&quot;</span><span class="p">:</span> <span class="s">&quot;Web&quot;</span><span class="p">,</span>
-      <span class="s">&quot;severity&quot;</span><span class="p">:</span> <span class="s">&quot;minor&quot;</span><span class="p">,</span>
-      <span class="s">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;Website&quot;</span>
+      <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.93 Safari/537.36&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-01-30T23:00:13.985Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-01-30T23:00:13.985Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s2">&quot;moreSevere&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;rawData&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s2">&quot;unknown&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpError&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;minor&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Website&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span><span class="p">,</span>
-      <span class="s">&quot;environment&quot;</span><span class="p">:</span> <span class="s">&quot;Production&quot;</span><span class="p">,</span>
-      <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;browserAlert&quot;</span><span class="p">,</span>
-      <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;open&quot;</span><span class="p">,</span>
-      <span class="s">&quot;repeat&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-      <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[],</span>
-      <span class="s">&quot;createTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-01-30T23:00:13.978Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span><span class="p">,</span>
-      <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;web01&quot;</span><span class="p">,</span>
-      <span class="s">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[],</span>
-      <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;n/a&quot;</span><span class="p">,</span>
-      <span class="s">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
-      <span class="s">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;ip&quot;</span><span class="p">:</span> <span class="s">&quot;127.2.52.129&quot;</span>
+      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;browserAlert&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;repeat&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[],</span>
+      <span class="s2">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-01-30T23:00:13.978Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s2">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[],</span>
+      <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;n/a&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
+      <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;127.2.52.129&quot;</span>
       <span class="p">},</span>
-      <span class="s">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-          <span class="s">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-01-30T23:00:13.978Z&quot;</span><span class="p">,</span>
-          <span class="s">&quot;severity&quot;</span><span class="p">:</span> <span class="s">&quot;minor&quot;</span><span class="p">,</span>
-          <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
-          <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;n/a&quot;</span><span class="p">,</span>
-          <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;HttpError&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span>
+          <span class="s2">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-01-30T23:00:13.978Z&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;minor&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;n/a&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpError&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-          <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;closed&quot;</span><span class="p">,</span>
-          <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;status change via console&quot;</span><span class="p">,</span>
-          <span class="s">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-02-17T14:51:30.609Z&quot;</span><span class="p">,</span>
-          <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;HttpError&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span>
+          <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;closed&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;status change via console&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-02-17T14:51:30.609Z&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpError&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-          <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;open&quot;</span><span class="p">,</span>
-          <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;status change via console&quot;</span><span class="p">,</span>
-          <span class="s">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-02-17T14:51:33.169Z&quot;</span><span class="p">,</span>
-          <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;HttpError&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span>
+          <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;status change via console&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-02-17T14:51:33.169Z&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpError&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span>
         <span class="p">}</span>
       <span class="p">]</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s">&quot;more&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-  <span class="s">&quot;severityCounts&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s">&quot;minor&quot;</span><span class="p">:</span> <span class="mi">2</span>
+  <span class="s2">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;more&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+  <span class="s2">&quot;severityCounts&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;minor&quot;</span><span class="p">:</span> <span class="mi">2</span>
   <span class="p">},</span>
-  <span class="s">&quot;lastTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-01-30T23:00:13.985Z&quot;</span><span class="p">,</span>
-  <span class="s">&quot;pages&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-  <span class="s">&quot;autoRefresh&quot;</span><span class="p">:</span> <span class="n">true</span>
+  <span class="s2">&quot;lastTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-01-30T23:00:13.985Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;pages&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s2">&quot;autoRefresh&quot;</span><span class="p">:</span> <span class="n">true</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -533,7 +538,7 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="get-history-of-alerts">
 <span id="get-alerts-history"></span><h3><a class="toc-backref" href="#id62">Get history of alerts</a><a class="headerlink" href="#get-history-of-alerts" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">history</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">history</span>
 </pre></div>
 </div>
 <div class="section" id="id11">
@@ -560,58 +565,58 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="id12">
 <h4>Example<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre>http://api.alerta.io/alerts/history?resource=router0011
+<div class="highlight-default"><div class="highlight"><pre><span></span>http://api.alerta.io/alerts/history?resource=router0011
 </pre></div>
 </div>
 </div>
 <div class="section" id="id13">
 <h4>Response<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span><span class="p">,</span>
-  <span class="s">&quot;lastTime&quot;</span><span class="p">:</span> <span class="s">&quot;2014-12-15T09:55:31.344Z&quot;</span><span class="p">,</span>
-  <span class="s">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;lastTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2014-12-15T09:55:31.344Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s">&quot;origin&quot;</span><span class="p">:</span> <span class="s">&quot;mod_wsgi/ex-std-node439.prod.rhcloud.com&quot;</span><span class="p">,</span>
-      <span class="s">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s">&quot;2014-12-15T09:55:31.341Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;location=London&quot;</span><span class="p">,</span>
-        <span class="s">&quot;region=EU&quot;</span>
+      <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;mod_wsgi/ex-std-node439.prod.rhcloud.com&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2014-12-15T09:55:31.341Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;location=London&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;region=EU&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;Router is up.&quot;</span><span class="p">,</span>
-      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/53482b80-ca57-43da-ab73-8e0a8456c531&quot;</span><span class="p">,</span>
-      <span class="s">&quot;group&quot;</span><span class="p">:</span> <span class="s">&quot;Network&quot;</span><span class="p">,</span>
-      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;53482b80-ca57-43da-ab73-8e0a8456c531&quot;</span><span class="p">,</span>
-      <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;router0011&quot;</span><span class="p">,</span>
-      <span class="s">&quot;severity&quot;</span><span class="p">:</span> <span class="s">&quot;normal&quot;</span><span class="p">,</span>
-      <span class="s">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;Shared&quot;</span>
+      <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Router is up.&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/53482b80-ca57-43da-ab73-8e0a8456c531&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Network&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;53482b80-ca57-43da-ab73-8e0a8456c531&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;router0011&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Shared&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;UP&quot;</span><span class="p">,</span>
-      <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;node_up&quot;</span><span class="p">,</span>
-      <span class="s">&quot;environment&quot;</span><span class="p">:</span> <span class="s">&quot;Production&quot;</span><span class="p">,</span>
-      <span class="s">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{},</span>
-      <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;exceptionAlert&quot;</span>
+      <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;UP&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;node_up&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{},</span>
+      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;exceptionAlert&quot;</span>
     <span class="p">},</span>
     <span class="p">{</span>
-      <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;closed&quot;</span><span class="p">,</span>
-      <span class="s">&quot;origin&quot;</span><span class="p">:</span> <span class="s">&quot;mod_wsgi/ex-std-node439.prod.rhcloud.com&quot;</span><span class="p">,</span>
-      <span class="s">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s">&quot;2014-12-15T09:55:31.344Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;location=London&quot;</span><span class="p">,</span>
-        <span class="s">&quot;region=EU&quot;</span>
+      <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;closed&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;mod_wsgi/ex-std-node439.prod.rhcloud.com&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2014-12-15T09:55:31.344Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;location=London&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;region=EU&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;new alert status change&quot;</span><span class="p">,</span>
-      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/53482b80-ca57-43da-ab73-8e0a8456c531&quot;</span><span class="p">,</span>
-      <span class="s">&quot;group&quot;</span><span class="p">:</span> <span class="s">&quot;Network&quot;</span><span class="p">,</span>
-      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;53482b80-ca57-43da-ab73-8e0a8456c531&quot;</span><span class="p">,</span>
-      <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;router0011&quot;</span><span class="p">,</span>
-      <span class="s">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;Shared&quot;</span>
+      <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;new alert status change&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/53482b80-ca57-43da-ab73-8e0a8456c531&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Network&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;53482b80-ca57-43da-ab73-8e0a8456c531&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;router0011&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Shared&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;event&quot;</span><span class="p">:</span> <span class="s">&quot;node_up&quot;</span><span class="p">,</span>
-      <span class="s">&quot;environment&quot;</span><span class="p">:</span> <span class="s">&quot;Production&quot;</span><span class="p">,</span>
-      <span class="s">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{},</span>
-      <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;exceptionAlert&quot;</span>
+      <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;node_up&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{},</span>
+      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;exceptionAlert&quot;</span>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
@@ -621,7 +626,7 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="get-severity-and-status-counts-for-alerts">
 <h3><a class="toc-backref" href="#id63">Get severity and status counts for alerts</a><a class="headerlink" href="#get-severity-and-status-counts-for-alerts" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">count</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">count</span>
 </pre></div>
 </div>
 <div class="section" id="id14">
@@ -648,25 +653,25 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="id15">
 <h4>Example<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre>http://api.alerta.io/alerts/count?status=open&amp;status=ack
+<div class="highlight-default"><div class="highlight"><pre><span></span>http://api.alerta.io/alerts/count?status=open&amp;status=ack
 </pre></div>
 </div>
 </div>
 <div class="section" id="id16">
 <h4>Response<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span><span class="p">,</span>
-  <span class="s">&quot;total&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
-  <span class="s">&quot;statusCounts&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s">&quot;ack&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="s">&quot;open&quot;</span><span class="p">:</span> <span class="mi">10</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+  <span class="s2">&quot;statusCounts&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;ack&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;open&quot;</span><span class="p">:</span> <span class="mi">10</span>
   <span class="p">},</span>
-  <span class="s">&quot;severityCounts&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s">&quot;major&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s">&quot;warning&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-    <span class="s">&quot;critical&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="s">&quot;minor&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-    <span class="s">&quot;normal&quot;</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="s2">&quot;severityCounts&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;major&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;warning&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;critical&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;minor&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;normal&quot;</span><span class="p">:</span> <span class="mi">1</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -676,7 +681,7 @@ POST /alert/:id/untag
 <div class="section" id="top-10-alerts-by-resource">
 <h3><a class="toc-backref" href="#id64">Top 10 alerts by resource</a><a class="headerlink" href="#top-10-alerts-by-resource" title="Permalink to this headline">¶</a></h3>
 <p>The top 10 resources are grouped by <code class="docutils literal"><span class="pre">event</span></code> by default but this can be any valid attribute.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">top10</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">top10</span>
 </pre></div>
 </div>
 <div class="section" id="id17">
@@ -703,258 +708,258 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="id18">
 <h4>Example<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre>http://api.alerta.io/alerts/top10?group-by=group
+<div class="highlight-default"><div class="highlight"><pre><span></span>http://api.alerta.io/alerts/top10?group-by=group
 </pre></div>
 </div>
 </div>
 <div class="section" id="id19">
 <h4>Response<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span><span class="p">,</span>
-  <span class="s">&quot;total&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-  <span class="s">&quot;top10&quot;</span><span class="p">:</span> <span class="p">[</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="s2">&quot;top10&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
-      <span class="s">&quot;group&quot;</span><span class="p">:</span> <span class="s">&quot;Misc&quot;</span><span class="p">,</span>
-      <span class="s">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;Development&quot;</span><span class="p">,</span>
-        <span class="s">&quot;Production&quot;</span>
+      <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+      <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Misc&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Development&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Production&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;sdff&quot;</span><span class="p">,</span>
-        <span class="s">&quot;web&quot;</span><span class="p">,</span>
-        <span class="s">&quot;Web&quot;</span><span class="p">,</span>
-        <span class="s">&quot;test&quot;</span><span class="p">,</span>
-        <span class="s">&quot;aaa&quot;</span><span class="p">,</span>
-        <span class="s">&quot;Svc&quot;</span>
+      <span class="s2">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;sdff&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;web&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;test&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;aaa&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Svc&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-          <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/f5b7cbc2-ae92-4e0c-acd3-01d4ec466785&quot;</span><span class="p">,</span>
-          <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;web&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;f5b7cbc2-ae92-4e0c-acd3-01d4ec466785&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/f5b7cbc2-ae92-4e0c-acd3-01d4ec466785&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;f5b7cbc2-ae92-4e0c-acd3-01d4ec466785&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-          <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/5c92228f-c511-4d5b-9c81-dc98d3fd67e6&quot;</span><span class="p">,</span>
-          <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;xv&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;5c92228f-c511-4d5b-9c81-dc98d3fd67e6&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/5c92228f-c511-4d5b-9c81-dc98d3fd67e6&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;xv&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;5c92228f-c511-4d5b-9c81-dc98d3fd67e6&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-          <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/7e18e2ca-40d3-4c0d-8b90-067b67f82eee&quot;</span><span class="p">,</span>
-          <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;res1&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;7e18e2ca-40d3-4c0d-8b90-067b67f82eee&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/7e18e2ca-40d3-4c0d-8b90-067b67f82eee&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;res1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;7e18e2ca-40d3-4c0d-8b90-067b67f82eee&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-          <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/d6f5bcce-6442-4471-a869-b8c017b74b2b&quot;</span><span class="p">,</span>
-          <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;web01&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;d6f5bcce-6442-4471-a869-b8c017b74b2b&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/d6f5bcce-6442-4471-a869-b8c017b74b2b&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;d6f5bcce-6442-4471-a869-b8c017b74b2b&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-          <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/710cc471-569b-4558-8f00-714f4f91bfaf&quot;</span><span class="p">,</span>
-          <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;res1&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;710cc471-569b-4558-8f00-714f4f91bfaf&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/710cc471-569b-4558-8f00-714f4f91bfaf&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;res1&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;710cc471-569b-4558-8f00-714f4f91bfaf&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-          <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/8fbd3de5-4ed4-4a75-b208-87bed86a7bed&quot;</span><span class="p">,</span>
-          <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;asdf&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;8fbd3de5-4ed4-4a75-b208-87bed86a7bed&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/8fbd3de5-4ed4-4a75-b208-87bed86a7bed&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;asdf&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;8fbd3de5-4ed4-4a75-b208-87bed86a7bed&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-          <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/d71bb399-2241-4c53-8dd7-3c541699c86a&quot;</span><span class="p">,</span>
-          <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;sdf&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;d71bb399-2241-4c53-8dd7-3c541699c86a&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/d71bb399-2241-4c53-8dd7-3c541699c86a&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;sdf&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;d71bb399-2241-4c53-8dd7-3c541699c86a&quot;</span>
         <span class="p">}</span>
       <span class="p">]</span>
     <span class="p">},</span>
     <span class="p">{</span>
-      <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-      <span class="s">&quot;group&quot;</span><span class="p">:</span> <span class="s">&quot;Web&quot;</span><span class="p">,</span>
-      <span class="s">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span>
-      <span class="s">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;Production&quot;</span>
+      <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+      <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span>
+      <span class="s2">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Production&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;example.com&quot;</span><span class="p">,</span>
-        <span class="s">&quot;API&quot;</span><span class="p">,</span>
-        <span class="s">&quot;Website&quot;</span><span class="p">,</span>
-        <span class="s">&quot;Mobile&quot;</span>
+      <span class="s2">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;example.com&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;API&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Website&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Mobile&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-          <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/f26b3695-0e67-402f-81be-ba966bcb9603&quot;</span><span class="p">,</span>
-          <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;web01&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;f26b3695-0e67-402f-81be-ba966bcb9603&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/f26b3695-0e67-402f-81be-ba966bcb9603&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;f26b3695-0e67-402f-81be-ba966bcb9603&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-          <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/75e28e73-a76b-4850-8fdb-87fe67d05b1c&quot;</span><span class="p">,</span>
-          <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;web02&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;75e28e73-a76b-4850-8fdb-87fe67d05b1c&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/75e28e73-a76b-4850-8fdb-87fe67d05b1c&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web02&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;75e28e73-a76b-4850-8fdb-87fe67d05b1c&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-          <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span><span class="p">,</span>
-          <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;web01&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;8a90ae96-3a9c-422a-8d17-292106266c75&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-          <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/28681862-af94-4a02-8024-d7a20dd59696&quot;</span><span class="p">,</span>
-          <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;web01:www-http&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;28681862-af94-4a02-8024-d7a20dd59696&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/28681862-af94-4a02-8024-d7a20dd59696&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01:www-http&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;28681862-af94-4a02-8024-d7a20dd59696&quot;</span>
         <span class="p">}</span>
       <span class="p">]</span>
     <span class="p">},</span>
     <span class="p">{</span>
-      <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-      <span class="s">&quot;group&quot;</span><span class="p">:</span> <span class="s">&quot;OS&quot;</span><span class="p">,</span>
-      <span class="s">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-      <span class="s">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;Production&quot;</span>
+      <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+      <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;OS&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+      <span class="s2">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Production&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;Platform&quot;</span><span class="p">,</span>
-        <span class="s">&quot;Mobile&quot;</span>
+      <span class="s2">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Platform&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Mobile&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-          <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/c0a7bbdb-0ab2-4f5b-aa9a-bd7f770ef77f&quot;</span><span class="p">,</span>
-          <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;host44&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;c0a7bbdb-0ab2-4f5b-aa9a-bd7f770ef77f&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/c0a7bbdb-0ab2-4f5b-aa9a-bd7f770ef77f&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;host44&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;c0a7bbdb-0ab2-4f5b-aa9a-bd7f770ef77f&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-          <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/44106634-6662-491a-9915-6d5e27b5fab7&quot;</span><span class="p">,</span>
-          <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;i-9d7303dd:/dev/xvdb&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;44106634-6662-491a-9915-6d5e27b5fab7&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/44106634-6662-491a-9915-6d5e27b5fab7&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;i-9d7303dd:/dev/xvdb&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;44106634-6662-491a-9915-6d5e27b5fab7&quot;</span>
         <span class="p">}</span>
       <span class="p">]</span>
     <span class="p">},</span>
     <span class="p">{</span>
-      <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-      <span class="s">&quot;group&quot;</span><span class="p">:</span> <span class="s">&quot;Cisco&quot;</span><span class="p">,</span>
-      <span class="s">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
-      <span class="s">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;Production&quot;</span>
+      <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Cisco&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+      <span class="s2">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Production&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;Network&quot;</span>
+      <span class="s2">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Network&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-          <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/627fc0e3-38a4-46d7-8064-7a00161c77d6&quot;</span><span class="p">,</span>
-          <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;C-AJPTYO01-VG01-L-3845&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;627fc0e3-38a4-46d7-8064-7a00161c77d6&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/627fc0e3-38a4-46d7-8064-7a00161c77d6&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;C-AJPTYO01-VG01-L-3845&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;627fc0e3-38a4-46d7-8064-7a00161c77d6&quot;</span>
         <span class="p">},</span>
         <span class="p">{</span>
-          <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/5af0e69f-620c-49b1-9694-d1c2f3e23fbe&quot;</span><span class="p">,</span>
-          <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;G-NNYBUF01-WR01-H-7206&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;5af0e69f-620c-49b1-9694-d1c2f3e23fbe&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/5af0e69f-620c-49b1-9694-d1c2f3e23fbe&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;G-NNYBUF01-WR01-H-7206&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;5af0e69f-620c-49b1-9694-d1c2f3e23fbe&quot;</span>
         <span class="p">}</span>
       <span class="p">]</span>
     <span class="p">},</span>
     <span class="p">{</span>
-      <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-      <span class="s">&quot;group&quot;</span><span class="p">:</span> <span class="s">&quot;NetApp&quot;</span><span class="p">,</span>
-      <span class="s">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-      <span class="s">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;Production&quot;</span>
+      <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;NetApp&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+      <span class="s2">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Production&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;Storage&quot;</span>
+      <span class="s2">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Storage&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-          <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/8124c797-9843-45c2-9f3b-a6ab610a335c&quot;</span><span class="p">,</span>
-          <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;netapp51&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;8124c797-9843-45c2-9f3b-a6ab610a335c&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/8124c797-9843-45c2-9f3b-a6ab610a335c&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;netapp51&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;8124c797-9843-45c2-9f3b-a6ab610a335c&quot;</span>
         <span class="p">}</span>
       <span class="p">]</span>
     <span class="p">},</span>
     <span class="p">{</span>
-      <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-      <span class="s">&quot;group&quot;</span><span class="p">:</span> <span class="s">&quot;CloudWatch&quot;</span><span class="p">,</span>
-      <span class="s">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-      <span class="s">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;Production&quot;</span>
+      <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;CloudWatch&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s2">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Production&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;496780030265&quot;</span>
+      <span class="s2">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;496780030265&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-          <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/8e3b6042-ac6e-453a-b118-afa52067fc18&quot;</span><span class="p">,</span>
-          <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;InstanceId:i-0c678beb&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;8e3b6042-ac6e-453a-b118-afa52067fc18&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/8e3b6042-ac6e-453a-b118-afa52067fc18&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;InstanceId:i-0c678beb&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;8e3b6042-ac6e-453a-b118-afa52067fc18&quot;</span>
         <span class="p">}</span>
       <span class="p">]</span>
     <span class="p">},</span>
     <span class="p">{</span>
-      <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-      <span class="s">&quot;group&quot;</span><span class="p">:</span> <span class="s">&quot;web&quot;</span><span class="p">,</span>
-      <span class="s">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;Development&quot;</span>
+      <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;web&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Development&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;web&quot;</span>
+      <span class="s2">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;web&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-          <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/72e6d62d-1d15-4899-a6a5-f511f2fb7e7f&quot;</span><span class="p">,</span>
-          <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;wb01&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;72e6d62d-1d15-4899-a6a5-f511f2fb7e7f&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/72e6d62d-1d15-4899-a6a5-f511f2fb7e7f&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;wb01&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;72e6d62d-1d15-4899-a6a5-f511f2fb7e7f&quot;</span>
         <span class="p">}</span>
       <span class="p">]</span>
     <span class="p">},</span>
     <span class="p">{</span>
-      <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-      <span class="s">&quot;group&quot;</span><span class="p">:</span> <span class="s">&quot;Hardware&quot;</span><span class="p">,</span>
-      <span class="s">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;Production&quot;</span>
+      <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Hardware&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Production&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;Network&quot;</span>
+      <span class="s2">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Network&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-          <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/36b4a748-1067-4fbd-a1b5-45658118bd9b&quot;</span><span class="p">,</span>
-          <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;host678:eth0&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;36b4a748-1067-4fbd-a1b5-45658118bd9b&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/36b4a748-1067-4fbd-a1b5-45658118bd9b&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;host678:eth0&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;36b4a748-1067-4fbd-a1b5-45658118bd9b&quot;</span>
         <span class="p">}</span>
       <span class="p">]</span>
     <span class="p">},</span>
     <span class="p">{</span>
-      <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-      <span class="s">&quot;group&quot;</span><span class="p">:</span> <span class="s">&quot;Network&quot;</span><span class="p">,</span>
-      <span class="s">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;Production&quot;</span>
+      <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Network&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Production&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;Shared&quot;</span>
+      <span class="s2">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Shared&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-          <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/53482b80-ca57-43da-ab73-8e0a8456c531&quot;</span><span class="p">,</span>
-          <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;router0011&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;53482b80-ca57-43da-ab73-8e0a8456c531&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/53482b80-ca57-43da-ab73-8e0a8456c531&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;router0011&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;53482b80-ca57-43da-ab73-8e0a8456c531&quot;</span>
         <span class="p">}</span>
       <span class="p">]</span>
     <span class="p">},</span>
     <span class="p">{</span>
-      <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-      <span class="s">&quot;group&quot;</span><span class="p">:</span> <span class="s">&quot;Oracle&quot;</span><span class="p">,</span>
-      <span class="s">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;Development&quot;</span>
+      <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Oracle&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Development&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;Database&quot;</span>
+      <span class="s2">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Database&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-          <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/alert/5f49bd9a-e612-4489-a540-e1992c6b98c4&quot;</span><span class="p">,</span>
-          <span class="s">&quot;resource&quot;</span><span class="p">:</span> <span class="s">&quot;mydb&quot;</span><span class="p">,</span>
-          <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;5f49bd9a-e612-4489-a540-e1992c6b98c4&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/5f49bd9a-e612-4489-a540-e1992c6b98c4&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;mydb&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;5f49bd9a-e612-4489-a540-e1992c6b98c4&quot;</span>
         <span class="p">}</span>
       <span class="p">]</span>
     <span class="p">}</span>
@@ -971,7 +976,7 @@ POST /alert/:id/untag
 <div class="section" id="list-of-all-environments">
 <h3><a class="toc-backref" href="#id66">List of all environments</a><a class="headerlink" href="#list-of-all-environments" title="Permalink to this headline">¶</a></h3>
 <p>List all environments and alert count for each.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">environments</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">environments</span>
 </pre></div>
 </div>
 <div class="section" id="id21">
@@ -998,23 +1003,23 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="id22">
 <h4>Example<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre>http://api.alerta.io/environments
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">alerta</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">environments</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id23">
 <h4>Response<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span><span class="p">,</span>
-  <span class="s">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-  <span class="s">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s2">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s">&quot;environment&quot;</span><span class="p">:</span> <span class="s">&quot;Development&quot;</span><span class="p">,</span>
-      <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="mi">5</span>
+      <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Development&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">5</span>
     <span class="p">},</span>
     <span class="p">{</span>
-      <span class="s">&quot;environment&quot;</span><span class="p">:</span> <span class="s">&quot;Production&quot;</span><span class="p">,</span>
-      <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="mi">18</span>
+      <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">18</span>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
@@ -1029,7 +1034,7 @@ POST /alert/:id/untag
 <div class="section" id="list-of-all-services">
 <h3><a class="toc-backref" href="#id68">List of all services</a><a class="headerlink" href="#list-of-all-services" title="Permalink to this headline">¶</a></h3>
 <p>List all services by environment and count of alerts for each.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">services</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">services</span>
 </pre></div>
 </div>
 <div class="section" id="id25">
@@ -1056,32 +1061,32 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="id26">
 <h4>Example<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre>http://api.alerta.io/services?environment=Production
+<div class="highlight-default"><div class="highlight"><pre><span></span>http://api.alerta.io/services?environment=Production
 </pre></div>
 </div>
 </div>
 <div class="section" id="id27">
 <h4>Response<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span><span class="p">,</span>
-  <span class="s">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s">&quot;environment&quot;</span><span class="p">:</span> <span class="s">&quot;Production&quot;</span><span class="p">,</span>
-      <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-      <span class="s">&quot;service&quot;</span><span class="p">:</span> <span class="s">&quot;API&quot;</span>
+      <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;service&quot;</span><span class="p">:</span> <span class="s2">&quot;API&quot;</span>
     <span class="p">},</span>
     <span class="p">{</span>
-      <span class="s">&quot;environment&quot;</span><span class="p">:</span> <span class="s">&quot;Production&quot;</span><span class="p">,</span>
-      <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-      <span class="s">&quot;service&quot;</span><span class="p">:</span> <span class="s">&quot;Mobile&quot;</span>
+      <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s2">&quot;service&quot;</span><span class="p">:</span> <span class="s2">&quot;Mobile&quot;</span>
     <span class="p">},</span>
     <span class="p">{</span>
-      <span class="s">&quot;environment&quot;</span><span class="p">:</span> <span class="s">&quot;Production&quot;</span><span class="p">,</span>
-      <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-      <span class="s">&quot;service&quot;</span><span class="p">:</span> <span class="s">&quot;Website&quot;</span>
+      <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s2">&quot;service&quot;</span><span class="p">:</span> <span class="s2">&quot;Website&quot;</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s">&quot;total&quot;</span><span class="p">:</span> <span class="mi">3</span>
+  <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="mi">3</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1093,7 +1098,7 @@ POST /alert/:id/untag
 <div class="section" id="create-a-blackout">
 <h3><a class="toc-backref" href="#id70">Create a blackout</a><a class="headerlink" href="#create-a-blackout" title="Permalink to this headline">¶</a></h3>
 <p>Create a new blackout period for the <code class="docutils literal"><span class="pre">environment</span></code>.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">POST</span> <span class="o">/</span><span class="n">blackout</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">blackout</span>
 </pre></div>
 </div>
 <div class="section" id="id28">
@@ -1152,11 +1157,11 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="id29">
 <h4>Example<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;environment&quot;</span><span class="p">:</span> <span class="s">&quot;Development&quot;</span><span class="p">,</span>
-    <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;foo&quot;</span><span class="p">,</span>
-        <span class="s">&quot;bar&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Development&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bar&quot;</span>
     <span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
@@ -1164,12 +1169,12 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="id30">
 <h4>Response<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre>201 CREATED
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span><span class="p">,</span>
-  <span class="s">&quot;blackout&quot;</span><span class="p">:</span> <span class="s">&quot;d6d1e055-735b-46d2-b4d4-60f2b7d7376c&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;blackout&quot;</span><span class="p">:</span> <span class="s2">&quot;d6d1e055-735b-46d2-b4d4-60f2b7d7376c&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1177,54 +1182,54 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="list-all-blackouts">
 <h3><a class="toc-backref" href="#id71">List all blackouts</a><a class="headerlink" href="#list-all-blackouts" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">blackouts</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">blackouts</span>
 </pre></div>
 </div>
 <div class="section" id="id31">
 <h4>Response<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span><span class="p">,</span>
-  <span class="s">&quot;blackouts&quot;</span><span class="p">:</span> <span class="p">[</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;blackouts&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;expired&quot;</span><span class="p">,</span>
-      <span class="s">&quot;priority&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-      <span class="s">&quot;endTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-10-09T05:13:00.000Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;Mobile&quot;</span>
+      <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;expired&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;priority&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+      <span class="s2">&quot;endTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-10-09T05:13:00.000Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Mobile&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;remaining&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s">&quot;environment&quot;</span><span class="p">:</span> <span class="s">&quot;Production&quot;</span><span class="p">,</span>
-      <span class="s">&quot;startTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-10-09T04:13:00.000Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;duration&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
-      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;f8df3075-8a65-4b6a-8dcc-bc04baba7696&quot;</span>
+      <span class="s2">&quot;remaining&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;startTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-10-09T04:13:00.000Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;duration&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;f8df3075-8a65-4b6a-8dcc-bc04baba7696&quot;</span>
     <span class="p">},</span>
     <span class="p">{</span>
-      <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;active&quot;</span><span class="p">,</span>
-      <span class="s">&quot;priority&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-      <span class="s">&quot;endTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-10-09T22:09:45.852Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;remaining&quot;</span><span class="p">:</span> <span class="mi">3543</span><span class="p">,</span>
-      <span class="s">&quot;environment&quot;</span><span class="p">:</span> <span class="s">&quot;Development&quot;</span><span class="p">,</span>
-      <span class="s">&quot;startTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-10-09T21:09:45.852Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;duration&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
-      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;d6d1e055-735b-46d2-b4d4-60f2b7d7376c&quot;</span>
+      <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;active&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;priority&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;endTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-10-09T22:09:45.852Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;remaining&quot;</span><span class="p">:</span> <span class="mi">3543</span><span class="p">,</span>
+      <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Development&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;startTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-10-09T21:09:45.852Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;duration&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;d6d1e055-735b-46d2-b4d4-60f2b7d7376c&quot;</span>
     <span class="p">},</span>
     <span class="p">{</span>
-      <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;active&quot;</span><span class="p">,</span>
-      <span class="s">&quot;priority&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
-      <span class="s">&quot;endTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-10-09T22:10:36.678Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;foo&quot;</span><span class="p">,</span>
-        <span class="s">&quot;bar&quot;</span>
+      <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;active&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;priority&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+      <span class="s2">&quot;endTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-10-09T22:10:36.678Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;bar&quot;</span>
       <span class="p">],</span>
-      <span class="s">&quot;remaining&quot;</span><span class="p">:</span> <span class="mi">3594</span><span class="p">,</span>
-      <span class="s">&quot;environment&quot;</span><span class="p">:</span> <span class="s">&quot;Development&quot;</span><span class="p">,</span>
-      <span class="s">&quot;startTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-10-09T21:10:36.678Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;duration&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
-      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;60ead7b7-011e-4945-9e5c-5325a6532511&quot;</span>
+      <span class="s2">&quot;remaining&quot;</span><span class="p">:</span> <span class="mi">3594</span><span class="p">,</span>
+      <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Development&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;startTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-10-09T21:10:36.678Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;duration&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;60ead7b7-011e-4945-9e5c-5325a6532511&quot;</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s">&quot;total&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-  <span class="s">&quot;time&quot;</span><span class="p">:</span> <span class="s">&quot;2015-10-09T21:10:42.220Z&quot;</span>
+  <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+  <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-10-09T21:10:42.220Z&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1232,16 +1237,16 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="delete-a-blackout">
 <h3><a class="toc-backref" href="#id72">Delete a blackout</a><a class="headerlink" href="#delete-a-blackout" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre>DELETE /blackout/:id
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">blackout</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
 </pre></div>
 </div>
 <div class="section" id="id32">
 <h4>Response<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre>200 OK
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1253,7 +1258,7 @@ POST /alert/:id/untag
 <div class="section" id="send-a-heartbeat">
 <h3><a class="toc-backref" href="#id74">Send a heartbeat</a><a class="headerlink" href="#send-a-heartbeat" title="Permalink to this headline">¶</a></h3>
 <p>Update a heartbeat or create a new one if it doesn&#8217;t already exist for the heartbeat <code class="docutils literal"><span class="pre">origin</span></code>.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">POST</span> <span class="o">/</span><span class="n">heartbeat</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">heartbeat</span>
 </pre></div>
 </div>
 <div class="section" id="id34">
@@ -1288,37 +1293,37 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="id35">
 <h4>Example<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;origin&quot;</span><span class="p">:</span> <span class="s">&quot;foo&quot;</span><span class="p">,</span>
-    <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s">&quot;bar&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;bar&quot;</span>
     <span class="p">],</span>
-    <span class="s">&quot;createTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-02T01:48:42.106Z&quot;</span><span class="p">,</span>
-    <span class="s">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
-    <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;Heartbeat&quot;</span><span class="p">,</span>
-    <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;aa4d7327-0139-49d4-bf68-6deb003c85d5&quot;</span>
+    <span class="s2">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-02T01:48:42.106Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Heartbeat&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;aa4d7327-0139-49d4-bf68-6deb003c85d5&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id36">
 <h4>Response<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre>201 CREATED
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span><span class="p">,</span>
-  <span class="s">&quot;heartbeat&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s">&quot;origin&quot;</span><span class="p">:</span> <span class="s">&quot;foo&quot;</span><span class="p">,</span>
-    <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="s">&quot;createTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-02T01:52:12.116Z&quot;</span><span class="p">,</span>
-    <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/heartbeat/b703f112-b5ab-4ca6-baa6-c317fb875814&quot;</span><span class="p">,</span>
-    <span class="s">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
-    <span class="s">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-02T01:52:12.116Z&quot;</span><span class="p">,</span>
-    <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;Heartbeat&quot;</span><span class="p">,</span>
-    <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;b703f112-b5ab-4ca6-baa6-c317fb875814&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;heartbeat&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-02T01:52:12.116Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/heartbeat/b703f112-b5ab-4ca6-baa6-c317fb875814&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+    <span class="s2">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-02T01:52:12.116Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Heartbeat&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;b703f112-b5ab-4ca6-baa6-c317fb875814&quot;</span>
   <span class="p">},</span>
-  <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;b703f112-b5ab-4ca6-baa6-c317fb875814&quot;</span>
+  <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;b703f112-b5ab-4ca6-baa6-c317fb875814&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1326,24 +1331,24 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="get-a-heartbeat">
 <h3><a class="toc-backref" href="#id75">Get a heartbeat</a><a class="headerlink" href="#get-a-heartbeat" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre>GET /heartbeat/:id
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">heartbeat</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
 </pre></div>
 </div>
 <div class="section" id="id37">
 <h4>Response<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span><span class="p">,</span>
-  <span class="s">&quot;heartbeat&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s">&quot;origin&quot;</span><span class="p">:</span> <span class="s">&quot;foo&quot;</span><span class="p">,</span>
-    <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="s">&quot;createTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-02T01:52:12.116Z&quot;</span><span class="p">,</span>
-    <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/heartbeat/b703f112-b5ab-4ca6-baa6-c317fb875814&quot;</span><span class="p">,</span>
-    <span class="s">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
-    <span class="s">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-02T01:52:12.116Z&quot;</span><span class="p">,</span>
-    <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;Heartbeat&quot;</span><span class="p">,</span>
-    <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;b703f112-b5ab-4ca6-baa6-c317fb875814&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;heartbeat&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-02T01:52:12.116Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/heartbeat/b703f112-b5ab-4ca6-baa6-c317fb875814&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+    <span class="s2">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-02T01:52:12.116Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Heartbeat&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;b703f112-b5ab-4ca6-baa6-c317fb875814&quot;</span>
   <span class="p">},</span>
-  <span class="s">&quot;total&quot;</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="mi">1</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1351,37 +1356,37 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="list-all-heartbeats">
 <h3><a class="toc-backref" href="#id76">List all heartbeats</a><a class="headerlink" href="#list-all-heartbeats" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">heartbeats</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">heartbeats</span>
 </pre></div>
 </div>
 <div class="section" id="id38">
 <h4>Response<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span><span class="p">,</span>
-  <span class="s">&quot;heartbeats&quot;</span><span class="p">:</span> <span class="p">[</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;heartbeats&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s">&quot;origin&quot;</span><span class="p">:</span> <span class="s">&quot;alerta/vagrant-debian-wheezy64&quot;</span><span class="p">,</span>
-      <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[],</span>
-      <span class="s">&quot;createTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-02-06T22:44:08.719Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/heartbeat/1f50a075-b5a2-4a94-918b-e1eab401a817&quot;</span><span class="p">,</span>
-      <span class="s">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
-      <span class="s">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-02-06T23:02:19.553Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;Heartbeat&quot;</span><span class="p">,</span>
-      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;1f50a075-b5a2-4a94-918b-e1eab401a817&quot;</span>
+      <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;alerta/vagrant-debian-wheezy64&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[],</span>
+      <span class="s2">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-02-06T22:44:08.719Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/heartbeat/1f50a075-b5a2-4a94-918b-e1eab401a817&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
+      <span class="s2">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-02-06T23:02:19.553Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Heartbeat&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1f50a075-b5a2-4a94-918b-e1eab401a817&quot;</span>
     <span class="p">},</span>
     <span class="p">{</span>
-      <span class="s">&quot;origin&quot;</span><span class="p">:</span> <span class="s">&quot;foo&quot;</span><span class="p">,</span>
-      <span class="s">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[],</span>
-      <span class="s">&quot;createTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-02T01:52:12.116Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;href&quot;</span><span class="p">:</span> <span class="s">&quot;http://api.alerta.io/heartbeat/b703f112-b5ab-4ca6-baa6-c317fb875814&quot;</span><span class="p">,</span>
-      <span class="s">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
-      <span class="s">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-02T01:52:12.116Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;Heartbeat&quot;</span><span class="p">,</span>
-      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;b703f112-b5ab-4ca6-baa6-c317fb875814&quot;</span>
+      <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[],</span>
+      <span class="s2">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-02T01:52:12.116Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/heartbeat/b703f112-b5ab-4ca6-baa6-c317fb875814&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+      <span class="s2">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-02T01:52:12.116Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Heartbeat&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;b703f112-b5ab-4ca6-baa6-c317fb875814&quot;</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-  <span class="s">&quot;time&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-02T01:58:10.357Z&quot;</span>
+  <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-02T01:58:10.357Z&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1389,16 +1394,16 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="delete-a-heartbeat">
 <h3><a class="toc-backref" href="#id77">Delete a heartbeat</a><a class="headerlink" href="#delete-a-heartbeat" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre>DELETE /heartbeat/:id
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">heartbeat</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
 </pre></div>
 </div>
 <div class="section" id="id39">
 <h4>Response<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre>200 OK
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1409,7 +1414,7 @@ POST /alert/:id/untag
 <span id="id40"></span><h2><a class="toc-backref" href="#id78">API Keys</a><a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="create-an-api-key">
 <h3><a class="toc-backref" href="#id79">Create an API Key</a><a class="headerlink" href="#create-an-api-key" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">POST</span> <span class="o">/</span><span class="n">key</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">key</span>
 </pre></div>
 </div>
 <div class="section" id="id41">
@@ -1440,21 +1445,21 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="id42">
 <h4>Example<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;user&quot;</span><span class="p">:</span> <span class="s">&quot;foo&quot;</span><span class="p">,</span>
-  <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;test key&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;test key&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id43">
 <h4>Response<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre>201 CREATED
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span><span class="p">,</span>
-  <span class="s">&quot;key&quot;</span><span class="p">:</span> <span class="s">&quot;Vz4dE04QiRYWL82f1N-FRlidML0PnvGqjkNOkqy_&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;Vz4dE04QiRYWL82f1N-FRlidML0PnvGqjkNOkqy_&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1462,33 +1467,33 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="list-all-api-keys">
 <h3><a class="toc-backref" href="#id80">List all API keys</a><a class="headerlink" href="#list-all-api-keys" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">keys</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">keys</span>
 </pre></div>
 </div>
 <div class="section" id="id44">
 <h4>Response<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span><span class="p">,</span>
-  <span class="s">&quot;keys&quot;</span><span class="p">:</span> <span class="p">[</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;keys&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s">&quot;lastUsedTime&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
-      <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;test key&quot;</span><span class="p">,</span>
-      <span class="s">&quot;expireTime&quot;</span><span class="p">:</span> <span class="s">&quot;2016-03-02T22:30:15.520Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;user&quot;</span><span class="p">:</span> <span class="s">&quot;foo&quot;</span><span class="p">,</span>
-      <span class="s">&quot;key&quot;</span><span class="p">:</span> <span class="s">&quot;Vz4dE04QiRYWL82f1N-FRlidML0PnvGqjkNOkqy_&quot;</span>
+      <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;lastUsedTime&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;test key&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;expireTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-03-02T22:30:15.520Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;Vz4dE04QiRYWL82f1N-FRlidML0PnvGqjkNOkqy_&quot;</span>
     <span class="p">},</span>
     <span class="p">{</span>
-      <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1745</span><span class="p">,</span>
-      <span class="s">&quot;lastUsedTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-03T22:33:21.975Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;demo key&quot;</span><span class="p">,</span>
-      <span class="s">&quot;expireTime&quot;</span><span class="p">:</span> <span class="s">&quot;2016-02-06T14:21:53.458Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;user&quot;</span><span class="p">:</span> <span class="s">&quot;test user&quot;</span><span class="p">,</span>
-      <span class="s">&quot;key&quot;</span><span class="p">:</span> <span class="s">&quot;demo-key&quot;</span>
+      <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1745</span><span class="p">,</span>
+      <span class="s2">&quot;lastUsedTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-03T22:33:21.975Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;demo key&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;expireTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-02-06T14:21:53.458Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;test user&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;demo-key&quot;</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-  <span class="s">&quot;time&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-03T22:33:21.979Z&quot;</span>
+  <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-03T22:33:21.979Z&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1496,7 +1501,7 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="list-all-api-keys-for-a-user">
 <h3><a class="toc-backref" href="#id81">List all API keys for a user</a><a class="headerlink" href="#list-all-api-keys-for-a-user" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre>GET /keys/:user
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">keys</span><span class="o">/</span><span class="p">:</span><span class="n">user</span>
 </pre></div>
 </div>
 <div class="section" id="id45">
@@ -1523,34 +1528,34 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="id46">
 <h4>Example<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre>http://api.alerta.io/keys/Bob%20Down
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">alerta</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">keys</span><span class="o">/</span><span class="n">Bob</span><span class="o">%</span><span class="mi">20</span><span class="n">Down</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id47">
 <h4>Response<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span><span class="p">,</span>
-  <span class="s">&quot;keys&quot;</span><span class="p">:</span> <span class="p">[</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;keys&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s">&quot;lastUsedTime&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
-      <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;asdf&quot;</span><span class="p">,</span>
-      <span class="s">&quot;expireTime&quot;</span><span class="p">:</span> <span class="s">&quot;2016-03-02T12:44:53.490Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;user&quot;</span><span class="p">:</span> <span class="s">&quot;Bob Down&quot;</span><span class="p">,</span>
-      <span class="s">&quot;key&quot;</span><span class="p">:</span> <span class="s">&quot;yKmspmfBODEKWla6mu5iuqLvsDHD8oz0apuJPwMH&quot;</span>
+      <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;lastUsedTime&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;asdf&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;expireTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-03-02T12:44:53.490Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;Bob Down&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;yKmspmfBODEKWla6mu5iuqLvsDHD8oz0apuJPwMH&quot;</span>
     <span class="p">},</span>
     <span class="p">{</span>
-      <span class="s">&quot;count&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s">&quot;lastUsedTime&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
-      <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;sdf&quot;</span><span class="p">,</span>
-      <span class="s">&quot;expireTime&quot;</span><span class="p">:</span> <span class="s">&quot;2016-02-06T16:20:58.473Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;user&quot;</span><span class="p">:</span> <span class="s">&quot;Bob Down&quot;</span><span class="p">,</span>
-      <span class="s">&quot;key&quot;</span><span class="p">:</span> <span class="s">&quot;UpKueVVCYJ2KDNDPILtMyl5c3wcaIRmfCk-eOHOK&quot;</span>
+      <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;lastUsedTime&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;sdf&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;expireTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-02-06T16:20:58.473Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;Bob Down&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;UpKueVVCYJ2KDNDPILtMyl5c3wcaIRmfCk-eOHOK&quot;</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-  <span class="s">&quot;time&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-03T22:39:36.191Z&quot;</span>
+  <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-03T22:39:36.191Z&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1558,16 +1563,16 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="delete-an-api-key">
 <h3><a class="toc-backref" href="#id82">Delete an API key</a><a class="headerlink" href="#delete-an-api-key" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre>DELETE /key/:key
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">key</span><span class="o">/</span><span class="p">:</span><span class="n">key</span>
 </pre></div>
 </div>
 <div class="section" id="id48">
 <h4>Response<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre>200 OK
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1578,7 +1583,7 @@ POST /alert/:id/untag
 <span id="id49"></span><h2><a class="toc-backref" href="#id83">Users</a><a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="create-a-user">
 <h3><a class="toc-backref" href="#id84">Create a user</a><a class="headerlink" href="#create-a-user" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">POST</span> <span class="o">/</span><span class="n">user</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">user</span>
 </pre></div>
 </div>
 <div class="section" id="id50">
@@ -1617,23 +1622,23 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="id51">
 <h4>Example<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;user1&quot;</span><span class="p">,</span>
-  <span class="s">&quot;login&quot;</span><span class="p">:</span> <span class="s">&quot;user@1&quot;</span><span class="p">,</span>
-  <span class="s">&quot;provider&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>
-  <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;test user 1&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;user1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;login&quot;</span><span class="p">:</span> <span class="s2">&quot;user@1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;provider&quot;</span><span class="p">:</span> <span class="s2">&quot;google&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;test user 1&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id52">
 <h4>Response<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre>201 CREATED
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span><span class="p">,</span>
-  <span class="s">&quot;user&quot;</span><span class="p">:</span> <span class="s">&quot;41f7e0af-5bc1-437a-b486-9b12286d643b&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;41f7e0af-5bc1-437a-b486-9b12286d643b&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1641,40 +1646,40 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="list-all-users">
 <h3><a class="toc-backref" href="#id85">List all users</a><a class="headerlink" href="#list-all-users" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">users</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">users</span>
 </pre></div>
 </div>
 <div class="section" id="id53">
 <h4>Response<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span><span class="p">,</span>
-  <span class="s">&quot;users&quot;</span><span class="p">:</span> <span class="p">[</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;users&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;Nick 2&quot;</span><span class="p">,</span>
-      <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;Added by Nick Satterly&quot;</span><span class="p">,</span>
-      <span class="s">&quot;createTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-03T20:58:29.239Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;provider&quot;</span><span class="p">:</span> <span class="s">&quot;github&quot;</span><span class="p">,</span>
-      <span class="s">&quot;login&quot;</span><span class="p">:</span> <span class="s">&quot;nfs4&quot;</span><span class="p">,</span>
-      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;8b0ca7bb-a56d-4c80-8331-c51c0dc3536f&quot;</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Nick 2&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Added by Nick Satterly&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-03T20:58:29.239Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;provider&quot;</span><span class="p">:</span> <span class="s2">&quot;github&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;login&quot;</span><span class="p">:</span> <span class="s2">&quot;nfs4&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;8b0ca7bb-a56d-4c80-8331-c51c0dc3536f&quot;</span>
     <span class="p">},</span>
     <span class="p">{</span>
-      <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;user1&quot;</span><span class="p">,</span>
-      <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;test user 1&quot;</span><span class="p">,</span>
-      <span class="s">&quot;createTime&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-03T22:54:33.299Z&quot;</span><span class="p">,</span>
-      <span class="s">&quot;provider&quot;</span><span class="p">:</span> <span class="s">&quot;google&quot;</span><span class="p">,</span>
-      <span class="s">&quot;login&quot;</span><span class="p">:</span> <span class="s">&quot;user@1&quot;</span><span class="p">,</span>
-      <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;41f7e0af-5bc1-437a-b486-9b12286d643b&quot;</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;user1&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;test user 1&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-03T22:54:33.299Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;provider&quot;</span><span class="p">:</span> <span class="s2">&quot;google&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;login&quot;</span><span class="p">:</span> <span class="s2">&quot;user@1&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;41f7e0af-5bc1-437a-b486-9b12286d643b&quot;</span>
     <span class="p">}</span>
   <span class="p">],</span>
-  <span class="s">&quot;time&quot;</span><span class="p">:</span> <span class="s">&quot;2015-03-03T22:56:26.369Z&quot;</span><span class="p">,</span>
-  <span class="s">&quot;domains&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s">&quot;guardian.co.uk&quot;</span><span class="p">,</span>
-    <span class="s">&quot;gmail.com&quot;</span>
+  <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-03T22:56:26.369Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;domains&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;guardian.co.uk&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;gmail.com&quot;</span>
   <span class="p">],</span>
-  <span class="s">&quot;orgs&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s">&quot;guardian&quot;</span>
+  <span class="s2">&quot;orgs&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;guardian&quot;</span>
   <span class="p">],</span>
-  <span class="s">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span>
+  <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1682,16 +1687,16 @@ POST /alert/:id/untag
 </div>
 <div class="section" id="delete-a-user">
 <h3><a class="toc-backref" href="#id86">Delete a user</a><a class="headerlink" href="#delete-a-user" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre>DELETE /user/:user
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="p">:</span><span class="n">user</span>
 </pre></div>
 </div>
 <div class="section" id="id54">
 <h4>Response<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-python"><div class="highlight"><pre>200 OK
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;ok&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1714,10 +1719,12 @@ POST /alert/:id/untag
 
 
 
+
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=star&count=true&size=large"
+<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=star&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
+
 
 
 
@@ -1727,11 +1734,13 @@ POST /alert/:id/untag
 <p>
 <a href="https://travis-ci.org/guardian/alerta">
     <img
-        alt="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
-        src="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
-    >
+        alt="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
+        src="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
+    />
 </a>
 </p>
+
+
 
 
 <h3>
@@ -1766,9 +1775,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">API Reference</a><ul class="simple">
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alert.html">Alert Format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="heartbeat.html">Heartbeat Format</a></li>
 </ul>
@@ -1784,14 +1791,11 @@ Links
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -1802,8 +1806,8 @@ Links
       &copy;2015, Nick Satterly.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
       <a href="../_sources/api/reference.txt"

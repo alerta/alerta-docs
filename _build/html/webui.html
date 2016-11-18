@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Alerta Web UI &mdash; alerta 4.7 documentation</title>
+    <title>Alerta Web UI &#8212; alerta 4.7 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,15 +24,20 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="alerta 4.7 documentation" href="index.html" />
     <link rel="next" title="Alerta CLI" href="cli.html" />
     <link rel="prev" title="Server &amp; API" href="server.html" />
    
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">  
+  <body role="document">
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -41,10 +46,10 @@
             
   <div class="section" id="alerta-web-ui">
 <span id="webui"></span><h1>Alerta Web UI<a class="headerlink" href="#alerta-web-ui" title="Permalink to this headline">¶</a></h1>
-<p>The Alerta web UI console takes full advantage of the <a class="reference internal" href="server.html#state-based-browser"><span>state-based Alerta API</span></a> to ensure that the most important events at any given time are brought to the attention of operators.</p>
+<p>The Alerta web UI console takes full advantage of the <a class="reference internal" href="server.html#state-based-browser"><span class="std std-ref">state-based Alerta API</span></a> to ensure that the most important events at any given time are brought to the attention of operators.</p>
 <div class="section" id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
-<p>To configure the Alerta web UI modify &#8220;in place&#8221; the default <code class="docutils literal"><span class="pre">config.js</span></code> file that is supplied with the web application. It uses <a class="reference external" href="https://docs.angularjs.org/guide/module#configuration-blocks">AngularJS configuration block</a> syntax. More information can be found on the <a class="reference internal" href="#webui"><span>web UI</span></a> page.</p>
+<p>To configure the Alerta web UI modify &#8220;in place&#8221; the default <code class="docutils literal"><span class="pre">config.js</span></code> file that is supplied with the web application. It uses <a class="reference external" href="https://docs.angularjs.org/guide/module#configuration-blocks">AngularJS configuration block</a> syntax. More information can be found on the <a class="reference internal" href="#webui"><span class="std std-ref">web UI</span></a> page.</p>
 <p>The three main areas for configuration are:</p>
 <blockquote>
 <div><ul class="simple">
@@ -53,7 +58,7 @@
 <li>selecting colors for severity, highlighting, text and sound</li>
 </ul>
 </div></blockquote>
-<p>The default web UI <code class="file docutils literal"><span class="pre">config.js</span></code> configuration file is included below. It assumes that the Alerta API is running on the same host (but different port) that the web UI static html files are being served from (line 5), that <a class="reference internal" href="authentication.html#basic-auth"><span>Basic Authentication</span></a> will be used (line 6) and so no client id needs to be defined (line 7). Note also that default colours for alert severity, highlighting for multi-select and text are used (line 9):</p>
+<p>The default web UI <code class="file docutils literal"><span class="pre">config.js</span></code> configuration file is included below. It assumes that the Alerta API is running on the same host (but different port) that the web UI static html files are being served from (line 5), that <a class="reference internal" href="authentication.html#basic-auth"><span class="std std-ref">Basic Authentication</span></a> will be used (line 6) and so no client id needs to be defined (line 7). Note also that default colours for alert severity, highlighting for multi-select and text are used (line 9):</p>
 <div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -61,7 +66,7 @@
 5
 6
 7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
 
 <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">[])</span>
   <span class="p">.</span><span class="nx">constant</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">{</span>
@@ -72,7 +77,7 @@
 </pre></div>
 </td></tr></table></div>
 <p><strong>Example</strong></p>
-<p>An example web UI <code class="file docutils literal"><span class="pre">config.js</span></code> configuration file that assumes that the Alerta API is running on the same host <em>and port</em>, but on a different path called <code class="docutils literal"><span class="pre">/api</span></code> (line 5), that <a class="reference internal" href="authentication.html#google-oauth2"><span>Google OAuth2</span></a> is used for authentication (line 6, which requires a valid Google client ID, line 7), and defines different colors for severity levels, highlighting and text (lines 9-26):</p>
+<p>An example web UI <code class="file docutils literal"><span class="pre">config.js</span></code> configuration file that assumes that the Alerta API is running on the same host <em>and port</em>, but on a different path called <code class="docutils literal"><span class="pre">/api</span></code> (line 5), that <a class="reference internal" href="authentication.html#google-oauth2"><span class="std std-ref">Google OAuth2</span></a> is used for authentication (line 6, which requires a valid Google client ID, line 7), and defines different colors for severity levels, highlighting and text (lines 9-26):</p>
 <div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -103,7 +108,7 @@
 28
 29
 30
-31</pre></div></td><td class="code"><div class="highlight"><pre><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+31</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
 
 <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">[])</span>
   <span class="p">.</span><span class="nx">constant</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">{</span>
@@ -209,10 +214,12 @@ Logout</p>
 
 
 
+
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=star&count=true&size=large"
+<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=star&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
+
 
 
 
@@ -222,11 +229,13 @@ Logout</p>
 <p>
 <a href="https://travis-ci.org/guardian/alerta">
     <img
-        alt="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
-        src="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
-    >
+        alt="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
+        src="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
+    />
 </a>
 </p>
+
+
 
 
 <h3>
@@ -250,7 +259,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Alerta Web UI</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Alerta Web UI</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#customer-views">Customer Views</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#managing-alerts">Managing Alerts</a></li>
@@ -288,14 +297,11 @@ Links
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -306,8 +312,8 @@ Links
       &copy;2015, Nick Satterly.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
       <a href="_sources/webui.txt"
