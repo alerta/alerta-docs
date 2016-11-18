@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Design Principles &mdash; alerta 4.7 documentation</title>
+    <title>Design Principles &#8212; alerta 4.7 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,15 +24,20 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="alerta 4.7 documentation" href="index.html" />
     <link rel="next" title="Server &amp; API" href="server.html" />
     <link rel="prev" title="Step 5: Integrations" href="tutorial/step-5.html" />
    
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">  
+  <body role="document">
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -44,7 +49,7 @@
 <p>The following principles guided the design and development of the Alerta monitoring system.</p>
 <div class="section" id="resource-under-alarm">
 <h2>Resource under alarm<a class="headerlink" href="#resource-under-alarm" title="Permalink to this headline">¶</a></h2>
-<p>A <a class="reference internal" href="api/alert.html#alert-attributes"><span>resource</span></a> is any entity that it makes sense for you to receive alerts for. You shouldn&#8217;t be forced to accept a certain &#8220;world view&#8221; when using a monitoring tool or to repurpose a &#8220;host&#8221; field for a service or application, or a even a URL. Host-centric monitoring tools belong in the 90&#8217;s.</p>
+<p>A <a class="reference internal" href="api/alert.html#alert-attributes"><span class="std std-ref">resource</span></a> is any entity that it makes sense for you to receive alerts for. You shouldn&#8217;t be forced to accept a certain &#8220;world view&#8221; when using a monitoring tool or to repurpose a &#8220;host&#8221; field for a service or application, or a even a URL. Host-centric monitoring tools belong in the 90&#8217;s.</p>
 </div>
 <div class="section" id="many-severity-levels">
 <h2>Many severity levels<a class="headerlink" href="#many-severity-levels" title="Permalink to this headline">¶</a></h2>
@@ -52,7 +57,7 @@
 </div>
 <div class="section" id="robust-alert-reception">
 <h2>Robust alert reception<a class="headerlink" href="#robust-alert-reception" title="Permalink to this headline">¶</a></h2>
-<p>In accordance with the <a class="reference external" href="http://en.wikipedia.org/wiki/Robustness_principle">robustness principle</a> which is to &#8220;be liberal in what you accept from others&#8221;, alerta will accept any alert as long as it meets the alert format specification. ie. no field needs to be defined in advance for it to be accepted, however the benefits of following a standard <a class="reference internal" href="conventions.html#conventions"><span>convention</span></a> for such attributes as <code class="docutils literal"><span class="pre">environment</span></code>, <code class="docutils literal"><span class="pre">service</span></code>, <code class="docutils literal"><span class="pre">event</span></code> and <code class="docutils literal"><span class="pre">resource</span></code> (as internally defined by and useful to you) are many.</p>
+<p>In accordance with the <a class="reference external" href="http://en.wikipedia.org/wiki/Robustness_principle">robustness principle</a> which is to &#8220;be liberal in what you accept from others&#8221;, alerta will accept any alert as long as it meets the alert format specification. ie. no field needs to be defined in advance for it to be accepted, however the benefits of following a standard <a class="reference internal" href="conventions.html#conventions"><span class="std std-ref">convention</span></a> for such attributes as <code class="docutils literal"><span class="pre">environment</span></code>, <code class="docutils literal"><span class="pre">service</span></code>, <code class="docutils literal"><span class="pre">event</span></code> and <code class="docutils literal"><span class="pre">resource</span></code> (as internally defined by and useful to you) are many.</p>
 </div>
 <div class="section" id="self-clearing-alerts">
 <h2>Self-clearing alerts<a class="headerlink" href="#self-clearing-alerts" title="Permalink to this headline">¶</a></h2>
@@ -82,10 +87,12 @@
 
 
 
+
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=star&count=true&size=large"
+<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=star&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
+
 
 
 
@@ -95,11 +102,13 @@
 <p>
 <a href="https://travis-ci.org/guardian/alerta">
     <img
-        alt="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
-        src="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
-    >
+        alt="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
+        src="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
+    />
 </a>
 </p>
+
+
 
 
 <h3>
@@ -121,7 +130,7 @@ Links
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Design Principles</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Design Principles</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#resource-under-alarm">Resource under alarm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#many-severity-levels">Many severity levels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#robust-alert-reception">Robust alert reception</a></li>
@@ -158,14 +167,11 @@ Links
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -176,8 +182,8 @@ Links
       &copy;2015, Nick Satterly.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
       <a href="_sources/design.txt"

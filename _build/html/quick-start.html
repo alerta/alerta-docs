@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Quickstart &mdash; alerta 4.7 documentation</title>
+    <title>Quickstart &#8212; alerta 4.7 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,15 +24,20 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="alerta 4.7 documentation" href="index.html" />
     <link rel="next" title="Tutorial" href="tutorial.html" />
     <link rel="prev" title="Alerta monitoring system" href="index.html" />
    
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">  
+  <body role="document">
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -45,7 +50,7 @@
 <div class="section" id="install-mongodb">
 <h2>Install MongoDB<a class="headerlink" href="#install-mongodb" title="Permalink to this headline">¶</a></h2>
 <p>For Debian/Ubuntu, run:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install -y mongodb-org
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install -y mongodb-org
 $ mongod
 </pre></div>
 </div>
@@ -54,19 +59,19 @@ $ mongod
 <div class="section" id="install-the-alerta-server">
 <h2>Install the Alerta Server<a class="headerlink" href="#install-the-alerta-server" title="Permalink to this headline">¶</a></h2>
 <p>To install the alerta server:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ pip install alerta-server
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ pip install alerta-server
 $ alertad
 </pre></div>
 </div>
 <p>You should see something like:</p>
-<div class="highlight-python"><div class="highlight"><pre>Starting alerta version 4.1.2 ...
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Starting</span> <span class="n">alerta</span> <span class="n">version</span> <span class="mf">4.1</span><span class="o">.</span><span class="mi">2</span> <span class="o">...</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="install-the-web-console">
 <h2>Install the Web Console<a class="headerlink" href="#install-the-web-console" title="Permalink to this headline">¶</a></h2>
 <p>To install the web console:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ wget -O alerta-web.tgz https://github.com/alerta/angular-alerta-webui/tarball/master
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ wget -O alerta-web.tgz https://github.com/alerta/angular-alerta-webui/tarball/master
 $ tar zxvf alerta-web.tgz
 $ cd alerta-angular-alerta-webui-*/app
 $ python -m SimpleHTTPServer 8000
@@ -78,15 +83,15 @@ $ python -m SimpleHTTPServer 8000
 <div class="section" id="send-some-alerts">
 <h2>Send some alerts<a class="headerlink" href="#send-some-alerts" title="Permalink to this headline">¶</a></h2>
 <p>To send an alert to the server:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta send -r web01 -e NodeDown -E Production -S Website -s major -t &quot;Web server is down.&quot; -v ERROR
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta send -r web01 -e NodeDown -E Production -S Website -s major -t &quot;Web server is down.&quot; -v ERROR
 </pre></div>
 </div>
 <p>The alert should appear almost immediately in the console. If it doesn&#8217;t it&#8217;s
-either a <a class="reference internal" href="authentication.html#cross-origin"><span>CORS issues</span></a> or a <a class="reference external" href="https://github.com/alerta/alerta-docs/issues/new">bug</a>.</p>
+either a <a class="reference internal" href="authentication.html#cross-origin"><span class="std std-ref">CORS issues</span></a> or a <a class="reference external" href="https://github.com/alerta/alerta-docs/issues/new">bug</a>.</p>
 </div>
 <div class="section" id="what-s-next">
 <h2>What&#8217;s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
-<p>Take the <a class="reference internal" href="tutorial.html#tutorial"><span>step-by-step tutorial</span></a> or dive straight into a <a class="reference internal" href="deployment.html#deployment"><span>deployment</span></a>.</p>
+<p>Take the <a class="reference internal" href="tutorial.html#tutorial"><span class="std std-ref">step-by-step tutorial</span></a> or dive straight into a <a class="reference internal" href="deployment.html#deployment"><span class="std std-ref">deployment</span></a>.</p>
 </div>
 </div>
 
@@ -104,10 +109,12 @@ either a <a class="reference internal" href="authentication.html#cross-origin"><
 
 
 
+
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=star&count=true&size=large"
+<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=star&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
+
 
 
 
@@ -117,11 +124,13 @@ either a <a class="reference internal" href="authentication.html#cross-origin"><
 <p>
 <a href="https://travis-ci.org/guardian/alerta">
     <img
-        alt="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
-        src="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
-    >
+        alt="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
+        src="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
+    />
 </a>
 </p>
+
+
 
 
 <h3>
@@ -141,7 +150,7 @@ Links
 
 <h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Quickstart</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#install-mongodb">Install MongoDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-the-alerta-server">Install the Alerta Server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-the-web-console">Install the Web Console</a></li>
@@ -179,14 +188,11 @@ Links
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -197,8 +203,8 @@ Links
       &copy;2015, Nick Satterly.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
       <a href="_sources/quick-start.txt"

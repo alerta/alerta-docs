@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Alerta CLI &mdash; alerta 4.7 documentation</title>
+    <title>Alerta CLI &#8212; alerta 4.7 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,15 +24,20 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="alerta 4.7 documentation" href="index.html" />
     <link rel="next" title="Integrations &amp; Plugins" href="integrations.html" />
     <link rel="prev" title="Alerta Web UI" href="webui.html" />
    
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">  
+  <body role="document">
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -48,11 +53,11 @@ dump alert history or see the raw alert data.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal"><span class="pre">alerta</span></code> client tool can be installed using pip:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ pip install alerta
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ pip install alerta
 </pre></div>
 </div>
 <p>Or, by cloning the git repository:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git clone https://github.com/alerta/python-alerta.git
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone https://github.com/alerta/python-alerta.git
 $ cd python-alerta
 $ python setup.py install
 </pre></div>
@@ -136,31 +141,31 @@ configuration settings.</p>
 </div>
 <p><strong>Example</strong></p>
 <p>Configuration file <code class="file docutils literal"><span class="pre">~/.alerta.conf</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre>[DEFAULT]
-timezone = Australia/Sydney
-output = json
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">DEFAULT</span><span class="p">]</span>
+<span class="n">timezone</span> <span class="o">=</span> <span class="n">Australia</span><span class="o">/</span><span class="n">Sydney</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">json</span>
 
-[profile production]
-endpoint = https://api.alerta.io
-key = LMvzLsfJyGpSuLmaB9kp-8gCl4I3YZkV4i7IGb6S
+<span class="p">[</span><span class="n">profile</span> <span class="n">production</span><span class="p">]</span>
+<span class="n">endpoint</span> <span class="o">=</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">alerta</span><span class="o">.</span><span class="n">io</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">LMvzLsfJyGpSuLmaB9kp</span><span class="o">-</span><span class="mi">8</span><span class="n">gCl4I3YZkV4i7IGb6S</span>
 
-[profile development]
-endpoint = http://localhost:8080
-key = demo-key
-debug = yes
+<span class="p">[</span><span class="n">profile</span> <span class="n">development</span><span class="p">]</span>
+<span class="n">endpoint</span> <span class="o">=</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">demo</span><span class="o">-</span><span class="n">key</span>
+<span class="n">debug</span> <span class="o">=</span> <span class="n">yes</span>
 </pre></div>
 </div>
 <p>Set environment variables:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ export ALERTA_CONF_FILE=~/.alerta.conf
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ export ALERTA_CONF_FILE=~/.alerta.conf
 $ export ALERTA_DEFAULT_PROFILE=production
 </pre></div>
 </div>
 <p>Use production configuration settings by default:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta query
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta query
 </pre></div>
 </div>
 <p>Switch to development configuration settings when required:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta --profile development query
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta --profile development query
 </pre></div>
 </div>
 </div>
@@ -171,13 +176,13 @@ $ export ALERTA_DEFAULT_PROFILE=production
 <div class="section" id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal"><span class="pre">alerta</span></code> tool is invoked by specifying a command using the following format:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] COMMAND [FILTERS]
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] COMMAND [FILTERS]
 </pre></div>
 </div>
 <div class="section" id="send">
 <span id="cli-send"></span><h3><strong class="command">send</strong><a class="headerlink" href="#send" title="Permalink to this headline">¶</a></h3>
 <p>Send an alert to the server:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] send [-r RESOURCE] [-e EVENT] [-E ENVIRONMENT]
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] send [-r RESOURCE] [-e EVENT] [-E ENVIRONMENT]
                         [-s SEVERITY] [-C CORRELATE] [--status STATUS]
                         [-S SERVICE] [-g GROUP] [-v VALUE] [-t TEXT]
                         [-T TAG] [-A ATTRIBUTES] [-O ORIGIN]
@@ -277,27 +282,27 @@ be set to sensible defaults.</p>
 </table>
 <p><strong>Examples</strong></p>
 <p>To send a <code class="docutils literal"><span class="pre">minor</span></code> alert followed by a <code class="docutils literal"><span class="pre">normal</span></code> alert that correlates:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta send --resource web01 --event HttpError --correlate HttpOK --group Web --severity minor
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta send --resource web01 --event HttpError --correlate HttpOK --group Web --severity minor
 $ alerta send --resource web01 --event HttpOK --correlate HttpError --group Web --severity normal
 </pre></div>
 </div>
 <p>To send an alert with custom attribute called <code class="docutils literal"><span class="pre">customer</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta send -r web01 -e HttpError -g Web -s major --attributes customer=&quot;Tyrell Corp&quot;
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta send -r web01 -e HttpError -g Web -s major --attributes customer=&quot;Tyrell Corp&quot;
 </pre></div>
 </div>
 <p>To query for major and minor open alerts for the Production environment of the Mobile API service:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta query --filters severity=major severity=minor status=open environment=Production service=&quot;Mobile API&quot;
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta query --filters severity=major severity=minor status=open environment=Production service=&quot;Mobile API&quot;
 </pre></div>
 </div>
 <p>To query for all alerts with &#8220;disk&#8221; in the alert text:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta query --filters text=~disk
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta query --filters text=~disk
 </pre></div>
 </div>
 </div>
 <div class="section" id="query">
 <h3><strong class="command">query</strong><a class="headerlink" href="#query" title="Permalink to this headline">¶</a></h3>
 <p>Search for alerts:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] query [--details] [--ids IDs] [--filters FILTERS]
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] query [--details] [--ids IDs] [--filters FILTERS]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -312,7 +317,7 @@ optional arguments:
 <div class="section" id="watch">
 <h3><strong class="command">watch</strong><a class="headerlink" href="#watch" title="Permalink to this headline">¶</a></h3>
 <p>Watch for new alerts:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] watch [--id ID] [--filters FILTERS]
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] watch [--id ID] [--filters FILTERS]
 
 optional arguments:
   -h, --help         show this help message and exit
@@ -325,19 +330,19 @@ optional arguments:
 <div class="section" id="top">
 <h3><strong class="command">top</strong><a class="headerlink" href="#top" title="Permalink to this headline">¶</a></h3>
 <p>Show top offenders and stats:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta top --help
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta top --help
 usage: alerta [OPTIONS] top [-h]
 
 optional arguments:
   -h, --help  show this help message and exit
 </pre></div>
 </div>
-<p>See <a class="reference internal" href="top.html#top"><span>Alerta Top</span></a> for more information.</p>
+<p>See <a class="reference internal" href="top.html#top"><span class="std std-ref">Alerta Top</span></a> for more information.</p>
 </div>
 <div class="section" id="raw">
 <h3><strong class="command">raw</strong><a class="headerlink" href="#raw" title="Permalink to this headline">¶</a></h3>
 <p>Show raw data for alerts:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] raw [--id ID] [--filters FILTERS]
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] raw [--id ID] [--filters FILTERS]
 
 optional arguments:
   -h, --help         show this help message and exit
@@ -349,7 +354,7 @@ optional arguments:
 <div class="section" id="history">
 <h3><strong class="command">history</strong><a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h3>
 <p>Show alert history:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] history [--id ID] [--filters FILTERS]
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] history [--id ID] [--filters FILTERS]
 
 optional arguments:
   -h, --help         show this help message and exit
@@ -361,7 +366,7 @@ optional arguments:
 <div class="section" id="tag">
 <h3><strong class="command">tag</strong><a class="headerlink" href="#tag" title="Permalink to this headline">¶</a></h3>
 <p>Tag alerts:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] tag -T TAG [--id ID] [--filters FILTERS]
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] tag -T TAG [--id ID] [--filters FILTERS]
 
 optional arguments:
   -h, --help         show this help message and exit
@@ -374,7 +379,7 @@ optional arguments:
 <div class="section" id="untag">
 <h3><strong class="command">untag</strong><a class="headerlink" href="#untag" title="Permalink to this headline">¶</a></h3>
 <p>Untag alerts ie. remove an assigned tag from alert tag list:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] untag -T TAG [--id ID] [--filters FILTERS]
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] untag -T TAG [--id ID] [--filters FILTERS]
 
 optional arguments:
   -h, --help         show this help message and exit
@@ -387,7 +392,7 @@ optional arguments:
 <div class="section" id="ack">
 <h3><strong class="command">ack</strong><a class="headerlink" href="#ack" title="Permalink to this headline">¶</a></h3>
 <p>Acknowlege alerts ie. change alert <code class="docutils literal"><span class="pre">status</span></code> to <code class="docutils literal"><span class="pre">ack</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] ack [--id ID] [--filters FILTERS]
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] ack [--id ID] [--filters FILTERS]
 
 optional arguments:
   -h, --help         show this help message and exit
@@ -399,7 +404,7 @@ optional arguments:
 <div class="section" id="unack">
 <h3><strong class="command">unack</strong><a class="headerlink" href="#unack" title="Permalink to this headline">¶</a></h3>
 <p>Unacknowledge alerts ie. change alert <code class="docutils literal"><span class="pre">status</span></code> to <code class="docutils literal"><span class="pre">open</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] unack [--id ID] [--filters FILTERS]
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] unack [--id ID] [--filters FILTERS]
 
 optional arguments:
   -h, --help         show this help message and exit
@@ -411,7 +416,7 @@ optional arguments:
 <div class="section" id="close">
 <h3><strong class="command">close</strong><a class="headerlink" href="#close" title="Permalink to this headline">¶</a></h3>
 <p>Close alerts ie. change alert <code class="docutils literal"><span class="pre">status</span></code> to <code class="docutils literal"><span class="pre">closed</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] close [--id ID] [--filters FILTERS]
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] close [--id ID] [--filters FILTERS]
 
 optional arguments:
   -h, --help         show this help message and exit
@@ -423,7 +428,7 @@ optional arguments:
 <div class="section" id="delete">
 <h3><strong class="command">delete</strong><a class="headerlink" href="#delete" title="Permalink to this headline">¶</a></h3>
 <p>Delete alerts from server:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] delete [--id ID] [--filters FILTERS]
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] delete [--id ID] [--filters FILTERS]
 
 optional arguments:
   -h, --help         show this help message and exit
@@ -435,7 +440,7 @@ optional arguments:
 <div class="section" id="blackout">
 <h3><strong class="command">blackout</strong><a class="headerlink" href="#blackout" title="Permalink to this headline">¶</a></h3>
 <p>Blackout alerts based on attributes:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta blackout --help
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta blackout --help
 usage: alerta [OPTIONS] blackout [-r RESOURCE] [-e EVENT] [-E ENVIRONMENT]
                             [-S SERVICE] [-g GROUP] [-T TAG]
 
@@ -461,7 +466,7 @@ optional arguments:
 <div class="section" id="blackouts">
 <h3><strong class="command">blackouts</strong><a class="headerlink" href="#blackouts" title="Permalink to this headline">¶</a></h3>
 <p>List all blackout periods:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta blackouts --help
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta blackouts --help
 usage: alerta [OPTIONS] blackouts [-h]
 
 optional arguments:
@@ -473,7 +478,7 @@ optional arguments:
 <div class="section" id="heartbeat">
 <h3><strong class="command">heartbeat</strong><a class="headerlink" href="#heartbeat" title="Permalink to this headline">¶</a></h3>
 <p>Send a heartbeat to the server:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta [OPTIONS] heartbeat [-T TAG] [-O ORIGIN] [--timeout TIMEOUT]
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] heartbeat [-T TAG] [-O ORIGIN] [--timeout TIMEOUT]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -488,7 +493,7 @@ optional arguments:
 <div class="section" id="heartbeats">
 <h3><strong class="command">heartbeats</strong><a class="headerlink" href="#heartbeats" title="Permalink to this headline">¶</a></h3>
 <p>List all heartbeats:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta heartbeats --help
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta heartbeats --help
 usage: alerta [OPTIONS] heartbeats [-h]
 
 optional arguments:
@@ -500,7 +505,7 @@ optional arguments:
 <div class="section" id="user">
 <h3><strong class="command">user</strong><a class="headerlink" href="#user" title="Permalink to this headline">¶</a></h3>
 <p>Manage user details (Basic Auth only):</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta user --help
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta user --help
 usage: alerta [OPTIONS] user --user-name USER [--password PASSWORD]
 
 optional arguments:
@@ -515,7 +520,7 @@ optional arguments:
 <div class="section" id="key">
 <h3><strong class="command">key</strong><a class="headerlink" href="#key" title="Permalink to this headline">¶</a></h3>
 <p>Create API key:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta key --help
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta key --help
 usage: alerta [OPTIONS] key [-u USER] [--readonly] [--customer CUSTOMER|--no-customer] [-t TEXT]
 
 optional arguments:
@@ -532,7 +537,7 @@ optional arguments:
 <div class="section" id="keys">
 <h3><strong class="command">keys</strong><a class="headerlink" href="#keys" title="Permalink to this headline">¶</a></h3>
 <p>List all API keys:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta keys --help
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta keys --help
 usage: alerta [OPTIONS] keys [-h]
 
 optional arguments:
@@ -543,7 +548,7 @@ optional arguments:
 <div class="section" id="revoke">
 <h3><strong class="command">revoke</strong><a class="headerlink" href="#revoke" title="Permalink to this headline">¶</a></h3>
 <p>Revoke API key:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta revoke --help
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta revoke --help
 usage: alerta [OPTIONS] revoke [--api-key KEY]
 
 optional arguments:
@@ -556,7 +561,7 @@ optional arguments:
 <div class="section" id="status">
 <span id="cli-status"></span><h3><strong class="command">status</strong><a class="headerlink" href="#status" title="Permalink to this headline">¶</a></h3>
 <p>Show status and metrics:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta status --help
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta status --help
 usage: alerta [OPTIONS] status [-h]
 
 optional arguments:
@@ -567,7 +572,7 @@ optional arguments:
 <div class="section" id="uptime">
 <h3><strong class="command">uptime</strong><a class="headerlink" href="#uptime" title="Permalink to this headline">¶</a></h3>
 <p>Show server uptime:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ alerta uptime --help
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta uptime --help
 usage: alerta [OPTIONS] uptime [-h]
 
 optional arguments:
@@ -604,10 +609,12 @@ optional arguments:
 
 
 
+
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=star&count=true&size=large"
+<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=star&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
+
 
 
 
@@ -617,11 +624,13 @@ optional arguments:
 <p>
 <a href="https://travis-ci.org/guardian/alerta">
     <img
-        alt="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
-        src="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
-    >
+        alt="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
+        src="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
+    />
 </a>
 </p>
+
+
 
 
 <h3>
@@ -646,7 +655,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webui.html">Alerta Web UI</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Alerta CLI</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Alerta CLI</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#precedence">Precedence</a></li>
@@ -679,14 +688,11 @@ Links
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -697,8 +703,8 @@ Links
       &copy;2015, Nick Satterly.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
       <a href="_sources/cli.txt"

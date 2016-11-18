@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Server &amp; API &mdash; alerta 4.7 documentation</title>
+    <title>Server &amp; API &#8212; alerta 4.7 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,15 +24,20 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="alerta 4.7 documentation" href="index.html" />
     <link rel="next" title="Alerta Web UI" href="webui.html" />
     <link rel="prev" title="Design Principles" href="design.html" />
    
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">  
+  <body role="document">
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -41,16 +46,16 @@
             
   <div class="section" id="server-api">
 <span id="server"></span><h1>Server &amp; API<a class="headerlink" href="#server-api" title="Permalink to this headline">¶</a></h1>
-<p>The Alerta API receives alerts from multiple sources, <a class="reference internal" href="#correlation"><span>correlates</span></a>,
-<a class="reference internal" href="#deduplication"><span>de-duplicates</span></a> or <a class="reference internal" href="#blackout-periods"><span>suppresses</span></a>
+<p>The Alerta API receives alerts from multiple sources, <a class="reference internal" href="#correlation"><span class="std std-ref">correlates</span></a>,
+<a class="reference internal" href="#deduplication"><span class="std std-ref">de-duplicates</span></a> or <a class="reference internal" href="#blackout-periods"><span class="std std-ref">suppresses</span></a>
 them, and makes the alerts available via a <a class="reference external" href="http://apigee.com/about/resources/webcasts/restful-api-design-second-edition">RESTful</a> <a class="reference external" href="http://developers.squarespace.com/what-is-json/">JSON</a> API.</p>
 <p>Alerts can be intercepted as they are received to modify, enhance or reject them
-using <a class="reference internal" href="#prereceive"><span>pre-receive hooks</span></a>. Alerts can also be used to trigger
+using <a class="reference internal" href="#prereceive"><span class="std std-ref">pre-receive hooks</span></a>. Alerts can also be used to trigger
 actions in other systems after the alert has been processed using
-<a class="reference internal" href="#postreceive"><span>post-receive hooks</span></a> or following an alert
-<a class="reference internal" href="#status-change"><span>status change</span></a> for bi-directional integration.</p>
-<p>There are several <a class="reference internal" href="integrations.html#integrations"><span>integrations</span></a> with popular monitoring tools
-available and <a class="reference internal" href="integrations.html#webhooks"><span>webhooks</span></a> can be used to trivially integrate with
+<a class="reference internal" href="#postreceive"><span class="std std-ref">post-receive hooks</span></a> or following an alert
+<a class="reference internal" href="#status-change"><span class="std std-ref">status change</span></a> for bi-directional integration.</p>
+<p>There are several <a class="reference internal" href="integrations.html#integrations"><span class="std std-ref">integrations</span></a> with popular monitoring tools
+available and <a class="reference internal" href="integrations.html#webhooks"><span class="std std-ref">webhooks</span></a> can be used to trivially integrate with
 AWS Cloudwatch, Pingdom, and PagerDuty.</p>
 <div class="section" id="event-processing">
 <span id="id1"></span><h2>Event Processing<a class="headerlink" href="#event-processing" title="Permalink to this headline">¶</a></h2>
@@ -195,14 +200,14 @@ the priority they deserve.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">To take full advantage of the state-based browser it is recommended to
-implement the timeout of <code class="docutils literal"><span class="pre">expired</span></code> alerts using the <a class="reference internal" href="deployment.html#housekeeping"><span>House Keeping</span></a>
+implement the timeout of <code class="docutils literal"><span class="pre">expired</span></code> alerts using the <a class="reference internal" href="deployment.html#housekeeping"><span class="std std-ref">House Keeping</span></a>
 script.</p>
 </div>
 </div>
 <div class="section" id="alert-history">
 <h2>Alert History<a class="headerlink" href="#alert-history" title="Permalink to this headline">¶</a></h2>
 <p>Whenever an alert status or severity changes, that change is recorded in the
-alert <a class="reference internal" href="api/alert.html#history"><span>history</span></a> log. This is to allow operations staff follow the
+alert <a class="reference internal" href="api/alert.html#history"><span class="std std-ref">history</span></a> log. This is to allow operations staff follow the
 lifecycle of a particular alert, if necessary.</p>
 <p>The alert history is visible in the <em>Alert Details</em> page of any alert and also
 by using the <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool <code class="docutils literal"><span class="pre">history</span></code> sub-command.</p>
@@ -211,7 +216,7 @@ operator (external) action or an automatic <a class="reference internal" href="#
 </div>
 <div class="section" id="heartbeats">
 <h2>Heartbeats<a class="headerlink" href="#heartbeats" title="Permalink to this headline">¶</a></h2>
-<p>An Alerta <a class="reference internal" href="api/reference.html#heartbeats"><span>heartbeat</span></a> is a periodic HTTP request sent to the
+<p>An Alerta <a class="reference internal" href="api/reference.html#heartbeats"><span class="std std-ref">heartbeat</span></a> is a periodic HTTP request sent to the
 Alerta API to indicate normal operation of the origin of the heartbeat.</p>
 <p>They can be used to ensure components of the Alerta monitoring system are
 operating normally or sent from any other source. As well as an <code class="docutils literal"><span class="pre">origin</span></code>
@@ -239,10 +244,12 @@ using <code class="docutils literal"><span class="pre">alerta</span> <span class
 
 
 
+
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=star&count=true&size=large"
+<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=star&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
+
 
 
 
@@ -252,11 +259,13 @@ using <code class="docutils literal"><span class="pre">alerta</span> <span class
 <p>
 <a href="https://travis-ci.org/guardian/alerta">
     <img
-        alt="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
-        src="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
-    >
+        alt="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
+        src="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
+    />
 </a>
 </p>
+
+
 
 
 <h3>
@@ -279,7 +288,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Server &amp; API</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Server &amp; API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#event-processing">Event Processing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#plug-ins">Plug-ins</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#blackout-periods">Blackout Periods</a></li>
@@ -317,14 +326,11 @@ Links
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -335,8 +341,8 @@ Links
       &copy;2015, Nick Satterly.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
       <a href="_sources/server.txt"

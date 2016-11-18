@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Development &mdash; alerta 4.7 documentation</title>
+    <title>Development &#8212; alerta 4.7 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,15 +24,20 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="alerta 4.7 documentation" href="index.html" />
     <link rel="next" title="API Reference" href="api/reference.html" />
     <link rel="prev" title="Conventions" href="conventions.html" />
    
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">  
+  <body role="document">
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -45,17 +50,17 @@
 <h2>Python SDK<a class="headerlink" href="#python-sdk" title="Permalink to this headline">¶</a></h2>
 <p>Alerta is developed in Python so the Python SDK is a core component of the monitoring system.</p>
 <p>Initialise the alerta API client:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">alertaclient.api</span> <span class="kn">import</span> <span class="n">ApiClient</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">api</span> <span class="o">=</span> <span class="n">ApiClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s">&#39;http://api.alerta.io&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s">&#39;tiPMW41QA+cVy05E7fQA/roxAAwHqZq/jznh8MOk&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">alertaclient.api</span> <span class="kn">import</span> <span class="n">ApiClient</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">api</span> <span class="o">=</span> <span class="n">ApiClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;http://api.alerta.io&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;tiPMW41QA+cVy05E7fQA/roxAAwHqZq/jznh8MOk&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>As of 4.8.5, you can specify ssl verify False (defaults to True) for testing:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">api</span> <span class="o">=</span> <span class="n">ApiClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s">&#39;http://api.alerta.io&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s">&#39;tiPMW41QA+cVy05E7fQA/roxAAwHqZq/jznh8MOk&#39;</span><span class="p">,</span> <span class="n">ssl_verify</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">api</span> <span class="o">=</span> <span class="n">ApiClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;http://api.alerta.io&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;tiPMW41QA+cVy05E7fQA/roxAAwHqZq/jznh8MOk&#39;</span><span class="p">,</span> <span class="n">ssl_verify</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Send an alert:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">alertaclient.alert</span> <span class="kn">import</span> <span class="n">Alert</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">alert</span> <span class="o">=</span> <span class="n">Alert</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="s">&#39;foo&#39;</span><span class="p">,</span> <span class="n">event</span><span class="o">=</span><span class="s">&#39;bar&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">alertaclient.alert</span> <span class="kn">import</span> <span class="n">Alert</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alert</span> <span class="o">=</span> <span class="n">Alert</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="n">event</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">alert</span>
 <span class="go">Alert(id=&#39;6e625266-fb7c-4c11-bf95-27a6a0be432b&#39;, environment=&#39;&#39;, resource=&#39;foo&#39;, event=&#39;bar&#39;, severity=&#39;normal&#39;, status=&#39;unknown&#39;)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">api</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">alert</span><span class="p">)</span>
@@ -63,15 +68,15 @@
 </pre></div>
 </div>
 <p>Query for the alert just sent:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">api</span><span class="o">.</span><span class="n">get_alert</span><span class="p">(</span><span class="s">&#39;5fdb224b-9378-422d-807e-fdf8610416d2&#39;</span><span class="p">)[</span><span class="s">&#39;alert&#39;</span><span class="p">][</span><span class="s">&#39;severity&#39;</span><span class="p">]</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">api</span><span class="o">.</span><span class="n">get_alert</span><span class="p">(</span><span class="s1">&#39;5fdb224b-9378-422d-807e-fdf8610416d2&#39;</span><span class="p">)[</span><span class="s1">&#39;alert&#39;</span><span class="p">][</span><span class="s1">&#39;severity&#39;</span><span class="p">]</span>
 <span class="go">u&#39;normal&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">api</span><span class="o">.</span><span class="n">get_alerts</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="s">&#39;foo&#39;</span><span class="p">)[</span><span class="s">&#39;alerts&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s">&#39;id&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">api</span><span class="o">.</span><span class="n">get_alerts</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="s1">&#39;foo&#39;</span><span class="p">)[</span><span class="s1">&#39;alerts&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
 <span class="go">u&#39;5fdb224b-9378-422d-807e-fdf8610416d2&#39;</span>
 </pre></div>
 </div>
 <p>Send a heartbeat:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">alerta.heartbeat</span> <span class="kn">import</span> <span class="n">Heartbeat</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">hb</span> <span class="o">=</span> <span class="n">Heartbeat</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s">&#39;baz&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">alerta.heartbeat</span> <span class="kn">import</span> <span class="n">Heartbeat</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hb</span> <span class="o">=</span> <span class="n">Heartbeat</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;baz&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hb</span>
 <span class="go">Heartbeat(id=&#39;21d586a6-9bd5-4b18-b0bb-4fb876db4851&#39;, origin=&#39;baz&#39;, create_time=datetime.datetime(2014, 6, 14, 20, 2, 33, 55118), timeout=300)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">api</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">hb</span><span class="p">)</span>
@@ -81,11 +86,11 @@
 <div class="section" id="installation">
 <h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
 <p>Install using pip:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ pip install alerta
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ pip install alerta
 </pre></div>
 </div>
 <p>Install from GitHub:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git clone git@github.com:alerta/python-alerta-client.git
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone git@github.com:alerta/python-alerta-client.git
 $ cd python-alerta
 $ python setup.py install
 </pre></div>
@@ -109,10 +114,12 @@ $ python setup.py install
 
 
 
+
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=star&count=true&size=large"
+<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=star&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
+
 
 
 
@@ -122,11 +129,13 @@ $ python setup.py install
 <p>
 <a href="https://travis-ci.org/guardian/alerta">
     <img
-        alt="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
-        src="https://secure.travis-ci.org/guardian/alerta.png?branch=master"
-    >
+        alt="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
+        src="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
+    />
 </a>
 </p>
+
+
 
 
 <h3>
@@ -158,7 +167,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customerviews.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Development</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Development</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#python-sdk">Python SDK</a></li>
 </ul>
 </li>
@@ -180,14 +189,11 @@ Links
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -198,8 +204,8 @@ Links
       &copy;2015, Nick Satterly.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
       <a href="_sources/development.txt"
