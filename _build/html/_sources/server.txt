@@ -10,15 +10,15 @@ them, and makes the alerts available via a RESTful_ JSON_ API.
 .. _RESTful: http://apigee.com/about/resources/webcasts/restful-api-design-second-edition
 .. _JSON: http://developers.squarespace.com/what-is-json/
 
-Alerts can be intercepted as they are received to modify, enhance or reject them
-using :ref:`pre-receive hooks <prereceive>`. Alerts can also be used to trigger
-actions in other systems after the alert has been processed using
-:ref:`post-receive hooks <postreceive>` or following an alert
-:ref:`status change <status_change>` for bi-directional integration.
+Alerts can be intercepted as they are received to modify, enhance or
+reject them using :ref:`pre-receive hooks <prereceive>`. Alerts can also be
+used to trigger actions in other systems after the alert has been
+processed using :ref:`post-receive hooks <postreceive>` or following an
+alert :ref:`status change <status_change>` for bi-directional integration.
 
-There are several :ref:`integrations <integrations>` with popular monitoring tools
-available and :ref:`webhooks <webhooks>` can be used to trivially integrate with
-AWS Cloudwatch, Pingdom, and PagerDuty.
+There are several :ref:`integrations <integrations>` with popular monitoring
+tools available and :ref:`webhooks <webhooks>` can be used to trivially
+integrate with AWS Cloudwatch, Pingdom, PagerDuty and many more.
 
 .. _event_processing:
 

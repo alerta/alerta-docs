@@ -49,14 +49,14 @@
 <p>The Alerta API receives alerts from multiple sources, <a class="reference internal" href="#correlation"><span class="std std-ref">correlates</span></a>,
 <a class="reference internal" href="#deduplication"><span class="std std-ref">de-duplicates</span></a> or <a class="reference internal" href="#blackout-periods"><span class="std std-ref">suppresses</span></a>
 them, and makes the alerts available via a <a class="reference external" href="http://apigee.com/about/resources/webcasts/restful-api-design-second-edition">RESTful</a> <a class="reference external" href="http://developers.squarespace.com/what-is-json/">JSON</a> API.</p>
-<p>Alerts can be intercepted as they are received to modify, enhance or reject them
-using <a class="reference internal" href="#prereceive"><span class="std std-ref">pre-receive hooks</span></a>. Alerts can also be used to trigger
-actions in other systems after the alert has been processed using
-<a class="reference internal" href="#postreceive"><span class="std std-ref">post-receive hooks</span></a> or following an alert
-<a class="reference internal" href="#status-change"><span class="std std-ref">status change</span></a> for bi-directional integration.</p>
-<p>There are several <a class="reference internal" href="integrations.html#integrations"><span class="std std-ref">integrations</span></a> with popular monitoring tools
-available and <a class="reference internal" href="integrations.html#webhooks"><span class="std std-ref">webhooks</span></a> can be used to trivially integrate with
-AWS Cloudwatch, Pingdom, and PagerDuty.</p>
+<p>Alerts can be intercepted as they are received to modify, enhance or
+reject them using <a class="reference internal" href="#prereceive"><span class="std std-ref">pre-receive hooks</span></a>. Alerts can also be
+used to trigger actions in other systems after the alert has been
+processed using <a class="reference internal" href="#postreceive"><span class="std std-ref">post-receive hooks</span></a> or following an
+alert <a class="reference internal" href="#status-change"><span class="std std-ref">status change</span></a> for bi-directional integration.</p>
+<p>There are several <a class="reference internal" href="integrations.html#integrations"><span class="std std-ref">integrations</span></a> with popular monitoring
+tools available and <a class="reference internal" href="integrations.html#webhooks"><span class="std std-ref">webhooks</span></a> can be used to trivially
+integrate with AWS Cloudwatch, Pingdom, PagerDuty and many more.</p>
 <div class="section" id="event-processing">
 <span id="id1"></span><h2>Event Processing<a class="headerlink" href="#event-processing" title="Permalink to this headline">¶</a></h2>
 <p>Alerta comes <cite>out-of-the-box</cite> with key features designed to reduce the burden of
