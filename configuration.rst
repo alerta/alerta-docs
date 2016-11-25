@@ -78,28 +78,15 @@ availability.
 
 ::
 
-    MONGO_HOST = 'localhost'
-    MONGO_PORT = 27017
+    MONGO_URI = 'mongodb://localhost:27017/monitoring'
     MONGO_DATABASE = 'monitoring'
-    MONGO_REPLSET = None  # 'alerta'
-
-    MONGO_USERNAME = 'alerta'
-    MONGO_PASSWORD = None
 
 .. index:: MONGO_HOST, MONGO_PORT, MONGO_DATABASE, MONGO_REPLSET, MONGO_USERNAME, MONGO_PASSWORD
 
-``MONGO_HOST``
-    hostname of the database.
-``MONGO_PORT``
-    TCP port the database is listening on.
+``MONGO_URI``
+    MongoDB connection URI string.
 ``MONGO_DATABASE``
-    database name.
-``MONGO_REPLSET``
-    replica set name.
-``MONGO_USERNAME``
-    username.
-``MONGO_PASSWORD``
-    password.
+    database name can be used to override default database defined in ``MONGO_URI``.
 
 The MongoDB configuration can be overridden in a number of different ways to
 ensure that Alerta can be easily deployed in many different environments.
@@ -354,7 +341,9 @@ MongoDB Settings
 ~~~~~~~~~~~~~~~~
 
 :envvar:`MONGO_URI`
-    override all of the MongoDB config file settings using the standard `connection string format`_
+    used to override ``MONGO_URI`` config variable using the standard `connection string format`_
+:envvar:`MONGODB_URI`
+    alternative name for ``MONGO_URI`` environment variable which is used by some managed services
 :envvar:`MONGOHQ_URL`
     automatically set when using `Heroku MongoHQ`_ managed service
 :envvar:`MONGOLAB_URI`
