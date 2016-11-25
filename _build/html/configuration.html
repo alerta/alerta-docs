@@ -103,28 +103,15 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 <p>The document-oriented datastore <a class="reference external" href="https://www.mongodb.com">MongoDB</a> is used for persistent data. It
 can be set-up as a stand-alone server or in a <a class="reference external" href="http://docs.mongodb.org/manual/core/replica-set-high-availability/">replica set</a> for high
 availability.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">MONGO_HOST</span> <span class="o">=</span> <span class="s1">&#39;localhost&#39;</span>
-<span class="n">MONGO_PORT</span> <span class="o">=</span> <span class="mi">27017</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">MONGO_URI</span> <span class="o">=</span> <span class="s1">&#39;mongodb://localhost:27017/monitoring&#39;</span>
 <span class="n">MONGO_DATABASE</span> <span class="o">=</span> <span class="s1">&#39;monitoring&#39;</span>
-<span class="n">MONGO_REPLSET</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># &#39;alerta&#39;</span>
-
-<span class="n">MONGO_USERNAME</span> <span class="o">=</span> <span class="s1">&#39;alerta&#39;</span>
-<span class="n">MONGO_PASSWORD</span> <span class="o">=</span> <span class="kc">None</span>
 </pre></div>
 </div>
 <dl class="docutils" id="index-3">
-<dt><code class="docutils literal"><span class="pre">MONGO_HOST</span></code></dt>
-<dd>hostname of the database.</dd>
-<dt><code class="docutils literal"><span class="pre">MONGO_PORT</span></code></dt>
-<dd>TCP port the database is listening on.</dd>
+<dt><code class="docutils literal"><span class="pre">MONGO_URI</span></code></dt>
+<dd>MongoDB connection URI string.</dd>
 <dt><code class="docutils literal"><span class="pre">MONGO_DATABASE</span></code></dt>
-<dd>database name.</dd>
-<dt><code class="docutils literal"><span class="pre">MONGO_REPLSET</span></code></dt>
-<dd>replica set name.</dd>
-<dt><code class="docutils literal"><span class="pre">MONGO_USERNAME</span></code></dt>
-<dd>username.</dd>
-<dt><code class="docutils literal"><span class="pre">MONGO_PASSWORD</span></code></dt>
-<dd>password.</dd>
+<dd>database name can be used to override default database defined in <code class="docutils literal"><span class="pre">MONGO_URI</span></code>.</dd>
 </dl>
 <p>The MongoDB configuration can be overridden in a number of different ways to
 ensure that Alerta can be easily deployed in many different environments.</p>
@@ -346,12 +333,14 @@ will always override any other setting.</p>
 <h3>MongoDB Settings<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
 <dt><span class="target" id="index-26"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_URI</span></code></dt>
-<dd>override all of the MongoDB config file settings using the standard <a class="reference external" href="https://docs.mongodb.org/v3.0/reference/connection-string/#standard-connection-string-format">connection string format</a></dd>
-<dt><span class="target" id="index-27"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGOHQ_URL</span></code></dt>
+<dd>used to override <code class="docutils literal"><span class="pre">MONGO_URI</span></code> config variable using the standard <a class="reference external" href="https://docs.mongodb.org/v3.0/reference/connection-string/#standard-connection-string-format">connection string format</a></dd>
+<dt><span class="target" id="index-27"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGODB_URI</span></code></dt>
+<dd>alternative name for <code class="docutils literal"><span class="pre">MONGO_URI</span></code> environment variable which is used by some managed services</dd>
+<dt><span class="target" id="index-28"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGOHQ_URL</span></code></dt>
 <dd>automatically set when using <a class="reference external" href="https://devcenter.heroku.com/articles/mongohq">Heroku MongoHQ</a> managed service</dd>
-<dt><span class="target" id="index-28"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGOLAB_URI</span></code></dt>
+<dt><span class="target" id="index-29"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGOLAB_URI</span></code></dt>
 <dd>automatically set when using <a class="reference external" href="https://devcenter.heroku.com/articles/mongolab">Heroku MongoLab</a> managed service</dd>
-<dt><span class="target" id="index-29"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_PORT</span></code></dt>
+<dt><span class="target" id="index-30"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_PORT</span></code></dt>
 <dd>automatically set when deploying <a class="reference external" href="https://github.com/alerta/docker-alerta">Alerta to a Docker</a> linked mongo container</dd>
 </dl>
 </div>
