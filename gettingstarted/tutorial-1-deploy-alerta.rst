@@ -4,7 +4,7 @@ Deploying an Alerta Server
 ==========================
 
 Let's get started by installing the Alerta server, the web console
-and do some basic configuration, customisation and housekeeping.
+and doing some basic configuration and customisation.
 
 **Contents**
 
@@ -13,18 +13,20 @@ and do some basic configuration, customisation and housekeeping.
   * `Step 1: Install Packages`_
   * `Step 2: Configuration`_
   * `Step 3: Customisation`_
-  * `Step 4: Housekeeping`_
   * `Next Steps`_
 
 Overview
 --------
 
-The server is based on the latest Ubuntu cloud image, `Ubuntu 16.04
+The server is based on the most recent stable Ubuntu cloud image, `Ubuntu 16.04
 LTS (Xenial)`_. The Alerta server will be installed to run as a `uWsgi`_
 application proxied behind an `nginx`_ web server. The web console will
-be served from the same NGINX server secured behind Basic Auth.
-Configuration will involve forwarding a subset of alerts to Slack and
-Email for notification.
+be served from the same nginx server and configured to support Basic Auth
+logins.
+
+Customisation will involve defining a new alert severity called
+"Fatal" that will be black in colour, and allowing an additional alert
+environment called "Code" in addition to "Production" and "Development".
 
 .. _`Ubuntu 16.04 LTS (Xenial)`: https://wiki.ubuntu.com/XenialXerus/ReleaseNotes
 .. _uWsgi: https://uwsgi-docs.readthedocs.io
@@ -33,10 +35,9 @@ Email for notification.
 Prerequisites
 -------------
 
-Before you begin, ensure you are familiar with the Ubuntu/Debian
-operating system, that you have "super user" privileges (ie. a
-``root`` user login) and remote ``ssh`` access to the server you
-are deploying to.
+Before you begin, ensure you are familiar with the Ubuntu/Debian operating
+system, that you have "super user" privileges (ie. a ``root`` user login)
+and remote ``ssh`` access to the server you are deploying to.
 
 Step 1: Install Packages
 ------------------------
@@ -93,8 +94,8 @@ Create a wsgi python file, uWsgi configuration file and ``systemd`` script::
 
     from alerta.app import app
 
-The uwsgi server mount the Alerta API on ``/api``, log to syslog and
-use a unix socket to communicate with the nginx web server::
+The uwsgi server mounts the Alerta API on ``/api``, logs to syslog and
+uses a unix socket to communicate with the nginx web server::
 
     $ sudo vi /etc/uwsgi.ini
 
@@ -189,52 +190,49 @@ Provider::
     angular.module('config', [])
       .constant('config', {
         'endpoint'    : "/api",
-        'provider'    : "basic",
+        'provider'    : "",
         'colors'      : {},
         'severity'    : {},
         'audio'       : {}
       });
 
-You should be able to view the web console on port 80 in your web browser.
-
+At this point you should be able to view the web console on port 80 in
+your web browser.
 
 Step 3: Customisation
 ---------------------
 
-Basic Auth w/ email verification
+To add an a new severity level called "Fatal" as the highest possible
+severity and remove some unwanted severity levels include the following
+in the Alerta server configuration file::
 
-Email verification for basic auth logins and password reset.
+    SEVERITY_MAP = {
+        'fatal': 0,
+        'critical': 1,
+        'warning': 4,
+        'indeterminate': 5,
+        'ok': 5,
+        'unknown': 9
+    }
 
-** use https **
-
-API keys
-
-Plugins - Reject, Slack and AMQP/email
-
-Configure the default "reject" plugin to allow additional environments, not
-just ``Production`` and ``Development``::
+Configure the default "reject" plugin to allow the additional
+alert environment called "Code" and not just ``Production``
+or ``Development``::
 
     $ vi /etc/alertad.conf
 
     PLUGINS=['reject']
-    ALLOWED_ENVIRONMENTS=['Production', 'Development', 'Infrastructure']
+    ALLOWED_ENVIRONMENTS=['Production', 'Development', 'Code']
 
-
-
-
-
-
-Step 4: Housekeeping
---------------------
-
-timeouts
-deleting stale
+Make sure you restart nginx so that the Alerta API picks up the
+new configuration.
 
 Next Steps
 ----------
 
-After you deploy your Alerta server, you might want to try some of the following tutorials:
+After you deploy your Alerta server, you might want to try some of
+the following tutorials:
 
   * Configure a plugin to notify a Slack Channel
-  * Add Some bespoke monitoring using the Python SDK
-  *
+  * Send alerts to the Alerta API using the command-line tool
+  * Create filtered alert views for different customers

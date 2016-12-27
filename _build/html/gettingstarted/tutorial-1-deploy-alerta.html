@@ -45,7 +45,7 @@
   <div class="section" id="deploying-an-alerta-server">
 <span id="tutorial-1"></span><h1>Deploying an Alerta Server<a class="headerlink" href="#deploying-an-alerta-server" title="Permalink to this headline">¶</a></h1>
 <p>Let&#8217;s get started by installing the Alerta server, the web console
-and do some basic configuration, customisation and housekeeping.</p>
+and doing some basic configuration and customisation.</p>
 <p><strong>Contents</strong></p>
 <blockquote>
 <div><ul class="simple">
@@ -54,25 +54,25 @@ and do some basic configuration, customisation and housekeeping.</p>
 <li><a class="reference internal" href="#step-1-install-packages">Step 1: Install Packages</a></li>
 <li><a class="reference internal" href="#step-2-configuration">Step 2: Configuration</a></li>
 <li><a class="reference internal" href="#step-3-customisation">Step 3: Customisation</a></li>
-<li><a class="reference internal" href="#step-4-housekeeping">Step 4: Housekeeping</a></li>
 <li><a class="reference internal" href="#next-steps">Next Steps</a></li>
 </ul>
 </div></blockquote>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>The server is based on the latest Ubuntu cloud image, <a class="reference external" href="https://wiki.ubuntu.com/XenialXerus/ReleaseNotes">Ubuntu 16.04
+<p>The server is based on the most recent stable Ubuntu cloud image, <a class="reference external" href="https://wiki.ubuntu.com/XenialXerus/ReleaseNotes">Ubuntu 16.04
 LTS (Xenial)</a>. The Alerta server will be installed to run as a <a class="reference external" href="https://uwsgi-docs.readthedocs.io">uWsgi</a>
 application proxied behind an <a class="reference external" href="https://www.nginx.com">nginx</a> web server. The web console will
-be served from the same NGINX server secured behind Basic Auth.
-Configuration will involve forwarding a subset of alerts to Slack and
-Email for notification.</p>
+be served from the same nginx server and configured to support Basic Auth
+logins.</p>
+<p>Customisation will involve defining a new alert severity called
+&#8220;Fatal&#8221; that will be black in colour, and allowing an additional alert
+environment called &#8220;Code&#8221; in addition to &#8220;Production&#8221; and &#8220;Development&#8221;.</p>
 </div>
 <div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
-<p>Before you begin, ensure you are familiar with the Ubuntu/Debian
-operating system, that you have &#8220;super user&#8221; privileges (ie. a
-<code class="docutils literal"><span class="pre">root</span></code> user login) and remote <code class="docutils literal"><span class="pre">ssh</span></code> access to the server you
-are deploying to.</p>
+<p>Before you begin, ensure you are familiar with the Ubuntu/Debian operating
+system, that you have &#8220;super user&#8221; privileges (ie. a <code class="docutils literal"><span class="pre">root</span></code> user login)
+and remote <code class="docutils literal"><span class="pre">ssh</span></code> access to the server you are deploying to.</p>
 </div>
 <div class="section" id="step-1-install-packages">
 <h2>Step 1: Install Packages<a class="headerlink" href="#step-1-install-packages" title="Permalink to this headline">¶</a></h2>
@@ -126,8 +126,8 @@ $ sudo mv alerta*/app/* .
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">alerta.app</span> <span class="k">import</span> <span class="n">app</span>
 </pre></div>
 </div>
-<p>The uwsgi server mount the Alerta API on <code class="docutils literal"><span class="pre">/api</span></code>, log to syslog and
-use a unix socket to communicate with the nginx web server:</p>
+<p>The uwsgi server mounts the Alerta API on <code class="docutils literal"><span class="pre">/api</span></code>, logs to syslog and
+uses a unix socket to communicate with the nginx web server:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo vi /etc/uwsgi.ini
 </pre></div>
 </div>
@@ -213,44 +213,52 @@ Provider:</p>
 <span class="n">angular</span><span class="o">.</span><span class="n">module</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">[])</span>
   <span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">{</span>
     <span class="s1">&#39;endpoint&#39;</span>    <span class="p">:</span> <span class="s2">&quot;/api&quot;</span><span class="p">,</span>
-    <span class="s1">&#39;provider&#39;</span>    <span class="p">:</span> <span class="s2">&quot;basic&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;provider&#39;</span>    <span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="s1">&#39;colors&#39;</span>      <span class="p">:</span> <span class="p">{},</span>
     <span class="s1">&#39;severity&#39;</span>    <span class="p">:</span> <span class="p">{},</span>
     <span class="s1">&#39;audio&#39;</span>       <span class="p">:</span> <span class="p">{}</span>
   <span class="p">});</span>
 </pre></div>
 </div>
-<p>You should be able to view the web console on port 80 in your web browser.</p>
+<p>At this point you should be able to view the web console on port 80 in
+your web browser.</p>
 </div>
 <div class="section" id="step-3-customisation">
 <h2>Step 3: Customisation<a class="headerlink" href="#step-3-customisation" title="Permalink to this headline">¶</a></h2>
-<p>Basic Auth w/ email verification</p>
-<p>Email verification for basic auth logins and password reset.</p>
-<p>** use https **</p>
-<p>API keys</p>
-<p>Plugins - Reject, Slack and AMQP/email</p>
-<p>Configure the default &#8220;reject&#8221; plugin to allow additional environments, not
-just <code class="docutils literal"><span class="pre">Production</span></code> and <code class="docutils literal"><span class="pre">Development</span></code>:</p>
+<p>To add an a new severity level called &#8220;Fatal&#8221; as the highest possible
+severity and remove some unwanted severity levels include the following
+in the Alerta server configuration file:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SEVERITY_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;fatal&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;critical&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;warning&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s1">&#39;indeterminate&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s1">&#39;ok&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s1">&#39;unknown&#39;</span><span class="p">:</span> <span class="mi">9</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Configure the default &#8220;reject&#8221; plugin to allow the additional
+alert environment called &#8220;Code&#8221; and not just <code class="docutils literal"><span class="pre">Production</span></code>
+or <code class="docutils literal"><span class="pre">Development</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ vi /etc/alertad.conf
 
 PLUGINS=[&#39;reject&#39;]
-ALLOWED_ENVIRONMENTS=[&#39;Production&#39;, &#39;Development&#39;, &#39;Infrastructure&#39;]
+ALLOWED_ENVIRONMENTS=[&#39;Production&#39;, &#39;Development&#39;, &#39;Code&#39;]
 </pre></div>
 </div>
-</div>
-<div class="section" id="step-4-housekeeping">
-<h2>Step 4: Housekeeping<a class="headerlink" href="#step-4-housekeeping" title="Permalink to this headline">¶</a></h2>
-<p>timeouts
-deleting stale</p>
+<p>Make sure you restart nginx so that the Alerta API picks up the
+new configuration.</p>
 </div>
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
-<p>After you deploy your Alerta server, you might want to try some of the following tutorials:</p>
+<p>After you deploy your Alerta server, you might want to try some of
+the following tutorials:</p>
 <blockquote>
 <div><ul class="simple">
 <li>Configure a plugin to notify a Slack Channel</li>
-<li>Add Some bespoke monitoring using the Python SDK</li>
-<li></li>
+<li>Send alerts to the Alerta API using the command-line tool</li>
+<li>Create filtered alert views for different customers</li>
 </ul>
 </div></blockquote>
 </div>
