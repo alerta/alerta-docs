@@ -1,0 +1,396 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Deploying an Alerta Server &#8212; alerta 4.8 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '4.8',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="alerta 4.8 documentation" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="deploying-an-alerta-server">
+<span id="tutorial-1"></span><h1>Deploying an Alerta Server<a class="headerlink" href="#deploying-an-alerta-server" title="Permalink to this headline">¶</a></h1>
+<p>Let&#8217;s get started by installing the Alerta server, the web console
+and doing some basic configuration and customisation.</p>
+<p><strong>Contents</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#step-1-install-packages">Step 1: Install Packages</a></li>
+<li><a class="reference internal" href="#step-2-configuration">Step 2: Configuration</a></li>
+<li><a class="reference internal" href="#step-3-customisation">Step 3: Customisation</a></li>
+<li><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</div></blockquote>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The server is based on the most recent stable Ubuntu cloud image, <a class="reference external" href="https://wiki.ubuntu.com/XenialXerus/ReleaseNotes">Ubuntu 16.04
+LTS (Xenial)</a>. The Alerta server will be installed to run as a <a class="reference external" href="https://uwsgi-docs.readthedocs.io">uWsgi</a>
+application proxied behind an <a class="reference external" href="https://www.nginx.com">nginx</a> web server. The web console will
+be served from the same nginx server and configured to support Basic Auth
+logins.</p>
+<p>Customisation will involve defining a new alert severity called
+&#8220;Fatal&#8221; that will be black in colour, and allowing an additional alert
+environment called &#8220;Code&#8221; in addition to &#8220;Production&#8221; and &#8220;Development&#8221;.</p>
+</div>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>Before you begin, ensure you are familiar with the Ubuntu/Debian operating
+system, that you have &#8220;super user&#8221; privileges (ie. a <code class="docutils literal"><span class="pre">root</span></code> user login)
+and remote <code class="docutils literal"><span class="pre">ssh</span></code> access to the server you are deploying to.</p>
+</div>
+<div class="section" id="step-1-install-packages">
+<h2>Step 1: Install Packages<a class="headerlink" href="#step-1-install-packages" title="Permalink to this headline">¶</a></h2>
+<p>To install MongoDB 3.2 run the following commands:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+$ echo &quot;deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse&quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+$ sudo apt-get update -y &amp;&amp; sudo apt-get upgrade -y
+$ sudo apt-get install -y mongodb-org
+</pre></div>
+</div>
+<p>Configure MongoDB to run via <code class="docutils literal"><span class="pre">systemd</span></code> and start at boot:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo vi /etc/systemd/system/mongodb.service
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Unit</span><span class="p">]</span>
+<span class="n">Description</span><span class="o">=</span><span class="n">High</span><span class="o">-</span><span class="n">performance</span><span class="p">,</span> <span class="n">schema</span><span class="o">-</span><span class="n">free</span> <span class="n">document</span><span class="o">-</span><span class="n">oriented</span> <span class="n">database</span>
+<span class="n">After</span><span class="o">=</span><span class="n">network</span><span class="o">.</span><span class="n">target</span>
+
+<span class="p">[</span><span class="n">Service</span><span class="p">]</span>
+<span class="n">User</span><span class="o">=</span><span class="n">mongodb</span>
+<span class="n">ExecStart</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">mongod</span> <span class="o">--</span><span class="n">quiet</span> <span class="o">--</span><span class="n">config</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">mongod</span><span class="o">.</span><span class="n">conf</span>
+
+<span class="p">[</span><span class="n">Install</span><span class="p">]</span>
+<span class="n">WantedBy</span><span class="o">=</span><span class="n">multi</span><span class="o">-</span><span class="n">user</span><span class="o">.</span><span class="n">target</span>
+</pre></div>
+</div>
+<p>Start the MongoDB server, check it is running and set it to start on reboot:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo systemctl start mongodb
+$ sudo systemctl status mongodb
+$ sudo systemctl enable mongodb
+</pre></div>
+</div>
+<p>To install the Alerta server and <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install -y python-pip python-dev nginx
+$ sudo pip install alerta-server alerta uwsgi
+</pre></div>
+</div>
+<p>To install the web console run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd /var/www/html
+$ wget -q -O - https://github.com/alerta/angular-alerta-webui/tarball/master | sudo tar zxf -
+$ sudo mv alerta*/app/* .
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-2-configuration">
+<h2>Step 2: Configuration<a class="headerlink" href="#step-2-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Create a wsgi python file, uWsgi configuration file and <code class="docutils literal"><span class="pre">systemd</span></code> script:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo vi /var/www/wsgi.py
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">alerta.app</span> <span class="k">import</span> <span class="n">app</span>
+</pre></div>
+</div>
+<p>The uwsgi server mounts the Alerta API on <code class="docutils literal"><span class="pre">/api</span></code>, logs to syslog and
+uses a unix socket to communicate with the nginx web server:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo vi /etc/uwsgi.ini
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">uwsgi</span><span class="p">]</span>
+<span class="n">chdir</span> <span class="o">=</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span>
+<span class="n">mount</span> <span class="o">=</span> <span class="o">/</span><span class="n">api</span><span class="o">=</span><span class="n">wsgi</span><span class="o">.</span><span class="n">py</span>
+<span class="n">callable</span> <span class="o">=</span> <span class="n">app</span>
+<span class="n">manage</span><span class="o">-</span><span class="n">script</span><span class="o">-</span><span class="n">name</span> <span class="o">=</span> <span class="n">true</span>
+
+<span class="n">master</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">processes</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">syslog</span><span class="p">:</span><span class="n">alertad</span>
+
+<span class="n">socket</span> <span class="o">=</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">uwsgi</span><span class="o">.</span><span class="n">sock</span>
+<span class="n">chmod</span><span class="o">-</span><span class="n">socket</span> <span class="o">=</span> <span class="mi">664</span>
+<span class="n">uid</span> <span class="o">=</span> <span class="n">www</span><span class="o">-</span><span class="n">data</span>
+<span class="n">gid</span> <span class="o">=</span> <span class="n">www</span><span class="o">-</span><span class="n">data</span>
+<span class="n">vacuum</span> <span class="o">=</span> <span class="n">true</span>
+
+<span class="n">die</span><span class="o">-</span><span class="n">on</span><span class="o">-</span><span class="n">term</span> <span class="o">=</span> <span class="n">true</span>
+</pre></div>
+</div>
+<p>Create a <code class="docutils literal"><span class="pre">systemd</span></code> configuration file for the uwsgi server:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo vi /etc/systemd/system/uwsgi.service
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Unit</span><span class="p">]</span>
+<span class="n">Description</span><span class="o">=</span><span class="n">uWSGI</span> <span class="n">service</span>
+
+<span class="p">[</span><span class="n">Service</span><span class="p">]</span>
+<span class="n">ExecStart</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">uwsgi</span> <span class="o">--</span><span class="n">ini</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">uwsgi</span><span class="o">.</span><span class="n">ini</span>
+
+<span class="p">[</span><span class="n">Install</span><span class="p">]</span>
+<span class="n">WantedBy</span><span class="o">=</span><span class="n">multi</span><span class="o">-</span><span class="n">user</span><span class="o">.</span><span class="n">target</span>
+</pre></div>
+</div>
+<p>Start the uwsgi server, check the current status and enable it to start
+on reboot:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo systemctl start uwsgi
+$ sudo systemctl status uwsgi
+$ sudo systemctl enable uwsgi
+</pre></div>
+</div>
+<p>Configure nginx to serve Alerta as a uWsgi application on <code class="docutils literal"><span class="pre">/api</span></code> and
+the web console as static assets.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Mounting the Alerta API on <code class="docutils literal"><span class="pre">/api</span></code> and serving the web console static
+assets from the same domain avoids any problems with CORS or HTTPS
+mixed content errors.</p>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo vi /etc/nginx/sites-enabled/default
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span>server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        location /api { try_files $uri @api; }
+        location @api {
+            include uwsgi_params;
+            uwsgi_pass unix:/tmp/uwsgi.sock;
+            proxy_set_header Host $host:$server_port;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+
+        location / {
+                root /var/www/html;
+        }
+
+}
+</pre></div>
+</div>
+<p>Modify the existing web console <code class="docutils literal"><span class="pre">config.js</span></code> configuration file to
+set the <code class="docutils literal"><span class="pre">endpoint</span></code> to <code class="docutils literal"><span class="pre">/api</span></code> and chose <code class="docutils literal"><span class="pre">basic</span></code> as the Authentication
+Provider:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo vi /var/www/html/config.js
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+<span class="n">angular</span><span class="o">.</span><span class="n">module</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">[])</span>
+  <span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="s1">&#39;endpoint&#39;</span>    <span class="p">:</span> <span class="s2">&quot;/api&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;provider&#39;</span>    <span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;colors&#39;</span>      <span class="p">:</span> <span class="p">{},</span>
+    <span class="s1">&#39;severity&#39;</span>    <span class="p">:</span> <span class="p">{},</span>
+    <span class="s1">&#39;audio&#39;</span>       <span class="p">:</span> <span class="p">{}</span>
+  <span class="p">});</span>
+</pre></div>
+</div>
+<p>At this point you should be able to view the web console on port 80 in
+your web browser.</p>
+</div>
+<div class="section" id="step-3-customisation">
+<h2>Step 3: Customisation<a class="headerlink" href="#step-3-customisation" title="Permalink to this headline">¶</a></h2>
+<p>To add an a new severity level called &#8220;Fatal&#8221; as the highest possible
+severity and remove some unwanted severity levels include the following
+in the Alerta server configuration file:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SEVERITY_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;fatal&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;critical&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;warning&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s1">&#39;indeterminate&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s1">&#39;ok&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s1">&#39;unknown&#39;</span><span class="p">:</span> <span class="mi">9</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Configure the default &#8220;reject&#8221; plugin to allow the additional
+alert environment called &#8220;Code&#8221; and not just <code class="docutils literal"><span class="pre">Production</span></code>
+or <code class="docutils literal"><span class="pre">Development</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ vi /etc/alertad.conf
+
+PLUGINS=[&#39;reject&#39;]
+ALLOWED_ENVIRONMENTS=[&#39;Production&#39;, &#39;Development&#39;, &#39;Code&#39;]
+</pre></div>
+</div>
+<p>Make sure you restart nginx so that the Alerta API picks up the
+new configuration.</p>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+<p>After you deploy your Alerta server, you might want to try some of
+the following tutorials:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Configure a plugin to notify a Slack Channel</li>
+<li>Send alerts to the Alerta API using the command-line tool</li>
+<li>Create filtered alert views for different customers</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">alerta</a></h1>
+
+
+
+<p class="blurb">monitoring system</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a href="https://travis-ci.org/guardian/alerta">
+    <img
+        alt="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
+        src="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
+    />
+</a>
+</p>
+
+
+
+
+<h3>
+Links
+</h3>
+<ul>
+  <li>
+    <a href="http://alerta.io" rel="me">Web</a>
+  </li>
+  <li>
+    <a href="https://twitter.com/alertaio" rel="me">Twitter</a>
+  </li>
+  <li>
+    <a href="https://gitter.im/alerta/chat" rel="me">Gitter</a>
+  </li>
+</ul>
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick-start.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server.html">Server &amp; API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui.html">Alerta Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">Alerta CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../integrations.html">Integrations &amp; Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../customerviews.html">Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/alert.html">Alert Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/heartbeat.html">Heartbeat Format</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015-2016, Nick Satterly. MIT License.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/gettingstarted/tutorial-1-deploy-alerta.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-44644195-3']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

@@ -56,4 +56,4 @@ either a :ref:`CORS issues <cross_origin>` or a bug_.
 What's next?
 ------------
 
-Take the :ref:`step-by-step tutorial <tutorial>` or dive straight into a :ref:`deployment <deployment>`.
+Take the :ref:`step-by-step tutorials <tutorials>` or dive straight into a :ref:`deployment <deployment>`.

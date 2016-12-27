@@ -43,7 +43,6 @@ The API Explorer website can be used to query for, and send alerts to, the http:
    :hidden:
 
    quick-start
-   tutorial
    design
    server
    webui
@@ -55,6 +54,7 @@ The API Explorer website can be used to query for, and send alerts to, the http:
    customerviews
    conventions
    development
+   Tutorials <tutorials>
 
 .. toctree::
   :glob:

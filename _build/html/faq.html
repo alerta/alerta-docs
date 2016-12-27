@@ -50,42 +50,74 @@
 <h2>Alerta<a class="headerlink" href="#alerta" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="why-can-t-i-see-any-alerts-in-the-web-browser">
 <h3>Why can&#8217;t I see any alerts in the web browser?<a class="headerlink" href="#why-can-t-i-see-any-alerts-in-the-web-browser" title="Permalink to this headline">¶</a></h3>
-<p>If you can send and query for alerts using the <code class="docutils literal"><span class="pre">alerta</span></code> CLI tool this problem is almost certainly related to cross-origin browser errors. Open up the Javascript developer console in your browser of choice and look for <a class="reference external" href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS</a> errors like:</p>
+<p>If you can send and query for alerts using the <code class="docutils literal"><span class="pre">alerta</span></code> CLI tool this
+problem is almost certainly related to cross-origin browser errors. Open
+up the Javascript developer console in your browser of choice and look
+for <a class="reference external" href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS</a> errors like:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>XMLHttpRequest cannot load http://api.alerta.io/alerts?status=open.
 No &#39;Access-Control-Allow-Origin&#39; header is present on the requested
 resource. Origin &#39;http://web.alerta.io&#39; is therefore not allowed access.
 </pre></div>
 </div>
-<p>To fix this you can either serve the web UI from the <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">same origin</a> as the API using a web server to <a class="reference internal" href="deployment.html#reverse-proxy"><span class="std std-ref">reverse proxy</span></a> the web UI or ensure that the API server <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin">allows the origin</a> where the web UI is hosted by adding it to the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">CORS_ORIGINS</span></code> <a class="reference internal" href="configuration.html#cors-config"><span class="std std-ref">server configuration</span></a> setting.</p>
+<p>To fix this you can either serve the web UI from the <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">same origin</a> as
+the API using a web server to <a class="reference internal" href="deployment.html#reverse-proxy"><span class="std std-ref">reverse proxy</span></a> the
+web UI or ensure that the API server <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin">allows the origin</a> where the
+web UI is hosted by adding it to the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">CORS_ORIGINS</span></code> <a class="reference internal" href="configuration.html#cors-config"><span class="std std-ref">server
+configuration</span></a> setting.</p>
 </div>
 <div class="section" id="can-i-define-custom-severity-codes-and-levels">
 <h3>Can I define custom severity codes and levels?<a class="headerlink" href="#can-i-define-custom-severity-codes-and-levels" title="Permalink to this headline">¶</a></h3>
-<p>Yes, though it is not recommended. There is nothing stopping you from using any string as the severity for a submitted alert. The only aspect of Alerta that would not work as expected would be the <code class="docutils literal"><span class="pre">trendIndication</span></code> assigned to an alert that indicates whether it is more or less severe than the last alert for that <code class="docutils literal"><span class="pre">resource</span></code> and <code class="docutils literal"><span class="pre">event</span></code>. To fix this, <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/app/severity_code.py">severity code</a> mappings would need to be updated to include the new severity or to rename an existing one.</p>
+<p>Yes, you can now completely change the severity names, severity levels
+and colours. See :ref:`` for more information.</p>
 </div>
 <div class="section" id="how-can-i-add-a-priority-to-an-alert-eg-high-medium-low">
 <h3>How can I add a priority to an alert eg. High, Medium, Low?<a class="headerlink" href="#how-can-i-add-a-priority-to-an-alert-eg-high-medium-low" title="Permalink to this headline">¶</a></h3>
-<p>Use a custom attribute called <code class="docutils literal"><span class="pre">priority</span></code> when sending alerts to Alerta:</p>
+<p>Use a custom attribute called <code class="docutils literal"><span class="pre">priority</span></code> when sending alerts to
+Alerta:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta send ... --attributes priority=high ...
 </pre></div>
 </div>
-<p>Alerts of differing priority could be queried by <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool using:</p>
+<p>Alerts of differing priority could be queried by <code class="docutils literal"><span class="pre">alerta</span></code>
+command-line tool using:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta query --filters attributes.priority=high
 </pre></div>
 </div>
-<p>Using the web console to sort alerts by priority as well as severity would require some development effort.</p>
+<p>Using the web console to sort alerts by priority as well as severity
+would require some development effort.</p>
 </div>
 <div class="section" id="what-s-the-difference-between-ack-close-and-delete">
 <h3>What&#8217;s the difference between <cite>ack</cite>, <cite>close</cite> and <cite>delete</cite>?<a class="headerlink" href="#what-s-the-difference-between-ack-close-and-delete" title="Permalink to this headline">¶</a></h3>
-<p>Alerts are meant to auto-close when a corresponding <cite>normal</cite> or <cite>cleared</cite> alert is received for that event-resource combination. If no <cite>normal</cite> alert exists for a particular event (which may be the case for alerts from log files, for example) then the alert will be deleted when the timeout period has expired. Alerts timeout after 1 day by default but that is configurable on a per-alert basis.</p>
-<p>If, as an operator, you want to remove an event from view then you can either <cite>ack</cite> the alert or DELETE it. If the alert is DELETED a new alert with the same event-resource combination will trigger a new notification email (if configured) whereas an <cite>ack</cite>&#8216;ed alert will not.</p>
+<p>Alerts are meant to auto-close when a corresponding <cite>normal</cite> or
+<cite>cleared</cite> alert is received for that event-resource combination. If
+no <cite>normal</cite> alert exists for a particular event (which may be the
+case for alerts from log files, for example) then the alert will
+be deleted when the timeout period has expired. Alerts timeout after
+1 day by default but that is configurable on a per-alert basis.</p>
+<p>If, as an operator, you want to remove an event from view then you
+can either <cite>ack</cite> the alert or DELETE it. If the alert is DELETED a
+new alert with the same event-resource combination will trigger a
+new notification email (if configured) whereas an <cite>ack</cite>&#8216;ed alert will
+not.</p>
 </div>
 <div class="section" id="why-don-t-you-have-a-plugin-or-integration-for-x-where-x-is-whatever-you-use-in-your-job">
 <h3>Why don&#8217;t you have a plugin or integration for X, where X is whatever you use in your job?<a class="headerlink" href="#why-don-t-you-have-a-plugin-or-integration-for-x-where-x-is-whatever-you-use-in-your-job" title="Permalink to this headline">¶</a></h3>
-<p>We could spend countless hours writing plugins for everything and never finish or we could focus on building an easily extensible system with great documentation and let the end-user build the plugins they need. Having said that, we have still <a class="reference external" href="https://github.com/alerta/nagios3-alerta">created</a> <a class="reference external" href="https://github.com/guardian/alerta/tree/master/alerta/plugins">many</a> <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins">plugins</a> and <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations">integrations</a> as working examples and we are not against writing more if there is <a class="reference external" href="https://github.com/guardian/alerta/issues/74">popular</a> <a class="reference external" href="https://github.com/guardian/alerta/issues/75">demand</a>. We are also happy to accept submissions.</p>
+<p>We could spend countless hours writing plugins for everything and
+never finish or we could focus on building an easily extensible
+system with great documentation and let the end-user build the plugins
+they need. Having said that, we have still <a class="reference external" href="https://github.com/alerta/nagios3-alerta">created</a> <a class="reference external" href="https://github.com/guardian/alerta/tree/master/alerta/plugins">many</a> <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins">plugins</a>
+and <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations">integrations</a> as working examples and we are not against writing
+more if there is <a class="reference external" href="https://github.com/guardian/alerta/issues/74">popular</a> <a class="reference external" href="https://github.com/guardian/alerta/issues/75">demand</a>. We are also happy to accept submissions.</p>
+<p>MongoDB errors ServerSelectionTimeoutError
+WSGIApplicationGroup %{GLOBAL}</p>
+<p><a class="reference external" href="http://stackoverflow.com/questions/31030307/why-is-pymongo-3-giving-serverselectiontimeouterror">http://stackoverflow.com/questions/31030307/why-is-pymongo-3-giving-serverselectiontimeouterror</a></p>
 </div>
 <div class="section" id="does-alerta-support-python-3">
 <h3>Does Alerta support Python 3?<a class="headerlink" href="#does-alerta-support-python-3" title="Permalink to this headline">¶</a></h3>
-<p>Yes, however due to dependencies on Flask the minimum version is Python 3.3 and even then there may still be issues. For example, running Flask apps as a WSGI application using Python 3 may be problematic and so it is currently <a class="reference external" href="http://flask.pocoo.org/docs/0.10/python3/#recommendations">recommended</a> to run Alerta using Python 2.7 in production environments.</p>
+<p>Yes, however due to dependencies on Flask the minimum version is
+Python 3.4 and even then there may still be issues. For example,
+running Flask apps as a WSGI application using Python 3 may be
+problematic and so it is currently <a class="reference external" href="http://flask.pocoo.org/docs/0.10/python3/#recommendations">recommended</a> to run Alerta using
+Python 2.7 in production environments.</p>
 </div>
 </div>
 </div>
@@ -146,7 +178,6 @@ Links
 <h3>Navigation</h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webui.html">Alerta Web UI</a></li>
@@ -158,6 +189,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="customerviews.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/reference.html">API Reference</a></li>
