@@ -174,7 +174,6 @@ the web console as static assets.
             location / {
                     root /var/www/html;
             }
-
     }
 
 Restart nginx so that it picks up the new configuration::
@@ -210,9 +209,11 @@ Firstly, generate a random string::
 
     $ cat /dev/urandom | tr -dc A-Za-z0-9_\!\@\#\$\%\^\&\*\(\)-+= | head -c 32 && echo
 
-Assign the random string to the `SECRET_KEY` sever setting::
+Assign the random string to the ``SECRET_KEY`` sever setting::
 
     $ vi /etc/alertad.conf
+
+::
 
     SECRET_KEY='<INSERT_RANDOM_STRING>'
 
@@ -220,6 +221,8 @@ Add a new severity level called "Fatal" as the highest possible
 severity and remove some unwanted severity levels::
 
     $ vi /etc/alertad.conf
+
+::
 
     SEVERITY_MAP = {
         'fatal': 0,
@@ -230,11 +233,33 @@ severity and remove some unwanted severity levels::
         'unknown': 9
     }
 
+Modify the web console ``config.js`` configuration file again
+this time to add support for the new "Fatal" severity. Replace
+the settings for "colors" and "severity" with the following::
+
+    $ sudo vi /var/www/html/config.js
+
+::
+
+    ...
+    'colors'      : {
+      'severity': {
+        'fatal'        : '#000000',  // black
+      },
+      'text': 'lightgray'
+    },
+    'severity'    : {
+      'fatal': 0
+    },
+    ...
+
 Configure the default "reject" plugin to allow the additional
 alert environment called "Code" and not just "Production"
 or "Development"::
 
     $ vi /etc/alertad.conf
+
+::
 
     PLUGINS=['reject']
     ALLOWED_ENVIRONMENTS=['Production', 'Development', 'Code']
