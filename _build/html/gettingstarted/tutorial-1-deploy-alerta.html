@@ -202,6 +202,10 @@ mixed content errors.</p>
 }
 </pre></div>
 </div>
+<p>Restart nginx so that it picks up the new configuration:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo service nginx restart
+</pre></div>
+</div>
 <p>Modify the existing web console <code class="docutils literal"><span class="pre">config.js</span></code> configuration file to
 set the <code class="docutils literal"><span class="pre">endpoint</span></code> to <code class="docutils literal"><span class="pre">/api</span></code> and chose <code class="docutils literal"><span class="pre">basic</span></code> as the Authentication
 Provider:</p>
@@ -225,30 +229,44 @@ your web browser.</p>
 </div>
 <div class="section" id="step-3-customisation">
 <h2>Step 3: Customisation<a class="headerlink" href="#step-3-customisation" title="Permalink to this headline">¶</a></h2>
+<p>Firstly, generate a random string:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ cat /dev/urandom | tr -dc A-Za-z0-9_\!\@\#\$\%\^\&amp;\*\(\)-+= | head -c 32 &amp;&amp; echo
+</pre></div>
+</div>
+<p>Assign the random string to the <cite>SECRET_KEY</cite> sever setting:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ vi /etc/alertad.conf
+
+SECRET_KEY=&#39;&lt;INSERT_RANDOM_STRING&gt;&#39;
+</pre></div>
+</div>
 <p>To add an a new severity level called &#8220;Fatal&#8221; as the highest possible
-severity and remove some unwanted severity levels include the following
-in the Alerta server configuration file:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SEVERITY_MAP</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;fatal&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s1">&#39;critical&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s1">&#39;warning&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-    <span class="s1">&#39;indeterminate&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-    <span class="s1">&#39;ok&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-    <span class="s1">&#39;unknown&#39;</span><span class="p">:</span> <span class="mi">9</span>
-<span class="p">}</span>
+severity and remove some unwanted severity levels:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ vi /etc/alertad.conf
+
+SEVERITY_MAP = {
+    &#39;fatal&#39;: 0,
+    &#39;critical&#39;: 1,
+    &#39;warning&#39;: 4,
+    &#39;indeterminate&#39;: 5,
+    &#39;ok&#39;: 5,
+    &#39;unknown&#39;: 9
+}
 </pre></div>
 </div>
 <p>Configure the default &#8220;reject&#8221; plugin to allow the additional
-alert environment called &#8220;Code&#8221; and not just <code class="docutils literal"><span class="pre">Production</span></code>
-or <code class="docutils literal"><span class="pre">Development</span></code>:</p>
+alert environment called &#8220;Code&#8221; and not just &#8220;Production&#8221;
+or &#8220;Development&#8221;:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ vi /etc/alertad.conf
 
 PLUGINS=[&#39;reject&#39;]
 ALLOWED_ENVIRONMENTS=[&#39;Production&#39;, &#39;Development&#39;, &#39;Code&#39;]
 </pre></div>
 </div>
-<p>Make sure you restart nginx so that the Alerta API picks up the
-new configuration.</p>
+<p>Make sure you restart uwsgi so that the Alerta API picks up the
+new severity and plugin configurations:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo service uwsgi restart
+</pre></div>
+</div>
 </div>
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
