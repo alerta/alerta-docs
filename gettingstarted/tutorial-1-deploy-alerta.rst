@@ -216,7 +216,7 @@ Assign the random string to the `SECRET_KEY` sever setting::
 
     SECRET_KEY='<INSERT_RANDOM_STRING>'
 
-To add an a new severity level called "Fatal" as the highest possible
+Add a new severity level called "Fatal" as the highest possible
 severity and remove some unwanted severity levels::
 
     $ vi /etc/alertad.conf
