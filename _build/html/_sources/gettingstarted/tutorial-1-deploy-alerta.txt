@@ -177,6 +177,10 @@ the web console as static assets.
 
     }
 
+Restart nginx so that it picks up the new configuration::
+
+    $ sudo service nginx restart
+
 Modify the existing web console ``config.js`` configuration file to
 set the ``endpoint`` to ``/api`` and chose ``basic`` as the Authentication
 Provider::
@@ -202,9 +206,20 @@ your web browser.
 Step 3: Customisation
 ---------------------
 
+Firstly, generate a random string::
+
+    $ cat /dev/urandom | tr -dc A-Za-z0-9_\!\@\#\$\%\^\&\*\(\)-+= | head -c 32 && echo
+
+Assign the random string to the `SECRET_KEY` sever setting::
+
+    $ vi /etc/alertad.conf
+
+    SECRET_KEY='<INSERT_RANDOM_STRING>'
+
 To add an a new severity level called "Fatal" as the highest possible
-severity and remove some unwanted severity levels include the following
-in the Alerta server configuration file::
+severity and remove some unwanted severity levels::
+
+    $ vi /etc/alertad.conf
 
     SEVERITY_MAP = {
         'fatal': 0,
@@ -216,16 +231,18 @@ in the Alerta server configuration file::
     }
 
 Configure the default "reject" plugin to allow the additional
-alert environment called "Code" and not just ``Production``
-or ``Development``::
+alert environment called "Code" and not just "Production"
+or "Development"::
 
     $ vi /etc/alertad.conf
 
     PLUGINS=['reject']
     ALLOWED_ENVIRONMENTS=['Production', 'Development', 'Code']
 
-Make sure you restart nginx so that the Alerta API picks up the
-new configuration.
+Make sure you restart uwsgi so that the Alerta API picks up the
+new severity and plugin configurations::
+
+    $ sudo service uwsgi restart
 
 Next Steps
 ----------
