@@ -46,35 +46,53 @@
             
   <div class="section" id="conventions">
 <span id="id1"></span><h1>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h1>
-<p>Always favour convention over configuration. And any configuration should have sensible defaults.</p>
+<p>Always favour convention over configuration. And any configuration
+should have sensible defaults.</p>
 <div class="section" id="naming-conventions">
 <h2>Naming Conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="resources">
 <h3>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h3>
-<p>The key alert attribute name of <code class="docutils literal"><span class="pre">resource</span></code> was specifically chosen so as not to be host centric. A resource <em>can</em> be a hostname, but it might also be an EC2 instance ID, a Docker container ID or some other type of non-host unique identifier.</p>
+<p>The key alert attribute name of <code class="docutils literal"><span class="pre">resource</span></code> was specifically chosen
+so as not to be host centric. A resource <em>can</em> be a hostname, but it
+might also be an EC2 instance ID, a Docker container ID or some other
+type of non-host unique identifier.</p>
 </div>
 <div class="section" id="environments-services">
 <h3>Environments &amp; Services<a class="headerlink" href="#environments-services" title="Permalink to this headline">¶</a></h3>
-<p>The environment attribute is used to <a class="reference external" href="https://en.wikipedia.org/wiki/Namespace">namespace</a> the alert resource. This allows you to have two resources with the same name (eg. <code class="docutils literal"><span class="pre">web01</span></code>) but that are differentiated by their environments (eg. <code class="docutils literal"><span class="pre">prod</span></code> and <code class="docutils literal"><span class="pre">dev</span></code>).</p>
-<p>Choose a set of environments and enforce them. ie. <code class="docutils literal"><span class="pre">PROD</span></code>, <code class="docutils literal"><span class="pre">DEV</span></code> or <code class="docutils literal"><span class="pre">Production</span></code>, <code class="docutils literal"><span class="pre">Development</span></code> but not both. The same for services eg. <code class="docutils literal"><span class="pre">MobileAPI</span></code>, <code class="docutils literal"><span class="pre">Mobile-API</span></code> and <code class="docutils literal"><span class="pre">mobile</span> <span class="pre">api</span></code> are all valid but needlessly different and impossible to query for reliably.</p>
-<p>Note that the service attribute can be a list because it is common for infrastructure (ie. some resource) to be used by more than one service. That is, if a component failure occurs that problem could cause an outage in multiple services.</p>
+<p>The environment attribute is used to <a class="reference external" href="https://en.wikipedia.org/wiki/Namespace">namespace</a> the alert resource.
+This allows you to have two resources with the same name (eg. <code class="docutils literal"><span class="pre">web01</span></code>)
+but that are differentiated by their environments (eg. <code class="docutils literal"><span class="pre">Production</span></code>
+and <code class="docutils literal"><span class="pre">Development</span></code>).</p>
+<p>Choose a set of environments and enforce them. ie. <code class="docutils literal"><span class="pre">PROD</span></code>, <code class="docutils literal"><span class="pre">DEV</span></code>
+or <code class="docutils literal"><span class="pre">Production</span></code>, <code class="docutils literal"><span class="pre">Development</span></code> but not both. The same for services
+eg. <code class="docutils literal"><span class="pre">MobileAPI</span></code>, <code class="docutils literal"><span class="pre">Mobile-API</span></code> and <code class="docutils literal"><span class="pre">mobile</span> <span class="pre">api</span></code> are all valid
+but needlessly different and impossible to query for consistently
+or generate aggregate metrics for.</p>
+<p>Note that the service attribute is a <strong>list</strong> because it is common for
+infrastructure (ie. some resource) to be used by more than one
+service. That is, if a component failure occurs that problem could
+cause an outage in multiple services.</p>
 </div>
 <div class="section" id="event-names">
 <h3>Event Names<a class="headerlink" href="#event-names" title="Permalink to this headline">¶</a></h3>
-<p>It can be useful to define a convention when it comes to naming events. Possible options are:</p>
+<p>It can be useful to define a convention when it comes to naming
+events. Possible options are:</p>
 <ul class="simple">
 <li>Camel case - <code class="docutils literal"><span class="pre">DiskUtilHigh</span></code></li>
 <li>Hierarchy - <code class="docutils literal"><span class="pre">NW:INTERFACE:DOWN</span></code></li>
 <li>SNMP - <code class="docutils literal"><span class="pre">cpuAlarmHigh</span></code></li>
 </ul>
-<p>Querying for all CPU alerts using the alerta CLI could then becomes:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta query --filter event=~cpu
+<p>Querying for all Disk utilisation alerts using the <code class="docutils literal"><span class="pre">alerta</span></code> CLI
+is then relatively straight-forward:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta query --filter event=~DiskUtil
 </pre></div>
 </div>
 </div>
 <div class="section" id="event-groups">
 <h3>Event Groups<a class="headerlink" href="#event-groups" title="Permalink to this headline">¶</a></h3>
-<p>Another consideration is to ensure you make use of the event group which gives you the ability to group related alerts like so:</p>
+<p>Another consideration is to ensure you make use of the event group
+which gives you the ability to group related alerts.</p>
+<p>Some suggested event groups with possible events are listed below.</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="31%" />
@@ -127,7 +145,8 @@
 </tr>
 </tbody>
 </table>
-<p>Querying for all performance-related alerts using the alerta CLI could then become:</p>
+<p>Querying for all performance-related alerts using the <code class="docutils literal"><span class="pre">alerta</span></code> CLI
+could then become:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta query --filter group=Performance
 </pre></div>
 </div>
@@ -135,7 +154,9 @@
 </div>
 <div class="section" id="severity-levels">
 <h2>Severity Levels<a class="headerlink" href="#severity-levels" title="Permalink to this headline">¶</a></h2>
-<p>Agree on a subset of severity levels and be consistent with what they mean. For example, if severity levels are used consistently then integrating with a paging or email system becomes easier.</p>
+<p>Agree on a subset of severity levels and be consistent with what
+they mean. For example, if severity levels are used consistently
+then integrating with a paging or email system becomes easier.</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="18%" />
@@ -170,8 +191,13 @@
 </div>
 <div class="section" id="enforcing-conventions">
 <h2>Enforcing Conventions<a class="headerlink" href="#enforcing-conventions" title="Permalink to this headline">¶</a></h2>
-<p>Once a set of naming conventions are agreed, they can be enforced by using a simple <span class="xref std std-ref">pre-receive</span> plug-in.</p>
-<p>A full working example called <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py">reject</a> can be found in the plug-ins directory of the project code repository and is installed by default. The server configuration settings <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">ORIGIN_BLACKLIST</span></code> and <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_ENVIRONMENTS</span></code> can be used to tailor it for your circumstances.</p>
+<p>Once a set of naming conventions are agreed, they can be enforced by
+using a simple <a class="reference internal" href="server.html#prereceive"><span class="std std-ref">pre-receive</span></a> plugin.</p>
+<p>A full working example called <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py">reject</a> can be found in the plug-ins
+directory of the project code repository and is installed by default.
+The server configuration settings <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">ORIGIN_BLACKLIST</span></code> and
+<span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_ENVIRONMENTS</span></code> can be used to tailor it for your
+circumstances.</p>
 </div>
 </div>
 
