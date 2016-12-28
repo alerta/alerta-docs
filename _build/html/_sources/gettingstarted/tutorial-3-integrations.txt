@@ -1,4 +1,4 @@
-.. _tutorial 3:
+.. _tutorial 3x:
 
 Integration with Zabbix
 =======================
@@ -52,5 +52,3 @@ Step 3: Influx
 
 Next Steps
 ----------
-
-
