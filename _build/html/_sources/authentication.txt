@@ -280,3 +280,9 @@ For those situations where it is not possible to group users in this
 way it is possible to selectively allow access on a per-user basis. How
 this is done depends on whether you are using Google, GitHub or GitLab
 as OAuth2 provider for user login.
+
+
+.. _user roles:
+
+User Roles
+----------
