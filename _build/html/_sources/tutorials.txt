@@ -12,6 +12,18 @@ Alerta in common scenarios.
   * :ref:`Alert timeouts, heartbeats and housekeeping <tutorial 2>`
   * :ref:`Use plugins to enhance Alerta <tutorial 3>`
 
+.. **Core Concepts**
+
+  * :ref:`Blackouts <tutorial 4>`
+  * :ref:`Authentication <tutorial 5>`
+  * :ref:`Customer Views <tutorial 6>`
+  * :ref:`Webhooks <tutorial 7>`
+
+.. **Best Practices**
+
+  * :ref:`Integrating with Nagios <tutorial 8 nagios>`
+  * :ref:`Integrating with Zabbix <tutorial 8 zabbix>`
+
 .. note:: If you require help with any of these tutorials post a question on Gitter_.
 
 .. _Gitter: https://gitter.im/alerta/chat

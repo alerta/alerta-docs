@@ -12,6 +12,7 @@ Overview
   * Debug output for plugins
   * Server properties
   * CORS errors
+  * Management properties
 
 
   * :ref:`Email and other Third-party Integrations <tutorial 3>`
