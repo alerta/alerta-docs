@@ -16,6 +16,24 @@ Roadmap
 Release History
 +++++++++++++++
 
+Release 4.8 (05-09-2016)
+------------------------
+
+* Riemann_ webhook integration
+* Telegram_ webhook and `related plugin`_ for bi-directional integration
+* Grafana_ webhook integration
+* Switch to MongoDB URI connection string format
+* Added simple *good-to-go* health check
+* Added "flap detection" utility method for use in plugins
+* Fix oEmbed API endpoint
+* Default severity changed from "unknown" to "indeterminate"
+* Add routing rules for plugins
+
+.. _Riemann: http://riemann.io/
+.. _Telegram: https://telegram.org/
+.. _related plugin: https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram
+.. _Grafana: http://grafana.org/
+
 Release 4.7 (24-01-2016)
 ------------------------
 
