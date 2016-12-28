@@ -1,11 +1,11 @@
 .. _tutorial 2:
 
-Alert timeouts, heartbeats and House-keeping
+Alert timeouts, heartbeats and Housekeeping
 ============================================
 
 In this tutorial, you will learn how and why to set timeout
 values for alerts, how heartbeats can be used to verify system
-health and what house-keeping tasks need to be configured
+health and what housekeeping tasks need to be configured
 to support both of these features.
 
 **Contents**
@@ -23,12 +23,13 @@ Overview
 Alert timeout values can be used to automatically "expire" alerts
 that are no longer active. Timeouts can be used for any type of
 alert but are most useful for alerts which do not have a corresponding
-"clear" or "ok" state. Timeouts are set on a per-alert basis.
+"clear" or "ok" state, such as syslog messages. Timeouts are set on
+a per-alert basis.
 
 Heartbeats can be sent from any source or by a proxy on behalf of any
 source. They are sent at regular intervals within a specified timeout
 period otherwise they are considered to be stale. Stale heartbeats
-can be used to generate alerts.
+can be used to generate alerts or availability reports.
 
 Processing alert and heartbeat timeouts requires a scheduled cron job.
 
@@ -36,15 +37,15 @@ Prerequisites
 -------------
 
 It is assumed that you have completed :ref:`Tutorial 1 <tutorial 1>`
-where we installed and configured a basic Alerta instance or you have
+where you installed and configured a basic Alerta instance or you have
 access to a similarly configured Alerta server.
 
 Step 1: Housekeeping
 --------------------
 
-To work with alert timeouts we first need to setup a regular housekeeping
+To work with alert timeouts you first need to setup a regular housekeeping
 job that runs every minute to check for stale alerts and update the
-status::
+alert status and history log::
 
     $ vi /usr/local/bin/housekeepingAlerts.js
 
@@ -88,8 +89,9 @@ status::
     Alerts with a timeout value of zero (0) will never be expired and
     therefore never deleted if using the above script.
 
-Add the `cron` entry to run every minute as alerta (creating a user if it
-doesn't already exist)::
+Add the `cron` entry to run every minute as root (the root user is used
+to keep the tutorial simple however there is nothing about what the
+script does that actually requires root access)::
 
     $ echo "* * * * * root /usr/bin/mongo --quiet monitoring /usr/local/bin/housekeepingAlerts.js" >/etc/cron.d/alerta
 
@@ -102,7 +104,7 @@ considered to be stale and the status changed to "expired".
 
 .. note::
 
-    The alert "lastReceiveTime" is used to determine alert expiry. This
+    The alert ``lastReceiveTime`` is used to determine alert expiry. This
     is so that alerts that continue to be sent within the timeout period
     will never expire.
 
@@ -113,6 +115,12 @@ are more than 12 hours old.
 
 Both of these actions can be changed to suit your environment, either
 by adjusting the thresholds for deletion or not deleting at all.
+
+Send a test alert with a short timeout period and verify that once the
+timeout period has been exceeded the status is changed to "expired"::
+
+    $ alerta send -r user01 -e fail -s major -E Code -S Security \
+    -t 'user01 login failed.' --timeout 20
 
 Step 3: Heartbeats
 ------------------

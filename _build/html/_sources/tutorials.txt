@@ -9,7 +9,7 @@ Alerta in common scenarios.
 **Tutorials**
 
   * :ref:`Deploy an Alerta Server <tutorial 1>`
-  * :ref:`Alert timeouts, heartbeats and house-keeping <tutorial 2>`
+  * :ref:`Alert timeouts, heartbeats and housekeeping <tutorial 2>`
 
 .. note:: If you require help with any of these tutorials post a question on Gitter_.
 
