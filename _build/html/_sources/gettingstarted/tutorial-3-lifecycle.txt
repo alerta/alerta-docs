@@ -1,0 +1,101 @@
+.. _tutorial 3:
+
+Alert timeouts, heartbeats and Housekeeping
+============================================
+
+In this tutorial, you will learn ...
+
+**Contents**
+
+  * Overview_
+  * Prerequisites_
+  * `Step 1: Housekeeping`_
+  * `Step 2: Alert timeouts`_
+  * `Step 3: Heartbeats`_
+  * `Next Steps`_
+
+Overview
+--------
+
+
+Prerequisites
+-------------
+
+It is assumed that you have completed :ref:`Tutorial 1 <tutorial 1>`
+where you installed and configured a basic Alerta instance or you have
+access to a similarly configured Alerta server.
+
+Step 1: Housekeeping
+--------------------
+
+
+Step 2: Alert Timeouts
+----------------------
+
+
+
+Step 3: Heartbeats
+------------------
+
+
+Next Steps
+----------
+
+After you setup your housekeeping jobs, you might want to try some of
+the following tutorials:
+
+* Configure a plugin to notify a Slack Channel
+* Send alerts to the Alerta API using the command-line tool
+* Create filtered alert views for different customers
+
+
+new
+de-dup
+correlation
+
+pre-receive
+post-receive
+
+3. bespoke monitoring
+- demo de-duplication and simple correlation (alerts are cheap, send lots)
+- resource not host-centric
+- multiple services
+- use of env (and customer) to namespace resource
+- status auto-assigned by server
+
+Bespoke Monitoring
+==================
+
+
+Overview
+--------
+
+Monitoring real-world environments using requires very specific work
+integrate with monitoring tools.
+
+  * ``alerta`` command-line tool
+  * Alerta API
+  * Alerta client Python SDK
+
+  - with and without Auth
+
+  - correlation & de-duplication
+
+  resend emails after x https://github.com/alerta/alerta-contrib/issues/64
+
+
+Custom Severities
+
+  Add a custom severity called ``Fatal`` which will be the new highest severity::
+
+    $ vi /etc/alertad.conf
+    SEVERITY_MAP = {
+      'fatal': 0,
+      'critical': 1,
+      ...
+    }
+
+
+    fatal = black
+
+    $ vi config.js

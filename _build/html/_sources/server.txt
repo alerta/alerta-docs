@@ -30,7 +30,7 @@ alert management. When an event is received it it is processed in the following
 way:
 
 1. all plugin pre-receive hooks are run in alphabetical order, an alert
-   immediately rejected if any plugins return a Reject Exception
+   is immediately rejected if any plugins return a ``RejectException``
 2. alert is checked against any active blackout periods, alert suppressed if any
    match
 3. alert is checked if duplicate, if so duplicate count is increased and repeat
@@ -146,52 +146,56 @@ Note that an ``environment`` is always required to be defined for a blackout rul
 De-Duplication
 --------------
 
-When an alert with the same ``event``-``resource`` is received with the **same**
-``severity``, the alert is de-duplicated.
+When an alert with the same ``environment``-``resource``-``event``
+combination is received with the **same** ``severity``, the alert
+is de-duplicated.
 
-This means that information from the de-duplicated alert is used to update key
-attributes of the existing alert (like ``duplicateCount``, ``repeat`` flag,
-``value``, ``text`` and ``lastReceiveTime``) and the new alert is not shown.
+This means that information from the de-duplicated alert is used to
+update key attributes of the existing alert (like ``duplicateCount``,
+``repeat`` flag, ``value``, ``text`` and ``lastReceiveTime``) and the
+new alert is not shown.
 
-Alerts are sorted in the Alerta web UI by ``lastReceiveTime`` by default so that
-the most recent alerts will be displayed at the top regardless of whether they
-were new alerts or de-duplicated alerts.
+Alerts are sorted in the Alerta web UI by ``lastReceiveTime`` by default
+so that the most recent alerts will be displayed at the top regardless
+of whether they were new alerts or de-duplicated alerts.
 
 .. _correlation:
 
 Simple Correlation
 ------------------
 
-Alerta implements what we call "simple correlation" -- as opposed to `complex
-correlation`_ which is much_ more_ involved_. Simple correlation, in combination
-with de-duplication, provides straight-forward and effective ways to reduce the
-burden of managing an alert console.
+Alerta implements what we call "simple correlation" -- as opposed to
+`complex correlation`_ which is much_ more_ involved_. Simple correlation,
+in combination with de-duplication, provides straight-forward and
+effective ways to reduce the burden of managing an alert console.
 
 With Alerta, there are two ways alerts can be correlated, namely:
 
-1. when an alert with the same ``event``-``resource`` is received with a
-  **different** ``severity``, then the alert is correlated.
-2. when a alert with the same ``resource`` is received with an ``event`` in the
-  ``correlate`` list of related events with **any** severity, then the alert is
-  correlated.
+1. When an alert with the same ``environment``-``resource``-``event``
+   combination is received with a **different** ``severity``, then the
+   alert is correlated.
+2. When a alert with the same ``environment``-``resource`` combination
+   is received with an ``event`` in the ``correlate`` list of related
+   events with **any** severity, then the alert is correlated.
 
 .. _complex correlation: https://en.wikipedia.org/wiki/Complex_event_processing
 .. _much: http://www.espertech.com/
 .. _more: http://riemann.io/
 .. _involved: http://www.drools.org/
 
-In both cases, this means that information from the correlated alert is used to
-update key attributes of the existing alert (like ``severity``, ``event``,
-``value``, ``text`` and ``lastReceiveTime``) and the new alert is not shown.
+In both cases, this means that information from the correlated alert is
+used to update key attributes of the existing alert (like ``severity``,
+``event``, ``value``, ``text`` and ``lastReceiveTime``) and the new alert
+is not shown.
 
 .. _state based browser:
 
 State-based Browser
 -------------------
 
-Alerta is called state-based because it will **automatically** *change the alert
-status* based on the current and previous severity of alerts and subsequent user
-actions.
+Alerta is called state-based because it will **automatically** *change
+the alert status* based on the current and previous severity of alerts
+and subsequent user actions.
 
 The Alerta API will:
 

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Plugins and Routing &#8212; alerta 4.8 documentation</title>
+    <title>Integration with Zabbix &#8212; alerta 4.8 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -42,14 +42,56 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="plugins-and-routing">
-<span id="tutorial-2x"></span><h1>Plugins and Routing<a class="headerlink" href="#plugins-and-routing" title="Permalink to this headline">¶</a></h1>
-<p>use plugins with only CONFIG changes
-use plugins with modified code (ie. fork and update)</p>
-<p>Send to Slack only if it has been received more than twice:</p>
-<p>manage and maintain plugins and config</p>
-<p>routing
-resend emails after x <a class="reference external" href="https://github.com/alerta/alerta-contrib/issues/64">https://github.com/alerta/alerta-contrib/issues/64</a></p>
+  <div class="section" id="integration-with-zabbix">
+<span id="tutorial-c"></span><h1>Integration with Zabbix<a class="headerlink" href="#integration-with-zabbix" title="Permalink to this headline">¶</a></h1>
+<p><strong>Contents</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><cite>Step 1: Zabbix Integration</cite></li>
+<li><cite>Step 2: Prometheus Integration</cite></li>
+<li><cite>Step 3: Influx Integration</cite></li>
+<li><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</div></blockquote>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Configure Alerta to receive notifications from multiple Zabbix servers. Zabbix
+severity levels and colours will be used.</p>
+</div>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>You have already installed Zabbix and Alerta.</p>
+</div>
+<div class="section" id="step-1-zabbix">
+<h2>Step 1: Zabbix<a class="headerlink" href="#step-1-zabbix" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div>$ pip install zabbix-alerta
+$ grep AlertScripts
+$ ln -s <cite>which zabbix-alerta</cite> /usr/local/zabbix/alertscripts</div></blockquote>
+</div>
+<div class="section" id="step-2-prometheus">
+<h2>Step 2: Prometheus<a class="headerlink" href="#step-2-prometheus" title="Permalink to this headline">¶</a></h2>
+<p>To enable you to distinguish between different prometheus servers in each country I would either use the customer attribute (eg. customer=italy) or overload the environment attribute (eg. environment=italy:Production). In both cases the individual alerts will be correctly name spaced and considered as separate alerts for the same prometheus rule.</p>
+<p>The customer would be defined by using API keys assigned to that customer. To set an environment for each country use the global config in the prometheus alertmanager, for example:</p>
+<dl class="docutils">
+<dt>global:</dt>
+<dd><dl class="first last docutils">
+<dt>external_labels:</dt>
+<dd>environment: &#8220;italy:Production&#8221;
+service: &#8220;Prometheus&#8221;
+region: &#8220;eu-west-1&#8221;</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="step-3-influx">
+<h2>Step 3: Influx<a class="headerlink" href="#step-3-influx" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
@@ -157,7 +199,7 @@ Links
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
-      <a href="../_sources/gettingstarted/tutorial-2-pluigns.txt"
+      <a href="../_sources/gettingstarted/tutorial-10-integrations.txt"
           rel="nofollow">Page source</a>
     </div>
 

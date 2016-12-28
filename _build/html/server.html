@@ -64,7 +64,7 @@ alert management. When an event is received it it is processed in the following
 way:</p>
 <ol class="arabic simple">
 <li>all plugin pre-receive hooks are run in alphabetical order, an alert
-immediately rejected if any plugins return a Reject Exception</li>
+is immediately rejected if any plugins return a <code class="docutils literal"><span class="pre">RejectException</span></code></li>
 <li>alert is checked against any active blackout periods, alert suppressed if any
 match</li>
 <li>alert is checked if duplicate, if so duplicate count is increased and repeat
@@ -144,42 +144,42 @@ for the suppression to apply.</p>
 </div>
 <div class="section" id="de-duplication">
 <span id="deduplication"></span><h2>De-Duplication<a class="headerlink" href="#de-duplication" title="Permalink to this headline">¶</a></h2>
-<p>When an alert with the same <code class="docutils literal"><span class="pre">event</span></code>-<code class="docutils literal"><span class="pre">resource</span></code> is received with the <strong>same</strong>
-<code class="docutils literal"><span class="pre">severity</span></code>, the alert is de-duplicated.</p>
-<p>This means that information from the de-duplicated alert is used to update key
-attributes of the existing alert (like <code class="docutils literal"><span class="pre">duplicateCount</span></code>, <code class="docutils literal"><span class="pre">repeat</span></code> flag,
-<code class="docutils literal"><span class="pre">value</span></code>, <code class="docutils literal"><span class="pre">text</span></code> and <code class="docutils literal"><span class="pre">lastReceiveTime</span></code>) and the new alert is not shown.</p>
-<p>Alerts are sorted in the Alerta web UI by <code class="docutils literal"><span class="pre">lastReceiveTime</span></code> by default so that
-the most recent alerts will be displayed at the top regardless of whether they
-were new alerts or de-duplicated alerts.</p>
+<p>When an alert with the same <code class="docutils literal"><span class="pre">environment</span></code>-<code class="docutils literal"><span class="pre">resource</span></code>-<code class="docutils literal"><span class="pre">event</span></code>
+combination is received with the <strong>same</strong> <code class="docutils literal"><span class="pre">severity</span></code>, the alert
+is de-duplicated.</p>
+<p>This means that information from the de-duplicated alert is used to
+update key attributes of the existing alert (like <code class="docutils literal"><span class="pre">duplicateCount</span></code>,
+<code class="docutils literal"><span class="pre">repeat</span></code> flag, <code class="docutils literal"><span class="pre">value</span></code>, <code class="docutils literal"><span class="pre">text</span></code> and <code class="docutils literal"><span class="pre">lastReceiveTime</span></code>) and the
+new alert is not shown.</p>
+<p>Alerts are sorted in the Alerta web UI by <code class="docutils literal"><span class="pre">lastReceiveTime</span></code> by default
+so that the most recent alerts will be displayed at the top regardless
+of whether they were new alerts or de-duplicated alerts.</p>
 </div>
 <div class="section" id="simple-correlation">
 <span id="correlation"></span><h2>Simple Correlation<a class="headerlink" href="#simple-correlation" title="Permalink to this headline">¶</a></h2>
-<p>Alerta implements what we call &#8220;simple correlation&#8221; &#8211; as opposed to <a class="reference external" href="https://en.wikipedia.org/wiki/Complex_event_processing">complex
-correlation</a> which is <a class="reference external" href="http://www.espertech.com/">much</a> <a class="reference external" href="http://riemann.io/">more</a> <a class="reference external" href="http://www.drools.org/">involved</a>. Simple correlation, in combination
-with de-duplication, provides straight-forward and effective ways to reduce the
-burden of managing an alert console.</p>
+<p>Alerta implements what we call &#8220;simple correlation&#8221; &#8211; as opposed to
+<a class="reference external" href="https://en.wikipedia.org/wiki/Complex_event_processing">complex correlation</a> which is <a class="reference external" href="http://www.espertech.com/">much</a> <a class="reference external" href="http://riemann.io/">more</a> <a class="reference external" href="http://www.drools.org/">involved</a>. Simple correlation,
+in combination with de-duplication, provides straight-forward and
+effective ways to reduce the burden of managing an alert console.</p>
 <p>With Alerta, there are two ways alerts can be correlated, namely:</p>
 <ol class="arabic simple">
-<li>when an alert with the same <code class="docutils literal"><span class="pre">event</span></code>-<code class="docutils literal"><span class="pre">resource</span></code> is received with a</li>
+<li>When an alert with the same <code class="docutils literal"><span class="pre">environment</span></code>-<code class="docutils literal"><span class="pre">resource</span></code>-<code class="docutils literal"><span class="pre">event</span></code>
+combination is received with a <strong>different</strong> <code class="docutils literal"><span class="pre">severity</span></code>, then the
+alert is correlated.</li>
+<li>When a alert with the same <code class="docutils literal"><span class="pre">environment</span></code>-<code class="docutils literal"><span class="pre">resource</span></code> combination
+is received with an <code class="docutils literal"><span class="pre">event</span></code> in the <code class="docutils literal"><span class="pre">correlate</span></code> list of related
+events with <strong>any</strong> severity, then the alert is correlated.</li>
 </ol>
-<blockquote>
-<div><strong>different</strong> <code class="docutils literal"><span class="pre">severity</span></code>, then the alert is correlated.</div></blockquote>
-<ol class="arabic simple" start="2">
-<li>when a alert with the same <code class="docutils literal"><span class="pre">resource</span></code> is received with an <code class="docutils literal"><span class="pre">event</span></code> in the</li>
-</ol>
-<blockquote>
-<div><code class="docutils literal"><span class="pre">correlate</span></code> list of related events with <strong>any</strong> severity, then the alert is
-correlated.</div></blockquote>
-<p>In both cases, this means that information from the correlated alert is used to
-update key attributes of the existing alert (like <code class="docutils literal"><span class="pre">severity</span></code>, <code class="docutils literal"><span class="pre">event</span></code>,
-<code class="docutils literal"><span class="pre">value</span></code>, <code class="docutils literal"><span class="pre">text</span></code> and <code class="docutils literal"><span class="pre">lastReceiveTime</span></code>) and the new alert is not shown.</p>
+<p>In both cases, this means that information from the correlated alert is
+used to update key attributes of the existing alert (like <code class="docutils literal"><span class="pre">severity</span></code>,
+<code class="docutils literal"><span class="pre">event</span></code>, <code class="docutils literal"><span class="pre">value</span></code>, <code class="docutils literal"><span class="pre">text</span></code> and <code class="docutils literal"><span class="pre">lastReceiveTime</span></code>) and the new alert
+is not shown.</p>
 </div>
 <div class="section" id="state-based-browser">
 <span id="id3"></span><h2>State-based Browser<a class="headerlink" href="#state-based-browser" title="Permalink to this headline">¶</a></h2>
-<p>Alerta is called state-based because it will <strong>automatically</strong> <em>change the alert
-status</em> based on the current and previous severity of alerts and subsequent user
-actions.</p>
+<p>Alerta is called state-based because it will <strong>automatically</strong> <em>change
+the alert status</em> based on the current and previous severity of alerts
+and subsequent user actions.</p>
 <p>The Alerta API will:</p>
 <ul class="simple">
 <li>only show the most recent state of any alert</li>
