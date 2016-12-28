@@ -14,12 +14,12 @@ Initialise the alerta API client:
 
     >>> from alertaclient.api import ApiClient
     >>> api = ApiClient(endpoint='http://api.alerta.io', key='tiPMW41QA+cVy05E7fQA/roxAAwHqZq/jznh8MOk')
-    
+
 As of 4.8.5, you can specify ssl verify False (defaults to True) for testing:
 
 .. code-block:: python
 
-    >>> api = ApiClient(endpoint='http://api.alerta.io', key='tiPMW41QA+cVy05E7fQA/roxAAwHqZq/jznh8MOk', ssl_verify=False)    
+    >>> api = ApiClient(endpoint='http://api.alerta.io', key='tiPMW41QA+cVy05E7fQA/roxAAwHqZq/jznh8MOk', ssl_verify=False)
 
 Send an alert:
 
@@ -69,4 +69,6 @@ Install from GitHub:
     $ cd python-alerta
     $ python setup.py install
 
-For more details, visit: (Alerta Python SDK page)[https://github.com/alerta/python-alerta-client]
+For more details, visit the `Alerta Python SDK page`_.
+
+.. _Alerta Python SDK page: https://github.com/alerta/python-alerta-client
