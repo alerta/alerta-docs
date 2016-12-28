@@ -100,6 +100,9 @@ Step 2: Write a plugin
 Now that you have installed and configured a basic plugin you are going
 to write one of your own.
 
+
+ is_flapping()
+ 
 TBC
 
 
@@ -107,6 +110,14 @@ Step 3: Route alerts to plugins
 -------------------------------
 
 TBC
+
+https://github.com/guardian/alerta/tree/master/contrib/routing
+
+you are expected to change it before you install it. maybe i should make that more clear.
+
+it could be slightly more complicated and actually be a useful starting point though.
+
+sure. you should set debug output if you put DEBUG = True in the alertad.conf file.
 
 .. routing
 .. Send to Slack only if it has been received more than twice::

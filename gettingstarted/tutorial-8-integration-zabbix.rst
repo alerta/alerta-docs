@@ -1,4 +1,4 @@
-.. _tutorial c:
+.. _tutorial 8 zabbix:
 
 Integration with Zabbix
 =======================
