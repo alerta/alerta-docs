@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Plugins and Routing &#8212; alerta 4.8 documentation</title>
+    <title>Alert De-duplication, Correlation and Status Changes &#8212; alerta 4.8 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -42,14 +42,52 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="plugins-and-routing">
-<span id="tutorial-2x"></span><h1>Plugins and Routing<a class="headerlink" href="#plugins-and-routing" title="Permalink to this headline">¶</a></h1>
-<p>use plugins with only CONFIG changes
-use plugins with modified code (ie. fork and update)</p>
-<p>Send to Slack only if it has been received more than twice:</p>
-<p>manage and maintain plugins and config</p>
-<p>routing
-resend emails after x <a class="reference external" href="https://github.com/alerta/alerta-contrib/issues/64">https://github.com/alerta/alerta-contrib/issues/64</a></p>
+  <div class="section" id="alert-de-duplication-correlation-and-status-changes">
+<span id="tutorial-3"></span><h1>Alert De-duplication, Correlation and Status Changes<a class="headerlink" href="#alert-de-duplication-correlation-and-status-changes" title="Permalink to this headline">¶</a></h1>
+<p>In this introduction you will learn how alerts are de-duplicated and how
+to employ the built-in simple event correlation to reduce alert noise.</p>
+<p><strong>Contents</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#alert-reception">Alert reception</a></li>
+<li><a href="#id1"><span class="problematic" id="id2">`De-duplication`_</span></a></li>
+<li><a class="reference internal" href="#simple-correlation">Simple Correlation</a></li>
+<li><a class="reference internal" href="#status-changes">Status Changes</a></li>
+</ul>
+</div></blockquote>
+<div class="section" id="alert-reception">
+<h2>Alert reception<a class="headerlink" href="#alert-reception" title="Permalink to this headline">¶</a></h2>
+<p>Alerts sent to Alerta must define at the very least a <code class="docutils literal"><span class="pre">resource</span></code>
+and an <code class="docutils literal"><span class="pre">event</span></code>.</p>
+</div>
+<div class="section" id="alert-de-duplication">
+<h2>Alert De-duplication<a class="headerlink" href="#alert-de-duplication" title="Permalink to this headline">¶</a></h2>
+<p>An alert is considered a duplicate if the same <code class="docutils literal"><span class="pre">resource</span></code> and <code class="docutils literal"><span class="pre">event</span></code>
+is received with a</p>
+</div>
+<div class="section" id="simple-correlation">
+<h2>Simple Correlation<a class="headerlink" href="#simple-correlation" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="status-changes">
+<h2>Status Changes<a class="headerlink" href="#status-changes" title="Permalink to this headline">¶</a></h2>
+<p>new
+de-dup
+correlation</p>
+<p>pre-receive
+post-receive</p>
+<p>3. bespoke monitoring
+- demo de-duplication and simple correlation (alerts are cheap, send lots)
+- resource not host-centric
+- multiple services
+- use of env (and customer) to namespace resource
+- status auto-assigned by server</p>
+<blockquote>
+<div><ul class="simple">
+<li>with and without Auth</li>
+<li>correlation &amp; de-duplication</li>
+</ul>
+</div></blockquote>
+</div>
 </div>
 
 
@@ -157,7 +195,7 @@ Links
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
-      <a href="../_sources/gettingstarted/tutorial-2-pluigns.txt"
+      <a href="../_sources/gettingstarted/tutorial-3-life-cycle.txt"
           rel="nofollow">Page source</a>
     </div>
 

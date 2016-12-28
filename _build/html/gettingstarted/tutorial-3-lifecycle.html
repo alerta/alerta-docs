@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Plugins and Routing &#8212; alerta 4.8 documentation</title>
+    <title>Alert timeouts, heartbeats and Housekeeping &#8212; alerta 4.8 documentation</title>
     
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -42,14 +42,96 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="plugins-and-routing">
-<span id="tutorial-2x"></span><h1>Plugins and Routing<a class="headerlink" href="#plugins-and-routing" title="Permalink to this headline">¶</a></h1>
-<p>use plugins with only CONFIG changes
-use plugins with modified code (ie. fork and update)</p>
-<p>Send to Slack only if it has been received more than twice:</p>
-<p>manage and maintain plugins and config</p>
-<p>routing
-resend emails after x <a class="reference external" href="https://github.com/alerta/alerta-contrib/issues/64">https://github.com/alerta/alerta-contrib/issues/64</a></p>
+  <div class="section" id="alert-timeouts-heartbeats-and-housekeeping">
+<span id="tutorial-3"></span><h1>Alert timeouts, heartbeats and Housekeeping<a class="headerlink" href="#alert-timeouts-heartbeats-and-housekeeping" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial, you will learn ...</p>
+<p><strong>Contents</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><a href="#id2"><span class="problematic" id="id3">Overview_</span></a></li>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#step-1-housekeeping">Step 1: Housekeeping</a></li>
+<li><a class="reference internal" href="#step-2-alert-timeouts">Step 2: Alert timeouts</a></li>
+<li><a class="reference internal" href="#step-3-heartbeats">Step 3: Heartbeats</a></li>
+<li><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</div></blockquote>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>It is assumed that you have completed <a class="reference internal" href="tutorial-1-deploy-alerta.html#tutorial-1"><span class="std std-ref">Tutorial 1</span></a>
+where you installed and configured a basic Alerta instance or you have
+access to a similarly configured Alerta server.</p>
+</div>
+<div class="section" id="step-1-housekeeping">
+<h2>Step 1: Housekeeping<a class="headerlink" href="#step-1-housekeeping" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="step-2-alert-timeouts">
+<h2>Step 2: Alert Timeouts<a class="headerlink" href="#step-2-alert-timeouts" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="step-3-heartbeats">
+<h2>Step 3: Heartbeats<a class="headerlink" href="#step-3-heartbeats" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+<p>After you setup your housekeeping jobs, you might want to try some of
+the following tutorials:</p>
+<ul class="simple">
+<li>Configure a plugin to notify a Slack Channel</li>
+<li>Send alerts to the Alerta API using the command-line tool</li>
+<li>Create filtered alert views for different customers</li>
+</ul>
+<p>new
+de-dup
+correlation</p>
+<p>pre-receive
+post-receive</p>
+<p>3. bespoke monitoring
+- demo de-duplication and simple correlation (alerts are cheap, send lots)
+- resource not host-centric
+- multiple services
+- use of env (and customer) to namespace resource
+- status auto-assigned by server</p>
+</div>
+</div>
+<div class="section" id="bespoke-monitoring">
+<h1>Bespoke Monitoring<a class="headerlink" href="#bespoke-monitoring" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>Overview<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Monitoring real-world environments using requires very specific work
+integrate with monitoring tools.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">alerta</span></code> command-line tool</li>
+<li>Alerta API</li>
+<li>Alerta client Python SDK</li>
+</ul>
+<ul class="simple">
+<li>with and without Auth</li>
+<li>correlation &amp; de-duplication</li>
+</ul>
+<p>resend emails after x <a class="reference external" href="https://github.com/alerta/alerta-contrib/issues/64">https://github.com/alerta/alerta-contrib/issues/64</a></p>
+</div></blockquote>
+<p>Custom Severities</p>
+<blockquote>
+<div><p>Add a custom severity called <code class="docutils literal"><span class="pre">Fatal</span></code> which will be the new highest severity:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ vi /etc/alertad.conf
+SEVERITY_MAP = {
+  &#39;fatal&#39;: 0,
+  &#39;critical&#39;: 1,
+  ...
+}
+
+
+fatal = black
+
+$ vi config.js
+</pre></div>
+</div>
+</div></blockquote>
+</div>
 </div>
 
 
@@ -157,7 +239,7 @@ Links
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
-      <a href="../_sources/gettingstarted/tutorial-2-pluigns.txt"
+      <a href="../_sources/gettingstarted/tutorial-3-lifecycle.txt"
           rel="nofollow">Page source</a>
     </div>
 

@@ -13,3 +13,4 @@ Send to Slack only if it has been received more than twice::
 manage and maintain plugins and config
 
 routing
+resend emails after x https://github.com/alerta/alerta-contrib/issues/64
