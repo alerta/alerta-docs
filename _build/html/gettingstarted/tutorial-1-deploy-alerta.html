@@ -263,9 +263,8 @@ the settings for &#8220;colors&#8221; and &#8220;severity&#8221; with the follow
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>
 <span class="s1">&#39;colors&#39;</span>      <span class="p">:</span> <span class="p">{</span>
   <span class="s1">&#39;severity&#39;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s1">&#39;fatal&#39;</span>        <span class="p">:</span> <span class="s1">&#39;#000000&#39;</span><span class="p">,</span>  <span class="o">//</span> <span class="n">black</span>
-  <span class="p">},</span>
-  <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="s1">&#39;lightgray&#39;</span>
+    <span class="s1">&#39;fatal&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span>
+  <span class="p">}</span>
 <span class="p">},</span>
 <span class="s1">&#39;severity&#39;</span>    <span class="p">:</span> <span class="p">{</span>
   <span class="s1">&#39;fatal&#39;</span><span class="p">:</span> <span class="mi">0</span>
@@ -288,6 +287,27 @@ new severity and plugin configurations:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo service uwsgi restart
 </pre></div>
 </div>
+<p>To use the command-line tool to submit a test alert you first need
+to create a configuration file that defines what API endpoint to
+use:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ vi $HOME/.alerta.conf
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">DEFAULT</span><span class="p">]</span>
+<span class="n">endpoint</span> <span class="o">=</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="o">/</span><span class="n">api</span>
+</pre></div>
+</div>
+<p>Send a test &#8220;fatal&#8221; alert and confirm it has been received by viewing
+it in the web console:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta send --resource net01 --event down --severity fatal \
+--environment Code --service Network --text &#39;net01 is down.&#39;
+</pre></div>
+</div>
+<p>Note that the above can be shortened by using argument flags instead of the
+full argument names:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta send -r net01 -e down -s fatal -E Code -S Network -t &#39;net01 is down.&#39;
+</pre></div>
+</div>
 </div>
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
@@ -295,6 +315,7 @@ new severity and plugin configurations:</p>
 the following tutorials:</p>
 <blockquote>
 <div><ul class="simple">
+<li><a class="reference internal" href="tutorial-2-house-keeping.html#tutorial-2"><span class="std std-ref">Use alert timeouts to expire stale alerts</span></a></li>
 <li>Configure a plugin to notify a Slack Channel</li>
 <li>Send alerts to the Alerta API using the command-line tool</li>
 <li>Create filtered alert views for different customers</li>

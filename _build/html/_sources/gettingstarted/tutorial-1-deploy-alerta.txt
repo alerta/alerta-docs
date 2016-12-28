@@ -244,9 +244,8 @@ the settings for "colors" and "severity" with the following::
     ...
     'colors'      : {
       'severity': {
-        'fatal'        : '#000000',  // black
-      },
-      'text': 'lightgray'
+        'fatal': 'black'
+      }
     },
     'severity'    : {
       'fatal': 0
@@ -269,12 +268,35 @@ new severity and plugin configurations::
 
     $ sudo service uwsgi restart
 
+To use the command-line tool to submit a test alert you first need
+to create a configuration file that defines what API endpoint to
+use::
+
+    $ vi $HOME/.alerta.conf
+
+::
+
+    [DEFAULT]
+    endpoint = http://localhost/api
+
+Send a test "fatal" alert and confirm it has been received by viewing
+it in the web console::
+
+    $ alerta send --resource net01 --event down --severity fatal \
+    --environment Code --service Network --text 'net01 is down.'
+
+Note that the above can be shortened by using argument flags instead of the
+full argument names::
+
+    $ alerta send -r net01 -e down -s fatal -E Code -S Network -t 'net01 is down.'
+
 Next Steps
 ----------
 
 After you deploy your Alerta server, you might want to try some of
 the following tutorials:
 
+  * :ref:`Use alert timeouts to expire stale alerts <tutorial 2>`
   * Configure a plugin to notify a Slack Channel
   * Send alerts to the Alerta API using the command-line tool
   * Create filtered alert views for different customers

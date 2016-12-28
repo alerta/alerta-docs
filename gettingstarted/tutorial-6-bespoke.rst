@@ -1,4 +1,4 @@
-.. _tutorial 6:
+.. _tutorial 6x:
 
 Bespoke Monitoring
 ==================
