@@ -46,23 +46,42 @@
             
   <div class="section" id="authentication">
 <span id="id1"></span><h1>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h1>
-<p>By default, authentication is not enabled, however there are some features that are <span class="xref std std-ref">not available</span> unless users login. To enforce authentication set <code class="docutils literal"><span class="pre">AUTH_REQUIRED</span></code> to <code class="docutils literal"><span class="pre">True</span></code> in the <code class="docutils literal"><span class="pre">alertad.conf</span></code> file and <code class="docutils literal"><span class="pre">SECRET_KEY</span></code> to some random string:</p>
+<p>By default, authentication is not enabled, however there are some features
+that are <span class="xref std std-ref">not available</span> unless users login.</p>
+<p>Alerta supports two main authentication mechanisms for the web UI
+(<a class="reference internal" href="#basic-auth"><span class="std std-ref">Basic Auth</span></a> and <a class="reference internal" href="#oauth2"><span class="std std-ref">OAuth</span></a>) as well as
+<a class="reference internal" href="#api-keys"><span class="std std-ref">API keys</span></a> for direct access to the API.</p>
+<ul class="simple">
+<li><a class="reference internal" href="#basic-auth">Basic Auth</a></li>
+<li><a class="reference internal" href="#google-oauth2">Google OAuth2</a></li>
+<li><a class="reference internal" href="#id4">GitHub OAuth2</a></li>
+<li><a class="reference internal" href="#gitlab-oauth2">GitLab OAuth2</a></li>
+<li><a class="reference internal" href="#api-keys">API Keys</a></li>
+</ul>
+<p>The most straight-forward of the two to implement is <a class="reference internal" href="#basic-auth">Basic Auth</a>.</p>
+<p>To enforce authentication set <code class="docutils literal"><span class="pre">AUTH_REQUIRED</span></code> to <code class="docutils literal"><span class="pre">True</span></code> in the
+<code class="docutils literal"><span class="pre">alertad.conf</span></code> file and <code class="docutils literal"><span class="pre">SECRET_KEY</span></code> to some random string:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">AUTH_REQUIRED</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;UszE5hI_hx5pXKcsCP_2&amp;1DIs&amp;9_Ve*k&#39;</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>Ensure that the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">SECRET_KEY</span></code> that is used to encode cookies is a unique, randomly generated sequence of ASCII characters. The following command generates a suitable 32-character random string on Mac or Linux:</p>
+<p>Ensure that the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">SECRET_KEY</span></code> that is used to encode
+cookies is a unique, randomly generated sequence of ASCII
+characters. The following command generates a suitable
+32-character random string on Mac or Linux:</p>
 <div class="last highlight-default"><div class="highlight"><pre><span></span>$ LC_CTYPE=C tr -dc A-Za-z0-9_\!\@\#\$\%\^\&amp;\*\(\)-+= &lt; /dev/urandom | head -c 32 &amp;&amp; echo
 </pre></div>
 </div>
 </div>
-<p>Alerta supports two types of authentication for the web UI (<a class="reference internal" href="#basic-auth"><span class="std std-ref">Basic Auth</span></a> and <a class="reference internal" href="#oauth2"><span class="std std-ref">OAuth</span></a>) as well as <a class="reference internal" href="#api-keys"><span class="std std-ref">API keys</span></a> for direct access to the API. The most straight-forward of the two to implement is Basic Auth.</p>
-<div class="section" id="basic-authentication">
-<span id="basic-auth"></span><h2>Basic Authentication<a class="headerlink" href="#basic-authentication" title="Permalink to this headline">¶</a></h2>
-<p>HTTP <a class="reference external" href="https://en.wikipedia.org/wiki/Basic_access_authentication">Basic authentication</a> is a very simple method for enforcing access control.</p>
-<p>To use Basic Auth set the <code class="docutils literal"><span class="pre">provider</span></code> configuration setting in the Web UI <code class="file docutils literal"><span class="pre">config.js</span></code> file to <code class="docutils literal"><span class="pre">basic</span></code>. There is no additional configuration required of the Alerta server to use Basic Auth:</p>
+<div class="section" id="basic-auth">
+<span id="id2"></span><h2>Basic Auth<a class="headerlink" href="#basic-auth" title="Permalink to this headline">¶</a></h2>
+<p>HTTP <a class="reference external" href="https://en.wikipedia.org/wiki/Basic_access_authentication">Basic authentication</a> is a very simple method for enforcing access
+control.</p>
+<p>To use Basic Auth set the <code class="docutils literal"><span class="pre">provider</span></code> configuration setting in the Web
+UI <code class="file docutils literal"><span class="pre">config.js</span></code> file to <code class="docutils literal"><span class="pre">basic</span></code>. There is no additional configuration
+required of the Alerta server to use Basic Auth:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
 
 <span class="n">angular</span><span class="o">.</span><span class="n">module</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">[])</span>
@@ -75,17 +94,25 @@
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">HTTP Basic auth does not provide any encryption of the username or password so it is strongly advised to only use Basic auth over HTTPS.</p>
+<p class="last">HTTP Basic auth does not provide any encryption of the username
+or password so it is strongly advised to only use Basic auth over
+HTTPS.</p>
 </div>
 </div>
 <div class="section" id="oauth2-authentication">
 <span id="oauth2"></span><h2>OAuth2 Authentication<a class="headerlink" href="#oauth2-authentication" title="Permalink to this headline">¶</a></h2>
-<p>OAuth authentication is provided by <a class="reference external" href="https://developers.google.com/accounts/docs/OpenIDConnect">Google</a> <a class="reference external" href="http://openid.net/connect/">OpenID Connect</a>, <a class="reference external" href="https://developer.github.com/v3/oauth/">GitHub</a> or <a class="reference external" href="http://doc.gitlab.com/ce/integration/oauth_provider.html">GitLab</a> <a class="reference external" href="http://tools.ietf.org/html/draft-ietf-oauth-v2-22">OAuth 2.0</a> and configuration is more involved than the Basic Auth setup.</p>
+<p>OAuth authentication is provided by <a class="reference external" href="https://developers.google.com/accounts/docs/OpenIDConnect">Google</a> <a class="reference external" href="http://openid.net/connect/">OpenID Connect</a>, <a class="reference external" href="https://developer.github.com/v3/oauth/">GitHub</a> or
+<a class="reference external" href="http://doc.gitlab.com/ce/integration/oauth_provider.html">GitLab</a> <a class="reference external" href="http://tools.ietf.org/html/draft-ietf-oauth-v2-22">OAuth 2.0</a> and configuration is more involved than the Basic
+Auth setup.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If alerta is deployed to a publicly accessible web server it is important to configure the OAuth2 settings correctly to ensure that only authorised users can access and modify your alerts.</p>
+<p class="last">If alerta is deployed to a publicly accessible web server it
+is important to configure the OAuth2 settings correctly to
+ensure that only authorised users can access and modify your
+alerts.</p>
 </div>
-<p id="google-oauth2">To use OAuth2 set the <code class="docutils literal"><span class="pre">provider</span></code> configuration setting in the Web UI <code class="file docutils literal"><span class="pre">config.js</span></code> file to one of <code class="docutils literal"><span class="pre">google</span></code>, <code class="docutils literal"><span class="pre">github</span></code> or <code class="docutils literal"><span class="pre">gitlab</span></code>:</p>
+<p id="google-oauth2">To use OAuth2 set the <code class="docutils literal"><span class="pre">provider</span></code> configuration setting in the Web UI
+<code class="file docutils literal"><span class="pre">config.js</span></code> file to one of <code class="docutils literal"><span class="pre">google</span></code>, <code class="docutils literal"><span class="pre">github</span></code> or <code class="docutils literal"><span class="pre">gitlab</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
 
 <span class="n">angular</span><span class="o">.</span><span class="n">module</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">[])</span>
@@ -97,20 +124,27 @@
   <span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="s1">&#39;colors&#39;</span><span class="p">,</span> <span class="p">{});</span>
 </pre></div>
 </div>
-<p>Next, follow the steps below for the chosen OAuth provider to create an OAuth client ID and client secret. The client ID will need to be added to the web UI <code class="docutils literal"><span class="pre">config.js</span></code> and both the client ID and client secret will need to be added to the <code class="docutils literal"><span class="pre">alertad.conf</span></code> file for the Alerta server.</p>
+<p>Next, follow the steps below for the chosen OAuth provider to create an
+OAuth client ID and client secret. The client ID will need to be added
+to the web UI <code class="docutils literal"><span class="pre">config.js</span></code> and both the client ID and client secret
+will need to be added to the <code class="docutils literal"><span class="pre">alertad.conf</span></code> file for the Alerta server.</p>
 <div class="section" id="id3">
 <h3>Google OAuth2<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<p>To use Google as the OAuth2 provider for Alerta, login to <a class="reference external" href="https://console.developers.google.com">Google Developer Console</a> and create a new project for alerta.</p>
+<p>To use Google as the OAuth2 provider for Alerta, login to
+<a class="reference external" href="https://console.developers.google.com">Google Developer Console</a> and create a new project for alerta.</p>
 <ul class="simple">
 <li>Project Name: alerta</li>
 <li>Project ID: (automatically assigned)</li>
 </ul>
-<p>Go to <em>APIs and auth -&gt; APIs</em> and set <em>Google+ API</em> to <strong>ON</strong>. Next go to <em>APIs and auth -&gt; Credentials</em> and click <strong>Create New Client ID</strong> and choose <strong>Web Application</strong>.</p>
+<p>Go to <em>APIs and auth -&gt; APIs</em> and set <em>Google+ API</em> to <strong>ON</strong>. Next
+go to <em>APIs and auth -&gt; Credentials</em> and click <strong>Create New Client ID</strong>
+and choose <strong>Web Application</strong>.</p>
 <ul class="simple">
 <li>Authorized Javscript Origins: <a class="reference external" href="http://alerta.example.com">http://alerta.example.com</a></li>
 <li>Authorized Redirect URIs: <a class="reference external" href="http://alerta.example.com">http://alerta.example.com</a></li>
 </ul>
-<p>Click <strong>Create Client ID</strong> and take note of the Client ID and Client Secret. The configuration settins for <code class="docutils literal"><span class="pre">alerta</span></code> server are as follows:</p>
+<p>Click <strong>Create Client ID</strong> and take note of the Client ID and Client
+Secret. The configuration settins for <code class="docutils literal"><span class="pre">alerta</span></code> server are as follows:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s1">&#39;379647311730-sj130ru952o3o7ig8u0ts8np2ojivr8d.apps.googleusercontent.com&#39;</span>
 <span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;8HrqJhbrYn9oDtaJqExample&#39;</span>
 </pre></div>
@@ -121,12 +155,14 @@
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last"><code class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code> can be an asterisk (<code class="docutils literal"><span class="pre">*</span></code>) to force login but <em>not</em> restrict who can login.</p>
+<p class="last"><code class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code> can be an asterisk (<code class="docutils literal"><span class="pre">*</span></code>) to force
+login but <em>not</em> restrict who can login.</p>
 </div>
 </div>
 <div class="section" id="github-oauth2">
 <span id="id4"></span><h3>GitHub OAuth2<a class="headerlink" href="#github-oauth2" title="Permalink to this headline">¶</a></h3>
-<p>To use GitHub as the OAuth2 provider for Alerta, login to GitHub and go to <em>Settings -&gt; Applications -&gt; Register New Application</em>.</p>
+<p>To use GitHub as the OAuth2 provider for Alerta, login to GitHub and go
+to <em>Settings -&gt; Applications -&gt; Register New Application</em>.</p>
 <ul class="simple">
 <li>Application Name: Alerta</li>
 <li>Homepage URL: <a class="reference external" href="http://alerta.io">http://alerta.io</a></li>
@@ -135,38 +171,52 @@
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The <cite>Authorization callback URL</cite> is the most important setting and it is nothing more than the URL domain (ie. without any path) where the alerta Web UI is being hosted.</p>
+<p class="last">The <cite>Authorization callback URL</cite> is the most important setting
+and it is nothing more than the URL domain (ie. without any path)
+where the alerta Web UI is being hosted.</p>
 </div>
-<p>Click Register Application and take note of the Client ID and Client Secret. Then configuration settings for <code class="docutils literal"><span class="pre">alerta</span></code> server are as follows:</p>
+<p>Click Register Application and take note of the Client ID and Client
+Secret. Then configuration settings for <code class="docutils literal"><span class="pre">alerta</span></code> server are as follows:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s1">&#39;f7b0c15e2b722e0e38f4&#39;</span>
 <span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;7aa9094369b72937910badab0424dc7393x8mpl3&#39;</span>
 </pre></div>
 </div>
-<p id="allowed-github-orgs">To restrict access to users who are members of particular <a class="reference external" href="https://github.com/blog/674-introducing-organizations">GitHub organisations</a> use:</p>
+<p id="allowed-github-orgs">To restrict access to users who are members of particular
+<a class="reference external" href="https://github.com/blog/674-introducing-organizations">GitHub organisations</a> use:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ALLOWED_GITHUB_ORGS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;example&#39;</span><span class="p">,</span> <span class="s1">&#39;mycompany&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last"><code class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code> can be an asterisk (<code class="docutils literal"><span class="pre">*</span></code>) to force login but <em>not</em> restrict who can login.</p>
+<p class="last"><code class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code> can be an asterisk (<code class="docutils literal"><span class="pre">*</span></code>) to force login
+but <em>not</em> restrict who can login.</p>
 </div>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
-<p class="last">To revoke access of your instance of alerta to your GitHub user info at any time go to <em>Settings -&gt; Applications -&gt; Authorized</em> applications, find alerta in the list of applications and click the <strong>Revoke</strong> button.</p>
+<p class="last">To revoke access of your instance of alerta to your GitHub
+user info at any time go to
+<em>Settings -&gt; Applications -&gt; Authorized</em> applications, find
+alerta in the list of applications and click the <strong>Revoke</strong>
+button.</p>
 </div>
 </div>
 <div class="section" id="gitlab-oauth2">
 <h3>GitLab OAuth2<a class="headerlink" href="#gitlab-oauth2" title="Permalink to this headline">¶</a></h3>
-<p>To use GitLab as the OAuth2 provider for Alerta, login to GitLab and go to <em>Profile Settings -&gt; Applications -&gt; New Application</em>.</p>
+<p>To use GitLab as the OAuth2 provider for Alerta, login to GitLab and go
+to <em>Profile Settings -&gt; Applications -&gt; New Application</em>.</p>
 <ul class="simple">
 <li>Name: Alerta</li>
 <li>Redirect URL: <a class="reference external" href="http://alerta.example.com">http://alerta.example.com</a></li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The <cite>Redirect URL</cite> is the most important setting and it is nothing more than the URL domain (ie. without any path) where the alerta Web UI is being hosted.</p>
+<p class="last">The <cite>Redirect URL</cite> is the most important setting and it
+is nothing more than the URL domain (ie. without any path)
+where the alerta Web UI is being hosted.</p>
 </div>
-<p>Click <em>Submit</em> and take note of the Application ID and Secret. Then configuration settings for <code class="docutils literal"><span class="pre">alerta</span></code> server are as follows (replacing the values shown below with the values generated by GitLab):</p>
+<p>Click <em>Submit</em> and take note of the Application ID and Secret. Then
+configuration settings for <code class="docutils literal"><span class="pre">alerta</span></code> server are as follows (replacing
+the values shown below with the values generated by GitLab):</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GITLAB_URL</span> <span class="o">=</span> <span class="s1">&#39;https://gitlab.com&#39;</span>  <span class="c1"># or your own GitLab server</span>
 <span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s1">&#39;d31e9caa131f72901b16d22289c824f423bd5cbf187a11245f402e8b2707d591&#39;</span>
 <span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;42f1de369ec706996cadda234986779eeb65c0201a6f286b9751b1f845d62c8a&#39;</span>
@@ -178,16 +228,24 @@
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last"><code class="docutils literal"><span class="pre">ALLOWED_GITLAB_GROUPS</span></code> can be an asterisk (<code class="docutils literal"><span class="pre">*</span></code>) to force login but <em>not</em> restrict who can login.</p>
+<p class="last"><code class="docutils literal"><span class="pre">ALLOWED_GITLAB_GROUPS</span></code> can be an asterisk (<code class="docutils literal"><span class="pre">*</span></code>) to force
+login but <em>not</em> restrict who can login.</p>
 </div>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
-<p class="last">To revoke access of your instance of alerta to your GitLab user info at any time go to <em>Profile Settings -&gt; Applications -&gt; Authorized appliations</em>, find alerta in the list of applications and click the <strong>Revoke</strong> button.</p>
+<p class="last">To revoke access of your instance of alerta to your
+GitLab user info at any time go to
+<em>Profile Settings -&gt; Applications -&gt; Authorized appliations</em>,
+find alerta in the list of applications and click the <strong>Revoke</strong>
+button.</p>
 </div>
 </div>
 <div class="section" id="cross-origin">
 <span id="id5"></span><h3>Cross-Origin<a class="headerlink" href="#cross-origin" title="Permalink to this headline">¶</a></h3>
-<p>If the Alerta API is not being served from the same domain as the Alerta Web UI then the <code class="docutils literal"><span class="pre">CORS_ORIGINS</span></code> setting needs to be updated to prevent <a class="reference external" href="http://enable-cors.org/client.html">modern browsers</a> from blocking the cross-origin requests.</p>
+<p>If the Alerta API is not being served from the same domain as the Alerta
+Web UI then the <code class="docutils literal"><span class="pre">CORS_ORIGINS</span></code> setting needs to be updated to prevent
+<a class="reference external" href="http://enable-cors.org/client.html">modern browsers</a> from blocking
+the cross-origin requests.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">CORS_ORIGINS</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;http://try.alerta.io&#39;</span><span class="p">,</span>
     <span class="s1">&#39;http://explorer.alerta.io&#39;</span><span class="p">,</span>
@@ -200,9 +258,15 @@
 </div>
 <div class="section" id="api-keys">
 <span id="id6"></span><h2>API Keys<a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h2>
-<p>If authentication is enforced, then an API key is needed to access the alerta API programatically or to use the <a class="reference internal" href="cli.html#cli"><span class="std std-ref">alerta CLI</span></a>. Keys can be easily generated from the Alerta web UI and can be <cite>read-write</cite> or <cite>read-only</cite>. They are valid for 1 year but this period is configurable using <code class="docutils literal"><span class="pre">API_KEY_EXPIRE_DAYS</span></code> in the <a class="reference internal" href="configuration.html#api-config"><span class="std std-ref">server configuration</span></a>.</p>
-<p>See the <a class="reference internal" href="cli.html#cli-config"><span class="std std-ref">example CLI config</span></a> for how to set the API key for the command-line tool.</p>
-<p>To use an API key in an API query you must set the correct HTTP <code class="docutils literal"><span class="pre">Authorization</span></code> header:</p>
+<p>If authentication is enforced, then an API key is needed to access
+the alerta API programatically or to use the <a class="reference internal" href="cli.html#cli"><span class="std std-ref">alerta CLI</span></a>.
+Keys can be easily generated from the Alerta web UI and can be <cite>read-write</cite>
+or <cite>read-only</cite>. They are valid for 1 year but this period is configurable
+using <code class="docutils literal"><span class="pre">API_KEY_EXPIRE_DAYS</span></code> in the <a class="reference internal" href="configuration.html#api-config"><span class="std std-ref">server configuration</span></a>.</p>
+<p>See the <a class="reference internal" href="cli.html#cli-config"><span class="std std-ref">example CLI config</span></a> for how to set the
+API key for the command-line tool.</p>
+<p>To use an API key in an API query you must set the correct HTTP
+<code class="docutils literal"><span class="pre">Authorization</span></code> header:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="s1">&#39;http://api.alerta.io/alerts&#39;</span> <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Accept: application/json&#39;</span>
 </pre></div>
 </div>
@@ -212,14 +276,28 @@
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Using the HTTP <code class="docutils literal"><span class="pre">Authorization</span></code> header is preferred so that API keys are not inadvertently captured in log files and accidentally exposed.</p>
+<p class="last">Using the HTTP <code class="docutils literal"><span class="pre">Authorization</span></code> header is preferred so that API
+keys are not inadvertently captured in log files and accidentally
+exposed.</p>
 </div>
 </div>
 <div class="section" id="user-authorisation">
 <span id="user-auth"></span><h2>User Authorisation<a class="headerlink" href="#user-authorisation" title="Permalink to this headline">¶</a></h2>
-<p>Google, GitHub and GitLab OAuth are used for user authentication, not user authorisation. Authentication proves that you are who you say you are. Authorization says that you are allowed to access what you have requested.</p>
-<p>To control who has access to Alerta you can restrict access to users with a <a class="reference internal" href="#allowed-email-domains"><span class="std std-ref">certain email domain name</span></a> by setting <code class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code> when using Google OAuth2, or who belong to a <a class="reference internal" href="#allowed-github-orgs"><span class="std std-ref">particular GitHub organisation</span></a> by setting <code class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code> when using GitHub OAuth, or who belong to a <a class="reference internal" href="#allowed-gitlab-groups"><span class="std std-ref">particular GitLab group</span></a> by setting <code class="docutils literal"><span class="pre">ALLOWED_GITLAB_GROUPS</span></code> when using GitLab OAuth2.</p>
-<p>For those situations where it is not possible to group users in this way it is possible to selectively allow access on a per-user basis. How this is done depends on whether you are using Google, GitHub or GitLab as OAuth2 provider for user login.</p>
+<p>Google, GitHub and GitLab OAuth are used for user authentication, not
+user authorisation. Authentication proves that you are who you say you
+are. Authorization says that you are allowed to access what you have
+requested.</p>
+<p>To control who has access to Alerta you can restrict access to users
+with a <a class="reference internal" href="#allowed-email-domains"><span class="std std-ref">certain email domain name</span></a> by
+setting <code class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code> when using Google OAuth2, or who
+belong to a <a class="reference internal" href="#allowed-github-orgs"><span class="std std-ref">particular GitHub organisation</span></a>
+by setting <code class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code> when using GitHub OAuth, or who
+belong to a <a class="reference internal" href="#allowed-gitlab-groups"><span class="std std-ref">particular GitLab group</span></a>
+by setting <code class="docutils literal"><span class="pre">ALLOWED_GITLAB_GROUPS</span></code> when using GitLab OAuth2.</p>
+<p>For those situations where it is not possible to group users in this
+way it is possible to selectively allow access on a per-user basis. How
+this is done depends on whether you are using Google, GitHub or GitLab
+as OAuth2 provider for user login.</p>
 </div>
 </div>
 
@@ -285,7 +363,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Authentication</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#basic-authentication">Basic Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-auth">Basic Auth</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#oauth2-authentication">OAuth2 Authentication</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#api-keys">API Keys</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#user-authorisation">User Authorisation</a></li>
