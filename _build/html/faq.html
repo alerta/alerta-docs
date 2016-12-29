@@ -68,7 +68,7 @@ configuration</span></a> setting.</p>
 <div class="section" id="can-i-define-custom-severity-codes-and-levels">
 <h3>Can I define custom severity codes and levels?<a class="headerlink" href="#can-i-define-custom-severity-codes-and-levels" title="Permalink to this headline">¶</a></h3>
 <p>Yes, you can now completely change the severity names, severity levels
-and colours. See :ref:`` for more information.</p>
+and colours. See <a class="reference internal" href="webui.html#webui"><span class="std std-ref">Alerta Web UI</span></a> for more information.</p>
 </div>
 <div class="section" id="how-can-i-add-a-priority-to-an-alert-eg-high-medium-low">
 <h3>How can I add a priority to an alert eg. High, Medium, Low?<a class="headerlink" href="#how-can-i-add-a-priority-to-an-alert-eg-high-medium-low" title="Permalink to this headline">¶</a></h3>
@@ -107,9 +107,18 @@ system with great documentation and let the end-user build the plugins
 they need. Having said that, we have still <a class="reference external" href="https://github.com/alerta/nagios3-alerta">created</a> <a class="reference external" href="https://github.com/guardian/alerta/tree/master/alerta/plugins">many</a> <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins">plugins</a>
 and <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations">integrations</a> as working examples and we are not against writing
 more if there is <a class="reference external" href="https://github.com/guardian/alerta/issues/74">popular</a> <a class="reference external" href="https://github.com/guardian/alerta/issues/75">demand</a>. We are also happy to accept submissions.</p>
-<p>MongoDB errors ServerSelectionTimeoutError
-WSGIApplicationGroup %{GLOBAL}</p>
-<p><a class="reference external" href="http://stackoverflow.com/questions/31030307/why-is-pymongo-3-giving-serverselectiontimeouterror">http://stackoverflow.com/questions/31030307/why-is-pymongo-3-giving-serverselectiontimeouterror</a></p>
+</div>
+<div class="section" id="what-s-this-mongodb-serverselectiontimeouterror">
+<h3>What&#8217;s this MongoDB &#8220;ServerSelectionTimeoutError&#8221;?<a class="headerlink" href="#what-s-this-mongodb-serverselectiontimeouterror" title="Permalink to this headline">¶</a></h3>
+<p>With the update to PyMongo 3.x <a class="reference external" href="https://api.mongodb.com/python/current/faq.html#multiprocessing">multiprocessing</a> applications &#8220;parent process
+and each child process must create their own instances of MongoClient&#8221;.</p>
+<p>For Apache WSGI applications, add the following to the <code class="docutils literal"><span class="pre">&lt;directory&gt;</span></code> directive
+for the Alerta API:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">WSGIApplicationGroup</span> <span class="o">%</span><span class="p">{</span><span class="n">GLOBAL</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Full examples are available on <a class="reference external" href="https://github.com/search?q=org%3Aalerta+WSGIApplicationGroup&amp;type=Code">GitHub</a> and more information on why
+this is necessary is available on <a class="reference external" href="http://stackoverflow.com/questions/31030307/why-is-pymongo-3-giving-serverselectiontimeouterror">stackoverflow</a> and the <a class="reference external" href="https://api.mongodb.com/python/current/faq.html#is-pymongo-fork-safe">PyMongo</a> site.</p>
 </div>
 <div class="section" id="does-alerta-support-python-3">
 <h3>Does Alerta support Python 3?<a class="headerlink" href="#does-alerta-support-python-3" title="Permalink to this headline">¶</a></h3>
@@ -186,7 +195,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="customerviews.html">Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
