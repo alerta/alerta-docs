@@ -14,9 +14,9 @@ build integrations with other monitoring tools.
 .. _Sensu: https://sensuapp.org
 
 Secondly, there are built-in :ref:`webhooks <webhooks>` for `AWS Cloudwatch`_,
-Pingdom_, PagerDuty_, `Google Stackdriver`_ and `Prometheus Alertmanager`_ which
-provide 'out-of-the-box' integrations for some of the most popular monitoring
-systems available.
+Pingdom_, PagerDuty_, `Google Stackdriver`_, `Prometheus Alertmanager`_ and
+more which provide 'out-of-the-box' integrations for some of the most popular
+monitoring systems available.
 
 .. _Pingdom: https://www.pingdom.com
 .. _Google Stackdriver: https://cloud.google.com/stackdriver/
@@ -63,7 +63,7 @@ be useful. They are:
 * Pinger_ - generate ping alerts from list of network resources being pinged
 * `SNMP Trap`_ - generate alerts from SNMPv1 and SNMPv2 sources
 * Supervisor_ - trigger alerts and heartbeats based on process deamon events
-* Syslog_ - receive :RFC:`5424`, :RFC:`3164` syslog and Cisco_ syslog messages
+* `Syslog Forwarder`_ - receive :RFC:`5424`, :RFC:`3164` syslog and Cisco_ syslog messages
 * `URL monitor`_ - trigger alerts from web service query responses
 
 .. _contrib: https://github.com/alerta/alerta-contrib
@@ -74,7 +74,7 @@ be useful. They are:
 .. _Pinger: https://github.com/alerta/alerta-contrib/tree/master/integrations/pinger
 .. _SNMP Trap: https://github.com/alerta/alerta-contrib/tree/master/integrations/snmptrap
 .. _Supervisor: https://github.com/alerta/alerta-contrib/tree/master/integrations/supervisor
-.. _Syslog: https://github.com/alerta/alerta-contrib/tree/master/integrations/syslog
+.. _Syslog Forwarder: https://github.com/alerta/alerta-contrib/tree/master/integrations/syslog
 .. _Cisco: http://www.cisco.com/c/en/us/td/docs/routers/access/wireless/software/guide/SysMsgLogging.html
 .. _URL monitor: https://github.com/alerta/alerta-contrib/tree/master/integrations/urlmon
 
@@ -135,6 +135,17 @@ requires the webhook URL append :file:`/webhooks/pagerduty` to the Alerta API UR
 
 .. _PagerDuty webhook: https://developer.pagerduty.com/documentation/rest/webhooks
 
+.. _alertmanager:
+
+Prometheus Alertmanager
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Alerta can be configured as a webhook receiver in Alertmanager.
+
+For details on how to set this up see the `Prometheus Config GitHub Repo`_
+
+.. _Prometheus Config GitHub Repo: https://github.com/alerta/prometheus-config
+
 .. _stackdriver:
 
 Google Stackdriver
@@ -152,16 +163,31 @@ For details on how to set this up see `Stackdriver webhook`_ page and in the
 
 .. _Stackdriver webhook: https://support.stackdriver.com/customer/portal/articles/1491775-configuring-webhooks
 
-.. _alertmanager:
 
-Prometheus Alertmanager
-~~~~~~~~~~~~~~~~~~~~~~~
+SeverDensity
+~~~~~~~~~~~~
 
-Alerta can be configured as a webhook receiver in Alertmanager.
+TBC
 
-For details on how to set this up see the `Prometheus Config GitHub Repo`_
+New Relic
+~~~~~~~~~
 
-.. _Prometheus Config GitHub Repo: https://github.com/alerta/prometheus-config
+TBC
+
+Grafana
+~~~~~~~
+
+TBC
+
+Telegram
+~~~~~~~~
+
+TBC
+
+Riemann
+~~~~~~~
+
+TBC
 
 .. _plugins:
 
@@ -180,19 +206,9 @@ Core
 
 .. _Core plugins: https://github.com/guardian/alerta/tree/master/alerta/plugins
 
-* `AMQP`_ - publish alerts to an AMQP fanout topic after processing
-* `Enhance`_ - add new information to an alert based on existing information
-* `Logstash/Kibana`_ - send alerts to logstash agent after processing
-* `Normalise`_ - ensure alerts a formatted in a consistent manner
 * `Reject`_ - reject alerts before processing. used to enforce custom alert format policies
-* `AWS SNS`_ - publish alerts to SNS topic after processing
 
-.. _AMQP: https://github.com/guardian/alerta/blob/master/alerta/plugins/amqp.py
-.. _Enhance: https://github.com/guardian/alerta/blob/master/alerta/plugins/enhance.py
-.. _Logstash/Kibana: https://github.com/guardian/alerta/blob/master/alerta/plugins/logstash.py
-.. _Normalise: https://github.com/guardian/alerta/blob/master/alerta/plugins/normalise.py
 .. _Reject: https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py
-.. _AWS SNS: https://github.com/guardian/alerta/blob/master/alerta/plugins/sns.py
 
 Contrib
 ~~~~~~~
@@ -202,18 +218,36 @@ implementation-specific requirements.
 
 .. _Contributed plugins: https://github.com/alerta/alerta-contrib/tree/master/plugins
 
+* AMQP_ - publish alerts to an AMQP fanout topic after processing
+* Cachet_ - create incidents for display on Cachet status page
+* Enhance_ - add new information to an alert based on existing information
 * `GeoIP Location`_ - use remote IP address to submitted alert to add location data
 * HipChat_ - send alerts to HipChat room
 * InfluxDB_ - send alerts to InfluxDB for graphing with Grafana
+* `Logstash/Kibana`_ - send alerts to logstash agent after processing
+* `Normalise`_ - ensure alerts a formatted in a consistent manner
 * PagerDuty_ - send alerts to PagerDuty (webhooks used to receive callbacks)
+* `Prometheus Silencer`_ - silence alerts in Prometheus Alertmanager if ack'ed in Alerta
 * `Pushover.net`_ - send alerts to Pushover.net
 * Slack_ - send alerts to Slack room
-* `Twilio SMS`_ - sene alerts via SMS using Twilio
+* `AWS SNS`_ - publish alerts to SNS topic after processing
+* `Syslog Logger`_ - send alerts via syslog
+* Telegram_ - send alerts to Telegram channel
+* `Twilio SMS`_ - send alerts via SMS using Twilio
 
+.. _AMQP: https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp
+.. _Cachet: https://github.com/alerta/alerta-contrib/tree/master/plugins/cachet
+.. _Enhance: https://github.com/alerta/alerta-contrib/tree/master/plugins/enhance
 .. _`GeoIP Location`: https://github.com/alerta/alerta-contrib/tree/master/plugins/geoip
 .. _HipChat: https://github.com/alerta/alerta-contrib/tree/master/plugins/hipchat
 .. _InfluxDB: https://github.com/alerta/alerta-contrib/tree/master/plugins/influxdb
+.. _Logstash/Kibana: https://github.com/alerta/alerta-contrib/tree/master/plugins/logstash
+.. _Normalise: https://github.com/alerta/alerta-contrib/tree/master/plugins/normalise
 .. _PagerDuty: https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty
+.. _Prometheus Silencer: https://github.com/alerta/alerta-contrib/tree/master/plugins/prometheus
 .. _`Pushover.net`: https://github.com/alerta/alerta-contrib/tree/master/plugins/pushover
 .. _Slack: https://github.com/alerta/alerta-contrib/tree/master/plugins/slack
+.. _AWS SNS: https://github.com/alerta/alerta-contrib/tree/master/plugins/sns
+.. _Syslog Logger: https://github.com/alerta/alerta-contrib/tree/master/plugins/syslog
+.. _Telegram: https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram
 .. _`Twilio SMS`: https://github.com/alerta/alerta-contrib/tree/master/plugins/twilio
