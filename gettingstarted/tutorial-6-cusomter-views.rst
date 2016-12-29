@@ -17,6 +17,7 @@ This tutorial will ...
 Overview
 --------
 
+Customer views and web UI...
 
 Prerequisites
 -------------

@@ -32,7 +32,7 @@ Can I define custom severity codes and levels?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Yes, you can now completely change the severity names, severity levels
-and colours. See :ref:`` for more information.
+and colours. See :ref:`webui` for more information.
 
 How can I add a priority to an alert eg. High, Medium, Low?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -76,10 +76,25 @@ they need. Having said that, we have still created_ many_ `plugins`_
 and integrations_ as working examples and we are not against writing
 more if there is popular_ demand_. We are also happy to accept submissions.
 
-MongoDB errors ServerSelectionTimeoutError
-WSGIApplicationGroup %{GLOBAL}
+What's this MongoDB "ServerSelectionTimeoutError"?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-http://stackoverflow.com/questions/31030307/why-is-pymongo-3-giving-serverselectiontimeouterror
+With the update to PyMongo 3.x multiprocessing_ applications "parent process
+and each child process must create their own instances of MongoClient".
+
+.. _multiprocessing: https://api.mongodb.com/python/current/faq.html#multiprocessing
+
+For Apache WSGI applications, add the following to the ``<directory>`` directive
+for the Alerta API::
+
+    WSGIApplicationGroup %{GLOBAL}
+
+Full examples are available on GitHub_ and more information on why
+this is necessary is available on stackoverflow_ and the PyMongo_ site.
+
+.. _GitHub: https://github.com/search?q=org%3Aalerta+WSGIApplicationGroup&type=Code
+.. _stackoverflow: http://stackoverflow.com/questions/31030307/why-is-pymongo-3-giving-serverselectiontimeouterror
+.. _PyMongo: https://api.mongodb.com/python/current/faq.html#is-pymongo-fork-safe
 
 Does Alerta support Python 3?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
