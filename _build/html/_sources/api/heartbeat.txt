@@ -38,6 +38,9 @@ Attributes added when processing heartbeats
 +======================+=================================================================================+
 | ``receiveTime``      | UTC date and time the heartbeat was received by the Alerta server daemon        |
 +----------------------+---------------------------------------------------------------------------------+
+| ``customer``         | assigned based on the owner of the API key used when submitting the heartbeat,  |
+|                      | if "Customer Views" are enabled                                                 |
++----------------------+---------------------------------------------------------------------------------+
 
 Example
 -------
@@ -58,5 +61,3 @@ Example
       "type": "Heartbeat",
       "id": "a8b97056-8415-4b4f-83c8-e84ffcc676a3"
     }
-
-
