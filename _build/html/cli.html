@@ -46,9 +46,9 @@
             
   <div class="section" id="alerta-cli">
 <span id="cli"></span><h1>Alerta CLI<a class="headerlink" href="#alerta-cli" title="Permalink to this headline">¶</a></h1>
-<p><code class="docutils literal"><span class="pre">alerta</span></code> is the unified command-line tool for the alerta monitoring system. It can be used to
-send and query alerts, tag alerts and change alert status, delete alerts,
-dump alert history or see the raw alert data.</p>
+<p><code class="docutils literal"><span class="pre">alerta</span></code> is the unified command-line tool for the alerta monitoring
+system. It can be used to send and query alerts, tag alerts and change
+alert status, delete alerts, dump alert history or see the raw alert data.</p>
 <p><code class="docutils literal"><span class="pre">alerta</span></code> can also be used to send heartbeats to the alerta server.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
@@ -115,21 +115,27 @@ configuration settings.</p>
 <td>n/a</td>
 <td>Europe/London</td>
 </tr>
-<tr class="row-odd"><td>output</td>
+<tr class="row-odd"><td>ssl verify</td>
+<td>sslverify</td>
+<td><span class="target" id="index-4"></span><code class="xref std std-envvar docutils literal"><span class="pre">REQUESTS_CA_BUNDLE</span></code></td>
+<td>n/a</td>
+<td>verify SSL certificates</td>
+</tr>
+<tr class="row-even"><td>output</td>
 <td>output</td>
 <td>n/a</td>
 <td><code class="docutils literal"><span class="pre">--output</span> <span class="pre">OUTPUT</span></code>, <code class="docutils literal"><span class="pre">--json</span></code></td>
 <td>text</td>
 </tr>
-<tr class="row-even"><td>color</td>
+<tr class="row-odd"><td>color</td>
 <td>color</td>
-<td><span class="target" id="index-4"></span><code class="xref std std-envvar docutils literal"><span class="pre">CLICOLOR</span></code></td>
+<td><span class="target" id="index-5"></span><code class="xref std std-envvar docutils literal"><span class="pre">CLICOLOR</span></code></td>
 <td><code class="docutils literal"><span class="pre">--color</span></code>, <code class="docutils literal"><span class="pre">--no-color</span></code></td>
 <td>color on</td>
 </tr>
-<tr class="row-odd"><td>debug</td>
+<tr class="row-even"><td>debug</td>
 <td>debug</td>
-<td><span class="target" id="index-5"></span><code class="xref std std-envvar docutils literal"><span class="pre">DEBUG</span></code></td>
+<td><span class="target" id="index-6"></span><code class="xref std std-envvar docutils literal"><span class="pre">DEBUG</span></code></td>
 <td><code class="docutils literal"><span class="pre">--debug</span></code></td>
 <td>no debug</td>
 </tr>
@@ -150,8 +156,9 @@ configuration settings.</p>
 <span class="n">key</span> <span class="o">=</span> <span class="n">LMvzLsfJyGpSuLmaB9kp</span><span class="o">-</span><span class="mi">8</span><span class="n">gCl4I3YZkV4i7IGb6S</span>
 
 <span class="p">[</span><span class="n">profile</span> <span class="n">development</span><span class="p">]</span>
-<span class="n">endpoint</span> <span class="o">=</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span>
+<span class="n">endpoint</span> <span class="o">=</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8443</span>
 <span class="n">key</span> <span class="o">=</span> <span class="n">demo</span><span class="o">-</span><span class="n">key</span>
+<span class="n">sslverify</span> <span class="o">=</span> <span class="n">off</span>
 <span class="n">debug</span> <span class="o">=</span> <span class="n">yes</span>
 </pre></div>
 </div>
@@ -171,11 +178,15 @@ $ export ALERTA_DEFAULT_PROFILE=production
 </div>
 <div class="section" id="precedence">
 <h2>Precedence<a class="headerlink" href="#precedence" title="Permalink to this headline">¶</a></h2>
-<p>Command-line configuration options have precedence over environment variables, which have precedence over the configuration file. Within the configuration file profile-specific sections have precedence over the <code class="docutils literal"><span class="pre">[DEFAULT]</span></code> section.</p>
+<p>Command-line configuration options have precedence over environment
+variables, which have precedence over the configuration file. Within
+the configuration file profile-specific sections have precedence over
+the <code class="docutils literal"><span class="pre">[DEFAULT]</span></code> section.</p>
 </div>
 <div class="section" id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">alerta</span></code> tool is invoked by specifying a command using the following format:</p>
+<p>The <code class="docutils literal"><span class="pre">alerta</span></code> tool is invoked by specifying a command using the
+following format:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] COMMAND [FILTERS]
 </pre></div>
 </div>
@@ -337,7 +348,7 @@ optional arguments:
   -h, --help  show this help message and exit
 </pre></div>
 </div>
-<p>See <a class="reference internal" href="top.html#top"><span class="std std-ref">Alerta Top</span></a> for more information.</p>
+<p>See <span class="xref std std-ref">top</span> for more information.</p>
 </div>
 <div class="section" id="raw">
 <h3><strong class="command">raw</strong><a class="headerlink" href="#raw" title="Permalink to this headline">¶</a></h3>
@@ -517,6 +528,17 @@ optional arguments:
 </pre></div>
 </div>
 </div>
+<div class="section" id="users">
+<h3><strong class="command">users</strong><a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h3>
+<p>List all users:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta users --help
+usage: alerta [OPTIONS] users [-h]
+
+optional arguments:
+  -h, --help  show this help message and exit
+</pre></div>
+</div>
+</div>
 <div class="section" id="key">
 <h3><strong class="command">key</strong><a class="headerlink" href="#key" title="Permalink to this headline">¶</a></h3>
 <p>Create API key:</p>
@@ -666,7 +688,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="customerviews.html">Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
