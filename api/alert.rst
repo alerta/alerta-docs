@@ -3,7 +3,9 @@
 Alert Format
 ============
 
-Alerts received and sent by Alerta conform to a common alert format. All components of alerta use this message format and any external systems must produce or consume messages in this format also.
+Alerts received and sent by Alerta conform to a common alert format.
+All components of alerta use this message format and any external
+systems must produce or consume messages in this format also.
 
 .. _alert_attributes:
 
@@ -79,6 +81,9 @@ Attributes added when processing alerts
 | ``lastReceiveTime``  | the last time this alert was received. only different to receiveTime if the     |
 |                      | alert is a duplicate                                                            |
 +----------------------+---------------------------------------------------------------------------------+
+| ``customer``         | assigned based on the owner of the API key used when submitting the alert,      |
+|                      | if "Customer Views" are enabled                                                 |
++----------------------+---------------------------------------------------------------------------------+
 | ``history``          | whenever an alert changes severity or status then a list of key alert           |
 |                      | attributes are appended to the history log                                      |
 +----------------------+---------------------------------------------------------------------------------+
@@ -109,11 +114,14 @@ Alert Status
 Alert Severities
 ----------------
 
-The `Alarms in Syslog`_ :RFC:`5674` was referenced when defining alert severities.
+The `Alarms in Syslog`_ :RFC:`5674` was referenced when defining
+alert severities.
 
 +-------------------+---------------+--------+
 | Severity          | Severity Code | Colour |
 +===================+===============+========+
+| ``security``      | 0             | Black  |
++-------------------+---------------+--------+
 | ``critical``      | 1             | Red    |
 +-------------------+---------------+--------+
 | ``major``         | 2             | Orange |
@@ -122,7 +130,7 @@ The `Alarms in Syslog`_ :RFC:`5674` was referenced when defining alert severitie
 +-------------------+---------------+--------+
 | ``warning``       | 4             | Blue   |
 +-------------------+---------------+--------+
-| ``indeterminate`` | 5             | Green  |
+| ``indeterminate`` | 5             | Silver |
 +-------------------+---------------+--------+
 | ``cleared``       | 5             | Green  |
 +-------------------+---------------+--------+
@@ -134,7 +142,7 @@ The `Alarms in Syslog`_ :RFC:`5674` was referenced when defining alert severitie
 +-------------------+---------------+--------+
 | ``debug``         | 7             | Purple |
 +-------------------+---------------+--------+
-| ``security``      | 8             | Grey   |
+| ``trace``         | 8             | Grey   |
 +-------------------+---------------+--------+
 | ``unknown``       | 9             | Grey   |
 +-------------------+---------------+--------+
@@ -225,6 +233,3 @@ Example
         }
       ]
     }
-
-
-

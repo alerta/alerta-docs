@@ -24,7 +24,9 @@ Send an alert
 Input
 +++++
 
-Only ``resource`` and ``event`` are required. See :ref:`Alert Attributes <alert_attributes>` for a full list of valid inputs.
+Only ``resource`` and ``event`` are required. See
+:ref:`Alert Attributes <alert_attributes>` for a full
+list of valid inputs.
 
 Example
 +++++++
@@ -32,31 +34,29 @@ Example
 ::
 
     {
-      "resource": "web01",
-      "event": "HttpServerError",
-      "environment": "Production",
-      "severity": "major",
-      "status": "open",
-      "correlate": [
-        "HttpServerError",
-        "HttpServerOK"
-      ],
-      "service": [
-        "example.com"
-      ],
-      "group": "Web",
-      "value": "Bad Gateway (501)",
-      "text": "The site is down.",
-      "tags": [
-        "london"
-      ],
-      "attributes": {
-        "company": "ACME Corp"
-      },
-      "origin": "curl",
-      "type": "webAlert"
+        "attributes": {
+            "region": "EU"
+        },
+        "correlate": [
+            "HttpServerError",
+            "HttpServerOK"
+        ],
+        "environment": "Production",
+        "event": "HttpServerError",
+        "group": "Web",
+        "origin": "curl",
+        "resource": "web01",
+        "service": [
+            "example.com"
+        ],
+        "severity": "major",
+        "tags": [
+            "london"
+        ],
+        "text": "Site is down.",
+        "type": "exceptionAlert",
+        "value": "Bad Gateway (501)"
     }
-
 
 Response
 ++++++++
@@ -68,57 +68,48 @@ Response
 ::
 
     {
-      "status": "ok",
-      "id": "f26b3695-0e67-402f-81be-ba966bcb9603",
-      "alert": {
-        "origin": "curl",
-        "text": "The site is down.",
-        "lastReceiveTime": "2015-03-01T23:34:30.635Z",
-        "receiveTime": "2015-03-01T23:34:28.118Z",
-        "trendIndication": "moreSevere",
-        "href": "http://api.alerta.io/alert/f26b3695-0e67-402f-81be-ba966bcb9603",
-        "rawData": "",
-        "previousSeverity": "unknown",
-        "event": "HttpServerError",
-        "group": "Web",
-        "severity": "major",
-        "service": [
-          "example.com"
-        ],
-        "id": "f26b3695-0e67-402f-81be-ba966bcb9603",
-        "environment": "Production",
-        "type": "webAlert",
-        "status": "open",
-        "repeat": true,
-        "tags": [
-          "london"
-        ],
-        "createTime": "2015-03-01T23:34:27.467Z",
-        "lastReceiveId": "1637de1f-eac5-48dd-a4dd-8a10e4c89843",
-        "resource": "web01",
-        "duplicateCount": 1,
-        "correlate": [
-          "HttpServerError",
-          "HttpServerOK"
-        ],
-        "value": "Bad Gateway (501)",
-        "timeout": 86400,
-        "attributes": {
-          "city": "London",
-          "region_code": "ENG",
-          "region_name": "England",
-          "ip": "86.156.104.171",
-          "company": "ACME Corp",
-          "time_zone": "Europe/London",
-          "longitude": -0.124,
-          "metro_code": 0,
-          "latitude": 51.453,
-          "country_code": "GB",
-          "country_name": "United Kingdom",
-          "zip_code": "SW2"
+        "alert": {
+            "attributes": {
+                "ip": "127.0.0.1",
+                "region": "EU"
+            },
+            "correlate": [
+                "HttpServerError",
+                "HttpServerOK"
+            ],
+            "createTime": "2016-12-29T20:20:08.635Z",
+            "customer": null,
+            "duplicateCount": 0,
+            "environment": "Production",
+            "event": "HttpServerError",
+            "group": "Web",
+            "history": [],
+            "href": "http://localhost:8080/alert/0a2291cc-7ad4-4f10-9a18-9d0885e86860",
+            "id": "0a2291cc-7ad4-4f10-9a18-9d0885e86860",
+            "lastReceiveId": "0a2291cc-7ad4-4f10-9a18-9d0885e86860",
+            "lastReceiveTime": "2016-12-29T20:20:08.636Z",
+            "origin": "curl",
+            "previousSeverity": "indeterminate",
+            "rawData": "",
+            "receiveTime": "2016-12-29T20:20:08.636Z",
+            "repeat": false,
+            "resource": "web01",
+            "service": [
+                "example.com"
+            ],
+            "severity": "major",
+            "status": "open",
+            "tags": [
+                "london"
+            ],
+            "text": "Site is down.",
+            "timeout": 86400,
+            "trendIndication": "moreSevere",
+            "type": "exceptionAlert",
+            "value": "Bad Gateway (501)"
         },
-        "history": []
-      }
+        "id": "0a2291cc-7ad4-4f10-9a18-9d0885e86860",
+        "status": "ok"
     }
 
 .. _get_alert_id:
@@ -135,68 +126,76 @@ Response
 
 ::
 
-    {
-      "status": "ok",
-      "total": 1,
-      "alert": {
-        "origin": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.93 Safari/537.36",
-        "text": "",
-        "lastReceiveTime": "2015-01-30T23:00:13.985Z",
-        "receiveTime": "2015-01-30T23:00:13.985Z",
-        "trendIndication": "moreSevere",
-        "href": "http://api.alerta.io/alert/8a90ae96-3a9c-422a-8d17-292106266c75",
-        "rawData": "",
-        "previousSeverity": "unknown",
-        "event": "HttpError",
-        "group": "Web",
-        "severity": "minor",
-        "service": [
-          "Website"
-        ],
-        "id": "8a90ae96-3a9c-422a-8d17-292106266c75",
-        "environment": "Production",
-        "type": "browserAlert",
+{
+  "alert": {
+    "attributes": {
+      "ip": "127.0.0.1",
+      "region": "EU"
+    },
+    "correlate": [
+      "HttpServerError",
+      "HttpServerOK"
+    ],
+    "createTime": "2016-12-29T20:13:56.159Z",
+    "customer": null,
+    "duplicateCount": 0,
+    "environment": "Production",
+    "event": "HttpServerError",
+    "group": "Web",
+    "history": [
+      {
+        "event": "HttpServerError",
+        "id": "94ea0974-765d-4314-93ce-dc62cb851fee",
+        "severity": "major",
+        "text": "Site is down.",
+        "type": "severity",
+        "updateTime": "2016-12-29T20:13:56.159Z",
+        "value": "Bad Gateway (501)"
+      },
+      {
+        "event": "HttpServerError",
+        "id": "94ea0974-765d-4314-93ce-dc62cb851fee",
         "status": "open",
-        "repeat": false,
-        "tags": [
-          "watch:Nick Satterly"
-        ],
-        "createTime": "2015-01-30T23:00:13.978Z",
-        "lastReceiveId": "8a90ae96-3a9c-422a-8d17-292106266c75",
-        "resource": "web01",
-        "duplicateCount": 0,
-        "correlate": [],
-        "value": "n/a",
-        "timeout": 86400,
-        "attributes": {
-          "ip": "127.2.52.129"
-        },
-        "history": [
-          {
-            "updateTime": "2015-01-30T23:00:13.978Z",
-            "severity": "minor",
-            "text": "",
-            "value": "n/a",
-            "event": "HttpError",
-            "id": "8a90ae96-3a9c-422a-8d17-292106266c75"
-          },
-          {
-            "status": "closed",
-            "text": "status change via console",
-            "updateTime": "2015-02-17T14:51:30.609Z",
-            "event": "HttpError",
-            "id": "8a90ae96-3a9c-422a-8d17-292106266c75"
-          },
-          {
-            "status": "open",
-            "text": "status change via console",
-            "updateTime": "2015-02-17T14:51:33.169Z",
-            "event": "HttpError",
-            "id": "8a90ae96-3a9c-422a-8d17-292106266c75"
-          }
-        ]
+        "text": "new alert status change",
+        "type": "status",
+        "updateTime": "2016-12-29T20:13:56.160Z"
+      },
+      {
+        "event": "HttpServerError",
+        "id": "94ea0974-765d-4314-93ce-dc62cb851fee",
+        "status": "ack",
+        "text": "disk needs replacing.",
+        "type": "status",
+        "updateTime": "2016-12-29T20:15:00.398Z"
       }
-    }
+    ],
+    "href": "http://localhost:8080/alert/94ea0974-765d-4314-93ce-dc62cb851fee",
+    "id": "94ea0974-765d-4314-93ce-dc62cb851fee",
+    "lastReceiveId": "94ea0974-765d-4314-93ce-dc62cb851fee",
+    "lastReceiveTime": "2016-12-29T20:13:56.160Z",
+    "origin": "curl",
+    "previousSeverity": "indeterminate",
+    "rawData": "",
+    "receiveTime": "2016-12-29T20:13:56.160Z",
+    "repeat": false,
+    "resource": "web01",
+    "service": [
+      "example.com"
+    ],
+    "severity": "major",
+    "status": "ack",
+    "tags": [
+      "london"
+    ],
+    "text": "Site is down.",
+    "timeout": 86400,
+    "trendIndication": "moreSevere",
+    "type": "exceptionAlert",
+    "value": "Bad Gateway (501)"
+  },
+  "status": "ok",
+  "total": 1
+}
 
 Set alert status
 ~~~~~~~~~~~~~~~~
@@ -222,8 +221,8 @@ Example
 ::
 
     {
-      "status": "ack",
-      "text": "disk needs replacing"
+        "status": "ack",
+        "text": "disk needs replacing."
     }
 
 Response
@@ -242,7 +241,8 @@ Response
 Tag and untag alerts
 ~~~~~~~~~~~~~~~~~~~~
 
-Tags are a set, not a list, which means that tagging an alert with the same tag does nothing tags can be removed.
+Tags are a set, not a list, which means that tagging an alert with
+the same tag does nothing. Tags can be removed.
 
 ::
 
@@ -264,11 +264,43 @@ Example
 ::
 
     {
-      "tags": [
-        "foo",
-        "bar",
-        "baz"
-      ]
+        "tags": [
+            "linux",
+            "linux2.6",
+            "dell"
+        ]
+    }
+
+Update alert attributes
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Add, delete or modify alert attributes. To delete an attribute assign "null"
+to the attribute.
+
+::
+
+  PUT /alert/:id/attributes
+
+Input
++++++
+
++----------------+-------------+------------------------------------------------------------+
+| Name           | Type        | Description                                                |
++================+=============+============================================================+
+| ``attributes`` | dict        |                                                            |
++----------------+-------------+------------------------------------------------------------+
+
+Example
++++++++
+
+::
+
+    {
+        "attributes": {
+            "incidentKey": "1234abcd",
+            "ip": "10.1.1.1",
+            "region": null
+        }
     }
 
 Delete an alert
@@ -551,10 +583,13 @@ Response
 Top 10 alerts by resource
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The top 10 resources are grouped by ``event`` by default but this can be any valid attribute.
+The top 10 resources are grouped by ``event`` by default but this can
+be any valid attribute.
+
 ::
 
-  GET /alerts/top10
+  GET /alerts/top10/count
+  GET /alerts/top10/flapping
 
 Parameters
 ++++++++++
@@ -562,6 +597,8 @@ Parameters
 +---------------+-------------+------------------------------------------------------------+
 | Name          | Type        | Description                                                |
 +===============+=============+============================================================+
+| ``q``         | dict        | mongo query see `Mongo Query Operators`_                   |
++---------------+-------------+------------------------------------------------------------+
 | ``group-by``  | string      | Any valid alert attribute. Default: ``event``              |
 +---------------+-------------+------------------------------------------------------------+
 
@@ -1446,6 +1483,54 @@ Response
       "user": "41f7e0af-5bc1-437a-b486-9b12286d643b"
     }
 
+Update a user
+~~~~~~~~~~~~~
+
+::
+
+  PUT /usr/:user
+
+  Input
+  +++++
+
+  +---------------+-------------+------------------------------------------------------------+
+  | Name          | Type        | Description                                                |
+  +===============+=============+============================================================+
+  | ``name``      | string      |                                                            |
+  +---------------+-------------+------------------------------------------------------------+
+  | ``login``     | string      |                                                            |
+  +---------------+-------------+------------------------------------------------------------+
+  | ``provider``  | string      |                                                            |
+  +---------------+-------------+------------------------------------------------------------+
+  | ``text``      | string      |                                                            |
+  +---------------+-------------+------------------------------------------------------------+
+
+  Example
+  +++++++
+
+  ::
+
+      {
+        "name": "user1",
+        "login": "user@1",
+        "provider": "google",
+        "text": "test user 1"
+      }
+
+  Response
+  ++++++++
+
+  ::
+
+    201 CREATED
+
+  ::
+
+      {
+        "status": "ok",
+        "user": "41f7e0af-5bc1-437a-b486-9b12286d643b"
+      }
+
 List all users
 ~~~~~~~~~~~~~~
 
@@ -1495,6 +1580,111 @@ Delete a user
 ::
 
   DELETE /user/:user
+
+Response
+++++++++
+
+::
+
+    200 OK
+
+::
+
+    {
+      "status": "ok"
+    }
+
+.. _customers:
+
+Customers
+---------
+
+Create a customer
+~~~~~~~~~~~~~~~~~
+
+Create a customer lookup that matches a user login with a regex to see
+if that user belongs to that customer.
+::
+
+  POST /customer
+
+Input
++++++
+
++---------------+-------------+------------------------------------------------------------+
+| Name          | Type        | Description                                                |
++===============+=============+============================================================+
+| ``customer``  | string      |                                                            |
++---------------+-------------+------------------------------------------------------------+
+| ``match``     | regex       |                                                            |
++---------------+-------------+------------------------------------------------------------+
+
+Example
++++++++
+
+::
+
+    {
+      "customer": "foo",
+      "match": "test key"
+    }
+
+Response
+++++++++
+
+::
+
+  201 CREATED
+
+::
+
+    {
+      "status": "ok",
+      "key": "Vz4dE04QiRYWL82f1N-FRlidML0PnvGqjkNOkqy_"
+    }
+
+List all customers
+~~~~~~~~~~~~~~~~~~
+
+::
+
+  GET /customers
+
+Response
+++++++++
+
+::
+
+    {
+      "status": "ok",
+      "keys": [
+        {
+          "count": 0,
+          "lastUsedTime": null,
+          "text": "test key",
+          "expireTime": "2016-03-02T22:30:15.520Z",
+          "user": "foo",
+          "key": "Vz4dE04QiRYWL82f1N-FRlidML0PnvGqjkNOkqy_"
+        },
+        {
+          "count": 1745,
+          "lastUsedTime": "2015-03-03T22:33:21.975Z",
+          "text": "demo key",
+          "expireTime": "2016-02-06T14:21:53.458Z",
+          "user": "test user",
+          "key": "demo-key"
+        }
+      ],
+      "total": 2,
+      "time": "2015-03-03T22:33:21.979Z"
+    }
+
+Delete a customer
+~~~~~~~~~~~~~~~~~
+
+::
+
+  DELETE /customer/:customer
 
 Response
 ++++++++
