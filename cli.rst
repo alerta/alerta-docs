@@ -3,9 +3,9 @@
 Alerta CLI
 ==========
 
-``alerta`` is the unified command-line tool for the alerta monitoring system. It can be used to
-send and query alerts, tag alerts and change alert status, delete alerts,
-dump alert history or see the raw alert data.
+``alerta`` is the unified command-line tool for the alerta monitoring
+system. It can be used to send and query alerts, tag alerts and change
+alert status, delete alerts, dump alert history or see the raw alert data.
 
 ``alerta`` can also be used to send heartbeats to the alerta server.
 
@@ -45,6 +45,8 @@ configuration settings.
 +-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
 | timezone    |  timezone   | n/a                               | n/a                             | Europe/London             |
 +-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
+| ssl verify  |  sslverify  | :envvar:`REQUESTS_CA_BUNDLE`      | n/a                             | verify SSL certificates   |
++-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
 | output      |  output     | n/a                               | ``--output OUTPUT``, ``--json`` | text                      |
 +-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
 | color       |  color      | :envvar:`CLICOLOR`                | ``--color``, ``--no-color``     | color on                  |
@@ -67,8 +69,9 @@ Configuration file :file:`~/.alerta.conf`::
     key = LMvzLsfJyGpSuLmaB9kp-8gCl4I3YZkV4i7IGb6S
 
     [profile development]
-    endpoint = http://localhost:8080
+    endpoint = https://localhost:8443
     key = demo-key
+    sslverify = off
     debug = yes
 
 Set environment variables::
@@ -87,13 +90,16 @@ Switch to development configuration settings when required::
 Precedence
 ----------
 
-Command-line configuration options have precedence over environment variables, which have precedence over the configuration file. Within the configuration file profile-specific sections have precedence over the ``[DEFAULT]`` section.
-
+Command-line configuration options have precedence over environment
+variables, which have precedence over the configuration file. Within
+the configuration file profile-specific sections have precedence over
+the ``[DEFAULT]`` section.
 
 Commands
 --------
 
-The ``alerta`` tool is invoked by specifying a command using the following format::
+The ``alerta`` tool is invoked by specifying a command using the
+following format::
 
     $ alerta [OPTIONS] COMMAND [FILTERS]
 
@@ -419,6 +425,17 @@ Manage user details (Basic Auth only)::
                             User name
       -p PASSWORD, --password PASSWORD
                             New password
+
+:command:`users`
+~~~~~~~~~~~~~~~~
+
+List all users::
+
+    $ alerta users --help
+    usage: alerta [OPTIONS] users [-h]
+
+    optional arguments:
+      -h, --help  show this help message and exit
 
 :command:`key`
 ~~~~~~~~~~~~~~
