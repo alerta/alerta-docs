@@ -54,6 +54,8 @@ build integrations with other monitoring tools.</p>
 <a class="reference external" href="https://www.pingdom.com">Pingdom</a>, <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty">PagerDuty</a>, <a class="reference external" href="https://cloud.google.com/stackdriver/">Google Stackdriver</a>, <a class="reference external" href="https://prometheus.io/docs/alerting/alertmanager/">Prometheus Alertmanager</a> and
 more which provide &#8216;out-of-the-box&#8217; integrations for some of the most popular
 monitoring systems available.</p>
+<p>Thirdly, <a class="reference internal" href="#widgets"><span class="std std-ref">alert severity indicators</span></a> or widgets can be placed
+on any web page using <a class="reference external" href="http://oembed.com/">oEmbed</a> for easy integration with existing dashboards.</p>
 <p>Lastly, <a class="reference internal" href="#plugins"><span class="std std-ref">plugins</span></a> can be used to quickly and easily forward alerts
 to or notify other systems like Slack or Hipchat.</p>
 <div class="section" id="integrations">
@@ -156,19 +158,28 @@ webhook endpoint to the notifications configuration.</p>
 <p>TBC</p>
 </div>
 </div>
+<div class="section" id="widgets">
+<span id="id9"></span><h2>Widgets<a class="headerlink" href="#widgets" title="Permalink to this headline">¶</a></h2>
+<p>Add an alert severity indicator (aka. widget) to any dashboard using the
+Oembed API endpoint. The severity indicator is coloured with the maximum
+severity for that alert query filter and has a count for the total number
+of matching alerts for each severity.</p>
+<p>Multiple severity indicators can be placed on the same page each for a
+different environment, service or group. See the <a class="reference external" href="https://github.com/guardian/alerta/blob/master/examples/oembed.html">example oembed web page</a>.</p>
+</div>
 <div class="section" id="plugins">
-<span id="id9"></span><h2>Plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h2>
+<span id="id10"></span><h2>Plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Plug-in_(computing)">Plugin extensions</a> are an easy way of adding new features to Alerta that meet
 a specific end-user requirement.</p>
-<div class="section" id="id10">
-<h3>Core<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id11">
+<h3>Core<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/guardian/alerta/tree/master/alerta/plugins">Core plugins</a> have been developed as examples of common use-cases.</p>
 <ul class="simple">
 <li><a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py">Reject</a> - reject alerts before processing. used to enforce custom alert format policies</li>
 </ul>
 </div>
-<div class="section" id="id11">
-<h3>Contrib<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id12">
+<h3>Contrib<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins">Contributed plugins</a> are made available for popular tools but
 implementation-specific requirements.</p>
 <ul class="simple">
@@ -256,6 +267,7 @@ Links
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Integrations &amp; Plugins</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#integrations">Integrations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#webhooks">Webhooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#widgets">Widgets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#plugins">Plugins</a></li>
 </ul>
 </li>

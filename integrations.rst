@@ -22,6 +22,11 @@ monitoring systems available.
 .. _Google Stackdriver: https://cloud.google.com/stackdriver/
 .. _Prometheus Alertmanager: https://prometheus.io/docs/alerting/alertmanager/
 
+Thirdly, :ref:`alert severity indicators <widgets>` or widgets can be placed
+on any web page using oEmbed_ for easy integration with existing dashboards.
+
+.. _oEmbed: http://oembed.com/
+
 Lastly, :ref:`plugins <plugins>` can be used to quickly and easily forward alerts
 to or notify other systems like Slack or Hipchat.
 
@@ -188,6 +193,21 @@ Riemann
 ~~~~~~~
 
 TBC
+
+.. _widgets:
+
+Widgets
+-------
+
+Add an alert severity indicator (aka. widget) to any dashboard using the
+Oembed API endpoint. The severity indicator is coloured with the maximum
+severity for that alert query filter and has a count for the total number
+of matching alerts for each severity.
+
+Multiple severity indicators can be placed on the same page each for a
+different environment, service or group. See the `example oembed web page`_.
+
+.. _example oembed web page: https://github.com/guardian/alerta/blob/master/examples/oembed.html
 
 .. _plugins:
 
