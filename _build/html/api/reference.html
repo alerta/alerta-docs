@@ -28,7 +28,7 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="top" title="alerta 4.8 documentation" href="../index.html" />
     <link rel="next" title="Alert Format" href="alert.html" />
-    <link rel="prev" title="Getting Started" href="../tutorials.html" />
+    <link rel="prev" title="Troubleshooting" href="../gettingstarted/tutorial-9-troubleshooting.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -49,66 +49,66 @@
 <div class="contents local topic" id="resource-types">
 <p class="topic-title first">Resource Types</p>
 <ul class="simple">
-<li><a class="reference internal" href="#alerts" id="id63">Alerts</a><ul>
-<li><a class="reference internal" href="#send-an-alert" id="id64">Send an alert</a></li>
-<li><a class="reference internal" href="#get-an-alert" id="id65">Get an alert</a></li>
-<li><a class="reference internal" href="#set-alert-status" id="id66">Set alert status</a></li>
-<li><a class="reference internal" href="#tag-and-untag-alerts" id="id67">Tag and untag alerts</a></li>
-<li><a class="reference internal" href="#update-alert-attributes" id="id68">Update alert attributes</a></li>
-<li><a class="reference internal" href="#delete-an-alert" id="id69">Delete an alert</a></li>
-<li><a class="reference internal" href="#search-alerts" id="id70">Search alerts</a></li>
-<li><a class="reference internal" href="#get-history-of-alerts" id="id71">Get history of alerts</a></li>
-<li><a class="reference internal" href="#get-severity-and-status-counts-for-alerts" id="id72">Get severity and status counts for alerts</a></li>
-<li><a class="reference internal" href="#top-10-alerts-by-resource" id="id73">Top 10 alerts by resource</a></li>
+<li><a class="reference internal" href="#alerts" id="id61">Alerts</a><ul>
+<li><a class="reference internal" href="#send-an-alert" id="id62">Send an alert</a></li>
+<li><a class="reference internal" href="#get-an-alert" id="id63">Get an alert</a></li>
+<li><a class="reference internal" href="#set-alert-status" id="id64">Set alert status</a></li>
+<li><a class="reference internal" href="#tag-and-untag-alerts" id="id65">Tag and untag alerts</a></li>
+<li><a class="reference internal" href="#update-alert-attributes" id="id66">Update alert attributes</a></li>
+<li><a class="reference internal" href="#delete-an-alert" id="id67">Delete an alert</a></li>
+<li><a class="reference internal" href="#search-alerts" id="id68">Search alerts</a></li>
+<li><a class="reference internal" href="#get-history-of-alerts" id="id69">Get history of alerts</a></li>
+<li><a class="reference internal" href="#get-severity-and-status-counts-for-alerts" id="id70">Get severity and status counts for alerts</a></li>
+<li><a class="reference internal" href="#top-10-alerts-by-resource" id="id71">Top 10 alerts by resource</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#environments" id="id74">Environments</a><ul>
-<li><a class="reference internal" href="#list-of-all-environments" id="id75">List of all environments</a></li>
+<li><a class="reference internal" href="#environments" id="id72">Environments</a><ul>
+<li><a class="reference internal" href="#list-of-all-environments" id="id73">List of all environments</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#services" id="id76">Services</a><ul>
-<li><a class="reference internal" href="#list-of-all-services" id="id77">List of all services</a></li>
+<li><a class="reference internal" href="#services" id="id74">Services</a><ul>
+<li><a class="reference internal" href="#list-of-all-services" id="id75">List of all services</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#blackout-periods" id="id78">Blackout Periods</a><ul>
-<li><a class="reference internal" href="#create-a-blackout" id="id79">Create a blackout</a></li>
-<li><a class="reference internal" href="#list-all-blackouts" id="id80">List all blackouts</a></li>
-<li><a class="reference internal" href="#delete-a-blackout" id="id81">Delete a blackout</a></li>
+<li><a class="reference internal" href="#blackout-periods" id="id76">Blackout Periods</a><ul>
+<li><a class="reference internal" href="#create-a-blackout" id="id77">Create a blackout</a></li>
+<li><a class="reference internal" href="#list-all-blackouts" id="id78">List all blackouts</a></li>
+<li><a class="reference internal" href="#delete-a-blackout" id="id79">Delete a blackout</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#heartbeats" id="id82">Heartbeats</a><ul>
-<li><a class="reference internal" href="#send-a-heartbeat" id="id83">Send a heartbeat</a></li>
-<li><a class="reference internal" href="#get-a-heartbeat" id="id84">Get a heartbeat</a></li>
-<li><a class="reference internal" href="#list-all-heartbeats" id="id85">List all heartbeats</a></li>
-<li><a class="reference internal" href="#delete-a-heartbeat" id="id86">Delete a heartbeat</a></li>
+<li><a class="reference internal" href="#heartbeats" id="id80">Heartbeats</a><ul>
+<li><a class="reference internal" href="#send-a-heartbeat" id="id81">Send a heartbeat</a></li>
+<li><a class="reference internal" href="#get-a-heartbeat" id="id82">Get a heartbeat</a></li>
+<li><a class="reference internal" href="#list-all-heartbeats" id="id83">List all heartbeats</a></li>
+<li><a class="reference internal" href="#delete-a-heartbeat" id="id84">Delete a heartbeat</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#api-keys" id="id87">API Keys</a><ul>
-<li><a class="reference internal" href="#create-an-api-key" id="id88">Create an API Key</a></li>
-<li><a class="reference internal" href="#list-all-api-keys" id="id89">List all API keys</a></li>
-<li><a class="reference internal" href="#list-all-api-keys-for-a-user" id="id90">List all API keys for a user</a></li>
-<li><a class="reference internal" href="#delete-an-api-key" id="id91">Delete an API key</a></li>
+<li><a class="reference internal" href="#api-keys" id="id85">API Keys</a><ul>
+<li><a class="reference internal" href="#create-an-api-key" id="id86">Create an API Key</a></li>
+<li><a class="reference internal" href="#list-all-api-keys" id="id87">List all API keys</a></li>
+<li><a class="reference internal" href="#list-all-api-keys-for-a-user" id="id88">List all API keys for a user</a></li>
+<li><a class="reference internal" href="#delete-an-api-key" id="id89">Delete an API key</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#users" id="id92">Users</a><ul>
-<li><a class="reference internal" href="#create-a-user" id="id93">Create a user</a></li>
-<li><a class="reference internal" href="#update-a-user" id="id94">Update a user</a></li>
-<li><a class="reference internal" href="#list-all-users" id="id95">List all users</a></li>
-<li><a class="reference internal" href="#delete-a-user" id="id96">Delete a user</a></li>
+<li><a class="reference internal" href="#users" id="id90">Users</a><ul>
+<li><a class="reference internal" href="#create-a-user" id="id91">Create a user</a></li>
+<li><a class="reference internal" href="#update-a-user" id="id92">Update a user</a></li>
+<li><a class="reference internal" href="#list-all-users" id="id93">List all users</a></li>
+<li><a class="reference internal" href="#delete-a-user" id="id94">Delete a user</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#customers" id="id97">Customers</a><ul>
-<li><a class="reference internal" href="#create-a-customer" id="id98">Create a customer</a></li>
-<li><a class="reference internal" href="#list-all-customers" id="id99">List all customers</a></li>
-<li><a class="reference internal" href="#delete-a-customer" id="id100">Delete a customer</a></li>
+<li><a class="reference internal" href="#customers" id="id95">Customers</a><ul>
+<li><a class="reference internal" href="#create-a-customer" id="id96">Create a customer</a></li>
+<li><a class="reference internal" href="#list-all-customers" id="id97">List all customers</a></li>
+<li><a class="reference internal" href="#delete-a-customer" id="id98">Delete a customer</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="alerts">
-<span id="id1"></span><h2><a class="toc-backref" href="#id63">Alerts</a><a class="headerlink" href="#alerts" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2><a class="toc-backref" href="#id61">Alerts</a><a class="headerlink" href="#alerts" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="send-an-alert">
-<span id="post-alert"></span><h3><a class="toc-backref" href="#id64">Send an alert</a><a class="headerlink" href="#send-an-alert" title="Permalink to this headline">¶</a></h3>
+<span id="post-alert"></span><h3><a class="toc-backref" href="#id62">Send an alert</a><a class="headerlink" href="#send-an-alert" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">alert</span>
 </pre></div>
 </div>
@@ -118,197 +118,195 @@
 <a class="reference internal" href="alert.html#alert-attributes"><span class="std std-ref">Alert Attributes</span></a> for a full
 list of valid inputs.</p>
 </div>
-<div class="section" id="example">
-<h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;EU&quot;</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;HttpServerOK&quot;</span>
-    <span class="p">],</span>
-    <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s2">&quot;example.com&quot;</span>
-    <span class="p">],</span>
-    <span class="s2">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s2">&quot;london&quot;</span>
-    <span class="p">],</span>
-    <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;exceptionAlert&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span>
-<span class="p">}</span>
+<div class="section" id="example-request">
+<h4>Example Request<a class="headerlink" href="#example-request" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://api.alerta.io/alert <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
+-H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
+-d <span class="s1">&#39;{</span>
+<span class="s1">      &quot;attributes&quot;: {</span>
+<span class="s1">          &quot;region&quot;: &quot;EU&quot;</span>
+<span class="s1">      },</span>
+<span class="s1">      &quot;correlate&quot;: [</span>
+<span class="s1">          &quot;HttpServerError&quot;,</span>
+<span class="s1">          &quot;HttpServerOK&quot;</span>
+<span class="s1">      ],</span>
+<span class="s1">      &quot;environment&quot;: &quot;Production&quot;,</span>
+<span class="s1">      &quot;event&quot;: &quot;HttpServerError&quot;,</span>
+<span class="s1">      &quot;group&quot;: &quot;Web&quot;,</span>
+<span class="s1">      &quot;origin&quot;: &quot;curl&quot;,</span>
+<span class="s1">      &quot;resource&quot;: &quot;web01&quot;,</span>
+<span class="s1">      &quot;service&quot;: [</span>
+<span class="s1">          &quot;example.com&quot;</span>
+<span class="s1">      ],</span>
+<span class="s1">      &quot;severity&quot;: &quot;major&quot;,</span>
+<span class="s1">      &quot;tags&quot;: [</span>
+<span class="s1">          &quot;dept:commercial&quot;</span>
+<span class="s1">      ],</span>
+<span class="s1">      &quot;text&quot;: &quot;Site is down.&quot;,</span>
+<span class="s1">      &quot;type&quot;: &quot;exceptionAlert&quot;,</span>
+<span class="s1">      &quot;value&quot;: &quot;Bad Gateway (501)&quot;</span>
+<span class="s1">  }&#39;</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="response">
-<h4>Response<a class="headerlink" href="#response" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="example-response">
+<h4>Example Response<a class="headerlink" href="#example-response" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
 </pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;alert&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;EU&quot;</span>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;alert&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;EU&quot;</span>
         <span class="p">},</span>
-        <span class="s2">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="nt">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
             <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
             <span class="s2">&quot;HttpServerOK&quot;</span>
         <span class="p">],</span>
-        <span class="s2">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-12-29T20:20:08.635Z&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;customer&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
-        <span class="s2">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;history&quot;</span><span class="p">:</span> <span class="p">[],</span>
-        <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/0a2291cc-7ad4-4f10-9a18-9d0885e86860&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;0a2291cc-7ad4-4f10-9a18-9d0885e86860&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s2">&quot;0a2291cc-7ad4-4f10-9a18-9d0885e86860&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-12-29T20:20:08.636Z&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s2">&quot;indeterminate&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;rawData&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-12-29T20:20:08.636Z&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;repeat&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-        <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-12-29T20:37:23.083Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;history&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/d326cce7-77e0-4cf5-ab83-c6acb822b68f&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;d326cce7-77e0-4cf5-ab83-c6acb822b68f&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s2">&quot;36e49b52-a79d-488b-8fcf-e52379915c30&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-12-30T14:19:16.304Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s2">&quot;indeterminate&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;rawData&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-12-29T20:37:23.085Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;repeat&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
             <span class="s2">&quot;example.com&quot;</span>
         <span class="p">],</span>
-        <span class="s2">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="s2">&quot;london&quot;</span>
+        <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;london&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;dept:commercial&quot;</span>
         <span class="p">],</span>
-        <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
-        <span class="s2">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s2">&quot;moreSevere&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;exceptionAlert&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span>
+        <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
+        <span class="nt">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s2">&quot;moreSevere&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;exceptionAlert&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span>
     <span class="p">},</span>
-    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;0a2291cc-7ad4-4f10-9a18-9d0885e86860&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;d326cce7-77e0-4cf5-ab83-c6acb822b68f&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="get-an-alert">
-<span id="get-alert-id"></span><h3><a class="toc-backref" href="#id65">Get an alert</a><a class="headerlink" href="#get-an-alert" title="Permalink to this headline">¶</a></h3>
+<span id="get-alert-id"></span><h3><a class="toc-backref" href="#id63">Get an alert</a><a class="headerlink" href="#get-an-alert" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
 </pre></div>
 </div>
 <div class="section" id="id2">
-<h4>Response<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+<h4>Example Request<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>GET /alert/d326cce7-77e0-4cf5-ab83-c6acb822b68f
 </pre></div>
 </div>
-<blockquote>
-<div><dl class="docutils">
-<dt>&#8220;alert&#8221;: {</dt>
-<dd><dl class="first docutils">
-<dt>&#8220;attributes&#8221;: {</dt>
-<dd>&#8220;ip&#8221;: &#8220;127.0.0.1&#8221;,
-&#8220;region&#8221;: &#8220;EU&#8221;</dd>
-</dl>
-<p>},
-&#8220;correlate&#8221;: [</p>
-<blockquote>
-<div>&#8220;HttpServerError&#8221;,
-&#8220;HttpServerOK&#8221;</div></blockquote>
-<p>],
-&#8220;createTime&#8221;: &#8220;2016-12-29T20:13:56.159Z&#8221;,
-&#8220;customer&#8221;: null,
-&#8220;duplicateCount&#8221;: 0,
-&#8220;environment&#8221;: &#8220;Production&#8221;,
-&#8220;event&#8221;: &#8220;HttpServerError&#8221;,
-&#8220;group&#8221;: &#8220;Web&#8221;,
-&#8220;history&#8221;: [</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>{</dt>
-<dd>&#8220;event&#8221;: &#8220;HttpServerError&#8221;,
-&#8220;id&#8221;: &#8220;94ea0974-765d-4314-93ce-dc62cb851fee&#8221;,
-&#8220;severity&#8221;: &#8220;major&#8221;,
-&#8220;text&#8221;: &#8220;Site is down.&#8221;,
-&#8220;type&#8221;: &#8220;severity&#8221;,
-&#8220;updateTime&#8221;: &#8220;2016-12-29T20:13:56.159Z&#8221;,
-&#8220;value&#8221;: &#8220;Bad Gateway (501)&#8221;</dd>
-</dl>
-<p>},
-{</p>
-<blockquote>
-<div>&#8220;event&#8221;: &#8220;HttpServerError&#8221;,
-&#8220;id&#8221;: &#8220;94ea0974-765d-4314-93ce-dc62cb851fee&#8221;,
-&#8220;status&#8221;: &#8220;open&#8221;,
-&#8220;text&#8221;: &#8220;new alert status change&#8221;,
-&#8220;type&#8221;: &#8220;status&#8221;,
-&#8220;updateTime&#8221;: &#8220;2016-12-29T20:13:56.160Z&#8221;</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div>&#8220;event&#8221;: &#8220;HttpServerError&#8221;,
-&#8220;id&#8221;: &#8220;94ea0974-765d-4314-93ce-dc62cb851fee&#8221;,
-&#8220;status&#8221;: &#8220;ack&#8221;,
-&#8220;text&#8221;: &#8220;disk needs replacing.&#8221;,
-&#8220;type&#8221;: &#8220;status&#8221;,
-&#8220;updateTime&#8221;: &#8220;2016-12-29T20:15:00.398Z&#8221;</div></blockquote>
-<p>}</p>
-</div></blockquote>
-<p>],
-&#8220;href&#8221;: &#8220;<a class="reference external" href="http://localhost:8080/alert/94ea0974-765d-4314-93ce-dc62cb851fee">http://localhost:8080/alert/94ea0974-765d-4314-93ce-dc62cb851fee</a>&#8221;,
-&#8220;id&#8221;: &#8220;94ea0974-765d-4314-93ce-dc62cb851fee&#8221;,
-&#8220;lastReceiveId&#8221;: &#8220;94ea0974-765d-4314-93ce-dc62cb851fee&#8221;,
-&#8220;lastReceiveTime&#8221;: &#8220;2016-12-29T20:13:56.160Z&#8221;,
-&#8220;origin&#8221;: &#8220;curl&#8221;,
-&#8220;previousSeverity&#8221;: &#8220;indeterminate&#8221;,
-&#8220;rawData&#8221;: &#8220;&#8221;,
-&#8220;receiveTime&#8221;: &#8220;2016-12-29T20:13:56.160Z&#8221;,
-&#8220;repeat&#8221;: false,
-&#8220;resource&#8221;: &#8220;web01&#8221;,
-&#8220;service&#8221;: [</p>
-<blockquote>
-<div>&#8220;example.com&#8221;</div></blockquote>
-<p>],
-&#8220;severity&#8221;: &#8220;major&#8221;,
-&#8220;status&#8221;: &#8220;ack&#8221;,
-&#8220;tags&#8221;: [</p>
-<blockquote>
-<div>&#8220;london&#8221;</div></blockquote>
-<p class="last">],
-&#8220;text&#8221;: &#8220;Site is down.&#8221;,
-&#8220;timeout&#8221;: 86400,
-&#8220;trendIndication&#8221;: &#8220;moreSevere&#8221;,
-&#8220;type&#8221;: &#8220;exceptionAlert&#8221;,
-&#8220;value&#8221;: &#8220;Bad Gateway (501)&#8221;</p>
-</dd>
-</dl>
-<p>},
-&#8220;status&#8221;: &#8220;ok&#8221;,
-&#8220;total&#8221;: 1</p>
-</div></blockquote>
-<p>}</p>
+</div>
+<div class="section" id="id3">
+<h4>Example Response<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;alert&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;EU&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;HttpServerOK&quot;</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-12-29T20:37:23.083Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;d326cce7-77e0-4cf5-ab83-c6acb822b68f&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;severity&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-12-29T20:37:23.083Z&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;d326cce7-77e0-4cf5-ab83-c6acb822b68f&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;new alert status change&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-12-29T20:37:23.085Z&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;d326cce7-77e0-4cf5-ab83-c6acb822b68f&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ack&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;disk needs replacing.&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-12-30T14:20:20.256Z&quot;</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/d326cce7-77e0-4cf5-ab83-c6acb822b68f&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;d326cce7-77e0-4cf5-ab83-c6acb822b68f&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s2">&quot;36e49b52-a79d-488b-8fcf-e52379915c30&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-12-30T14:19:16.304Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s2">&quot;indeterminate&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;rawData&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-12-29T20:37:23.085Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;repeat&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;example.com&quot;</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ack&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;london&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;dept:commercial&quot;</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
+        <span class="nt">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s2">&quot;moreSevere&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;exceptionAlert&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="set-alert-status">
-<h3><a class="toc-backref" href="#id66">Set alert status</a><a class="headerlink" href="#set-alert-status" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id64">Set alert status</a><a class="headerlink" href="#set-alert-status" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">status</span>
 </pre></div>
 </div>
-<div class="section" id="id3">
-<h4>Input<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id4">
+<h4>Input<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
-<col width="17%" />
-<col width="15%" />
-<col width="68%" />
+<col width="23%" />
+<col width="14%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -319,7 +317,8 @@ list of valid inputs.</p>
 <tbody valign="top">
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">status</span></code></td>
 <td>string</td>
-<td><strong>Required</strong> New status from <code class="docutils literal"><span class="pre">open</span></code>, <code class="docutils literal"><span class="pre">ack</span></code>, <code class="docutils literal"><span class="pre">closed</span></code></td>
+<td><strong>Required</strong> New status from <code class="docutils literal"><span class="pre">open</span></code>,
+<code class="docutils literal"><span class="pre">ack</span></code>, <code class="docutils literal"><span class="pre">assigned</span></code>, <code class="docutils literal"><span class="pre">closed</span></code></td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">text</span></code></td>
 <td>string</td>
@@ -328,29 +327,21 @@ list of valid inputs.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id4">
-<h4>Example<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ack&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;disk needs replacing.&quot;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
 <div class="section" id="id5">
-<h4>Response<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+<h4>Example Request<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="n">d326cce7</span><span class="o">-</span><span class="mi">77</span><span class="n">e0</span><span class="o">-</span><span class="mi">4</span><span class="n">cf5</span><span class="o">-</span><span class="n">ab83</span><span class="o">-</span><span class="n">c6acb822b68f</span><span class="o">/</span><span class="n">status</span>
 </pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ack&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;disk needs replacing.&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="tag-and-untag-alerts">
-<h3><a class="toc-backref" href="#id67">Tag and untag alerts</a><a class="headerlink" href="#tag-and-untag-alerts" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id65">Tag and untag alerts</a><a class="headerlink" href="#tag-and-untag-alerts" title="Permalink to this headline">¶</a></h3>
 <p>Tags are a set, not a list, which means that tagging an alert with
 the same tag does nothing. Tags can be removed.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">tag</span>
@@ -361,9 +352,9 @@ the same tag does nothing. Tags can be removed.</p>
 <h4>Input<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
-<col width="17%" />
-<col width="15%" />
-<col width="68%" />
+<col width="23%" />
+<col width="14%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -374,15 +365,18 @@ the same tag does nothing. Tags can be removed.</p>
 <tbody valign="top">
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">tags</span></code></td>
 <td>list</td>
-<td>&nbsp;</td>
+<td>tags to add, modify or remove</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section" id="id7">
-<h4>Example<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+<div class="section" id="example">
+<h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="n">d326cce7</span><span class="o">-</span><span class="mi">77</span><span class="n">e0</span><span class="o">-</span><span class="mi">4</span><span class="n">cf5</span><span class="o">-</span><span class="n">ab83</span><span class="o">-</span><span class="n">c6acb822b68f</span><span class="o">/</span><span class="n">tag</span>
+</pre></div>
+</div>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="s2">&quot;linux&quot;</span><span class="p">,</span>
         <span class="s2">&quot;linux2.6&quot;</span><span class="p">,</span>
         <span class="s2">&quot;dell&quot;</span>
@@ -393,19 +387,19 @@ the same tag does nothing. Tags can be removed.</p>
 </div>
 </div>
 <div class="section" id="update-alert-attributes">
-<h3><a class="toc-backref" href="#id68">Update alert attributes</a><a class="headerlink" href="#update-alert-attributes" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id66">Update alert attributes</a><a class="headerlink" href="#update-alert-attributes" title="Permalink to this headline">¶</a></h3>
 <p>Add, delete or modify alert attributes. To delete an attribute assign &#8220;null&#8221;
 to the attribute.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">attributes</span>
 </pre></div>
 </div>
-<div class="section" id="id8">
-<h4>Input<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id7">
+<h4>Input<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
-<col width="18%" />
-<col width="15%" />
-<col width="67%" />
+<col width="23%" />
+<col width="14%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -421,13 +415,16 @@ to the attribute.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id9">
-<h4>Example<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;incidentKey&quot;</span><span class="p">:</span> <span class="s2">&quot;1234abcd&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;10.1.1.1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;region&quot;</span><span class="p">:</span> <span class="n">null</span>
+<div class="section" id="id8">
+<h4>Example Request<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="n">d326cce7</span><span class="o">-</span><span class="mi">77</span><span class="n">e0</span><span class="o">-</span><span class="mi">4</span><span class="n">cf5</span><span class="o">-</span><span class="n">ab83</span><span class="o">-</span><span class="n">c6acb822b68f</span><span class="o">/</span><span class="n">attributes</span>
+</pre></div>
+</div>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;incidentKey&quot;</span><span class="p">:</span> <span class="s2">&quot;1234abcd&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;10.1.1.1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;region&quot;</span><span class="p">:</span> <span class="kc">null</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -435,24 +432,19 @@ to the attribute.</p>
 </div>
 </div>
 <div class="section" id="delete-an-alert">
-<h3><a class="toc-backref" href="#id69">Delete an alert</a><a class="headerlink" href="#delete-an-alert" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id67">Delete an alert</a><a class="headerlink" href="#delete-an-alert" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
 </pre></div>
 </div>
-<div class="section" id="id10">
-<h4>Response<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
-</pre></div>
-</div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
-<span class="p">}</span>
+<div class="section" id="id9">
+<h4>Example Request<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="n">d326cce7</span><span class="o">-</span><span class="mi">77</span><span class="n">e0</span><span class="o">-</span><span class="mi">4</span><span class="n">cf5</span><span class="o">-</span><span class="n">ab83</span><span class="o">-</span><span class="n">c6acb822b68f</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="search-alerts">
-<span id="get-alerts"></span><h3><a class="toc-backref" href="#id70">Search alerts</a><a class="headerlink" href="#search-alerts" title="Permalink to this headline">¶</a></h3>
+<span id="get-alerts"></span><h3><a class="toc-backref" href="#id68">Search alerts</a><a class="headerlink" href="#search-alerts" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span>
 </pre></div>
 </div>
@@ -460,9 +452,9 @@ to the attribute.</p>
 <h4>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
-<col width="17%" />
-<col width="15%" />
-<col width="68%" />
+<col width="23%" />
+<col width="14%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -479,36 +471,36 @@ to the attribute.</p>
 <td>json</td>
 <td>mongo query see <a class="reference external" href="http://docs.mongodb.org/manual/reference/operator/query/">Mongo Query Operators</a></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">from-date</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">fields</span></code></td>
+<td>list</td>
+<td>show or hide alert attributes</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">from-date</span></code></td>
 <td>date</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">to-date</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">to-date</span></code></td>
 <td>date</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">sort-by</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">sort-by</span></code></td>
 <td>string</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">reverse</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">reverse</span></code></td>
 <td>boolean</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">group-by</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">group-by</span></code></td>
 <td>string</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">page</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">page</span></code></td>
 <td>integer</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">limit</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">limit</span></code></td>
 <td>integer</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">api-key</span></code></td>
-<td>string</td>
 <td>&nbsp;</td>
 </tr>
 </tbody>
@@ -516,15 +508,16 @@ to the attribute.</p>
 <p>The <code class="docutils literal"><span class="pre">attr</span></code> parameter is any alert attribute.</p>
 <p>Any alert attribute can be queried. To query tags do this, to query attributes key/value do this.</p>
 <p>Default is not to use exact match. To use regex <code class="docutils literal"><span class="pre">=~</span></code> and to negate use <code class="docutils literal"><span class="pre">!=</span></code>.</p>
+<p><strong>If customer views enabled then the customer for that user will be applied as a filter.</strong></p>
 </div>
-<div class="section" id="id11">
-<h4>Example<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id10">
+<h4>Example<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span>http://api.alerta.io/alerts?status=open&amp;severity=critical&amp;severity=major&amp;environment=Production&amp;service=Network
 </pre></div>
 </div>
 </div>
-<div class="section" id="id12">
-<h4>Response<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="response">
+<h4>Response<a class="headerlink" href="#response" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
   <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
@@ -604,17 +597,17 @@ to the attribute.</p>
 </div>
 </div>
 <div class="section" id="get-history-of-alerts">
-<span id="get-alerts-history"></span><h3><a class="toc-backref" href="#id71">Get history of alerts</a><a class="headerlink" href="#get-history-of-alerts" title="Permalink to this headline">¶</a></h3>
+<span id="get-alerts-history"></span><h3><a class="toc-backref" href="#id69">Get history of alerts</a><a class="headerlink" href="#get-history-of-alerts" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">history</span>
 </pre></div>
 </div>
-<div class="section" id="id13">
-<h4>Parameters<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id11">
+<h4>Parameters<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
-<col width="17%" />
-<col width="15%" />
-<col width="68%" />
+<col width="23%" />
+<col width="14%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -630,14 +623,14 @@ to the attribute.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id14">
-<h4>Example<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id12">
+<h4>Example<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span>http://api.alerta.io/alerts/history?resource=router0011
 </pre></div>
 </div>
 </div>
-<div class="section" id="id15">
-<h4>Response<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id13">
+<h4>Response<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
   <span class="s2">&quot;lastTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2014-12-15T09:55:31.344Z&quot;</span><span class="p">,</span>
@@ -692,17 +685,17 @@ to the attribute.</p>
 </div>
 </div>
 <div class="section" id="get-severity-and-status-counts-for-alerts">
-<h3><a class="toc-backref" href="#id72">Get severity and status counts for alerts</a><a class="headerlink" href="#get-severity-and-status-counts-for-alerts" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id70">Get severity and status counts for alerts</a><a class="headerlink" href="#get-severity-and-status-counts-for-alerts" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">count</span>
 </pre></div>
 </div>
-<div class="section" id="id16">
-<h4>Parameters<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id14">
+<h4>Parameters<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
-<col width="17%" />
-<col width="15%" />
-<col width="68%" />
+<col width="23%" />
+<col width="14%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -718,14 +711,14 @@ to the attribute.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id17">
-<h4>Example<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id15">
+<h4>Example<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span>http://api.alerta.io/alerts/count?status=open&amp;status=ack
 </pre></div>
 </div>
 </div>
-<div class="section" id="id18">
-<h4>Response<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id16">
+<h4>Response<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
   <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
@@ -746,20 +739,20 @@ to the attribute.</p>
 </div>
 </div>
 <div class="section" id="top-10-alerts-by-resource">
-<h3><a class="toc-backref" href="#id73">Top 10 alerts by resource</a><a class="headerlink" href="#top-10-alerts-by-resource" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id71">Top 10 alerts by resource</a><a class="headerlink" href="#top-10-alerts-by-resource" title="Permalink to this headline">¶</a></h3>
 <p>The top 10 resources are grouped by <code class="docutils literal"><span class="pre">event</span></code> by default but this can
 be any valid attribute.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">top10</span><span class="o">/</span><span class="n">count</span>
 <span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">top10</span><span class="o">/</span><span class="n">flapping</span>
 </pre></div>
 </div>
-<div class="section" id="id19">
-<h4>Parameters<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id17">
+<h4>Parameters<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
-<col width="17%" />
-<col width="15%" />
-<col width="68%" />
+<col width="23%" />
+<col width="14%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -774,19 +767,19 @@ be any valid attribute.</p>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">group-by</span></code></td>
 <td>string</td>
-<td>Any valid alert attribute. Default: <code class="docutils literal"><span class="pre">event</span></code></td>
+<td>any valid alert attribute. Default:<code class="docutils literal"><span class="pre">event</span></code></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section" id="id20">
-<h4>Example<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id18">
+<h4>Example<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span>http://api.alerta.io/alerts/top10?group-by=group
 </pre></div>
 </div>
 </div>
-<div class="section" id="id21">
-<h4>Response<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id19">
+<h4>Response<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
   <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
@@ -1044,21 +1037,21 @@ be any valid attribute.</p>
 </div>
 </div>
 <div class="section" id="environments">
-<span id="id22"></span><h2><a class="toc-backref" href="#id74">Environments</a><a class="headerlink" href="#environments" title="Permalink to this headline">¶</a></h2>
+<span id="id20"></span><h2><a class="toc-backref" href="#id72">Environments</a><a class="headerlink" href="#environments" title="Permalink to this headline">¶</a></h2>
 <p>An environment cannot be created &#8211; it is a dynamically derived resource based on existing alerts.</p>
 <div class="section" id="list-of-all-environments">
-<h3><a class="toc-backref" href="#id75">List of all environments</a><a class="headerlink" href="#list-of-all-environments" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id73">List of all environments</a><a class="headerlink" href="#list-of-all-environments" title="Permalink to this headline">¶</a></h3>
 <p>List all environments and alert count for each.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">environments</span>
 </pre></div>
 </div>
-<div class="section" id="id23">
-<h4>Parameters<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id21">
+<h4>Parameters<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
-<col width="17%" />
-<col width="15%" />
-<col width="68%" />
+<col width="23%" />
+<col width="14%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -1074,14 +1067,14 @@ be any valid attribute.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id24">
-<h4>Example<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id22">
+<h4>Example<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">alerta</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">environments</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id25">
-<h4>Response<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id23">
+<h4>Response<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
   <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
@@ -1102,21 +1095,21 @@ be any valid attribute.</p>
 </div>
 </div>
 <div class="section" id="services">
-<span id="id26"></span><h2><a class="toc-backref" href="#id76">Services</a><a class="headerlink" href="#services" title="Permalink to this headline">¶</a></h2>
+<span id="id24"></span><h2><a class="toc-backref" href="#id74">Services</a><a class="headerlink" href="#services" title="Permalink to this headline">¶</a></h2>
 <p>A service cannot be created &#8211; it is a dynamically derived resource based on existing alerts.</p>
 <div class="section" id="list-of-all-services">
-<h3><a class="toc-backref" href="#id77">List of all services</a><a class="headerlink" href="#list-of-all-services" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id75">List of all services</a><a class="headerlink" href="#list-of-all-services" title="Permalink to this headline">¶</a></h3>
 <p>List all services by environment and count of alerts for each.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">services</span>
 </pre></div>
 </div>
-<div class="section" id="id27">
-<h4>Parameters<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id25">
+<h4>Parameters<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
-<col width="17%" />
-<col width="15%" />
-<col width="68%" />
+<col width="23%" />
+<col width="14%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -1132,14 +1125,14 @@ be any valid attribute.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id28">
-<h4>Example<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id26">
+<h4>Example<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span>http://api.alerta.io/services?environment=Production
 </pre></div>
 </div>
 </div>
-<div class="section" id="id29">
-<h4>Response<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id27">
+<h4>Response<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
   <span class="s2">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -1167,20 +1160,20 @@ be any valid attribute.</p>
 </div>
 </div>
 <div class="section" id="blackout-periods">
-<span id="blackouts"></span><h2><a class="toc-backref" href="#id78">Blackout Periods</a><a class="headerlink" href="#blackout-periods" title="Permalink to this headline">¶</a></h2>
+<span id="blackouts"></span><h2><a class="toc-backref" href="#id76">Blackout Periods</a><a class="headerlink" href="#blackout-periods" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="create-a-blackout">
-<h3><a class="toc-backref" href="#id79">Create a blackout</a><a class="headerlink" href="#create-a-blackout" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id77">Create a blackout</a><a class="headerlink" href="#create-a-blackout" title="Permalink to this headline">¶</a></h3>
 <p>Create a new blackout period for the <code class="docutils literal"><span class="pre">environment</span></code>.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">blackout</span>
 </pre></div>
 </div>
-<div class="section" id="id30">
-<h4>Input<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id28">
+<h4>Input<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
-<col width="19%" />
+<col width="23%" />
 <col width="14%" />
-<col width="67%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -1219,7 +1212,7 @@ be any valid attribute.</p>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">endTime</span></code></td>
 <td>datetime</td>
-<td>end time. Default: now + <code class="docutils literal"><span class="pre">BLACKOUT_DURATION</span></code></td>
+<td>end time. Default: now+``BLACKOUT_DURATION``</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">duration</span></code></td>
 <td>integer</td>
@@ -1228,8 +1221,8 @@ be any valid attribute.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id31">
-<h4>Example<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id29">
+<h4>Example<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Development&quot;</span><span class="p">,</span>
     <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -1240,8 +1233,8 @@ be any valid attribute.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id32">
-<h4>Response<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id30">
+<h4>Response<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
 </pre></div>
 </div>
@@ -1254,12 +1247,12 @@ be any valid attribute.</p>
 </div>
 </div>
 <div class="section" id="list-all-blackouts">
-<h3><a class="toc-backref" href="#id80">List all blackouts</a><a class="headerlink" href="#list-all-blackouts" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id78">List all blackouts</a><a class="headerlink" href="#list-all-blackouts" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">blackouts</span>
 </pre></div>
 </div>
-<div class="section" id="id33">
-<h4>Response<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id31">
+<h4>Response<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
   <span class="s2">&quot;blackouts&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -1309,12 +1302,12 @@ be any valid attribute.</p>
 </div>
 </div>
 <div class="section" id="delete-a-blackout">
-<h3><a class="toc-backref" href="#id81">Delete a blackout</a><a class="headerlink" href="#delete-a-blackout" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id79">Delete a blackout</a><a class="headerlink" href="#delete-a-blackout" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">blackout</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
 </pre></div>
 </div>
-<div class="section" id="id34">
-<h4>Response<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id32">
+<h4>Response<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
@@ -1327,20 +1320,20 @@ be any valid attribute.</p>
 </div>
 </div>
 <div class="section" id="heartbeats">
-<span id="id35"></span><h2><a class="toc-backref" href="#id82">Heartbeats</a><a class="headerlink" href="#heartbeats" title="Permalink to this headline">¶</a></h2>
+<span id="id33"></span><h2><a class="toc-backref" href="#id80">Heartbeats</a><a class="headerlink" href="#heartbeats" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="send-a-heartbeat">
-<h3><a class="toc-backref" href="#id83">Send a heartbeat</a><a class="headerlink" href="#send-a-heartbeat" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id81">Send a heartbeat</a><a class="headerlink" href="#send-a-heartbeat" title="Permalink to this headline">¶</a></h3>
 <p>Update a heartbeat or create a new one if it doesn&#8217;t already exist for the heartbeat <code class="docutils literal"><span class="pre">origin</span></code>.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">heartbeat</span>
 </pre></div>
 </div>
-<div class="section" id="id36">
-<h4>Input<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id34">
+<h4>Input<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
-<col width="17%" />
-<col width="15%" />
-<col width="68%" />
+<col width="23%" />
+<col width="14%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -1364,8 +1357,8 @@ be any valid attribute.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id37">
-<h4>Example<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id35">
+<h4>Example<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
     <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -1379,8 +1372,8 @@ be any valid attribute.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id38">
-<h4>Response<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id36">
+<h4>Response<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
 </pre></div>
 </div>
@@ -1403,12 +1396,12 @@ be any valid attribute.</p>
 </div>
 </div>
 <div class="section" id="get-a-heartbeat">
-<h3><a class="toc-backref" href="#id84">Get a heartbeat</a><a class="headerlink" href="#get-a-heartbeat" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id82">Get a heartbeat</a><a class="headerlink" href="#get-a-heartbeat" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">heartbeat</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
 </pre></div>
 </div>
-<div class="section" id="id39">
-<h4>Response<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id37">
+<h4>Response<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
   <span class="s2">&quot;heartbeat&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -1428,12 +1421,12 @@ be any valid attribute.</p>
 </div>
 </div>
 <div class="section" id="list-all-heartbeats">
-<h3><a class="toc-backref" href="#id85">List all heartbeats</a><a class="headerlink" href="#list-all-heartbeats" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id83">List all heartbeats</a><a class="headerlink" href="#list-all-heartbeats" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">heartbeats</span>
 </pre></div>
 </div>
-<div class="section" id="id40">
-<h4>Response<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id38">
+<h4>Response<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
   <span class="s2">&quot;heartbeats&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -1466,12 +1459,12 @@ be any valid attribute.</p>
 </div>
 </div>
 <div class="section" id="delete-a-heartbeat">
-<h3><a class="toc-backref" href="#id86">Delete a heartbeat</a><a class="headerlink" href="#delete-a-heartbeat" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id84">Delete a heartbeat</a><a class="headerlink" href="#delete-a-heartbeat" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">heartbeat</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
 </pre></div>
 </div>
-<div class="section" id="id41">
-<h4>Response<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id39">
+<h4>Response<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
@@ -1484,19 +1477,19 @@ be any valid attribute.</p>
 </div>
 </div>
 <div class="section" id="api-keys">
-<span id="id42"></span><h2><a class="toc-backref" href="#id87">API Keys</a><a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h2>
+<span id="id40"></span><h2><a class="toc-backref" href="#id85">API Keys</a><a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="create-an-api-key">
-<h3><a class="toc-backref" href="#id88">Create an API Key</a><a class="headerlink" href="#create-an-api-key" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id86">Create an API Key</a><a class="headerlink" href="#create-an-api-key" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">key</span>
 </pre></div>
 </div>
-<div class="section" id="id43">
-<h4>Input<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id41">
+<h4>Input<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
-<col width="17%" />
-<col width="15%" />
-<col width="68%" />
+<col width="23%" />
+<col width="14%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -1516,8 +1509,8 @@ be any valid attribute.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id44">
-<h4>Example<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id42">
+<h4>Example<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
   <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;test key&quot;</span>
@@ -1525,8 +1518,8 @@ be any valid attribute.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id45">
-<h4>Response<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id43">
+<h4>Response<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
 </pre></div>
 </div>
@@ -1539,12 +1532,12 @@ be any valid attribute.</p>
 </div>
 </div>
 <div class="section" id="list-all-api-keys">
-<h3><a class="toc-backref" href="#id89">List all API keys</a><a class="headerlink" href="#list-all-api-keys" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id87">List all API keys</a><a class="headerlink" href="#list-all-api-keys" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">keys</span>
 </pre></div>
 </div>
-<div class="section" id="id46">
-<h4>Response<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id44">
+<h4>Response<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
   <span class="s2">&quot;keys&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -1573,17 +1566,17 @@ be any valid attribute.</p>
 </div>
 </div>
 <div class="section" id="list-all-api-keys-for-a-user">
-<h3><a class="toc-backref" href="#id90">List all API keys for a user</a><a class="headerlink" href="#list-all-api-keys-for-a-user" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id88">List all API keys for a user</a><a class="headerlink" href="#list-all-api-keys-for-a-user" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">keys</span><span class="o">/</span><span class="p">:</span><span class="n">user</span>
 </pre></div>
 </div>
-<div class="section" id="id47">
-<h4>Parameters<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id45">
+<h4>Parameters<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
-<col width="17%" />
-<col width="15%" />
-<col width="68%" />
+<col width="23%" />
+<col width="14%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -1599,14 +1592,14 @@ be any valid attribute.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id48">
-<h4>Example<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id46">
+<h4>Example<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">alerta</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">keys</span><span class="o">/</span><span class="n">Bob</span><span class="o">%</span><span class="mi">20</span><span class="n">Down</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id49">
-<h4>Response<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id47">
+<h4>Response<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
   <span class="s2">&quot;keys&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -1635,12 +1628,12 @@ be any valid attribute.</p>
 </div>
 </div>
 <div class="section" id="delete-an-api-key">
-<h3><a class="toc-backref" href="#id91">Delete an API key</a><a class="headerlink" href="#delete-an-api-key" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id89">Delete an API key</a><a class="headerlink" href="#delete-an-api-key" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">key</span><span class="o">/</span><span class="p">:</span><span class="n">key</span>
 </pre></div>
 </div>
-<div class="section" id="id50">
-<h4>Response<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id48">
+<h4>Response<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
@@ -1653,19 +1646,19 @@ be any valid attribute.</p>
 </div>
 </div>
 <div class="section" id="users">
-<span id="id51"></span><h2><a class="toc-backref" href="#id92">Users</a><a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
+<span id="id49"></span><h2><a class="toc-backref" href="#id90">Users</a><a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="create-a-user">
-<h3><a class="toc-backref" href="#id93">Create a user</a><a class="headerlink" href="#create-a-user" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id91">Create a user</a><a class="headerlink" href="#create-a-user" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">user</span>
 </pre></div>
 </div>
-<div class="section" id="id52">
-<h4>Input<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id50">
+<h4>Input<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
-<col width="17%" />
-<col width="15%" />
-<col width="68%" />
+<col width="23%" />
+<col width="14%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -1693,8 +1686,8 @@ be any valid attribute.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id53">
-<h4>Example<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id51">
+<h4>Example<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;user1&quot;</span><span class="p">,</span>
   <span class="s2">&quot;login&quot;</span><span class="p">:</span> <span class="s2">&quot;user@1&quot;</span><span class="p">,</span>
@@ -1704,8 +1697,8 @@ be any valid attribute.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id54">
-<h4>Response<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id52">
+<h4>Response<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
 </pre></div>
 </div>
@@ -1718,59 +1711,71 @@ be any valid attribute.</p>
 </div>
 </div>
 <div class="section" id="update-a-user">
-<h3><a class="toc-backref" href="#id94">Update a user</a><a class="headerlink" href="#update-a-user" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span>PUT /usr/:user
+<h3><a class="toc-backref" href="#id92">Update a user</a><a class="headerlink" href="#update-a-user" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="p">:</span><span class="n">user</span>
 
-Input
-+++++
-
-+---------------+-------------+------------------------------------------------------------+
-| Name          | Type        | Description                                                |
-+===============+=============+============================================================+
-| ``name``      | string      |                                                            |
-+---------------+-------------+------------------------------------------------------------+
-| ``login``     | string      |                                                            |
-+---------------+-------------+------------------------------------------------------------+
-| ``provider``  | string      |                                                            |
-+---------------+-------------+------------------------------------------------------------+
-| ``text``      | string      |                                                            |
-+---------------+-------------+------------------------------------------------------------+
-
-Example
-+++++++
-
-::
-
-    {
-      &quot;name&quot;: &quot;user1&quot;,
-      &quot;login&quot;: &quot;user@1&quot;,
-      &quot;provider&quot;: &quot;google&quot;,
-      &quot;text&quot;: &quot;test user 1&quot;
-    }
-
-Response
-++++++++
-
-::
-
-  201 CREATED
-
-::
-
-    {
-      &quot;status&quot;: &quot;ok&quot;,
-      &quot;user&quot;: &quot;41f7e0af-5bc1-437a-b486-9b12286d643b&quot;
-    }
+<span class="n">Input</span>
+<span class="o">+++++</span>
 </pre></div>
 </div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="14%" />
+<col width="63%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">name</span></code></td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">login</span></code></td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">provider</span></code></td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">text</span></code></td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;user1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;login&quot;</span><span class="p">:</span> <span class="s2">&quot;user@1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;provider&quot;</span><span class="p">:</span> <span class="s2">&quot;google&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;test user 1&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;41f7e0af-5bc1-437a-b486-9b12286d643b&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
 </div>
 <div class="section" id="list-all-users">
-<h3><a class="toc-backref" href="#id95">List all users</a><a class="headerlink" href="#list-all-users" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id93">List all users</a><a class="headerlink" href="#list-all-users" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">users</span>
 </pre></div>
 </div>
-<div class="section" id="id55">
-<h4>Response<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id53">
+<h4>Response<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
   <span class="s2">&quot;users&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -1806,12 +1811,12 @@ Response
 </div>
 </div>
 <div class="section" id="delete-a-user">
-<h3><a class="toc-backref" href="#id96">Delete a user</a><a class="headerlink" href="#delete-a-user" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id94">Delete a user</a><a class="headerlink" href="#delete-a-user" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="p">:</span><span class="n">user</span>
 </pre></div>
 </div>
-<div class="section" id="id56">
-<h4>Response<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id54">
+<h4>Response<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
@@ -1824,21 +1829,21 @@ Response
 </div>
 </div>
 <div class="section" id="customers">
-<span id="id57"></span><h2><a class="toc-backref" href="#id97">Customers</a><a class="headerlink" href="#customers" title="Permalink to this headline">¶</a></h2>
+<span id="id55"></span><h2><a class="toc-backref" href="#id95">Customers</a><a class="headerlink" href="#customers" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="create-a-customer">
-<h3><a class="toc-backref" href="#id98">Create a customer</a><a class="headerlink" href="#create-a-customer" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id96">Create a customer</a><a class="headerlink" href="#create-a-customer" title="Permalink to this headline">¶</a></h3>
 <p>Create a customer lookup that matches a user login with a regex to see
 if that user belongs to that customer.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">customer</span>
 </pre></div>
 </div>
-<div class="section" id="id58">
-<h4>Input<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id56">
+<h4>Input<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
-<col width="17%" />
-<col width="15%" />
-<col width="68%" />
+<col width="23%" />
+<col width="14%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -1858,8 +1863,8 @@ if that user belongs to that customer.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id59">
-<h4>Example<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id57">
+<h4>Example<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;customer&quot;</span><span class="p">:</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
   <span class="s2">&quot;match&quot;</span><span class="p">:</span> <span class="s2">&quot;test key&quot;</span>
@@ -1867,8 +1872,8 @@ if that user belongs to that customer.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id60">
-<h4>Response<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id58">
+<h4>Response<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
 </pre></div>
 </div>
@@ -1881,12 +1886,12 @@ if that user belongs to that customer.</p>
 </div>
 </div>
 <div class="section" id="list-all-customers">
-<h3><a class="toc-backref" href="#id99">List all customers</a><a class="headerlink" href="#list-all-customers" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id97">List all customers</a><a class="headerlink" href="#list-all-customers" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">customers</span>
 </pre></div>
 </div>
-<div class="section" id="id61">
-<h4>Response<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id59">
+<h4>Response<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
   <span class="s2">&quot;keys&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -1915,12 +1920,12 @@ if that user belongs to that customer.</p>
 </div>
 </div>
 <div class="section" id="delete-a-customer">
-<h3><a class="toc-backref" href="#id100">Delete a customer</a><a class="headerlink" href="#delete-a-customer" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id98">Delete a customer</a><a class="headerlink" href="#delete-a-customer" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">customer</span><span class="o">/</span><span class="p">:</span><span class="n">customer</span>
 </pre></div>
 </div>
-<div class="section" id="id62">
-<h4>Response<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id60">
+<h4>Response<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
