@@ -289,6 +289,19 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 </pre></div>
 </div>
 </div>
+<div class="section" id="example-response-during-blackout-period">
+<h4>Example Response (during blackout period)<a class="headerlink" href="#example-response-during-blackout-period" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">202</span> <span class="n">ACCEPTED</span>
+</pre></div>
+</div>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Suppressed alert during blackout period&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1711c57e-5c6a-4c39-881b-9d8d174feafe&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="retrieve-an-alert">
 <span id="get-alert-id"></span><h3><a class="toc-backref" href="#id74">Retrieve an alert</a><a class="headerlink" href="#retrieve-an-alert" title="Permalink to this headline">¶</a></h3>
@@ -377,7 +390,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 <div class="section" id="set-alert-status">
 <h3><a class="toc-backref" href="#id75">Set alert status</a><a class="headerlink" href="#set-alert-status" title="Permalink to this headline">¶</a></h3>
 <p>Sets the status of an alert, and logs the status change to the alert history.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">status</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">status</span>
 </pre></div>
 </div>
 <div class="section" id="id4">
@@ -409,7 +422,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 </div>
 <div class="section" id="id5">
 <h4>Example Request<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe/status <span class="se">\</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPUT http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe/status <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
 -d <span class="s1">&#39;{</span>
@@ -423,8 +436,8 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 <div class="section" id="tag-and-untag-alerts">
 <h3><a class="toc-backref" href="#id76">Tag and untag alerts</a><a class="headerlink" href="#tag-and-untag-alerts" title="Permalink to this headline">¶</a></h3>
 <p>Adds or removes tag values from the set of tags for an alert.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">tag</span>
-<span class="n">POST</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">untag</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">tag</span>
+<span class="n">PUT</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">untag</span>
 </pre></div>
 </div>
 <div class="section" id="id6">
@@ -451,7 +464,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 </div>
 <div class="section" id="id7">
 <h4>Example Request<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe/tag <span class="se">\</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPUT http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe/tag <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
 -d <span class="s1">&#39;{</span>

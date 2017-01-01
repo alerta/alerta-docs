@@ -155,6 +155,22 @@ Example Response
       "status": "ok"
     }
 
+Example Response (during blackout period)
+++++++++++++++++
+
+::
+
+    202 ACCEPTED
+
+.. code-block:: json
+
+    {
+      "message": "Suppressed alert during blackout period",
+      "id": "1711c57e-5c6a-4c39-881b-9d8d174feafe",
+      "status": "ok"
+    }
+
+
 .. _get_alert_id:
 
 Retrieve an alert
@@ -253,7 +269,7 @@ Sets the status of an alert, and logs the status change to the alert history.
 
 ::
 
-    POST /alert/:id/status
+    PUT /alert/:id/status
 
 Input
 +++++
@@ -272,7 +288,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XPOST http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe/status \
+    $ curl -XPUT http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe/status \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json' \
     -d '{
@@ -287,8 +303,8 @@ Adds or removes tag values from the set of tags for an alert.
 
 ::
 
-    POST /alert/:id/tag
-    POST /alert/:id/untag
+    PUT /alert/:id/tag
+    PUT /alert/:id/untag
 
 Input
 +++++
@@ -304,7 +320,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XPOST http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe/tag \
+    $ curl -XPUT http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe/tag \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json' \
     -d '{
