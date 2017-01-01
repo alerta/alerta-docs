@@ -299,8 +299,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 <div class="section" id="id2">
 <h4>Example Request<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe <span class="se">\</span>
--H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
--H <span class="s1">&#39;Content-type: application/json&#39;</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -520,8 +519,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 <div class="section" id="id10">
 <h4>Example Request<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe <span class="se">\</span>
--H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
--H <span class="s1">&#39;Content-type: application/json&#39;</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -598,8 +596,7 @@ filter results.</p>
 <div class="section" id="id11">
 <h4>Example Request<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alerts?group<span class="o">=</span>Web <span class="se">\</span>
--H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
--H <span class="s1">&#39;Content-type: application/json&#39;</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -778,8 +775,7 @@ filter results.</p>
 <div class="section" id="id14">
 <h4>Example Request<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alerts/history?service<span class="o">=</span>example.com <span class="se">\</span>
--H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
--H <span class="s1">&#39;Content-type: application/json&#39;</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -951,8 +947,7 @@ filter results.</p>
 <div class="section" id="id17">
 <h4>Example Request<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alerts/count?environment<span class="o">=</span>Production <span class="se">\</span>
--H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
--H <span class="s1">&#39;Content-type: application/json&#39;</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -1018,8 +1013,7 @@ default it is grouped by <code class="docutils literal"><span class="pre">event<
 <div class="section" id="id20">
 <h4>Example Request<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alerts/top10?group-by<span class="o">=</span>group <span class="se">\</span>
--H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
--H <span class="s1">&#39;Content-type: application/json&#39;</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -1097,8 +1091,7 @@ on existing alerts.</p>
 <div class="section" id="id24">
 <h4>Example Request<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/environments <span class="se">\</span>
--H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
--H <span class="s1">&#39;Content-type: application/json&#39;</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -1156,8 +1149,7 @@ on existing alerts.</p>
 <div class="section" id="id28">
 <h4>Example Request<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/services?environment<span class="o">=</span>Production <span class="se">\</span>
--H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
--H <span class="s1">&#39;Content-type: application/json&#39;</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -1290,8 +1282,7 @@ Only used if <code class="docutils literal"><span class="pre">endTime</span></co
 <div class="section" id="id33">
 <h4>Example Request<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/blackouts <span class="se">\</span>
--H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
--H <span class="s1">&#39;Content-type: application/json&#39;</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -1342,8 +1333,7 @@ Only used if <code class="docutils literal"><span class="pre">endTime</span></co
 <div class="section" id="id35">
 <h4>Example Request<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/blackout/77059317-bf66-44ef-a63d-b2e2aa8c0612 <span class="se">\</span>
--H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
--H <span class="s1">&#39;Content-type: application/json&#39;</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -1390,11 +1380,13 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 </div>
 <div class="section" id="id38">
 <h4>Example Request<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/alert <span class="se">\</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/heartbeat <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
 -d <span class="s1">&#39;{</span>
-
+<span class="s1">      &quot;origin&quot;: &quot;cluster05&quot;,</span>
+<span class="s1">      &quot;timeout&quot;: 120,</span>
+<span class="s1">      &quot;tags&quot;: [&quot;db05&quot;, &quot;dc2&quot;]</span>
 <span class="s1">    }&#39;</span>
 </pre></div>
 </div>
@@ -1404,7 +1396,24 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span>???
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;heartbeat&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T16:07:31.409Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/heartbeat/221207f4-1f4b-4dc3-b754-5e67bc6241d1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;221207f4-1f4b-4dc3-b754-5e67bc6241d1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;cluster05&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T16:07:31.409Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;db05&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;dc2&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Heartbeat&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;221207f4-1f4b-4dc3-b754-5e67bc6241d1&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -1417,21 +1426,34 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 </div>
 <div class="section" id="id40">
 <h4>Example Request<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/alert <span class="se">\</span>
--H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
--H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
--d <span class="s1">&#39;{</span>
-
-<span class="s1">    }&#39;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/heartbeat/221207f4-1f4b-4dc3-b754-5e67bc6241d1 <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id41">
 <h4>Example Response<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span>???
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;heartbeat&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T16:07:31.409Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/hearbeat/221207f4-1f4b-4dc3-b754-5e67bc6241d1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;221207f4-1f4b-4dc3-b754-5e67bc6241d1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;cluster05&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T16:07:31.409Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;db05&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;dc2&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Heartbeat&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -1444,21 +1466,51 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 </div>
 <div class="section" id="id42">
 <h4>Example Request<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/alert <span class="se">\</span>
--H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
--H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
--d <span class="s1">&#39;{</span>
-
-<span class="s1">    }&#39;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/heartbeats <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id43">
 <h4>Example Response<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span>???
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;heartbeats&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T16:07:31.409Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/heartbeat/221207f4-1f4b-4dc3-b754-5e67bc6241d1&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;221207f4-1f4b-4dc3-b754-5e67bc6241d1&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;cluster05&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T16:07:31.409Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;db05&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dc2&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Heartbeat&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T16:18:42.839Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/heartbeat/55881e1e-ec53-4637-8f4d-05b252d385d5&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;55881e1e-ec53-4637-8f4d-05b252d385d5&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;device03&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T16:18:42.839Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;v2.2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dc1&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">900</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Heartbeat&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T16:19:51.896Z&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -1471,9 +1523,8 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 </div>
 <div class="section" id="id44">
 <h4>Example Request<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/alert <span class="se">\</span>
--H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
--H <span class="s1">&#39;Content-type: application/json&#39;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/heartbeat/221207f4-1f4b-4dc3-b754-5e67bc6241d1 <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
