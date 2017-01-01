@@ -110,7 +110,50 @@ Example Response
 
 .. code-block:: json
 
-    ???
+    {
+      "alert": {
+        "attributes": {
+          "ip": "127.0.0.1",
+          "region": "EU"
+        },
+        "correlate": [
+          "HttpServerError",
+          "HttpServerOK"
+        ],
+        "createTime": "2017-01-01T11:31:57.716Z",
+        "customer": null,
+        "duplicateCount": 0,
+        "environment": "Production",
+        "event": "HttpServerError",
+        "group": "Web",
+        "history": [],
+        "href": "http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe",
+        "id": "1711c57e-5c6a-4c39-881b-9d8d174feafe",
+        "lastReceiveId": "1711c57e-5c6a-4c39-881b-9d8d174feafe",
+        "lastReceiveTime": "2017-01-01T11:31:57.718Z",
+        "origin": "curl",
+        "previousSeverity": "indeterminate",
+        "rawData": "",
+        "receiveTime": "2017-01-01T11:31:57.718Z",
+        "repeat": false,
+        "resource": "web01",
+        "service": [
+          "example.com"
+        ],
+        "severity": "major",
+        "status": "open",
+        "tags": [
+          "dc1"
+        ],
+        "text": "Site is down.",
+        "timeout": 86400,
+        "trendIndication": "moreSevere",
+        "type": "exceptionAlert",
+        "value": "Bad Gateway (501)"
+      },
+      "id": "1711c57e-5c6a-4c39-881b-9d8d174feafe",
+      "status": "ok"
+    }
 
 .. _get_alert_id:
 
@@ -128,7 +171,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl http://localhost:8080/alert/d61d877b-abe8-4fe9-b168-df8cf494a8e5 \
+    $ curl http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json'
 
@@ -141,7 +184,68 @@ Example Response
 
 .. code-block:: json
 
-    ???
+    {
+      "alert": {
+        "attributes": {
+          "ip": "127.0.0.1",
+          "region": "EU"
+        },
+        "correlate": [
+          "HttpServerError",
+          "HttpServerOK"
+        ],
+        "createTime": "2017-01-01T11:31:57.716Z",
+        "customer": null,
+        "duplicateCount": 0,
+        "environment": "Production",
+        "event": "HttpServerError",
+        "group": "Web",
+        "history": [
+          {
+            "event": "HttpServerError",
+            "id": "1711c57e-5c6a-4c39-881b-9d8d174feafe",
+            "severity": "major",
+            "text": "Site is down.",
+            "type": "severity",
+            "updateTime": "2017-01-01T11:31:57.716Z",
+            "value": "Bad Gateway (501)"
+          },
+          {
+            "event": "HttpServerError",
+            "id": "1711c57e-5c6a-4c39-881b-9d8d174feafe",
+            "status": "open",
+            "text": "new alert status change",
+            "type": "status",
+            "updateTime": "2017-01-01T11:31:57.718Z"
+          }
+        ],
+        "href": "http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe",
+        "id": "1711c57e-5c6a-4c39-881b-9d8d174feafe",
+        "lastReceiveId": "1711c57e-5c6a-4c39-881b-9d8d174feafe",
+        "lastReceiveTime": "2017-01-01T11:31:57.718Z",
+        "origin": "curl",
+        "previousSeverity": "indeterminate",
+        "rawData": "",
+        "receiveTime": "2017-01-01T11:31:57.718Z",
+        "repeat": false,
+        "resource": "web01",
+        "service": [
+          "example.com"
+        ],
+        "severity": "major",
+        "status": "open",
+        "tags": [
+          "dc1"
+        ],
+        "text": "Site is down.",
+        "timeout": 86400,
+        "trendIndication": "moreSevere",
+        "type": "exceptionAlert",
+        "value": "Bad Gateway (501)"
+      },
+      "status": "ok",
+      "total": 1
+    }
 
 Set alert status
 ~~~~~~~~~~~~~~~~
@@ -159,7 +263,7 @@ Input
 | Name            | Type     | Description                                  |
 +=================+==========+==============================================+
 | ``status``      | string   | **Required** New status from ``open``,       |
-|                 |          | ``ack``, ``assigned``, ``closed``            |
+|                 |          | ``assign``, ``ack``, ``closed``, ``expired`` |
 +-----------------+----------+----------------------------------------------+
 | ``text``        | string   | reason for status change                     |
 +-----------------+----------+----------------------------------------------+
@@ -169,7 +273,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XPOST http://localhost:8080/alert/d61d877b-abe8-4fe9-b168-df8cf494a8e5/status \
+    $ curl -XPOST http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe/status \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json' \
     -d '{
@@ -201,7 +305,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XPOST http://localhost:8080/alert/d61d877b-abe8-4fe9-b168-df8cf494a8e5/tag \
+    $ curl -XPOST http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe/tag \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json' \
     -d '{
@@ -236,7 +340,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XPUT http://localhost:8080/alert/d326cce7-77e0-4cf5-ab83-c6acb822b68f/attributes \
+    $ curl -XPUT http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe/attributes \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json' \
     -d '{
@@ -262,7 +366,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XDELETE http://localhost:8080/alert/d326cce7-77e0-4cf5-ab83-c6acb822b68f \
+    $ curl -XDELETE http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json'
 
