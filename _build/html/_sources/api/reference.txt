@@ -1344,9 +1344,13 @@ Input
 +-----------------+----------+----------------------------------------------+
 | Name            | Type     | Description                                  |
 +=================+==========+==============================================+
-| ``user``        | string   |                                              |
+| ``user``        | string   | **Admin use only**                           |
 +-----------------+----------+----------------------------------------------+
-| ``text``        | string   |                                              |
+| ``customer``    | string   | **Admin use only**                           |
++-----------------+----------+----------------------------------------------+
+| ``type``        | string   | ``read-write`` or ``read-only``              |
++-----------------+----------+----------------------------------------------+
+| ``text``        | string   | freeform description text                    |
 +-----------------+----------+----------------------------------------------+
 
 Example Request
@@ -1354,11 +1358,12 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XPOST http://localhost:8080/alert \
+    $ curl -XPOST http://localhost:8080/key \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json' \
     -d '{
-
+          "type": "read-write",
+          "text": "API key for external system"
         }'
 
 Example Response
@@ -1370,7 +1375,20 @@ Example Response
 
 .. code-block:: json
 
-    ???
+    {
+      "data": {
+        "count": 0,
+        "customer": null,
+        "expireTime": "2018-01-01T23:21:18.508Z",
+        "key": "O8rhJSKrdfQWXqRhvSwJQJRZg9yU0s2Z4VLP4855",
+        "lastUsedTime": null,
+        "text": "API key for external system",
+        "type": "read-write",
+        "user": "admin@alerta.io"
+      },
+      "key": "O8rhJSKrdfQWXqRhvSwJQJRZg9yU0s2Z4VLP4855",
+      "status": "ok"
+    }
 
 List all API keys
 ~~~~~~~~~~~~~~~~~
@@ -1386,9 +1404,8 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XPOST http://localhost:8080/alert \
-    -H 'Authorization: Key demo-key' \
-    -H 'Content-type: application/json'
+    $ curl http://localhost:8080/keys \
+    -H 'Authorization: Key demo-key'
 
 Example Response
 ++++++++++++++++
@@ -1399,48 +1416,34 @@ Example Response
 
 .. code-block:: json
 
-    ???
+    {
+      "keys": [
+        {
+          "count": 2,
+          "customer": null,
+          "expireTime": "2018-01-01T23:21:09.471Z",
+          "key": "demo-key",
+          "lastUsedTime": "2017-01-01T23:24:01.908Z",
+          "text": "demo key",
+          "type": "read-write",
+          "user": "admin@alerta.io"
+        },
+        {
+          "count": 0,
+          "customer": null,
+          "expireTime": "2018-01-01T23:21:18.508Z",
+          "key": "O8rhJSKrdfQWXqRhvSwJQJRZg9yU0s2Z4VLP4855",
+          "lastUsedTime": null,
+          "text": "API key for external system",
+          "type": "read-write",
+          "user": "admin@alerta.io"
+        }
+      ],
+      "status": "ok",
+      "time": "2017-01-01T23:24:01.909Z",
+      "total": 2
+    }
 
-List all API keys for a user
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Returns a list of all API keys for a user.
-
-::
-
-    GET /keys/:user
-
-Parameters
-++++++++++
-
-+-----------------+----------+----------------------------------------------+
-| Name            | Type     | Description                                  |
-+=================+==========+==============================================+
-| ``user``        | string   |                                              |
-+-----------------+----------+----------------------------------------------+
-
-Example Request
-+++++++++++++++
-
-.. code-block:: bash
-
-    $ curl -XPOST http://localhost:8080/alert \
-    -H 'Authorization: Key demo-key' \
-    -H 'Content-type: application/json' \
-    -d '{
-
-        }'
-
-Example Response
-++++++++++++++++
-
-::
-
-    201 CREATED
-
-.. code-block:: json
-
-    ???
 
 Delete an API key
 ~~~~~~~~~~~~~~~~~
@@ -1456,9 +1459,8 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XPOST http://localhost:8080/alert \
-    -H 'Authorization: Key demo-key' \
-    -H 'Content-type: application/json'
+    $ curl -XDELETE http://localhost:8080/key/O8rhJSKrdfQWXqRhvSwJQJRZg9yU0s2Z4VLP4855 \
+    -H 'Authorization: Key demo-key'
 
 .. _users:
 
