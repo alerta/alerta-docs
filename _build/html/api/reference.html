@@ -1235,22 +1235,26 @@ on existing alerts.</p>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">endTime</span></code></td>
 <td>datetime</td>
-<td>end time. Default: now+``BLACKOUT_DURATION``</td>
+<td>end time. Default: now +
+<code class="docutils literal"><span class="pre">BLACKOUT_DURATION</span></code></td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">duration</span></code></td>
 <td>integer</td>
-<td>Seconds. Default: <code class="docutils literal"><span class="pre">BLACKOUT_DURATION</span></code></td>
+<td>seconds. Default: <code class="docutils literal"><span class="pre">BLACKOUT_DURATION</span></code>
+Only used if <code class="docutils literal"><span class="pre">endTime</span></code> not defined</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="id31">
 <h4>Example Request<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/alert <span class="se">\</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/blackout <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
 -d <span class="s1">&#39;{</span>
-
+<span class="s1">      &quot;environment&quot;: &quot;Production&quot;,</span>
+<span class="s1">      &quot;service&quot;: &quot;example.com&quot;,</span>
+<span class="s1">      &quot;group&quot;: &quot;Web&quot;</span>
 <span class="s1">    }&#39;</span>
 </pre></div>
 </div>
@@ -1260,7 +1264,19 @@ on existing alerts.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span>???
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;blackout&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;duration&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+    <span class="nt">&quot;endTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T15:35:53.695Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;77059317-bf66-44ef-a63d-b2e2aa8c0612&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;priority&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="s2">&quot;example.com&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;startTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T14:35:53.695Z&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;77059317-bf66-44ef-a63d-b2e2aa8c0612&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -1281,10 +1297,38 @@ on existing alerts.</p>
 </div>
 <div class="section" id="id34">
 <h4>Example Response<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span>???
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;blackouts&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;duration&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+      <span class="nt">&quot;endTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T15:37:42.746Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;864fb326-3743-456f-a94b-86c304b436d4&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;priority&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+      <span class="nt">&quot;remaining&quot;</span><span class="p">:</span> <span class="mi">3561</span><span class="p">,</span>
+      <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="s2">&quot;example.com&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;startTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T14:37:42.746Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;active&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;duration&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+      <span class="nt">&quot;endTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T15:38:16.639Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Development&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Performance&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;7b599c38-cd05-453a-8fa9-fc29cf5edfd4&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;priority&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+      <span class="nt">&quot;remaining&quot;</span><span class="p">:</span> <span class="mi">3594</span><span class="p">,</span>
+      <span class="nt">&quot;startTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T14:38:16.639Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;active&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T14:38:21.676Z&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -1297,7 +1341,7 @@ on existing alerts.</p>
 </div>
 <div class="section" id="id35">
 <h4>Example Request<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/alert <span class="se">\</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/blackout/77059317-bf66-44ef-a63d-b2e2aa8c0612 <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span>
 </pre></div>
