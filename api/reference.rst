@@ -172,8 +172,7 @@ Example Request
 .. code-block:: bash
 
     $ curl http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe \
-    -H 'Authorization: Key demo-key' \
-    -H 'Content-type: application/json'
+    -H 'Authorization: Key demo-key'
 
 Example Response
 ++++++++++++++++
@@ -367,8 +366,7 @@ Example Request
 .. code-block:: bash
 
     $ curl -XDELETE http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe \
-    -H 'Authorization: Key demo-key' \
-    -H 'Content-type: application/json'
+    -H 'Authorization: Key demo-key'
 
 .. _get_alerts:
 
@@ -425,8 +423,7 @@ Example Request
 .. code-block:: bash
 
     $ curl http://localhost:8080/alerts?group=Web \
-    -H 'Authorization: Key demo-key' \
-    -H 'Content-type: application/json'
+    -H 'Authorization: Key demo-key'
 
 Example Response
 ++++++++++++++++
@@ -599,8 +596,7 @@ Example Request
 .. code-block:: bash
 
     $ curl http://localhost:8080/alerts/history?service=example.com \
-    -H 'Authorization: Key demo-key' \
-    -H 'Content-type: application/json'
+    -H 'Authorization: Key demo-key'
 
 Example Response
 ++++++++++++++++
@@ -764,8 +760,7 @@ Example Request
 .. code-block:: bash
 
     $ curl http://localhost:8080/alerts/count?environment=Production \
-    -H 'Authorization: Key demo-key' \
-    -H 'Content-type: application/json'
+    -H 'Authorization: Key demo-key'
 
 Example Response
 ++++++++++++++++
@@ -819,8 +814,7 @@ Example Request
 .. code-block:: bash
 
     $ curl http://localhost:8080/alerts/top10?group-by=group \
-    -H 'Authorization: Key demo-key' \
-    -H 'Content-type: application/json'
+    -H 'Authorization: Key demo-key'
 
 Example Response
 ++++++++++++++++
@@ -893,8 +887,7 @@ Example Request
 .. code-block:: bash
 
     $ curl http://localhost:8080/environments \
-    -H 'Authorization: Key demo-key' \
-    -H 'Content-type: application/json'
+    -H 'Authorization: Key demo-key'
 
 Example Response
 ++++++++++++++++
@@ -947,8 +940,7 @@ Example Request
 .. code-block:: bash
 
     $ curl http://localhost:8080/services?environment=Production \
-    -H 'Authorization: Key demo-key' \
-    -H 'Content-type: application/json'
+    -H 'Authorization: Key demo-key'
 
 Example Response
 ++++++++++++++++
@@ -1064,8 +1056,7 @@ Example Request
 .. code-block:: bash
 
     $ curl http://localhost:8080/blackouts \
-    -H 'Authorization: Key demo-key' \
-    -H 'Content-type: application/json'
+    -H 'Authorization: Key demo-key'
 
 Example Response
 ++++++++++++++++
@@ -1121,8 +1112,7 @@ Example Request
 .. code-block:: bash
 
     $ curl -XDELETE http://localhost:8080/blackout/77059317-bf66-44ef-a63d-b2e2aa8c0612 \
-    -H 'Authorization: Key demo-key' \
-    -H 'Content-type: application/json'
+    -H 'Authorization: Key demo-key'
 
 .. _heartbeats:
 
@@ -1157,11 +1147,13 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XPOST http://localhost:8080/alert \
+    $ curl -XPOST http://localhost:8080/heartbeat \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json' \
     -d '{
-
+          "origin": "cluster05",
+          "timeout": 120,
+          "tags": ["db05", "dc2"]
         }'
 
 Example Response
@@ -1173,7 +1165,24 @@ Example Response
 
 .. code-block:: json
 
-    ???
+  {
+    "heartbeat": {
+      "createTime": "2017-01-01T16:07:31.409Z",
+      "customer": null,
+      "href": "http://localhost:8080/heartbeat/221207f4-1f4b-4dc3-b754-5e67bc6241d1",
+      "id": "221207f4-1f4b-4dc3-b754-5e67bc6241d1",
+      "origin": "cluster05",
+      "receiveTime": "2017-01-01T16:07:31.409Z",
+      "tags": [
+        "db05",
+        "dc2"
+      ],
+      "timeout": 120,
+      "type": "Heartbeat"
+    },
+    "id": "221207f4-1f4b-4dc3-b754-5e67bc6241d1",
+    "status": "ok"
+  }
 
 Get a heartbeat
 ~~~~~~~~~~~~~~~
@@ -1189,23 +1198,36 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XPOST http://localhost:8080/alert \
-    -H 'Authorization: Key demo-key' \
-    -H 'Content-type: application/json' \
-    -d '{
-
-        }'
+    $ curl http://localhost:8080/heartbeat/221207f4-1f4b-4dc3-b754-5e67bc6241d1 \
+    -H 'Authorization: Key demo-key'
 
 Example Response
 ++++++++++++++++
 
 ::
 
-    201 CREATED
+    200 OK
 
 .. code-block:: json
 
-    ???
+    {
+      "heartbeat": {
+        "createTime": "2017-01-01T16:07:31.409Z",
+        "customer": null,
+        "href": "http://localhost:8080/hearbeat/221207f4-1f4b-4dc3-b754-5e67bc6241d1",
+        "id": "221207f4-1f4b-4dc3-b754-5e67bc6241d1",
+        "origin": "cluster05",
+        "receiveTime": "2017-01-01T16:07:31.409Z",
+        "tags": [
+          "db05",
+          "dc2"
+        ],
+        "timeout": 120,
+        "type": "Heartbeat"
+      },
+      "status": "ok",
+      "total": 1
+    }
 
 List all heartbeats
 ~~~~~~~~~~~~~~~~~~~
@@ -1221,23 +1243,53 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XPOST http://localhost:8080/alert \
-    -H 'Authorization: Key demo-key' \
-    -H 'Content-type: application/json' \
-    -d '{
-
-        }'
+    $ curl http://localhost:8080/heartbeats \
+    -H 'Authorization: Key demo-key'
 
 Example Response
 ++++++++++++++++
 
 ::
 
-    201 CREATED
+    200 OK
 
 .. code-block:: json
 
-    ???
+    {
+      "heartbeats": [
+        {
+          "createTime": "2017-01-01T16:07:31.409Z",
+          "customer": null,
+          "href": "http://localhost:8080/heartbeat/221207f4-1f4b-4dc3-b754-5e67bc6241d1",
+          "id": "221207f4-1f4b-4dc3-b754-5e67bc6241d1",
+          "origin": "cluster05",
+          "receiveTime": "2017-01-01T16:07:31.409Z",
+          "tags": [
+            "db05",
+            "dc2"
+          ],
+          "timeout": 120,
+          "type": "Heartbeat"
+        },
+        {
+          "createTime": "2017-01-01T16:18:42.839Z",
+          "customer": null,
+          "href": "http://localhost:8080/heartbeat/55881e1e-ec53-4637-8f4d-05b252d385d5",
+          "id": "55881e1e-ec53-4637-8f4d-05b252d385d5",
+          "origin": "device03",
+          "receiveTime": "2017-01-01T16:18:42.839Z",
+          "tags": [
+            "v2.2",
+            "dc1"
+          ],
+          "timeout": 900,
+          "type": "Heartbeat"
+        }
+      ],
+      "status": "ok",
+      "time": "2017-01-01T16:19:51.896Z",
+      "total": 2
+    }
 
 Delete a heartbeat
 ~~~~~~~~~~~~~~~~~~
@@ -1253,9 +1305,8 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XDELETE http://localhost:8080/alert \
-    -H 'Authorization: Key demo-key' \
-    -H 'Content-type: application/json'
+    $ curl -XDELETE http://localhost:8080/heartbeat/221207f4-1f4b-4dc3-b754-5e67bc6241d1 \
+    -H 'Authorization: Key demo-key'
 
 .. _api_keys:
 
