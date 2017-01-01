@@ -14,8 +14,11 @@ Alerts
 
 .. _post_alert:
 
-Send an alert
-~~~~~~~~~~~~~
+Create an alert
+~~~~~~~~~~~~~~~
+
+Creates a new alert, or updates an existing alert if the ``environment``-
+``resource``-``event`` combination already exists.
 
 ::
 
@@ -24,25 +27,62 @@ Send an alert
 Input
 +++++
 
-Only ``resource`` and ``event`` are required. See
-:ref:`Alert Attributes <alert_attributes>` for a full
-list of valid inputs.
++-----------------+----------+----------------------------------------------+
+| Name            | Type     | Description                                  |
++=================+==========+==============================================+
+| ``resource``    | string   | **Required** resource under alarm            |
++-----------------+----------+----------------------------------------------+
+| ``event``       | string   | **Required** event name                      |
++-----------------+----------+----------------------------------------------+
+| ``environment`` | string   | environment, used to namespace the resource  |
++-----------------+----------+----------------------------------------------+
+| ``severity``    | string   | see :ref:`severity_table` table              |
++-----------------+----------+----------------------------------------------+
+| ``correlate``   | list     | list of related event names                  |
++-----------------+----------+----------------------------------------------+
+| ``status``      | string   | see :ref:`status_table` table                |
++-----------------+----------+----------------------------------------------+
+| ``service``     | list     | list of effected services                    |
++-----------------+----------+----------------------------------------------+
+| ``group``       | string   | used to group events of similar type         |
++-----------------+----------+----------------------------------------------+
+| ``value``       | string   | event value                                  |
++-----------------+----------+----------------------------------------------+
+| ``text``        | string   | freeform text description                    |
++-----------------+----------+----------------------------------------------+
+| ``tags``        | set      | set of tags                                  |
++-----------------+----------+----------------------------------------------+
+| ``attributes``  | dict     | dictionary of key-value pairs                |
++-----------------+----------+----------------------------------------------+
+| ``origin``      | string   | monitoring component that generated the alert|
++-----------------+----------+----------------------------------------------+
+| ``type``        | string   | event type                                   |
++-----------------+----------+----------------------------------------------+
+| ``createTime``  | datetime | time alert was generated at the origin       |
++-----------------+----------+----------------------------------------------+
+| ``timeout``     | integer  | seconds before alert is considered stale     |
++-----------------+----------+----------------------------------------------+
+| ``rawData``     | string   | unprocessed raw data                         |
++-----------------+----------+----------------------------------------------+
+
+.. note:: Only ``resource`` and ``event`` are mandatory. The ``status`` can be
+          dynamically assigned by the Alerta API based on the ``severity``.
 
 Example Request
 +++++++++++++++
 
 .. code-block:: bash
 
-    $ curl -XPOST http://api.alerta.io/alert \
+    $ curl -XPOST http://localhost:8080/alert \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json' \
     -d '{
           "attributes": {
-              "region": "EU"
+            "region": "EU"
           },
           "correlate": [
-              "HttpServerError",
-              "HttpServerOK"
+            "HttpServerError",
+            "HttpServerOK"
           ],
           "environment": "Production",
           "event": "HttpServerError",
@@ -50,16 +90,16 @@ Example Request
           "origin": "curl",
           "resource": "web01",
           "service": [
-              "example.com"
+            "example.com"
           ],
           "severity": "major",
           "tags": [
-              "dept:commercial"
+            "dc1"
           ],
           "text": "Site is down.",
           "type": "exceptionAlert",
           "value": "Bad Gateway (501)"
-      }'
+        }'
 
 Example Response
 ++++++++++++++++
@@ -70,56 +110,14 @@ Example Response
 
 .. code-block:: json
 
-    {
-        "alert": {
-            "attributes": {
-                "ip": "127.0.0.1",
-                "region": "EU"
-            },
-            "correlate": [
-                "HttpServerError",
-                "HttpServerOK"
-            ],
-            "createTime": "2016-12-29T20:37:23.083Z",
-            "customer": null,
-            "duplicateCount": 1,
-            "environment": "Production",
-            "event": "HttpServerError",
-            "group": "Web",
-            "history": [],
-            "href": "http://localhost:8080/alert/d326cce7-77e0-4cf5-ab83-c6acb822b68f",
-            "id": "d326cce7-77e0-4cf5-ab83-c6acb822b68f",
-            "lastReceiveId": "36e49b52-a79d-488b-8fcf-e52379915c30",
-            "lastReceiveTime": "2016-12-30T14:19:16.304Z",
-            "origin": "curl",
-            "previousSeverity": "indeterminate",
-            "rawData": "",
-            "receiveTime": "2016-12-29T20:37:23.085Z",
-            "repeat": true,
-            "resource": "web01",
-            "service": [
-                "example.com"
-            ],
-            "severity": "major",
-            "status": "open",
-            "tags": [
-                "london",
-                "dept:commercial"
-            ],
-            "text": "Site is down.",
-            "timeout": 86400,
-            "trendIndication": "moreSevere",
-            "type": "exceptionAlert",
-            "value": "Bad Gateway (501)"
-        },
-        "id": "d326cce7-77e0-4cf5-ab83-c6acb822b68f",
-        "status": "ok"
-    }
+    ???
 
 .. _get_alert_id:
 
-Get an alert
-~~~~~~~~~~~~
+Retrieve an alert
+~~~~~~~~~~~~~~~~~
+
+Retrieves an alert with the given alert ID.
 
 ::
 
@@ -130,7 +128,9 @@ Example Request
 
 .. code-block:: bash
 
-    GET /alert/d326cce7-77e0-4cf5-ab83-c6acb822b68f
+    $ curl http://localhost:8080/alert/d61d877b-abe8-4fe9-b168-df8cf494a8e5 \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json'
 
 Example Response
 ++++++++++++++++
@@ -141,80 +141,12 @@ Example Response
 
 .. code-block:: json
 
-    {
-        "alert": {
-            "attributes": {
-                "ip": "127.0.0.1",
-                "region": "EU"
-            },
-            "correlate": [
-                "HttpServerError",
-                "HttpServerOK"
-            ],
-            "createTime": "2016-12-29T20:37:23.083Z",
-            "customer": null,
-            "duplicateCount": 1,
-            "environment": "Production",
-            "event": "HttpServerError",
-            "group": "Web",
-            "history": [
-                {
-                    "event": "HttpServerError",
-                    "id": "d326cce7-77e0-4cf5-ab83-c6acb822b68f",
-                    "severity": "major",
-                    "text": "Site is down.",
-                    "type": "severity",
-                    "updateTime": "2016-12-29T20:37:23.083Z",
-                    "value": "Bad Gateway (501)"
-                },
-                {
-                    "event": "HttpServerError",
-                    "id": "d326cce7-77e0-4cf5-ab83-c6acb822b68f",
-                    "status": "open",
-                    "text": "new alert status change",
-                    "type": "status",
-                    "updateTime": "2016-12-29T20:37:23.085Z"
-                },
-                {
-                    "event": "HttpServerError",
-                    "id": "d326cce7-77e0-4cf5-ab83-c6acb822b68f",
-                    "status": "ack",
-                    "text": "disk needs replacing.",
-                    "type": "status",
-                    "updateTime": "2016-12-30T14:20:20.256Z"
-                }
-            ],
-            "href": "http://localhost:8080/alert/d326cce7-77e0-4cf5-ab83-c6acb822b68f",
-            "id": "d326cce7-77e0-4cf5-ab83-c6acb822b68f",
-            "lastReceiveId": "36e49b52-a79d-488b-8fcf-e52379915c30",
-            "lastReceiveTime": "2016-12-30T14:19:16.304Z",
-            "origin": "curl",
-            "previousSeverity": "indeterminate",
-            "rawData": "",
-            "receiveTime": "2016-12-29T20:37:23.085Z",
-            "repeat": true,
-            "resource": "web01",
-            "service": [
-                "example.com"
-            ],
-            "severity": "major",
-            "status": "ack",
-            "tags": [
-                "london",
-                "dept:commercial"
-            ],
-            "text": "Site is down.",
-            "timeout": 86400,
-            "trendIndication": "moreSevere",
-            "type": "exceptionAlert",
-            "value": "Bad Gateway (501)"
-        },
-        "status": "ok",
-        "total": 1
-    }
+    ???
 
 Set alert status
 ~~~~~~~~~~~~~~~~
+
+Sets the status of an alert, and logs the status change to the alert history.
 
 ::
 
@@ -229,33 +161,31 @@ Input
 | ``status``      | string   | **Required** New status from ``open``,       |
 |                 |          | ``ack``, ``assigned``, ``closed``            |
 +-----------------+----------+----------------------------------------------+
-| ``text``        | string   |                                              |
+| ``text``        | string   | reason for status change                     |
 +-----------------+----------+----------------------------------------------+
 
 Example Request
 +++++++++++++++
 
-::
+.. code-block:: bash
 
-    POST /alert/d326cce7-77e0-4cf5-ab83-c6acb822b68f/status
-
-.. code-block:: json
-
-    {
-        "status": "ack",
-        "text": "disk needs replacing."
-    }
+    $ curl -XPOST http://localhost:8080/alert/d61d877b-abe8-4fe9-b168-df8cf494a8e5/status \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+          "status": "ack",
+          "text": "disk needs replacing."
+        }'
 
 Tag and untag alerts
 ~~~~~~~~~~~~~~~~~~~~
 
-Tags are a set, not a list, which means that tagging an alert with
-the same tag does nothing. Tags can be removed.
+Adds or removes tag values from the set of tags for an alert.
 
 ::
 
-  POST /alert/:id/tag
-  POST /alert/:id/untag
+    POST /alert/:id/tag
+    POST /alert/:id/untag
 
 Input
 +++++
@@ -263,35 +193,34 @@ Input
 +-----------------+----------+----------------------------------------------+
 | Name            | Type     | Description                                  |
 +=================+==========+==============================================+
-| ``tags``        | list     | tags to add, modify or remove                |
+| ``tags``        | set      | tags to add or remove                        |
 +-----------------+----------+----------------------------------------------+
 
-Example
-+++++++
+Example Request
++++++++++++++++
 
-::
+.. code-block:: bash
 
-    POST /alert/d326cce7-77e0-4cf5-ab83-c6acb822b68f/tag
-
-.. code-block:: json
-
-    {
-        "tags": [
+    $ curl -XPOST http://localhost:8080/alert/d61d877b-abe8-4fe9-b168-df8cf494a8e5/tag \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+          "tags": [
             "linux",
             "linux2.6",
             "dell"
-        ]
-    }
+          ]
+        }'
 
 Update alert attributes
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Add, delete or modify alert attributes. To delete an attribute assign "null"
-to the attribute.
+Adds, deletes or modifies alert attributes. To delete an attribute assign
+"null" to the attribute.
 
 ::
 
-  PUT /alert/:id/attributes
+    PUT /alert/:id/attributes
 
 Input
 +++++
@@ -299,48 +228,55 @@ Input
 +-----------------+----------+----------------------------------------------+
 | Name            | Type     | Description                                  |
 +=================+==========+==============================================+
-| ``attributes``  | dict     |                                              |
+| ``attributes``  | dict     | dictionary of key-value attributes           |
 +-----------------+----------+----------------------------------------------+
 
 Example Request
 +++++++++++++++
 
-::
+.. code-block:: bash
 
-    PUT /alert/d326cce7-77e0-4cf5-ab83-c6acb822b68f/attributes
-
-.. code-block:: json
-
-    {
-        "attributes": {
+    $ curl -XPUT http://localhost:8080/alert/d326cce7-77e0-4cf5-ab83-c6acb822b68f/attributes \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+          "attributes": {
             "incidentKey": "1234abcd",
             "ip": "10.1.1.1",
             "region": null
-        }
-    }
+          }
+        }'
+
 
 Delete an alert
 ~~~~~~~~~~~~~~~
 
+Permanently deletes an alert. It cannot be undone.
+
 ::
 
-  DELETE /alert/:id
+    DELETE /alert/:id
 
 Example Request
 +++++++++++++++
 
-::
+.. code-block:: bash
 
-    DELETE /alert/d326cce7-77e0-4cf5-ab83-c6acb822b68f
+    $ curl -XDELETE http://localhost:8080/alert/d326cce7-77e0-4cf5-ab83-c6acb822b68f \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json'
 
 .. _get_alerts:
 
 Search alerts
 ~~~~~~~~~~~~~
 
+Searches for alerts using alert attributes or a mongo-type query parameter to
+filter results.
+
 ::
 
-  GET /alerts
+    GET /alerts
 
 Parameters
 ++++++++++
@@ -348,7 +284,7 @@ Parameters
 +-----------------+----------+----------------------------------------------+
 | Name            | Type     | Description                                  |
 +=================+==========+==============================================+
-| ``<attr>``      | string   |                                              |
+| ``<attr>``      | string   | any attribute. eg. ``status=open``           |
 +-----------------+----------+----------------------------------------------+
 | ``q``           | json     | mongo query see `Mongo Query Operators`_     |
 +-----------------+----------+----------------------------------------------+
@@ -379,102 +315,36 @@ Default is not to use exact match. To use regex ``=~`` and to negate use ``!=``.
 
 **If customer views enabled then the customer for that user will be applied as a filter.**
 
-Example
-+++++++
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/alerts?status=open&severity=critical&severity=major&environment=Production&service=Network \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json'
+
+Example Response
+++++++++++++++++
 
 ::
 
-  http://api.alerta.io/alerts?status=open&severity=critical&severity=major&environment=Production&service=Network
+    200 OK
 
-Response
-++++++++
+.. code-block:: json
 
-::
-
-
-    {
-      "status": "ok",
-      "total": 2,
-      "pageSize": 1,
-      "statusCounts": {
-        "open": 2
-      },
-      "alerts": [
-        {
-          "origin": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.93 Safari/537.36",
-          "text": "",
-          "lastReceiveTime": "2015-01-30T23:00:13.985Z",
-          "receiveTime": "2015-01-30T23:00:13.985Z",
-          "trendIndication": "moreSevere",
-          "href": "http://api.alerta.io/alert/8a90ae96-3a9c-422a-8d17-292106266c75",
-          "rawData": "",
-          "previousSeverity": "unknown",
-          "event": "HttpError",
-          "group": "Web",
-          "severity": "minor",
-          "service": [
-            "Website"
-          ],
-          "id": "8a90ae96-3a9c-422a-8d17-292106266c75",
-          "environment": "Production",
-          "type": "browserAlert",
-          "status": "open",
-          "repeat": false,
-          "tags": [],
-          "createTime": "2015-01-30T23:00:13.978Z",
-          "lastReceiveId": "8a90ae96-3a9c-422a-8d17-292106266c75",
-          "resource": "web01",
-          "duplicateCount": 0,
-          "correlate": [],
-          "value": "n/a",
-          "timeout": 86400,
-          "attributes": {
-            "ip": "127.2.52.129"
-          },
-          "history": [
-            {
-              "updateTime": "2015-01-30T23:00:13.978Z",
-              "severity": "minor",
-              "text": "",
-              "value": "n/a",
-              "event": "HttpError",
-              "id": "8a90ae96-3a9c-422a-8d17-292106266c75"
-            },
-            {
-              "status": "closed",
-              "text": "status change via console",
-              "updateTime": "2015-02-17T14:51:30.609Z",
-              "event": "HttpError",
-              "id": "8a90ae96-3a9c-422a-8d17-292106266c75"
-            },
-            {
-              "status": "open",
-              "text": "status change via console",
-              "updateTime": "2015-02-17T14:51:33.169Z",
-              "event": "HttpError",
-              "id": "8a90ae96-3a9c-422a-8d17-292106266c75"
-            }
-          ]
-        }
-      ],
-      "page": 1,
-      "more": true,
-      "severityCounts": {
-        "minor": 2
-      },
-      "lastTime": "2015-01-30T23:00:13.985Z",
-      "pages": 2,
-      "autoRefresh": true
-    }
+    ???
 
 .. _get_alerts_history:
 
-Get history of alerts
-~~~~~~~~~~~~~~~~~~~~~
+List all alert history
+~~~~~~~~~~~~~~~~~~~~~~
+
+Returns a list of alert severity and status changes.
 
 ::
 
-  GET /alerts/history
+    GET /alerts/history
 
 Parameters
 ++++++++++
@@ -485,75 +355,29 @@ Parameters
 | ``<attr>``      | string   |                                              |
 +-----------------+----------+----------------------------------------------+
 
+Example Request
++++++++++++++++
 
-Example
-+++++++
+.. code-block:: bash
+
+    $ curl http://api.alerta.io/alerts/history?resource=router0011 \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json'
+
+Example Response
+++++++++++++++++
 
 ::
 
-  http://api.alerta.io/alerts/history?resource=router0011
-
-Response
-++++++++
-
-::
-
-    {
-      "status": "ok",
-      "lastTime": "2014-12-15T09:55:31.344Z",
-      "history": [
-        {
-          "origin": "mod_wsgi/ex-std-node439.prod.rhcloud.com",
-          "updateTime": "2014-12-15T09:55:31.341Z",
-          "tags": [
-            "location=London",
-            "region=EU"
-          ],
-          "text": "Router is up.",
-          "href": "http://api.alerta.io/alert/53482b80-ca57-43da-ab73-8e0a8456c531",
-          "group": "Network",
-          "id": "53482b80-ca57-43da-ab73-8e0a8456c531",
-          "resource": "router0011",
-          "severity": "normal",
-          "service": [
-            "Shared"
-          ],
-          "value": "UP",
-          "event": "node_up",
-          "environment": "Production",
-          "attributes": {},
-          "type": "exceptionAlert"
-        },
-        {
-          "status": "closed",
-          "origin": "mod_wsgi/ex-std-node439.prod.rhcloud.com",
-          "updateTime": "2014-12-15T09:55:31.344Z",
-          "tags": [
-            "location=London",
-            "region=EU"
-          ],
-          "text": "new alert status change",
-          "href": "http://api.alerta.io/alert/53482b80-ca57-43da-ab73-8e0a8456c531",
-          "group": "Network",
-          "id": "53482b80-ca57-43da-ab73-8e0a8456c531",
-          "resource": "router0011",
-          "service": [
-            "Shared"
-          ],
-          "event": "node_up",
-          "environment": "Production",
-          "attributes": {},
-          "type": "exceptionAlert"
-        }
-      ]
-    }
+    ???
 
 Get severity and status counts for alerts
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Returns a count of alerts grouped by severity and status.
 ::
 
-  GET /alerts/count
+    GET /alerts/count
 
 Parameters
 ++++++++++
@@ -564,44 +388,32 @@ Parameters
 | ``<attr>``      | string   |                                              |
 +-----------------+----------+----------------------------------------------+
 
-Example
-+++++++
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://api.alerta.io/alerts/count?status=open&status=ack \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json'
+
+Example Response
+++++++++++++++++
 
 ::
 
-  http://api.alerta.io/alerts/count?status=open&status=ack
-
-Response
-++++++++
-
-::
-
-    {
-      "status": "ok",
-      "total": 12,
-      "statusCounts": {
-        "ack": 2,
-        "open": 10
-      },
-      "severityCounts": {
-        "major": 1,
-        "warning": 3,
-        "critical": 2,
-        "minor": 5,
-        "normal": 1
-      }
-    }
+    ???
 
 Top 10 alerts by resource
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The top 10 resources are grouped by ``event`` by default but this can
-be any valid attribute.
+Returns a list of the top 10 resources grouped by an alert attribute. By
+default it is grouped by ``event`` but this can be any valid attribute.
 
 ::
 
-  GET /alerts/top10/count
-  GET /alerts/top10/flapping
+    GET /alerts/top10/count
+    GET /alerts/top10/flapping
 
 Parameters
 ++++++++++
@@ -609,290 +421,45 @@ Parameters
 +-----------------+----------+----------------------------------------------+
 | Name            | Type     | Description                                  |
 +=================+==========+==============================================+
+| ``<attr>``      | string   |                                              |
++-----------------+----------+----------------------------------------------+
 | ``q``           | dict     | mongo query see `Mongo Query Operators`_     |
 +-----------------+----------+----------------------------------------------+
 | ``group-by``    | string   | any valid alert attribute. Default:``event`` |
 +-----------------+----------+----------------------------------------------+
 
-Example
-+++++++
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://api.alerta.io/alerts/top10?group-by=group \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json'
+
+Example Response
+++++++++++++++++
 
 ::
 
-  http://api.alerta.io/alerts/top10?group-by=group
-
-Response
-++++++++
-
-::
-
-    {
-      "status": "ok",
-      "total": 10,
-      "top10": [
-        {
-          "count": 7,
-          "group": "Misc",
-          "duplicateCount": 0,
-          "environments": [
-            "Development",
-            "Production"
-          ],
-          "services": [
-            "sdff",
-            "web",
-            "Web",
-            "test",
-            "aaa",
-            "Svc"
-          ],
-          "resources": [
-            {
-              "href": "http://api.alerta.io/alert/f5b7cbc2-ae92-4e0c-acd3-01d4ec466785",
-              "resource": "web",
-              "id": "f5b7cbc2-ae92-4e0c-acd3-01d4ec466785"
-            },
-            {
-              "href": "http://api.alerta.io/alert/5c92228f-c511-4d5b-9c81-dc98d3fd67e6",
-              "resource": "xv",
-              "id": "5c92228f-c511-4d5b-9c81-dc98d3fd67e6"
-            },
-            {
-              "href": "http://api.alerta.io/alert/7e18e2ca-40d3-4c0d-8b90-067b67f82eee",
-              "resource": "res1",
-              "id": "7e18e2ca-40d3-4c0d-8b90-067b67f82eee"
-            },
-            {
-              "href": "http://api.alerta.io/alert/d6f5bcce-6442-4471-a869-b8c017b74b2b",
-              "resource": "web01",
-              "id": "d6f5bcce-6442-4471-a869-b8c017b74b2b"
-            },
-            {
-              "href": "http://api.alerta.io/alert/710cc471-569b-4558-8f00-714f4f91bfaf",
-              "resource": "res1",
-              "id": "710cc471-569b-4558-8f00-714f4f91bfaf"
-            },
-            {
-              "href": "http://api.alerta.io/alert/8fbd3de5-4ed4-4a75-b208-87bed86a7bed",
-              "resource": "asdf",
-              "id": "8fbd3de5-4ed4-4a75-b208-87bed86a7bed"
-            },
-            {
-              "href": "http://api.alerta.io/alert/d71bb399-2241-4c53-8dd7-3c541699c86a",
-              "resource": "sdf",
-              "id": "d71bb399-2241-4c53-8dd7-3c541699c86a"
-            }
-          ]
-        },
-        {
-          "count": 5,
-          "group": "Web",
-          "duplicateCount": 11,
-          "environments": [
-            "Production"
-          ],
-          "services": [
-            "example.com",
-            "API",
-            "Website",
-            "Mobile"
-          ],
-          "resources": [
-            {
-              "href": "http://api.alerta.io/alert/f26b3695-0e67-402f-81be-ba966bcb9603",
-              "resource": "web01",
-              "id": "f26b3695-0e67-402f-81be-ba966bcb9603"
-            },
-            {
-              "href": "http://api.alerta.io/alert/75e28e73-a76b-4850-8fdb-87fe67d05b1c",
-              "resource": "web02",
-              "id": "75e28e73-a76b-4850-8fdb-87fe67d05b1c"
-            },
-            {
-              "href": "http://api.alerta.io/alert/8a90ae96-3a9c-422a-8d17-292106266c75",
-              "resource": "web01",
-              "id": "8a90ae96-3a9c-422a-8d17-292106266c75"
-            },
-            {
-              "href": "http://api.alerta.io/alert/28681862-af94-4a02-8024-d7a20dd59696",
-              "resource": "web01:www-http",
-              "id": "28681862-af94-4a02-8024-d7a20dd59696"
-            }
-          ]
-        },
-        {
-          "count": 3,
-          "group": "OS",
-          "duplicateCount": 10,
-          "environments": [
-            "Production"
-          ],
-          "services": [
-            "Platform",
-            "Mobile"
-          ],
-          "resources": [
-            {
-              "href": "http://api.alerta.io/alert/c0a7bbdb-0ab2-4f5b-aa9a-bd7f770ef77f",
-              "resource": "host44",
-              "id": "c0a7bbdb-0ab2-4f5b-aa9a-bd7f770ef77f"
-            },
-            {
-              "href": "http://api.alerta.io/alert/44106634-6662-491a-9915-6d5e27b5fab7",
-              "resource": "i-9d7303dd:/dev/xvdb",
-              "id": "44106634-6662-491a-9915-6d5e27b5fab7"
-            }
-          ]
-        },
-        {
-          "count": 2,
-          "group": "Cisco",
-          "duplicateCount": 9,
-          "environments": [
-            "Production"
-          ],
-          "services": [
-            "Network"
-          ],
-          "resources": [
-            {
-              "href": "http://api.alerta.io/alert/627fc0e3-38a4-46d7-8064-7a00161c77d6",
-              "resource": "C-AJPTYO01-VG01-L-3845",
-              "id": "627fc0e3-38a4-46d7-8064-7a00161c77d6"
-            },
-            {
-              "href": "http://api.alerta.io/alert/5af0e69f-620c-49b1-9694-d1c2f3e23fbe",
-              "resource": "G-NNYBUF01-WR01-H-7206",
-              "id": "5af0e69f-620c-49b1-9694-d1c2f3e23fbe"
-            }
-          ]
-        },
-        {
-          "count": 1,
-          "group": "NetApp",
-          "duplicateCount": 5,
-          "environments": [
-            "Production"
-          ],
-          "services": [
-            "Storage"
-          ],
-          "resources": [
-            {
-              "href": "http://api.alerta.io/alert/8124c797-9843-45c2-9f3b-a6ab610a335c",
-              "resource": "netapp51",
-              "id": "8124c797-9843-45c2-9f3b-a6ab610a335c"
-            }
-          ]
-        },
-        {
-          "count": 1,
-          "group": "CloudWatch",
-          "duplicateCount": 2,
-          "environments": [
-            "Production"
-          ],
-          "services": [
-            "496780030265"
-          ],
-          "resources": [
-            {
-              "href": "http://api.alerta.io/alert/8e3b6042-ac6e-453a-b118-afa52067fc18",
-              "resource": "InstanceId:i-0c678beb",
-              "id": "8e3b6042-ac6e-453a-b118-afa52067fc18"
-            }
-          ]
-        },
-        {
-          "count": 1,
-          "group": "web",
-          "duplicateCount": 0,
-          "environments": [
-            "Development"
-          ],
-          "services": [
-            "web"
-          ],
-          "resources": [
-            {
-              "href": "http://api.alerta.io/alert/72e6d62d-1d15-4899-a6a5-f511f2fb7e7f",
-              "resource": "wb01",
-              "id": "72e6d62d-1d15-4899-a6a5-f511f2fb7e7f"
-            }
-          ]
-        },
-        {
-          "count": 1,
-          "group": "Hardware",
-          "duplicateCount": 0,
-          "environments": [
-            "Production"
-          ],
-          "services": [
-            "Network"
-          ],
-          "resources": [
-            {
-              "href": "http://api.alerta.io/alert/36b4a748-1067-4fbd-a1b5-45658118bd9b",
-              "resource": "host678:eth0",
-              "id": "36b4a748-1067-4fbd-a1b5-45658118bd9b"
-            }
-          ]
-        },
-        {
-          "count": 1,
-          "group": "Network",
-          "duplicateCount": 0,
-          "environments": [
-            "Production"
-          ],
-          "services": [
-            "Shared"
-          ],
-          "resources": [
-            {
-              "href": "http://api.alerta.io/alert/53482b80-ca57-43da-ab73-8e0a8456c531",
-              "resource": "router0011",
-              "id": "53482b80-ca57-43da-ab73-8e0a8456c531"
-            }
-          ]
-        },
-        {
-          "count": 1,
-          "group": "Oracle",
-          "duplicateCount": 0,
-          "environments": [
-            "Development"
-          ],
-          "services": [
-            "Database"
-          ],
-          "resources": [
-            {
-              "href": "http://api.alerta.io/alert/5f49bd9a-e612-4489-a540-e1992c6b98c4",
-              "resource": "mydb",
-              "id": "5f49bd9a-e612-4489-a540-e1992c6b98c4"
-            }
-          ]
-        }
-      ]
-    }
+    ???
 
 .. _environments:
 
 Environments
 ------------
 
-An environment cannot be created -- it is a dynamically derived resource based on existing alerts.
+An environment cannot be created -- it is a dynamically derived resource based
+on existing alerts.
 
-List of all environments
-~~~~~~~~~~~~~~~~~~~~~~~~
+List all environments
+~~~~~~~~~~~~~~~~~~~~~
 
-List all environments and alert count for each.
+Returns a list of environments and an alert count for each.
 
 ::
 
-  GET /environments
+    GET /environments
 
 Parameters
 ++++++++++
@@ -903,32 +470,21 @@ Parameters
 | ``<attr>``      | string   |                                              |
 +-----------------+----------+----------------------------------------------+
 
-Example
-+++++++
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://api.alerta.io/environments \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json'
+
+Example Response
+++++++++++++++++
 
 ::
 
-  http://api.alerta.io/environments
-
-Response
-++++++++
-
-::
-
-    {
-      "status": "ok",
-      "total": 2,
-      "environments": [
-        {
-          "environment": "Development",
-          "count": 5
-        },
-        {
-          "environment": "Production",
-          "count": 18
-        }
-      ]
-    }
+    ???
 
 .. _services:
 
@@ -937,14 +493,14 @@ Services
 
 A service cannot be created -- it is a dynamically derived resource based on existing alerts.
 
-List of all services
-~~~~~~~~~~~~~~~~~~~~
+List all services
+~~~~~~~~~~~~~~~~~
 
-List all services by environment and count of alerts for each.
+Returns a list of services grouped by environment and an alert count for each.
 
 ::
 
-  GET /services
+    GET /services
 
 Parameters
 ++++++++++
@@ -955,39 +511,21 @@ Parameters
 | ``<attr>``      | string   |                                              |
 +-----------------+----------+----------------------------------------------+
 
-Example
-+++++++
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://api.alerta.io/services?environment=Production \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json'
+
+Example Response
+++++++++++++++++
 
 ::
 
-  http://api.alerta.io/services?environment=Production
-
-Response
-++++++++
-
-::
-
-    {
-      "status": "ok",
-      "services": [
-        {
-          "environment": "Production",
-          "count": 1,
-          "service": "API"
-        },
-        {
-          "environment": "Production",
-          "count": 2,
-          "service": "Mobile"
-        },
-        {
-          "environment": "Production",
-          "count": 2,
-          "service": "Website"
-        }
-      ],
-      "total": 3
-    }
+    ???
 
 .. _blackouts:
 
@@ -997,11 +535,11 @@ Blackout Periods
 Create a blackout
 ~~~~~~~~~~~~~~~~~
 
-Create a new blackout period for the ``environment``.
+Create a new blackout period for alert suppression.
 
 ::
 
-  POST /blackout
+    POST /blackout
 
 Input
 +++++
@@ -1028,110 +566,75 @@ Input
 | ``duration``    | integer  | Seconds. Default: ``BLACKOUT_DURATION``      |
 +-----------------+----------+----------------------------------------------+
 
-Example
-+++++++
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPOST http://localhost:8080/alert \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+
+        }'
+
+Example Response
+++++++++++++++++
 
 ::
 
-    {
-        "environment": "Development",
-        "tags": [
-            "foo",
-            "bar"
-        ]
-    }
+    201 CREATED
 
-Response
-++++++++
+.. code-block:: json
 
-::
-
-  201 CREATED
-
-::
-
-    {
-      "status": "ok",
-      "blackout": "d6d1e055-735b-46d2-b4d4-60f2b7d7376c"
-    }
+    ???
 
 List all blackouts
 ~~~~~~~~~~~~~~~~~~
 
-::
-
-  GET /blackouts
-
-Response
-++++++++
+Returns a list of blackout periods, including expired blackouts.
 
 ::
 
-    {
-      "status": "ok",
-      "blackouts": [
-        {
-          "status": "expired",
-          "priority": 3,
-          "endTime": "2015-10-09T05:13:00.000Z",
-          "service": [
-            "Mobile"
-          ],
-          "remaining": 0,
-          "environment": "Production",
-          "startTime": "2015-10-09T04:13:00.000Z",
-          "duration": 3600,
-          "id": "f8df3075-8a65-4b6a-8dcc-bc04baba7696"
-        },
-        {
-          "status": "active",
-          "priority": 1,
-          "endTime": "2015-10-09T22:09:45.852Z",
-          "remaining": 3543,
-          "environment": "Development",
-          "startTime": "2015-10-09T21:09:45.852Z",
-          "duration": 3600,
-          "id": "d6d1e055-735b-46d2-b4d4-60f2b7d7376c"
-        },
-        {
-          "status": "active",
-          "priority": 7,
-          "endTime": "2015-10-09T22:10:36.678Z",
-          "tags": [
-            "foo",
-            "bar"
-          ],
-          "remaining": 3594,
-          "environment": "Development",
-          "startTime": "2015-10-09T21:10:36.678Z",
-          "duration": 3600,
-          "id": "60ead7b7-011e-4945-9e5c-5325a6532511"
-        }
-      ],
-      "total": 3,
-      "time": "2015-10-09T21:10:42.220Z"
-    }
+    GET /blackouts
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/blackouts \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json'
+
+Example Response
+++++++++++++++++
+
+::
+
+    201 CREATED
+
+.. code-block:: json
+
+    ???
 
 Delete a blackout
 ~~~~~~~~~~~~~~~~~
 
-::
-
-  DELETE /blackout/:id
-
-Response
-++++++++
+Permanently deletes a blackout period. It cannot be undone.
 
 ::
 
-    200 OK
+    DELETE /blackout/:id
 
-::
+Example Request
++++++++++++++++
 
-    {
-      "status": "ok"
-    }
+.. code-block:: bash
 
+    $ curl -XPOST http://localhost:8080/alert \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json'
 
 .. _heartbeats:
 
@@ -1141,11 +644,12 @@ Heartbeats
 Send a heartbeat
 ~~~~~~~~~~~~~~~~
 
-Update a heartbeat or create a new one if it doesn't already exist for the heartbeat ``origin``.
+Creates a new heartbeat, or updates an existing heartbeat if a heartbeat
+from the ``origin`` already exists.
 
 ::
 
-  POST /heartbeat
+    POST /heartbeat
 
 Input
 +++++
@@ -1160,144 +664,124 @@ Input
 | ``timeout``     | integer  | Seconds.                                     |
 +-----------------+----------+----------------------------------------------+
 
-Example
-+++++++
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPOST http://localhost:8080/alert \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+
+        }'
+
+Example Response
+++++++++++++++++
 
 ::
 
-    {
-        "origin": "foo",
-        "tags": [
-            "bar"
-        ],
-        "createTime": "2015-03-02T01:48:42.106Z",
-        "timeout": 300,
-        "type": "Heartbeat",
-        "id": "aa4d7327-0139-49d4-bf68-6deb003c85d5"
-    }
+    201 CREATED
 
-Response
-++++++++
+.. code-block:: json
 
-::
-
-  201 CREATED
-
-::
-
-    {
-      "status": "ok",
-      "heartbeat": {
-        "origin": "foo",
-        "tags": [],
-        "createTime": "2015-03-02T01:52:12.116Z",
-        "href": "http://api.alerta.io/heartbeat/b703f112-b5ab-4ca6-baa6-c317fb875814",
-        "timeout": 300,
-        "receiveTime": "2015-03-02T01:52:12.116Z",
-        "type": "Heartbeat",
-        "id": "b703f112-b5ab-4ca6-baa6-c317fb875814"
-      },
-      "id": "b703f112-b5ab-4ca6-baa6-c317fb875814"
-    }
+    ???
 
 Get a heartbeat
 ~~~~~~~~~~~~~~~
 
-::
-
-  GET /heartbeat/:id
-
-Response
-++++++++
+Retrieves a heartbeat based on the heartbeat ID.
 
 ::
 
-    {
-      "status": "ok",
-      "heartbeat": {
-        "origin": "foo",
-        "tags": [],
-        "createTime": "2015-03-02T01:52:12.116Z",
-        "href": "http://api.alerta.io/heartbeat/b703f112-b5ab-4ca6-baa6-c317fb875814",
-        "timeout": 300,
-        "receiveTime": "2015-03-02T01:52:12.116Z",
-        "type": "Heartbeat",
-        "id": "b703f112-b5ab-4ca6-baa6-c317fb875814"
-      },
-      "total": 1
-    }
+    GET /heartbeat/:id
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPOST http://localhost:8080/alert \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+
+        }'
+
+Example Response
+++++++++++++++++
+
+::
+
+    201 CREATED
+
+.. code-block:: json
+
+    ???
 
 List all heartbeats
 ~~~~~~~~~~~~~~~~~~~
+
+Returns a list of all heartbeats.
 
 ::
 
   GET /heartbeats
 
-Response
-++++++++
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPOST http://localhost:8080/alert \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+
+        }'
+
+Example Response
+++++++++++++++++
 
 ::
 
-    {
-      "status": "ok",
-      "heartbeats": [
-        {
-          "origin": "alerta/vagrant-debian-wheezy64",
-          "tags": [],
-          "createTime": "2015-02-06T22:44:08.719Z",
-          "href": "http://api.alerta.io/heartbeat/1f50a075-b5a2-4a94-918b-e1eab401a817",
-          "timeout": 86400,
-          "receiveTime": "2015-02-06T23:02:19.553Z",
-          "type": "Heartbeat",
-          "id": "1f50a075-b5a2-4a94-918b-e1eab401a817"
-        },
-        {
-          "origin": "foo",
-          "tags": [],
-          "createTime": "2015-03-02T01:52:12.116Z",
-          "href": "http://api.alerta.io/heartbeat/b703f112-b5ab-4ca6-baa6-c317fb875814",
-          "timeout": 300,
-          "receiveTime": "2015-03-02T01:52:12.116Z",
-          "type": "Heartbeat",
-          "id": "b703f112-b5ab-4ca6-baa6-c317fb875814"
-        }
-      ],
-      "total": 2,
-      "time": "2015-03-02T01:58:10.357Z"
-    }
+    201 CREATED
+
+.. code-block:: json
+
+    ???
 
 Delete a heartbeat
 ~~~~~~~~~~~~~~~~~~
 
-::
-
-  DELETE /heartbeat/:id
-
-Response
-++++++++
+Permanently deletes a heartbeat. It cannot be undone.
 
 ::
 
-    200 OK
+    DELETE /heartbeat/:id
 
-::
+Example Request
++++++++++++++++
 
-    {
-      "status": "ok"
-    }
+.. code-block:: bash
+
+    $ curl -XDELETE http://localhost:8080/alert \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json'
 
 .. _api_keys:
 
 API Keys
 --------
 
-Create an API Key
+Create an API key
 ~~~~~~~~~~~~~~~~~
+
+Creates a new API key.
 
 ::
 
-  POST /key
+    POST /key
 
 Input
 +++++
@@ -1310,72 +794,66 @@ Input
 | ``text``        | string   |                                              |
 +-----------------+----------+----------------------------------------------+
 
-Example
-+++++++
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPOST http://localhost:8080/alert \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+
+        }'
+
+Example Response
+++++++++++++++++
 
 ::
 
-    {
-      "user": "foo",
-      "text": "test key"
-    }
+    201 CREATED
 
-Response
-++++++++
+.. code-block:: json
 
-::
-
-  201 CREATED
-
-::
-
-    {
-      "status": "ok",
-      "key": "Vz4dE04QiRYWL82f1N-FRlidML0PnvGqjkNOkqy_"
-    }
+    ???
 
 List all API keys
 ~~~~~~~~~~~~~~~~~
 
-::
-
-  GET /keys
-
-Response
-++++++++
+Returns a list of API keys.
 
 ::
 
-    {
-      "status": "ok",
-      "keys": [
-        {
-          "count": 0,
-          "lastUsedTime": null,
-          "text": "test key",
-          "expireTime": "2016-03-02T22:30:15.520Z",
-          "user": "foo",
-          "key": "Vz4dE04QiRYWL82f1N-FRlidML0PnvGqjkNOkqy_"
-        },
-        {
-          "count": 1745,
-          "lastUsedTime": "2015-03-03T22:33:21.975Z",
-          "text": "demo key",
-          "expireTime": "2016-02-06T14:21:53.458Z",
-          "user": "test user",
-          "key": "demo-key"
-        }
-      ],
-      "total": 2,
-      "time": "2015-03-03T22:33:21.979Z"
-    }
+    GET /keys
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPOST http://localhost:8080/alert \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json'
+
+Example Response
+++++++++++++++++
+
+::
+
+    200 OK
+
+.. code-block:: json
+
+    ???
 
 List all API keys for a user
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Returns a list of all API keys for a user.
+
 ::
 
-  GET /keys/:user
+    GET /keys/:user
 
 Parameters
 ++++++++++
@@ -1386,61 +864,46 @@ Parameters
 | ``user``        | string   |                                              |
 +-----------------+----------+----------------------------------------------+
 
-Example
-+++++++
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPOST http://localhost:8080/alert \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+
+        }'
+
+Example Response
+++++++++++++++++
 
 ::
 
-  http://api.alerta.io/keys/Bob%20Down
+    201 CREATED
 
-Response
-++++++++
+.. code-block:: json
 
-::
-
-    {
-      "status": "ok",
-      "keys": [
-        {
-          "count": 0,
-          "lastUsedTime": null,
-          "text": "asdf",
-          "expireTime": "2016-03-02T12:44:53.490Z",
-          "user": "Bob Down",
-          "key": "yKmspmfBODEKWla6mu5iuqLvsDHD8oz0apuJPwMH"
-        },
-        {
-          "count": 0,
-          "lastUsedTime": null,
-          "text": "sdf",
-          "expireTime": "2016-02-06T16:20:58.473Z",
-          "user": "Bob Down",
-          "key": "UpKueVVCYJ2KDNDPILtMyl5c3wcaIRmfCk-eOHOK"
-        }
-      ],
-      "total": 2,
-      "time": "2015-03-03T22:39:36.191Z"
-    }
+    ???
 
 Delete an API key
 ~~~~~~~~~~~~~~~~~
 
-::
-
-  DELETE /key/:key
-
-Response
-++++++++
+Permanently deletes an API key. It cannot be undone.
 
 ::
 
-    200 OK
+    DELETE /key/:key
 
-::
+Example Request
++++++++++++++++
 
-    {
-      "status": "ok"
-    }
+.. code-block:: bash
+
+    $ curl -XPOST http://localhost:8080/alert \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json'
 
 .. _users:
 
@@ -1450,9 +913,11 @@ Users
 Create a user
 ~~~~~~~~~~~~~
 
+Creates a new user.
+
 ::
 
-  POST /user
+    POST /user
 
 Input
 +++++
@@ -1469,41 +934,41 @@ Input
 | ``text``        | string   |                                              |
 +-----------------+----------+----------------------------------------------+
 
-Example
-+++++++
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPOST http://localhost:8080/alert \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+
+        }'
+
+Example Response
+++++++++++++++++
 
 ::
 
-    {
-      "name": "user1",
-      "login": "user@1",
-      "provider": "google",
-      "text": "test user 1"
-    }
+    201 CREATED
 
-Response
-++++++++
+.. code-block:: json
 
-::
-
-  201 CREATED
-
-::
-
-    {
-      "status": "ok",
-      "user": "41f7e0af-5bc1-437a-b486-9b12286d643b"
-    }
+    ???
 
 Update a user
 ~~~~~~~~~~~~~
 
+Updates the specified user by setting the values of the parameters passed.
+Any parameters not provided will be left unchanged.
+
 ::
 
-  PUT /usr/:user
+    PUT /user/:user
 
-  Input
-  +++++
+Input
++++++
 
 +-----------------+----------+----------------------------------------------+
 | Name            | Type     | Description                                  |
@@ -1517,94 +982,75 @@ Update a user
 | ``text``        | string   |                                              |
 +-----------------+----------+----------------------------------------------+
 
-  Example
-  +++++++
+Example Request
++++++++++++++++
 
-  ::
+.. code-block:: bash
 
-      {
-        "name": "user1",
-        "login": "user@1",
-        "provider": "google",
-        "text": "test user 1"
-      }
+    $ curl -XPOST http://localhost:8080/alert \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
 
-  Response
-  ++++++++
+        }'
 
-  ::
+Example Response
+++++++++++++++++
+
+::
 
     201 CREATED
 
-  ::
+.. code-block:: json
 
-      {
-        "status": "ok",
-        "user": "41f7e0af-5bc1-437a-b486-9b12286d643b"
-      }
+    ???
 
 List all users
 ~~~~~~~~~~~~~~
 
-::
-
-  GET /users
-
-Response
-++++++++
+Returns a list of users.
 
 ::
 
-    {
-      "status": "ok",
-      "users": [
-        {
-          "name": "Nick 2",
-          "text": "Added by Nick Satterly",
-          "createTime": "2015-03-03T20:58:29.239Z",
-          "provider": "github",
-          "login": "nfs4",
-          "id": "8b0ca7bb-a56d-4c80-8331-c51c0dc3536f"
-        },
-        {
-          "name": "user1",
-          "text": "test user 1",
-          "createTime": "2015-03-03T22:54:33.299Z",
-          "provider": "google",
-          "login": "user@1",
-          "id": "41f7e0af-5bc1-437a-b486-9b12286d643b"
-        }
-      ],
-      "time": "2015-03-03T22:56:26.369Z",
-      "domains": [
-        "guardian.co.uk",
-        "gmail.com"
-      ],
-      "orgs": [
-        "guardian"
-      ],
-      "total": 2
-    }
+    GET /users
 
-Delete a user
-~~~~~~~~~~~~~
+Example Request
++++++++++++++++
 
-::
+.. code-block:: bash
 
-  DELETE /user/:user
+    $ curl http://localhost:8080/users \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json'
 
-Response
-++++++++
+Example Response
+++++++++++++++++
 
 ::
 
     200 OK
 
+.. code-block:: json
+
+    ???
+
+Delete a user
+~~~~~~~~~~~~~
+
+Permanently deletes a user. It cannot be undone.
+
 ::
 
-    {
-      "status": "ok"
-    }
+    DELETE /user/:user
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XDELETE http://localhost:8080/user/bar \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json'
 
 .. _customers:
 
@@ -1614,11 +1060,11 @@ Customers
 Create a customer
 ~~~~~~~~~~~~~~~~~
 
-Create a customer lookup that matches a user login with a regex to see
-if that user belongs to that customer.
+Creates a new customer lookup. Used to match user logins to customers.
+
 ::
 
-  POST /customer
+    POST /customer
 
 Input
 +++++
@@ -1631,82 +1077,72 @@ Input
 | ``match``       | regex    |                                              |
 +-----------------+----------+----------------------------------------------+
 
-Example
-+++++++
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPOST http://localhost:8080/alert \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+
+        }'
+
+Example Response
+++++++++++++++++
 
 ::
 
-    {
-      "customer": "foo",
-      "match": "test key"
-    }
+    201 CREATED
 
-Response
-++++++++
+.. code-block:: json
 
-::
-
-  201 CREATED
-
-::
-
-    {
-      "status": "ok",
-      "key": "Vz4dE04QiRYWL82f1N-FRlidML0PnvGqjkNOkqy_"
-    }
+    ???
 
 List all customers
 ~~~~~~~~~~~~~~~~~~
 
-::
-
-  GET /customers
-
-Response
-++++++++
+Returns a list of customers.
 
 ::
 
-    {
-      "status": "ok",
-      "keys": [
-        {
-          "count": 0,
-          "lastUsedTime": null,
-          "text": "test key",
-          "expireTime": "2016-03-02T22:30:15.520Z",
-          "user": "foo",
-          "key": "Vz4dE04QiRYWL82f1N-FRlidML0PnvGqjkNOkqy_"
-        },
-        {
-          "count": 1745,
-          "lastUsedTime": "2015-03-03T22:33:21.975Z",
-          "text": "demo key",
-          "expireTime": "2016-02-06T14:21:53.458Z",
-          "user": "test user",
-          "key": "demo-key"
-        }
-      ],
-      "total": 2,
-      "time": "2015-03-03T22:33:21.979Z"
-    }
+    GET /customers
 
-Delete a customer
-~~~~~~~~~~~~~~~~~
+Example Request
++++++++++++++++
 
-::
+.. code-block:: bash
 
-  DELETE /customer/:customer
+    $ curl http://localhost:8080/customers \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json'
 
-Response
-++++++++
+Example Response
+++++++++++++++++
 
 ::
 
     200 OK
 
+.. code-block:: json
+
+    ???
+
+Delete a customer
+~~~~~~~~~~~~~~~~~
+
+Permanently delete a customer. It cannot be undone.
+
 ::
 
-    {
-      "status": "ok"
-    }
+    DELETE /customer/:customer
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XDELETE http://localhost:8080/customer/foo \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json'

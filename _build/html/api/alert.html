@@ -54,8 +54,8 @@ systems must produce or consume messages in this format also.</p>
 <p>The following alert attributes are populated at source:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="21%" />
-<col width="79%" />
+<col width="23%" />
+<col width="77%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Attribute</th>
@@ -63,58 +63,59 @@ systems must produce or consume messages in this format also.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">id</span></code></td>
-<td>globally unique random UUID</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">resource</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">resource</span></code></td>
 <td>resource under alarm, deliberately not host-centric</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">event</span></code></td>
-<td>event name eg. <code class="docutils literal"><span class="pre">NodeDown</span></code>, <code class="docutils literal"><span class="pre">QUEUE:LENGTH:EXCEEDED</span></code>, <code class="docutils literal"><span class="pre">AppStatus</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">event</span></code></td>
+<td>event name eg. <code class="docutils literal"><span class="pre">NodeDown</span></code>, <code class="docutils literal"><span class="pre">QUEUE:LENGTH:EXCEEDED</span></code></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">environment</span></code></td>
-<td>effected environment, used to namespace the defined resource</td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">environment</span></code></td>
+<td>effected environment, used to namespace the resource</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">severity</span></code></td>
-<td>severity of alert (default <code class="docutils literal"><span class="pre">normal</span></code>). see <a class="reference internal" href="#severity-table"><span class="std std-ref">Alert Severities</span></a> table</td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">severity</span></code></td>
+<td>severity of alert (default <code class="docutils literal"><span class="pre">normal</span></code>).
+see <a class="reference internal" href="#severity-table"><span class="std std-ref">Alert Severities</span></a> table</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">correlate</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">correlate</span></code></td>
 <td>list of related event names</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">status</span></code></td>
-<td>status of alert (default <code class="docutils literal"><span class="pre">open</span></code>). see <a class="reference internal" href="#status-table"><span class="std std-ref">Alert Status</span></a> table</td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">status</span></code></td>
+<td>status of alert (default <code class="docutils literal"><span class="pre">open</span></code>).
+see <a class="reference internal" href="#status-table"><span class="std std-ref">Alert Status</span></a> table</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">service</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">service</span></code></td>
 <td>list of effected services</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">group</span></code></td>
-<td>event group</td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">group</span></code></td>
+<td>event group used to group events of similar type</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">value</span></code></td>
-<td>event value eg. <code class="docutils literal"><span class="pre">100%</span></code>, <code class="docutils literal"><span class="pre">Down</span></code>, <code class="docutils literal"><span class="pre">PingFail</span></code>, <code class="docutils literal"><span class="pre">55ms</span></code>, <code class="docutils literal"><span class="pre">ORA-1664</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">value</span></code></td>
+<td>event value eg. <code class="docutils literal"><span class="pre">100%</span></code>, <code class="docutils literal"><span class="pre">Down</span></code>, <code class="docutils literal"><span class="pre">PingFail</span></code>,
+<code class="docutils literal"><span class="pre">55ms</span></code>, <code class="docutils literal"><span class="pre">ORA-1664</span></code></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">text</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">text</span></code></td>
 <td>freeform text description</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">tags</span></code></td>
-<td>set of tags in any format eg. <code class="docutils literal"><span class="pre">aTag</span></code>, <code class="docutils literal"><span class="pre">aDouble:Tag</span></code>, <code class="docutils literal"><span class="pre">a:Triple=Tag</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">tags</span></code></td>
+<td>set of tags in any format eg. <code class="docutils literal"><span class="pre">aTag</span></code>,
+<code class="docutils literal"><span class="pre">aDouble:Tag</span></code>, <code class="docutils literal"><span class="pre">a:Triple=Tag</span></code></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">attributes</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">attributes</span></code></td>
 <td>dictionary of key-value pairs</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">origin</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">origin</span></code></td>
 <td>name of monitoring component that generated the alert</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">type</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">type</span></code></td>
 <td>alert type eg. snmptrapAlert, syslogAlert, gangliaAlert</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">createTime</span></code></td>
-<td>UTC date and time the alert was generated in ISO 8601 format</td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">createTime</span></code></td>
+<td>UTC date-time the alert was generated in ISO8601 format</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">timeout</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">timeout</span></code></td>
 <td>number of seconds before alert is considered stale</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">rawData</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">rawData</span></code></td>
 <td>unprocessed data eg. full syslog message or SNMP trap</td>
 </tr>
 </tbody>
@@ -128,8 +129,8 @@ systems must produce or consume messages in this format also.</p>
 <h2>Attributes added when processing alerts<a class="headerlink" href="#attributes-added-when-processing-alerts" title="Permalink to this headline">¶</a></h2>
 <table border="1" class="docutils">
 <colgroup>
-<col width="21%" />
-<col width="79%" />
+<col width="30%" />
+<col width="70%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Attribute</th>
@@ -137,39 +138,49 @@ systems must produce or consume messages in this format also.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">duplicateCount</span></code></td>
-<td>a count of the number of times this event has been received for a resource</td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">id</span></code></td>
+<td>globally unique random UUID</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">repeat</span></code></td>
-<td>if duplicateCount is 0 or the alert status has changed then repeat is False,
-otherwise it is True</td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">duplicateCount</span></code></td>
+<td>a count of the number of times this event has been
+received for a resource</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">previousSeverity</span></code></td>
-<td>the previous severity of the same event for this resource. if no event or
-<code class="docutils literal"><span class="pre">correlate</span></code> events exist in the database for this resource then it
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">repeat</span></code></td>
+<td>if duplicateCount is 0 or the alert status has
+changed then repeat is False, otherwise it is True</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">previousSeverity</span></code></td>
+<td>the previous severity of the same event for this
+resource. if no event or <code class="docutils literal"><span class="pre">correlate</span></code> events
+exist in the database for this resource then it
 will be <code class="docutils literal"><span class="pre">unknown</span></code></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">trendIndication</span></code></td>
-<td>based on <code class="docutils literal"><span class="pre">severity</span></code> and <code class="docutils literal"><span class="pre">previousSeverity</span></code> will be one of <code class="docutils literal"><span class="pre">moreSevere</span></code>,
-<code class="docutils literal"><span class="pre">lessSevere</span></code> or <code class="docutils literal"><span class="pre">noChange</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">trendIndication</span></code></td>
+<td>based on <code class="docutils literal"><span class="pre">severity</span></code> and <code class="docutils literal"><span class="pre">previousSeverity</span></code>
+will be one of <code class="docutils literal"><span class="pre">moreSevere</span></code>, <code class="docutils literal"><span class="pre">lessSevere</span></code> or
+<code class="docutils literal"><span class="pre">noChange</span></code></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">receiveTime</span></code></td>
-<td>UTC date and time the alert was received by the Alerta server daemon</td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">receiveTime</span></code></td>
+<td>UTC datetime the alert was received by the
+Alerta server daemon</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">lastReceiveId</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">lastReceiveId</span></code></td>
 <td>the last alert <code class="docutils literal"><span class="pre">id</span></code> received for this event</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">lastReceiveTime</span></code></td>
-<td>the last time this alert was received. only different to receiveTime if the
-alert is a duplicate</td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">lastReceiveTime</span></code></td>
+<td>the last time this alert was received. only
+different to receiveTime if the alert is a
+duplicate</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">customer</span></code></td>
-<td>assigned based on the owner of the API key used when submitting the alert,
-if &#8220;Customer Views&#8221; are enabled</td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">customer</span></code></td>
+<td>assigned based on the owner of the API key used
+when submitting the alert, if &#8220;Customer Views&#8221;
+is enabled</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">history</span></code></td>
-<td>whenever an alert changes severity or status then a list of key alert
-attributes are appended to the history log</td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">history</span></code></td>
+<td>whenever an alert changes severity or status then
+a list of key alert attributes are appended to
+the history log</td>
 </tr>
 </tbody>
 </table>
