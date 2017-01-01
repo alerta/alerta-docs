@@ -1005,9 +1005,11 @@ Input
 +-----------------+----------+----------------------------------------------+
 | ``startTime``   | datetime | start time of blackout. Default: now         |
 +-----------------+----------+----------------------------------------------+
-| ``endTime``     | datetime | end time. Default: now+``BLACKOUT_DURATION`` |
+| ``endTime``     | datetime | end time. Default: now +                     |
+|                 |          | ``BLACKOUT_DURATION``                        |
 +-----------------+----------+----------------------------------------------+
-| ``duration``    | integer  | Seconds. Default: ``BLACKOUT_DURATION``      |
+| ``duration``    | integer  | seconds. Default: ``BLACKOUT_DURATION``      |
+|                 |          | Only used if ``endTime`` not defined         |
 +-----------------+----------+----------------------------------------------+
 
 Example Request
@@ -1015,11 +1017,13 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XPOST http://localhost:8080/alert \
+    $ curl -XPOST http://localhost:8080/blackout \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json' \
     -d '{
-
+          "environment": "Production",
+          "service": "example.com",
+          "group": "Web"
         }'
 
 Example Response
@@ -1031,7 +1035,19 @@ Example Response
 
 .. code-block:: json
 
-    ???
+    {
+      "blackout": {
+        "duration": 3600,
+        "endTime": "2017-01-01T15:35:53.695Z",
+        "environment": "Production",
+        "id": "77059317-bf66-44ef-a63d-b2e2aa8c0612",
+        "priority": 3,
+        "service": "example.com",
+        "startTime": "2017-01-01T14:35:53.695Z"
+      },
+      "id": "77059317-bf66-44ef-a63d-b2e2aa8c0612",
+      "status": "ok"
+    }
 
 List all blackouts
 ~~~~~~~~~~~~~~~~~~
@@ -1056,11 +1072,39 @@ Example Response
 
 ::
 
-    201 CREATED
+    200 OK
 
 .. code-block:: json
 
-    ???
+    {
+      "blackouts": [
+        {
+          "duration": 3600,
+          "endTime": "2017-01-01T15:37:42.746Z",
+          "environment": "Production",
+          "id": "864fb326-3743-456f-a94b-86c304b436d4",
+          "priority": 3,
+          "remaining": 3561,
+          "service": "example.com",
+          "startTime": "2017-01-01T14:37:42.746Z",
+          "status": "active"
+        },
+        {
+          "duration": 3600,
+          "endTime": "2017-01-01T15:38:16.639Z",
+          "environment": "Development",
+          "group": "Performance",
+          "id": "7b599c38-cd05-453a-8fa9-fc29cf5edfd4",
+          "priority": 5,
+          "remaining": 3594,
+          "startTime": "2017-01-01T14:38:16.639Z",
+          "status": "active"
+        }
+      ],
+      "status": "ok",
+      "time": "2017-01-01T14:38:21.676Z",
+      "total": 2
+    }
 
 Delete a blackout
 ~~~~~~~~~~~~~~~~~
@@ -1076,7 +1120,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XPOST http://localhost:8080/alert \
+    $ curl -XDELETE http://localhost:8080/blackout/77059317-bf66-44ef-a63d-b2e2aa8c0612 \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json'
 
