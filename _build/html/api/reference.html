@@ -597,7 +597,7 @@ filter results.</p>
 </div>
 <div class="section" id="id11">
 <h4>Example Request<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alerts?status<span class="o">=</span>open<span class="p">&amp;</span><span class="nv">severity</span><span class="o">=</span>critical<span class="p">&amp;</span><span class="nv">severity</span><span class="o">=</span>major<span class="p">&amp;</span><span class="nv">environment</span><span class="o">=</span>Production<span class="p">&amp;</span><span class="nv">service</span><span class="o">=</span>Network <span class="se">\</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alerts?group<span class="o">=</span>Web <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span>
 </pre></div>
@@ -608,7 +608,141 @@ filter results.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span>???
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;alerts&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;US&quot;</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;HttpServerOK&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T12:01:21.048Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;0099bae5-9683-48a1-a49d-f566fe143770&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;critical&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;severity&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T12:01:21.048Z&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Internal Server Error (500)&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;0099bae5-9683-48a1-a49d-f566fe143770&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;new alert status change&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T12:01:21.050Z&quot;</span>
+        <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/0099bae5-9683-48a1-a49d-f566fe143770&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;0099bae5-9683-48a1-a49d-f566fe143770&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s2">&quot;0099bae5-9683-48a1-a49d-f566fe143770&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T12:01:21.050Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s2">&quot;indeterminate&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;rawData&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T12:01:21.050Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;repeat&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web02&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;example.com&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;critical&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;dc2&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
+      <span class="nt">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s2">&quot;moreSevere&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;exceptionAlert&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Internal Server Error (500)&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;EU&quot;</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;HttpServerOK&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T12:00:01.662Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;e9fb05a0-b65c-4faa-8868-6f06a74a2b5b&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;severity&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T12:00:01.662Z&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;e9fb05a0-b65c-4faa-8868-6f06a74a2b5b&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;new alert status change&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T12:00:01.664Z&quot;</span>
+        <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/e9fb05a0-b65c-4faa-8868-6f06a74a2b5b&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;e9fb05a0-b65c-4faa-8868-6f06a74a2b5b&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s2">&quot;e9fb05a0-b65c-4faa-8868-6f06a74a2b5b&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T12:00:01.664Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s2">&quot;indeterminate&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;rawData&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T12:00:01.664Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;repeat&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;example.com&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;dc1&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
+      <span class="nt">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s2">&quot;moreSevere&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;exceptionAlert&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;autoRefresh&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;lastTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T12:01:21.050Z&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;more&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nt">&quot;pageSize&quot;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+  <span class="nt">&quot;pages&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nt">&quot;severityCounts&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;critical&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;major&quot;</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;statusCounts&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;open&quot;</span><span class="p">:</span> <span class="mi">2</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -643,7 +777,7 @@ filter results.</p>
 </div>
 <div class="section" id="id14">
 <h4>Example Request<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://api.alerta.io/alerts/history?resource<span class="o">=</span>router0011 <span class="se">\</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alerts/history?service<span class="o">=</span>example.com <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span>
 </pre></div>
@@ -651,7 +785,137 @@ filter results.</p>
 </div>
 <div class="section" id="id15">
 <h4>Example Response<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span>???
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;EU&quot;</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/e9fb05a0-b65c-4faa-8868-6f06a74a2b5b&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;e9fb05a0-b65c-4faa-8868-6f06a74a2b5b&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;example.com&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;dc1&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;severity&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T12:00:01.662Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;EU&quot;</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/e9fb05a0-b65c-4faa-8868-6f06a74a2b5b&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;e9fb05a0-b65c-4faa-8868-6f06a74a2b5b&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;example.com&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;dc1&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;new alert status change&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T12:00:01.664Z&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;US&quot;</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/0099bae5-9683-48a1-a49d-f566fe143770&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;0099bae5-9683-48a1-a49d-f566fe143770&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web02&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;example.com&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;critical&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;dc2&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;severity&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T12:01:21.048Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Internal Server Error (500)&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;US&quot;</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/0099bae5-9683-48a1-a49d-f566fe143770&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;0099bae5-9683-48a1-a49d-f566fe143770&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web02&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;example.com&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;dc2&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;new alert status change&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T12:01:21.050Z&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;EU&quot;</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/e9fb05a0-b65c-4faa-8868-6f06a74a2b5b&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;e9fb05a0-b65c-4faa-8868-6f06a74a2b5b&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;example.com&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ack&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;dc1&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;disk needs replacing.&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T12:07:27.455Z&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;lastTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T12:07:27.455Z&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -686,7 +950,7 @@ filter results.</p>
 </div>
 <div class="section" id="id17">
 <h4>Example Request<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://api.alerta.io/alerts/count?status<span class="o">=</span>open<span class="p">&amp;</span><span class="nv">status</span><span class="o">=</span>ack <span class="se">\</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alerts/count?environment<span class="o">=</span>Production <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span>
 </pre></div>
@@ -694,7 +958,21 @@ filter results.</p>
 </div>
 <div class="section" id="id18">
 <h4>Example Response<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span>???
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;severityCounts&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;critical&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;major&quot;</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;statusCounts&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;ack&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;open&quot;</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -739,7 +1017,7 @@ default it is grouped by <code class="docutils literal"><span class="pre">event<
 </div>
 <div class="section" id="id20">
 <h4>Example Request<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://api.alerta.io/alerts/top10?group-by<span class="o">=</span>group <span class="se">\</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alerts/top10?group-by<span class="o">=</span>group <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span>
 </pre></div>
@@ -747,7 +1025,38 @@ default it is grouped by <code class="docutils literal"><span class="pre">event<
 </div>
 <div class="section" id="id21">
 <h4>Example Response<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span>???
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;top10&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="nt">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="nt">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Production&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/0099bae5-9683-48a1-a49d-f566fe143770&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;0099bae5-9683-48a1-a49d-f566fe143770&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web02&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/e9fb05a0-b65c-4faa-8868-6f06a74a2b5b&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;e9fb05a0-b65c-4faa-8868-6f06a74a2b5b&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span>
+        <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;example.com&quot;</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -787,7 +1096,7 @@ on existing alerts.</p>
 </div>
 <div class="section" id="id24">
 <h4>Example Request<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://api.alerta.io/environments <span class="se">\</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/environments <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span>
 </pre></div>
@@ -795,7 +1104,19 @@ on existing alerts.</p>
 </div>
 <div class="section" id="id25">
 <h4>Example Response<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span>???
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -834,7 +1155,7 @@ on existing alerts.</p>
 </div>
 <div class="section" id="id28">
 <h4>Example Request<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://api.alerta.io/services?environment<span class="o">=</span>Production <span class="se">\</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/services?environment<span class="o">=</span>Production <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span>
 </pre></div>
@@ -842,7 +1163,20 @@ on existing alerts.</p>
 </div>
 <div class="section" id="id29">
 <h4>Example Response<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span>???
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="s2">&quot;example.com&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
