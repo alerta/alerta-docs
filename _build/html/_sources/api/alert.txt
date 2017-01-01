@@ -14,79 +14,90 @@ Attributes
 
 The following alert attributes are populated at source:
 
-+----------------------+---------------------------------------------------------------------------------+
-| Attribute            | Description                                                                     |
-+======================+=================================================================================+
-| ``id``               | globally unique random UUID                                                     |
-+----------------------+---------------------------------------------------------------------------------+
-| ``resource``         | resource under alarm, deliberately not host-centric                             |
-+----------------------+---------------------------------------------------------------------------------+
-| ``event``            | event name eg. ``NodeDown``, ``QUEUE:LENGTH:EXCEEDED``, ``AppStatus``           |
-+----------------------+---------------------------------------------------------------------------------+
-| ``environment``      | effected environment, used to namespace the defined resource                    |
-+----------------------+---------------------------------------------------------------------------------+
-| ``severity``         | severity of alert (default ``normal``). see :ref:`severity_table` table         |
-+----------------------+---------------------------------------------------------------------------------+
-| ``correlate``        | list of related event names                                                     |
-+----------------------+---------------------------------------------------------------------------------+
-| ``status``           | status of alert (default ``open``). see :ref:`status_table` table               |
-+----------------------+---------------------------------------------------------------------------------+
-| ``service``          | list of effected services                                                       |
-+----------------------+---------------------------------------------------------------------------------+
-| ``group``            | event group                                                                     |
-+----------------------+---------------------------------------------------------------------------------+
-| ``value``            | event value eg. ``100%``, ``Down``, ``PingFail``, ``55ms``, ``ORA-1664``        |
-+----------------------+---------------------------------------------------------------------------------+
-| ``text``             | freeform text description                                                       |
-+----------------------+---------------------------------------------------------------------------------+
-| ``tags``             | set of tags in any format eg. ``aTag``, ``aDouble:Tag``, ``a:Triple=Tag``       |
-+----------------------+---------------------------------------------------------------------------------+
-| ``attributes``       | dictionary of key-value pairs                                                   |
-+----------------------+---------------------------------------------------------------------------------+
-| ``origin``           | name of monitoring component that generated the alert                           |
-+----------------------+---------------------------------------------------------------------------------+
-| ``type``             | alert type eg. snmptrapAlert, syslogAlert, gangliaAlert                         |
-+----------------------+---------------------------------------------------------------------------------+
-| ``createTime``       | UTC date and time the alert was generated in ISO 8601 format                    |
-+----------------------+---------------------------------------------------------------------------------+
-| ``timeout``          | number of seconds before alert is considered stale                              |
-+----------------------+---------------------------------------------------------------------------------+
-| ``rawData``          | unprocessed data eg. full syslog message or SNMP trap                           |
-+----------------------+---------------------------------------------------------------------------------+
++-----------------+---------------------------------------------------------+
+| Attribute       | Description                                             |
++=================+=========================================================+
+| ``resource``    | resource under alarm, deliberately not host-centric     |
++-----------------+---------------------------------------------------------+
+| ``event``       | event name eg. ``NodeDown``, ``QUEUE:LENGTH:EXCEEDED``  |
++-----------------+---------------------------------------------------------+
+| ``environment`` | effected environment, used to namespace the resource    |
++-----------------+---------------------------------------------------------+
+| ``severity``    | severity of alert (default ``normal``).                 |
+|                 | see :ref:`severity_table` table                         |
++-----------------+---------------------------------------------------------+
+| ``correlate``   | list of related event names                             |
++-----------------+---------------------------------------------------------+
+| ``status``      | status of alert (default ``open``).                     |
+|                 | see :ref:`status_table` table                           |
++-----------------+---------------------------------------------------------+
+| ``service``     | list of effected services                               |
++-----------------+---------------------------------------------------------+
+| ``group``       | event group used to group events of similar type        |
++-----------------+---------------------------------------------------------+
+| ``value``       | event value eg. ``100%``, ``Down``, ``PingFail``,       |
+|                 | ``55ms``, ``ORA-1664``                                  |
++-----------------+---------------------------------------------------------+
+| ``text``        | freeform text description                               |
++-----------------+---------------------------------------------------------+
+| ``tags``        | set of tags in any format eg. ``aTag``,                 |
+|                 | ``aDouble:Tag``, ``a:Triple=Tag``                       |
++-----------------+---------------------------------------------------------+
+| ``attributes``  | dictionary of key-value pairs                           |
++-----------------+---------------------------------------------------------+
+| ``origin``      | name of monitoring component that generated the alert   |
++-----------------+---------------------------------------------------------+
+| ``type``        | alert type eg. snmptrapAlert, syslogAlert, gangliaAlert |
++-----------------+---------------------------------------------------------+
+| ``createTime``  | UTC date-time the alert was generated in ISO8601 format |
++-----------------+---------------------------------------------------------+
+| ``timeout``     | number of seconds before alert is considered stale      |
++-----------------+---------------------------------------------------------+
+| ``rawData``     | unprocessed data eg. full syslog message or SNMP trap   |
++-----------------+---------------------------------------------------------+
 
 .. note:: Only ``event`` and ``resource`` are mandatory.
 
 Attributes added when processing alerts
 ---------------------------------------
 
-+----------------------+---------------------------------------------------------------------------------+
-| Attribute            | Description                                                                     |
-+======================+=================================================================================+
-| ``duplicateCount``   | a count of the number of times this event has been received for a resource      |
-+----------------------+---------------------------------------------------------------------------------+
-| ``repeat``           | if duplicateCount is 0 or the alert status has changed then repeat is False,    |
-|                      | otherwise it is True                                                            |
-+----------------------+---------------------------------------------------------------------------------+
-| ``previousSeverity`` | the previous severity of the same event for this resource. if no event or       |
-|                      | ``correlate`` events exist in the database for this resource then it            |
-|                      | will be ``unknown``                                                             |
-+----------------------+---------------------------------------------------------------------------------+
-| ``trendIndication``  | based on ``severity`` and ``previousSeverity`` will be one of ``moreSevere``,   |
-|                      | ``lessSevere`` or ``noChange``                                                  |
-+----------------------+---------------------------------------------------------------------------------+
-| ``receiveTime``      | UTC date and time the alert was received by the Alerta server daemon            |
-+----------------------+---------------------------------------------------------------------------------+
-| ``lastReceiveId``    | the last alert ``id`` received for this event                                   |
-+----------------------+---------------------------------------------------------------------------------+
-| ``lastReceiveTime``  | the last time this alert was received. only different to receiveTime if the     |
-|                      | alert is a duplicate                                                            |
-+----------------------+---------------------------------------------------------------------------------+
-| ``customer``         | assigned based on the owner of the API key used when submitting the alert,      |
-|                      | if "Customer Views" are enabled                                                 |
-+----------------------+---------------------------------------------------------------------------------+
-| ``history``          | whenever an alert changes severity or status then a list of key alert           |
-|                      | attributes are appended to the history log                                      |
-+----------------------+---------------------------------------------------------------------------------+
++----------------------+----------------------------------------------------+
+| Attribute            | Description                                        |
++======================+====================================================+
+| ``id``               | globally unique random UUID                        |
++----------------------+----------------------------------------------------+
+| ``duplicateCount``   | a count of the number of times this event has been |
+|                      | received for a resource                            |
++----------------------+----------------------------------------------------+
+| ``repeat``           | if duplicateCount is 0 or the alert status has     |
+|                      | changed then repeat is False, otherwise it is True |
++----------------------+----------------------------------------------------+
+| ``previousSeverity`` | the previous severity of the same event for this   |
+|                      | resource. if no event or ``correlate`` events      |
+|                      | exist in the database for this resource then it    |
+|                      | will be ``unknown``                                |
++----------------------+----------------------------------------------------+
+| ``trendIndication``  | based on ``severity`` and ``previousSeverity``     |
+|                      | will be one of ``moreSevere``, ``lessSevere`` or   |
+|                      | ``noChange``                                       |
++----------------------+----------------------------------------------------+
+| ``receiveTime``      | UTC datetime the alert was received by the         |
+|                      | Alerta server daemon                               |
++----------------------+----------------------------------------------------+
+| ``lastReceiveId``    | the last alert ``id`` received for this event      |
++----------------------+----------------------------------------------------+
+| ``lastReceiveTime``  | the last time this alert was received. only        |
+|                      | different to receiveTime if the alert is a         |
+|                      | duplicate                                          |
++----------------------+----------------------------------------------------+
+| ``customer``         | assigned based on the owner of the API key used    |
+|                      | when submitting the alert, if "Customer Views"     |
+|                      | is enabled                                         |
++----------------------+----------------------------------------------------+
+| ``history``          | whenever an alert changes severity or status then  |
+|                      | a list of key alert attributes are appended to     |
+|                      | the history log                                    |
++----------------------+----------------------------------------------------+
 
 .. _status_table:
 
