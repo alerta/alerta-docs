@@ -424,7 +424,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl http://localhost:8080/alerts?status=open&severity=critical&severity=major&environment=Production&service=Network \
+    $ curl http://localhost:8080/alerts?group=Web \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json'
 
@@ -437,7 +437,141 @@ Example Response
 
 .. code-block:: json
 
-    ???
+    {
+      "alerts": [
+        {
+          "attributes": {
+            "ip": "127.0.0.1",
+            "region": "US"
+          },
+          "correlate": [
+            "HttpServerError",
+            "HttpServerOK"
+          ],
+          "createTime": "2017-01-01T12:01:21.048Z",
+          "customer": null,
+          "duplicateCount": 0,
+          "environment": "Production",
+          "event": "HttpServerError",
+          "group": "Web",
+          "history": [
+            {
+              "event": "HttpServerError",
+              "id": "0099bae5-9683-48a1-a49d-f566fe143770",
+              "severity": "critical",
+              "text": "Site is down.",
+              "type": "severity",
+              "updateTime": "2017-01-01T12:01:21.048Z",
+              "value": "Internal Server Error (500)"
+            },
+            {
+              "event": "HttpServerError",
+              "id": "0099bae5-9683-48a1-a49d-f566fe143770",
+              "status": "open",
+              "text": "new alert status change",
+              "type": "status",
+              "updateTime": "2017-01-01T12:01:21.050Z"
+            }
+          ],
+          "href": "http://localhost:8080/alert/0099bae5-9683-48a1-a49d-f566fe143770",
+          "id": "0099bae5-9683-48a1-a49d-f566fe143770",
+          "lastReceiveId": "0099bae5-9683-48a1-a49d-f566fe143770",
+          "lastReceiveTime": "2017-01-01T12:01:21.050Z",
+          "origin": "curl",
+          "previousSeverity": "indeterminate",
+          "rawData": "",
+          "receiveTime": "2017-01-01T12:01:21.050Z",
+          "repeat": false,
+          "resource": "web02",
+          "service": [
+            "example.com"
+          ],
+          "severity": "critical",
+          "status": "open",
+          "tags": [
+            "dc2"
+          ],
+          "text": "Site is down.",
+          "timeout": 86400,
+          "trendIndication": "moreSevere",
+          "type": "exceptionAlert",
+          "value": "Internal Server Error (500)"
+        },
+        {
+          "attributes": {
+            "ip": "127.0.0.1",
+            "region": "EU"
+          },
+          "correlate": [
+            "HttpServerError",
+            "HttpServerOK"
+          ],
+          "createTime": "2017-01-01T12:00:01.662Z",
+          "customer": null,
+          "duplicateCount": 0,
+          "environment": "Production",
+          "event": "HttpServerError",
+          "group": "Web",
+          "history": [
+            {
+              "event": "HttpServerError",
+              "id": "e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
+              "severity": "major",
+              "text": "Site is down.",
+              "type": "severity",
+              "updateTime": "2017-01-01T12:00:01.662Z",
+              "value": "Bad Gateway (501)"
+            },
+            {
+              "event": "HttpServerError",
+              "id": "e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
+              "status": "open",
+              "text": "new alert status change",
+              "type": "status",
+              "updateTime": "2017-01-01T12:00:01.664Z"
+            }
+          ],
+          "href": "http://localhost:8080/alert/e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
+          "id": "e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
+          "lastReceiveId": "e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
+          "lastReceiveTime": "2017-01-01T12:00:01.664Z",
+          "origin": "curl",
+          "previousSeverity": "indeterminate",
+          "rawData": "",
+          "receiveTime": "2017-01-01T12:00:01.664Z",
+          "repeat": false,
+          "resource": "web01",
+          "service": [
+            "example.com"
+          ],
+          "severity": "major",
+          "status": "open",
+          "tags": [
+            "dc1"
+          ],
+          "text": "Site is down.",
+          "timeout": 86400,
+          "trendIndication": "moreSevere",
+          "type": "exceptionAlert",
+          "value": "Bad Gateway (501)"
+        }
+      ],
+      "autoRefresh": true,
+      "lastTime": "2017-01-01T12:01:21.050Z",
+      "more": false,
+      "page": 1,
+      "pageSize": 10000,
+      "pages": 1,
+      "severityCounts": {
+        "critical": 1,
+        "major": 1
+      },
+      "status": "ok",
+      "statusCounts": {
+        "open": 2
+      },
+      "total": 2
+    }
 
 .. _get_alerts_history:
 
@@ -464,7 +598,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl http://api.alerta.io/alerts/history?resource=router0011 \
+    $ curl http://localhost:8080/alerts/history?service=example.com \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json'
 
@@ -473,12 +607,144 @@ Example Response
 
 ::
 
-    ???
+    200 OK
+
+.. code-block:: json
+
+    {
+      "history": [
+        {
+          "attributes": {
+            "ip": "127.0.0.1",
+            "region": "EU"
+          },
+          "customer": null,
+          "environment": "Production",
+          "event": "HttpServerError",
+          "group": "Web",
+          "href": "http://localhost:8080/alert/e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
+          "id": "e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
+          "origin": "curl",
+          "resource": "web01",
+          "service": [
+            "example.com"
+          ],
+          "severity": "major",
+          "tags": [
+            "dc1"
+          ],
+          "text": "Site is down.",
+          "type": "severity",
+          "updateTime": "2017-01-01T12:00:01.662Z",
+          "value": "Bad Gateway (501)"
+        },
+        {
+          "attributes": {
+            "ip": "127.0.0.1",
+            "region": "EU"
+          },
+          "customer": null,
+          "environment": "Production",
+          "event": "HttpServerError",
+          "group": "Web",
+          "href": "http://localhost:8080/alert/e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
+          "id": "e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
+          "origin": "curl",
+          "resource": "web01",
+          "service": [
+            "example.com"
+          ],
+          "status": "open",
+          "tags": [
+            "dc1"
+          ],
+          "text": "new alert status change",
+          "type": "status",
+          "updateTime": "2017-01-01T12:00:01.664Z"
+        },
+        {
+          "attributes": {
+            "ip": "127.0.0.1",
+            "region": "US"
+          },
+          "customer": null,
+          "environment": "Production",
+          "event": "HttpServerError",
+          "group": "Web",
+          "href": "http://localhost:8080/alert/0099bae5-9683-48a1-a49d-f566fe143770",
+          "id": "0099bae5-9683-48a1-a49d-f566fe143770",
+          "origin": "curl",
+          "resource": "web02",
+          "service": [
+            "example.com"
+          ],
+          "severity": "critical",
+          "tags": [
+            "dc2"
+          ],
+          "text": "Site is down.",
+          "type": "severity",
+          "updateTime": "2017-01-01T12:01:21.048Z",
+          "value": "Internal Server Error (500)"
+        },
+        {
+          "attributes": {
+            "ip": "127.0.0.1",
+            "region": "US"
+          },
+          "customer": null,
+          "environment": "Production",
+          "event": "HttpServerError",
+          "group": "Web",
+          "href": "http://localhost:8080/alert/0099bae5-9683-48a1-a49d-f566fe143770",
+          "id": "0099bae5-9683-48a1-a49d-f566fe143770",
+          "origin": "curl",
+          "resource": "web02",
+          "service": [
+            "example.com"
+          ],
+          "status": "open",
+          "tags": [
+            "dc2"
+          ],
+          "text": "new alert status change",
+          "type": "status",
+          "updateTime": "2017-01-01T12:01:21.050Z"
+        },
+        {
+          "attributes": {
+            "ip": "127.0.0.1",
+            "region": "EU"
+          },
+          "customer": null,
+          "environment": "Production",
+          "event": "HttpServerError",
+          "group": "Web",
+          "href": "http://localhost:8080/alert/e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
+          "id": "e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
+          "origin": "curl",
+          "resource": "web01",
+          "service": [
+            "example.com"
+          ],
+          "status": "ack",
+          "tags": [
+            "dc1"
+          ],
+          "text": "disk needs replacing.",
+          "type": "status",
+          "updateTime": "2017-01-01T12:07:27.455Z"
+        }
+      ],
+      "lastTime": "2017-01-01T12:07:27.455Z",
+      "status": "ok"
+    }
 
 Get severity and status counts for alerts
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Returns a count of alerts grouped by severity and status.
+
 ::
 
     GET /alerts/count
@@ -497,7 +763,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl http://api.alerta.io/alerts/count?status=open&status=ack \
+    $ curl http://localhost:8080/alerts/count?environment=Production \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json'
 
@@ -506,7 +772,22 @@ Example Response
 
 ::
 
-    ???
+    200 OK
+
+.. code-block:: json
+
+    {
+      "severityCounts": {
+        "critical": 1,
+        "major": 1
+      },
+      "status": "ok",
+      "statusCounts": {
+        "ack": 1,
+        "open": 1
+      },
+      "total": 2
+    }
 
 Top 10 alerts by resource
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -537,7 +818,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl http://api.alerta.io/alerts/top10?group-by=group \
+    $ curl http://localhost:8080/alerts/top10?group-by=group \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json'
 
@@ -546,7 +827,39 @@ Example Response
 
 ::
 
-    ???
+    200 OK
+
+.. code-block:: json
+
+    {
+      "status": "ok",
+      "top10": [
+        {
+          "count": 2,
+          "duplicateCount": 0,
+          "environments": [
+            "Production"
+          ],
+          "group": "Web",
+          "resources": [
+            {
+              "href": "http://localhost:8080/alert/0099bae5-9683-48a1-a49d-f566fe143770",
+              "id": "0099bae5-9683-48a1-a49d-f566fe143770",
+              "resource": "web02"
+            },
+            {
+              "href": "http://localhost:8080/alert/e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
+              "id": "e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
+              "resource": "web01"
+            }
+          ],
+          "services": [
+            "example.com"
+          ]
+        }
+      ],
+      "total": 1
+    }
 
 .. _environments:
 
@@ -579,7 +892,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl http://api.alerta.io/environments \
+    $ curl http://localhost:8080/environments \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json'
 
@@ -588,7 +901,20 @@ Example Response
 
 ::
 
-    ???
+    200 OK
+
+.. code-block:: json
+
+    {
+      "environments": [
+        {
+          "count": 2,
+          "environment": "Production"
+        }
+      ],
+      "status": "ok",
+      "total": 1
+    }
 
 .. _services:
 
@@ -620,7 +946,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl http://api.alerta.io/services?environment=Production \
+    $ curl http://localhost:8080/services?environment=Production \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json'
 
@@ -629,7 +955,21 @@ Example Response
 
 ::
 
-    ???
+    200 OK
+
+.. code-block:: json
+
+    {
+      "services": [
+        {
+          "count": 2,
+          "environment": "Production",
+          "service": "example.com"
+        }
+      ],
+      "status": "ok",
+      "total": 1
+    }
 
 .. _blackouts:
 
