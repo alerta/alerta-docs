@@ -242,7 +242,50 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span>???
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;alert&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;EU&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;HttpServerOK&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T11:31:57.716Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;history&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1711c57e-5c6a-4c39-881b-9d8d174feafe&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s2">&quot;1711c57e-5c6a-4c39-881b-9d8d174feafe&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T11:31:57.718Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s2">&quot;indeterminate&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;rawData&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T11:31:57.718Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;repeat&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;example.com&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;dc1&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
+    <span class="nt">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s2">&quot;moreSevere&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;exceptionAlert&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1711c57e-5c6a-4c39-881b-9d8d174feafe&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -255,7 +298,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 </div>
 <div class="section" id="id2">
 <h4>Example Request<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alert/d61d877b-abe8-4fe9-b168-df8cf494a8e5 <span class="se">\</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span>
 </pre></div>
@@ -266,7 +309,68 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span>???
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;alert&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;EU&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;HttpServerOK&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T11:31:57.716Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1711c57e-5c6a-4c39-881b-9d8d174feafe&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;severity&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T11:31:57.716Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1711c57e-5c6a-4c39-881b-9d8d174feafe&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;new alert status change&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T11:31:57.718Z&quot;</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1711c57e-5c6a-4c39-881b-9d8d174feafe&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s2">&quot;1711c57e-5c6a-4c39-881b-9d8d174feafe&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T11:31:57.718Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s2">&quot;indeterminate&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;rawData&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T11:31:57.718Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;repeat&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;example.com&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;dc1&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
+    <span class="nt">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s2">&quot;moreSevere&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;exceptionAlert&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -295,7 +399,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">status</span></code></td>
 <td>string</td>
 <td><strong>Required</strong> New status from <code class="docutils literal"><span class="pre">open</span></code>,
-<code class="docutils literal"><span class="pre">ack</span></code>, <code class="docutils literal"><span class="pre">assigned</span></code>, <code class="docutils literal"><span class="pre">closed</span></code></td>
+<code class="docutils literal"><span class="pre">assign</span></code>, <code class="docutils literal"><span class="pre">ack</span></code>, <code class="docutils literal"><span class="pre">closed</span></code>, <code class="docutils literal"><span class="pre">expired</span></code></td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">text</span></code></td>
 <td>string</td>
@@ -306,7 +410,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 </div>
 <div class="section" id="id5">
 <h4>Example Request<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/alert/d61d877b-abe8-4fe9-b168-df8cf494a8e5/status <span class="se">\</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe/status <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
 -d <span class="s1">&#39;{</span>
@@ -348,7 +452,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 </div>
 <div class="section" id="id7">
 <h4>Example Request<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/alert/d61d877b-abe8-4fe9-b168-df8cf494a8e5/tag <span class="se">\</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe/tag <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
 -d <span class="s1">&#39;{</span>
@@ -393,7 +497,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 </div>
 <div class="section" id="id9">
 <h4>Example Request<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPUT http://localhost:8080/alert/d326cce7-77e0-4cf5-ab83-c6acb822b68f/attributes <span class="se">\</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPUT http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe/attributes <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
 -d <span class="s1">&#39;{</span>
@@ -415,7 +519,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 </div>
 <div class="section" id="id10">
 <h4>Example Request<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/alert/d326cce7-77e0-4cf5-ab83-c6acb822b68f <span class="se">\</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span>
 </pre></div>
