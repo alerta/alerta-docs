@@ -8,11 +8,15 @@ Alerta in common scenarios.
 
 **Tutorials**
 
+* :ref:`Deploy an Alerta Server <tutorial 1>`
+* :ref:`Alert timeouts, heartbeats and housekeeping <tutorial 2>`
+* :ref:`Use plugins to enhance Alerta <tutorial 3>`
+
 .. toctree::
   :glob:
   :maxdepth: 1
 
-  gettingstarted/*
+..  gettingstarted/*
 
 .. note:: If you require help with any of these tutorials post a question on Gitter_.
 
