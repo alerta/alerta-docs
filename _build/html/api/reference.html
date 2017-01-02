@@ -1942,11 +1942,12 @@ Any parameters not provided will be left unchanged.</p>
 </div>
 <div class="section" id="id63">
 <h4>Example Request<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/alert <span class="se">\</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/customer <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
 -d <span class="s1">&#39;{</span>
-
+<span class="s1">      &quot;customer&quot;: &quot;Example Corp.&quot;,</span>
+<span class="s1">      &quot;match&quot;: &quot;example.com&quot;</span>
 <span class="s1">    }&#39;</span>
 </pre></div>
 </div>
@@ -1956,7 +1957,15 @@ Any parameters not provided will be left unchanged.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span>???
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="s2">&quot;Example Corp.&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;289ca657-ea2c-4775-9e07-cc96844cc717&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="s2">&quot;example.com&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;289ca657-ea2c-4775-9e07-cc96844cc717&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -1970,8 +1979,7 @@ Any parameters not provided will be left unchanged.</p>
 <div class="section" id="id65">
 <h4>Example Request<a class="headerlink" href="#id65" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/customers <span class="se">\</span>
--H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
--H <span class="s1">&#39;Content-type: application/json&#39;</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -1980,7 +1988,23 @@ Any parameters not provided will be left unchanged.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span>???
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;customers&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="s2">&quot;Example Corp.&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;289ca657-ea2c-4775-9e07-cc96844cc717&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="s2">&quot;example.com&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="s2">&quot;Example Org.&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;90f4e211-c815-4112-9e1a-6e53de5a59c6&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="s2">&quot;example.org&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-02T01:21:38.958Z&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -1993,9 +2017,8 @@ Any parameters not provided will be left unchanged.</p>
 </div>
 <div class="section" id="id67">
 <h4>Example Request<a class="headerlink" href="#id67" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/customer/foo <span class="se">\</span>
--H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
--H <span class="s1">&#39;Content-type: application/json&#39;</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/customer/90f4e211-c815-4112-9e1a-6e53de5a59c6 <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
