@@ -1687,11 +1687,12 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XPOST http://localhost:8080/alert \
+    $ curl -XPOST http://localhost:8080/customer \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json' \
     -d '{
-
+          "customer": "Example Corp.",
+          "match": "example.com"
         }'
 
 Example Response
@@ -1703,7 +1704,15 @@ Example Response
 
 .. code-block:: json
 
-    ???
+    {
+      "customer": {
+        "customer": "Example Corp.",
+        "id": "289ca657-ea2c-4775-9e07-cc96844cc717",
+        "match": "example.com"
+      },
+      "id": "289ca657-ea2c-4775-9e07-cc96844cc717",
+      "status": "ok"
+    }
 
 List all customers
 ~~~~~~~~~~~~~~~~~~
@@ -1720,8 +1729,7 @@ Example Request
 .. code-block:: bash
 
     $ curl http://localhost:8080/customers \
-    -H 'Authorization: Key demo-key' \
-    -H 'Content-type: application/json'
+    -H 'Authorization: Key demo-key'
 
 Example Response
 ++++++++++++++++
@@ -1732,7 +1740,23 @@ Example Response
 
 .. code-block:: json
 
-    ???
+    {
+      "customers": [
+        {
+          "customer": "Example Corp.",
+          "id": "289ca657-ea2c-4775-9e07-cc96844cc717",
+          "match": "example.com"
+        },
+        {
+          "customer": "Example Org.",
+          "id": "90f4e211-c815-4112-9e1a-6e53de5a59c6",
+          "match": "example.org"
+        }
+      ],
+      "status": "ok",
+      "time": "2017-01-02T01:21:38.958Z",
+      "total": 2
+    }
 
 Delete a customer
 ~~~~~~~~~~~~~~~~~
@@ -1748,6 +1772,5 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XDELETE http://localhost:8080/customer/foo \
-    -H 'Authorization: Key demo-key' \
-    -H 'Content-type: application/json'
+    $ curl -XDELETE http://localhost:8080/customer/90f4e211-c815-4112-9e1a-6e53de5a59c6 \
+    -H 'Authorization: Key demo-key'
