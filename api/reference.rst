@@ -1479,28 +1479,36 @@ Creates a new user.
 Input
 +++++
 
-+-----------------+----------+----------------------------------------------+
-| Name            | Type     | Description                                  |
-+=================+==========+==============================================+
-| ``name``        | string   |                                              |
-+-----------------+----------+----------------------------------------------+
-| ``login``       | string   |                                              |
-+-----------------+----------+----------------------------------------------+
-| ``provider``    | string   |                                              |
-+-----------------+----------+----------------------------------------------+
-| ``text``        | string   |                                              |
-+-----------------+----------+----------------------------------------------+
++--------------------+----------+-------------------------------------------+
+| Name               | Type     | Description                               |
++====================+==========+===========================================+
+| ``name``           | string   |                                           |
++--------------------+----------+-------------------------------------------+
+| ``login``          | string   |                                           |
++--------------------+----------+-------------------------------------------+
+| ``password``       | string   |                                           |
++--------------------+----------+-------------------------------------------+
+| ``provider``       | string   |                                           |
++--------------------+----------+-------------------------------------------+
+| ``text``           | string   |                                           |
++--------------------+----------+-------------------------------------------+
+| ``email_verified`` | string   |                                           |
++--------------------+----------+-------------------------------------------+
 
 Example Request
 +++++++++++++++
 
 .. code-block:: bash
 
-    $ curl -XPOST http://localhost:8080/alert \
+    $ curl -XPOST http://localhost:8080/user \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json' \
     -d '{
-
+          "name": "Joe Bloggs",
+          "login": "joe.bloggs@example.com",
+          "password": "secret",
+          "text": "demo user",
+          "email_verified": true
         }'
 
 Example Response
@@ -1512,7 +1520,19 @@ Example Response
 
 .. code-block:: json
 
-    ???
+    {
+      "id": "166b41d6-849f-440d-ba30-1a5345d86fb6",
+      "status": "ok",
+      "user": {
+        "createTime": "2017-01-02T00:23:24.487Z",
+        "email_verified": true,
+        "id": "166b41d6-849f-440d-ba30-1a5345d86fb6",
+        "login": "joe.bloggs@example.com",
+        "name": "Joe Bloggs",
+        "provider": "basic",
+        "text": "demo user"
+      }
+    }
 
 Update a user
 ~~~~~~~~~~~~~
@@ -1527,40 +1547,35 @@ Any parameters not provided will be left unchanged.
 Input
 +++++
 
-+-----------------+----------+----------------------------------------------+
-| Name            | Type     | Description                                  |
-+=================+==========+==============================================+
-| ``name``        | string   |                                              |
-+-----------------+----------+----------------------------------------------+
-| ``login``       | string   |                                              |
-+-----------------+----------+----------------------------------------------+
-| ``provider``    | string   |                                              |
-+-----------------+----------+----------------------------------------------+
-| ``text``        | string   |                                              |
-+-----------------+----------+----------------------------------------------+
++--------------------+----------+-------------------------------------------+
+| Name               | Type     | Description                               |
++====================+==========+===========================================+
+| ``name``           | string   |                                           |
++--------------------+----------+-------------------------------------------+
+| ``login``          | string   |                                           |
++--------------------+----------+-------------------------------------------+
+| ``password``       | string   |                                           |
++--------------------+----------+-------------------------------------------+
+| ``provider``       | string   |                                           |
++--------------------+----------+-------------------------------------------+
+| ``text``           | string   |                                           |
++--------------------+----------+-------------------------------------------+
+| ``email_verified`` | string   |                                           |
++--------------------+----------+-------------------------------------------+
 
 Example Request
 +++++++++++++++
 
 .. code-block:: bash
 
-    $ curl -XPOST http://localhost:8080/alert \
+    $ curl -XPUT http://localhost:8080/user/0a35bfd8-1175-4cd2-96f6-eda9861fd15d \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json' \
     -d '{
-
+          "password": "p8ssw0rd",
+          "text": "test user",
+          "email_verified": false
         }'
-
-Example Response
-++++++++++++++++
-
-::
-
-    201 CREATED
-
-.. code-block:: json
-
-    ???
 
 List all users
 ~~~~~~~~~~~~~~
@@ -1577,8 +1592,7 @@ Example Request
 .. code-block:: bash
 
     $ curl http://localhost:8080/users \
-    -H 'Authorization: Key demo-key' \
-    -H 'Content-type: application/json'
+    -H 'Authorization: Key demo-key'
 
 Example Response
 ++++++++++++++++
@@ -1589,7 +1603,42 @@ Example Response
 
 .. code-block:: json
 
-    ???
+    {
+      "domains": [
+        "*"
+      ],
+      "groups": [
+        "*"
+      ],
+      "orgs": [
+        "*"
+      ],
+      "status": "ok",
+      "time": "2017-01-02T00:24:00.393Z",
+      "total": 2,
+      "users": [
+        {
+          "createTime": "2017-01-01T23:49:38.486Z",
+          "email_verified": false,
+          "id": "b91811e7-52dd-4a8f-adae-b4d5c628d6f8",
+          "login": "jane.doe@example.org",
+          "name": "Jane Doe",
+          "provider": "basic",
+          "role": "user",
+          "text": "demo user"
+        },
+        {
+          "createTime": "2017-01-02T00:23:24.487Z",
+          "email_verified": true,
+          "id": "166b41d6-849f-440d-ba30-1a5345d86fb6",
+          "login": "joe.bloggs@example.com",
+          "name": "Joe Bloggs",
+          "provider": "basic",
+          "role": "user",
+          "text": "demo user"
+        }
+      ]
+    }
 
 Delete a user
 ~~~~~~~~~~~~~
@@ -1605,9 +1654,8 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XDELETE http://localhost:8080/user/bar \
-    -H 'Authorization: Key demo-key' \
-    -H 'Content-type: application/json'
+    $ curl -XDELETE http://localhost:8080/user/166b41d6-849f-440d-ba30-1a5345d86fb6 \
+    -H 'Authorization: Key demo-key'
 
 .. _customers:
 
