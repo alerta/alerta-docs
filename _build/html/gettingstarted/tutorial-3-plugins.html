@@ -132,11 +132,79 @@ Alerta API via the <code class="docutils literal"><span class="pre">X-Forwarded-
 </div>
 <div class="section" id="step-2-write-a-plugin">
 <h2>Step 2: Write a plugin<a class="headerlink" href="#step-2-write-a-plugin" title="Permalink to this headline">¶</a></h2>
-<p>Now that you have installed and configured a basic plugin you are going
-to write one of your own.</p>
-<blockquote>
-<div>is_flapping()</div></blockquote>
-<p>TBC</p>
+<p>The base class for plugins has three methods that <strong>must</strong> be implemented
+and the <code class="docutils literal"><span class="pre">__init__()</span></code> method can optionally be implemented as well as long
+as the Super class is also called.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExamplePlugin</span><span class="p">(</span><span class="n">PluginBase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+
+        <span class="c1"># plugin-specific init goes here</span>
+        <span class="c1"># if not required, leave &quot;__init__()&quot; out completely</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">ExamplePlugin</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">pre_receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">):</span>
+
+        <span class="c1"># reject or modify an alert before it hits the database</span>
+
+        <span class="k">return</span> <span class="n">alert</span>
+
+    <span class="k">def</span> <span class="nf">post_receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">):</span>
+
+        <span class="c1"># after alert saved in database, forward alert to external systems</span>
+
+        <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">status_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+
+        <span class="c1"># triggered by external status changes, used by integrations</span>
+
+        <span class="k">return</span>
+</pre></div>
+</div>
+<p>Now that you know the basic implementation of a plugin you are going
+to write one of your own to detect &#8220;<a class="reference external" href="https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/flapping.html">flapping</a>&#8221; alerts.</p>
+<p>To do this you are going to take advantage of the <code class="docutils literal"><span class="pre">is_flapping()</span></code> utility
+method that takes an alert, a time window (in seconds) and a threshold
+count and returns <code class="docutils literal"><span class="pre">True</span></code> if alert severity changes has exceeded the thresholds.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">from</span> <span class="nn">alerta.app</span> <span class="kn">import</span> <span class="n">db</span>
+<span class="kn">from</span> <span class="nn">alerta.app.exceptions</span> <span class="kn">import</span> <span class="n">RateLimit</span>
+<span class="kn">from</span> <span class="nn">alerta.plugins</span> <span class="kn">import</span> <span class="n">PluginBase</span>
+
+<span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;alerta.plugins.transient&#39;</span><span class="p">)</span>
+
+<span class="n">FLAPPING_COUNT</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">FLAPPING_WINDOW</span> <span class="o">=</span> <span class="mi">120</span>  <span class="c1"># seconds</span>
+
+<span class="k">class</span> <span class="nc">TransientAlert</span><span class="p">(</span><span class="n">PluginBase</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">pre_receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">):</span>
+
+        <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Detecting transient alerts...&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">db</span><span class="o">.</span><span class="n">is_flapping</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">FLAPPING_WINDOW</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="n">FLAPPING_COUNT</span><span class="p">):</span>
+            <span class="n">alert</span><span class="o">.</span><span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;indeterminate&#39;</span>
+            <span class="n">alert</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;flapping&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="c1"># uncomment following line to stop alerts from being processed</span>
+            <span class="c1"># raise RateLimit(&quot;Flapping alert received more than %s times in %s seconds&quot; % (FLAPPING_COUNT, FLAPPING_WINDOW))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">alert</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;flapping&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+
+        <span class="k">return</span> <span class="n">alert</span>
+
+    <span class="k">def</span> <span class="nf">post_receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">):</span>
+        <span class="k">return</span>
+
+    <span class="k">def</span> <span class="nf">status_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="k">return</span>
+</pre></div>
+</div>
+<p>The plugin above sets an attribute called <code class="docutils literal"><span class="pre">flapping</span></code> which can be used in other
+plugins to perhaps not trigger an external notification for flapping alerts.</p>
+<p>Alternatively, the alert could be rejected (using the <code class="docutils literal"><span class="pre">RateLimit</span></code> exception) or
+any other appropriate action can be taken that suits your environment.</p>
 </div>
 <div class="section" id="step-3-route-alerts-to-plugins">
 <h2>Step 3: Route alerts to plugins<a class="headerlink" href="#step-3-route-alerts-to-plugins" title="Permalink to this headline">¶</a></h2>
@@ -225,7 +293,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="../authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../customerviews.html">Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>

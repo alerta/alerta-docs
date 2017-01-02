@@ -97,14 +97,87 @@ origin of the alert::
 Step 2: Write a plugin
 ----------------------
 
-Now that you have installed and configured a basic plugin you are going
-to write one of your own.
+The base class for plugins has three methods that **must** be implemented
+and the ``__init__()`` method can optionally be implemented as well as long
+as the Super class is also called.
 
+.. code-block:: python
 
- is_flapping()
- 
-TBC
+    class ExamplePlugin(PluginBase):
 
+        def __init__(self, name=None):
+
+            # plugin-specific init goes here
+            # if not required, leave "__init__()" out completely
+
+            super(ExamplePlugin, self).__init__(name)
+
+        def pre_receive(self, alert):
+
+            # reject or modify an alert before it hits the database
+
+            return alert
+
+        def post_receive(self, alert):
+
+            # after alert saved in database, forward alert to external systems
+
+            return
+
+        def status_change(self, alert, status, text):
+
+            # triggered by external status changes, used by integrations
+
+            return
+
+Now that you know the basic implementation of a plugin you are going
+to write one of your own to detect "flapping_" alerts.
+
+.. _flapping: https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/flapping.html
+
+To do this you are going to take advantage of the ``is_flapping()`` utility
+method that takes an alert, a time window (in seconds) and a threshold
+count and returns ``True`` if alert severity changes has exceeded the thresholds.
+
+.. code-block:: python
+
+    import logging
+
+    from alerta.app import db
+    from alerta.app.exceptions import RateLimit
+    from alerta.plugins import PluginBase
+
+    LOG = logging.getLogger('alerta.plugins.transient')
+
+    FLAPPING_COUNT = 2
+    FLAPPING_WINDOW = 120  # seconds
+
+    class TransientAlert(PluginBase):
+
+        def pre_receive(self, alert):
+
+            LOG.info("Detecting transient alerts...")
+            if db.is_flapping(alert, window=FLAPPING_WINDOW, count=FLAPPING_COUNT):
+                alert.severity = 'indeterminate'
+                alert.attributes['flapping'] = True
+                # uncomment following line to stop alerts from being processed
+                # raise RateLimit("Flapping alert received more than %s times in %s seconds" % (FLAPPING_COUNT, FLAPPING_WINDOW))
+            else:
+                alert.attributes['flapping'] = False
+
+            return alert
+
+        def post_receive(self, alert):
+            return
+
+        def status_change(self, alert, status, text):
+            return
+
+The plugin above sets an attribute called ``flapping`` which can be used in other
+plugins to perhaps not trigger an external notification for flapping alerts.
+
+Alternatively, the alert could be rejected (using the ``RateLimit`` exception) or
+any other appropriate action can be taken that suits your environment.
 
 Step 3: Route alerts to plugins
 -------------------------------
