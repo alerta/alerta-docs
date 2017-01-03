@@ -132,7 +132,7 @@ Alerta API via the <code class="docutils literal"><span class="pre">X-Forwarded-
 </div>
 <div class="section" id="step-2-write-a-plugin">
 <h2>Step 2: Write a plugin<a class="headerlink" href="#step-2-write-a-plugin" title="Permalink to this headline">¶</a></h2>
-<p>The base class for plugins has three methods that <strong>must</strong> be implemented
+<p>The <a class="reference external" href="http://docs.openstack.org/developer/stevedore/tutorial/creating_plugins.html#a-plugin-base-class">base class for plugins</a> has three methods that <strong>must</strong> be implemented
 and the <code class="docutils literal"><span class="pre">__init__()</span></code> method can optionally be implemented as well as long
 as the Super class is also called.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExamplePlugin</span><span class="p">(</span><span class="n">PluginBase</span><span class="p">):</span>
@@ -201,18 +201,114 @@ count and returns <code class="docutils literal"><span class="pre">True</span></
         <span class="k">return</span>
 </pre></div>
 </div>
-<p>The plugin above sets an attribute called <code class="docutils literal"><span class="pre">flapping</span></code> which can be used in other
-plugins to perhaps not trigger an external notification for flapping alerts.</p>
-<p>Alternatively, the alert could be rejected (using the <code class="docutils literal"><span class="pre">RateLimit</span></code> exception) or
-any other appropriate action can be taken that suits your environment.</p>
+<p>The plugin above sets the severity to <code class="docutils literal"><span class="pre">indeterminate</span></code> and an attribute
+called <code class="docutils literal"><span class="pre">flapping</span></code> (which can be used in other plugins to perhaps not
+trigger an external notification for flapping alerts).</p>
+<p>Alternatively, the alert could be rejected (using the <code class="docutils literal"><span class="pre">RateLimit</span></code>
+exception) or any other appropriate action can be taken that suits
+your environment.</p>
+<p>Copy the plugin code above, modifying it to suit your requirements, into
+a file called <code class="docutils literal"><span class="pre">alerta_transient.py</span></code> and copy the following into another
+file called <code class="docutils literal"><span class="pre">setup.py</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
+
+<span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;0.0.1&#39;</span>
+
+<span class="n">setup</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;alerta-transient&quot;</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="n">version</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Example Alerta plugin for transient flapping alerts&#39;</span><span class="p">,</span>
+    <span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://github.com/alerta/alerta-contrib&#39;</span><span class="p">,</span>
+    <span class="n">license</span><span class="o">=</span><span class="s1">&#39;Apache License 2.0&#39;</span><span class="p">,</span>
+    <span class="n">author</span><span class="o">=</span><span class="s1">&#39;Your name&#39;</span><span class="p">,</span>
+    <span class="n">author_email</span><span class="o">=</span><span class="s1">&#39;your.name@example.com&#39;</span><span class="p">,</span>
+    <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(),</span>
+    <span class="n">py_modules</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;alerta_transient&#39;</span><span class="p">],</span>
+    <span class="n">install_requires</span><span class="o">=</span><span class="p">[],</span>
+    <span class="n">include_package_data</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">zip_safe</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;alerta.plugins&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">&#39;transient = alerta_transient:TransientAlert&#39;</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, install the plugin and add it to the list of enabled
+plugins in the server configuration file, making sure to restart
+uwsgi so that the Alerta server picks up the changes:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo python setup.py install
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo vi /etc/alertad.conf
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PLUGINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;reject&#39;</span><span class="p">,</span><span class="s1">&#39;transient&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Test the plugin by submitting multiple duplicate alerts in quick
+succession. Depending on your implementation the Alerta server may
+respond with a <code class="docutils literal"><span class="pre">429</span> <span class="pre">Rate</span> <span class="pre">Limited</span></code> or tag the alert with a
+<code class="docutils literal"><span class="pre">flapping=True</span></code> attribute.</p>
 </div>
 <div class="section" id="step-3-route-alerts-to-plugins">
 <h2>Step 3: Route alerts to plugins<a class="headerlink" href="#step-3-route-alerts-to-plugins" title="Permalink to this headline">¶</a></h2>
-<p>TBC</p>
-<p><a class="reference external" href="https://github.com/guardian/alerta/tree/master/contrib/routing">https://github.com/guardian/alerta/tree/master/contrib/routing</a></p>
-<p>you are expected to change it before you install it. maybe i should make that more clear.</p>
-<p>it could be slightly more complicated and actually be a useful starting point though.</p>
-<p>sure. you should set debug output if you put DEBUG = True in the alertad.conf file.</p>
+<p>By default, plugins are executed in the order in which they are
+listed in the <code class="docutils literal"><span class="pre">PLUGINS</span></code> setting and all plugins are executed for
+every alert.</p>
+<p>In this step you are going to modify the default behaviour of plugins
+by using a &#8220;routing&#8221; plugin to dynamically change which plugins
+are run for an alert and in which order.</p>
+<p>The most basic routing plugin is one that simply implements what is
+the current behaviour. That is, it returns a list of the
+<em>plugin entry points, not plugin names</em> of all the existing
+plugins in the order they are configured.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
+
+    <span class="k">return</span> <span class="n">plugins</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The following routing plugin simply demonstrates what to return if
+no plugins are wanted to be executed, a subset of plugins or all
+configured plugins.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">alert</span><span class="o">.</span><span class="n">text</span><span class="o">==</span><span class="s1">&#39;no plugins&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">elif</span> <span class="n">alert</span><span class="o">.</span><span class="n">text</span><span class="o">==</span><span class="s1">&#39;reject only&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">plugins</span><span class="p">[</span><span class="s1">&#39;reject&#39;</span><span class="p">]]</span>
+    <span class="k">elif</span> <span class="n">alert</span><span class="o">.</span><span class="n">text</span><span class="o">==</span><span class="s1">&#39;all plugins&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">plugins</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>A more useful plugin would be one that doesn&#8217;t call an external
+notification like <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/slack">Slack</a> unless an alert has been received at least
+three times.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">alert</span><span class="o">.</span><span class="n">duplicateCount</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">plugins</span><span class="p">[</span><span class="s1">&#39;slack&#39;</span><span class="p">]]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+</pre></div>
+</div>
+<p>The following routing plugin expands on the above but this time it
+sends <code class="docutils literal"><span class="pre">critical</span></code> and <code class="docutils literal"><span class="pre">major</span></code> alerts to <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty">PagerDuty</a> as well.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">alert</span><span class="o">.</span><span class="n">duplicateCount</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">elif</span> <span class="n">alert</span><span class="o">.</span><span class="n">severity</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;critical&#39;</span><span class="p">,</span> <span class="s1">&#39;major&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">plugins</span><span class="p">[</span><span class="s1">&#39;slack&#39;</span><span class="p">,</span> <span class="s1">&#39;pagerduty&#39;</span><span class="p">]]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">plugins</span><span class="p">[</span><span class="s1">&#39;slack&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>Hopefully there are enough examples here to get you started developing
+your own plugins. There are plenty of <a class="reference external" href="https://github.com/alerta/alerta-contrib">contributed plugins</a> to refer to
+and you are welcome to submit your plugins to the contrib repo for use
+by the wider community.</p>
 </div>
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
