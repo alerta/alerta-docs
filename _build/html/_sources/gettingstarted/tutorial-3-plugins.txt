@@ -97,9 +97,11 @@ origin of the alert::
 Step 2: Write a plugin
 ----------------------
 
-The base class for plugins has three methods that **must** be implemented
+The `base class for plugins`_ has three methods that **must** be implemented
 and the ``__init__()`` method can optionally be implemented as well as long
 as the Super class is also called.
+
+.. _base class for plugins: http://docs.openstack.org/developer/stevedore/tutorial/creating_plugins.html#a-plugin-base-class
 
 .. code-block:: python
 
@@ -173,28 +175,137 @@ count and returns ``True`` if alert severity changes has exceeded the thresholds
         def status_change(self, alert, status, text):
             return
 
-The plugin above sets an attribute called ``flapping`` which can be used in other
-plugins to perhaps not trigger an external notification for flapping alerts.
+The plugin above sets the severity to ``indeterminate`` and an attribute
+called ``flapping`` (which can be used in other plugins to perhaps not
+trigger an external notification for flapping alerts).
 
-Alternatively, the alert could be rejected (using the ``RateLimit`` exception) or
-any other appropriate action can be taken that suits your environment.
+Alternatively, the alert could be rejected (using the ``RateLimit``
+exception) or any other appropriate action can be taken that suits
+your environment.
+
+Copy the plugin code above, modifying it to suit your requirements, into
+a file called ``alerta_transient.py`` and copy the following into another
+file called ``setup.py``:
+
+.. code-block:: python
+
+    from setuptools import setup, find_packages
+
+    version = '0.0.1'
+
+    setup(
+        name="alerta-transient",
+        version=version,
+        description='Example Alerta plugin for transient flapping alerts',
+        url='https://github.com/alerta/alerta-contrib',
+        license='Apache License 2.0',
+        author='Your name',
+        author_email='your.name@example.com',
+        packages=find_packages(),
+        py_modules=['alerta_transient'],
+        install_requires=[],
+        include_package_data=True,
+        zip_safe=True,
+        entry_points={
+            'alerta.plugins': [
+                'transient = alerta_transient:TransientAlert'
+            ]
+        }
+    )
+
+Next, install the plugin and add it to the list of enabled
+plugins in the server configuration file, making sure to restart
+uwsgi so that the Alerta server picks up the changes::
+
+    $ sudo python setup.py install
+
+::
+
+    $ sudo vi /etc/alertad.conf
+
+::
+
+    PLUGINS = ['reject','transient']
+
+Test the plugin by submitting multiple duplicate alerts in quick
+succession. Depending on your implementation the Alerta server may
+respond with a ``429 Rate Limited`` or tag the alert with a
+``flapping=True`` attribute.
 
 Step 3: Route alerts to plugins
 -------------------------------
 
-TBC
+By default, plugins are executed in the order in which they are
+listed in the ``PLUGINS`` setting and all plugins are executed for
+every alert.
 
-https://github.com/guardian/alerta/tree/master/contrib/routing
+In this step you are going to modify the default behaviour of plugins
+by using a "routing" plugin to dynamically change which plugins
+are run for an alert and in which order.
 
-you are expected to change it before you install it. maybe i should make that more clear.
+The most basic routing plugin is one that simply implements what is
+the current behaviour. That is, it returns a list of the
+*plugin entry points, not plugin names* of all the existing
+plugins in the order they are configured.
 
-it could be slightly more complicated and actually be a useful starting point though.
+.. code-block:: python
 
-sure. you should set debug output if you put DEBUG = True in the alertad.conf file.
+    def rules(alert, plugins):
 
-.. routing
-.. Send to Slack only if it has been received more than twice::
-.. resend emails after x https://github.com/alerta/alerta-contrib/issues/64
+        return plugins.values()
+
+The following routing plugin simply demonstrates what to return if
+no plugins are wanted to be executed, a subset of plugins or all
+configured plugins.
+
+.. code-block:: python
+
+    def rules(alert, plugins):
+
+        if alert.text=='no plugins':
+            return []
+        elif alert.text=='reject only':
+            return [plugins['reject']]
+        elif alert.text=='all plugins':
+            return plugins.values()
+
+A more useful plugin would be one that doesn't call an external
+notification like Slack_ unless an alert has been received at least
+three times.
+
+.. _Slack: https://github.com/alerta/alerta-contrib/tree/master/plugins/slack
+
+.. code-block:: python
+
+    def rules(alert, plugins):
+
+        if alert.duplicateCount > 2:
+            return [plugins['slack']]
+        else:
+            return []
+
+The following routing plugin expands on the above but this time it
+sends ``critical`` and ``major`` alerts to PagerDuty_ as well.
+
+.. _PagerDuty: https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty
+
+.. code-block:: python
+
+    def rules(alert, plugins):
+
+        if alert.duplicateCount <= 2:
+            return []
+        elif alert.severity in ['critical', 'major']:
+            return [plugins['slack', 'pagerduty']]
+        else:
+            return [plugins['slack']]
+
+Hopefully there are enough examples here to get you started developing
+your own plugins. There are plenty of `contributed plugins`_ to refer to
+and you are welcome to submit your plugins to the contrib repo for use
+by the wider community.
+
+.. _contributed plugins: https://github.com/alerta/alerta-contrib
 
 Next Steps
 ----------
