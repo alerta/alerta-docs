@@ -286,7 +286,7 @@ and copy the following into a file called ``setup.py``:
     )
 
 Next, install the routing plugin. There is no need to add it
-to the ``alertad.conf`` file as it will be auto-deteded. Do
+to the ``alertad.conf`` file as it will be auto-detected. Do
 not forget to restart uwsgi so that Alerta server picks up
 the change though::
 
@@ -294,8 +294,9 @@ the change though::
 
 Test the routing plugin by submitting an alert and the routing plugin
 should print to stdout the order in which the plugins will be
-executed. Change the order in the ``alertad.conf`` file and confirm
-this is reflected in the printed output.
+executed. As a test, change the order of the listed ``PLUGINS``
+in the ``alertad.conf`` file and confirm this is reflected in
+the printed output.
 
 Now that you have created a basic routing plugin the following
 routing plugin simply demonstrates how to determine

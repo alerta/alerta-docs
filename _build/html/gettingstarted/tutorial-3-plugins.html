@@ -299,7 +299,7 @@ and copy the following into a file called <code class="docutils literal"><span c
 </pre></div>
 </div>
 <p>Next, install the routing plugin. There is no need to add it
-to the <code class="docutils literal"><span class="pre">alertad.conf</span></code> file as it will be auto-deteded. Do
+to the <code class="docutils literal"><span class="pre">alertad.conf</span></code> file as it will be auto-detected. Do
 not forget to restart uwsgi so that Alerta server picks up
 the change though:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo python setup.py install
@@ -307,8 +307,9 @@ the change though:</p>
 </div>
 <p>Test the routing plugin by submitting an alert and the routing plugin
 should print to stdout the order in which the plugins will be
-executed. Change the order in the <code class="docutils literal"><span class="pre">alertad.conf</span></code> file and confirm
-this is reflected in the printed output.</p>
+executed. As a test, change the order of the listed <code class="docutils literal"><span class="pre">PLUGINS</span></code>
+in the <code class="docutils literal"><span class="pre">alertad.conf</span></code> file and confirm this is reflected in
+the printed output.</p>
 <p>Now that you have created a basic routing plugin the following
 routing plugin simply demonstrates how to determine
 which plugins should be executed for an alert at runtime. The
