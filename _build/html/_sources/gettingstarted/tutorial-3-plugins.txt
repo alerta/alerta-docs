@@ -139,7 +139,8 @@ to write one of your own to detect "flapping_" alerts.
 
 To do this you are going to take advantage of the ``is_flapping()`` utility
 method that takes an alert, a time window (in seconds) and a threshold
-count and returns ``True`` if alert severity changes has exceeded the thresholds.
+count and returns ``True`` if the number of alert severity changes
+has exceeded the threshold.
 
 .. code-block:: python
 
@@ -229,7 +230,7 @@ uwsgi so that the Alerta server picks up the changes::
 
 Test the plugin by submitting multiple duplicate alerts in quick
 succession. Depending on your implementation the Alerta server may
-respond with a ``429 Rate Limited`` or tag the alert with a
+respond with a ``429 Rate Limited`` or update the alert with a
 ``flapping=True`` attribute.
 
 Step 3: Route alerts to plugins
@@ -244,19 +245,64 @@ by using a "routing" plugin to dynamically change which plugins
 are run for an alert and in which order.
 
 The most basic routing plugin is one that simply implements what is
-the current behaviour. That is, it returns a list of the
-*plugin entry points, not plugin names* of all the existing
-plugins in the order they are configured.
+the current behaviour. That is, it returns a list of the enabled
+and loaded plugin entry points (not plugin names) of all the configured
+plugins in the order they are listed.
 
 .. code-block:: python
 
     def rules(alert, plugins):
 
+        print(plugins)
         return plugins.values()
 
-The following routing plugin simply demonstrates what to return if
-no plugins are wanted to be executed, a subset of plugins or all
-configured plugins.
+Copy the routing plugin code above into a file called ``routing.py``
+and copy the following into a file called ``setup.py``:
+
+.. code-block:: python
+
+    from setuptools import setup, find_packages
+
+    version = '0.0.1'
+
+    setup(
+        name="alerta-routing",
+        version=version,
+        description='Alerta routing rules for plugins',
+        url='https://github.com/alerta/alerta-contrib',
+        license='Apache License 2.0',
+        author='Your name',
+        author_email='your.name@example.com',
+        packages=find_packages(),
+        py_modules=['routing'],
+        install_requires=[],
+        include_package_data=True,
+        zip_safe=True,
+        entry_points={
+            'alerta.routing': [
+              'rules = routing:rules'
+            ]
+        }
+    )
+
+Next, install the routing plugin. There is no need to add it
+to the ``alertad.conf`` file as it will be auto-deteded. Do
+not forget to restart uwsgi so that Alerta server picks up
+the change though::
+
+    $ sudo python setup.py install
+
+Test the routing plugin by submitting an alert and the routing plugin
+should print to stdout the order in which the plugins will be
+executed. Change the order in the ``alertad.conf`` file and confirm
+this is reflected in the printed output.
+
+Now that you have created a basic routing plugin the following
+routing plugin simply demonstrates how to determine
+which plugins should be executed for an alert at runtime. The
+code below shows what to return if no plugins are wanted to be
+executed, a subset of plugins should be executed, or all
+configured plugins should be executed.
 
 .. code-block:: python
 
