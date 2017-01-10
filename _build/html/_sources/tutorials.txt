@@ -11,6 +11,7 @@ Alerta in common scenarios.
 * :ref:`Deploy an Alerta Server <tutorial 1>`
 * :ref:`Alert timeouts, heartbeats and housekeeping <tutorial 2>`
 * :ref:`Use plugins to enhance Alerta <tutorial 3>`
+* :ref:`Alerts explored in-depth <tutorial 4>`
 
 .. toctree::
   :glob:
