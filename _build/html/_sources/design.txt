@@ -9,7 +9,7 @@ Alerta monitoring system.
 Resource under alarm
 ---------------------
 
-A :ref:`resource <alert_attributes>` is any entity that it makes
+A :ref:`resource <alert attributes>` is any entity that it makes
 sense for you to receive alerts for. You shouldn't be forced to
 accept a certain "world view" when using a monitoring tool or to
 repurpose a "host" field for a service or application, or a even
