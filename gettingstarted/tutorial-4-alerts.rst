@@ -14,8 +14,8 @@ attributes, environments and services and more.
   * `Step 1: De-duplication`_
   * `Step 2: Simple Correlation`_
   * `Step 3: Automatic status changes`_
-  * `Step 4: Tags and Custom attributes`_
-  * `Step 5: Environments and Services`_
+  * `Step 4: Environments and Services`_
+  * `Step 5: Tags and Custom attributes`_
   * `Step 6: Groups, types and origins`_
   * `Step 7: Saving raw data`_
   * `Next Steps`_
@@ -190,13 +190,38 @@ when any severity except ``normal`` is received for that alert.
   9564d012-1d37-45c2-94c6-ba5e26af8389 (normal -> major)
   => open
 
-Step 4: Tags and Custom attributes
-----------------------------------
-
-TBC
-
-Step 5: Environments and Services
+Step 4: Environments and Services
 ---------------------------------
+
+The alert ``environment`` plays an important role in de-duplication
+and correlation because it is used to "namespace" the alert ``resource``.
+Alert ``environments`` provide a scope for ``resources``. Alert
+``resources`` need to be unique within an ``environment`` namespace.
+
+This means that if two alerts are received for the same ``resource``
+but **different** environments they are considered different alerts
+and are **not** de-duplicated or correlated.
+
+This is so that you can have hosts, applications, devices or anything
+with the same resource name but in different environments and they
+will be treated independently.
+
+Run the following commands to generate two "loginError" alerts, one
+for the "Production" environment and the other for "Development":
+
+.. code-block:: console
+
+  $ alerta send -r user01 -e loginStatus -v loginError -s major -E Production \
+  -S Security -t 'user01 login failed.'
+  f0948bf7-d351-47f8-8670-0eb84127816b (indeterminate -> major)
+
+  $ alerta send -r user01 -e loginStatus -v loginError -s major -E Development \
+  -S Security -t 'user01 login failed.'
+  4cd197b8-eb19-49f5-9afe-841390c03ff9 (indeterminate -> major)
+
+
+Step 5: Tags and Custom attributes
+----------------------------------
 
 TBC
 
