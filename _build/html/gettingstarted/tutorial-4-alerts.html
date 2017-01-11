@@ -55,8 +55,8 @@ attributes, environments and services and more.</p>
 <li><a class="reference internal" href="#step-1-de-duplication">Step 1: De-duplication</a></li>
 <li><a class="reference internal" href="#step-2-simple-correlation">Step 2: Simple Correlation</a></li>
 <li><a class="reference internal" href="#step-3-automatic-status-changes">Step 3: Automatic status changes</a></li>
-<li><a class="reference internal" href="#step-4-tags-and-custom-attributes">Step 4: Tags and Custom attributes</a></li>
-<li><a class="reference internal" href="#step-5-environments-and-services">Step 5: Environments and Services</a></li>
+<li><a class="reference internal" href="#step-4-environments-and-services">Step 4: Environments and Services</a></li>
+<li><a class="reference internal" href="#step-5-tags-and-custom-attributes">Step 5: Tags and Custom attributes</a></li>
 <li><a class="reference internal" href="#step-6-groups-types-and-origins">Step 6: Groups, types and origins</a></li>
 <li><a class="reference internal" href="#step-7-saving-raw-data">Step 7: Saving raw data</a></li>
 <li><a class="reference internal" href="#next-steps">Next Steps</a></li>
@@ -208,12 +208,32 @@ when any severity except <code class="docutils literal"><span class="pre">normal
 </pre></div>
 </div>
 </div>
-<div class="section" id="step-4-tags-and-custom-attributes">
-<h2>Step 4: Tags and Custom attributes<a class="headerlink" href="#step-4-tags-and-custom-attributes" title="Permalink to this headline">¶</a></h2>
-<p>TBC</p>
+<div class="section" id="step-4-environments-and-services">
+<h2>Step 4: Environments and Services<a class="headerlink" href="#step-4-environments-and-services" title="Permalink to this headline">¶</a></h2>
+<p>The alert <code class="docutils literal"><span class="pre">environment</span></code> plays an important role in de-duplication
+and correlation because it is used to &#8220;namespace&#8221; the alert <code class="docutils literal"><span class="pre">resource</span></code>.
+Alert <code class="docutils literal"><span class="pre">environments</span></code> provide a scope for <code class="docutils literal"><span class="pre">resources</span></code>. Alert
+<code class="docutils literal"><span class="pre">resources</span></code> need to be unique within an <code class="docutils literal"><span class="pre">environment</span></code> namespace.</p>
+<p>This means that if two alerts are received for the same <code class="docutils literal"><span class="pre">resource</span></code>
+but <strong>different</strong> environments they are considered different alerts
+and are <strong>not</strong> de-duplicated or correlated.</p>
+<p>This is so that you can have hosts, applications, devices or anything
+with the same resource name but in different environments and they
+will be treated independently.</p>
+<p>Run the following commands to generate two &#8220;loginError&#8221; alerts, one
+for the &#8220;Production&#8221; environment and the other for &#8220;Development&#8221;:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginError -s major -E Production <span class="se">\</span>
+<span class="go">-S Security -t &#39;user01 login failed.&#39;</span>
+<span class="go">f0948bf7-d351-47f8-8670-0eb84127816b (indeterminate -&gt; major)</span>
+
+<span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginError -s major -E Development <span class="se">\</span>
+<span class="go">-S Security -t &#39;user01 login failed.&#39;</span>
+<span class="go">4cd197b8-eb19-49f5-9afe-841390c03ff9 (indeterminate -&gt; major)</span>
+</pre></div>
 </div>
-<div class="section" id="step-5-environments-and-services">
-<h2>Step 5: Environments and Services<a class="headerlink" href="#step-5-environments-and-services" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="step-5-tags-and-custom-attributes">
+<h2>Step 5: Tags and Custom attributes<a class="headerlink" href="#step-5-tags-and-custom-attributes" title="Permalink to this headline">¶</a></h2>
 <p>TBC</p>
 </div>
 <div class="section" id="step-6-groups-types-and-origins">
