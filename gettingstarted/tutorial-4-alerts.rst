@@ -152,7 +152,7 @@ of alerts to ``ack`` or ``assign`` based on your alert handling
 procedures.
 
 An important feature of Alerta is that it will automatically
-``re-open`` an alert that was ``acked` if the severity for the
+``re-open`` an alert that was ``acked`` if the severity for the
 new alert is higher than that already received.
 
 .. code-block:: console

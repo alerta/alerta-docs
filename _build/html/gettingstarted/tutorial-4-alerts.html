@@ -173,7 +173,7 @@ was changed to <code class="docutils literal"><span class="pre">normal</span></c
 of alerts to <code class="docutils literal"><span class="pre">ack</span></code> or <code class="docutils literal"><span class="pre">assign</span></code> based on your alert handling
 procedures.</p>
 <p>An important feature of Alerta is that it will automatically
-<code class="docutils literal"><span class="pre">re-open</span></code> an alert that was <a href="#id1"><span class="problematic" id="id2">``</span></a>acked` if the severity for the
+<code class="docutils literal"><span class="pre">re-open</span></code> an alert that was <code class="docutils literal"><span class="pre">acked</span></code> if the severity for the
 new alert is higher than that already received.</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginError -s major -E Production <span class="se">\</span>
 <span class="go">-S Security -t &#39;user01 login failed.&#39;</span>
