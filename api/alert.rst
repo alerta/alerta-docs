@@ -1,4 +1,4 @@
-.. _alert_format:
+.. _alert format:
 
 Alert Format
 ============
@@ -7,7 +7,7 @@ Alerts received and sent by Alerta conform to a common alert format.
 All components of alerta use this message format and any external
 systems must produce or consume messages in this format also.
 
-.. _alert_attributes:
+.. _alert attributes:
 
 Attributes
 ----------
@@ -99,7 +99,7 @@ Attributes added when processing alerts
 |                      | the history log                                    |
 +----------------------+----------------------------------------------------+
 
-.. _status_table:
+.. _status table:
 
 Alert Status
 ------------
@@ -120,7 +120,7 @@ Alert Status
 | ``unknown``       | 9               |
 +-------------------+-----------------+
 
-.. _severity_table:
+.. _severity table:
 
 Alert Severities
 ----------------
