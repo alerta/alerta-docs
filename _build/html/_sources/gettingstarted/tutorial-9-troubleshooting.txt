@@ -1,4 +1,4 @@
-.. _tutorial 9x:
+.. _tutorial 9:
 
 Troubleshooting
 ===============
