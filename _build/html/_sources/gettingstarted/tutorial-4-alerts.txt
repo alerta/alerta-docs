@@ -68,23 +68,6 @@ Note that this is the default behaviour. No special configuration or alert
 format is required. As long as the alert resource and event are the same
 then alerts will be de-duplicated.
 
-This even works with different severities. Try the above again but with
-a different severity this time:
-
-.. code-block:: console
-
-  $ alerta send -r user01 -e loginError -s major -E Production -S Security \
-  -t 'user01 login failed.'
-  c94750b0-ef16-4f80-94fd-9de0fe789e68 (indeterminate -> major)
-
-  $ alerta send -r user01 -e loginError -s critical -E Production -S Security \
-  -t 'user01 login failed.'
-  c94750b0-ef16-4f80-94fd-9de0fe789e68 (major -> critical)
-
-This is not strictly a duplicate, because the severity has changed, but
-the principle is that as long as the event and resource are the same
-then the alert will only be displayed once.
-
 Step 2: Simple Correlation
 --------------------------
 
@@ -169,7 +152,7 @@ of alerts to ``ack`` or ``assign`` based on your alert handling
 procedures.
 
 An important feature of Alerta is that it will automatically
-``re-open`` an alert that was ``ack``ed if the severity for the
+``re-open`` an alert that was ``acked` if the severity for the
 new alert is higher than that already received.
 
 .. code-block:: console
@@ -185,6 +168,26 @@ new alert is higher than that already received.
   $ alerta send -r user01 -e loginStatus -v loginError -s critical -E Production \
   -S Security -t 'user01 login failed.'
   9df79583-397b-4d6b-8c6e-3f446bd0c7b3 (major -> critical)
+  => open
+
+Alerts are also ``re-opened`` if they are ``closed`` or ``expired``
+when any severity except ``normal`` is received for that alert.
+
+.. code-block:: console
+
+  $ alerta send -r user01 -e loginStatus -v loginError -s major -E Production \
+  -S Security -t 'user01 login failed.'
+  9564d012-1d37-45c2-94c6-ba5e26af8389 (indeterminate -> major)
+  => open
+
+  $ alerta send -r user01 -e loginStatus -v loginOk -s normal -E Production \
+  -S Security -t 'user01 login success.'
+  9564d012-1d37-45c2-94c6-ba5e26af8389 (major -> normal)
+  => closed
+
+  $ alerta send -r user01 -e loginStatus -v loginError -s major -E Production \
+  -S Security -t 'user01 login failed.'
+  9564d012-1d37-45c2-94c6-ba5e26af8389 (normal -> major)
   => open
 
 Step 4: Tags and Custom attributes
