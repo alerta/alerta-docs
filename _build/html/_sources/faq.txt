@@ -84,17 +84,29 @@ and each child process must create their own instances of MongoClient".
 
 .. _multiprocessing: https://api.mongodb.com/python/current/faq.html#multiprocessing
 
-For Apache WSGI applications, add the following to the ``<directory>`` directive
-for the Alerta API::
+For Apache WSGI applications, an example Apache "vhost" configuration for
+the Alerta API would look like this::
 
-    WSGIApplicationGroup %{GLOBAL}
+    <VirtualHost *:8080>
+      ServerName localhost
+      WSGIDaemonProcess alerta processes=5 threads=5
+      WSGIProcessGroup alerta
+      WSGIApplicationGroup %{GLOBAL}
+      WSGIScriptAlias / /var/www/api.wsgi
+      WSGIPassAuthorization On
+      <Directory /opt/alerta>
+        Require all granted
+      </Directory>
+    </VirtualHost>
 
 Full examples are available on GitHub_ and more information on why
-this is necessary is available on stackoverflow_ and the PyMongo_ site.
+this is necessary is available on stackoverflow_ and the PyMongo where
+they discussion PyMongo in relation to forking_ and mod_wsgi_ site.
 
 .. _GitHub: https://github.com/search?q=org%3Aalerta+WSGIApplicationGroup&type=Code
 .. _stackoverflow: http://stackoverflow.com/questions/31030307/why-is-pymongo-3-giving-serverselectiontimeouterror
-.. _PyMongo: https://api.mongodb.com/python/current/faq.html#is-pymongo-fork-safe
+.. _forking: https://api.mongodb.com/python/current/faq.html#is-pymongo-fork-safe
+.. _mod_wsgi: http://api.mongodb.com/python/current/examples/mod_wsgi.html
 
 Does Alerta support Python 3?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

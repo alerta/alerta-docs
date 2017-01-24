@@ -112,13 +112,24 @@ more if there is <a class="reference external" href="https://github.com/guardian
 <h3>What&#8217;s this MongoDB &#8220;ServerSelectionTimeoutError&#8221;?<a class="headerlink" href="#what-s-this-mongodb-serverselectiontimeouterror" title="Permalink to this headline">¶</a></h3>
 <p>With the update to PyMongo 3.x <a class="reference external" href="https://api.mongodb.com/python/current/faq.html#multiprocessing">multiprocessing</a> applications &#8220;parent process
 and each child process must create their own instances of MongoClient&#8221;.</p>
-<p>For Apache WSGI applications, add the following to the <code class="docutils literal"><span class="pre">&lt;directory&gt;</span></code> directive
-for the Alerta API:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">WSGIApplicationGroup</span> <span class="o">%</span><span class="p">{</span><span class="n">GLOBAL</span><span class="p">}</span>
+<p>For Apache WSGI applications, an example Apache &#8220;vhost&#8221; configuration for
+the Alerta API would look like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">VirtualHost</span> <span class="o">*</span><span class="p">:</span><span class="mi">8080</span><span class="o">&gt;</span>
+  <span class="n">ServerName</span> <span class="n">localhost</span>
+  <span class="n">WSGIDaemonProcess</span> <span class="n">alerta</span> <span class="n">processes</span><span class="o">=</span><span class="mi">5</span> <span class="n">threads</span><span class="o">=</span><span class="mi">5</span>
+  <span class="n">WSGIProcessGroup</span> <span class="n">alerta</span>
+  <span class="n">WSGIApplicationGroup</span> <span class="o">%</span><span class="p">{</span><span class="n">GLOBAL</span><span class="p">}</span>
+  <span class="n">WSGIScriptAlias</span> <span class="o">/</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">api</span><span class="o">.</span><span class="n">wsgi</span>
+  <span class="n">WSGIPassAuthorization</span> <span class="n">On</span>
+  <span class="o">&lt;</span><span class="n">Directory</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">alerta</span><span class="o">&gt;</span>
+    <span class="n">Require</span> <span class="nb">all</span> <span class="n">granted</span>
+  <span class="o">&lt;/</span><span class="n">Directory</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">VirtualHost</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>Full examples are available on <a class="reference external" href="https://github.com/search?q=org%3Aalerta+WSGIApplicationGroup&amp;type=Code">GitHub</a> and more information on why
-this is necessary is available on <a class="reference external" href="http://stackoverflow.com/questions/31030307/why-is-pymongo-3-giving-serverselectiontimeouterror">stackoverflow</a> and the <a class="reference external" href="https://api.mongodb.com/python/current/faq.html#is-pymongo-fork-safe">PyMongo</a> site.</p>
+this is necessary is available on <a class="reference external" href="http://stackoverflow.com/questions/31030307/why-is-pymongo-3-giving-serverselectiontimeouterror">stackoverflow</a> and the PyMongo where
+they discussion PyMongo in relation to <a class="reference external" href="https://api.mongodb.com/python/current/faq.html#is-pymongo-fork-safe">forking</a> and <a class="reference external" href="http://api.mongodb.com/python/current/examples/mod_wsgi.html">mod_wsgi</a> site.</p>
 </div>
 <div class="section" id="does-alerta-support-python-3">
 <h3>Does Alerta support Python 3?<a class="headerlink" href="#does-alerta-support-python-3" title="Permalink to this headline">¶</a></h3>
