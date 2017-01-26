@@ -24,12 +24,12 @@ The following alert attributes are populated at source:
 | ``environment`` | effected environment, used to namespace the resource    |
 +-----------------+---------------------------------------------------------+
 | ``severity``    | severity of alert (default ``normal``).                 |
-|                 | see :ref:`severity_table` table                         |
+|                 | see :ref:`severity table` table                         |
 +-----------------+---------------------------------------------------------+
 | ``correlate``   | list of related event names                             |
 +-----------------+---------------------------------------------------------+
 | ``status``      | status of alert (default ``open``).                     |
-|                 | see :ref:`status_table` table                           |
+|                 | see :ref:`status table` table                           |
 +-----------------+---------------------------------------------------------+
 | ``service``     | list of effected services                               |
 +-----------------+---------------------------------------------------------+
@@ -57,6 +57,12 @@ The following alert attributes are populated at source:
 +-----------------+---------------------------------------------------------+
 
 .. note:: Only ``event`` and ``resource`` are mandatory.
+
+.. attention:: If the ``reject`` plugin is enabled (which it is by
+    default) then alerts must have an ``environment`` attribute that
+    is one of either ``Production`` or ``Development`` and it must
+    define a ``service`` attribute. For more information on configuring
+    or disabling this plugin see :ref:`plugin config`.
 
 Attributes added when processing alerts
 ---------------------------------------
@@ -165,82 +171,29 @@ alert severities.
 History Entries
 ---------------
 
+History log entries can be for either severity or status changes.
 
-Example
--------
++--------------------+------------------------------------------------------+
+| Attribute          | Description                                          |
++====================+======================================================+
+| ``id``             | alert id that history log entry relates to           |
++--------------------+------------------------------------------------------+
+| ``event``          | event name of alert changing severity or status      |
++--------------------+------------------------------------------------------+
+| ``severity``  (*)  | new severity of alert changing severity              |
++--------------------+------------------------------------------------------+
+| ``status``    (+)  | new status of alert changing status                  |
++--------------------+------------------------------------------------------+
+| ``value``     (*)  | event value of alert changing severity               |
++--------------------+------------------------------------------------------+
+| ``text``           | text describing reason for severity or status change |
++--------------------+------------------------------------------------------+
+| ``type``           | history type eg. ``severity`` or ``status``          |
++--------------------+------------------------------------------------------+
+| ``updateTime``     | UTC date-time the alert history was updated          |
++--------------------+------------------------------------------------------+
 
-::
-
-    {
-      "resource": "web-elb-01",
-      "event": "HttpServerError",
-      "origin": "curl",
-      "text": "The site is down.",
-      "lastReceiveTime": "2015-03-01T23:34:30.635Z",
-      "receiveTime": "2015-03-01T23:34:28.118Z",
-      "trendIndication": "moreSevere",
-      "href": "http://api.alerta.io/alert/f26b3695-0e67-402f-81be-ba966bcb9603",
-      "rawData": "curl: (7) Failed connect to localhost:8080; Connection refused",
-      "previousSeverity": "unknown",
-      "group": "Web",
-      "severity": "major",
-      "service": [
-        "example.com"
-      ],
-      "id": "f26b3695-0e67-402f-81be-ba966bcb9603",
-      "environment": "Production",
-      "type": "webAlert",
-      "status": "closed",
-      "repeat": true,
-      "tags": [
-        "eu-west-1",
-        "AWS/EC2"
-      ],
-      "createTime": "2015-03-01T23:34:27.467Z",
-      "lastReceiveId": "1637de1f-eac5-48dd-a4dd-8a10e4c89843",
-      "duplicateCount": 1,
-      "correlate": [
-        "HttpServerError",
-        "HttpServerOK"
-      ],
-      "value": "Bad Gateway (501)",
-      "timeout": 86400,
-      "attributes": {
-        "city": "London",
-        "region_code": "ENG",
-        "region_name": "England",
-        "ip": "86.156.104.171",
-        "company": "ACME Corp",
-        "time_zone": "Europe/London",
-        "longitude": -0.124,
-        "metro_code": 0,
-        "latitude": 51.453,
-        "country_code": "GB",
-        "country_name": "United Kingdom",
-        "zip_code": "SW2"
-      },
-      "history": [
-        {
-          "updateTime": "2015-03-01T23:34:27.467Z",
-          "severity": "major",
-          "text": "The site is down.",
-          "value": "Bad Gateway (501)",
-          "event": "HttpServerError",
-          "id": "f26b3695-0e67-402f-81be-ba966bcb9603"
-        },
-        {
-          "status": "ack",
-          "text": "status change via console",
-          "updateTime": "2015-03-02T02:49:10.297Z",
-          "event": "HttpServerError",
-          "id": "f26b3695-0e67-402f-81be-ba966bcb9603"
-        },
-        {
-          "status": "closed",
-          "text": "status change via console",
-          "updateTime": "2015-03-02T02:49:11.719Z",
-          "event": "HttpServerError",
-          "id": "f26b3695-0e67-402f-81be-ba966bcb9603"
-        }
-      ]
-    }
+.. note:: The ``severity`` and ``value`` attributes are only added to
+    the history log for alerts with ``event`` changes (See ``*`` above).
+    And the ``status`` attribute is only added to the history log for
+    alerts with ``status`` changes (See ``+`` above).

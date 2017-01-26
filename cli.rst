@@ -153,6 +153,12 @@ Send an alert to the server::
 The only mandatory options are ``resource`` and ``event``. All the others will
 be set to sensible defaults.
 
+.. attention:: If the ``reject`` plugin is enabled (which it is by
+    default) then alerts must have an ``environment`` attribute that
+    is one of either ``Production`` or ``Development`` and it must
+    define a ``service`` attribute. For more information on configuring
+    or disabling this plugin see :ref:`plugin config`.
+
 +------------------+-----------------------+
 | Attribute        | Default               |
 +==================+=======================+

@@ -236,6 +236,14 @@ optional arguments:
 </div>
 <p>The only mandatory options are <code class="docutils literal"><span class="pre">resource</span></code> and <code class="docutils literal"><span class="pre">event</span></code>. All the others will
 be set to sensible defaults.</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">If the <code class="docutils literal"><span class="pre">reject</span></code> plugin is enabled (which it is by
+default) then alerts must have an <code class="docutils literal"><span class="pre">environment</span></code> attribute that
+is one of either <code class="docutils literal"><span class="pre">Production</span></code> or <code class="docutils literal"><span class="pre">Development</span></code> and it must
+define a <code class="docutils literal"><span class="pre">service</span></code> attribute. For more information on configuring
+or disabling this plugin see <a class="reference internal" href="configuration.html#plugin-config"><span class="std std-ref">Plugin Settings</span></a>.</p>
+</div>
 <table border="1" class="docutils">
 <colgroup>
 <col width="44%" />

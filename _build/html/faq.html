@@ -65,6 +65,21 @@ web UI or ensure that the API server <a class="reference external" href="https:/
 web UI is hosted by adding it to the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">CORS_ORIGINS</span></code> <a class="reference internal" href="configuration.html#cors-config"><span class="std std-ref">server
 configuration</span></a> setting.</p>
 </div>
+<div class="section" id="why-do-i-need-to-set-an-environment-and-service-when-they-are-not-mandatory">
+<h3>Why do I need to set an <code class="docutils literal"><span class="pre">environment</span></code> and <code class="docutils literal"><span class="pre">service</span></code> when they are not mandatory?<a class="headerlink" href="#why-do-i-need-to-set-an-environment-and-service-when-they-are-not-mandatory" title="Permalink to this headline">¶</a></h3>
+<p>Only <code class="docutils literal"><span class="pre">resource</span></code> and <code class="docutils literal"><span class="pre">event</span></code> are technically required to ensure that
+Alerta can process alerts correctly. However, the &#8220;out-of-the-box&#8221; default
+server setting for <code class="docutils literal"><span class="pre">PLUGINS</span></code> has the <code class="docutils literal"><span class="pre">reject</span></code> plugin enabled. This plugin
+enforces an alert &#8220;policy&#8221; of requiring an <code class="docutils literal"><span class="pre">environment</span></code> attribute of either
+<code class="docutils literal"><span class="pre">Production</span></code> or <code class="docutils literal"><span class="pre">Development</span></code> and a value for the <code class="docutils literal"><span class="pre">service</span></code> attribute.</p>
+<p>This is to encourage good habits early in defining useful alert attributes
+that can be used to &#8220;namespace&#8221; alerts (this is what the <code class="docutils literal"><span class="pre">environment</span></code>
+attribute is for) and so that the web console can organise by <code class="docutils literal"><span class="pre">environemnt</span></code>
+and filter alerts by <code class="docutils literal"><span class="pre">service</span></code>.</p>
+<p>However, one of the principles of Alerta is not to enforce its view of the
+world on users so the plugin can be <a class="reference internal" href="configuration.html#plugin-config"><span class="std std-ref">easily configured</span></a>,
+<a class="reference internal" href="gettingstarted/tutorial-3-plugins.html#tutorial-3"><span class="std std-ref">modified</span></a> or completely disabled. It&#8217;s up to you.</p>
+</div>
 <div class="section" id="can-i-define-custom-severity-codes-and-levels">
 <h3>Can I define custom severity codes and levels?<a class="headerlink" href="#can-i-define-custom-severity-codes-and-levels" title="Permalink to this headline">¶</a></h3>
 <p>Yes, you can now completely change the severity names, severity levels
