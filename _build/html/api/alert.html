@@ -74,14 +74,14 @@ systems must produce or consume messages in this format also.</p>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">severity</span></code></td>
 <td>severity of alert (default <code class="docutils literal"><span class="pre">normal</span></code>).
-see <span class="xref std std-ref">severity_table</span> table</td>
+see <a class="reference internal" href="#severity-table"><span class="std std-ref">Alert Severities</span></a> table</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">correlate</span></code></td>
 <td>list of related event names</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">status</span></code></td>
 <td>status of alert (default <code class="docutils literal"><span class="pre">open</span></code>).
-see <span class="xref std std-ref">status_table</span> table</td>
+see <a class="reference internal" href="#status-table"><span class="std std-ref">Alert Status</span></a> table</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">service</span></code></td>
 <td>list of effected services</td>
@@ -123,6 +123,14 @@ see <span class="xref std std-ref">status_table</span> table</td>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Only <code class="docutils literal"><span class="pre">event</span></code> and <code class="docutils literal"><span class="pre">resource</span></code> are mandatory.</p>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">If the <code class="docutils literal"><span class="pre">reject</span></code> plugin is enabled (which it is by
+default) then alerts must have an <code class="docutils literal"><span class="pre">environment</span></code> attribute that
+is one of either <code class="docutils literal"><span class="pre">Production</span></code> or <code class="docutils literal"><span class="pre">Development</span></code> and it must
+define a <code class="docutils literal"><span class="pre">service</span></code> attribute. For more information on configuring
+or disabling this plugin see <a class="reference internal" href="../configuration.html#plugin-config"><span class="std std-ref">Plugin Settings</span></a>.</p>
 </div>
 </div>
 <div class="section" id="attributes-added-when-processing-alerts">
@@ -293,83 +301,50 @@ alert severities.</p>
 </div>
 <div class="section" id="history-entries">
 <span id="history"></span><h2>History Entries<a class="headerlink" href="#history-entries" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web-elb-01&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;The site is down.&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-01T23:34:30.635Z&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-01T23:34:28.118Z&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s2">&quot;moreSevere&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/alert/f26b3695-0e67-402f-81be-ba966bcb9603&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;rawData&quot;</span><span class="p">:</span> <span class="s2">&quot;curl: (7) Failed connect to localhost:8080; Connection refused&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s2">&quot;unknown&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s2">&quot;example.com&quot;</span>
-  <span class="p">],</span>
-  <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;f26b3695-0e67-402f-81be-ba966bcb9603&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;webAlert&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;closed&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;repeat&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-  <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s2">&quot;eu-west-1&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;AWS/EC2&quot;</span>
-  <span class="p">],</span>
-  <span class="s2">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-01T23:34:27.467Z&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s2">&quot;1637de1f-eac5-48dd-a4dd-8a10e4c89843&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;HttpServerOK&quot;</span>
-  <span class="p">],</span>
-  <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
-  <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;London&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;region_code&quot;</span><span class="p">:</span> <span class="s2">&quot;ENG&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;region_name&quot;</span><span class="p">:</span> <span class="s2">&quot;England&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;86.156.104.171&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;company&quot;</span><span class="p">:</span> <span class="s2">&quot;ACME Corp&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;time_zone&quot;</span><span class="p">:</span> <span class="s2">&quot;Europe/London&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.124</span><span class="p">,</span>
-    <span class="s2">&quot;metro_code&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="mf">51.453</span><span class="p">,</span>
-    <span class="s2">&quot;country_code&quot;</span><span class="p">:</span> <span class="s2">&quot;GB&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;country_name&quot;</span><span class="p">:</span> <span class="s2">&quot;United Kingdom&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;zip_code&quot;</span><span class="p">:</span> <span class="s2">&quot;SW2&quot;</span>
-  <span class="p">},</span>
-  <span class="s2">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s2">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-01T23:34:27.467Z&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;The site is down.&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;f26b3695-0e67-402f-81be-ba966bcb9603&quot;</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-      <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ack&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;status change via console&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-02T02:49:10.297Z&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;f26b3695-0e67-402f-81be-ba966bcb9603&quot;</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-      <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;closed&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;status change via console&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-03-02T02:49:11.719Z&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;f26b3695-0e67-402f-81be-ba966bcb9603&quot;</span>
-    <span class="p">}</span>
-  <span class="p">]</span>
-<span class="p">}</span>
-</pre></div>
+<p>History log entries can be for either severity or status changes.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">id</span></code></td>
+<td>alert id that history log entry relates to</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">event</span></code></td>
+<td>event name of alert changing severity or status</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">severity</span></code>  (*)</td>
+<td>new severity of alert changing severity</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">status</span></code>    (+)</td>
+<td>new status of alert changing status</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">value</span></code>     (*)</td>
+<td>event value of alert changing severity</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">text</span></code></td>
+<td>text describing reason for severity or status change</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">type</span></code></td>
+<td>history type eg. <code class="docutils literal"><span class="pre">severity</span></code> or <code class="docutils literal"><span class="pre">status</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">updateTime</span></code></td>
+<td>UTC date-time the alert history was updated</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <code class="docutils literal"><span class="pre">severity</span></code> and <code class="docutils literal"><span class="pre">value</span></code> attributes are only added to
+the history log for alerts with <code class="docutils literal"><span class="pre">event</span></code> changes (See <code class="docutils literal"><span class="pre">*</span></code> above).
+And the <code class="docutils literal"><span class="pre">status</span></code> attribute is only added to the history log for
+alerts with <code class="docutils literal"><span class="pre">status</span></code> changes (See <code class="docutils literal"><span class="pre">+</span></code> above).</p>
 </div>
 </div>
 </div>

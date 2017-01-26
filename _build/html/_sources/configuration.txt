@@ -263,20 +263,19 @@ email address before they can login.
 
 .. _plugin config:
 
-Plug-in Settings
+Plugin Settings
 ~~~~~~~~~~~~~~~~
 
-Plug-ins are used to extend the behaviour of the Alerta server without having
-to modify the core application. The only plug-in that is installed and enabled
-by default is the ``reject`` plugin. Other plug-ins are availble in the `contrib
-repo`_. To disable this plug-in simply define an
-empty ``PLUGINS`` configuration setting to override the default.
+Plugins are used to extend the behaviour of the Alerta server without
+having to modify the core application. The only plugin that is installed
+and enabled by default is the ``reject`` plugin. Other plugins are available
+in the `contrib repo`_.
 
 .. _contrib repo: https://github.com/alerta/alerta-contrib/tree/master/plugins
 
 ::
 
-    # Plug-ins
+    # Plugins
     PLUGINS = ['reject']
 
     ORIGIN_BLACKLIST = ['foo/bar$', '.*/qux']  # reject all foo alerts from bar, and everything from qux
@@ -288,6 +287,10 @@ empty ``PLUGINS`` configuration setting to override the default.
     ``reject`` plugin list of alert origins blacklisted from submitting alerts. useful for rouge alert sources.
 ``ALLOWED_ENVIRONMENTS``
     ``reject`` plugin list of allowed environments. useful for enforcing discrete set of environments.
+
+.. note:: To completely disable the ``reject`` plugin simply remove it
+    from the list of enabled plugins in the ``PLUGINS`` configuration
+    setting to override the default.
 
 Environment Variables
 ---------------------

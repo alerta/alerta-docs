@@ -252,6 +252,8 @@ the settings for "colors" and "severity" with the following::
     },
     ...
 
+.. reject 
+
 Configure the default "reject" plugin to allow the additional
 alert environment called "Code" and not just "Production"
 or "Development"::

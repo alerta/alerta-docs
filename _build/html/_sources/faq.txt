@@ -28,6 +28,24 @@ configuration <CORS config>` setting.
 .. _same origin: https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy
 .. _allows the origin: https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin
 
+Why do I need to set an ``environment`` and ``service`` when they are not mandatory?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Only ``resource`` and ``event`` are technically required to ensure that
+Alerta can process alerts correctly. However, the "out-of-the-box" default
+server setting for ``PLUGINS`` has the ``reject`` plugin enabled. This plugin
+enforces an alert "policy" of requiring an ``environment`` attribute of either
+``Production`` or ``Development`` and a value for the ``service`` attribute.
+
+This is to encourage good habits early in defining useful alert attributes
+that can be used to "namespace" alerts (this is what the ``environment``
+attribute is for) and so that the web console can organise by ``environemnt``
+and filter alerts by ``service``.
+
+However, one of the principles of Alerta is not to enforce its view of the
+world on users so the plugin can be :ref:`easily configured <plugin config>`,
+:ref:`modified <tutorial 3>` or completely disabled. It's up to you.
+
 Can I define custom severity codes and levels?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

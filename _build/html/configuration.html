@@ -256,14 +256,13 @@ email address before they can login.</p>
 <dd>password for <code class="docutils literal"><span class="pre">MAIL_FROM</span></code> email account, Gmail uses application-specific passwords</dd>
 </dl>
 </div>
-<div class="section" id="plug-in-settings">
-<span id="plugin-config"></span><h3>Plug-in Settings<a class="headerlink" href="#plug-in-settings" title="Permalink to this headline">¶</a></h3>
-<p>Plug-ins are used to extend the behaviour of the Alerta server without having
-to modify the core application. The only plug-in that is installed and enabled
-by default is the <code class="docutils literal"><span class="pre">reject</span></code> plugin. Other plug-ins are availble in the <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins">contrib
-repo</a>. To disable this plug-in simply define an
-empty <code class="docutils literal"><span class="pre">PLUGINS</span></code> configuration setting to override the default.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Plug-ins</span>
+<div class="section" id="plugin-settings">
+<span id="plugin-config"></span><h3>Plugin Settings<a class="headerlink" href="#plugin-settings" title="Permalink to this headline">¶</a></h3>
+<p>Plugins are used to extend the behaviour of the Alerta server without
+having to modify the core application. The only plugin that is installed
+and enabled by default is the <code class="docutils literal"><span class="pre">reject</span></code> plugin. Other plugins are available
+in the <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins">contrib repo</a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Plugins</span>
 <span class="n">PLUGINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;reject&#39;</span><span class="p">]</span>
 
 <span class="n">ORIGIN_BLACKLIST</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;foo/bar$&#39;</span><span class="p">,</span> <span class="s1">&#39;.*/qux&#39;</span><span class="p">]</span>  <span class="c1"># reject all foo alerts from bar, and everything from qux</span>
@@ -278,6 +277,12 @@ empty <code class="docutils literal"><span class="pre">PLUGINS</span></code> con
 <dt><code class="docutils literal"><span class="pre">ALLOWED_ENVIRONMENTS</span></code></dt>
 <dd><code class="docutils literal"><span class="pre">reject</span></code> plugin list of allowed environments. useful for enforcing discrete set of environments.</dd>
 </dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To completely disable the <code class="docutils literal"><span class="pre">reject</span></code> plugin simply remove it
+from the list of enabled plugins in the <code class="docutils literal"><span class="pre">PLUGINS</span></code> configuration
+setting to override the default.</p>
+</div>
 </div>
 </div>
 <div class="section" id="environment-variables">
