@@ -15,8 +15,8 @@ attributes, environments and services and more.
   * `Step 2: Simple Correlation`_
   * `Step 3: Automatic status changes`_
   * `Step 4: Environments and Services`_
-  * `Step 5: Tags and Custom attributes`_
-  * `Step 6: Groups, types and origins`_
+  * `Step 5: Groups, types and origins`_
+  * `Step 6: Tags and Custom attributes`_
   * `Step 7: Saving raw data`_
   * `Next Steps`_
 
@@ -219,14 +219,15 @@ for the "Production" environment and the other for "Development":
   -S Security -t 'user01 login failed.'
   4cd197b8-eb19-49f5-9afe-841390c03ff9 (indeterminate -> major)
 
+The alert ``service`` is used to detail the list of effected services.
 
-Step 5: Tags and Custom attributes
-----------------------------------
+Step 5: Groups, types and origins
+---------------------------------
 
 TBC
 
-Step 6: Groups, types and origins
----------------------------------
+Step 6: Tags and Custom attributes
+----------------------------------
 
 TBC
 

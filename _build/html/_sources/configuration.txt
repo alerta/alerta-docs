@@ -105,8 +105,8 @@ such as auditing, and features like the ability to assign and watch alerts.
 
 ::
 
-    AUTH_REQUIRED = False
     SECRET_KEY = 'changeme'
+    AUTH_REQUIRED = False
 
     ADMIN_USERS = []
     CUSTOMER_VIEWS = False
@@ -114,6 +114,8 @@ such as auditing, and features like the ability to assign and watch alerts.
     OAUTH2_CLIENT_ID = None  # Google or GitHub OAuth2 client ID and secret
     OAUTH2_CLIENT_SECRET = None
     ALLOWED_EMAIL_DOMAINS = ['*']
+
+    GITHUB_URL = None
     ALLOWED_GITHUB_ORGS = ['*']
 
     GITLAB_URL = None
@@ -123,18 +125,22 @@ such as auditing, and features like the ability to assign and watch alerts.
 
 .. index:: AUTH_REQUIRED, SECRET_KEY, ADMIN_USERS, OAUTH2_CLIENT_ID, OAUTH2_CLIENT_SECRET, ALLOWED_EMAIL_DOMAINS, ALLOWED_GITHUB_ORGS, GITLAB_URL, ALLOWED_GITLAB_GROUPS
 
-``AUTH_REQUIRED``
-    set to ``True`` to force users to authenticate when using web UI or command-line tool
 ``SECRET_KEY``
     a unique, randomly generated sequence of ASCII characters.
+``AUTH_REQUIRED``
+    set to ``True`` to force users to authenticate when using web UI or command-line tool
 ``ADMIN_USERS``
     list of user email addresses or accounts that should be given admin rights.
+``CUSTOMER_VIEWS``
+    enable alert views partitioned by customer
 ``OAUTH2_CLIENT_ID``
     client ID required by OAuth2 provider for Google, Github or GitLab.
 ``OAUTH2_CLIENT_SECRET``
     client secret required by OAuth2 provider for Google, Github or GitLab.
 ``ALLOWED_EMAIL_DOMAINS``
     list of authorised email domains when using Google as OAuth2 provider.
+``GITHUB_URL``
+    GitHub Enteprise URL for privately run GitHub server when using GitHub as OAuth2 provider.
 ``ALLOWED_GITHUB_ORGS``
     list of authorised GitHub organisations a user must belong to when using Github as OAuth2 provider.
 ``GITLAB_URL``
@@ -325,6 +331,8 @@ General Settings
     see above
 :envvar:`ALLOWED_EMAIL_DOMAINS`
     see above
+:envvar:`GITHUB_URL`
+  see above
 :envvar:`ALLOWED_GITHUB_ORGS`
     see above
 :envvar:`GITLAB_URL`

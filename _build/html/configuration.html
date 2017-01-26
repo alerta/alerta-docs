@@ -123,8 +123,8 @@ production deployment.</p>
 <span id="auth-config"></span><h3>Authentication Settings<a class="headerlink" href="#authentication-settings" title="Permalink to this headline">¶</a></h3>
 <p>If enabled, authentication provides additional benefits beyond just security,
 such as auditing, and features like the ability to assign and watch alerts.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">AUTH_REQUIRED</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;changeme&#39;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;changeme&#39;</span>
+<span class="n">AUTH_REQUIRED</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="n">ADMIN_USERS</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">CUSTOMER_VIEWS</span> <span class="o">=</span> <span class="kc">False</span>
@@ -132,6 +132,8 @@ such as auditing, and features like the ability to assign and watch alerts.</p>
 <span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Google or GitHub OAuth2 client ID and secret</span>
 <span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">]</span>
+
+<span class="n">GITHUB_URL</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">ALLOWED_GITHUB_ORGS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">]</span>
 
 <span class="n">GITLAB_URL</span> <span class="o">=</span> <span class="kc">None</span>
@@ -141,18 +143,22 @@ such as auditing, and features like the ability to assign and watch alerts.</p>
 </pre></div>
 </div>
 <dl class="docutils" id="index-4">
-<dt><code class="docutils literal"><span class="pre">AUTH_REQUIRED</span></code></dt>
-<dd>set to <code class="docutils literal"><span class="pre">True</span></code> to force users to authenticate when using web UI or command-line tool</dd>
 <dt><code class="docutils literal"><span class="pre">SECRET_KEY</span></code></dt>
 <dd>a unique, randomly generated sequence of ASCII characters.</dd>
+<dt><code class="docutils literal"><span class="pre">AUTH_REQUIRED</span></code></dt>
+<dd>set to <code class="docutils literal"><span class="pre">True</span></code> to force users to authenticate when using web UI or command-line tool</dd>
 <dt><code class="docutils literal"><span class="pre">ADMIN_USERS</span></code></dt>
 <dd>list of user email addresses or accounts that should be given admin rights.</dd>
+<dt><code class="docutils literal"><span class="pre">CUSTOMER_VIEWS</span></code></dt>
+<dd>enable alert views partitioned by customer</dd>
 <dt><code class="docutils literal"><span class="pre">OAUTH2_CLIENT_ID</span></code></dt>
 <dd>client ID required by OAuth2 provider for Google, Github or GitLab.</dd>
 <dt><code class="docutils literal"><span class="pre">OAUTH2_CLIENT_SECRET</span></code></dt>
 <dd>client secret required by OAuth2 provider for Google, Github or GitLab.</dd>
 <dt><code class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code></dt>
 <dd>list of authorised email domains when using Google as OAuth2 provider.</dd>
+<dt><code class="docutils literal"><span class="pre">GITHUB_URL</span></code></dt>
+<dd>GitHub Enteprise URL for privately run GitHub server when using GitHub as OAuth2 provider.</dd>
 <dt><code class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code></dt>
 <dd>list of authorised GitHub organisations a user must belong to when using Github as OAuth2 provider.</dd>
 <dt><code class="docutils literal"><span class="pre">GITLAB_URL</span></code></dt>
@@ -318,34 +324,36 @@ will always override any other setting.</p>
 <dd>see above</dd>
 <dt><span class="target" id="index-18"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code></dt>
 <dd>see above</dd>
-<dt><span class="target" id="index-19"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code></dt>
+<dt><span class="target" id="index-19"></span><code class="xref std std-envvar docutils literal"><span class="pre">GITHUB_URL</span></code></dt>
 <dd>see above</dd>
-<dt><span class="target" id="index-20"></span><code class="xref std std-envvar docutils literal"><span class="pre">GITLAB_URL</span></code></dt>
+<dt><span class="target" id="index-20"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code></dt>
 <dd>see above</dd>
-<dt><span class="target" id="index-21"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_GITLAB_GROUPS</span></code></dt>
+<dt><span class="target" id="index-21"></span><code class="xref std std-envvar docutils literal"><span class="pre">GITLAB_URL</span></code></dt>
 <dd>see above</dd>
-<dt><span class="target" id="index-22"></span><code class="xref std std-envvar docutils literal"><span class="pre">CORS_ORIGINS</span></code></dt>
+<dt><span class="target" id="index-22"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_GITLAB_GROUPS</span></code></dt>
 <dd>see above</dd>
-<dt><span class="target" id="index-23"></span><code class="xref std std-envvar docutils literal"><span class="pre">MAIL_FROM</span></code></dt>
+<dt><span class="target" id="index-23"></span><code class="xref std std-envvar docutils literal"><span class="pre">CORS_ORIGINS</span></code></dt>
 <dd>see above</dd>
-<dt><span class="target" id="index-24"></span><code class="xref std std-envvar docutils literal"><span class="pre">SMTP_PASSWORD</span></code></dt>
+<dt><span class="target" id="index-24"></span><code class="xref std std-envvar docutils literal"><span class="pre">MAIL_FROM</span></code></dt>
 <dd>see above</dd>
-<dt><span class="target" id="index-25"></span><code class="xref std std-envvar docutils literal"><span class="pre">PLUGINS</span></code></dt>
+<dt><span class="target" id="index-25"></span><code class="xref std std-envvar docutils literal"><span class="pre">SMTP_PASSWORD</span></code></dt>
+<dd>see above</dd>
+<dt><span class="target" id="index-26"></span><code class="xref std std-envvar docutils literal"><span class="pre">PLUGINS</span></code></dt>
 <dd>see above</dd>
 </dl>
 </div>
 <div class="section" id="id3">
 <h3>MongoDB Settings<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
-<dt><span class="target" id="index-26"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_URI</span></code></dt>
+<dt><span class="target" id="index-27"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_URI</span></code></dt>
 <dd>used to override <code class="docutils literal"><span class="pre">MONGO_URI</span></code> config variable using the standard <a class="reference external" href="https://docs.mongodb.org/v3.0/reference/connection-string/#standard-connection-string-format">connection string format</a></dd>
-<dt><span class="target" id="index-27"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGODB_URI</span></code></dt>
+<dt><span class="target" id="index-28"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGODB_URI</span></code></dt>
 <dd>alternative name for <code class="docutils literal"><span class="pre">MONGO_URI</span></code> environment variable which is used by some managed services</dd>
-<dt><span class="target" id="index-28"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGOHQ_URL</span></code></dt>
+<dt><span class="target" id="index-29"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGOHQ_URL</span></code></dt>
 <dd>automatically set when using <a class="reference external" href="https://devcenter.heroku.com/articles/mongohq">Heroku MongoHQ</a> managed service</dd>
-<dt><span class="target" id="index-29"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGOLAB_URI</span></code></dt>
+<dt><span class="target" id="index-30"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGOLAB_URI</span></code></dt>
 <dd>automatically set when using <a class="reference external" href="https://devcenter.heroku.com/articles/mongolab">Heroku MongoLab</a> managed service</dd>
-<dt><span class="target" id="index-30"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_PORT</span></code></dt>
+<dt><span class="target" id="index-31"></span><code class="xref std std-envvar docutils literal"><span class="pre">MONGO_PORT</span></code></dt>
 <dd>automatically set when deploying <a class="reference external" href="https://github.com/alerta/docker-alerta">Alerta to a Docker</a> linked mongo container</dd>
 </dl>
 </div>
