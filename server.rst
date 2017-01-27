@@ -126,7 +126,7 @@ and event attributes for situations that require that level of granularity.
 
 Tags can also be used to define a blackout rule which should allow a lot of
 flexibility because tags can be added at source, using the ``alerta`` CLI, or
-using a plug-in. Note that one or more tags can be required to match an alert
+using a plugin. Note that one or more tags can be required to match an alert
 for the suppression to apply.
 
 In summary, blackout rules can be any of:

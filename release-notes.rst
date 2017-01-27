@@ -105,7 +105,7 @@ Release 3.2 (11-10-2014)
 * Major refactor and simplification of server architecture
 * Add Google OAuth user logins
 * API keys for controlling programatic access
-* Add support for server-side custom plug-ins eg. Logstash, AWS SNS, AMQP
+* Add support for server-side custom plugins eg. Logstash, AWS SNS, AMQP
 * Deprecated RabbitMQ as a dependency
 
 Release 3.1 (9-5-2014)
