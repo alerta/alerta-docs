@@ -4,8 +4,8 @@ Alerts explored in-depth
 ========================
 
 In this tutorial you will learn about alert de-duplication and
-simple correlation techniques as well as alert tags and custom
-attributes, environments and services and more.
+simple correlation techniques as well as alert tags, custom
+attributes, environments, services and more.
 
 **Contents**
 
@@ -23,7 +23,7 @@ attributes, environments and services and more.
 Overview
 --------
 
-Though only event and resource are the only mandatory
+Even though event and resource are the only mandatory
 attributes the standard alert format is extensive with more
 than :ref:`two dozen fields <alert format>`.
 
@@ -40,7 +40,7 @@ or you have access to an Alerta server that you can send alerts to
 using the ``alerta`` command-line tool.
 
 It would also help to have access to the Alerta web console as
-it can be very satisfying to see the alerts update in the console
+it can be very helpful to see the alerts update in the console
 in realtime rather than having to continually run the ``alerta query``
 command to see the results.
 
