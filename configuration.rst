@@ -121,9 +121,13 @@ such as auditing, and features like the ability to assign and watch alerts.
     GITLAB_URL = None
     ALLOWED_GITLAB_GROUPS = ['*']
 
+    KEYCLOAK_URL = None
+    KEYCLOAK_REALM = None
+    ALLOWED_KEYCLOAK_ROLES = ['*']
+
     TOKEN_EXPIRE_DAYS = 14
 
-.. index:: AUTH_REQUIRED, SECRET_KEY, ADMIN_USERS, OAUTH2_CLIENT_ID, OAUTH2_CLIENT_SECRET, ALLOWED_EMAIL_DOMAINS, ALLOWED_GITHUB_ORGS, GITLAB_URL, ALLOWED_GITLAB_GROUPS
+.. index:: AUTH_REQUIRED, SECRET_KEY, ADMIN_USERS, OAUTH2_CLIENT_ID, OAUTH2_CLIENT_SECRET, ALLOWED_EMAIL_DOMAINS, ALLOWED_GITHUB_ORGS, GITLAB_URL, ALLOWED_GITLAB_GROUPS, KEYCLOAK_URL, KEYCLOAK_REALM, ALLOWED_KEYCLOAK_ROLES
 
 ``SECRET_KEY``
     a unique, randomly generated sequence of ASCII characters.
@@ -134,9 +138,9 @@ such as auditing, and features like the ability to assign and watch alerts.
 ``CUSTOMER_VIEWS``
     enable alert views partitioned by customer
 ``OAUTH2_CLIENT_ID``
-    client ID required by OAuth2 provider for Google, Github or GitLab.
+    client ID required by OAuth2 provider for Google, Github, GitLab or Keycloak.
 ``OAUTH2_CLIENT_SECRET``
-    client secret required by OAuth2 provider for Google, Github or GitLab.
+    client secret required by OAuth2 provider for Google, Github, GitLab or Keycloak.
 ``ALLOWED_EMAIL_DOMAINS``
     list of authorised email domains when using Google as OAuth2 provider.
 ``GITHUB_URL``
@@ -147,6 +151,12 @@ such as auditing, and features like the ability to assign and watch alerts.
     GitLab website URL for public or privately run GitLab server when using GitLab as OAuth2 provider.
 ``ALLOWED_GITLAB_GROUPS``
     list of authorised GitLab groups a user must belong to when using GitLab as OAuth2 provider.
+``KEYCLOAK_URL``
+    Keycloak website URL when using Keycloak as OAuth2 provider.
+``KEYCLOAK_REALM``
+    Keycloak realm when using Keycloak as OAuth2 provider.
+``ALLOWED_KEYCLOAK_ROLES``
+    list of authorised Keycloak roles a user must belong to when using Keycloak as OAuth2 provider.
 
 .. _switch config:
 
