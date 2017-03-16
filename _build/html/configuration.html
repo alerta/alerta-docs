@@ -139,6 +139,10 @@ such as auditing, and features like the ability to assign and watch alerts.</p>
 <span class="n">GITLAB_URL</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">ALLOWED_GITLAB_GROUPS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">]</span>
 
+<span class="n">KEYCLOAK_URL</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">KEYCLOAK_REALM</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">ALLOWED_KEYCLOAK_ROLES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">]</span>
+
 <span class="n">TOKEN_EXPIRE_DAYS</span> <span class="o">=</span> <span class="mi">14</span>
 </pre></div>
 </div>
@@ -152,9 +156,9 @@ such as auditing, and features like the ability to assign and watch alerts.</p>
 <dt><code class="docutils literal"><span class="pre">CUSTOMER_VIEWS</span></code></dt>
 <dd>enable alert views partitioned by customer</dd>
 <dt><code class="docutils literal"><span class="pre">OAUTH2_CLIENT_ID</span></code></dt>
-<dd>client ID required by OAuth2 provider for Google, Github or GitLab.</dd>
+<dd>client ID required by OAuth2 provider for Google, Github, GitLab or Keycloak.</dd>
 <dt><code class="docutils literal"><span class="pre">OAUTH2_CLIENT_SECRET</span></code></dt>
-<dd>client secret required by OAuth2 provider for Google, Github or GitLab.</dd>
+<dd>client secret required by OAuth2 provider for Google, Github, GitLab or Keycloak.</dd>
 <dt><code class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code></dt>
 <dd>list of authorised email domains when using Google as OAuth2 provider.</dd>
 <dt><code class="docutils literal"><span class="pre">GITHUB_URL</span></code></dt>
@@ -165,6 +169,12 @@ such as auditing, and features like the ability to assign and watch alerts.</p>
 <dd>GitLab website URL for public or privately run GitLab server when using GitLab as OAuth2 provider.</dd>
 <dt><code class="docutils literal"><span class="pre">ALLOWED_GITLAB_GROUPS</span></code></dt>
 <dd>list of authorised GitLab groups a user must belong to when using GitLab as OAuth2 provider.</dd>
+<dt><code class="docutils literal"><span class="pre">KEYCLOAK_URL</span></code></dt>
+<dd>Keycloak website URL when using Keycloak as OAuth2 provider.</dd>
+<dt><code class="docutils literal"><span class="pre">KEYCLOAK_REALM</span></code></dt>
+<dd>Keycloak realm when using Keycloak as OAuth2 provider.</dd>
+<dt><code class="docutils literal"><span class="pre">ALLOWED_KEYCLOAK_ROLES</span></code></dt>
+<dd>list of authorised Keycloak roles a user must belong to when using Keycloak as OAuth2 provider.</dd>
 </dl>
 </div>
 <div class="section" id="switch-settings">

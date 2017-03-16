@@ -7,7 +7,6 @@ Roadmap
 
 * Custom alert filters and dashboard views
 * Web UI redesign using `Google material design`_
-* GitHub enterprise for OAuth2 logins
 
 .. _Google material design: https://www.google.com/design/spec/material-design/introduction.html
 
@@ -16,9 +15,19 @@ Roadmap
 Release History
 +++++++++++++++
 
+Release 4.9 (16-03-2017)
+------------------------
+
+* LDAP authentication via Keycloak_ support
+* `MongoDB SSL`_ connection support
+
+.. _Keycloak: https://www.keycloak.org/
+.. _MongoDB SSL: http://api.mongodb.com/python/current/examples/tls.html
+
 Release 4.8 (05-09-2016)
 ------------------------
 
+* Use GitHub Enterprise for OAuth2 login
 * Riemann_ webhook integration
 * Telegram_ webhook and `related plugin`_ for bi-directional integration
 * Grafana_ webhook integration

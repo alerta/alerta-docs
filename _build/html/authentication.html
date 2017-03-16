@@ -56,6 +56,7 @@ that are <span class="xref std std-ref">not available</span> unless users login.
 <li><a class="reference internal" href="#google-oauth2">Google OAuth2</a></li>
 <li><a class="reference internal" href="#id4">GitHub OAuth2</a></li>
 <li><a class="reference internal" href="#gitlab-oauth2">GitLab OAuth2</a></li>
+<li><a class="reference internal" href="#keycloak-oauth2">Keycloak OAuth2</a></li>
 <li><a class="reference internal" href="#api-keys">API Keys</a></li>
 </ul>
 <p>The most straight-forward of the two to implement is <a class="reference internal" href="#basic-auth">Basic Auth</a>.</p>
@@ -101,8 +102,8 @@ HTTPS.</p>
 </div>
 <div class="section" id="oauth2-authentication">
 <span id="oauth2"></span><h2>OAuth2 Authentication<a class="headerlink" href="#oauth2-authentication" title="Permalink to this headline">¶</a></h2>
-<p>OAuth authentication is provided by <a class="reference external" href="https://developers.google.com/accounts/docs/OpenIDConnect">Google</a> <a class="reference external" href="http://openid.net/connect/">OpenID Connect</a>, <a class="reference external" href="https://developer.github.com/v3/oauth/">GitHub</a> or
-<a class="reference external" href="http://doc.gitlab.com/ce/integration/oauth_provider.html">GitLab</a> <a class="reference external" href="http://tools.ietf.org/html/draft-ietf-oauth-v2-22">OAuth 2.0</a> and configuration is more involved than the Basic
+<p>OAuth authentication is provided by <a class="reference external" href="https://developers.google.com/accounts/docs/OpenIDConnect">Google</a> <a class="reference external" href="http://openid.net/connect/">OpenID Connect</a>, <a class="reference external" href="https://developer.github.com/v3/oauth/">GitHub</a>,
+<a class="reference external" href="http://doc.gitlab.com/ce/integration/oauth_provider.html">GitLab</a> <a class="reference external" href="http://tools.ietf.org/html/draft-ietf-oauth-v2-22">OAuth 2.0</a> or <a class="reference external" href="https://www.keycloak.org/documentation.html">Keycloak</a> <a class="reference external" href="http://tools.ietf.org/html/draft-ietf-oauth-v2-22">OAuth 2.0</a> and configuration is more involved than the Basic
 Auth setup.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -112,7 +113,7 @@ ensure that only authorised users can access and modify your
 alerts.</p>
 </div>
 <p id="google-oauth2">To use OAuth2 set the <code class="docutils literal"><span class="pre">provider</span></code> configuration setting in the Web UI
-<code class="file docutils literal"><span class="pre">config.js</span></code> file to one of <code class="docutils literal"><span class="pre">google</span></code>, <code class="docutils literal"><span class="pre">github</span></code> or <code class="docutils literal"><span class="pre">gitlab</span></code>:</p>
+<code class="file docutils literal"><span class="pre">config.js</span></code> file to one of <code class="docutils literal"><span class="pre">google</span></code>, <code class="docutils literal"><span class="pre">github</span></code>, <code class="docutils literal"><span class="pre">gitlab</span></code> or <code class="docutils literal"><span class="pre">keycloak</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
 
 <span class="n">angular</span><span class="o">.</span><span class="n">module</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">[])</span>
@@ -240,6 +241,58 @@ find alerta in the list of applications and click the <strong>Revoke</strong>
 button.</p>
 </div>
 </div>
+<div class="section" id="keycloak-oauth2">
+<h3>Keycloak OAuth2<a class="headerlink" href="#keycloak-oauth2" title="Permalink to this headline">¶</a></h3>
+<p>To use Keycloak as the OAuth2 provider for Alerta, login to Keycloak admin interface, select the realm and go
+to <em>Clients -&gt; Create</em>.</p>
+<ul class="simple">
+<li>Client ID: alerta-ui</li>
+<li>Client protocol: openid-connect</li>
+<li>Root URL: <a class="reference external" href="http://alerta.example.org">http://alerta.example.org</a></li>
+</ul>
+<p>After the client is created, edit it and change the following properties:</p>
+<ul class="simple">
+<li>Access Type: confindential</li>
+</ul>
+<p>Add the following mapper under the <em>Mappers</em> tab:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Name</span><span class="p">:</span> <span class="n">role</span> <span class="n">memberships</span>
+<span class="n">Mapper</span> <span class="nb">type</span><span class="p">:</span> <span class="n">User</span> <span class="n">Realm</span> <span class="n">Role</span>
+<span class="n">Token</span> <span class="n">Claim</span> <span class="n">Name</span><span class="p">:</span> <span class="n">roles</span>
+<span class="n">Claim</span> <span class="n">JSON</span> <span class="nb">type</span><span class="p">:</span> <span class="n">String</span>
+<span class="n">Add</span> <span class="n">to</span> <span class="n">userinfo</span><span class="p">:</span> <span class="n">ON</span>
+</pre></div>
+</div>
+<p>Now go to <em>Installation</em> and generate it by selecting &#8216;Keycloak OIDC JSON&#8217;. You should get something like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;realm&quot;</span><span class="p">:</span> <span class="s2">&quot;master&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;auth-server-url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://keycloak.example.org/auth&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;ssl-required&quot;</span><span class="p">:</span> <span class="s2">&quot;external&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;alerta-ui&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;credentials&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;secret&quot;</span><span class="p">:</span> <span class="s2">&quot;418bbf31-aef-33d1-a471-322a60276879&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;use-resource-role-mappings&quot;</span><span class="p">:</span> <span class="n">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Take note of the realm, resource and secret. Then configuration settings for <code class="docutils literal"><span class="pre">alerta</span></code> server are as follows (replacing
+the values shown below with the values generated by Keycloak):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">KEYCLOAK_URL</span> <span class="o">=</span> <span class="s1">&#39;https://keycloak.example.org&#39;</span>
+<span class="n">KEYCLOAK_REALM</span> <span class="o">=</span> <span class="s1">&#39;master&#39;</span>
+<span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s1">&#39;alerta-ui&#39;</span>
+<span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;418bbf31-aef-33d1-a471-322a60276879&#39;</span>
+</pre></div>
+</div>
+<p id="allowed-keycloak-roles">To restrict access to users who are associated with a particular <a href="#id8"><span class="problematic" id="id9">`Keycloak role`_</span></a> use:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ALLOWED_KEYCLOAK_ROLES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;role1&#39;</span><span class="p">,</span> <span class="s1">&#39;role2&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><code class="docutils literal"><span class="pre">ALLOWED_KEYCLOAK_ROLES</span></code> can be an asterisk (<code class="docutils literal"><span class="pre">*</span></code>) to force
+login but <em>not</em> restrict who can login.</p>
+</div>
+</div>
 <div class="section" id="cross-origin">
 <span id="id5"></span><h3>Cross-Origin<a class="headerlink" href="#cross-origin" title="Permalink to this headline">¶</a></h3>
 <p>If the Alerta API is not being served from the same domain as the Alerta
@@ -283,7 +336,7 @@ exposed.</p>
 </div>
 <div class="section" id="user-authorisation">
 <span id="user-auth"></span><h2>User Authorisation<a class="headerlink" href="#user-authorisation" title="Permalink to this headline">¶</a></h2>
-<p>Google, GitHub and GitLab OAuth are used for user authentication, not
+<p>Google, GitHub, GitLab OAuth, Keycloak OAuth are used for user authentication, not
 user authorisation. Authentication proves that you are who you say you
 are. Authorization says that you are allowed to access what you have
 requested.</p>
@@ -293,10 +346,12 @@ setting <code class="docutils literal"><span class="pre">ALLOWED_EMAIL_DOMAINS</
 belong to a <a class="reference internal" href="#allowed-github-orgs"><span class="std std-ref">particular GitHub organisation</span></a>
 by setting <code class="docutils literal"><span class="pre">ALLOWED_GITHUB_ORGS</span></code> when using GitHub OAuth, or who
 belong to a <a class="reference internal" href="#allowed-gitlab-groups"><span class="std std-ref">particular GitLab group</span></a>
-by setting <code class="docutils literal"><span class="pre">ALLOWED_GITLAB_GROUPS</span></code> when using GitLab OAuth2.</p>
+by setting <code class="docutils literal"><span class="pre">ALLOWED_GITLAB_GROUPS</span></code> when using GitLab OAuth2.
+belong to a <a class="reference internal" href="#allowed-keycloak-roles"><span class="std std-ref">particular Keycloak role</span></a>
+by setting <code class="docutils literal"><span class="pre">ALLOWED_KEYCLOAK_ROLES</span></code> when using Keycloak OAuth2</p>
 <p>For those situations where it is not possible to group users in this
 way it is possible to selectively allow access on a per-user basis. How
-this is done depends on whether you are using Google, GitHub or GitLab
+this is done depends on whether you are using Google, GitHub, GitLab or Keycloak
 as OAuth2 provider for user login.</p>
 </div>
 <div class="section" id="user-roles">
