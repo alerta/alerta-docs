@@ -343,7 +343,7 @@ sends ``critical`` and ``major`` alerts to PagerDuty_ as well.
         if alert.duplicateCount <= 2:
             return []
         elif alert.severity in ['critical', 'major']:
-            return [plugins['slack', 'pagerduty']]
+            return [plugins['slack'], plugins['pagerduty']]
         else:
             return [plugins['slack']]
 
