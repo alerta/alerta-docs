@@ -217,6 +217,7 @@ from a Debian `vagrant box`_, an `AWS EC2 instance`_,
 * Docker_ - deploy Alerta to a docker container
 * Packer_ - deploy Alerta to EC2 using Amazon AMIs
 * `Flask deploy`_ - deploy Alerta as a generic Flask app
+* `Ansible`_ - deploy Alerta using ansible on Centos 7
 
 .. _Vagrant: https://github.com/alerta/vagrant-try-alerta
 .. _Heroku: https://github.com/guardian/alerta#deploy-to-the-cloud
@@ -226,3 +227,4 @@ from a Debian `vagrant box`_, an `AWS EC2 instance`_,
 .. _Docker: https://github.com/alerta/docker-alerta
 .. _Packer: https://github.com/alerta/packer-templates
 .. _Flask deploy: http://flask.pocoo.org/docs/0.10/quickstart/#deploying-to-a-web-server
+.. _Ansible: https://github.com/ramshankarjaiswal/ansible/tree/master/roles/alerta
