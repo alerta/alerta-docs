@@ -125,9 +125,13 @@ such as auditing, and features like the ability to assign and watch alerts.
     KEYCLOAK_REALM = None
     ALLOWED_KEYCLOAK_ROLES = ['*']
 
+    SAML2_CONFIG = None
+    ALLOWED_SAML2_GROUPS = ['*']
+    SAML2_USER_NAME_FORMAT = '{givenName} {surname}'
+
     TOKEN_EXPIRE_DAYS = 14
 
-.. index:: AUTH_REQUIRED, SECRET_KEY, ADMIN_USERS, OAUTH2_CLIENT_ID, OAUTH2_CLIENT_SECRET, ALLOWED_EMAIL_DOMAINS, ALLOWED_GITHUB_ORGS, GITLAB_URL, ALLOWED_GITLAB_GROUPS, KEYCLOAK_URL, KEYCLOAK_REALM, ALLOWED_KEYCLOAK_ROLES
+.. index:: AUTH_REQUIRED, SECRET_KEY, ADMIN_USERS, OAUTH2_CLIENT_ID, OAUTH2_CLIENT_SECRET, ALLOWED_EMAIL_DOMAINS, ALLOWED_GITHUB_ORGS, GITLAB_URL, ALLOWED_GITLAB_GROUPS, KEYCLOAK_URL, KEYCLOAK_REALM, ALLOWED_KEYCLOAK_ROLES, SAML2_CONFIG, ALLOWED_SAML2_GROUPS, SAML2_USER_NAME_FORMAT
 
 ``SECRET_KEY``
     a unique, randomly generated sequence of ASCII characters.
@@ -157,6 +161,13 @@ such as auditing, and features like the ability to assign and watch alerts.
     Keycloak realm when using Keycloak as OAuth2 provider.
 ``ALLOWED_KEYCLOAK_ROLES``
     list of authorised Keycloak roles a user must belong to when using Keycloak as OAuth2 provider.
+``SAML2_CONFIG``
+    ``pysaml2`` configuration ``dict``. See :ref:`saml2`.
+``ALLOWED_SAML2_GROUPS``
+    list of authorised groups a user must belong to. See :ref:`saml2` for details.
+``SAML2_USER_NAME_FORMAT``
+    Python format string which will be rendered to user's name using SAML attributes. See :ref:`saml2`.
+
 
 .. _switch config:
 
