@@ -1,23 +1,21 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Design Principles &#8212; alerta 4.8 documentation</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '4.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -26,7 +24,6 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="alerta 4.8 documentation" href="index.html" />
     <link rel="next" title="Server &amp; API" href="server.html" />
     <link rel="prev" title="Quickstart" href="quick-start.html" />
    
@@ -36,7 +33,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -51,10 +48,10 @@ Alerta monitoring system.</p>
 <div class="section" id="resource-under-alarm">
 <h2>Resource under alarm<a class="headerlink" href="#resource-under-alarm" title="Permalink to this headline">¶</a></h2>
 <p>A <a class="reference internal" href="api/alert.html#alert-attributes"><span class="std std-ref">resource</span></a> is any entity that it makes
-sense for you to receive alerts for. You shouldn&#8217;t be forced to
-accept a certain &#8220;world view&#8221; when using a monitoring tool or to
-repurpose a &#8220;host&#8221; field for a service or application, or a even
-a URL. Host-centric monitoring tools belong in the 90&#8217;s.</p>
+sense for you to receive alerts for. You shouldn’t be forced to
+accept a certain “world view” when using a monitoring tool or to
+repurpose a “host” field for a service or application, or a even
+a URL. Host-centric monitoring tools belong in the 90’s.</p>
 </div>
 <div class="section" id="many-severity-levels">
 <h2>Many severity levels<a class="headerlink" href="#many-severity-levels" title="Permalink to this headline">¶</a></h2>
@@ -67,8 +64,8 @@ want to consider using the <code class="docutils literal"><span class="pre">debu
 </div>
 <div class="section" id="robust-alert-reception">
 <h2>Robust alert reception<a class="headerlink" href="#robust-alert-reception" title="Permalink to this headline">¶</a></h2>
-<p>In accordance with the <a class="reference external" href="http://en.wikipedia.org/wiki/Robustness_principle">robustness principle</a> which is to &#8220;be
-liberal in what you accept from others&#8221;, alerta will accept any
+<p>In accordance with the <a class="reference external" href="http://en.wikipedia.org/wiki/Robustness_principle">robustness principle</a> which is to “be
+liberal in what you accept from others”, alerta will accept any
 alert as long as it meets the alert format specification. ie. no
 field values need to be defined in advance for it to be accepted,
 however the benefits of following a standard <a class="reference internal" href="conventions.html#conventions"><span class="std std-ref">convention</span></a>
@@ -88,13 +85,13 @@ after which it will be deleted.</p>
 <p>Alerts should be resent at regular intervals if they are still
 active which means that if all data is lost after a certain amount
 of time (eg. 2 hours?) you are back to where you were. This will
-be generally true though, for some alert sources this isn&#8217;t
+be generally true though, for some alert sources this isn’t
 possible eg. SNMP traps, log errors. Alerts in a normal state can
 be resent at a longer interval.</p>
 </div>
 <div class="section" id="tags-and-custom-attributes">
 <h2>Tags and custom attributes<a class="headerlink" href="#tags-and-custom-attributes" title="Permalink to this headline">¶</a></h2>
-<p>Dynamic &#8216;scale up&#8217;/&#8217;scale down&#8217; environments are the defacto
+<p>Dynamic ‘scale up’/’scale down’ environments are the defacto
 standard now; naming individual servers is lame. Use service
 discovery and dynamically generated metadata to tag alerts and
 assign custom attributes on the fly.</p>
@@ -210,11 +207,11 @@ Links
       &copy;2015-2016, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="_sources/design.txt"
+      <a href="_sources/design.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

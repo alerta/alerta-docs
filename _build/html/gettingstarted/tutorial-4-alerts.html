@@ -1,23 +1,21 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Alerts explored in-depth &#8212; alerta 4.8 documentation</title>
-    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '4.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
@@ -26,7 +24,6 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="top" title="alerta 4.8 documentation" href="../index.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -34,7 +31,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -90,11 +87,11 @@ key alert attributes and incrementing a duplicate counter.</p>
 <p>To demonstrate de-duplication, run the following command to generate
 the same alert, multiple times:</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta send -r user01 -e loginError -s major -E Production -S Security <span class="se">\</span>
-<span class="go">-t &#39;user01 login failed.&#39;</span>
+-t <span class="s1">&#39;user01 login failed.&#39;</span>
 <span class="go">57eb528a-84bf-4080-b54a-37e2888207f3 (indeterminate -&gt; major)</span>
 
 <span class="gp">$</span> alerta send -r user01 -e loginError -s major -E Production -S Security <span class="se">\</span>
-<span class="go">-t &#39;user01 login failed.&#39;</span>
+-t <span class="s1">&#39;user01 login failed.&#39;</span>
 <span class="go">57eb528a-84bf-4080-b54a-37e2888207f3 (1 duplicates)</span>
 </pre></div>
 </div>
@@ -110,38 +107,38 @@ be configured to update one alert with another related alert.</p>
 generate alerts that replace each other and only show the most
 recent:</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta send -r user01 -e loginError -s major -E Production -S Security <span class="se">\</span>
-<span class="go">-t &#39;user01 login failed.&#39; -C loginError -C loginWarn -C loginOk</span>
+-t <span class="s1">&#39;user01 login failed.&#39;</span> -C loginError -C loginWarn -C loginOk
 <span class="go">572cb438-5d09-4cdc-babd-410020e3bc15 (indeterminate -&gt; major)</span>
 
 <span class="gp">$</span> alerta send -r user01 -e loginWarn -s warning -E Production -S Security <span class="se">\</span>
-<span class="go">-t &#39;user01 password reset.&#39; -C loginError -C loginWarn -C loginOk</span>
+-t <span class="s1">&#39;user01 password reset.&#39;</span> -C loginError -C loginWarn -C loginOk
 <span class="go">572cb438-5d09-4cdc-babd-410020e3bc15 (major -&gt; warning)</span>
 
 <span class="gp">$</span> alerta send -r user01 -e loginOk -s normal -E Production -S Security <span class="se">\</span>
-<span class="go">-t &#39;user01 login success.&#39; -C loginError -C loginWarn -C loginOk</span>
+-t <span class="s1">&#39;user01 login success.&#39;</span> -C loginError -C loginWarn -C loginOk
 <span class="go">572cb438-5d09-4cdc-babd-410020e3bc15 (warning -&gt; normal)</span>
 </pre></div>
 </div>
 <p>The most important part of the above commands were the
-<code class="docutils literal"><span class="pre">-C</span> <span class="pre">loginError</span> <span class="pre">-C</span> <span class="pre">loginWarn</span> <span class="pre">-C</span> <span class="pre">loginOk</span></code> arguments. The &#8220;-C&#8221;
-option is short for &#8220;&#8211;correlate&#8221; and informs the Alerta server
+<code class="docutils literal"><span class="pre">-C</span> <span class="pre">loginError</span> <span class="pre">-C</span> <span class="pre">loginWarn</span> <span class="pre">-C</span> <span class="pre">loginOk</span></code> arguments. The “-C”
+option is short for “–correlate” and informs the Alerta server
 that alerts with these events should be correlated together.</p>
 <p>Interestingly the de-duplication logic demonstrated in <span class="xref std std-ref">Step 1</span>
 above can be used to produce similar results as this simple
 correlation.</p>
 <p>To demonstrate <strong>correlation by de-duplication</strong> replace the different
-login event names with the more generic &#8220;loginStatus&#8221; and move the
-actual event name to &#8220;value&#8221;.</p>
+login event names with the more generic “loginStatus” and move the
+actual event name to “value”.</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginError -s major -E Production <span class="se">\</span>
-<span class="go">-S Security -t &#39;user01 login failed.&#39;</span>
+-S Security -t <span class="s1">&#39;user01 login failed.&#39;</span>
 <span class="go">1acab7c8-e08e-4fef-98ad-3b07ba238120 (indeterminate -&gt; major)</span>
 
 <span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginWarn -s warning -E Production <span class="se">\</span>
-<span class="go">-S Security -t &#39;user01 password reset.&#39;</span>
+-S Security -t <span class="s1">&#39;user01 password reset.&#39;</span>
 <span class="go">1acab7c8-e08e-4fef-98ad-3b07ba238120 (major -&gt; warning)</span>
 
 <span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginOk -s normal -E Production <span class="se">\</span>
-<span class="go">-S Security -t &#39;user01 login success.&#39;</span>
+-S Security -t <span class="s1">&#39;user01 login success.&#39;</span>
 <span class="go">1acab7c8-e08e-4fef-98ad-3b07ba238120 (warning -&gt; normal)</span>
 </pre></div>
 </div>
@@ -159,12 +156,12 @@ was automatically set to <code class="docutils literal"><span class="pre">open</
 was changed to <code class="docutils literal"><span class="pre">normal</span></code> the status automatically changed to
 <code class="docutils literal"><span class="pre">closed</span></code>.</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginError -s major -E Production <span class="se">\</span>
-<span class="go">-S Security -t &#39;user01 login failed.&#39;</span>
+-S Security -t <span class="s1">&#39;user01 login failed.&#39;</span>
 <span class="go">12c4d5f4-1be9-436d-a90a-1adc1a473815 (indeterminate -&gt; major)</span>
 <span class="go">=&gt; open</span>
 
 <span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginOk -s normal -E Production <span class="se">\</span>
-<span class="go">-S Security -t &#39;user01 login success.&#39;</span>
+-S Security -t <span class="s1">&#39;user01 login success.&#39;</span>
 <span class="go">12c4d5f4-1be9-436d-a90a-1adc1a473815 (major -&gt; normal)</span>
 <span class="go">=&gt; closed</span>
 </pre></div>
@@ -176,7 +173,7 @@ procedures.</p>
 <code class="docutils literal"><span class="pre">re-open</span></code> an alert that was <code class="docutils literal"><span class="pre">acked</span></code> if the severity for the
 new alert is higher than that already received.</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginError -s major -E Production <span class="se">\</span>
-<span class="go">-S Security -t &#39;user01 login failed.&#39;</span>
+-S Security -t <span class="s1">&#39;user01 login failed.&#39;</span>
 <span class="go">9df79583-397b-4d6b-8c6e-3f446bd0c7b3 (indeterminate -&gt; major)</span>
 <span class="go">=&gt; open</span>
 
@@ -184,7 +181,7 @@ new alert is higher than that already received.</p>
 <span class="go">=&gt; ack</span>
 
 <span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginError -s critical -E Production <span class="se">\</span>
-<span class="go">-S Security -t &#39;user01 login failed.&#39;</span>
+-S Security -t <span class="s1">&#39;user01 login failed.&#39;</span>
 <span class="go">9df79583-397b-4d6b-8c6e-3f446bd0c7b3 (major -&gt; critical)</span>
 <span class="go">=&gt; open</span>
 </pre></div>
@@ -192,17 +189,17 @@ new alert is higher than that already received.</p>
 <p>Alerts are also <code class="docutils literal"><span class="pre">re-opened</span></code> if they are <code class="docutils literal"><span class="pre">closed</span></code> or <code class="docutils literal"><span class="pre">expired</span></code>
 when any severity except <code class="docutils literal"><span class="pre">normal</span></code> is received for that alert.</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginError -s major -E Production <span class="se">\</span>
-<span class="go">-S Security -t &#39;user01 login failed.&#39;</span>
+-S Security -t <span class="s1">&#39;user01 login failed.&#39;</span>
 <span class="go">9564d012-1d37-45c2-94c6-ba5e26af8389 (indeterminate -&gt; major)</span>
 <span class="go">=&gt; open</span>
 
 <span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginOk -s normal -E Production <span class="se">\</span>
-<span class="go">-S Security -t &#39;user01 login success.&#39;</span>
+-S Security -t <span class="s1">&#39;user01 login success.&#39;</span>
 <span class="go">9564d012-1d37-45c2-94c6-ba5e26af8389 (major -&gt; normal)</span>
 <span class="go">=&gt; closed</span>
 
 <span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginError -s major -E Production <span class="se">\</span>
-<span class="go">-S Security -t &#39;user01 login failed.&#39;</span>
+-S Security -t <span class="s1">&#39;user01 login failed.&#39;</span>
 <span class="go">9564d012-1d37-45c2-94c6-ba5e26af8389 (normal -&gt; major)</span>
 <span class="go">=&gt; open</span>
 </pre></div>
@@ -211,7 +208,7 @@ when any severity except <code class="docutils literal"><span class="pre">normal
 <div class="section" id="step-4-environments-and-services">
 <h2>Step 4: Environments and Services<a class="headerlink" href="#step-4-environments-and-services" title="Permalink to this headline">¶</a></h2>
 <p>The alert <code class="docutils literal"><span class="pre">environment</span></code> plays an important role in de-duplication
-and correlation because it is used to &#8220;namespace&#8221; the alert <code class="docutils literal"><span class="pre">resource</span></code>.
+and correlation because it is used to “namespace” the alert <code class="docutils literal"><span class="pre">resource</span></code>.
 Alert <code class="docutils literal"><span class="pre">environments</span></code> provide a scope for <code class="docutils literal"><span class="pre">resources</span></code>. Alert
 <code class="docutils literal"><span class="pre">resources</span></code> need to be unique within an <code class="docutils literal"><span class="pre">environment</span></code> namespace.</p>
 <p>This means that if two alerts are received for the same <code class="docutils literal"><span class="pre">resource</span></code>
@@ -220,14 +217,14 @@ and are <strong>not</strong> de-duplicated or correlated.</p>
 <p>This is so that you can have hosts, applications, devices or anything
 with the same resource name but in different environments and they
 will be treated independently.</p>
-<p>Run the following commands to generate two &#8220;loginError&#8221; alerts, one
-for the &#8220;Production&#8221; environment and the other for &#8220;Development&#8221;:</p>
+<p>Run the following commands to generate two “loginError” alerts, one
+for the “Production” environment and the other for “Development”:</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginError -s major -E Production <span class="se">\</span>
-<span class="go">-S Security -t &#39;user01 login failed.&#39;</span>
+-S Security -t <span class="s1">&#39;user01 login failed.&#39;</span>
 <span class="go">f0948bf7-d351-47f8-8670-0eb84127816b (indeterminate -&gt; major)</span>
 
 <span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginError -s major -E Development <span class="se">\</span>
-<span class="go">-S Security -t &#39;user01 login failed.&#39;</span>
+-S Security -t <span class="s1">&#39;user01 login failed.&#39;</span>
 <span class="go">4cd197b8-eb19-49f5-9afe-841390c03ff9 (indeterminate -&gt; major)</span>
 </pre></div>
 </div>
@@ -361,11 +358,11 @@ Links
       &copy;2015-2016, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/gettingstarted/tutorial-4-alerts.txt"
+      <a href="../_sources/gettingstarted/tutorial-4-alerts.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

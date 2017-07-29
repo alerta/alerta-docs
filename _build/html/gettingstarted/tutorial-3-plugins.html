@@ -1,23 +1,21 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Use plugins to enhance Alerta &#8212; alerta 4.8 documentation</title>
-    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '4.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
@@ -26,7 +24,6 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="top" title="alerta 4.8 documentation" href="../index.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -34,7 +31,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -137,12 +134,12 @@ and the <code class="docutils literal"><span class="pre">__init__()</span></code
 as the Super class is also called.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExamplePlugin</span><span class="p">(</span><span class="n">PluginBase</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
 
         <span class="c1"># plugin-specific init goes here</span>
         <span class="c1"># if not required, leave &quot;__init__()&quot; out completely</span>
 
-        <span class="nb">super</span><span class="p">(</span><span class="n">ExamplePlugin</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ExamplePlugin</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">pre_receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">):</span>
 
@@ -164,7 +161,7 @@ as the Super class is also called.</p>
 </pre></div>
 </div>
 <p>Now that you know the basic implementation of a plugin you are going
-to write one of your own to detect &#8220;<a class="reference external" href="https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/flapping.html">flapping</a>&#8221; alerts.</p>
+to write one of your own to detect “<a class="reference external" href="https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/flapping.html">flapping</a>” alerts.</p>
 <p>To do this you are going to take advantage of the <code class="docutils literal"><span class="pre">is_flapping()</span></code> utility
 method that takes an alert, a time window (in seconds) and a threshold
 count and returns <code class="docutils literal"><span class="pre">True</span></code> if the number of alert severity changes
@@ -259,7 +256,7 @@ respond with a <code class="docutils literal"><span class="pre">429</span> <span
 listed in the <code class="docutils literal"><span class="pre">PLUGINS</span></code> setting and all plugins are executed for
 every alert.</p>
 <p>In this step you are going to modify the default behaviour of plugins
-by using a &#8220;routing&#8221; plugin to dynamically change which plugins
+by using a “routing” plugin to dynamically change which plugins
 are run for an alert and in which order.</p>
 <p>The most basic routing plugin is one that simply implements what is
 the current behaviour. That is, it returns a list of the enabled
@@ -326,7 +323,7 @@ configured plugins should be executed.</p>
         <span class="k">return</span> <span class="n">plugins</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>A more useful plugin would be one that doesn&#8217;t call an external
+<p>A more useful plugin would be one that doesn’t call an external
 notification like <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/slack">Slack</a> unless an alert has been received at least
 three times.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
@@ -470,11 +467,11 @@ Links
       &copy;2015-2016, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/gettingstarted/tutorial-3-plugins.txt"
+      <a href="../_sources/gettingstarted/tutorial-3-plugins.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
