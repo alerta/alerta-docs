@@ -1,23 +1,21 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Alerta Web UI &#8212; alerta 4.8 documentation</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '4.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -26,7 +24,6 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="alerta 4.8 documentation" href="index.html" />
     <link rel="next" title="Alerta CLI" href="cli.html" />
     <link rel="prev" title="Server &amp; API" href="server.html" />
    
@@ -36,7 +33,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -49,7 +46,7 @@
 <p>The Alerta web UI console takes full advantage of the <a class="reference internal" href="server.html#state-based-browser"><span class="std std-ref">state-based Alerta API</span></a> to ensure that the most important events at any given time are brought to the attention of operators.</p>
 <div class="section" id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
-<p>To configure the Alerta web UI modify &#8220;in place&#8221; the default <code class="docutils literal"><span class="pre">config.js</span></code> file that is supplied with the web application. It uses <a class="reference external" href="https://docs.angularjs.org/guide/module#configuration-blocks">AngularJS configuration block</a> syntax. More information can be found on the <a class="reference internal" href="#webui"><span class="std std-ref">web UI</span></a> page.</p>
+<p>To configure the Alerta web UI modify “in place” the default <code class="docutils literal"><span class="pre">config.js</span></code> file that is supplied with the web application. It uses <a class="reference external" href="https://docs.angularjs.org/guide/module#configuration-blocks">AngularJS configuration block</a> syntax. More information can be found on the <a class="reference internal" href="#webui"><span class="std std-ref">web UI</span></a> page.</p>
 <p>The three main areas for configuration are:</p>
 <blockquote>
 <div><ul class="simple">
@@ -147,7 +144,7 @@
 </div>
 <div class="section" id="managing-alerts">
 <h2>Managing Alerts<a class="headerlink" href="#managing-alerts" title="Permalink to this headline">¶</a></h2>
-<p>The browser supports viewing the most recent alerts, a list of the top 10 &#8220;worst offenders&#8221;, and a list of watched alerts.</p>
+<p>The browser supports viewing the most recent alerts, a list of the top 10 “worst offenders”, and a list of watched alerts.</p>
 <div class="section" id="view-recent-alerts">
 <h3>View Recent Alerts<a class="headerlink" href="#view-recent-alerts" title="Permalink to this headline">¶</a></h3>
 <p>Filter by env, svc
@@ -165,7 +162,7 @@ Alert History</p>
 <div class="section" id="top-10">
 <h3>Top 10<a class="headerlink" href="#top-10" title="Permalink to this headline">¶</a></h3>
 <p>One of the most important things that can be done to improve the usefulness of an alert console is to reduce the number of alerts to only those that matter.</p>
-<p>The top 10 report helps identify alert sources that are the &#8220;worst offenders&#8221; by grouping by <code class="docutils literal"><span class="pre">event</span></code> name and then sorting by <code class="docutils literal"><span class="pre">count</span></code> and <code class="docutils literal"><span class="pre">duplicateCount</span></code>. This report should help operators take corrective action to ensure that the root cause is fixed and reduce the burden of alert management.</p>
+<p>The top 10 report helps identify alert sources that are the “worst offenders” by grouping by <code class="docutils literal"><span class="pre">event</span></code> name and then sorting by <code class="docutils literal"><span class="pre">count</span></code> and <code class="docutils literal"><span class="pre">duplicateCount</span></code>. This report should help operators take corrective action to ensure that the root cause is fixed and reduce the burden of alert management.</p>
 <p>In future, this report will support grouping alerts by <code class="docutils literal"><span class="pre">origin</span></code>, <code class="docutils literal"><span class="pre">resource</span></code>, and event <code class="docutils literal"><span class="pre">group</span></code> and filtering by date range.</p>
 </div>
 <div class="section" id="watching-alerts">
@@ -175,15 +172,15 @@ Alert History</p>
 </div>
 <div class="section" id="users">
 <h2>Users<a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
-<p>Managing users ...</p>
+<p>Managing users …</p>
 </div>
 <div class="section" id="api-keys">
 <h2>API Keys<a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h2>
-<p>Managing API Keys ...</p>
+<p>Managing API Keys …</p>
 </div>
 <div class="section" id="blackout-periods">
 <h2>Blackout Periods<a class="headerlink" href="#blackout-periods" title="Permalink to this headline">¶</a></h2>
-<p>Managing blackout periods ...</p>
+<p>Managing blackout periods …</p>
 </div>
 <div class="section" id="authentication">
 <h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h2>
@@ -312,11 +309,11 @@ Links
       &copy;2015-2016, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="_sources/webui.txt"
+      <a href="_sources/webui.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

@@ -1,23 +1,21 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>API Reference &#8212; alerta 4.8 documentation</title>
-    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '4.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
@@ -26,7 +24,6 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="top" title="alerta 4.8 documentation" href="../index.html" />
     <link rel="next" title="Alert Format" href="alert.html" />
     <link rel="prev" title="Getting Started" href="../tutorials.html" />
    
@@ -36,7 +33,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -480,7 +477,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 <div class="section" id="update-alert-attributes">
 <h3><a class="toc-backref" href="#id73">Update alert attributes</a><a class="headerlink" href="#update-alert-attributes" title="Permalink to this headline">¶</a></h3>
 <p>Adds, deletes or modifies alert attributes. To delete an attribute assign
-&#8220;null&#8221; to the attribute.</p>
+“null” to the attribute.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">attributes</span>
 </pre></div>
 </div>
@@ -572,31 +569,31 @@ filter results.</p>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">from-date</span></code></td>
 <td>date</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">to-date</span></code></td>
 <td>date</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">sort-by</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">reverse</span></code></td>
 <td>boolean</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">group-by</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">page</span></code></td>
 <td>integer</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">limit</span></code></td>
 <td>integer</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -779,7 +776,7 @@ filter results.</p>
 <tbody valign="top">
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;attr&gt;</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -951,7 +948,7 @@ filter results.</p>
 <tbody valign="top">
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;attr&gt;</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -1009,7 +1006,7 @@ default it is grouped by <code class="docutils literal"><span class="pre">event<
 <tbody valign="top">
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;attr&gt;</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">q</span></code></td>
 <td>dict</td>
@@ -1070,7 +1067,7 @@ default it is grouped by <code class="docutils literal"><span class="pre">event<
 </div>
 <div class="section" id="environments">
 <span id="id22"></span><h2><a class="toc-backref" href="#id79">Environments</a><a class="headerlink" href="#environments" title="Permalink to this headline">¶</a></h2>
-<p>An environment cannot be created &#8211; it is a dynamically derived resource based
+<p>An environment cannot be created – it is a dynamically derived resource based
 on existing alerts.</p>
 <div class="section" id="list-all-environments">
 <h3><a class="toc-backref" href="#id80">List all environments</a><a class="headerlink" href="#list-all-environments" title="Permalink to this headline">¶</a></h3>
@@ -1095,7 +1092,7 @@ on existing alerts.</p>
 <tbody valign="top">
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;attr&gt;</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -1129,7 +1126,7 @@ on existing alerts.</p>
 </div>
 <div class="section" id="services">
 <span id="id26"></span><h2><a class="toc-backref" href="#id81">Services</a><a class="headerlink" href="#services" title="Permalink to this headline">¶</a></h2>
-<p>A service cannot be created &#8211; it is a dynamically derived resource based on existing alerts.</p>
+<p>A service cannot be created – it is a dynamically derived resource based on existing alerts.</p>
 <div class="section" id="list-all-services">
 <h3><a class="toc-backref" href="#id82">List all services</a><a class="headerlink" href="#list-all-services" title="Permalink to this headline">¶</a></h3>
 <p>Returns a list of services grouped by environment and an alert count for each.</p>
@@ -1153,7 +1150,7 @@ on existing alerts.</p>
 <tbody valign="top">
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;attr&gt;</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -1215,23 +1212,23 @@ on existing alerts.</p>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">resource</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">service</span></code></td>
 <td>list</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">event</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">group</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">tags</span></code></td>
 <td>list</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">startTime</span></code></td>
 <td>datetime</td>
@@ -1377,11 +1374,11 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 <tbody valign="top">
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">origin</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">tags</span></code></td>
 <td>list</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">timeout</span></code></td>
 <td>integer</td>
@@ -1708,27 +1705,27 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 <tbody valign="top">
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">name</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">login</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">password</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">provider</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">text</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">email_verified</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -1794,27 +1791,27 @@ Any parameters not provided will be left unchanged.</p>
 <tbody valign="top">
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">name</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">login</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">password</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">provider</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">text</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">email_verified</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -1931,11 +1928,11 @@ Any parameters not provided will be left unchanged.</p>
 <tbody valign="top">
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">customer</span></code></td>
 <td>string</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">match</span></code></td>
 <td>regex</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
 </tr>
 </tbody>
 </table>
@@ -2127,11 +2124,11 @@ Links
       &copy;2015-2016, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/api/reference.txt"
+      <a href="../_sources/api/reference.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

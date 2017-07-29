@@ -1,23 +1,21 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Server &amp; API &#8212; alerta 4.8 documentation</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '4.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -26,7 +24,6 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="alerta 4.8 documentation" href="index.html" />
     <link rel="next" title="Alerta Web UI" href="webui.html" />
     <link rel="prev" title="Design Principles" href="design.html" />
    
@@ -36,7 +33,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -90,16 +87,16 @@ from sources before alerts are created. For example, alerts can be <em>normalise
 to ensure they all have specific attributes or tags or only have a specific value
 from a range of allowed values. This is demonstrated in the <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py">reject plugin</a>
 that enforces an alert policy.</p>
-<p>Plugins can also be used to <em>enhance</em> alerts  &#8211; like the <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/geoip/geoip.py">Geo location plugin</a>
+<p>Plugins can also be used to <em>enhance</em> alerts  – like the <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/geoip">Geo location plugin</a>
 which adds location data to alerts based on the remote IP address of the client,
-or the generic <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/enhance.py">enhance plugin</a> which adds a <code class="docutils literal"><span class="pre">customer</span></code> attribute based on
+or the generic <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/enhance">enhance plugin</a> which adds <code class="docutils literal"><span class="pre">isOutOfHours</span></code> attribute based on
 information contained in the alert.</p>
 </div>
 <div class="section" id="external-notification">
 <span id="postreceive"></span><h3>External Notification<a class="headerlink" href="#external-notification" title="Permalink to this headline">¶</a></h3>
 <p>Using post-receive hooks, plugin integrations can be used to provide downstream
 systems with alerts in realtime for external notification. For example, pushing
-alerts onto an <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/sns.py">AWS SNS topic</a>, <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/amqp.py">AMQP queue</a>, logging to a <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/logstash.py">Logstash/Kibana</a>
+alerts onto an <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/sns">AWS SNS topic</a>, <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp">AMQP queue</a>, logging to a <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/logstash">Logstash/Kibana</a>
 stack, or sending notifications to <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/hipchat">HipChat</a>, <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/slack">Slack</a> or <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/twilio">Twilio</a> and many
 more.</p>
 </div>
@@ -109,8 +106,8 @@ more.</p>
 with an external system. That is, an external system like Prometheus Alertmanager
 that generates alerts that are forwarded to Alerta can be updated when the status
 of an alert changes in Alerta.</p>
-<p>For example, if an operator &#8220;acknowledges&#8221; a Prometheus alert in the Alerta web
-UI then a status change hook could <a class="reference external" href="https://prometheus.io/docs/alerting/alertmanager/#silences">silence</a> the <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/prometheus/prometheus.py">corresponding alert in Alertmanager</a>.
+<p>For example, if an operator “acknowledges” a Prometheus alert in the Alerta web
+UI then a status change hook could <a class="reference external" href="https://prometheus.io/docs/alerting/alertmanager/#silences">silence</a> the <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/prometheus">corresponding alert in Alertmanager</a>.
 This requires that external systems provide enough information in the alert created
 in Alerta for that alert to be uniquely identified at a later date.</p>
 </div>
@@ -120,7 +117,7 @@ in Alerta for that alert to be uniquely identified at a later date.</p>
 <p>An alert that is received during a <span class="target" id="index-0"></span>blackout period
 is suppressed. That is, it is received by Alerta and a <code class="docutils literal"><span class="pre">202</span> <span class="pre">Accepted</span></code> status
 code is returned however this means that even though the alert has been accepted,
-it won&#8217;t be processed.</p>
+it won’t be processed.</p>
 <p>Alerta defines many different alert attributes that can be used to group alerts
 and it is these attributes that can be used to define blackout rules. For example,
 to suppress alerts from an entire environment, service or group, or a combination
@@ -157,7 +154,7 @@ of whether they were new alerts or de-duplicated alerts.</p>
 </div>
 <div class="section" id="simple-correlation">
 <span id="correlation"></span><h2>Simple Correlation<a class="headerlink" href="#simple-correlation" title="Permalink to this headline">¶</a></h2>
-<p>Alerta implements what we call &#8220;simple correlation&#8221; &#8211; as opposed to
+<p>Alerta implements what we call “simple correlation” – as opposed to
 <a class="reference external" href="https://en.wikipedia.org/wiki/Complex_event_processing">complex correlation</a> which is <a class="reference external" href="http://www.espertech.com/">much</a> <a class="reference external" href="http://riemann.io/">more</a> <a class="reference external" href="http://www.drools.org/">involved</a>. Simple correlation,
 in combination with de-duplication, provides straight-forward and
 effective ways to reduce the burden of managing an alert console.</p>
@@ -341,11 +338,11 @@ Links
       &copy;2015-2016, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="_sources/server.txt"
+      <a href="_sources/server.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

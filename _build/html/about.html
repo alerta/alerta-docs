@@ -1,23 +1,21 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>About &#8212; alerta 4.8 documentation</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '4.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -26,7 +24,6 @@
     <link rel="author" title="About these documents" href="#" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="alerta 4.8 documentation" href="index.html" />
     <link rel="prev" title="Releases" href="release-notes.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -35,7 +32,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -50,15 +47,15 @@ monitoring tool but only after exhaustively evaluating all credible alternatives
 first.</p>
 <p>Initially all we wanted was to be able to create alert thresholds against the
 hundreds of thousands of Ganglia metrics collected for the website and view the
-alerts in a web console ie. a Ganglia &#8220;alerter&#8221;. Not having a proper name for
-this <a class="reference external" href="https://www.theguardian.com/info/developer-blog/2012/oct/04/winning-the-metrics-battle">metrics and monitoring system</a> the working name of &#8220;an alerter&#8221; stuck and
+alerts in a web console ie. a Ganglia “alerter”. Not having a proper name for
+this <a class="reference external" href="https://www.theguardian.com/info/developer-blog/2012/oct/04/winning-the-metrics-battle">metrics and monitoring system</a> the working name of “an alerter” stuck and
 a simple homophone was chosen to aid future Google searches.</p>
 <p>In the end, the thresholding of metrics proved very difficult to scale so we
 eventually split the project in two and metric thresholding was given to Riemann
 (see <a class="reference external" href="https://github.com/guardian/riemann-config">riemann-config</a>) and the alert correlation, de-duplication and visualisation
-became the &#8220;Alerta&#8221; project.</p>
+became the “Alerta” project.</p>
 <p>Over the years the project has evolved to meet the constantly changing needs of
-the Guardian development teams as they moved to a more agile, dynamic, &#8220;<a class="reference external" href="http://akfpartners.com/techblog/2008/05/30/fault-isolative-architectures-or-%E2%80%9Cswimlaning%E2%80%9D/">swimlaned</a>&#8221;
+the Guardian development teams as they moved to a more agile, dynamic, “<a class="reference external" href="http://akfpartners.com/techblog/2008/05/30/fault-isolative-architectures-or-%E2%80%9Cswimlaning%E2%80%9D/">swimlaned</a>”
 architecture which has meant, for the operations team, a shift from static,
 self-hosted infrastructureto an internal OpenStack cloud to finally an external
 cloud service.</p>
@@ -66,9 +63,9 @@ cloud service.</p>
 changed (eg. the message bus, Ganglia, Riemann) and others added (eg. OAuth2 login,
 CloudWatch, Pingdom, PagerDuty integration). In the process it has been slimmed
 down to fewer core components making it easier to understand, deploy and manage.</p>
-<p>As such, Alerta is now quite different to the somewhat &#8220;over engineered&#8221; initial
+<p>As such, Alerta is now quite different to the somewhat “over engineered” initial
 solution but the core concepts of being a flexible, easy-to-use tool remain and
-it is now a &#8220;cloud-ready&#8221; solution adapted to the challenges of a fast changing
+it is now a “cloud-ready” solution adapted to the challenges of a fast changing
 environment.</p>
 </div>
 
@@ -173,11 +170,11 @@ Links
       &copy;2015-2016, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="_sources/about.txt"
+      <a href="_sources/about.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

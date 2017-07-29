@@ -1,23 +1,21 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Frequently Asked Questions &#8212; alerta 4.8 documentation</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '4.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -26,7 +24,6 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="alerta 4.8 documentation" href="index.html" />
     <link rel="next" title="Releases" href="release-notes.html" />
     <link rel="prev" title="Heartbeat Format" href="api/heartbeat.html" />
    
@@ -36,7 +33,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -49,7 +46,7 @@
 <div class="section" id="alerta">
 <h2>Alerta<a class="headerlink" href="#alerta" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="why-can-t-i-see-any-alerts-in-the-web-browser">
-<h3>Why can&#8217;t I see any alerts in the web browser?<a class="headerlink" href="#why-can-t-i-see-any-alerts-in-the-web-browser" title="Permalink to this headline">¶</a></h3>
+<h3>Why can’t I see any alerts in the web browser?<a class="headerlink" href="#why-can-t-i-see-any-alerts-in-the-web-browser" title="Permalink to this headline">¶</a></h3>
 <p>If you can send and query for alerts using the <code class="docutils literal"><span class="pre">alerta</span></code> CLI tool this
 problem is almost certainly related to cross-origin browser errors. Open
 up the Javascript developer console in your browser of choice and look
@@ -68,17 +65,17 @@ configuration</span></a> setting.</p>
 <div class="section" id="why-do-i-need-to-set-an-environment-and-service-when-they-are-not-mandatory">
 <h3>Why do I need to set an <code class="docutils literal"><span class="pre">environment</span></code> and <code class="docutils literal"><span class="pre">service</span></code> when they are not mandatory?<a class="headerlink" href="#why-do-i-need-to-set-an-environment-and-service-when-they-are-not-mandatory" title="Permalink to this headline">¶</a></h3>
 <p>Only <code class="docutils literal"><span class="pre">resource</span></code> and <code class="docutils literal"><span class="pre">event</span></code> are technically required to ensure that
-Alerta can process alerts correctly. However, the &#8220;out-of-the-box&#8221; default
+Alerta can process alerts correctly. However, the “out-of-the-box” default
 server setting for <code class="docutils literal"><span class="pre">PLUGINS</span></code> has the <code class="docutils literal"><span class="pre">reject</span></code> plugin enabled. This plugin
-enforces an alert &#8220;policy&#8221; of requiring an <code class="docutils literal"><span class="pre">environment</span></code> attribute of either
+enforces an alert “policy” of requiring an <code class="docutils literal"><span class="pre">environment</span></code> attribute of either
 <code class="docutils literal"><span class="pre">Production</span></code> or <code class="docutils literal"><span class="pre">Development</span></code> and a value for the <code class="docutils literal"><span class="pre">service</span></code> attribute.</p>
 <p>This is to encourage good habits early in defining useful alert attributes
-that can be used to &#8220;namespace&#8221; alerts (this is what the <code class="docutils literal"><span class="pre">environment</span></code>
+that can be used to “namespace” alerts (this is what the <code class="docutils literal"><span class="pre">environment</span></code>
 attribute is for) and so that the web console can organise by <code class="docutils literal"><span class="pre">environemnt</span></code>
 and filter alerts by <code class="docutils literal"><span class="pre">service</span></code>.</p>
 <p>However, one of the principles of Alerta is not to enforce its view of the
 world on users so the plugin can be <a class="reference internal" href="configuration.html#plugin-config"><span class="std std-ref">easily configured</span></a>,
-<a class="reference internal" href="gettingstarted/tutorial-3-plugins.html#tutorial-3"><span class="std std-ref">modified</span></a> or completely disabled. It&#8217;s up to you.</p>
+<a class="reference internal" href="gettingstarted/tutorial-3-plugins.html#tutorial-3"><span class="std std-ref">modified</span></a> or completely disabled. It’s up to you.</p>
 </div>
 <div class="section" id="can-i-define-custom-severity-codes-and-levels">
 <h3>Can I define custom severity codes and levels?<a class="headerlink" href="#can-i-define-custom-severity-codes-and-levels" title="Permalink to this headline">¶</a></h3>
@@ -101,7 +98,7 @@ command-line tool using:</p>
 would require some development effort.</p>
 </div>
 <div class="section" id="what-s-the-difference-between-ack-close-and-delete">
-<h3>What&#8217;s the difference between <cite>ack</cite>, <cite>close</cite> and <cite>delete</cite>?<a class="headerlink" href="#what-s-the-difference-between-ack-close-and-delete" title="Permalink to this headline">¶</a></h3>
+<h3>What’s the difference between <cite>ack</cite>, <cite>close</cite> and <cite>delete</cite>?<a class="headerlink" href="#what-s-the-difference-between-ack-close-and-delete" title="Permalink to this headline">¶</a></h3>
 <p>Alerts are meant to auto-close when a corresponding <cite>normal</cite> or
 <cite>cleared</cite> alert is received for that event-resource combination. If
 no <cite>normal</cite> alert exists for a particular event (which may be the
@@ -111,11 +108,11 @@ be deleted when the timeout period has expired. Alerts timeout after
 <p>If, as an operator, you want to remove an event from view then you
 can either <cite>ack</cite> the alert or DELETE it. If the alert is DELETED a
 new alert with the same event-resource combination will trigger a
-new notification email (if configured) whereas an <cite>ack</cite>&#8216;ed alert will
+new notification email (if configured) whereas an <cite>ack</cite>’ed alert will
 not.</p>
 </div>
 <div class="section" id="why-don-t-you-have-a-plugin-or-integration-for-x-where-x-is-whatever-you-use-in-your-job">
-<h3>Why don&#8217;t you have a plugin or integration for X, where X is whatever you use in your job?<a class="headerlink" href="#why-don-t-you-have-a-plugin-or-integration-for-x-where-x-is-whatever-you-use-in-your-job" title="Permalink to this headline">¶</a></h3>
+<h3>Why don’t you have a plugin or integration for X, where X is whatever you use in your job?<a class="headerlink" href="#why-don-t-you-have-a-plugin-or-integration-for-x-where-x-is-whatever-you-use-in-your-job" title="Permalink to this headline">¶</a></h3>
 <p>We could spend countless hours writing plugins for everything and
 never finish or we could focus on building an easily extensible
 system with great documentation and let the end-user build the plugins
@@ -124,10 +121,10 @@ and <a class="reference external" href="https://github.com/alerta/alerta-contrib
 more if there is <a class="reference external" href="https://github.com/guardian/alerta/issues/74">popular</a> <a class="reference external" href="https://github.com/guardian/alerta/issues/75">demand</a>. We are also happy to accept submissions.</p>
 </div>
 <div class="section" id="what-s-this-mongodb-serverselectiontimeouterror">
-<h3>What&#8217;s this MongoDB &#8220;ServerSelectionTimeoutError&#8221;?<a class="headerlink" href="#what-s-this-mongodb-serverselectiontimeouterror" title="Permalink to this headline">¶</a></h3>
-<p>With the update to PyMongo 3.x <a class="reference external" href="https://api.mongodb.com/python/current/faq.html#multiprocessing">multiprocessing</a> applications &#8220;parent process
-and each child process must create their own instances of MongoClient&#8221;.</p>
-<p>For Apache WSGI applications, an example Apache &#8220;vhost&#8221; configuration for
+<h3>What’s this MongoDB “ServerSelectionTimeoutError”?<a class="headerlink" href="#what-s-this-mongodb-serverselectiontimeouterror" title="Permalink to this headline">¶</a></h3>
+<p>With the update to PyMongo 3.x <a class="reference external" href="https://api.mongodb.com/python/current/faq.html#multiprocessing">multiprocessing</a> applications “parent process
+and each child process must create their own instances of MongoClient”.</p>
+<p>For Apache WSGI applications, an example Apache “vhost” configuration for
 the Alerta API would look like this:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">VirtualHost</span> <span class="o">*</span><span class="p">:</span><span class="mi">8080</span><span class="o">&gt;</span>
   <span class="n">ServerName</span> <span class="n">localhost</span>
@@ -258,11 +255,11 @@ Links
       &copy;2015-2016, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="_sources/faq.txt"
+      <a href="_sources/faq.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

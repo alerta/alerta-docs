@@ -1,23 +1,21 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Quickstart &#8212; alerta 4.8 documentation</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '4.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -26,7 +24,6 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="alerta 4.8 documentation" href="index.html" />
     <link rel="next" title="Design Principles" href="design.html" />
     <link rel="prev" title="Alerta monitoring system" href="index.html" />
    
@@ -36,7 +33,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -86,11 +83,11 @@ $ python -m SimpleHTTPServer 8000
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta send -r web01 -e NodeDown -E Production -S Website -s major -t &quot;Web server is down.&quot; -v ERROR
 </pre></div>
 </div>
-<p>The alert should appear almost immediately in the console. If it doesn&#8217;t it&#8217;s
+<p>The alert should appear almost immediately in the console. If it doesn’t it’s
 either a <a class="reference internal" href="authentication.html#cross-origin"><span class="std std-ref">CORS issues</span></a> or a <a class="reference external" href="https://github.com/alerta/alerta-docs/issues/new">bug</a>.</p>
 </div>
 <div class="section" id="what-s-next">
-<h2>What&#8217;s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
+<h2>What’s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
 <p>Take the <a class="reference internal" href="tutorials.html#tutorials"><span class="std std-ref">step-by-step tutorials</span></a> or dive straight into a <a class="reference internal" href="deployment.html#deployment"><span class="std std-ref">deployment</span></a>.</p>
 </div>
 </div>
@@ -155,7 +152,7 @@ Links
 <li class="toctree-l2"><a class="reference internal" href="#install-the-alerta-server">Install the Alerta Server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-the-web-console">Install the Web Console</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#send-some-alerts">Send some alerts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#what-s-next">What&#8217;s next?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-s-next">What’s next?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
@@ -203,11 +200,11 @@ Links
       &copy;2015-2016, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="_sources/quick-start.txt"
+      <a href="_sources/quick-start.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
