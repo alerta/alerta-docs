@@ -1,0 +1,303 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Authorization &#8212; alerta 4.8 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '4.8',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Configuration" href="configuration.html" />
+    <link rel="prev" title="Authentication" href="authentication.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="authorization">
+<span id="id1"></span><h1>Authorization<a class="headerlink" href="#authorization" title="Permalink to this headline">¶</a></h1>
+<p>Authorization is used to limit access to Alerta API resources. The
+authorization model is based on <a class="reference external" href="http://csrc.nist.gov/groups/SNS/rbac/faq.html">Role Based Access Control</a> (RBAC)
+which assigns permissions to functional roles and then users are
+assigned to one or more of those roles.</p>
+<p>This “role-based access” allows for fine-grained control over exactly
+what resources are accessible to which users and exactly what type of
+access is allowed – in a way that is scalable.</p>
+<p>For example, to create a new alert the sender will need to be assigned to
+a role with <code class="docutils literal"><span class="pre">write:alerts</span></code> permissions. If the sender is not a member of
+a role with those permisssions then the request will be rejected with a
+<code class="docutils literal"><span class="pre">403</span> <span class="pre">Forbidden</span></code> response code.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">All access is through roles. Permissions can not be assigned directly
+to users.</p>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>There are two ways to configure role-based access; default and custom
+configuration.</p>
+<div class="section" id="default-authorization">
+<h3>Default Authorization<a class="headerlink" href="#default-authorization" title="Permalink to this headline">¶</a></h3>
+<p>If <a class="reference internal" href="authentication.html#authentication"><span class="std std-ref">authentication</span></a> is enabled then the default authorization
+is used which defines two roles:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">user</span></code> role - everyone is a “user” unless listed in the <code class="docutils literal"><span class="pre">ADMIN_USERS</span></code> setting</li>
+<li><code class="docutils literal"><span class="pre">admin</span></code> role - only admins can delete alerts and heartbeats, create users etc.</li>
+</ul>
+</div>
+<div class="section" id="custom-authorization">
+<h3>Custom Authorization<a class="headerlink" href="#custom-authorization" title="Permalink to this headline">¶</a></h3>
+<p>To use custom authorization simply define one or more permission scope lookups.</p>
+<p>As an “admin” user go to <em>Configuration -&gt; Permissions</em> and add a new role
+with the required scopes. See below for list of valid scopes.</p>
+</div>
+</div>
+<div class="section" id="scopes-and-permissions">
+<h2>Scopes and Permissions<a class="headerlink" href="#scopes-and-permissions" title="Permalink to this headline">¶</a></h2>
+<p>Use these scopes to request access to API resources.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Scope</th>
+<th class="head">Permissions</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">read</span></code></td>
+<td>Grants read-only access to all scopes.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">write</span></code></td>
+<td>Grants read/write access to all scopes.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">admin</span></code></td>
+<td>Grants admin, read, write and delete access to all scopes.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">read:alerts</span></code></td>
+<td>Read-only access to alerts.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">write:alerts</span></code></td>
+<td>Grants read/write access to alerts.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">admin:alerts</span></code></td>
+<td>Grants read, write and delete access to alerts.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">read:blackouts</span></code></td>
+<td>Grants read-only access to blackouts.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">write:blackouts</span></code></td>
+<td>Grants read/write access to blackouts.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">read:heartbeats</span></code></td>
+<td>Read-only access to heartbeats.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">write:heartbeats</span></code></td>
+<td>Grants read/write access to heartbeats.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">admin:heartbeats</span></code></td>
+<td>Grants read, write and delete access to heartbeats.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">admin:users</span></code></td>
+<td>Fully manage users.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">admin:customers</span></code></td>
+<td>Fully manage customers.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">read:keys</span></code></td>
+<td>List and view API keys.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">write:keys</span></code></td>
+<td>Create, list and view API keys.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">admin:keys</span></code></td>
+<td>Fully manage API keys.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">write:webhooks</span></code></td>
+<td>Grants write access to webhooks.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">read:oembed</span></code></td>
+<td>Grants read-only to oembed endpoints.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">read:management</span></code></td>
+<td>Grants read-only access to management endpoints.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">admin:management</span></code></td>
+<td>Fully manage management endpoints.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">read:userinfo</span></code></td>
+<td>Grants read-only access to userinfo.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><code class="docutils literal"><span class="pre">write</span></code> implicitly includes <code class="docutils literal"><span class="pre">read</span></code>, and <code class="docutils literal"><span class="pre">admin</span></code> implicitly
+includes <code class="docutils literal"><span class="pre">read</span></code> and <code class="docutils literal"><span class="pre">write</span></code>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">alerta</a></h1>
+
+
+
+<p class="blurb">monitoring system</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a href="https://travis-ci.org/guardian/alerta">
+    <img
+        alt="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
+        src="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
+    />
+</a>
+</p>
+
+
+
+
+<h3>
+Links
+</h3>
+<ul>
+  <li>
+    <a href="http://alerta.io" rel="me">Web</a>
+  </li>
+  <li>
+    <a href="https://twitter.com/alertaio" rel="me">Twitter</a>
+  </li>
+  <li>
+    <a href="https://gitter.im/alerta/chat" rel="me">Gitter</a>
+  </li>
+</ul>
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui.html">Alerta Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Authorization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scopes-and-permissions">Scopes and Permissions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/alert.html">Alert Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/heartbeat.html">Heartbeat Format</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release-notes.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015-2016, Nick Satterly. MIT License.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/authorization.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-44644195-3']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

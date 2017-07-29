@@ -1,23 +1,21 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Deployment &#8212; alerta 4.8 documentation</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '4.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -26,7 +24,6 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="alerta 4.8 documentation" href="index.html" />
     <link rel="next" title="Customer Views" href="customer-views.html" />
     <link rel="prev" title="Configuration" href="configuration.html" />
    
@@ -36,7 +33,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -136,7 +133,7 @@ and <a class="reference internal" href="customer-views.html#customer-views"><spa
 <div class="section" id="scalability">
 <span id="id3"></span><h2>Scalability<a class="headerlink" href="#scalability" title="Permalink to this headline">¶</a></h2>
 <p>Alerta can scale horizontally, in the same way any other web
-application scales horizontally &#8211; a load balancer handles the
+application scales horizontally – a load balancer handles the
 HTTP requests and distributes those requests between all available
 application servers.</p>
 <div class="admonition note">
@@ -160,7 +157,7 @@ delete old <em>closed</em> alerts run a contributed MongoDB <a class="reference 
 called <code class="file docutils literal"><span class="pre">housekeepingAlerts.js</span></code> at regular intervals
 via <code class="docutils literal"><span class="pre">cron</span></code>.</p>
 <p id="stale-heartbeats"><a class="reference internal" href="api/reference.html#heartbeats"><span class="std std-ref">Heartbeats</span></a> can be sent from any source to
-ensure that a system is &#8216;alive&#8217;. To generate alerts for stale
+ensure that a system is ‘alive’. To generate alerts for stale
 heartbeats the <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool can be used:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta heartbeats --alert
 </pre></div>
@@ -326,11 +323,11 @@ Links
       &copy;2015-2016, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="_sources/deployment.txt"
+      <a href="_sources/deployment.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
