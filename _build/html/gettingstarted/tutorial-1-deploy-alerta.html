@@ -1,23 +1,21 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Deploying an Alerta Server &#8212; alerta 4.8 documentation</title>
-    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '4.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
@@ -26,7 +24,6 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="top" title="alerta 4.8 documentation" href="../index.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -34,7 +31,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -44,7 +41,7 @@
             
   <div class="section" id="deploying-an-alerta-server">
 <span id="tutorial-1"></span><h1>Deploying an Alerta Server<a class="headerlink" href="#deploying-an-alerta-server" title="Permalink to this headline">¶</a></h1>
-<p>Let&#8217;s get started by installing the Alerta server, the web console
+<p>Let’s get started by installing the Alerta server, the web console
 and doing some basic configuration and customisation.</p>
 <p><strong>Contents</strong></p>
 <blockquote>
@@ -65,13 +62,13 @@ application proxied behind an <a class="reference external" href="https://www.ng
 be served from the same nginx server and configured to support Basic Auth
 logins.</p>
 <p>Customisation will involve defining a new alert severity called
-&#8220;Fatal&#8221; that will be black in colour, and allowing an additional alert
-environment called &#8220;Code&#8221; in addition to &#8220;Production&#8221; and &#8220;Development&#8221;.</p>
+“Fatal” that will be black in colour, and allowing an additional alert
+environment called “Code” in addition to “Production” and “Development”.</p>
 </div>
 <div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
 <p>Before you begin, ensure you are familiar with the Ubuntu/Debian operating
-system, that you have &#8220;super user&#8221; privileges (ie. a <code class="docutils literal"><span class="pre">root</span></code> user login)
+system, that you have “super user” privileges (ie. a <code class="docutils literal"><span class="pre">root</span></code> user login)
 and remote <code class="docutils literal"><span class="pre">ssh</span></code> access to the server you are deploying to.</p>
 </div>
 <div class="section" id="step-1-install-packages">
@@ -239,7 +236,7 @@ your web browser.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SECRET_KEY</span><span class="o">=</span><span class="s1">&#39;&lt;INSERT_RANDOM_STRING&gt;&#39;</span>
 </pre></div>
 </div>
-<p>Add a new severity level called &#8220;Fatal&#8221; as the highest possible
+<p>Add a new severity level called “Fatal” as the highest possible
 severity and remove some unwanted severity levels:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ vi /etc/alertad.conf
 </pre></div>
@@ -255,8 +252,8 @@ severity and remove some unwanted severity levels:</p>
 </pre></div>
 </div>
 <p>Modify the web console <code class="docutils literal"><span class="pre">config.js</span></code> configuration file again
-this time to add support for the new &#8220;Fatal&#8221; severity. Replace
-the settings for &#8220;colors&#8221; and &#8220;severity&#8221; with the following:</p>
+this time to add support for the new “Fatal” severity. Replace
+the settings for “colors” and “severity” with the following:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo vi /var/www/html/config.js
 </pre></div>
 </div>
@@ -272,9 +269,9 @@ the settings for &#8220;colors&#8221; and &#8220;severity&#8221; with the follow
 <span class="o">...</span>
 </pre></div>
 </div>
-<p>Configure the default &#8220;reject&#8221; plugin to allow the additional
-alert environment called &#8220;Code&#8221; and not just &#8220;Production&#8221;
-or &#8220;Development&#8221;:</p>
+<p>Configure the default “reject” plugin to allow the additional
+alert environment called “Code” and not just “Production”
+or “Development”:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ vi /etc/alertad.conf
 </pre></div>
 </div>
@@ -297,7 +294,7 @@ use:</p>
 <span class="n">endpoint</span> <span class="o">=</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="o">/</span><span class="n">api</span>
 </pre></div>
 </div>
-<p>Send a test &#8220;fatal&#8221; alert and confirm it has been received by viewing
+<p>Send a test “fatal” alert and confirm it has been received by viewing
 it in the web console:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta send --resource net01 --event down --severity fatal \
 --environment Code --service Network --text &#39;net01 is down.&#39;
@@ -425,11 +422,11 @@ Links
       &copy;2015-2016, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/gettingstarted/tutorial-1-deploy-alerta.txt"
+      <a href="../_sources/gettingstarted/tutorial-1-deploy-alerta.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

@@ -1,23 +1,21 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Alert timeouts, heartbeats and Housekeeping &#8212; alerta 4.8 documentation</title>
-    
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '4.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
@@ -26,7 +24,6 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="top" title="alerta 4.8 documentation" href="../index.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -34,7 +31,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -61,10 +58,10 @@ to support both of these features.</p>
 </div></blockquote>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>Alert timeout values can be used to automatically &#8220;expire&#8221; alerts
+<p>Alert timeout values can be used to automatically “expire” alerts
 that are no longer active. Timeouts can be used for any type of
 alert but are most useful for alerts which do not have a corresponding
-&#8220;clear&#8221; or &#8220;ok&#8221; state, such as syslog messages. Timeouts are set on
+“clear” or “ok” state, such as syslog messages. Timeouts are set on
 a per-alert basis.</p>
 <p>Heartbeats can be sent from any source or by a proxy on behalf of any
 source. They are sent at regular intervals within a specified timeout
@@ -136,7 +133,7 @@ script does that actually requires root access):</p>
 <h2>Step 2: Alert Timeouts<a class="headerlink" href="#step-2-alert-timeouts" title="Permalink to this headline">¶</a></h2>
 <p>The default timeout period for an alert is 86400 seconds, or one day.
 This means that one day after the alert is last received it should be
-considered to be stale and the status changed to &#8220;expired&#8221;.</p>
+considered to be stale and the status changed to “expired”.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">The alert <code class="docutils literal"><span class="pre">lastReceiveTime</span></code> is used to determine alert expiry. This
@@ -144,13 +141,13 @@ is so that alerts that continue to be sent within the timeout period
 will never expire.</p>
 </div>
 <p>In addition to expiring timed-out alerts, the script in step 1 is
-also responsible for deleting &#8220;closed&#8221; or &#8220;expired&#8221; alerts more than
-2 hours old and deleting alerts with severity &#8220;informational&#8221; that
+also responsible for deleting “closed” or “expired” alerts more than
+2 hours old and deleting alerts with severity “informational” that
 are more than 12 hours old.</p>
 <p>Both of these actions can be changed to suit your environment, either
 by adjusting the thresholds for deletion or not deleting at all.</p>
 <p>Send a test alert with a short timeout period and verify that once the
-timeout period has been exceeded the status is changed to &#8220;expired&#8221;:</p>
+timeout period has been exceeded the status is changed to “expired”:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta send -r user01 -e fail -s major -E Code -S Security \
 -t &#39;user01 login failed.&#39; --timeout 20
 </pre></div>
@@ -286,11 +283,11 @@ Links
       &copy;2015-2016, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/gettingstarted/tutorial-2-housekeeping.txt"
+      <a href="../_sources/gettingstarted/tutorial-2-housekeeping.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

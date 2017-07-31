@@ -1,23 +1,21 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Integrations &amp; Plugins &#8212; alerta 4.8 documentation</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '4.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -26,7 +24,6 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="alerta 4.8 documentation" href="index.html" />
     <link rel="next" title="Authentication" href="authentication.html" />
     <link rel="prev" title="Alerta CLI" href="cli.html" />
    
@@ -36,7 +33,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -52,7 +49,7 @@
 build integrations with other monitoring tools.</p>
 <p>Secondly, there are built-in <a class="reference internal" href="#webhooks"><span class="std std-ref">webhooks</span></a> for <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/cloudwatch">AWS Cloudwatch</a>,
 <a class="reference external" href="https://www.pingdom.com">Pingdom</a>, <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty">PagerDuty</a>, <a class="reference external" href="https://cloud.google.com/stackdriver/">Google Stackdriver</a>, <a class="reference external" href="https://prometheus.io/docs/alerting/alertmanager/">Prometheus Alertmanager</a> and
-more which provide &#8216;out-of-the-box&#8217; integrations for some of the most popular
+more which provide ‘out-of-the-box’ integrations for some of the most popular
 monitoring systems available.</p>
 <p>Thirdly, <a class="reference internal" href="#widgets"><span class="std std-ref">alert severity indicators</span></a> or widgets can be placed
 on any web page using <a class="reference external" href="http://oembed.com/">oEmbed</a> for easy integration with existing dashboards.</p>
@@ -115,7 +112,7 @@ alerting endpoint that calls the Alerta API.</p>
 </div>
 <div class="section" id="pagerduty">
 <h3>PagerDuty<a class="headerlink" href="#pagerduty" title="Permalink to this headline">¶</a></h3>
-<p>Alerta can be configured to receive PagerDuty incident-based webhooks &#8211; any
+<p>Alerta can be configured to receive PagerDuty incident-based webhooks – any
 change to the <code class="docutils literal"><span class="pre">status</span></code> or <code class="docutils literal"><span class="pre">assigned_to_user</span></code> of an incident will cause an
 outgoing message to be sent.</p>
 <p>For details on how to set this up see the <a class="reference external" href="https://developer.pagerduty.com/documentation/rest/webhooks">PagerDuty webhook</a> page and where it
@@ -192,7 +189,7 @@ implementation-specific requirements.</p>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/logstash">Logstash/Kibana</a> - send alerts to logstash agent after processing</li>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/normalise">Normalise</a> - ensure alerts a formatted in a consistent manner</li>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty">PagerDuty</a> - send alerts to PagerDuty (webhooks used to receive callbacks)</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/prometheus">Prometheus Silencer</a> - silence alerts in Prometheus Alertmanager if ack&#8217;ed in Alerta</li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/prometheus">Prometheus Silencer</a> - silence alerts in Prometheus Alertmanager if ack’ed in Alerta</li>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pushover">Pushover.net</a> - send alerts to Pushover.net</li>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/slack">Slack</a> - send alerts to Slack room</li>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/sns">AWS SNS</a> - publish alerts to SNS topic after processing</li>
@@ -311,11 +308,11 @@ Links
       &copy;2015-2016, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="_sources/integrations.txt"
+      <a href="_sources/integrations.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

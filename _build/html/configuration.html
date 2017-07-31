@@ -1,23 +1,21 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Configuration &#8212; alerta 4.8 documentation</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '4.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -26,7 +24,6 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="alerta 4.8 documentation" href="index.html" />
     <link rel="next" title="Deployment" href="deployment.html" />
     <link rel="prev" title="Authentication" href="authentication.html" />
    
@@ -36,7 +33,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -187,9 +184,9 @@ for reasons related to security, performance or availability.</p>
 </div>
 <dl class="docutils" id="index-5">
 <dt><code class="docutils literal"><span class="pre">AUTO_REFRESH_ALLOW</span></code></dt>
-<dd>set to &#8216;OFF&#8217; to reduce load on API server by forcing clients to manually refresh</dd>
+<dd>set to ‘OFF’ to reduce load on API server by forcing clients to manually refresh</dd>
 <dt><code class="docutils literal"><span class="pre">SENDER_API_ALLOW</span></code></dt>
-<dd>set to &#8216;OFF&#8217; to block clients from sending new alerts to API server</dd>
+<dd>set to ‘OFF’ to block clients from sending new alerts to API server</dd>
 </dl>
 </div>
 <div class="section" id="cors-settings">
@@ -238,7 +235,7 @@ in which Alerta is deployed.</p>
 <div class="section" id="blackout-periods-settings">
 <span id="blackout-config"></span><h3>Blackout Periods Settings<a class="headerlink" href="#blackout-periods-settings" title="Permalink to this headline">¶</a></h3>
 <p>Alerts can be suppressed based on alert attributes for arbitrary durations
-known as &#8220;blackout periods&#8221;.</p>
+known as “blackout periods”.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">BLACKOUT_DURATION</span> <span class="o">=</span> <span class="mi">3600</span>
 </pre></div>
 </div>
@@ -493,11 +490,11 @@ Links
       &copy;2015-2016, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="_sources/configuration.txt"
+      <a href="_sources/configuration.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
