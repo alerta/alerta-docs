@@ -15,6 +15,7 @@ Alerta supports two main authentication mechanisms for the web UI
 * `GitHub OAuth2`_
 * `GitLab OAuth2`_
 * `Keycloak OAuth2`_
+* `SAML 2.0`_
 * `API Keys`_
 
 The most straight-forward of the two to implement is `Basic Auth`_.
@@ -215,7 +216,7 @@ To restrict access to users who are members of particular `GitLab groups`_ use::
                button.
 
 Keycloak OAuth2
-~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
 
 To use Keycloak as the OAuth2 provider for Alerta, login to Keycloak admin interface, select the realm and go
 to *Clients -> Create*.
@@ -263,7 +264,7 @@ To restrict access to users who are associated with a particular `Keycloak role`
 
     ALLOWED_KEYCLOAK_ROLES = ['role1', 'role2']
 
-.. _`Keycloak roles`: https://keycloak.gitbooks.io/documentation/server_admin/topics/roles.html
+.. _`Keycloak role`: https://keycloak.gitbooks.io/documentation/server_admin/topics/roles.html
 
 .. note:: ``ALLOWED_KEYCLOAK_ROLES`` can be an asterisk (``*``) to force
           login but *not* restrict who can login.
@@ -286,6 +287,93 @@ the cross-origin requests.
         'chrome-extension://jplkjnjaegjgacpfafdopnpnhmobhlaf',
         'http://localhost'
     ]
+
+.. _saml2:
+
+SAML 2.0
+--------
+Generate private/public key pair
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+::
+
+    openssl req -utf8 -new -x509 -days 3652 -nodes -out "alerta.cert" -keyout "alerta.key"
+
+.. note::
+
+    This key pair is not related to HTTPS.
+
+Configure pysaml2
+~~~~~~~~~~~~~~~~~
+Bare-minimum config example::
+
+    SAML2_CONFIG = {
+        'metadata': {
+            'local': ['/path/to/federationmetadata.xml']
+        },
+        'key_file': '/path/to/alerta.key',
+        'cert_file': '/path/to/alerta.cert'
+    }
+..
+
+``metadata``
+    IdP metadata (refer to `saml2 documentation <https://pysaml2.readthedocs.io/en/latest/howto/config.html#metadata>`_ for possible ways of specifying it)
+``key_file``, ``cert_file``
+    path to aforementioned keys
+
+Refer to pysaml2 documentation and source code if you need additional options:
+
+- https://pysaml2.readthedocs.io/en/latest/howto/config.html
+- https://github.com/rohe/pysaml2/blob/master/src/saml2/config.py
+
+Note: entityid and service provider endpoints are configured by default based on your BASE_URL value which is mandatory if you use SAML (see :ref:`general config`)
+
+ALLOWED_SAML2_GROUPS
+~~~~~~~~~~~~~~~~~~~~
+
+To restrict access to users who are members of particular group use::
+
+    ALLOWED_SAML2_GROUPS = ['alerta_ro', 'alerta_rw']
+..
+Note: you need to ensure that pysaml2 authn response identity object contains ``groups`` attribute. You can do this by writing proper attribute map which will convert your IdP-specific attribute name to ``groups``. Example::
+
+    MAP = {
+        ...
+        'fro': {
+            ...
+            'http://schemas.xmlsoap.org/claims/group': 'groups',
+            ...
+        },
+        'to': {
+            ...
+            'groups': 'http://schemas.xmlsoap.org/claims/group',
+            ...
+        }
+    }
+..
+See `pysaml2 attribute-map-dir documentation <https://pysaml2.readthedocs.io/en/latest/howto/config.html#attribute-map-dir>`_. ``attribute-map-dir`` can be specified in the ``SAML2_CONFIG``, see `Configure pysaml2`_
+
+SAML2_USER_NAME_FORMAT
+~~~~~~~~~~~~~~~~~~~~~~
+This is a python string template which is used to generate user's name based on attributes (make sure that `attribute-map-dir <https://pysaml2.readthedocs.io/en/latest/howto/config.html#attribute-map-dir>`_ is properly configured in case default does not fit).
+Default is ``'{givenName} {surname}'``.
+
+.. _cross_origin_saml2:
+
+Cross-Origin
+~~~~~~~~~~~~
+You also need to add your IdP origin to CORS headers:
+::
+
+    CORS_ORIGINS = [
+        ...
+        'https://sso.example.com',
+        ...
+    ]
+..
+
+Add trusted Service Provider to your Identity Provider
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Your metadata url is: ``{BASE_URL}/auth/saml/metadata.xml``, pass it to your IdP administrator.
 
 .. _api keys:
 
@@ -344,3 +432,5 @@ as OAuth2 provider for user login.
 
 User Roles
 ----------
+
+TBC

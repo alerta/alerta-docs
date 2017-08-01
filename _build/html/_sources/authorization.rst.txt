@@ -22,7 +22,8 @@ a role with those permisssions then the request will be rejected with a
 .. note::
 
     All access is through roles. Permissions can not be assigned directly
-    to users.
+    to users. The only exception to this is the ``ADMIN_USERS`` setting
+    which overrides all other roles a user might belong to.
 
 Configuration
 -------------
