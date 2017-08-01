@@ -13,6 +13,7 @@ Alerta in common scenarios.
 * :ref:`Use plugins to enhance Alerta <tutorial 3>`
 * :ref:`Alerts explored in-depth <tutorial 4>`
 * :ref:`Suppressing Alerts using Blackouts <tutorial 5>`
+* :ref:`Authentication &amp; Authorization <tutorial 6>`
 
 .. toctree::
   :glob:

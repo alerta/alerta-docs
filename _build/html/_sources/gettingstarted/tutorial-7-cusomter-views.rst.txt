@@ -25,3 +25,6 @@ Prerequisites
 
 Step 1: Install Packages
 ------------------------
+
+
+- blackout periods by customer
