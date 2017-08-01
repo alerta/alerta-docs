@@ -216,7 +216,7 @@ To restrict access to users who are members of particular `GitLab groups`_ use::
                button.
 
 Keycloak OAuth2
-~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
 
 To use Keycloak as the OAuth2 provider for Alerta, login to Keycloak admin interface, select the realm and go
 to *Clients -> Create*.
@@ -264,7 +264,7 @@ To restrict access to users who are associated with a particular `Keycloak role`
 
     ALLOWED_KEYCLOAK_ROLES = ['role1', 'role2']
 
-.. _`Keycloak roles`: https://keycloak.gitbooks.io/documentation/server_admin/topics/roles.html
+.. _`Keycloak role`: https://keycloak.gitbooks.io/documentation/server_admin/topics/roles.html
 
 .. note:: ``ALLOWED_KEYCLOAK_ROLES`` can be an asterisk (``*``) to force
           login but *not* restrict who can login.
@@ -297,8 +297,10 @@ Generate private/public key pair
 ::
 
     openssl req -utf8 -new -x509 -days 3652 -nodes -out "alerta.cert" -keyout "alerta.key"
-..
-Note: this key pair is not related to HTTPS.
+
+.. note::
+
+    This key pair is not related to HTTPS.
 
 Configure pysaml2
 ~~~~~~~~~~~~~~~~~
@@ -312,6 +314,7 @@ Bare-minimum config example::
         'cert_file': '/path/to/alerta.cert'
     }
 ..
+
 ``metadata``
     IdP metadata (refer to `saml2 documentation <https://pysaml2.readthedocs.io/en/latest/howto/config.html#metadata>`_ for possible ways of specifying it)
 ``key_file``, ``cert_file``
@@ -360,6 +363,7 @@ Cross-Origin
 ~~~~~~~~~~~~
 You also need to add your IdP origin to CORS headers:
 ::
+
     CORS_ORIGINS = [
         ...
         'https://sso.example.com',
@@ -428,3 +432,5 @@ as OAuth2 provider for user login.
 
 User Roles
 ----------
+
+TBC

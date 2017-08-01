@@ -25,7 +25,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Deployment" href="deployment.html" />
-    <link rel="prev" title="Authentication" href="authentication.html" />
+    <link rel="prev" title="Authorization" href="authorization.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -140,6 +140,10 @@ such as auditing, and features like the ability to assign and watch alerts.</p>
 <span class="n">KEYCLOAK_REALM</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">ALLOWED_KEYCLOAK_ROLES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">]</span>
 
+<span class="n">SAML2_CONFIG</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">ALLOWED_SAML2_GROUPS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">]</span>
+<span class="n">SAML2_USER_NAME_FORMAT</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{givenName}</span><span class="s1"> </span><span class="si">{surname}</span><span class="s1">&#39;</span>
+
 <span class="n">TOKEN_EXPIRE_DAYS</span> <span class="o">=</span> <span class="mi">14</span>
 </pre></div>
 </div>
@@ -172,6 +176,12 @@ such as auditing, and features like the ability to assign and watch alerts.</p>
 <dd>Keycloak realm when using Keycloak as OAuth2 provider.</dd>
 <dt><code class="docutils literal"><span class="pre">ALLOWED_KEYCLOAK_ROLES</span></code></dt>
 <dd>list of authorised Keycloak roles a user must belong to when using Keycloak as OAuth2 provider.</dd>
+<dt><code class="docutils literal"><span class="pre">SAML2_CONFIG</span></code></dt>
+<dd><code class="docutils literal"><span class="pre">pysaml2</span></code> configuration <code class="docutils literal"><span class="pre">dict</span></code>. See <a class="reference internal" href="authentication.html#saml2"><span class="std std-ref">SAML 2.0</span></a>.</dd>
+<dt><code class="docutils literal"><span class="pre">ALLOWED_SAML2_GROUPS</span></code></dt>
+<dd>list of authorised groups a user must belong to. See <a class="reference internal" href="authentication.html#saml2"><span class="std std-ref">SAML 2.0</span></a> for details.</dd>
+<dt><code class="docutils literal"><span class="pre">SAML2_USER_NAME_FORMAT</span></code></dt>
+<dd>Python format string which will be rendered to user’s name using SAML attributes. See <a class="reference internal" href="authentication.html#saml2"><span class="std std-ref">SAML 2.0</span></a>.</dd>
 </dl>
 </div>
 <div class="section" id="switch-settings">
@@ -446,6 +456,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#config-file-settings">Config File Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#environment-variables">Environment Variables</a></li>

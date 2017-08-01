@@ -156,7 +156,7 @@ Example Response
     }
 
 Example Response (during blackout period)
-++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++
 
 ::
 

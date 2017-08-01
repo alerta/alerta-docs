@@ -12,6 +12,7 @@ Alerta in common scenarios.
 * :ref:`Alert timeouts, heartbeats and housekeeping <tutorial 2>`
 * :ref:`Use plugins to enhance Alerta <tutorial 3>`
 * :ref:`Alerts explored in-depth <tutorial 4>`
+* :ref:`Suppressing Alerts using Blackouts <tutorial 5>`
 
 .. toctree::
   :glob:
