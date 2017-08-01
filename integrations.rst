@@ -18,7 +18,9 @@ Pingdom_, PagerDuty_, `Google Stackdriver`_, `Prometheus Alertmanager`_ and
 more which provide 'out-of-the-box' integrations for some of the most popular
 monitoring systems available.
 
+.. _AWS Cloudwatch: https://aws.amazon.com/cloudwatch/
 .. _Pingdom: https://www.pingdom.com
+.. _PagerDuty: https://www.pagerduty.com/
 .. _Google Stackdriver: https://cloud.google.com/stackdriver/
 .. _Prometheus Alertmanager: https://prometheus.io/docs/alerting/alertmanager/
 
@@ -63,7 +65,6 @@ be useful. They are:
 
 * `Amazon SQS`_ - receive alerts from SQS that were sent using the SNS core plugin
 * `E-mail`_ - send emails after a hold-time has expired (requires the `AMQP`_ message queue core plugin)
-* `AWS Cloudwatch`_ - receive cloudwatch alarms from SQS (deprecated, use the cloudwatch webhook instead)
 * Opsweekly_ - query Alerta to generate Opsweekly reports
 * Pinger_ - generate ping alerts from list of network resources being pinged
 * `SNMP Trap`_ - generate alerts from SNMPv1 and SNMPv2 sources
@@ -72,9 +73,8 @@ be useful. They are:
 * `URL monitor`_ - trigger alerts from web service query responses
 
 .. _contrib: https://github.com/alerta/alerta-contrib
-.. _Amazon SQS: https://github.com/alerta/alerta-contrib/tree/master/integrations/amazon-sqs
+.. _Amazon SQS: https://github.com/alerta/alerta-contrib/tree/master/integrations/sqs
 .. _E-mail: https://github.com/alerta/alerta-contrib/tree/master/integrations/mailer
-.. _AWS Cloudwatch: https://github.com/alerta/alerta-contrib/tree/master/integrations/cloudwatch
 .. _Opsweekly: https://github.com/alerta/alerta-contrib/tree/master/integrations/opsweekly
 .. _Pinger: https://github.com/alerta/alerta-contrib/tree/master/integrations/pinger
 .. _SNMP Trap: https://github.com/alerta/alerta-contrib/tree/master/integrations/snmptrap
@@ -246,7 +246,7 @@ implementation-specific requirements.
 * InfluxDB_ - send alerts to InfluxDB for graphing with Grafana
 * `Logstash/Kibana`_ - send alerts to logstash agent after processing
 * `Normalise`_ - ensure alerts a formatted in a consistent manner
-* PagerDuty_ - send alerts to PagerDuty (webhooks used to receive callbacks)
+* `PagerDuty Plugin`_ - send alerts to PagerDuty (webhooks used to receive callbacks)
 * `Prometheus Silencer`_ - silence alerts in Prometheus Alertmanager if ack'ed in Alerta
 * `Pushover.net`_ - send alerts to Pushover.net
 * Slack_ - send alerts to Slack room
@@ -263,7 +263,7 @@ implementation-specific requirements.
 .. _InfluxDB: https://github.com/alerta/alerta-contrib/tree/master/plugins/influxdb
 .. _Logstash/Kibana: https://github.com/alerta/alerta-contrib/tree/master/plugins/logstash
 .. _Normalise: https://github.com/alerta/alerta-contrib/tree/master/plugins/normalise
-.. _PagerDuty: https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty
+.. _PagerDuty Plugin: https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty
 .. _Prometheus Silencer: https://github.com/alerta/alerta-contrib/tree/master/plugins/prometheus
 .. _`Pushover.net`: https://github.com/alerta/alerta-contrib/tree/master/plugins/pushover
 .. _Slack: https://github.com/alerta/alerta-contrib/tree/master/plugins/slack
@@ -271,3 +271,4 @@ implementation-specific requirements.
 .. _Syslog Logger: https://github.com/alerta/alerta-contrib/tree/master/plugins/syslog
 .. _Telegram: https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram
 .. _`Twilio SMS`: https://github.com/alerta/alerta-contrib/tree/master/plugins/twilio
+

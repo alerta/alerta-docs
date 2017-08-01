@@ -47,8 +47,8 @@
 <p>Firstly, <a class="reference internal" href="#integrations"><span class="std std-ref">integrations</span></a> with well known monitoring tools like
 <a class="reference external" href="https://www.nagios.com">Nagios</a>, <a class="reference external" href="http://www.zabbix.com">Zabbix</a> and <a class="reference external" href="https://sensuapp.org">Sensu</a> make use of the Alerta API and demonstrate how to
 build integrations with other monitoring tools.</p>
-<p>Secondly, there are built-in <a class="reference internal" href="#webhooks"><span class="std std-ref">webhooks</span></a> for <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/cloudwatch">AWS Cloudwatch</a>,
-<a class="reference external" href="https://www.pingdom.com">Pingdom</a>, <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty">PagerDuty</a>, <a class="reference external" href="https://cloud.google.com/stackdriver/">Google Stackdriver</a>, <a class="reference external" href="https://prometheus.io/docs/alerting/alertmanager/">Prometheus Alertmanager</a> and
+<p>Secondly, there are built-in <a class="reference internal" href="#webhooks"><span class="std std-ref">webhooks</span></a> for <a class="reference external" href="https://aws.amazon.com/cloudwatch/">AWS Cloudwatch</a>,
+<a class="reference external" href="https://www.pingdom.com">Pingdom</a>, <a class="reference external" href="https://www.pagerduty.com/">PagerDuty</a>, <a class="reference external" href="https://cloud.google.com/stackdriver/">Google Stackdriver</a>, <a class="reference external" href="https://prometheus.io/docs/alerting/alertmanager/">Prometheus Alertmanager</a> and
 more which provide ‘out-of-the-box’ integrations for some of the most popular
 monitoring systems available.</p>
 <p>Thirdly, <a class="reference internal" href="#widgets"><span class="std std-ref">alert severity indicators</span></a> or widgets can be placed
@@ -75,9 +75,8 @@ it is to get alerts or events from other tools into Alerta. They are:</p>
 <p>There are several more integrations available in the <a class="reference external" href="https://github.com/alerta/alerta-contrib">contrib</a> repo which may
 be useful. They are:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/amazon-sqs">Amazon SQS</a> - receive alerts from SQS that were sent using the SNS core plugin</li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/sqs">Amazon SQS</a> - receive alerts from SQS that were sent using the SNS core plugin</li>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/mailer">E-mail</a> - send emails after a hold-time has expired (requires the <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp">AMQP</a> message queue core plugin)</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/cloudwatch">AWS Cloudwatch</a> - receive cloudwatch alarms from SQS (deprecated, use the cloudwatch webhook instead)</li>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/opsweekly">Opsweekly</a> - query Alerta to generate Opsweekly reports</li>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/pinger">Pinger</a> - generate ping alerts from list of network resources being pinged</li>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/snmptrap">SNMP Trap</a> - generate alerts from SNMPv1 and SNMPv2 sources</li>
@@ -110,8 +109,8 @@ alerting endpoint that calls the Alerta API.</p>
 <p><strong>Example Pingdom Webhook URL</strong></p>
 <p><code class="file docutils literal"><span class="pre">https://alerta.example.com/api/webhooks/pingdom</span></code></p>
 </div>
-<div class="section" id="pagerduty">
-<h3>PagerDuty<a class="headerlink" href="#pagerduty" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h3>PagerDuty<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>Alerta can be configured to receive PagerDuty incident-based webhooks – any
 change to the <code class="docutils literal"><span class="pre">status</span></code> or <code class="docutils literal"><span class="pre">assigned_to_user</span></code> of an incident will cause an
 outgoing message to be sent.</p>
@@ -121,12 +120,12 @@ requires the webhook URL append <code class="file docutils literal"><span class=
 <p><code class="file docutils literal"><span class="pre">https://alerta.example.com/api/webhooks/pagerduty</span></code></p>
 </div>
 <div class="section" id="alertmanager">
-<span id="id7"></span><h3>Prometheus Alertmanager<a class="headerlink" href="#alertmanager" title="Permalink to this headline">¶</a></h3>
+<span id="id8"></span><h3>Prometheus Alertmanager<a class="headerlink" href="#alertmanager" title="Permalink to this headline">¶</a></h3>
 <p>Alerta can be configured as a webhook receiver in Alertmanager.</p>
 <p>For details on how to set this up see the <a class="reference external" href="https://github.com/alerta/prometheus-config">Prometheus Config GitHub Repo</a></p>
 </div>
 <div class="section" id="stackdriver">
-<span id="id8"></span><h3>Google Stackdriver<a class="headerlink" href="#stackdriver" title="Permalink to this headline">¶</a></h3>
+<span id="id9"></span><h3>Google Stackdriver<a class="headerlink" href="#stackdriver" title="Permalink to this headline">¶</a></h3>
 <p>Alerta can be configured to receive Google Stackdriver incidents by adding a
 webhook endpoint to the notifications configuration.</p>
 <p>For details on how to set this up see <a class="reference external" href="https://support.stackdriver.com/customer/portal/articles/1491775-configuring-webhooks">Stackdriver webhook</a> page and in the
@@ -156,7 +155,7 @@ webhook endpoint to the notifications configuration.</p>
 </div>
 </div>
 <div class="section" id="widgets">
-<span id="id9"></span><h2>Widgets<a class="headerlink" href="#widgets" title="Permalink to this headline">¶</a></h2>
+<span id="id10"></span><h2>Widgets<a class="headerlink" href="#widgets" title="Permalink to this headline">¶</a></h2>
 <p>Add an alert severity indicator (aka. widget) to any dashboard using the
 Oembed API endpoint. The severity indicator is coloured with the maximum
 severity for that alert query filter and has a count for the total number
@@ -165,18 +164,18 @@ of matching alerts for each severity.</p>
 different environment, service or group. See the <a class="reference external" href="https://github.com/guardian/alerta/blob/master/examples/oembed.html">example oembed web page</a>.</p>
 </div>
 <div class="section" id="plugins">
-<span id="id10"></span><h2>Plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h2>
+<span id="id11"></span><h2>Plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Plug-in_(computing)">Plugin extensions</a> are an easy way of adding new features to Alerta that meet
 a specific end-user requirement.</p>
-<div class="section" id="id11">
-<h3>Core<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id12">
+<h3>Core<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/guardian/alerta/tree/master/alerta/plugins">Core plugins</a> have been developed as examples of common use-cases.</p>
 <ul class="simple">
 <li><a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py">Reject</a> - reject alerts before processing. used to enforce custom alert format policies</li>
 </ul>
 </div>
-<div class="section" id="id12">
-<h3>Contrib<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id13">
+<h3>Contrib<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins">Contributed plugins</a> are made available for popular tools but
 implementation-specific requirements.</p>
 <ul class="simple">
@@ -188,7 +187,7 @@ implementation-specific requirements.</p>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/influxdb">InfluxDB</a> - send alerts to InfluxDB for graphing with Grafana</li>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/logstash">Logstash/Kibana</a> - send alerts to logstash agent after processing</li>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/normalise">Normalise</a> - ensure alerts a formatted in a consistent manner</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty">PagerDuty</a> - send alerts to PagerDuty (webhooks used to receive callbacks)</li>
+<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty">PagerDuty Plugin</a> - send alerts to PagerDuty (webhooks used to receive callbacks)</li>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/prometheus">Prometheus Silencer</a> - silence alerts in Prometheus Alertmanager if ack’ed in Alerta</li>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pushover">Pushover.net</a> - send alerts to Pushover.net</li>
 <li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/slack">Slack</a> - send alerts to Slack room</li>
@@ -269,6 +268,7 @@ Links
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
