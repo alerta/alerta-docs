@@ -48,22 +48,20 @@ scheduled downtime using blackout periods.</p>
 <div><ul class="simple">
 <li><a class="reference internal" href="#overview">Overview</a></li>
 <li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
-<li><a class="reference internal" href="#step-1-blackout-periods-by-environment">Step 1: Blackout Periods by Environment</a></li>
-<li><a class="reference internal" href="#step-2-blackout-periods-by-resource">Step 2: Blackout Periods by Resource</a></li>
-<li><a class="reference internal" href="#step-3-blackout-periods-by-service">Step 3: Blackout Periods by Service</a></li>
-<li><a class="reference internal" href="#step-4-blackout-periods-by-event">Step 4: Blackout Periods by Event</a></li>
-<li><a class="reference internal" href="#step-5-blackout-periods-by-group">Step 5: Blackout Periods by Group</a></li>
-<li><a class="reference internal" href="#step-6-blackout-periods-by-resource-event">Step 6: Blackout Periods by Resource-Event</a></li>
-<li><a class="reference internal" href="#step-7-blackout-periods-by-tag">Step 7: Blackout Periods by Tag</a></li>
-<li><a class="reference internal" href="#step-8-accept-alerts-during-blackout-periods">Step 8: Accept alerts during Blackout Periods</a></li>
+<li><a class="reference internal" href="#step-1-blackout-by-environment">Step 1: Blackout by Environment</a></li>
+<li><a class="reference internal" href="#step-2-blackout-by-service-or-group">Step 2: Blackout by Service or Group</a></li>
+<li><a class="reference internal" href="#step-3-blackout-by-event-and-or-resource">Step 3: Blackout by Event and/or Resource</a></li>
+<li><a class="reference internal" href="#step-4-blackout-by-tag">Step 4: Blackout by Tag</a></li>
+<li><a class="reference internal" href="#step-5-accept-alerts-during-blackout-periods">Step 5: Accept alerts during Blackout Periods</a></li>
+<li><a class="reference internal" href="#step-6-ending-blackout-periods">Step 6: Ending Blackout Periods</a></li>
 <li><a class="reference internal" href="#next-steps">Next Steps</a></li>
 </ul>
 </div></blockquote>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>Being able to suppress alerts during scheduled downtime is important
-because false alerts can cause “alert fatigue” and operators can become
-complacent.</p>
+<p>Being able to suppress or mute alerts during scheduled downtime to
+put them into “maintenance mode” is important because false alerts can
+cause “alert fatigue” and operators can become complacent.</p>
 <p>This tutorial will explain how to suppress alerts by defining blackout
 periods that match on different alert attributes.</p>
 </div>
@@ -77,21 +75,21 @@ it can be very helpful to see the alerts update in the console
 in realtime rather than having to continually run the <code class="docutils literal"><span class="pre">alerta</span> <span class="pre">query</span></code>
 command to see the results.</p>
 </div>
-<div class="section" id="step-1-blackout-periods-by-environment">
-<h2>Step 1: Blackout Periods by Environment<a class="headerlink" href="#step-1-blackout-periods-by-environment" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="step-1-blackout-by-environment">
+<h2>Step 1: Blackout by Environment<a class="headerlink" href="#step-1-blackout-by-environment" title="Permalink to this headline">¶</a></h2>
 <p>Alert suppression works by matching alert attributes against any
 active blackout periods. At a minimum, a blackout period must define
 an alert <code class="docutils literal"><span class="pre">environment</span></code> to suppress.</p>
 <p>To demonstrate how to suppress all alerts for the <code class="docutils literal"><span class="pre">Production</span></code>
 environment run the following commands:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta send -r /dev/disk1 -e FsInodeUtil -s major -E Production -S System <span class="se">\</span>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta send -r host05:/dev/disk1 -e FsInodeUtil -s major -E Production -S System <span class="se">\</span>
 -g OS -t <span class="s1">&#39;/dev/disk1 inode utilisation high.&#39;</span>
-<span class="go">a85295da-1f0b-4716-a269-7af300ae9fa3 (indeterminate -&gt; major)</span>
+<span class="go">ed8dd6b3-37a5-4687-8a98-99d318eb6c37 (indeterminate -&gt; major)</span>
 
-<span class="gp">$</span> alerta blackout -E Production
+<span class="gp">$</span> alerta blackout --environment Production
 <span class="go">26997703-6705-457a-b603-0c151762129c</span>
 
-<span class="gp">$</span> alerta send -r /dev/disk1 -e FsInodeUtil -s major -E Production -S System <span class="se">\</span>
+<span class="gp">$</span> alerta send -r host05:/dev/disk1 -e FsInodeUtil -s major -E Production -S System <span class="se">\</span>
 -g OS -t <span class="s1">&#39;/dev/disk1 inode utilisation high.&#39;</span>
 <span class="go">217ebb7e-b51a-4f15-b8b6-852c5e965894 (Suppressed alert during blackout period)</span>
 </pre></div>
@@ -108,41 +106,63 @@ period and would be suppressed.</p>
 <p>Note that the short “blackout id” (ie. <code class="docutils literal"><span class="pre">26997703</span></code>)  shown in the output
 above matches the id returned from the <code class="docutils literal"><span class="pre">alerta</span></code> command.</p>
 </div>
-<div class="section" id="step-2-blackout-periods-by-resource">
-<h2>Step 2: Blackout Periods by Resource<a class="headerlink" href="#step-2-blackout-periods-by-resource" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="step-2-blackout-by-service-or-group">
+<h2>Step 2: Blackout by Service or Group<a class="headerlink" href="#step-2-blackout-by-service-or-group" title="Permalink to this headline">¶</a></h2>
+<p>Blanket alert suppression can be acheived by defining a blackout period
+based on <code class="docutils literal"><span class="pre">service</span></code> or <code class="docutils literal"><span class="pre">group</span></code>.</p>
 </div>
-<div class="section" id="step-3-blackout-periods-by-service">
-<h2>Step 3: Blackout Periods by Service<a class="headerlink" href="#step-3-blackout-periods-by-service" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="step-3-blackout-by-event-and-or-resource">
+<h2>Step 3: Blackout by Event and/or Resource<a class="headerlink" href="#step-3-blackout-by-event-and-or-resource" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to suppress alerts from a particular <code class="docutils literal"><span class="pre">resource</span></code> or for
+a specific <code class="docutils literal"><span class="pre">event</span></code> (or even more specifically for a particular <code class="docutils literal"><span class="pre">resource</span></code>-
+<code class="docutils literal"><span class="pre">event</span></code> combination).</p>
 </div>
-<div class="section" id="step-4-blackout-periods-by-event">
-<h2>Step 4: Blackout Periods by Event<a class="headerlink" href="#step-4-blackout-periods-by-event" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="step-4-blackout-by-tag">
+<h2>Step 4: Blackout by Tag<a class="headerlink" href="#step-4-blackout-by-tag" title="Permalink to this headline">¶</a></h2>
+<p>When generic blackouts based on <code class="docutils literal"><span class="pre">service</span></code> or <code class="docutils literal"><span class="pre">group</span></code>, or specific
+blackouts based on <code class="docutils literal"><span class="pre">resource</span></code> or <code class="docutils literal"><span class="pre">event</span></code> don’t meet the requirements
+it is possible to define a blackout rule based on <code class="docutils literal"><span class="pre">tags</span></code> for maximum
+flexibility.</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta blackout --environment Production --tag blackout
+<span class="go">f4fc4ba5-a36f-4508-bd01-5550124ce26f</span>
+
+<span class="gp">$</span> alerta send -r host05:/dev/disk1 -e FsInodeUtil -s major -E Production -S System <span class="se">\</span>
+-g OS -t <span class="s1">&#39;/dev/disk1 inode utilisation high.&#39;</span> --tag blackout
+<span class="go">488ea442-73b6-4b28-bd3e-dd0ae281d094 (Suppressed alert during blackout period)</span>
+</pre></div>
 </div>
-<div class="section" id="step-5-blackout-periods-by-group">
-<h2>Step 5: Blackout Periods by Group<a class="headerlink" href="#step-5-blackout-periods-by-group" title="Permalink to this headline">¶</a></h2>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Add the “blackout” <code class="docutils literal"><span class="pre">tag</span></code> dynamically using a pre-receive hook to make
+alert suppression dynamic based on some lookup table, which could be managed
+externally to Alerta.</p>
 </div>
-<div class="section" id="step-6-blackout-periods-by-resource-event">
-<h2>Step 6: Blackout Periods by Resource-Event<a class="headerlink" href="#step-6-blackout-periods-by-resource-event" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="step-7-blackout-periods-by-tag">
-<h2>Step 7: Blackout Periods by Tag<a class="headerlink" href="#step-7-blackout-periods-by-tag" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="step-5-accept-alerts-during-blackout-periods">
+<h2>Step 5: Accept alerts during Blackout Periods<a class="headerlink" href="#step-5-accept-alerts-during-blackout-periods" title="Permalink to this headline">¶</a></h2>
+<p>To avoid situations where a blackout rule prevents a <code class="docutils literal"><span class="pre">normal</span></code> or
+<code class="docutils literal"><span class="pre">ok</span></code> alert from auto-closing an existing alert it is possible to allow
+“clearing” alerts that would have otherwise been suppressed.</p>
+<p>Set the <code class="docutils literal"><span class="pre">BLACKOUT_ACCEPT</span></code> server configuration variable to the list of
+allowable severities:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">BLACKOUT_ACCEPT</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="s1">&#39;ok&#39;</span><span class="p">,</span> <span class="s1">&#39;cleared&#39;</span><span class="p">]</span>
+</pre></div>
 </div>
-<div class="section" id="step-8-accept-alerts-during-blackout-periods">
-<h2>Step 8: Accept alerts during Blackout Periods<a class="headerlink" href="#step-8-accept-alerts-during-blackout-periods" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>app.config.get(‘BLACKOUT_ACCEPT’, []):</p>
-<p>compare blackouts with using a plugin for rejecting</p>
-</div></blockquote>
+</div>
+<div class="section" id="step-6-ending-blackout-periods">
+<h2>Step 6: Ending Blackout Periods<a class="headerlink" href="#step-6-ending-blackout-periods" title="Permalink to this headline">¶</a></h2>
+<p>Delete blackout periods using the web UI. There is no support for deleting a
+current, active blackout period using the alerta command-line tool (you can
+“purge” old ones though).</p>
 </div>
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
-<p>After you deploy your Alerta server, you might want to try some of
+<p>Now that you understand alert blackouts, you might want to try some of
 the following tutorials:</p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference internal" href="tutorial-2-housekeeping.html#tutorial-2"><span class="std std-ref">Use alert timeouts to expire stale alerts</span></a></li>
-<li>Configure a plugin to notify a Slack Channel</li>
-<li>Send alerts to the Alerta API using the command-line tool</li>
-<li>Create filtered alert views for different customers</li>
+<li><a class="reference internal" href="tutorial-6-auth.html#tutorial-6"><span class="std std-ref">Authentication and authorization</span></a></li>
+<li><a class="reference internal" href="tutorial-7-cusomter-views.html#tutorial-7"><span class="std std-ref">Blackout alerts by customer</span></a></li>
 </ul>
 </div></blockquote>
 </div>

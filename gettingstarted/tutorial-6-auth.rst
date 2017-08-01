@@ -1,7 +1,7 @@
 .. _tutorial 6:
 
-Authentication
-==============
+Authentication & Authorization
+==============================
 
 
 admin users

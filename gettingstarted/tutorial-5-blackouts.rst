@@ -10,22 +10,20 @@ scheduled downtime using blackout periods.
 
   * Overview_
   * Prerequisites_
-  * `Step 1: Blackout Periods by Environment`_
-  * `Step 2: Blackout Periods by Resource`_
-  * `Step 3: Blackout Periods by Service`_
-  * `Step 4: Blackout Periods by Event`_
-  * `Step 5: Blackout Periods by Group`_
-  * `Step 6: Blackout Periods by Resource-Event`_
-  * `Step 7: Blackout Periods by Tag`_
-  * `Step 8: Accept alerts during Blackout Periods`_
+  * `Step 1: Blackout by Environment`_
+  * `Step 2: Blackout by Service or Group`_
+  * `Step 3: Blackout by Event and/or Resource`_
+  * `Step 4: Blackout by Tag`_
+  * `Step 5: Accept alerts during Blackout Periods`_
+  * `Step 6: Ending Blackout Periods`_
   * `Next Steps`_
 
 Overview
 --------
 
-Being able to suppress alerts during scheduled downtime is important
-because false alerts can cause "alert fatigue" and operators can become
-complacent.
+Being able to suppress or mute alerts during scheduled downtime to
+put them into "maintenance mode" is important because false alerts can
+cause "alert fatigue" and operators can become complacent.
 
 This tutorial will explain how to suppress alerts by defining blackout
 periods that match on different alert attributes. 
@@ -42,8 +40,8 @@ it can be very helpful to see the alerts update in the console
 in realtime rather than having to continually run the ``alerta query``
 command to see the results.
 
-Step 1: Blackout Periods by Environment
----------------------------------------
+Step 1: Blackout by Environment
+-------------------------------
 
 Alert suppression works by matching alert attributes against any
 active blackout periods. At a minimum, a blackout period must define
@@ -54,14 +52,14 @@ environment run the following commands:
 
 .. code-block:: console
 
-  $ alerta send -r /dev/disk1 -e FsInodeUtil -s major -E Production -S System \
+  $ alerta send -r host05:/dev/disk1 -e FsInodeUtil -s major -E Production -S System \
   -g OS -t '/dev/disk1 inode utilisation high.'
-  a85295da-1f0b-4716-a269-7af300ae9fa3 (indeterminate -> major)
+  ed8dd6b3-37a5-4687-8a98-99d318eb6c37 (indeterminate -> major)
 
-  $ alerta blackout -E Production
+  $ alerta blackout --environment Production
   26997703-6705-457a-b603-0c151762129c
 
-  $ alerta send -r /dev/disk1 -e FsInodeUtil -s major -E Production -S System \
+  $ alerta send -r host05:/dev/disk1 -e FsInodeUtil -s major -E Production -S System \
   -g OS -t '/dev/disk1 inode utilisation high.'
   217ebb7e-b51a-4f15-b8b6-852c5e965894 (Suppressed alert during blackout period)
 
@@ -80,39 +78,67 @@ To confirm that the blackout period is active run:
 Note that the short "blackout id" (ie. ``26997703``)  shown in the output
 above matches the id returned from the ``alerta`` command.
 
-Step 2: Blackout Periods by Resource
+Step 2: Blackout by Service or Group
 ------------------------------------
 
-Step 3: Blackout Periods by Service
-------------------------------------
+Blanket alert suppression can be acheived by defining a blackout period
+based on ``service`` or ``group``.
 
-Step 4: Blackout Periods by Event
-------------------------------------
 
-Step 5: Blackout Periods by Group
----------------------------------
+Step 3: Blackout by Event and/or Resource
+-----------------------------------------
 
-Step 6: Blackout Periods by Resource-Event
-------------------------------------------
+It is possible to suppress alerts from a particular ``resource`` or for
+a specific ``event`` (or even more specifically for a particular ``resource``-
+``event`` combination).
 
-Step 7: Blackout Periods by Tag
--------------------------------
+Step 4: Blackout by Tag
+-----------------------
 
-Step 8: Accept alerts during Blackout Periods
+When generic blackouts based on ``service`` or ``group``, or specific
+blackouts based on ``resource`` or ``event`` don't meet the requirements
+it is possible to define a blackout rule based on ``tags`` for maximum
+flexibility.
+
+.. code-block:: console
+
+  $ alerta blackout --environment Production --tag blackout
+  f4fc4ba5-a36f-4508-bd01-5550124ce26f
+
+  $ alerta send -r host05:/dev/disk1 -e FsInodeUtil -s major -E Production -S System \
+  -g OS -t '/dev/disk1 inode utilisation high.' --tag blackout
+  488ea442-73b6-4b28-bd3e-dd0ae281d094 (Suppressed alert during blackout period)
+
+.. tip::
+
+  Add the "blackout" ``tag`` dynamically using a pre-receive hook to make
+  alert suppression dynamic based on some lookup table, which could be managed
+  externally to Alerta.
+
+Step 5: Accept alerts during Blackout Periods
 ---------------------------------------------
 
- app.config.get('BLACKOUT_ACCEPT', []):
+To avoid situations where a blackout rule prevents a ``normal`` or
+``ok`` alert from auto-closing an existing alert it is possible to allow
+"clearing" alerts that would have otherwise been suppressed.
 
+Set the ``BLACKOUT_ACCEPT`` server configuration variable to the list of
+allowable severities::
 
- compare blackouts with using a plugin for rejecting
+    BLACKOUT_ACCEPT=['normal', 'ok', 'cleared']
+
+Step 6: Ending Blackout Periods
+-------------------------------
+
+Delete blackout periods using the web UI. There is no support for deleting a
+current, active blackout period using the alerta command-line tool (you can
+"purge" old ones though).
 
 Next Steps
 ----------
 
-After you deploy your Alerta server, you might want to try some of
+Now that you understand alert blackouts, you might want to try some of
 the following tutorials:
 
-  * :ref:`Use alert timeouts to expire stale alerts <tutorial 2>`
-  * Configure a plugin to notify a Slack Channel
-  * Send alerts to the Alerta API using the command-line tool
-  * Create filtered alert views for different customers
+  * :ref:`Authentication and authorization <tutorial 6>`
+  * :ref:`Blackout alerts by customer <tutorial 7>`

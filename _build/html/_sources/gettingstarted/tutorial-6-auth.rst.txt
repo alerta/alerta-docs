@@ -1,7 +1,16 @@
-.. _tutorial 7:
+.. _tutorial 6:
 
-Partition Alerts using Customer Views
-=====================================
+Authentication & Authorization
+==============================
+
+
+admin users
+normal users
+email verify
+domain whitelist
+change password
+
+reset user password via alerta cli
 
 This tutorial will ...
 
@@ -17,7 +26,6 @@ This tutorial will ...
 Overview
 --------
 
-Customer views and web UI...
 
 Prerequisites
 -------------
@@ -25,6 +33,3 @@ Prerequisites
 
 Step 1: Install Packages
 ------------------------
-
-
-- blackout periods by customer
