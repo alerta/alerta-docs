@@ -109,13 +109,33 @@ above matches the id returned from the <code class="docutils literal"><span clas
 <div class="section" id="step-2-blackout-by-service-or-group">
 <h2>Step 2: Blackout by Service or Group<a class="headerlink" href="#step-2-blackout-by-service-or-group" title="Permalink to this headline">¶</a></h2>
 <p>Blanket alert suppression can be acheived by defining a blackout period
-based on <code class="docutils literal"><span class="pre">service</span></code> or <code class="docutils literal"><span class="pre">group</span></code>.</p>
+based on <code class="docutils literal"><span class="pre">service</span></code> or <code class="docutils literal"><span class="pre">group</span></code>:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta blackout -E Development -S Network --duration <span class="m">86400</span>
+<span class="go">51ca8a3b-39fd-4315-a748-9150c63632aa</span>
+
+<span class="gp">$</span> alerta blackout -E Development -g Performance
+<span class="go">06beb220-26ac-4c8a-9e23-bd05911a13b2</span>
+
+<span class="gp">$</span> alerta blackouts
+<span class="go">ID       CUSTOMER         ENVIRONMENT      SERVICE          RESOURCE         EVENT            GROUP            TAGS                     STATUS   START               DURATION</span>
+<span class="go">51ca8a3b *                Development      Network          *                *                *                *                        active   2017/08/01 21:02:14 86400s</span>
+<span class="go">06beb220 *                Development      *                *                *                Performance      *                        active   2017/08/01 21:03:36 3600s</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="step-3-blackout-by-event-and-or-resource">
 <h2>Step 3: Blackout by Event and/or Resource<a class="headerlink" href="#step-3-blackout-by-event-and-or-resource" title="Permalink to this headline">¶</a></h2>
 <p>It is possible to suppress alerts from a particular <code class="docutils literal"><span class="pre">resource</span></code> or for
 a specific <code class="docutils literal"><span class="pre">event</span></code> (or even more specifically for a particular <code class="docutils literal"><span class="pre">resource</span></code>-
 <code class="docutils literal"><span class="pre">event</span></code> combination).</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta blackout -E Development --resource stl-cr-01 --event linkDown
+3c31b062-e3f5-418a-93be-0b70ee593d58
+
+$ alerta blackouts
+ID       CUSTOMER         ENVIRONMENT      SERVICE          RESOURCE         EVENT            GROUP            TAGS                     STATUS   START               DURATION
+3c31b062 *                Development      *                stl-cr-01        linkDown         *                *                        active   2017/08/01 21:18:59 3600s
+</pre></div>
+</div>
 </div>
 <div class="section" id="step-4-blackout-by-tag">
 <h2>Step 4: Blackout by Tag<a class="headerlink" href="#step-4-blackout-by-tag" title="Permalink to this headline">¶</a></h2>
@@ -152,8 +172,13 @@ allowable severities:</p>
 <div class="section" id="step-6-ending-blackout-periods">
 <h2>Step 6: Ending Blackout Periods<a class="headerlink" href="#step-6-ending-blackout-periods" title="Permalink to this headline">¶</a></h2>
 <p>Delete blackout periods using the web UI. There is no support for deleting a
-current, active blackout period using the alerta command-line tool (you can
-“purge” old ones though).</p>
+current, active blackout period using the <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool. It is
+possible to “purge” expired blackout periods:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta blackouts --purge
+ID       CUSTOMER         ENVIRONMENT      SERVICE          RESOURCE         EVENT            GROUP            TAGS                     STATUS   START               DURATION
+f4fc4ba5 *                Production       *                *                *                *                blackout                 deleted  2017/08/01 17:35:38 3600s
+</pre></div>
+</div>
 </div>
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>

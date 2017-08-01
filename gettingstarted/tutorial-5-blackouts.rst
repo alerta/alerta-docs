@@ -82,8 +82,20 @@ Step 2: Blackout by Service or Group
 ------------------------------------
 
 Blanket alert suppression can be acheived by defining a blackout period
-based on ``service`` or ``group``.
+based on ``service`` or ``group``:
 
+.. code-block:: console
+
+  $ alerta blackout -E Development -S Network --duration 86400
+  51ca8a3b-39fd-4315-a748-9150c63632aa
+
+  $ alerta blackout -E Development -g Performance
+  06beb220-26ac-4c8a-9e23-bd05911a13b2
+
+  $ alerta blackouts
+  ID       CUSTOMER         ENVIRONMENT      SERVICE          RESOURCE         EVENT            GROUP            TAGS                     STATUS   START               DURATION
+  51ca8a3b *                Development      Network          *                *                *                *                        active   2017/08/01 21:02:14 86400s
+  06beb220 *                Development      *                *                *                Performance      *                        active   2017/08/01 21:03:36 3600s
 
 Step 3: Blackout by Event and/or Resource
 -----------------------------------------
@@ -91,6 +103,15 @@ Step 3: Blackout by Event and/or Resource
 It is possible to suppress alerts from a particular ``resource`` or for
 a specific ``event`` (or even more specifically for a particular ``resource``-
 ``event`` combination).
+
+::
+
+  $ alerta blackout -E Development --resource stl-cr-01 --event linkDown
+  3c31b062-e3f5-418a-93be-0b70ee593d58
+
+  $ alerta blackouts
+  ID       CUSTOMER         ENVIRONMENT      SERVICE          RESOURCE         EVENT            GROUP            TAGS                     STATUS   START               DURATION
+  3c31b062 *                Development      *                stl-cr-01        linkDown         *                *                        active   2017/08/01 21:18:59 3600s
 
 Step 4: Blackout by Tag
 -----------------------
@@ -131,8 +152,12 @@ Step 6: Ending Blackout Periods
 -------------------------------
 
 Delete blackout periods using the web UI. There is no support for deleting a
-current, active blackout period using the alerta command-line tool (you can
-"purge" old ones though).
+current, active blackout period using the ``alerta`` command-line tool. It is
+possible to "purge" expired blackout periods::
+
+  $ alerta blackouts --purge
+  ID       CUSTOMER         ENVIRONMENT      SERVICE          RESOURCE         EVENT            GROUP            TAGS                     STATUS   START               DURATION
+  f4fc4ba5 *                Production       *                *                *                *                blackout                 deleted  2017/08/01 17:35:38 3600s    
 
 Next Steps
 ----------
