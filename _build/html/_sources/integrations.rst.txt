@@ -13,16 +13,13 @@ build integrations with other monitoring tools.
 .. _Zabbix: http://www.zabbix.com
 .. _Sensu: https://sensuapp.org
 
-Secondly, there are built-in :ref:`webhooks <webhooks>` for `AWS Cloudwatch`_,
-Pingdom_, PagerDuty_, `Google Stackdriver`_, `Prometheus Alertmanager`_ and
-more which provide 'out-of-the-box' integrations for some of the most popular
+Secondly, there are built-in :ref:`webhooks <webhooks>` for
+`AWS Cloudwatch <https://aws.amazon.com/cloudwatch/>`_,
+:ref:`Pingdom <https://www.pingdom.com>`, :ref:`PagerDuty <https://www.pagerduty.com/>`,
+`Google Stackdriver <https://cloud.google.com/stackdriver/>`_,
+`Prometheus Alertmanager <https://prometheus.io/docs/alerting/alertmanager/>`_
+and more which provide 'out-of-the-box' integrations for some of the most popular
 monitoring systems available.
-
-.. _AWS Cloudwatch: https://aws.amazon.com/cloudwatch/
-.. _Pingdom: https://www.pingdom.com
-.. _PagerDuty: https://www.pagerduty.com/
-.. _Google Stackdriver: https://cloud.google.com/stackdriver/
-.. _Prometheus Alertmanager: https://prometheus.io/docs/alerting/alertmanager/
 
 Thirdly, :ref:`alert severity indicators <widgets>` or widgets can be placed
 on any web page using oEmbed_ for easy integration with existing dashboards.
@@ -93,6 +90,8 @@ to the Alerta server API when an event occurs.
 
 .. _HTTP callbacks: https://en.wikipedia.org/wiki/Webhook
 
+.. _cloudwatch:
+
 AWS CloudWatch
 ~~~~~~~~~~~~~~
 
@@ -109,6 +108,8 @@ HTTP/HTTPS Endpoints`_ page and in the `Endpoint` input box append
 
 .. _Sending Amazon SNS Messages to HTTP/HTTPS Endpoints: http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html
 
+.. _pingdom:
+
 Pingdom
 ~~~~~~~
 
@@ -123,6 +124,8 @@ For details on how to set this up see the `Pingdom webhook`_ page and in the
 :file:`https://alerta.example.com/api/webhooks/pingdom`
 
 .. _Pingdom webhook: https://support.pingdom.com/Knowledgebase/Article/View/94/0/users-and-alerting-end-points
+
+.. _pageduty:
 
 PagerDuty
 ~~~~~~~~~
@@ -169,25 +172,35 @@ For details on how to set this up see `Stackdriver webhook`_ page and in the
 .. _Stackdriver webhook: https://support.stackdriver.com/customer/portal/articles/1491775-configuring-webhooks
 
 
+.. _serverdensity:
+
 SeverDensity
 ~~~~~~~~~~~~
 
 TBC
+
+.. _new relic:
 
 New Relic
 ~~~~~~~~~
 
 TBC
 
+.. _grafana:
+
 Grafana
 ~~~~~~~
 
 TBC
 
+.. _telegram:
+
 Telegram
 ~~~~~~~~
 
 TBC
+
+.. _riemann:
 
 Riemann
 ~~~~~~~
@@ -252,7 +265,7 @@ implementation-specific requirements.
 * Slack_ - send alerts to Slack room
 * `AWS SNS`_ - publish alerts to SNS topic after processing
 * `Syslog Logger`_ - send alerts via syslog
-* Telegram_ - send alerts to Telegram channel
+* `Telegram Bot`_ - send alerts to Telegram channel
 * `Twilio SMS`_ - send alerts via SMS using Twilio
 
 .. _AMQP: https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp
@@ -269,6 +282,6 @@ implementation-specific requirements.
 .. _Slack: https://github.com/alerta/alerta-contrib/tree/master/plugins/slack
 .. _AWS SNS: https://github.com/alerta/alerta-contrib/tree/master/plugins/sns
 .. _Syslog Logger: https://github.com/alerta/alerta-contrib/tree/master/plugins/syslog
-.. _Telegram: https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram
+.. _Telegram Bot: https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram
 .. _`Twilio SMS`: https://github.com/alerta/alerta-contrib/tree/master/plugins/twilio
 
