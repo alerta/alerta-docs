@@ -138,23 +138,46 @@ webhook endpoint to the notifications configuration.</p>
 </div>
 <div class="section" id="severdensity">
 <span id="serverdensity"></span><h3>SeverDensity<a class="headerlink" href="#severdensity" title="Permalink to this headline">¶</a></h3>
-<p>TBC</p>
+<p>Alerta can be configured to receive SeverDensity alerts by adding a webhook
+endpoint to the Notification Preferences.</p>
+<p>For details on how to set this up see <a class="reference external" href="https://support.serverdensity.com/hc/en-us/articles/201017737-Setting-up-webhooks">SeverDensity webhook</a> page and in the
+<cite>Endpoint URL</cite> input box append <code class="file docutils literal"><span class="pre">/webhooks/serverdensity</span></code> to the Alerta API URL.</p>
+<p><strong>Example SeverDensity Webhook URL</strong></p>
+<p><code class="file docutils literal"><span class="pre">https://alerta.example.com/api/webhooks/serverdensity</span></code></p>
 </div>
 <div class="section" id="new-relic">
 <span id="id9"></span><h3>New Relic<a class="headerlink" href="#new-relic" title="Permalink to this headline">¶</a></h3>
-<p>TBC</p>
+<p>Alerta can be configured to receive New Relic incidents by adding a webhook
+endpoint to the Notification Channels.</p>
+<p>For details on how to set this up see <a class="reference external" href="https://docs.newrelic.com/docs/alerts/new-relic-alerts/managing-notification-channels/notification-channels-controlling-where-send-alerts">New Relic webhook</a> page and in the
+<cite>Endpoint URL</cite> input box append <code class="file docutils literal"><span class="pre">/webhooks/newrelic</span></code> to the Alerta API URL.</p>
+<p><strong>Example New Relic Webhook URL</strong></p>
+<p><code class="file docutils literal"><span class="pre">https://alerta.example.com/api/webhooks/newrelic</span></code></p>
 </div>
 <div class="section" id="grafana">
 <span id="id10"></span><h3>Grafana<a class="headerlink" href="#grafana" title="Permalink to this headline">¶</a></h3>
-<p>TBC</p>
+<p>Alerta can be configured to receive Grafana alerts by adding a webhook
+endpoint to the Notification Channels.</p>
+<p>For details on how to set this up see <a class="reference external" href="http://docs.grafana.org/alerting/notifications/#webhook">Grafana webhook</a> page and in the
+<cite>Endpoint URL</cite> input box append <code class="file docutils literal"><span class="pre">/webhooks/grafana</span></code> to the Alerta API URL.</p>
+<p><strong>Example Grafana Webhook URL</strong></p>
+<p><code class="file docutils literal"><span class="pre">https://alerta.example.com/api/webhooks/grafana</span></code></p>
 </div>
 <div class="section" id="telegram">
 <span id="id11"></span><h3>Telegram<a class="headerlink" href="#telegram" title="Permalink to this headline">¶</a></h3>
-<p>TBC</p>
+<p>Alerta can be configured to receive <a class="reference external" href="https://core.telegram.org/bots/api#callbackquery">Telegram callback queries</a> from the inline
+buttons in the <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram">Telegram Bot</a> plugin.</p>
+<p>For details on how to set this up see <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram">Telegram Bot</a> page and for the
+<code class="docutils literal"><span class="pre">TELEGRAM_WEBHOOK_URL</span></code> setting append <code class="file docutils literal"><span class="pre">/webhooks/telegram</span></code> to the Alerta API URL.</p>
+<p><strong>Example Telegram Webhook URL</strong></p>
+<p><code class="file docutils literal"><span class="pre">https://alerta.example.com/api/webhooks/telegram</span></code></p>
 </div>
 <div class="section" id="riemann">
 <span id="id12"></span><h3>Riemann<a class="headerlink" href="#riemann" title="Permalink to this headline">¶</a></h3>
-<p>TBC</p>
+<p>Alerta can be configured to receive Riemann events. The integration makes
+no assumptions about the format of the Riemann events and consumes
+standard events. If events are decorated with additional metadata (eg. tags,
+environment, group, etc) then these will be used.</p>
 </div>
 </div>
 <div class="section" id="widgets">

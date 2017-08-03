@@ -4,11 +4,13 @@ Authentication
 ==============
 
 By default, authentication is not enabled, however there are some features
-that are :ref:`not available <watched_alerts>` unless users login.
+that are :ref:`not available <watched_alerts>` unless users login such as
+watching alerts.
 
-Alerta supports two main authentication mechanisms for the web UI
-(:ref:`Basic Auth <basic auth>` and :ref:`OAuth <oauth2>`) as well as
-:ref:`API keys <api keys>` for direct access to the API.
+Alerta supports three authentication mechanisms for the web UI
+(:ref:`Basic Auth <basic auth>`, :ref:`OAuth <oauth2>` and
+:ref:`SAML <saml2>`) as well as :ref:`API keys <api keys>`
+for direct access to the API.
 
 * `Basic Auth`_
 * `Google OAuth2`_
@@ -18,7 +20,7 @@ Alerta supports two main authentication mechanisms for the web UI
 * `SAML 2.0`_
 * `API Keys`_
 
-The most straight-forward of the two to implement is `Basic Auth`_.
+The most straight-forward to implment of the three is `Basic Auth`_.
 
 To enforce authentication set ``AUTH_REQUIRED`` to ``True`` in the
 ``alertad.conf`` file and ``SECRET_KEY`` to some random string::
@@ -289,6 +291,13 @@ the cross-origin requests.
     ]
 
 .. _saml2:
+
+SAML 2.0 Authentication
+-----------------------
+
+OAuth authentication is provided by Google_ `OpenID Connect`_, GitHub_,
+GitLab_ `OAuth 2.0`_ or Keycloak_ `OAuth 2.0`_ and configuration is more involved than the Basic
+Auth setup.
 
 SAML 2.0
 --------
