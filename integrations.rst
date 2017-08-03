@@ -171,13 +171,22 @@ For details on how to set this up see `Stackdriver webhook`_ page and in the
 
 .. _Stackdriver webhook: https://support.stackdriver.com/customer/portal/articles/1491775-configuring-webhooks
 
-
 .. _serverdensity:
 
 SeverDensity
 ~~~~~~~~~~~~
 
-TBC
+Alerta can be configured to receive SeverDensity alerts by adding a webhook
+endpoint to the notification preferences.
+
+For details on how to set this up see `SeverDensity webhook`_ page and in the
+``Endpoint URL`` input box append :file:`/webhooks/serverdensity` to the Alerta API URL.
+
+.. _SeverDensity webhook: https://support.serverdensity.com/hc/en-us/articles/201017737-Setting-up-webhooks
+
+**Example SeverDensity Webhook URL**
+
+:file:`https://alerta.example.com/api/webhooks/serverdensity`
 
 .. _new relic:
 

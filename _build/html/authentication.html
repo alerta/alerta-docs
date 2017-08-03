@@ -44,10 +44,12 @@
   <div class="section" id="authentication">
 <span id="id1"></span><h1>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h1>
 <p>By default, authentication is not enabled, however there are some features
-that are <span class="xref std std-ref">not available</span> unless users login.</p>
-<p>Alerta supports two main authentication mechanisms for the web UI
-(<a class="reference internal" href="#basic-auth"><span class="std std-ref">Basic Auth</span></a> and <a class="reference internal" href="#oauth2"><span class="std std-ref">OAuth</span></a>) as well as
-<a class="reference internal" href="#api-keys"><span class="std std-ref">API keys</span></a> for direct access to the API.</p>
+that are <span class="xref std std-ref">not available</span> unless users login such as
+watching alerts.</p>
+<p>Alerta supports three authentication mechanisms for the web UI
+(<a class="reference internal" href="#basic-auth"><span class="std std-ref">Basic Auth</span></a>, <a class="reference internal" href="#oauth2"><span class="std std-ref">OAuth</span></a> and
+<a class="reference internal" href="#saml2"><span class="std std-ref">SAML</span></a>) as well as <a class="reference internal" href="#api-keys"><span class="std std-ref">API keys</span></a>
+for direct access to the API.</p>
 <ul class="simple">
 <li><a class="reference internal" href="#basic-auth">Basic Auth</a></li>
 <li><a class="reference internal" href="#google-oauth2">Google OAuth2</a></li>
@@ -57,7 +59,7 @@ that are <span class="xref std std-ref">not available</span> unless users login.
 <li><a class="reference internal" href="#saml-2-0">SAML 2.0</a></li>
 <li><a class="reference internal" href="#api-keys">API Keys</a></li>
 </ul>
-<p>The most straight-forward of the two to implement is <a class="reference internal" href="#basic-auth">Basic Auth</a>.</p>
+<p>The most straight-forward to implment of the three is <a class="reference internal" href="#basic-auth">Basic Auth</a>.</p>
 <p>To enforce authentication set <code class="docutils literal"><span class="pre">AUTH_REQUIRED</span></code> to <code class="docutils literal"><span class="pre">True</span></code> in the
 <code class="docutils literal"><span class="pre">alertad.conf</span></code> file and <code class="docutils literal"><span class="pre">SECRET_KEY</span></code> to some random string:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">AUTH_REQUIRED</span> <span class="o">=</span> <span class="kc">True</span>
@@ -307,8 +309,14 @@ the cross-origin requests.</p>
 </div>
 </div>
 </div>
+<div class="section" id="saml-2-0-authentication">
+<span id="saml2"></span><h2>SAML 2.0 Authentication<a class="headerlink" href="#saml-2-0-authentication" title="Permalink to this headline">¶</a></h2>
+<p>OAuth authentication is provided by <a class="reference external" href="https://developers.google.com/accounts/docs/OpenIDConnect">Google</a> <a class="reference external" href="http://openid.net/connect/">OpenID Connect</a>, <a class="reference external" href="https://developer.github.com/v3/oauth/">GitHub</a>,
+<a class="reference external" href="http://doc.gitlab.com/ce/integration/oauth_provider.html">GitLab</a> <a class="reference external" href="http://tools.ietf.org/html/draft-ietf-oauth-v2-22">OAuth 2.0</a> or <a class="reference external" href="https://www.keycloak.org/documentation.html">Keycloak</a> <a class="reference external" href="http://tools.ietf.org/html/draft-ietf-oauth-v2-22">OAuth 2.0</a> and configuration is more involved than the Basic
+Auth setup.</p>
+</div>
 <div class="section" id="saml-2-0">
-<span id="saml2"></span><h2>SAML 2.0<a class="headerlink" href="#saml-2-0" title="Permalink to this headline">¶</a></h2>
+<h2>SAML 2.0<a class="headerlink" href="#saml-2-0" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="generate-private-public-key-pair">
 <h3>Generate private/public key pair<a class="headerlink" href="#generate-private-public-key-pair" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">openssl</span> <span class="n">req</span> <span class="o">-</span><span class="n">utf8</span> <span class="o">-</span><span class="n">new</span> <span class="o">-</span><span class="n">x509</span> <span class="o">-</span><span class="n">days</span> <span class="mi">3652</span> <span class="o">-</span><span class="n">nodes</span> <span class="o">-</span><span class="n">out</span> <span class="s2">&quot;alerta.cert&quot;</span> <span class="o">-</span><span class="n">keyout</span> <span class="s2">&quot;alerta.key&quot;</span>
@@ -504,6 +512,7 @@ Links
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Authentication</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#basic-auth">Basic Auth</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#oauth2-authentication">OAuth2 Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#saml-2-0-authentication">SAML 2.0 Authentication</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#saml-2-0">SAML 2.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#api-keys">API Keys</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#user-authorisation">User Authorisation</a></li>
