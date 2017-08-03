@@ -239,13 +239,15 @@ For details on how to set this up see `Telegram Bot`_ page and for the
 
 :file:`https://alerta.example.com/api/webhooks/telegram`
 
-
 .. _riemann:
 
 Riemann
 ~~~~~~~
 
-TBC
+Alerta can be configured to receive Riemann events. The integration makes
+no assumptions about the format of the Riemann events and consumes
+standard events. If events are decorated with additional metadata (eg. tags,
+environment, group, etc) then these will be used.
 
 .. _widgets:
 
