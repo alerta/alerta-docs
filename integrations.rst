@@ -177,10 +177,10 @@ SeverDensity
 ~~~~~~~~~~~~
 
 Alerta can be configured to receive SeverDensity alerts by adding a webhook
-endpoint to the notification preferences.
+endpoint to the Notification Preferences.
 
 For details on how to set this up see `SeverDensity webhook`_ page and in the
-``Endpoint URL`` input box append :file:`/webhooks/serverdensity` to the Alerta API URL.
+`Endpoint URL` input box append :file:`/webhooks/serverdensity` to the Alerta API URL.
 
 .. _SeverDensity webhook: https://support.serverdensity.com/hc/en-us/articles/201017737-Setting-up-webhooks
 
@@ -193,21 +193,52 @@ For details on how to set this up see `SeverDensity webhook`_ page and in the
 New Relic
 ~~~~~~~~~
 
-TBC
+Alerta can be configured to receive New Relic incidents by adding a webhook
+endpoint to the Notification Channels.
+
+For details on how to set this up see `New Relic webhook`_ page and in the
+`Endpoint URL` input box append :file:`/webhooks/newrelic` to the Alerta API URL.
+
+.. _New Relic webhook: https://docs.newrelic.com/docs/alerts/new-relic-alerts/managing-notification-channels/notification-channels-controlling-where-send-alerts
+
+**Example New Relic Webhook URL**
+
+:file:`https://alerta.example.com/api/webhooks/newrelic`
 
 .. _grafana:
 
 Grafana
 ~~~~~~~
 
-TBC
+Alerta can be configured to receive Grafana alerts by adding a webhook
+endpoint to the Notification Channels.
+
+For details on how to set this up see `Grafana webhook`_ page and in the
+`Endpoint URL` input box append :file:`/webhooks/grafana` to the Alerta API URL.
+
+.. _Grafana webhook: http://docs.grafana.org/alerting/notifications/#webhook
+
+**Example Grafana Webhook URL**
+
+:file:`https://alerta.example.com/api/webhooks/grafana`
 
 .. _telegram:
 
 Telegram
 ~~~~~~~~
 
-TBC
+Alerta can be configured to receive `Telegram callback queries`_ from the inline
+buttons in the `Telegram Bot`_ plugin.
+
+.. _Telegram callback queries: https://core.telegram.org/bots/api#callbackquery
+
+For details on how to set this up see `Telegram Bot`_ page and for the
+``TELEGRAM_WEBHOOK_URL`` setting append :file:`/webhooks/telegram` to the Alerta API URL.
+
+**Example Telegram Webhook URL**
+
+:file:`https://alerta.example.com/api/webhooks/telegram`
+
 
 .. _riemann:
 
