@@ -249,6 +249,10 @@ no assumptions about the format of the Riemann events and consumes
 standard events. If events are decorated with additional metadata (eg. tags,
 environment, group, etc) then these will be used.
 
+**Example Riemann Webhook URL**
+
+:file:`https://alerta.example.com/api/webhooks/riemann`
+
 .. _widgets:
 
 Widgets
