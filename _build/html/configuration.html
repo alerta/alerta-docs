@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Configuration &#8212; alerta 4.8 documentation</title>
+    <title>Configuration &#8212; alerta 4.10 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '4.8',
+        VERSION:     '4.10',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -177,11 +177,11 @@ such as auditing, and features like the ability to assign and watch alerts.</p>
 <dt><code class="docutils literal"><span class="pre">ALLOWED_KEYCLOAK_ROLES</span></code></dt>
 <dd>list of authorised Keycloak roles a user must belong to when using Keycloak as OAuth2 provider.</dd>
 <dt><code class="docutils literal"><span class="pre">SAML2_CONFIG</span></code></dt>
-<dd><code class="docutils literal"><span class="pre">pysaml2</span></code> configuration <code class="docutils literal"><span class="pre">dict</span></code>. See <a class="reference internal" href="authentication.html#saml2"><span class="std std-ref">SAML 2.0</span></a>.</dd>
+<dd><code class="docutils literal"><span class="pre">pysaml2</span></code> configuration <code class="docutils literal"><span class="pre">dict</span></code>. See <a class="reference internal" href="authentication.html#saml2"><span class="std std-ref">SAML 2.0 Authentication</span></a>.</dd>
 <dt><code class="docutils literal"><span class="pre">ALLOWED_SAML2_GROUPS</span></code></dt>
-<dd>list of authorised groups a user must belong to. See <a class="reference internal" href="authentication.html#saml2"><span class="std std-ref">SAML 2.0</span></a> for details.</dd>
+<dd>list of authorised groups a user must belong to. See <a class="reference internal" href="authentication.html#saml2"><span class="std std-ref">SAML 2.0 Authentication</span></a> for details.</dd>
 <dt><code class="docutils literal"><span class="pre">SAML2_USER_NAME_FORMAT</span></code></dt>
-<dd>Python format string which will be rendered to user’s name using SAML attributes. See <a class="reference internal" href="authentication.html#saml2"><span class="std std-ref">SAML 2.0</span></a>.</dd>
+<dd>Python format string which will be rendered to user’s name using SAML attributes. See <a class="reference internal" href="authentication.html#saml2"><span class="std std-ref">SAML 2.0 Authentication</span></a>.</dd>
 </dl>
 </div>
 <div class="section" id="switch-settings">
@@ -498,7 +498,7 @@ Links
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015-2016, Nick Satterly. MIT License.
+      &copy;2015-2017, Nick Satterly. MIT License.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
