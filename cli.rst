@@ -47,6 +47,8 @@ configuration settings.
 +-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
 | ssl verify  |  sslverify  | :envvar:`REQUESTS_CA_BUNDLE`      | n/a                             | verify SSL certificates   |
 +-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
+| timeout     |  timeout    | n/a                               | n/a                             | 5s TCP connection timeout |
++-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
 | output      |  output     | n/a                               | ``--output OUTPUT``, ``--json`` | text                      |
 +-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
 | color       |  color      | :envvar:`CLICOLOR`                | ``--color``, ``--no-color``     | color on                  |
@@ -72,6 +74,7 @@ Configuration file :file:`~/.alerta.conf`::
     endpoint = https://localhost:8443
     key = demo-key
     sslverify = off
+    timeout = 10.0
     debug = yes
 
 Set environment variables::

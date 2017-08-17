@@ -118,19 +118,25 @@ configuration settings.</p>
 <td>n/a</td>
 <td>verify SSL certificates</td>
 </tr>
-<tr class="row-even"><td>output</td>
+<tr class="row-even"><td>timeout</td>
+<td>timeout</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>5s TCP connection timeout</td>
+</tr>
+<tr class="row-odd"><td>output</td>
 <td>output</td>
 <td>n/a</td>
 <td><code class="docutils literal"><span class="pre">--output</span> <span class="pre">OUTPUT</span></code>, <code class="docutils literal"><span class="pre">--json</span></code></td>
 <td>text</td>
 </tr>
-<tr class="row-odd"><td>color</td>
+<tr class="row-even"><td>color</td>
 <td>color</td>
 <td><span class="target" id="index-5"></span><code class="xref std std-envvar docutils literal"><span class="pre">CLICOLOR</span></code></td>
 <td><code class="docutils literal"><span class="pre">--color</span></code>, <code class="docutils literal"><span class="pre">--no-color</span></code></td>
 <td>color on</td>
 </tr>
-<tr class="row-even"><td>debug</td>
+<tr class="row-odd"><td>debug</td>
 <td>debug</td>
 <td><span class="target" id="index-6"></span><code class="xref std std-envvar docutils literal"><span class="pre">DEBUG</span></code></td>
 <td><code class="docutils literal"><span class="pre">--debug</span></code></td>
@@ -156,6 +162,7 @@ configuration settings.</p>
 <span class="n">endpoint</span> <span class="o">=</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8443</span>
 <span class="n">key</span> <span class="o">=</span> <span class="n">demo</span><span class="o">-</span><span class="n">key</span>
 <span class="n">sslverify</span> <span class="o">=</span> <span class="n">off</span>
+<span class="n">timeout</span> <span class="o">=</span> <span class="mf">10.0</span>
 <span class="n">debug</span> <span class="o">=</span> <span class="n">yes</span>
 </pre></div>
 </div>
@@ -691,6 +698,7 @@ Links
 </li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
