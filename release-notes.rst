@@ -15,11 +15,23 @@ Roadmap
 Release History
 +++++++++++++++
 
+Release 4.10 (27-07-2017)
+-------------------------
+
+* Scope-based permissions model based on RBAC_
+* SAML2_ authentication user logins
+* Prometheus webhook updated to support version 4
+* Plugin result chaining for tags and attributes
+
+.. _RBAC: http://csrc.nist.gov/groups/SNS/rbac/
+.. _SAML2: https://tools.ietf.org/html/rfc7522
+
 Release 4.9 (16-03-2017)
 ------------------------
 
 * LDAP authentication via Keycloak_ support
 * `MongoDB SSL`_ connection support
+* Pingdom webhook changed to use new "State change" webhook
 
 .. _Keycloak: https://www.keycloak.org/
 .. _MongoDB SSL: http://api.mongodb.com/python/current/examples/tls.html
