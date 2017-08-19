@@ -7,6 +7,12 @@ API Reference
    :local:
    :depth: 2
 
+.. note:: All ``datetime`` parameters must be in ISO 8601 format in UTC time
+   (using time zone designator "Z") and expressed to millisecond precision as
+   recommended by the `W3C Date and Time Formats Note`_ eg. ``2017-06-19T11:16:19.744Z``
+
+.. _`W3C Date and Time Formats Note`: https://www.w3.org/TR/NOTE-datetime
+
 .. _alerts:
 
 Alerts
@@ -389,7 +395,7 @@ Example Request
 Search alerts
 ~~~~~~~~~~~~~
 
-Searches for alerts using alert attributes or a mongo-type query parameter to
+Find alerts using various alert attributes or a mongo-type query parameter to
 filter results.
 
 ::
@@ -402,36 +408,57 @@ Parameters
 +-----------------+----------+----------------------------------------------+
 | Name            | Type     | Description                                  |
 +=================+==========+==============================================+
-| ``<attr>``      | string   | any attribute. eg. ``status=open``           |
+| ``<attr>``      | string   | any alert attribute. eg. ``status=open``     |
 +-----------------+----------+----------------------------------------------+
-| ``q``           | json     | mongo query see `Mongo Query Operators`_     |
+| ``q`` (*)       | json     | mongo query (see `Mongo Query Operators`_)   |
 +-----------------+----------+----------------------------------------------+
-| ``fields``      | list     | show or hide alert attributes                |
+| ``fields`` (*)  | list     | show or hide alert attributes                |
 +-----------------+----------+----------------------------------------------+
-| ``from-date``   | date     |                                              |
+| ``from-date``   | datetime | ``lastReceiveTime`` > ``from-date``          |
 +-----------------+----------+----------------------------------------------+
-| ``to-date``     | date     |                                              |
+| ``to-date``     | datetime | ``lastReceiveTime`` <= ``to-date`` (now)     |
 +-----------------+----------+----------------------------------------------+
-| ``sort-by``     | string   |                                              |
+| ``sort-by``     | string   | attr to sort by (default:``lastReceiveTime``)|
 +-----------------+----------+----------------------------------------------+
-| ``reverse``     | boolean  |                                              |
+| ``reverse``     | boolean  | change direction of default sort order       |
 +-----------------+----------+----------------------------------------------+
-| ``group-by``    | string   |                                              |
+| ``page``        | integer  | number between 1 and total pages (default: 1)|
 +-----------------+----------+----------------------------------------------+
-| ``page``        | integer  |                                              |
-+-----------------+----------+----------------------------------------------+
-| ``limit``       | integer  |                                              |
+| ``limit``       | integer  | default: 10,000 (set using ``QUERY_LIMIT`` ) |
 +-----------------+----------+----------------------------------------------+
 
 .. _Mongo Query Operators: http://docs.mongodb.org/manual/reference/operator/query/
 
-The ``attr`` parameter is any alert attribute.
+The ``<attr>`` search parameter works as follows:
 
-Any alert attribute can be queried. To query tags do this, to query attributes key/value do this.
+  * Any combination of valid alert attributes can be used to narrow down results.
 
-Default is not to use exact match. To use regex ``=~`` and to negate use ``!=``.
+  * Search syntax is ``=`` (equals), ``!=`` (not equals), ``=~`` (regex match)
+    and ``!=~`` (regex exclude).
 
-**If customer views enabled then the customer for that user will be applied as a filter.**
+  * When searching for alert ``id`` the query will attempt to match against ``id``
+    and ``lastReceiveId``. The "short id" (ie. first 8-characters) can
+    be used. eg. ``id=ba358336`` instead of ``id=ba358336-802d-40ee-8ace-bf5fa8529280``.
+
+  * Use `"dot notation"`_ to query custom attributes. eg. ``attributes.city=Berlin``
+
+  * Alert ``history`` is limited to the 100 most recent status or severity changes.
+    (set using ``HISTORY_LIMIT``)
+
+  * If "customer views" is enabled then the appropriate ``customer`` filter for
+    that user will be automatically applied.
+
+.. _"dot notation": https://docs.mongodb.com/v3.2/core/document/#document-dot-notation
+
+The ``q`` search parameter works as follows:
+
+  * Any valid JSON-compliant Mongo query using `Mongo Query Operators`_. Useful
+    when there is a need to "or" several attributes to get the required
+    search filter  eg. ``q={"$or":[{"service":"Web"},{"resource":{"$regex":"web"}}]}``
+
+.. warning:: In the next major release of Alerta (5.0) the ``fields`` parameter
+     will be removed. Also the ``q`` search term may change and no longer be
+     mongo-specific.
 
 Example Request
 +++++++++++++++

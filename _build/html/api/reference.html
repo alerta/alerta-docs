@@ -107,6 +107,12 @@
 </li>
 </ul>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">All <code class="docutils literal"><span class="pre">datetime</span></code> parameters must be in ISO 8601 format in UTC time
+(using time zone designator “Z”) and expressed to millisecond precision as
+recommended by the <a class="reference external" href="https://www.w3.org/TR/NOTE-datetime">W3C Date and Time Formats Note</a> eg. <code class="docutils literal"><span class="pre">2017-06-19T11:16:19.744Z</span></code></p>
+</div>
 <div class="section" id="alerts">
 <span id="id1"></span><h2><a class="toc-backref" href="#id74">Alerts</a><a class="headerlink" href="#alerts" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="create-an-alert">
@@ -541,7 +547,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 </div>
 <div class="section" id="search-alerts">
 <span id="get-alerts"></span><h3><a class="toc-backref" href="#id81">Search alerts</a><a class="headerlink" href="#search-alerts" title="Permalink to this headline">¶</a></h3>
-<p>Searches for alerts using alert attributes or a mongo-type query parameter to
+<p>Find alerts using various alert attributes or a mongo-type query parameter to
 filter results.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span>
 </pre></div>
@@ -563,50 +569,72 @@ filter results.</p>
 <tbody valign="top">
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;attr&gt;</span></code></td>
 <td>string</td>
-<td>any attribute. eg. <code class="docutils literal"><span class="pre">status=open</span></code></td>
+<td>any alert attribute. eg. <code class="docutils literal"><span class="pre">status=open</span></code></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">q</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">q</span></code> (*)</td>
 <td>json</td>
-<td>mongo query see <a class="reference external" href="http://docs.mongodb.org/manual/reference/operator/query/">Mongo Query Operators</a></td>
+<td>mongo query (see <a class="reference external" href="http://docs.mongodb.org/manual/reference/operator/query/">Mongo Query Operators</a>)</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">fields</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">fields</span></code> (*)</td>
 <td>list</td>
 <td>show or hide alert attributes</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">from-date</span></code></td>
-<td>date</td>
-<td>&#160;</td>
+<td>datetime</td>
+<td><code class="docutils literal"><span class="pre">lastReceiveTime</span></code> &gt; <code class="docutils literal"><span class="pre">from-date</span></code></td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">to-date</span></code></td>
-<td>date</td>
-<td>&#160;</td>
+<td>datetime</td>
+<td><code class="docutils literal"><span class="pre">lastReceiveTime</span></code> &lt;= <code class="docutils literal"><span class="pre">to-date</span></code> (now)</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">sort-by</span></code></td>
 <td>string</td>
-<td>&#160;</td>
+<td>attr to sort by (default:<code class="docutils literal"><span class="pre">lastReceiveTime</span></code>)</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">reverse</span></code></td>
 <td>boolean</td>
-<td>&#160;</td>
+<td>change direction of default sort order</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">group-by</span></code></td>
-<td>string</td>
-<td>&#160;</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">page</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">page</span></code></td>
 <td>integer</td>
-<td>&#160;</td>
+<td>number between 1 and total pages (default: 1)</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">limit</span></code></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">limit</span></code></td>
 <td>integer</td>
-<td>&#160;</td>
+<td>default: 10,000 (set using <code class="docutils literal"><span class="pre">QUERY_LIMIT</span></code> )</td>
 </tr>
 </tbody>
 </table>
-<p>The <code class="docutils literal"><span class="pre">attr</span></code> parameter is any alert attribute.</p>
-<p>Any alert attribute can be queried. To query tags do this, to query attributes key/value do this.</p>
-<p>Default is not to use exact match. To use regex <code class="docutils literal"><span class="pre">=~</span></code> and to negate use <code class="docutils literal"><span class="pre">!=</span></code>.</p>
-<p><strong>If customer views enabled then the customer for that user will be applied as a filter.</strong></p>
+<p>The <code class="docutils literal"><span class="pre">&lt;attr&gt;</span></code> search parameter works as follows:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Any combination of valid alert attributes can be used to narrow down results.</li>
+<li>Search syntax is <code class="docutils literal"><span class="pre">=</span></code> (equals), <code class="docutils literal"><span class="pre">!=</span></code> (not equals), <code class="docutils literal"><span class="pre">=~</span></code> (regex match)
+and <code class="docutils literal"><span class="pre">!=~</span></code> (regex exclude).</li>
+<li>When searching for alert <code class="docutils literal"><span class="pre">id</span></code> the query will attempt to match against <code class="docutils literal"><span class="pre">id</span></code>
+and <code class="docutils literal"><span class="pre">lastReceiveId</span></code>. The “short id” (ie. first 8-characters) can
+be used. eg. <code class="docutils literal"><span class="pre">id=ba358336</span></code> instead of <code class="docutils literal"><span class="pre">id=ba358336-802d-40ee-8ace-bf5fa8529280</span></code>.</li>
+<li>Use <a class="reference external" href="https://docs.mongodb.com/v3.2/core/document/#document-dot-notation">“dot notation”</a> to query custom attributes. eg. <code class="docutils literal"><span class="pre">attributes.city=Berlin</span></code></li>
+<li>Alert <code class="docutils literal"><span class="pre">history</span></code> is limited to the 100 most recent status or severity changes.
+(set using <code class="docutils literal"><span class="pre">HISTORY_LIMIT</span></code>)</li>
+<li>If “customer views” is enabled then the appropriate <code class="docutils literal"><span class="pre">customer</span></code> filter for
+that user will be automatically applied.</li>
+</ul>
+</div></blockquote>
+<p>The <code class="docutils literal"><span class="pre">q</span></code> search parameter works as follows:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Any valid JSON-compliant Mongo query using <a class="reference external" href="http://docs.mongodb.org/manual/reference/operator/query/">Mongo Query Operators</a>. Useful
+when there is a need to “or” several attributes to get the required
+search filter  eg. <code class="docutils literal"><span class="pre">q={&quot;$or&quot;:[{&quot;service&quot;:&quot;Web&quot;},{&quot;resource&quot;:{&quot;$regex&quot;:&quot;web&quot;}}]}</span></code></li>
+</ul>
+</div></blockquote>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">In the next major release of Alerta (5.0) the <code class="docutils literal"><span class="pre">fields</span></code> parameter
+will be removed. Also the <code class="docutils literal"><span class="pre">q</span></code> search term may change and no longer be
+mongo-specific.</p>
+</div>
 </div>
 <div class="section" id="id11">
 <h4>Example Request<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
