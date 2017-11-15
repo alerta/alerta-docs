@@ -23,11 +23,11 @@ Install the Alerta Server
 To install the alerta server::
 
     $ pip install alerta-server
-    $ alertad
+    $ alertad run --port 8080
 
 You should see something like::
 
-    Starting alerta version 4.1.2 ...
+    * Running on http://127.0.0.1:8080/ (Press CTRL+C to quit)
 
 Install the Web Console
 -----------------------
