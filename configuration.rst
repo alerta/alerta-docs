@@ -64,36 +64,49 @@ API Settings
 ``API_KEY_EXPIRE_DAYS``
     number of days an API key is valid for.
 
-.. _mongo_config:
+.. _database_config:
 
-MongoDB Settings
+Database Settings
 ~~~~~~~~~~~~~~~~
 
-The document-oriented datastore MongoDB_ is used for persistent data. It
+There is a choice of either Postgres or MongoDB as the backend database.
+
+The database is defined using the standard database connection URL formats. Many
+database configuration options are supported as connection URL parameters.
+
+**Postgres Example**
+::
+
+    DATABASE_URL = 'postgresql://other@localhost/otherdb?connect_timeout=10&application_name=myapp'
+    DATABASE_NAME = 'monitoring'
+
+See `Postgres connection strings`_ for more information.
+
+.. _Postgres connection strings: https://www.postgresql.org/docs/9.6/static/libpq-connect.html
+
+**MongoDB Example**
+::
+
+    DATABASE_URL = 'mongodb://db1.example.net,db2.example.net:2500/?replicaSet=test&connectTimeoutMS=300000'
+    DATABASE_NAME = 'monitoring'
+
+See `MongoDB connection strings`_ for more information.
+
+.. _MongoDB connection strings: https://docs.mongodb.org/v3.0/reference/connection-string/#standard-connection-string-format
+
+.. index:: DATABASE_URL, DATABASE_NAME
+
+``DATABASE_URL``
+    database connection URI string.
+``DATABASE_NAME``
+    database name can be used to override default database defined in ``DATABASE_URL``.
+
+If the document-oriented datastore MongoDB_ is used for persistent data, then it
 can be set-up as a stand-alone server or in a `replica set`_ for high
 availability.
 
 .. _MongoDB: https://www.mongodb.com
 .. _replica set: http://docs.mongodb.org/manual/core/replica-set-high-availability/
-
-::
-
-    MONGO_URI = 'mongodb://localhost:27017/monitoring'
-    MONGO_DATABASE = 'monitoring'
-
-.. index:: MONGO_HOST, MONGO_PORT, MONGO_DATABASE, MONGO_REPLSET, MONGO_USERNAME, MONGO_PASSWORD
-
-``MONGO_URI``
-    MongoDB connection URI string.
-``MONGO_DATABASE``
-    database name can be used to override default database defined in ``MONGO_URI``.
-
-The MongoDB configuration can be overridden in a number of different ways to
-ensure that Alerta can be easily deployed in many different environments.
-
-For information about deploying Alerta using a MongoDB replica set refer to
-the :ref:`high availability <high availability>` recommendations for a
-production deployment.
 
 .. _auth config:
 
@@ -325,8 +338,8 @@ Environment Variables
 Some configuration settings are special because they can be overridden by
 environment variables. This is to make deployment to different platforms
 and managed environments easier. eg. RedHat OpenShift, Heroku, Packer, Docker,
-and AWS or to make use of managed MongoDB services. Note that not all would
-need to be used to deploy to each different environment.
+and AWS or to make use of managed Postgres or MongoDB services. Note that
+not all would need to be used to deploy to each different environment.
 
 .. note:: Environment variables are read after configuration files so they
     will always override any other setting.
@@ -369,11 +382,23 @@ General Settings
 :envvar:`PLUGINS`
     see above
 
+Database Settings
+~~~~~~~~~~~~~~~~~
+
+:envvar:`DATABASE_URL`
+    used by both :ref:`Postgres <Postgres connection string>` and
+    :ref:`MongoDB <MongoDB connection string>` for database connection strings
+:envvar:`DATABASE_NAME`
+    database name can be used to override default database defined in ``DATABASE_URL``
+
 MongoDB Settings
 ~~~~~~~~~~~~~~~~
 
+.. deprecated:: 5.0
+    Use :envvar:`DATABASE_URL` and :envvar:`DATABASE_NAME` instead.
+
 :envvar:`MONGO_URI`
-    used to override ``MONGO_URI`` config variable using the standard `connection string format`_
+    used to override ``MONGO_URI`` config variable using the standard connection string format
 :envvar:`MONGODB_URI`
     alternative name for ``MONGO_URI`` environment variable which is used by some managed services
 :envvar:`MONGOHQ_URL`
@@ -383,7 +408,6 @@ MongoDB Settings
 :envvar:`MONGO_PORT`
     automatically set when deploying `Alerta to a Docker`_ linked mongo container
 
-.. _connection string format: https://docs.mongodb.org/v3.0/reference/connection-string/#standard-connection-string-format
 .. _Heroku MongoHQ: https://devcenter.heroku.com/articles/mongohq
 .. _Heroku MongoLab: https://devcenter.heroku.com/articles/mongolab
 .. _Alerta to a Docker: https://github.com/alerta/docker-alerta
