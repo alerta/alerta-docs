@@ -1006,6 +1006,85 @@ Example Response
       "total": 1
     }
 
+.. _tags:
+
+Tags
+----
+
+A tag cannot be created -- it is a dynamically derived resource based on existing alerts.
+
+List all tags
+~~~~~~~~~~~~~
+
+Returns a list of tags grouped by environment and an alert count for each.
+
+::
+
+    GET /tags
+
+Parameters
+++++++++++
+
++-----------------+----------+----------------------------------------------+
+| Name            | Type     | Description                                  |
++=================+==========+==============================================+
+| ``<attr>``      | string   |                                              |
++-----------------+----------+----------------------------------------------+
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/tags?environment=Production \
+    -H 'Authorization: Key demo-key'
+
+Example Response
+++++++++++++++++
+
+::
+
+    200 OK
+
+.. code-block:: json
+
+  {
+      "status": "ok",
+      "tags": [
+          {
+              "count": 2,
+              "environment": "Production",
+              "tag": "linux"
+          },
+          {
+              "count": 1,
+              "environment": "Production",
+              "tag": "dc2"
+          },
+          {
+              "count": 1,
+              "environment": "Production",
+              "tag": "hp"
+          },
+          {
+              "count": 2,
+              "environment": "Production",
+              "tag": "dell"
+          },
+          {
+              "count": 2,
+              "environment": "Production",
+              "tag": "dc1"
+          },
+          {
+              "count": 2,
+              "environment": "Production",
+              "tag": "linux2.6"
+          }
+      ],
+      "total": 6
+  }
+
 .. _blackouts:
 
 Blackout Periods
@@ -1497,11 +1576,11 @@ Users
 Create a user
 ~~~~~~~~~~~~~
 
-Creates a new user.
+Creates a new Basic Auth user.
 
 ::
 
-    POST /user
+    POST /auth/signup
 
 Input
 +++++
@@ -1511,15 +1590,11 @@ Input
 +====================+==========+===========================================+
 | ``name``           | string   |                                           |
 +--------------------+----------+-------------------------------------------+
-| ``login``          | string   |                                           |
+| ``email``          | string   |                                           |
 +--------------------+----------+-------------------------------------------+
 | ``password``       | string   |                                           |
 +--------------------+----------+-------------------------------------------+
-| ``provider``       | string   |                                           |
-+--------------------+----------+-------------------------------------------+
 | ``text``           | string   |                                           |
-+--------------------+----------+-------------------------------------------+
-| ``email_verified`` | string   |                                           |
 +--------------------+----------+-------------------------------------------+
 
 Example Request
@@ -1527,15 +1602,14 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XPOST http://localhost:8080/user \
+    $ curl -XPOST http://localhost:8080/auth/signup \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json' \
     -d '{
           "name": "Joe Bloggs",
-          "login": "joe.bloggs@example.com",
+          "email": "joe.bloggs@example.com",
           "password": "secret",
-          "text": "demo user",
-          "email_verified": true
+          "text": "demo user"
         }'
 
 Example Response
@@ -1543,22 +1617,12 @@ Example Response
 
 ::
 
-    201 CREATED
+    200 OK
 
 .. code-block:: json
 
     {
-      "id": "166b41d6-849f-440d-ba30-1a5345d86fb6",
-      "status": "ok",
-      "user": {
-        "createTime": "2017-01-02T00:23:24.487Z",
-        "email_verified": true,
-        "id": "166b41d6-849f-440d-ba30-1a5345d86fb6",
-        "login": "joe.bloggs@example.com",
-        "name": "Joe Bloggs",
-        "provider": "basic",
-        "text": "demo user"
-      }
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4Y2IwYjYyNC0zY2Q3LTQ1YjktOThhNS01ZGZhYzVmMDE2NmMiLCJyb2xlcyI6WyJ1c2VyIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC8iLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJqb2UuYmxvZ2dzQGV4YW1wbGUuY29tIiwibmFtZSI6IkpvZSBCbG9nZ3MiLCJlbWFpbCI6ImpvZS5ibG9nZ3NAZXhhbXBsZS5jb20iLCJzY29wZSI6InJlYWQgd3JpdGUiLCJqdGkiOiI2ODlhMmY3Yy0zNTJlLTQ5M2ItYWZjYi1iOWUwOTE3ODAyMDgiLCJleHAiOjE1MTMxODIxNDcsInByb3ZpZGVyIjoiYmFzaWMiLCJpYXQiOjE1MTE5NzI1NDcsIm5iZiI6MTUxMTk3MjU0NywiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwLyJ9.c5jpr8YksoJmoZ6KUwsYP5fgwZr-jdA4W3JUCbv1vXU"
     }
 
 Update a user
@@ -1579,15 +1643,19 @@ Input
 +====================+==========+===========================================+
 | ``name``           | string   |                                           |
 +--------------------+----------+-------------------------------------------+
-| ``login``          | string   |                                           |
+| ``email``          | string   |                                           |
 +--------------------+----------+-------------------------------------------+
 | ``password``       | string   |                                           |
 +--------------------+----------+-------------------------------------------+
-| ``provider``       | string   |                                           |
+| ``status``         | string   |                                           |
++--------------------+----------+-------------------------------------------+
+| ``roles``          | set      | set of roles                              |
++--------------------+----------+-------------------------------------------+
+| ``attributes``     | dict     | dictionary of key-value pairs             |
 +--------------------+----------+-------------------------------------------+
 | ``text``           | string   |                                           |
 +--------------------+----------+-------------------------------------------+
-| ``email_verified`` | string   |                                           |
+| ``email_verified`` | boolean  |                                           |
 +--------------------+----------+-------------------------------------------+
 
 Example Request
