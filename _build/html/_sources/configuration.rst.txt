@@ -51,13 +51,13 @@ API Settings
 ~~~~~~~~~~~~
 ::
 
-    QUERY_LIMIT = 10000
+    DEFAULT_PAGE_SIZE = 1000
     HISTORY_LIMIT = 100
     API_KEY_EXPIRE_DAYS = 365
 
-.. index:: QUERY_LIMIT, HISTORY_LIMIT, API_KEY_EXPIRE_DAYS
+.. index:: DEFAULT_PAGE_SIZE, HISTORY_LIMIT, API_KEY_EXPIRE_DAYS
 
-``QUERY_LIMIT``
+``DEFAULT_PAGE_SIZE``
     maximum number of alerts returned in a single query.
 ``HISTORY_LIMIT``
     number of history entries returned in alert details.
