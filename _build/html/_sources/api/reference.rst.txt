@@ -424,7 +424,7 @@ Parameters
 +-----------------+----------+----------------------------------------------+
 | ``page``        | integer  | number between 1 and total pages (default: 1)|
 +-----------------+----------+----------------------------------------------+
-| ``limit``       | integer  | default: 10,000 (set using ``QUERY_LIMIT`` ) |
+| ``page-size``   | integer  | default: 1000 (set ``DEFAULT_PAGE_SIZE`` )   |
 +-----------------+----------+----------------------------------------------+
 
 .. _Mongo Query Operators: http://docs.mongodb.org/manual/reference/operator/query/
