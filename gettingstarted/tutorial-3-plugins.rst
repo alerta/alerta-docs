@@ -146,8 +146,7 @@ has exceeded the threshold.
 
     import logging
 
-    from alerta.app import db
-    from alerta.app.exceptions import RateLimit
+    from alerta.exceptions import RateLimit
     from alerta.plugins import PluginBase
 
     LOG = logging.getLogger('alerta.plugins.transient')
@@ -160,7 +159,7 @@ has exceeded the threshold.
         def pre_receive(self, alert):
 
             LOG.info("Detecting transient alerts...")
-            if db.is_flapping(alert, window=FLAPPING_WINDOW, count=FLAPPING_COUNT):
+            if alert.is_flapping(window=FLAPPING_WINDOW, count=FLAPPING_COUNT):
                 alert.severity = 'indeterminate'
                 alert.attributes['flapping'] = True
                 # uncomment following line to stop alerts from being processed
