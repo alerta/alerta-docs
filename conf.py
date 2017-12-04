@@ -270,7 +270,7 @@ html_sidebars = {
 }
 html_theme_options = {
     'description': "monitoring system",
-    'github_user': 'guardian',
+    'github_user': 'alerta',
     'github_repo': 'alerta',
     'gittip_user': '',
     'github_type': 'star',

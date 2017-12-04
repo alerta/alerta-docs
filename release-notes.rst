@@ -159,7 +159,7 @@ Release 1.0 (27-3-2012)
 * HTML/JavaScript console displays alerts on web dashboard
 * Integrations for AWS EC2, Ganglia, IRC, Kibana, Email and SNMP
 
-.. _`#68`: https://github.com/guardian/alerta/issues/68
+.. _`#68`: https://github.com/alerta/alerta/issues/68
 .. _version 3: https://github.com/alerta/angular-alerta-webui
 .. _Dashboard: https://github.com/alerta/alerta-dashboard
-.. _first commit: https://github.com/guardian/alerta/commit/a4473ecd39d992deb00c66f454b3a76147dfb38b
+.. _first commit: https://github.com/alerta/alerta/commit/a4473ecd39d992deb00c66f454b3a76147dfb38b

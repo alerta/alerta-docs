@@ -138,8 +138,8 @@ Python 2.7 in production environments.
 .. _recommended: http://flask.pocoo.org/docs/0.10/python3/#recommendations
 
 .. _created: https://github.com/alerta/nagios3-alerta
-.. _many: https://github.com/guardian/alerta/tree/master/alerta/plugins
+.. _many: https://github.com/alerta/alerta/tree/master/alerta/plugins
 .. _plugins: https://github.com/alerta/alerta-contrib/tree/master/plugins
 .. _integrations: https://github.com/alerta/alerta-contrib/tree/master/integrations
-.. _popular: https://github.com/guardian/alerta/issues/74
-.. _demand: https://github.com/guardian/alerta/issues/75
+.. _popular: https://github.com/alerta/alerta/issues/74
+.. _demand: https://github.com/alerta/alerta/issues/75
