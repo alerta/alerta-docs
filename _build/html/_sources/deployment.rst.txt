@@ -152,7 +152,7 @@ delete old *closed* alerts run a contributed MongoDB script_
 called :file:`housekeepingAlerts.js` at regular intervals
 via ``cron``.
 
-.. _script: https://github.com/guardian/alerta/blob/master/contrib/mongo/housekeepingAlerts.js
+.. _script: https://github.com/alerta/alerta/blob/master/contrib/mongo/housekeepingAlerts.js
 
 .. _stale heartbeats:
 
@@ -220,7 +220,7 @@ from a Debian `vagrant box`_, an `AWS EC2 instance`_,
 * `Ansible`_ - deploy Alerta using ansible on Centos 7
 
 .. _Vagrant: https://github.com/alerta/vagrant-try-alerta
-.. _Heroku: https://github.com/guardian/alerta#deploy-to-the-cloud
+.. _Heroku: https://github.com/alerta/alerta#deploy-to-the-cloud
 .. _web UI to Heroku: https://github.com/alerta/angular-alerta-webui#deploy-to-the-cloud
 .. _Openshift: https://github.com/alerta/openshift-api-alerta
 .. _AWS EC2: https://github.com/alerta/alerta-cloudformation

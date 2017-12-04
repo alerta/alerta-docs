@@ -121,10 +121,10 @@ Enforcing Conventions
 Once a set of naming conventions are agreed, they can be enforced by
 using a simple :ref:`pre-receive <prereceive>` plugin.
 
-A full working example called `reject`_ can be found in the plugins
+A full working example called reject_ can be found in the plugins
 directory of the project code repository and is installed by default.
 The server configuration settings :envvar:`ORIGIN_BLACKLIST` and
 :envvar:`ALLOWED_ENVIRONMENTS` can be used to tailor it for your
 circumstances.
 
-.. _`reject`: https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py
+.. _reject: https://github.com/alerta/alerta/blob/master/alerta/plugins/reject.py

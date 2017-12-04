@@ -85,18 +85,18 @@ external notification and <em>status change hooks</em> for bi-directional integr
 <p>Using pre-receive hooks, plugins provide the ability to transform raw alert data
 from sources before alerts are created. For example, alerts can be <em>normalised</em>
 to ensure they all have specific attributes or tags or only have a specific value
-from a range of allowed values. This is demonstrated in the <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py">reject plugin</a>
+from a range of allowed values. This is demonstrated in the <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/plugins/reject.py">reject plugin</a>
 that enforces an alert policy.</p>
 <p>Plugins can also be used to <em>enhance</em> alerts  – like the <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/geoip/geoip.py">Geo location plugin</a>
 which adds location data to alerts based on the remote IP address of the client,
-or the generic <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/enhance.py">enhance plugin</a> which adds a <code class="docutils literal"><span class="pre">customer</span></code> attribute based on
+or the generic <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/plugins/enhance.py">enhance plugin</a> which adds a <code class="docutils literal"><span class="pre">customer</span></code> attribute based on
 information contained in the alert.</p>
 </div>
 <div class="section" id="external-notification">
 <span id="postreceive"></span><h3>External Notification<a class="headerlink" href="#external-notification" title="Permalink to this headline">¶</a></h3>
 <p>Using post-receive hooks, plugin integrations can be used to provide downstream
 systems with alerts in realtime for external notification. For example, pushing
-alerts onto an <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/sns.py">AWS SNS topic</a>, <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/amqp.py">AMQP queue</a>, logging to a <a class="reference external" href="https://github.com/guardian/alerta/blob/master/alerta/plugins/logstash.py">Logstash/Kibana</a>
+alerts onto an <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/plugins/sns.py">AWS SNS topic</a>, <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/plugins/amqp.py">AMQP queue</a>, logging to a <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/plugins/logstash.py">Logstash/Kibana</a>
 stack, or sending notifications to <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/hipchat">HipChat</a>, <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/slack">Slack</a> or <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/twilio">Twilio</a> and many
 more.</p>
 </div>
@@ -243,7 +243,7 @@ using <code class="docutils literal"><span class="pre">alerta</span> <span class
 
 
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=guardian&repo=alerta&type=star&count=true&size=large&v=2"
+<iframe src="https://ghbtns.com/github-btn.html?user=alerta&repo=alerta&type=star&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
 
@@ -254,10 +254,10 @@ using <code class="docutils literal"><span class="pre">alerta</span> <span class
     
 
 <p>
-<a href="https://travis-ci.org/guardian/alerta">
+<a href="https://travis-ci.org/alerta/alerta">
     <img
-        alt="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
-        src="https://secure.travis-ci.org/guardian/alerta.svg?branch=master"
+        alt="https://secure.travis-ci.org/alerta/alerta.svg?branch=master"
+        src="https://secure.travis-ci.org/alerta/alerta.svg?branch=master"
     />
 </a>
 </p>

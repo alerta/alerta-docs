@@ -69,15 +69,14 @@ The API Explorer website can be used to query for, and send alerts to, the http:
 Contribute
 ----------
 
-* Core project: http://github.com/guardian/alerta
-* Web UI, Python SDK, integrations: http://github.com/alerta
+* Core project, Web UI, Python SDK, integrations: http://github.com/alerta
 
 Support
 -------
 
 * Gitter chat room: https://gitter.im/alerta/chat
 * :ref:`Frequently Asked Questions <faq>`
-* Issue Tracker: http://github.com/guardian/alerta/issues
+* Issue Tracker: http://github.com/alerta/alerta/issues
 
 .. toctree::
    :maxdepth: 1

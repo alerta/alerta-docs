@@ -266,7 +266,7 @@ of matching alerts for each severity.
 Multiple severity indicators can be placed on the same page each for a
 different environment, service or group. See the `example oembed web page`_.
 
-.. _example oembed web page: https://github.com/guardian/alerta/blob/master/examples/oembed.html
+.. _example oembed web page: https://github.com/alerta/alerta/blob/master/examples/oembed.html
 
 .. _plugins:
 
@@ -283,11 +283,11 @@ Core
 
 `Core plugins`_ have been developed as examples of common use-cases.
 
-.. _Core plugins: https://github.com/guardian/alerta/tree/master/alerta/plugins
+.. _Core plugins: https://github.com/alerta/alerta/tree/master/alerta/plugins
 
 * `Reject`_ - reject alerts before processing. used to enforce custom alert format policies
 
-.. _Reject: https://github.com/guardian/alerta/blob/master/alerta/plugins/reject.py
+.. _Reject: https://github.com/alerta/alerta/blob/master/alerta/plugins/reject.py
 
 Contrib
 ~~~~~~~
