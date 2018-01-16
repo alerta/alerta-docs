@@ -12,6 +12,12 @@ it should `always be deployed`_ as a WSGI application. See the list
 of `real world`_ examples below for different ways to run Alerta as
 a WSGI application.
 
+When deploying with Apache mod_wsgi, be aware that by default Apache 
+strips the Authentication header. This will cause you to receive 
+"Missing authorization API Key or Bearer Token" errors. This can be 
+fixed by setting ``WSGIPassAuthorization On`` in the configuration 
+file for the site.
+
 .. _always be deployed: http://flask.pocoo.org/docs/0.10/deploying/
 .. _WSGI: http://www.fullstackpython.com/wsgi-servers.html
 
