@@ -50,6 +50,11 @@ during development or testing but when run in a production environment,
 it should <a class="reference external" href="http://flask.pocoo.org/docs/0.10/deploying/">always be deployed</a> as a WSGI application. See the list
 of <a class="reference internal" href="#real-world">real world</a> examples below for different ways to run Alerta as
 a WSGI application.</p>
+<p>When deploying with Apache mod_wsgi, be aware that by default Apache
+strips the Authentication header. This will cause you to receive
+“Missing authorization API Key or Bearer Token” errors. This can be
+fixed by setting <code class="docutils literal"><span class="pre">WSGIPassAuthorization</span> <span class="pre">On</span></code> in the configuration
+file for the site.</p>
 </div>
 <div class="section" id="web-proxy">
 <span id="reverse-proxy"></span><h2>Web Proxy<a class="headerlink" href="#web-proxy" title="Permalink to this headline">¶</a></h2>
