@@ -154,11 +154,22 @@ House Keeping
 
 There are some jobs that should be run periodically to keep the
 Alerta console clutter free. To timeout *expired* alerts and
-delete old *closed* alerts run a contributed MongoDB script_
-called :file:`housekeepingAlerts.js` at regular intervals
-via ``cron``.
+delete old *closed* alerts you need to trigger housekeeping.
 
-.. _script: https://github.com/alerta/alerta/blob/master/contrib/mongo/housekeepingAlerts.js
+This can be done with the ``alerta`` command-line tool::
+
+    $ alerta housekeeping
+
+This was not supported by earlier versions of the command-line tool
+and cURL has to be used to access ``/management/housekeeping``.
+
+The API key needs an admin scope if AUTH_REQUIRED is set to True.
+
+It is suggested that you run housekeeping at regular intervals via
+``cron``. Every minute is a suitable interval.
+
+In earlier versions of Alerta, a script called housekeepingAlerts.js
+was used for housekeeping. This is now deprecated.
 
 .. _stale heartbeats:
 
