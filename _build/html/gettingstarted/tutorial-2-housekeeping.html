@@ -78,55 +78,21 @@ access to a similarly configured Alerta server.</p>
 <div class="section" id="step-1-housekeeping">
 <h2>Step 1: Housekeeping<a class="headerlink" href="#step-1-housekeeping" title="Permalink to this headline">¶</a></h2>
 <p>To work with alert timeouts you first need to setup a regular housekeeping
-job that runs every minute to check for stale alerts and update the
-alert status and history log:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ vi /usr/local/bin/housekeepingAlerts.js
+job that runs every minute to expire and delete alerts. The alerta
+command-line client supports this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta housekeeping
 </pre></div>
-</div>
-<div class="highlight-default"><div class="highlight"><pre><span></span>// housekeepingAlerts.js
-
-now = new Date();
-
-// mark timed out alerts as EXPIRED and update alert history
-db.alerts.aggregate([
-    { $project: { event: 1, status: 1, lastReceiveId: 1, timeout: 1, expireTime: { $add: [ &quot;$lastReceiveTime&quot;, { $multiply: [ &quot;$timeout&quot;, 1000 ]} ]} } },
-    { $match: { status: { $ne: &#39;expired&#39; }, expireTime: { $lt: now }, timeout: { $ne: 0 }}}
-]).forEach( function(alert) {
-    db.alerts.update(
-        { _id: alert._id },
-        {
-            $set: { status: &#39;expired&#39; },
-            $push: {
-                history: {
-                    event: alert.event,
-                    status: &#39;expired&#39;,
-                    text: &quot;alert timeout status change&quot;,
-                    id: alert.lastReceiveId,
-                    updateTime: now
-                }
-            }
-        }, false, true);
-})
-
-// delete CLOSED or EXPIRED alerts older than 2 hours
-two_hrs_ago = new Date(new Date() - 2*60*60*1000);
-db.alerts.remove({status: {$in: [&#39;closed&#39;, &#39;expired&#39;]}, lastReceiveTime: {$lt: two_hrs_ago}});
-
-// delete INFORM alerts older than 12 hours
-twelve_hrs_ago = new Date(new Date() - 12*60*60*1000);
-db.alerts.remove({severity: &#39;informational&#39;, lastReceiveTime: {$lt: twelve_hrs_ago}});
-</pre></div>
-</div>
-<div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<p class="last">Alerts with a timeout value of zero (0) will never be expired and
-therefore never deleted if using the above script.</p>
 </div>
 <p>Add the <cite>cron</cite> entry to run every minute as root (the root user is used
 to keep the tutorial simple however there is nothing about what the
 script does that actually requires root access):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ echo &quot;* * * * * root /usr/bin/mongo --quiet monitoring /usr/local/bin/housekeepingAlerts.js&quot; &gt;/etc/cron.d/alerta
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ echo &quot;* * * * * root /usr/bin/alerta housekeeping&quot; &gt;/etc/cron.d/alerta
 </pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Your path to the alerta command-line tool may be different. Check
+the path with <code class="docutils literal"><span class="pre">$</span> <span class="pre">which</span> <span class="pre">alerta</span></code></p>
 </div>
 </div>
 <div class="section" id="step-2-alert-timeouts">

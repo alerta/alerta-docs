@@ -158,9 +158,18 @@ the MongoDB database should be deployed as a <a class="reference external" href=
 <span id="housekeeping"></span><h2>House Keeping<a class="headerlink" href="#house-keeping" title="Permalink to this headline">¶</a></h2>
 <p>There are some jobs that should be run periodically to keep the
 Alerta console clutter free. To timeout <em>expired</em> alerts and
-delete old <em>closed</em> alerts run a contributed MongoDB <a class="reference external" href="https://github.com/alerta/alerta/blob/master/contrib/mongo/housekeepingAlerts.js">script</a>
-called <code class="file docutils literal"><span class="pre">housekeepingAlerts.js</span></code> at regular intervals
-via <code class="docutils literal"><span class="pre">cron</span></code>.</p>
+delete old <em>closed</em> alerts you need to trigger housekeeping.</p>
+<p>This can be done with the <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta housekeeping
+</pre></div>
+</div>
+<p>This was not supported by earlier versions of the command-line tool
+and cURL has to be used to access <code class="docutils literal"><span class="pre">/management/housekeeping</span></code>.</p>
+<p>The API key needs an admin scope if AUTH_REQUIRED is set to True.</p>
+<p>It is suggested that you run housekeeping at regular intervals via
+<code class="docutils literal"><span class="pre">cron</span></code>. Every minute is a suitable interval.</p>
+<p>In earlier versions of Alerta, a script called housekeepingAlerts.js
+was used for housekeeping. This is now deprecated.</p>
 <p id="stale-heartbeats"><a class="reference internal" href="api/reference.html#heartbeats"><span class="std std-ref">Heartbeats</span></a> can be sent from any source to
 ensure that a system is ‘alive’. To generate alerts for stale
 heartbeats the <code class="docutils literal"><span class="pre">alerta</span></code> command-line tool can be used:</p>
