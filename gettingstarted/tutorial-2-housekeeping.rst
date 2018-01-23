@@ -44,56 +44,21 @@ Step 1: Housekeeping
 --------------------
 
 To work with alert timeouts you first need to setup a regular housekeeping
-job that runs every minute to check for stale alerts and update the
-alert status and history log::
+job that runs every minute to expire and delete alerts. The alerta
+command-line client supports this::
 
-    $ vi /usr/local/bin/housekeepingAlerts.js
-
-::
-
-    // housekeepingAlerts.js
-
-    now = new Date();
-
-    // mark timed out alerts as EXPIRED and update alert history
-    db.alerts.aggregate([
-        { $project: { event: 1, status: 1, lastReceiveId: 1, timeout: 1, expireTime: { $add: [ "$lastReceiveTime", { $multiply: [ "$timeout", 1000 ]} ]} } },
-        { $match: { status: { $ne: 'expired' }, expireTime: { $lt: now }, timeout: { $ne: 0 }}}
-    ]).forEach( function(alert) {
-        db.alerts.update(
-            { _id: alert._id },
-            {
-                $set: { status: 'expired' },
-                $push: {
-                    history: {
-                        event: alert.event,
-                        status: 'expired',
-                        text: "alert timeout status change",
-                        id: alert.lastReceiveId,
-                        updateTime: now
-                    }
-                }
-            }, false, true);
-    })
-
-    // delete CLOSED or EXPIRED alerts older than 2 hours
-    two_hrs_ago = new Date(new Date() - 2*60*60*1000);
-    db.alerts.remove({status: {$in: ['closed', 'expired']}, lastReceiveTime: {$lt: two_hrs_ago}});
-
-    // delete INFORM alerts older than 12 hours
-    twelve_hrs_ago = new Date(new Date() - 12*60*60*1000);
-    db.alerts.remove({severity: 'informational', lastReceiveTime: {$lt: twelve_hrs_ago}});
-
-.. tip::
-
-    Alerts with a timeout value of zero (0) will never be expired and
-    therefore never deleted if using the above script.
+    $ alerta housekeeping
 
 Add the `cron` entry to run every minute as root (the root user is used
 to keep the tutorial simple however there is nothing about what the
 script does that actually requires root access)::
 
-    $ echo "* * * * * root /usr/bin/mongo --quiet monitoring /usr/local/bin/housekeepingAlerts.js" >/etc/cron.d/alerta
+    $ echo "* * * * * root /usr/bin/alerta housekeeping" >/etc/cron.d/alerta
+
+.. tip::
+
+    Your path to the alerta command-line tool may be different. Check
+    the path with ``$ which alerta``
 
 Step 2: Alert Timeouts
 ----------------------
