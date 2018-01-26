@@ -87,16 +87,16 @@ from sources before alerts are created. For example, alerts can be <em>normalise
 to ensure they all have specific attributes or tags or only have a specific value
 from a range of allowed values. This is demonstrated in the <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/plugins/reject.py">reject plugin</a>
 that enforces an alert policy.</p>
-<p>Plugins can also be used to <em>enhance</em> alerts  – like the <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/geoip/geoip.py">Geo location plugin</a>
+<p>Plugins can also be used to <em>enhance</em> alerts  – like the <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/geoip">Geo location plugin</a>
 which adds location data to alerts based on the remote IP address of the client,
-or the generic <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/plugins/enhance.py">enhance plugin</a> which adds a <code class="docutils literal"><span class="pre">customer</span></code> attribute based on
+or the generic <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/enhance">enhance plugin</a> which adds a <code class="docutils literal"><span class="pre">customer</span></code> attribute based on
 information contained in the alert.</p>
 </div>
 <div class="section" id="external-notification">
 <span id="postreceive"></span><h3>External Notification<a class="headerlink" href="#external-notification" title="Permalink to this headline">¶</a></h3>
 <p>Using post-receive hooks, plugin integrations can be used to provide downstream
 systems with alerts in realtime for external notification. For example, pushing
-alerts onto an <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/plugins/sns.py">AWS SNS topic</a>, <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/plugins/amqp.py">AMQP queue</a>, logging to a <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/plugins/logstash.py">Logstash/Kibana</a>
+alerts onto an <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/sns">AWS SNS topic</a>, <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp">AMQP queue</a>, logging to a <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/logstash">Logstash/Kibana</a>
 stack, or sending notifications to <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/hipchat">HipChat</a>, <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/slack">Slack</a> or <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/twilio">Twilio</a> and many
 more.</p>
 </div>
@@ -107,7 +107,7 @@ with an external system. That is, an external system like Prometheus Alertmanage
 that generates alerts that are forwarded to Alerta can be updated when the status
 of an alert changes in Alerta.</p>
 <p>For example, if an operator “acknowledges” a Prometheus alert in the Alerta web
-UI then a status change hook could <a class="reference external" href="https://prometheus.io/docs/alerting/alertmanager/#silences">silence</a> the <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/prometheus/prometheus.py">corresponding alert in Alertmanager</a>.
+UI then a status change hook could <a class="reference external" href="https://prometheus.io/docs/alerting/alertmanager/#silences">silence</a> the <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/prometheus">corresponding alert in Alertmanager</a>.
 This requires that external systems provide enough information in the alert created
 in Alerta for that alert to be uniquely identified at a later date.</p>
 </div>

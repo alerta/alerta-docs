@@ -78,7 +78,7 @@ Auth setup.
 
 .. _Google: https://developers.google.com/accounts/docs/OpenIDConnect
 .. _GitHub: https://developer.github.com/v3/oauth/
-.. _GitLab: http://doc.gitlab.com/ce/integration/oauth_provider.html
+.. _GitLab: https://docs.gitlab.com/ce/integration/oauth_provider.html
 .. _Keycloak: https://www.keycloak.org/documentation.html
 .. _OAuth 2.0: http://tools.ietf.org/html/draft-ietf-oauth-v2-22
 .. _OpenID Connect: http://openid.net/connect/
@@ -206,7 +206,7 @@ To restrict access to users who are members of particular `GitLab groups`_ use::
 
     ALLOWED_GITLAB_GROUPS = ['group1', 'group2']
 
-.. _`GitLab groups`: http://doc.gitlab.com/ee/workflow/groups.html#gitlab-groups
+.. _`GitLab groups`: https://docs.gitlab.com/ee/user/group/index.html
 
 .. note:: ``ALLOWED_GITLAB_GROUPS`` can be an asterisk (``*``) to force
           login but *not* restrict who can login.
