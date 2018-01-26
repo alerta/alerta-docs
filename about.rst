@@ -36,5 +36,5 @@ environment.
 
 .. _`The Guardian`: http://www.theguardian.com/
 .. _`metrics and monitoring system`: https://www.theguardian.com/info/developer-blog/2012/oct/04/winning-the-metrics-battle
-.. _`swimlaned`: http://akfpartners.com/techblog/2008/05/30/fault-isolative-architectures-or-%E2%80%9Cswimlaning%E2%80%9D/
+.. _`swimlaned`: http://akfpartners.com/growth-blog/fault-isolative-architectures-or-swimlaning
 .. _`riemann-config`: https://github.com/guardian/riemann-config

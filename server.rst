@@ -69,8 +69,8 @@ which adds location data to alerts based on the remote IP address of the client,
 or the generic `enhance plugin`_ which adds a ``customer`` attribute based on
 information contained in the alert.
 
-.. _Geo location plugin: https://github.com/alerta/alerta-contrib/blob/master/plugins/geoip/geoip.py
-.. _enhance plugin: https://github.com/alerta/alerta/blob/master/alerta/plugins/enhance.py
+.. _Geo location plugin: https://github.com/alerta/alerta-contrib/tree/master/plugins/geoip
+.. _enhance plugin: https://github.com/alerta/alerta-contrib/tree/master/plugins/enhance
 
 .. _postreceive:
 
@@ -83,9 +83,9 @@ alerts onto an `AWS SNS topic`_, `AMQP queue`_, logging to a `Logstash/Kibana`_
 stack, or sending notifications to `HipChat`_, `Slack`_ or `Twilio`_ and many
 more.
 
-.. _AWS SNS topic: https://github.com/alerta/alerta/blob/master/alerta/plugins/sns.py
-.. _AMQP queue: https://github.com/alerta/alerta/blob/master/alerta/plugins/amqp.py
-.. _Logstash/Kibana: https://github.com/alerta/alerta/blob/master/alerta/plugins/logstash.py
+.. _AWS SNS topic: https://github.com/alerta/alerta-contrib/tree/master/plugins/sns
+.. _AMQP queue: https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp
+.. _Logstash/Kibana: https://github.com/alerta/alerta-contrib/tree/master/plugins/logstash
 .. _HipChat: https://github.com/alerta/alerta-contrib/blob/master/plugins/hipchat
 .. _Slack: https://github.com/alerta/alerta-contrib/blob/master/plugins/slack
 .. _Twilio: https://github.com/alerta/alerta-contrib/blob/master/plugins/twilio
@@ -106,7 +106,7 @@ This requires that external systems provide enough information in the alert crea
 in Alerta for that alert to be uniquely identified at a later date.
 
 .. _silence: https://prometheus.io/docs/alerting/alertmanager/#silences
-.. _corresponding alert in Alertmanager: https://github.com/alerta/alerta-contrib/blob/master/plugins/prometheus/prometheus.py
+.. _corresponding alert in Alertmanager: https://github.com/alerta/alerta-contrib/tree/master/plugins/prometheus
 
 .. _blackout periods:
 
