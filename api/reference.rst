@@ -1382,13 +1382,13 @@ Input
 +-----------------+----------+----------------------------------------------+
 | Name            | Type     | Description                                  |
 +=================+==========+==============================================+
-| ``user``        | string   | user                           |
+| ``user``        | string   | username                                     |
 +-----------------+----------+----------------------------------------------+
-| ``scopes``      | string   | ``read-write`` or ``read-only``              |
+| ``scopes``      | string   | ``admin``, ``write``, or ``read``            |
 +-----------------+----------+----------------------------------------------+
 | ``text``        | string   | freeform description text                    |
 +-----------------+----------+----------------------------------------------+
-| ``expireTime``  | string   | **Admin use only**                           |
+| ``expireTime``  | string   |                                              |
 +-----------------+----------+----------------------------------------------+
 | ``customer``    | string   | **Admin use only**                           |
 +-----------------+----------+----------------------------------------------+
@@ -1402,7 +1402,8 @@ Example Request
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json' \
     -d '{
-          "type": "read-write",
+          "user": "admin@alerta.io",
+          "scopes": ["write"],
           "text": "API key for external system"
         }'
 
@@ -1419,14 +1420,19 @@ Example Response
       "data": {
         "count": 0,
         "customer": null,
-        "expireTime": "2018-01-01T23:21:18.508Z",
-        "key": "O8rhJSKrdfQWXqRhvSwJQJRZg9yU0s2Z4VLP4855",
+        "expireTime": "2019-01-27T22:18:42.245Z",
+        "href": "http://localhost:8080/key/_Jwm-qaGa0kBM9R1CyyQn-0qxLtBtij4ToQf6beL",
+        "id": "ca931aec-4e56-496f-a8d6-be11d93ddaed",
+        "key": "_Jwm-qaGa0kBM9R1CyyQn-0qxLtBtij4ToQf6beL",
         "lastUsedTime": null,
+        "scopes": [
+          "write"
+        ],
         "text": "API key for external system",
         "type": "read-write",
         "user": "admin@alerta.io"
       },
-      "key": "O8rhJSKrdfQWXqRhvSwJQJRZg9yU0s2Z4VLP4855",
+      "key": "_Jwm-qaGa0kBM9R1CyyQn-0qxLtBtij4ToQf6beL",
       "status": "ok"
     }
 
@@ -1459,28 +1465,39 @@ Example Response
     {
       "keys": [
         {
-          "count": 2,
+          "count": 0,
           "customer": null,
-          "expireTime": "2018-01-01T23:21:09.471Z",
-          "key": "demo-key",
-          "lastUsedTime": "2017-01-01T23:24:01.908Z",
-          "text": "demo key",
+          "expireTime": "2019-01-27T22:18:42.245Z",
+          "href": "http://localhost:8080/key/_Jwm-qaGa0kBM9R1CyyQn-0qxLtBtij4ToQf6beL",
+          "id": "ca931aec-4e56-496f-a8d6-be11d93ddaed",
+          "key": "_Jwm-qaGa0kBM9R1CyyQn-0qxLtBtij4ToQf6beL",
+          "lastUsedTime": null,
+          "scopes": [
+            "write"
+          ],
+          "text": "API key for external system",
           "type": "read-write",
           "user": "admin@alerta.io"
         },
         {
-          "count": 0,
+          "count": 21,
           "customer": null,
-          "expireTime": "2018-01-01T23:21:18.508Z",
-          "key": "O8rhJSKrdfQWXqRhvSwJQJRZg9yU0s2Z4VLP4855",
-          "lastUsedTime": null,
-          "text": "API key for external system",
+          "expireTime": "2019-01-27T19:22:27.120Z",
+          "href": "http://localhost:8080/key/demo-key",
+          "id": "532c9b59-9e90-40d4-8a3b-887362a79e9c",
+          "key": "demo-key",
+          "lastUsedTime": "2018-01-27T22:19:04.113Z",
+          "scopes": [
+            "admin",
+            "write",
+            "read"
+          ],
+          "text": "Admin key created by alertad script",
           "type": "read-write",
-          "user": "admin@alerta.io"
+          "user": "foo@foobar.com"
         }
       ],
       "status": "ok",
-      "time": "2017-01-01T23:24:01.909Z",
       "total": 2
     }
 
@@ -1499,7 +1516,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XDELETE http://localhost:8080/key/O8rhJSKrdfQWXqRhvSwJQJRZg9yU0s2Z4VLP4855 \
+    $ curl -XDELETE http://localhost:8080/key/532c9b59-9e90-40d4-8a3b-887362a79e9cO8rhJSKrdfQWXqRhvSwJQJRZg9yU0s2Z4VLP4855 \
     -H 'Authorization: Key demo-key'
 
 .. _users:
