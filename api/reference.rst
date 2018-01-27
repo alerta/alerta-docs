@@ -116,50 +116,64 @@ Example Response
 
 .. code-block:: json
 
-    {
-      "alert": {
-        "attributes": {
-          "ip": "127.0.0.1",
-          "region": "EU"
-        },
-        "correlate": [
-          "HttpServerError",
-          "HttpServerOK"
-        ],
-        "createTime": "2017-01-01T11:31:57.716Z",
-        "customer": null,
-        "duplicateCount": 0,
-        "environment": "Production",
-        "event": "HttpServerError",
-        "group": "Web",
-        "history": [],
-        "href": "http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe",
-        "id": "1711c57e-5c6a-4c39-881b-9d8d174feafe",
-        "lastReceiveId": "1711c57e-5c6a-4c39-881b-9d8d174feafe",
-        "lastReceiveTime": "2017-01-01T11:31:57.718Z",
-        "origin": "curl",
-        "previousSeverity": "indeterminate",
-        "rawData": "",
-        "receiveTime": "2017-01-01T11:31:57.718Z",
-        "repeat": false,
-        "resource": "web01",
-        "service": [
-          "example.com"
-        ],
-        "severity": "major",
-        "status": "open",
-        "tags": [
-          "dc1"
-        ],
-        "text": "Site is down.",
-        "timeout": 86400,
-        "trendIndication": "moreSevere",
-        "type": "exceptionAlert",
-        "value": "Bad Gateway (501)"
+  {
+    "alert": {
+      "attributes": {
+        "flapping": false,
+        "ip": "127.0.0.1",
+        "notify": true,
+        "region": "EU"
       },
-      "id": "1711c57e-5c6a-4c39-881b-9d8d174feafe",
-      "status": "ok"
-    }
+      "correlate": [
+        "HttpServerError",
+        "HttpServerOK"
+      ],
+      "createTime": "2018-01-27T21:00:12.999Z",
+      "customer": null,
+      "duplicateCount": 0,
+      "environment": "Production",
+      "event": "HttpServerError",
+      "group": "Web",
+      "history": [
+        {
+          "event": "HttpServerError",
+          "href": "http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+          "id": "17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+          "severity": "major",
+          "status": null,
+          "text": "Site is down.",
+          "type": "severity",
+          "updateTime": "2018-01-27T21:00:12.999Z",
+          "value": "Bad Gateway (501)"
+        }
+      ],
+      "href": "http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+      "id": "17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+      "lastReceiveId": "17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+      "lastReceiveTime": "2018-01-27T21:00:13.070Z",
+      "origin": "curl",
+      "previousSeverity": "indeterminate",
+      "rawData": null,
+      "receiveTime": "2018-01-27T21:00:13.070Z",
+      "repeat": false,
+      "resource": "web01",
+      "service": [
+        "example.com"
+      ],
+      "severity": "major",
+      "status": "open",
+      "tags": [
+        "dc1"
+      ],
+      "text": "Site is down.",
+      "timeout": 86400,
+      "trendIndication": "moreSevere",
+      "type": "exceptionAlert",
+      "value": "Bad Gateway (501)"
+    },
+    "id": "17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+    "status": "ok"
+  }
 
 Example Response (during blackout period)
 +++++++++++++++++++++++++++++++++++++++++
@@ -193,7 +207,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe \
+    $ curl http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258 \
     -H 'Authorization: Key demo-key'
 
 Example Response
@@ -208,14 +222,16 @@ Example Response
     {
       "alert": {
         "attributes": {
+          "flapping": false,
           "ip": "127.0.0.1",
+          "notify": true,
           "region": "EU"
         },
         "correlate": [
           "HttpServerError",
           "HttpServerOK"
         ],
-        "createTime": "2017-01-01T11:31:57.716Z",
+        "createTime": "2018-01-27T21:00:12.999Z",
         "customer": null,
         "duplicateCount": 0,
         "environment": "Production",
@@ -224,30 +240,24 @@ Example Response
         "history": [
           {
             "event": "HttpServerError",
-            "id": "1711c57e-5c6a-4c39-881b-9d8d174feafe",
+            "href": "http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+            "id": "17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
             "severity": "major",
+            "status": null,
             "text": "Site is down.",
             "type": "severity",
-            "updateTime": "2017-01-01T11:31:57.716Z",
+            "updateTime": "2018-01-27T21:00:12.999Z",
             "value": "Bad Gateway (501)"
-          },
-          {
-            "event": "HttpServerError",
-            "id": "1711c57e-5c6a-4c39-881b-9d8d174feafe",
-            "status": "open",
-            "text": "new alert status change",
-            "type": "status",
-            "updateTime": "2017-01-01T11:31:57.718Z"
           }
         ],
-        "href": "http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe",
-        "id": "1711c57e-5c6a-4c39-881b-9d8d174feafe",
-        "lastReceiveId": "1711c57e-5c6a-4c39-881b-9d8d174feafe",
-        "lastReceiveTime": "2017-01-01T11:31:57.718Z",
+        "href": "http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+        "id": "17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+        "lastReceiveId": "17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+        "lastReceiveTime": "2018-01-27T21:00:13.070Z",
         "origin": "curl",
         "previousSeverity": "indeterminate",
-        "rawData": "",
-        "receiveTime": "2017-01-01T11:31:57.718Z",
+        "rawData": null,
+        "receiveTime": "2018-01-27T21:00:13.070Z",
         "repeat": false,
         "resource": "web01",
         "service": [
@@ -294,7 +304,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XPUT http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe/status \
+    $ curl -XPUT http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258/status \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json' \
     -d '{
@@ -326,7 +336,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XPUT http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe/tag \
+    $ curl -XPUT http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258/tag \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json' \
     -d '{
@@ -361,7 +371,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XPUT http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe/attributes \
+    $ curl -XPUT http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258/attributes \
     -H 'Authorization: Key demo-key' \
     -H 'Content-type: application/json' \
     -d '{
@@ -387,7 +397,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XDELETE http://localhost:8080/alert/1711c57e-5c6a-4c39-881b-9d8d174feafe \
+    $ curl -XDELETE http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258 \
     -H 'Authorization: Key demo-key'
 
 .. _get_alerts:
@@ -481,14 +491,16 @@ Example Response
       "alerts": [
         {
           "attributes": {
-            "ip": "127.0.0.1",
-            "region": "US"
+            "flapping": false,
+            "incidentKey": "1234abcd",
+            "ip": "10.1.1.1",
+            "notify": true
           },
           "correlate": [
             "HttpServerError",
             "HttpServerOK"
           ],
-          "createTime": "2017-01-01T12:01:21.048Z",
+          "createTime": "2018-01-27T21:00:12.999Z",
           "customer": null,
           "duplicateCount": 0,
           "environment": "Production",
@@ -497,97 +509,47 @@ Example Response
           "history": [
             {
               "event": "HttpServerError",
-              "id": "0099bae5-9683-48a1-a49d-f566fe143770",
-              "severity": "critical",
-              "text": "Site is down.",
-              "type": "severity",
-              "updateTime": "2017-01-01T12:01:21.048Z",
-              "value": "Internal Server Error (500)"
-            },
-            {
-              "event": "HttpServerError",
-              "id": "0099bae5-9683-48a1-a49d-f566fe143770",
-              "status": "open",
-              "text": "new alert status change",
-              "type": "status",
-              "updateTime": "2017-01-01T12:01:21.050Z"
-            }
-          ],
-          "href": "http://localhost:8080/alert/0099bae5-9683-48a1-a49d-f566fe143770",
-          "id": "0099bae5-9683-48a1-a49d-f566fe143770",
-          "lastReceiveId": "0099bae5-9683-48a1-a49d-f566fe143770",
-          "lastReceiveTime": "2017-01-01T12:01:21.050Z",
-          "origin": "curl",
-          "previousSeverity": "indeterminate",
-          "rawData": "",
-          "receiveTime": "2017-01-01T12:01:21.050Z",
-          "repeat": false,
-          "resource": "web02",
-          "service": [
-            "example.com"
-          ],
-          "severity": "critical",
-          "status": "open",
-          "tags": [
-            "dc2"
-          ],
-          "text": "Site is down.",
-          "timeout": 86400,
-          "trendIndication": "moreSevere",
-          "type": "exceptionAlert",
-          "value": "Internal Server Error (500)"
-        },
-        {
-          "attributes": {
-            "ip": "127.0.0.1",
-            "region": "EU"
-          },
-          "correlate": [
-            "HttpServerError",
-            "HttpServerOK"
-          ],
-          "createTime": "2017-01-01T12:00:01.662Z",
-          "customer": null,
-          "duplicateCount": 0,
-          "environment": "Production",
-          "event": "HttpServerError",
-          "group": "Web",
-          "history": [
-            {
-              "event": "HttpServerError",
-              "id": "e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
+              "href": "http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+              "id": "17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
               "severity": "major",
+              "status": null,
               "text": "Site is down.",
               "type": "severity",
-              "updateTime": "2017-01-01T12:00:01.662Z",
+              "updateTime": "2018-01-27T21:00:12.999Z",
               "value": "Bad Gateway (501)"
             },
             {
               "event": "HttpServerError",
-              "id": "e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
-              "status": "open",
-              "text": "new alert status change",
+              "href": "http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+              "id": "17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+              "severity": null,
+              "status": "ack",
+              "text": "disk needs replacing.",
               "type": "status",
-              "updateTime": "2017-01-01T12:00:01.664Z"
+              "updateTime": "2018-01-27T21:04:42.412Z",
+              "value": null
             }
           ],
-          "href": "http://localhost:8080/alert/e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
-          "id": "e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
-          "lastReceiveId": "e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
-          "lastReceiveTime": "2017-01-01T12:00:01.664Z",
+          "href": "http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+          "id": "17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+          "lastReceiveId": "17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+          "lastReceiveTime": "2018-01-27T21:00:13.070Z",
           "origin": "curl",
           "previousSeverity": "indeterminate",
-          "rawData": "",
-          "receiveTime": "2017-01-01T12:00:01.664Z",
+          "rawData": null,
+          "receiveTime": "2018-01-27T21:00:13.070Z",
           "repeat": false,
           "resource": "web01",
           "service": [
             "example.com"
           ],
           "severity": "major",
-          "status": "open",
+          "status": "ack",
           "tags": [
-            "dc1"
+            "dc1",
+            "linux",
+            "linux2.6",
+            "dell"
           ],
           "text": "Site is down.",
           "timeout": 86400,
@@ -597,20 +559,19 @@ Example Response
         }
       ],
       "autoRefresh": true,
-      "lastTime": "2017-01-01T12:01:21.050Z",
+      "lastTime": "2018-01-27T21:00:13.070Z",
       "more": false,
       "page": 1,
-      "pageSize": 10000,
+      "pageSize": 1000,
       "pages": 1,
       "severityCounts": {
-        "critical": 1,
         "major": 1
       },
       "status": "ok",
       "statusCounts": {
-        "open": 2
+        "ack": 1
       },
-      "total": 2
+      "total": 1
     }
 
 .. _get_alerts_history:
@@ -654,15 +615,17 @@ Example Response
       "history": [
         {
           "attributes": {
-            "ip": "127.0.0.1",
-            "region": "EU"
+            "flapping": false,
+            "incidentKey": "1234abcd",
+            "ip": "10.1.1.1",
+            "notify": true
           },
           "customer": null,
           "environment": "Production",
           "event": "HttpServerError",
           "group": "Web",
-          "href": "http://localhost:8080/alert/e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
-          "id": "e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
+          "href": "http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+          "id": "17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
           "origin": "curl",
           "resource": "web01",
           "service": [
@@ -670,97 +633,29 @@ Example Response
           ],
           "severity": "major",
           "tags": [
-            "dc1"
+            "dc1",
+            "linux",
+            "linux2.6",
+            "dell"
           ],
           "text": "Site is down.",
           "type": "severity",
-          "updateTime": "2017-01-01T12:00:01.662Z",
+          "updateTime": "2018-01-27T21:00:12.999Z",
           "value": "Bad Gateway (501)"
         },
         {
           "attributes": {
-            "ip": "127.0.0.1",
-            "region": "EU"
+            "flapping": false,
+            "incidentKey": "1234abcd",
+            "ip": "10.1.1.1",
+            "notify": true
           },
           "customer": null,
           "environment": "Production",
           "event": "HttpServerError",
           "group": "Web",
-          "href": "http://localhost:8080/alert/e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
-          "id": "e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
-          "origin": "curl",
-          "resource": "web01",
-          "service": [
-            "example.com"
-          ],
-          "status": "open",
-          "tags": [
-            "dc1"
-          ],
-          "text": "new alert status change",
-          "type": "status",
-          "updateTime": "2017-01-01T12:00:01.664Z"
-        },
-        {
-          "attributes": {
-            "ip": "127.0.0.1",
-            "region": "US"
-          },
-          "customer": null,
-          "environment": "Production",
-          "event": "HttpServerError",
-          "group": "Web",
-          "href": "http://localhost:8080/alert/0099bae5-9683-48a1-a49d-f566fe143770",
-          "id": "0099bae5-9683-48a1-a49d-f566fe143770",
-          "origin": "curl",
-          "resource": "web02",
-          "service": [
-            "example.com"
-          ],
-          "severity": "critical",
-          "tags": [
-            "dc2"
-          ],
-          "text": "Site is down.",
-          "type": "severity",
-          "updateTime": "2017-01-01T12:01:21.048Z",
-          "value": "Internal Server Error (500)"
-        },
-        {
-          "attributes": {
-            "ip": "127.0.0.1",
-            "region": "US"
-          },
-          "customer": null,
-          "environment": "Production",
-          "event": "HttpServerError",
-          "group": "Web",
-          "href": "http://localhost:8080/alert/0099bae5-9683-48a1-a49d-f566fe143770",
-          "id": "0099bae5-9683-48a1-a49d-f566fe143770",
-          "origin": "curl",
-          "resource": "web02",
-          "service": [
-            "example.com"
-          ],
-          "status": "open",
-          "tags": [
-            "dc2"
-          ],
-          "text": "new alert status change",
-          "type": "status",
-          "updateTime": "2017-01-01T12:01:21.050Z"
-        },
-        {
-          "attributes": {
-            "ip": "127.0.0.1",
-            "region": "EU"
-          },
-          "customer": null,
-          "environment": "Production",
-          "event": "HttpServerError",
-          "group": "Web",
-          "href": "http://localhost:8080/alert/e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
-          "id": "e9fb05a0-b65c-4faa-8868-6f06a74a2b5b",
+          "href": "http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+          "id": "17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
           "origin": "curl",
           "resource": "web01",
           "service": [
@@ -768,15 +663,18 @@ Example Response
           ],
           "status": "ack",
           "tags": [
-            "dc1"
+            "dc1",
+            "linux",
+            "linux2.6",
+            "dell"
           ],
           "text": "disk needs replacing.",
           "type": "status",
-          "updateTime": "2017-01-01T12:07:27.455Z"
+          "updateTime": "2018-01-27T21:04:42.412Z"
         }
       ],
-      "lastTime": "2017-01-01T12:07:27.455Z",
-      "status": "ok"
+      "status": "ok",
+      "total": 2
     }
 
 Get severity and status counts for alerts
@@ -1136,7 +1034,7 @@ Example Request
     -H 'Content-type: application/json' \
     -d '{
           "environment": "Production",
-          "service": "example.com",
+          "service": ["example.com"],
           "group": "Web"
         }'
 
@@ -1151,15 +1049,25 @@ Example Response
 
     {
       "blackout": {
+        "customer": null,
         "duration": 3600,
-        "endTime": "2017-01-01T15:35:53.695Z",
+        "endTime": "2018-01-27T22:10:31.705Z",
         "environment": "Production",
-        "id": "77059317-bf66-44ef-a63d-b2e2aa8c0612",
+        "event": null,
+        "group": "Web",
+        "href": "http://localhost:8080/blackout/79d12b79-45b9-4419-80e4-1f6c17478eb6",
+        "id": "79d12b79-45b9-4419-80e4-1f6c17478eb6",
         "priority": 3,
-        "service": "example.com",
-        "startTime": "2017-01-01T14:35:53.695Z"
+        "remaining": 3599,
+        "resource": null,
+        "service": [
+          "example.com"
+        ],
+        "startTime": "2018-01-27T21:10:31.705Z",
+        "status": "active",
+        "tags": []
       },
-      "id": "77059317-bf66-44ef-a63d-b2e2aa8c0612",
+      "id": "79d12b79-45b9-4419-80e4-1f6c17478eb6",
       "status": "ok"
     }
 
@@ -1192,30 +1100,43 @@ Example Response
     {
       "blackouts": [
         {
+          "customer": null,
           "duration": 3600,
-          "endTime": "2017-01-01T15:37:42.746Z",
+          "endTime": "2018-01-27T22:10:31.705Z",
           "environment": "Production",
-          "id": "864fb326-3743-456f-a94b-86c304b436d4",
+          "event": null,
+          "group": "Web",
+          "href": "http://localhost:8080/blackout/79d12b79-45b9-4419-80e4-1f6c17478eb6",
+          "id": "79d12b79-45b9-4419-80e4-1f6c17478eb6",
           "priority": 3,
-          "remaining": 3561,
-          "service": "example.com",
-          "startTime": "2017-01-01T14:37:42.746Z",
-          "status": "active"
+          "remaining": 3345,
+          "resource": null,
+          "service": [
+            "example.com"
+          ],
+          "startTime": "2018-01-27T21:10:31.705Z",
+          "status": "active",
+          "tags": []
         },
         {
+          "customer": null,
           "duration": 3600,
-          "endTime": "2017-01-01T15:38:16.639Z",
+          "endTime": "2018-01-27T22:14:32.377Z",
           "environment": "Development",
+          "event": null,
           "group": "Performance",
-          "id": "7b599c38-cd05-453a-8fa9-fc29cf5edfd4",
+          "href": "http://localhost:8080/blackout/c17832d4-c477-4eb1-b2d5-662e7a3600be",
+          "id": "c17832d4-c477-4eb1-b2d5-662e7a3600be",
           "priority": 5,
-          "remaining": 3594,
-          "startTime": "2017-01-01T14:38:16.639Z",
-          "status": "active"
+          "remaining": 3586,
+          "resource": null,
+          "service": [],
+          "startTime": "2018-01-27T21:14:32.377Z",
+          "status": "active",
+          "tags": []
         }
       ],
       "status": "ok",
-      "time": "2017-01-01T14:38:21.676Z",
       "total": 2
     }
 
@@ -1233,7 +1154,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XDELETE http://localhost:8080/blackout/77059317-bf66-44ef-a63d-b2e2aa8c0612 \
+    $ curl -XDELETE http://localhost:8080/blackout/c17832d4-c477-4eb1-b2d5-662e7a3600be \
     -H 'Authorization: Key demo-key'
 
 .. _heartbeats:
@@ -1287,24 +1208,27 @@ Example Response
 
 .. code-block:: json
 
-  {
-    "heartbeat": {
-      "createTime": "2017-01-01T16:07:31.409Z",
-      "customer": null,
-      "href": "http://localhost:8080/heartbeat/221207f4-1f4b-4dc3-b754-5e67bc6241d1",
-      "id": "221207f4-1f4b-4dc3-b754-5e67bc6241d1",
-      "origin": "cluster05",
-      "receiveTime": "2017-01-01T16:07:31.409Z",
-      "tags": [
-        "db05",
-        "dc2"
-      ],
-      "timeout": 120,
-      "type": "Heartbeat"
-    },
-    "id": "221207f4-1f4b-4dc3-b754-5e67bc6241d1",
-    "status": "ok"
-  }
+    {
+      "heartbeat": {
+        "createTime": "2018-01-27T21:15:38.675Z",
+        "customer": null,
+        "href": "http://localhost:8080/heartbeat/1a3f2e0a-3c65-4199-84ae-a21fb892ccc0",
+        "id": "1a3f2e0a-3c65-4199-84ae-a21fb892ccc0",
+        "latency": 0,
+        "origin": "cluster05",
+        "receiveTime": "2018-01-27T21:15:38.675Z",
+        "since": 0,
+        "status": "ok",
+        "tags": [
+          "db05",
+          "dc2"
+        ],
+        "timeout": 120,
+        "type": "Heartbeat"
+      },
+      "id": "1a3f2e0a-3c65-4199-84ae-a21fb892ccc0",
+      "status": "ok"
+    }
 
 Get a heartbeat
 ~~~~~~~~~~~~~~~
@@ -1320,7 +1244,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl http://localhost:8080/heartbeat/221207f4-1f4b-4dc3-b754-5e67bc6241d1 \
+    $ curl http://localhost:8080/heartbeat/1a3f2e0a-3c65-4199-84ae-a21fb892ccc0 \
     -H 'Authorization: Key demo-key'
 
 Example Response
@@ -1334,12 +1258,15 @@ Example Response
 
     {
       "heartbeat": {
-        "createTime": "2017-01-01T16:07:31.409Z",
+        "createTime": "2018-01-27T21:15:38.675Z",
         "customer": null,
-        "href": "http://localhost:8080/hearbeat/221207f4-1f4b-4dc3-b754-5e67bc6241d1",
-        "id": "221207f4-1f4b-4dc3-b754-5e67bc6241d1",
+        "href": "http://localhost:8080/heartbeat/1a3f2e0a-3c65-4199-84ae-a21fb892ccc0",
+        "id": "1a3f2e0a-3c65-4199-84ae-a21fb892ccc0",
+        "latency": 0,
         "origin": "cluster05",
-        "receiveTime": "2017-01-01T16:07:31.409Z",
+        "receiveTime": "2018-01-27T21:15:38.675Z",
+        "since": 34,
+        "status": "ok",
         "tags": [
           "db05",
           "dc2"
@@ -1380,36 +1307,41 @@ Example Response
     {
       "heartbeats": [
         {
-          "createTime": "2017-01-01T16:07:31.409Z",
+          "createTime": "2018-01-27T21:17:13.922Z",
           "customer": null,
-          "href": "http://localhost:8080/heartbeat/221207f4-1f4b-4dc3-b754-5e67bc6241d1",
-          "id": "221207f4-1f4b-4dc3-b754-5e67bc6241d1",
+          "href": "http://localhost:8080/heartbeat/f5eb11ef-e02b-42f2-9013-6efca6eca22a",
+          "id": "f5eb11ef-e02b-42f2-9013-6efca6eca22a",
+          "latency": 0,
+          "origin": "web02",
+          "receiveTime": "2018-01-27T21:17:13.922Z",
+          "since": 45,
+          "status": "ok",
+          "tags": [
+            "linux",
+            "dc1"
+          ],
+          "timeout": 120,
+          "type": "Heartbeat"
+        },
+        {
+          "createTime": "2018-01-27T21:17:55.936Z",
+          "customer": null,
+          "href": "http://localhost:8080/heartbeat/e0582765-ee64-4944-8a94-1869a079d81f",
+          "id": "e0582765-ee64-4944-8a94-1869a079d81f",
+          "latency": 0,
           "origin": "cluster05",
-          "receiveTime": "2017-01-01T16:07:31.409Z",
+          "receiveTime": "2018-01-27T21:17:55.936Z",
+          "since": 3,
+          "status": "ok",
           "tags": [
             "db05",
             "dc2"
           ],
           "timeout": 120,
           "type": "Heartbeat"
-        },
-        {
-          "createTime": "2017-01-01T16:18:42.839Z",
-          "customer": null,
-          "href": "http://localhost:8080/heartbeat/55881e1e-ec53-4637-8f4d-05b252d385d5",
-          "id": "55881e1e-ec53-4637-8f4d-05b252d385d5",
-          "origin": "device03",
-          "receiveTime": "2017-01-01T16:18:42.839Z",
-          "tags": [
-            "v2.2",
-            "dc1"
-          ],
-          "timeout": 900,
-          "type": "Heartbeat"
         }
       ],
       "status": "ok",
-      "time": "2017-01-01T16:19:51.896Z",
       "total": 2
     }
 
@@ -1427,7 +1359,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl -XDELETE http://localhost:8080/heartbeat/221207f4-1f4b-4dc3-b754-5e67bc6241d1 \
+    $ curl -XDELETE http://localhost:8080/heartbeat/e0582765-ee64-4944-8a94-1869a079d81f \
     -H 'Authorization: Key demo-key'
 
 .. _api_keys:
@@ -1450,13 +1382,15 @@ Input
 +-----------------+----------+----------------------------------------------+
 | Name            | Type     | Description                                  |
 +=================+==========+==============================================+
-| ``user``        | string   | **Admin use only**                           |
+| ``user``        | string   | user                           |
 +-----------------+----------+----------------------------------------------+
-| ``customer``    | string   | **Admin use only**                           |
-+-----------------+----------+----------------------------------------------+
-| ``type``        | string   | ``read-write`` or ``read-only``              |
+| ``scopes``      | string   | ``read-write`` or ``read-only``              |
 +-----------------+----------+----------------------------------------------+
 | ``text``        | string   | freeform description text                    |
++-----------------+----------+----------------------------------------------+
+| ``expireTime``  | string   | **Admin use only**                           |
++-----------------+----------+----------------------------------------------+
+| ``customer``    | string   | **Admin use only**                           |
 +-----------------+----------+----------------------------------------------+
 
 Example Request
