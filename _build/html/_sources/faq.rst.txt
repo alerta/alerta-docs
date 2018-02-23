@@ -129,13 +129,12 @@ they discussion PyMongo in relation to forking_ and mod_wsgi_ site.
 Does Alerta support Python 3?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Yes, however due to dependencies on Flask the minimum version is
-Python 3.4 and even then there may still be issues. For example,
-running Flask apps as a WSGI application using Python 3 may be
-problematic and so it is currently recommended_ to run Alerta using
-Python 2.7 in production environments.
+Yes, the minimum version is Python 3.4. Python 3 is recommended for new 
+production environments and existing installations should be switched to 
+Python 3. Alerta currently supports Python 2.7, but it has been proposed_ 
+to end support after 31st August 2018.
 
-.. _recommended: http://flask.pocoo.org/docs/0.10/python3/#recommendations
+.. _proposed: https://github.com/alerta/alerta/issues/480
 
 .. _created: https://github.com/alerta/nagios3-alerta
 .. _many: https://github.com/alerta/alerta/tree/master/alerta/plugins
