@@ -62,9 +62,22 @@
 <li>Python 3 support only (no breaking changes for Python 2, yet)</li>
 </ul>
 </div>
-<div class="section" id="release-5-0-0">
-<h3>Release 5.0.0 ()<a class="headerlink" href="#release-5-0-0" title="Permalink to this headline">¶</a></h3>
-<p>TBC</p>
+<div class="section" id="release-5-0-0-07-10-2017">
+<h3>Release 5.0.0 (07-10-2017)<a class="headerlink" href="#release-5-0-0-07-10-2017" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Support for PostgreSQL (including Amazon RDS and Google Cloud SQL)</li>
+<li>API responses are Gzipped to make everything faster</li>
+<li>Development command line has changed from <cite>alertad</cite> to <cite>alertad run</cite></li>
+<li>Major code refactor with flatter structure (beware imports! see next)</li>
+<li>WSGI import has changed from <cite>from alerta.app import app</cite> to simply <cite>from alerta import app</cite></li>
+<li>Plugins import has changed from <cite>from alerta.app import app</cite> to <cite>from alerta.plugins import app</cite></li>
+<li>Blackout is now a plugin so it can be disabled and replaced with a custom blackout handler</li>
+<li>Switched to using wheels for distribution via PyPI See <a class="reference external" href="http://pythonwheels.com/">http://pythonwheels.com/</a></li>
+<li>Alerta API now supports multiple roles for BasicAuth (though not supported in the web UI yet)</li>
+<li>Alert format: <cite>value</cite> is now always cast to a string.</li>
+<li>Added <cite>/management/housekeeping</cite> URL to replace <cite>housekeepingAlerts.js</cite> cron job script</li>
+<li><cite>DATABASE_URL</cite> connection URI setting replaces every other MongoDB setting with a non-mongo specific variable</li>
+</ul>
 </div>
 <div class="section" id="release-4-10-27-07-2017">
 <h3>Release 4.10 (27-07-2017)<a class="headerlink" href="#release-4-10-27-07-2017" title="Permalink to this headline">¶</a></h3>

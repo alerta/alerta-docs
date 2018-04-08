@@ -24,10 +24,21 @@ Release 5.1.0 (08-04-2018)
 * multiple customers for auth providers that allow membership of more than one group
 * Python 3 support only (no breaking changes for Python 2, yet)
 
-Release 5.0.0 ()
-----------------
+Release 5.0.0 (07-10-2017)
+--------------------------
 
-TBC
+* Support for PostgreSQL (including Amazon RDS and Google Cloud SQL)
+* API responses are Gzipped to make everything faster
+* Development command line has changed from `alertad` to `alertad run`
+* Major code refactor with flatter structure (beware imports! see next)
+* WSGI import has changed from `from alerta.app import app` to simply `from alerta import app`
+* Plugins import has changed from `from alerta.app import app` to `from alerta.plugins import app`
+* Blackout is now a plugin so it can be disabled and replaced with a custom blackout handler
+* Switched to using wheels for distribution via PyPI See http://pythonwheels.com/
+* Alerta API now supports multiple roles for BasicAuth (though not supported in the web UI yet)
+* Alert format: `value` is now always cast to a string.
+* Added `/management/housekeeping` URL to replace `housekeepingAlerts.js` cron job script
+* `DATABASE_URL` connection URI setting replaces every other MongoDB setting with a non-mongo specific variable
 
 Release 4.10 (27-07-2017)
 -------------------------
