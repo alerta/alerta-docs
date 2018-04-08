@@ -15,6 +15,20 @@ Roadmap
 Release History
 +++++++++++++++
 
+Release 5.1.0 (08-04-2018)
+--------------------------
+
+* alarm shelving for temporarily removing alerts from the main alert list
+* new blackout status that don't trigger plugins to keep track of suppressed alerts
+* add history entry for de-duplicated alerts with a value change
+* multiple customers for auth providers that allow membership of more than one group
+* Python 3 support only (no breaking changes for Python 2, yet)
+
+Release 5.0.0 ()
+----------------
+
+TBC
+
 Release 4.10 (27-07-2017)
 -------------------------
 
