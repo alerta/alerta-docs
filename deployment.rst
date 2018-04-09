@@ -168,6 +168,16 @@ The API key needs an admin scope if AUTH_REQUIRED is set to True.
 It is suggested that you run housekeeping at regular intervals via
 ``cron``. Every minute is a suitable interval.
 
+By default, when you run housekeeping, Alerta will remove any alerts
+that have been expired or closed for 2 hours and any info messages that
+are 12 hours old. In some cases, these retention periods may be too
+long or too short for your needs. Bear in mind that Alerta is intended
+to reflect the here and now, so long deletion thresholds should be
+avoided. Where you do need to depart from the defaults, you can specify
+like this:
+
+    $ alerta housekeeping --expired 2 --info 12
+
 In earlier versions of Alerta, a script called housekeepingAlerts.js
 was used for housekeeping. This is now deprecated.
 
