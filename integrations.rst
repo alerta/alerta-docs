@@ -222,6 +222,18 @@ For details on how to set this up see `Grafana webhook`_ page and in the
 
 :file:`https://alerta.example.com/api/webhooks/grafana`
 
+**The following parameters can be set in the url**
+     environment, event_type, group, origin, service, severity, timeout
+
+:file:`https://alerta.example.com/api/webhooks/grafana?api-key=xxx
+      &environment=Production
+      &event_type=performanceAlert
+      &group=Performance
+      &origin=Grafana
+      &service=Grafana
+      &severity=major
+      &timeout=86400`
+
 .. _telegram:
 
 Telegram
@@ -330,4 +342,3 @@ implementation-specific requirements.
 .. _Syslog Logger: https://github.com/alerta/alerta-contrib/tree/master/plugins/syslog
 .. _Telegram Bot: https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram
 .. _`Twilio SMS`: https://github.com/alerta/alerta-contrib/tree/master/plugins/twilio
-
