@@ -98,7 +98,7 @@ Attributes added when processing alerts
 +----------------------+----------------------------------------------------+
 | ``customer``         | assigned based on the owner of the API key used    |
 |                      | when submitting the alert, if "Customer Views"     |
-|                      | is enabled                                         |
+|                      | is enabled, or can be set if ``admin`` user        |
 +----------------------+----------------------------------------------------+
 | ``history``          | whenever an alert changes severity or status then  |
 |                      | a list of key alert attributes are appended to     |
@@ -122,6 +122,10 @@ Alert Status
 | ``closed``        | 4               |
 +-------------------+-----------------+
 | ``expired``       | 5               |
++-------------------+-----------------+
+| ``blackout``      | 6               |
++-------------------+-----------------+
+| ``shelved``       | 7               |
 +-------------------+-----------------+
 | ``unknown``       | 9               |
 +-------------------+-----------------+
@@ -147,21 +151,21 @@ alert severities.
 +-------------------+---------------+--------+
 | ``warning``       | 4             | Blue   |
 +-------------------+---------------+--------+
-| ``indeterminate`` | 5             | Silver |
+| ``informational`` | 5             | Green  |
 +-------------------+---------------+--------+
-| ``cleared``       | 5             | Green  |
+| ``debug``         | 6             | Purple |
 +-------------------+---------------+--------+
-| ``normal``        | 5             | Green  |
+| ``trace``         | 7             | Grey   |
 +-------------------+---------------+--------+
-| ``ok``            | 5             | Green  |
+| ``indeterminate`` | 8             | Silver |
 +-------------------+---------------+--------+
-| ``informational`` | 6             | Green  |
+| ``cleared``       | 9             | Green  |
 +-------------------+---------------+--------+
-| ``debug``         | 7             | Purple |
+| ``normal``        | 9             | Green  |
 +-------------------+---------------+--------+
-| ``trace``         | 8             | Grey   |
+| ``ok``            | 9             | Green  |
 +-------------------+---------------+--------+
-| ``unknown``       | 9             | Grey   |
+| ``unknown``       | 10            | Grey   |
 +-------------------+---------------+--------+
 
 .. _Alarms in Syslog: http://tools.ietf.org/html/rfc5674#section-2
@@ -188,9 +192,11 @@ History log entries can be for either severity or status changes.
 +--------------------+------------------------------------------------------+
 | ``text``           | text describing reason for severity or status change |
 +--------------------+------------------------------------------------------+
-| ``type``           | history type eg. ``severity`` or ``status``          |
+| ``type``           | history type eg. ``action``, ``status``,             |
+|                    | ``severity`` or ``value`` change                     |
 +--------------------+------------------------------------------------------+
-| ``updateTime``     | UTC date-time the alert history was updated          |
+| ``updateTime``     | UTC date-time the alert triggering the change was    |
+|                    | created                                              |
 +--------------------+------------------------------------------------------+
 
 .. note:: The ``severity`` and ``value`` attributes are only added to

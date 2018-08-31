@@ -18,7 +18,7 @@ strips the Authentication header. This will cause you to receive
 fixed by setting ``WSGIPassAuthorization On`` in the configuration 
 file for the site.
 
-.. _always be deployed: http://flask.pocoo.org/docs/0.10/deploying/
+.. _always be deployed: http://flask.pocoo.org/docs/1.0/deploying/
 .. _WSGI: http://www.fullstackpython.com/wsgi-servers.html
 
 .. _reverse proxy:
@@ -230,28 +230,32 @@ Real World Examples
 
 Below are several different examples of how to run Alerta in production
 from a Debian `vagrant box`_, an `AWS EC2 instance`_,
-`RedHat Openshift PaaS`_ to a `Docker container`_.
+`Heroku PaaS`_ to a `Docker container`_.
 
 .. _vagrant box: https://docs.vagrantup.com/v2/boxes.html
 .. _AWS EC2 instance: https://aws.amazon.com/ec2/
-.. _RedHat OpenShift PaaS: https://www.openshift.com/products
+.. _Heroku PaaS: https://www.heroku.com/platform
 .. _Docker container: https://www.docker.com/whatisdocker
 
 * Vagrant_ - deploy Alerta stand-alone or with Nagios, Zabbix, Riemann, Sensu or Kibana
 * Heroku_ - deploy the Alerta API and the `web ui to Heroku`_ PaaS
-* OpenShift_ - deploy the Alerta API to OpenShift Paas
 * `AWS EC2`_ - deploy Alerta to EC2 using AWS Cloudformation
 * Docker_ - deploy Alerta to a docker container
+* `Docker Alpine`_ - full Alerta installation (including Mongo) based on Alpine Linux
 * Packer_ - deploy Alerta to EC2 using Amazon AMIs
 * `Flask deploy`_ - deploy Alerta as a generic Flask app
 * `Ansible`_ - deploy Alerta using ansible on Centos 7
+* Terraform_ - single instance of alerta for quick demo on AWS
+* Puppet_ - Alerta recipe on top of `cfweb <https://codingfuture.net/docs/cfweb>`_ module
 
 .. _Vagrant: https://github.com/alerta/vagrant-try-alerta
 .. _Heroku: https://github.com/alerta/alerta#deploy-to-the-cloud
 .. _web UI to Heroku: https://github.com/alerta/angular-alerta-webui#deploy-to-the-cloud
-.. _Openshift: https://github.com/alerta/openshift-api-alerta
 .. _AWS EC2: https://github.com/alerta/alerta-cloudformation
 .. _Docker: https://github.com/alerta/docker-alerta
+.. _Docker Alpine: https://github.com/mytaxi/docker-alpine-alerta
 .. _Packer: https://github.com/alerta/packer-templates
 .. _Flask deploy: http://flask.pocoo.org/docs/0.10/quickstart/#deploying-to-a-web-server
 .. _Ansible: https://github.com/ramshankarjaiswal/ansible/tree/master/roles/alerta
+.. _Terraform: https://github.com/aka7/alerta-terraform
+.. _Puppet: https://github.com/codingfuture/puppet-cfwebapp

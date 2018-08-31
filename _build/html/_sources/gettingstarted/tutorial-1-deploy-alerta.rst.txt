@@ -72,10 +72,17 @@ Start the MongoDB server, check it is running and set it to start on reboot::
     $ sudo systemctl status mongodb
     $ sudo systemctl enable mongodb
 
-To install the Alerta server and ``alerta`` command-line tool::
+To run Alerta we need to ensure all Python 3 dependencies are installed::
 
-    $ sudo apt-get install -y python-pip python-dev nginx
-    $ sudo pip install alerta-server alerta uwsgi
+    $ sudo apt-get install -y python3 python3-setuptools python3-pip python3-dev python3-venv
+    $ sudo apt-get install -y nginx uwsgi-plugin-python3
+
+To install the Alerta server and ``alerta`` command-line tool into a
+Python 3 virtual environment run::
+
+    $ cd /opt
+    $ python3 -m venv alerta
+    $ alerta/bin/pip install --upgrade pip wheel alerta-server alerta uwsgi
 
 To install the web console run::
 
@@ -106,6 +113,7 @@ uses a unix socket to communicate with the nginx web server::
     mount = /api=wsgi.py
     callable = app
     manage-script-name = true
+    env = BASE_URL=/api
 
     master = true
     processes = 5
@@ -129,7 +137,7 @@ Create a ``systemd`` configuration file for the uwsgi server::
     Description=uWSGI service
 
     [Service]
-    ExecStart=/usr/local/bin/uwsgi --ini /etc/uwsgi.ini
+    ExecStart=/opt/alerta/bin/uwsgi --ini /etc/uwsgi.ini
 
     [Install]
     WantedBy=multi-user.target
@@ -180,24 +188,14 @@ Restart nginx so that it picks up the new configuration::
 
     $ sudo service nginx restart
 
-Modify the existing web console ``config.js`` configuration file to
-set the ``endpoint`` to ``/api`` and chose ``basic`` as the Authentication
-Provider::
+Modify the existing web console ``config.json`` configuration file to
+set the ``endpoint`` to ``/api``::
 
-    $ sudo vi /var/www/html/config.js
+    $ sudo vi /var/www/html/config.json
 
 ::
 
-    'use strict';
-
-    angular.module('config', [])
-      .constant('config', {
-        'endpoint'    : "/api",
-        'provider'    : "",
-        'colors'      : {},
-        'severity'    : {},
-        'audio'       : {}
-      });
+    {"endpoint": "/api"}
 
 At this point you should be able to view the web console on port 80 in
 your web browser.
@@ -233,26 +231,20 @@ severity and remove some unwanted severity levels::
         'unknown': 9
     }
 
-Modify the web console ``config.js`` configuration file again
-this time to add support for the new "Fatal" severity. Replace
-the settings for "colors" and "severity" with the following::
+And change the color map to reflect the new severities::
 
-    $ sudo vi /var/www/html/config.js
+    COLOR_MAP = {
+        'severity': {
+            'fatal': 'blue',
+            'critical': 'red',
+            'warning': '#1E90FF',
+            'indeterminate': 'lightblue',
+            'ok': '#00CC00',
+            'unknown': 'silver'
+        }
+    }
 
-::
-
-    ...
-    'colors'      : {
-      'severity': {
-        'fatal': 'black'
-      }
-    },
-    'severity'    : {
-      'fatal': 0
-    },
-    ...
-
-.. reject 
+.. reject
 
 Configure the default "reject" plugin to allow the additional
 alert environment called "Code" and not just "Production"
@@ -284,13 +276,17 @@ use::
 Send a test "fatal" alert and confirm it has been received by viewing
 it in the web console::
 
-    $ alerta send --resource net01 --event down --severity fatal \
+    $ /opt/alerta/bin/alerta send --resource net01 --event down --severity fatal \
     --environment Code --service Network --text 'net01 is down.'
 
 Note that the above can be shortened by using argument flags instead of the
 full argument names::
 
-    $ alerta send -r net01 -e down -s fatal -E Code -S Network -t 'net01 is down.'
+    $ /opt/alerta/bin/alerta send -r net01 -e down -s fatal -E Code -S Network -t 'net01 is down.'
+
+To view the alerts in a terminal run::
+
+    $  /opt/alerta/bin/alerta query
 
 Next Steps
 ----------

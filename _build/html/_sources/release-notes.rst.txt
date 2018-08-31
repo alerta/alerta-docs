@@ -5,8 +5,9 @@ Releases
 Roadmap
 +++++++
 
-* Custom alert filters and dashboard views
 * Web UI redesign using `Google material design`_
+* Custom alert filters and dashboard views
+* Use alarm model based on ISA 18.2 / IEC 62682
 
 .. _Google material design: https://www.google.com/design/spec/material-design/introduction.html
 
@@ -14,6 +15,29 @@ Roadmap
 
 Release History
 +++++++++++++++
+
+.. _release_6_0:
+
+Release 6.0.0 (01-09-2018)
+--------------------------
+
+* First release to support Python 3 only
+* Add static type checking to build pipeline and start type annotations
+* Add audit info for blackouts including user and reason
+* Support every combination of alert attribute for blackouts
+
+.. _release_5_2:
+
+Release 5.2.0 (25-04-2018)
+--------------------------
+
+* First release to support Python 3.6+ only
+* Final release to support Python 2.7
+* LDAP authentication support for BasicAuth logins
+* Change "status" endpoints to "action" endpoints
+* Allow admin to override customer assigned to an alert
+
+.. _release_5_1:
 
 Release 5.1.0 (08-04-2018)
 --------------------------
@@ -23,6 +47,8 @@ Release 5.1.0 (08-04-2018)
 * add history entry for de-duplicated alerts with a value change
 * multiple customers for auth providers that allow membership of more than one group
 * Python 3 support only (no breaking changes for Python 2, yet)
+
+.. _release_5_0:
 
 Release 5.0.0 (07-10-2017)
 --------------------------
@@ -40,6 +66,8 @@ Release 5.0.0 (07-10-2017)
 * Added `/management/housekeeping` URL to replace `housekeepingAlerts.js` cron job script
 * `DATABASE_URL` connection URI setting replaces every other MongoDB setting with a non-mongo specific variable
 
+.. _release_4_10:
+
 Release 4.10 (27-07-2017)
 -------------------------
 
@@ -51,6 +79,8 @@ Release 4.10 (27-07-2017)
 .. _RBAC: http://csrc.nist.gov/groups/SNS/rbac/
 .. _SAML2: https://tools.ietf.org/html/rfc7522
 
+.. _release_4_9:
+
 Release 4.9 (16-03-2017)
 ------------------------
 
@@ -60,6 +90,8 @@ Release 4.9 (16-03-2017)
 
 .. _Keycloak: https://www.keycloak.org/
 .. _MongoDB SSL: http://api.mongodb.com/python/current/examples/tls.html
+
+.. _release_4_8:
 
 Release 4.8 (05-09-2016)
 ------------------------
@@ -80,6 +112,8 @@ Release 4.8 (05-09-2016)
 .. _related plugin: https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram
 .. _Grafana: http://grafana.org/
 
+.. _release_4_7:
+
 Release 4.7 (24-01-2016)
 ------------------------
 
@@ -96,6 +130,8 @@ Release 4.7 (24-01-2016)
 .. _Prometheus: http://prometheus.io/docs/alerting/alertmanager/
 .. _Google Stackdriver: https://cloud.google.com/stackdriver/
 
+.. _release_4_6:
+
 Release 4.6 (26-11-2015)
 ------------------------
 
@@ -104,6 +140,8 @@ Release 4.6 (26-11-2015)
 
 .. _multitenancy: https://en.wikipedia.org/wiki/Multitenancy
 
+.. _release_4_5:
+
 Release 4.5 (9-9-2015)
 ----------------------
 
@@ -111,15 +149,21 @@ Release 4.5 (9-9-2015)
 * Use GitLab for OAuth2 login
 * Python 3 support (both ``alerta`` client and WSGI server)
 
+.. _release_4_4:
+
 Release 4.4 (11-6-2015)
 -----------------------
 
 * MongoDB version 3 support
 
+.. _release_4_3:
+
 Release 4.3 (12-5-2015)
 -----------------------
 
 * Support Basic Auth for user logins
+
+.. _release_4_2:
 
 Release 4.2 (13-3-2015)
 -----------------------
@@ -127,11 +171,15 @@ Release 4.2 (13-3-2015)
 * PagerDuty webhook integration
 * API keys can be `read-only` as well as `read-write`
 
+.. _release_4_1:
+
 Release 4.1 (25-2-2015)
 -----------------------
 
 * Twitter OAuth login
 * API response pagination
+
+.. _release_4_0:
 
 Release 4.0 (15-1-2015)
 -----------------------
@@ -139,11 +187,15 @@ Release 4.0 (15-1-2015)
 * Change web browser authentication to use JWT tokens
 * Improve Google OAuth login and add GitHub OAuth
 
+.. _release_3_3:
+
 Release 3.3 (16-12-2014)
 ------------------------
 
 * Add Amazon AWS CloudWatch, Pingdom web hook integration
 * Slack and HipChat plugins
+
+.. _release_3_2:
 
 Release 3.2 (11-10-2014)
 ------------------------
@@ -154,11 +206,15 @@ Release 3.2 (11-10-2014)
 * Add support for server-side custom plugins eg. Logstash, AWS SNS, AMQP
 * Deprecated RabbitMQ as a dependency
 
+.. _release_3_1:
+
 Release 3.1 (9-5-2014)
 ----------------------
 
 * Extend API to support new dashboard
 * Stability and performance enhancements
+
+.. _release_3_0:
 
 Release 3.0 (25-3-2014)
 -----------------------
@@ -168,6 +224,8 @@ Release 3.0 (25-3-2014)
 * Pinger module for host availablity checks
 * Start development of `version 3`_ console based on AngularJS
 
+.. _release_2_0:
+
 Release 2.0 (11-3-2013)
 -----------------------
 
@@ -175,6 +233,8 @@ Release 2.0 (11-3-2013)
 * API rewrite based on Flask microframework
 * Dashboard_ rewritten using Flask server-side templates
 * Integrations for AWS SNS, Syslog, Dynect and URL monitoring
+
+.. _release_1_0:
 
 Release 1.0 (27-3-2012)
 -----------------------

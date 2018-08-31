@@ -4,41 +4,35 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>API Reference &#8212; alerta 5.0 documentation</title>
+    <title>API Reference &#8212; alerta 6.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '5.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Alert Format" href="alert.html" />
-    <link rel="prev" title="Getting Started" href="../tutorials.html" />
+    <link rel="prev" title="Resources" href="../resources.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="api-reference">
@@ -113,17 +107,17 @@
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">All <code class="docutils literal"><span class="pre">datetime</span></code> parameters must be in ISO 8601 format in UTC time
+<p class="last">All <code class="docutils literal notranslate"><span class="pre">datetime</span></code> parameters must be in ISO 8601 format in UTC time
 (using time zone designator “Z”) and expressed to millisecond precision as
-recommended by the <a class="reference external" href="https://www.w3.org/TR/NOTE-datetime">W3C Date and Time Formats Note</a> eg. <code class="docutils literal"><span class="pre">2017-06-19T11:16:19.744Z</span></code></p>
+recommended by the <a class="reference external" href="https://www.w3.org/TR/NOTE-datetime">W3C Date and Time Formats Note</a> eg. <code class="docutils literal notranslate"><span class="pre">2017-06-19T11:16:19.744Z</span></code></p>
 </div>
 <div class="section" id="alerts">
 <span id="id1"></span><h2><a class="toc-backref" href="#id78">Alerts</a><a class="headerlink" href="#alerts" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="create-an-alert">
 <span id="post-alert"></span><h3><a class="toc-backref" href="#id79">Create an alert</a><a class="headerlink" href="#create-an-alert" title="Permalink to this headline">¶</a></h3>
-<p>Creates a new alert, or updates an existing alert if the <code class="docutils literal"><span class="pre">environment</span></code>-
-<code class="docutils literal"><span class="pre">resource</span></code>-<code class="docutils literal"><span class="pre">event</span></code> combination already exists.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">alert</span>
+<p>Creates a new alert, or updates an existing alert if the <code class="docutils literal notranslate"><span class="pre">environment</span></code>-
+<code class="docutils literal notranslate"><span class="pre">resource</span></code>-<code class="docutils literal notranslate"><span class="pre">event</span></code> combination already exists.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">alert</span>
 </pre></div>
 </div>
 <div class="section" id="input">
@@ -141,71 +135,71 @@ recommended by the <a class="reference external" href="https://www.w3.org/TR/NOT
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">resource</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">resource</span></code></td>
 <td>string</td>
 <td><strong>Required</strong> resource under alarm</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">event</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">event</span></code></td>
 <td>string</td>
 <td><strong>Required</strong> event name</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">environment</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">environment</span></code></td>
 <td>string</td>
 <td>environment, used to namespace the resource</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">severity</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">severity</span></code></td>
 <td>string</td>
 <td>see <span class="xref std std-ref">severity_table</span> table</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">correlate</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">correlate</span></code></td>
 <td>list</td>
 <td>list of related event names</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">status</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">status</span></code></td>
 <td>string</td>
 <td>see <span class="xref std std-ref">status_table</span> table</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">service</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">service</span></code></td>
 <td>list</td>
 <td>list of effected services</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">group</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">group</span></code></td>
 <td>string</td>
 <td>used to group events of similar type</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">value</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">value</span></code></td>
 <td>string</td>
 <td>event value</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">text</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">text</span></code></td>
 <td>string</td>
 <td>freeform text description</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">tags</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">tags</span></code></td>
 <td>set</td>
 <td>set of tags</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">attributes</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">attributes</span></code></td>
 <td>dict</td>
 <td>dictionary of key-value pairs</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">origin</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">origin</span></code></td>
 <td>string</td>
 <td>monitoring component that generated the alert</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">type</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">type</span></code></td>
 <td>string</td>
 <td>event type</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">createTime</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">createTime</span></code></td>
 <td>datetime</td>
 <td>time alert was generated at the origin</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">timeout</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">timeout</span></code></td>
 <td>integer</td>
 <td>seconds before alert is considered stale</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">rawData</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">rawData</span></code></td>
 <td>string</td>
 <td>unprocessed raw data</td>
 </tr>
@@ -213,13 +207,13 @@ recommended by the <a class="reference external" href="https://www.w3.org/TR/NOT
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Only <code class="docutils literal"><span class="pre">resource</span></code> and <code class="docutils literal"><span class="pre">event</span></code> are mandatory. The <code class="docutils literal"><span class="pre">status</span></code> can be
-dynamically assigned by the Alerta API based on the <code class="docutils literal"><span class="pre">severity</span></code>.</p>
+<p class="last">Only <code class="docutils literal notranslate"><span class="pre">resource</span></code> and <code class="docutils literal notranslate"><span class="pre">event</span></code> are mandatory. The <code class="docutils literal notranslate"><span class="pre">status</span></code> can be
+dynamically assigned by the Alerta API based on the <code class="docutils literal notranslate"><span class="pre">severity</span></code>.</p>
 </div>
 </div>
 <div class="section" id="example-request">
 <h4>Example Request<a class="headerlink" href="#example-request" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/alert <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/alert <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
 -d <span class="s1">&#39;{</span>
@@ -251,10 +245,10 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 </div>
 <div class="section" id="example-response">
 <h4>Example Response<a class="headerlink" href="#example-response" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;alert&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&quot;flapping&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
@@ -317,10 +311,10 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 </div>
 <div class="section" id="example-response-during-blackout-period">
 <h4>Example Response (during blackout period)<a class="headerlink" href="#example-response-during-blackout-period" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">202</span> <span class="n">ACCEPTED</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">202</span> <span class="n">ACCEPTED</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Suppressed alert during blackout period&quot;</span><span class="p">,</span>
   <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1711c57e-5c6a-4c39-881b-9d8d174feafe&quot;</span><span class="p">,</span>
   <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
@@ -332,22 +326,22 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 <div class="section" id="retrieve-an-alert">
 <span id="get-alert-id"></span><h3><a class="toc-backref" href="#id80">Retrieve an alert</a><a class="headerlink" href="#retrieve-an-alert" title="Permalink to this headline">¶</a></h3>
 <p>Retrieves an alert with the given alert ID.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
 </pre></div>
 </div>
 <div class="section" id="id2">
 <h4>Example Request<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258 <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258 <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id3">
 <h4>Example Response<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;alert&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&quot;flapping&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
@@ -412,7 +406,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 <div class="section" id="set-alert-status">
 <h3><a class="toc-backref" href="#id81">Set alert status</a><a class="headerlink" href="#set-alert-status" title="Permalink to this headline">¶</a></h3>
 <p>Sets the status of an alert, and logs the status change to the alert history.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">status</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">status</span>
 </pre></div>
 </div>
 <div class="section" id="id4">
@@ -430,12 +424,12 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">status</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">status</span></code></td>
 <td>string</td>
-<td><strong>Required</strong> New status from <code class="docutils literal"><span class="pre">open</span></code>,
-<code class="docutils literal"><span class="pre">assign</span></code>, <code class="docutils literal"><span class="pre">ack</span></code>, <code class="docutils literal"><span class="pre">closed</span></code>, <code class="docutils literal"><span class="pre">expired</span></code></td>
+<td><strong>Required</strong> New status from <code class="docutils literal notranslate"><span class="pre">open</span></code>,
+<code class="docutils literal notranslate"><span class="pre">assign</span></code>, <code class="docutils literal notranslate"><span class="pre">ack</span></code>, <code class="docutils literal notranslate"><span class="pre">closed</span></code>, <code class="docutils literal notranslate"><span class="pre">expired</span></code></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">text</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">text</span></code></td>
 <td>string</td>
 <td>reason for status change</td>
 </tr>
@@ -444,7 +438,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 </div>
 <div class="section" id="id5">
 <h4>Example Request<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPUT http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258/status <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPUT http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258/status <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
 -d <span class="s1">&#39;{</span>
@@ -458,7 +452,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 <div class="section" id="tag-and-untag-alerts">
 <h3><a class="toc-backref" href="#id82">Tag and untag alerts</a><a class="headerlink" href="#tag-and-untag-alerts" title="Permalink to this headline">¶</a></h3>
 <p>Adds or removes tag values from the set of tags for an alert.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">tag</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">tag</span>
 <span class="n">PUT</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">untag</span>
 </pre></div>
 </div>
@@ -477,7 +471,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">tags</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">tags</span></code></td>
 <td>set</td>
 <td>tags to add or remove</td>
 </tr>
@@ -486,7 +480,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 </div>
 <div class="section" id="id7">
 <h4>Example Request<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPUT http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258/tag <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPUT http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258/tag <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
 -d <span class="s1">&#39;{</span>
@@ -504,7 +498,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 <h3><a class="toc-backref" href="#id83">Update alert attributes</a><a class="headerlink" href="#update-alert-attributes" title="Permalink to this headline">¶</a></h3>
 <p>Adds, deletes or modifies alert attributes. To delete an attribute assign
 “null” to the attribute.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">attributes</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">attributes</span>
 </pre></div>
 </div>
 <div class="section" id="id8">
@@ -522,7 +516,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">attributes</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">attributes</span></code></td>
 <td>dict</td>
 <td>dictionary of key-value attributes</td>
 </tr>
@@ -531,7 +525,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 </div>
 <div class="section" id="id9">
 <h4>Example Request<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPUT http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258/attributes <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPUT http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258/attributes <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
 -d <span class="s1">&#39;{</span>
@@ -548,12 +542,12 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 <div class="section" id="delete-an-alert">
 <h3><a class="toc-backref" href="#id84">Delete an alert</a><a class="headerlink" href="#delete-an-alert" title="Permalink to this headline">¶</a></h3>
 <p>Permanently deletes an alert. It cannot be undone.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
 </pre></div>
 </div>
 <div class="section" id="id10">
 <h4>Example Request<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258 <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258 <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
@@ -563,7 +557,7 @@ dynamically assigned by the Alerta API based on the <code class="docutils litera
 <span id="get-alerts"></span><h3><a class="toc-backref" href="#id85">Search alerts</a><a class="headerlink" href="#search-alerts" title="Permalink to this headline">¶</a></h3>
 <p>Find alerts using various alert attributes or a mongo-type query parameter to
 filter results.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span>
 </pre></div>
 </div>
 <div class="section" id="parameters">
@@ -581,88 +575,88 @@ filter results.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;attr&gt;</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">&lt;attr&gt;</span></code></td>
 <td>string</td>
-<td>any alert attribute. eg. <code class="docutils literal"><span class="pre">status=open</span></code></td>
+<td>any alert attribute. eg. <code class="docutils literal notranslate"><span class="pre">status=open</span></code></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">q</span></code> (*)</td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">q</span></code> (*)</td>
 <td>json</td>
 <td>mongo query (see <a class="reference external" href="http://docs.mongodb.org/manual/reference/operator/query/">Mongo Query Operators</a>)</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">fields</span></code> (*)</td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">fields</span></code> (*)</td>
 <td>list</td>
 <td>show or hide alert attributes</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">from-date</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">from-date</span></code></td>
 <td>datetime</td>
-<td><code class="docutils literal"><span class="pre">lastReceiveTime</span></code> &gt; <code class="docutils literal"><span class="pre">from-date</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">lastReceiveTime</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">from-date</span></code></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">to-date</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">to-date</span></code></td>
 <td>datetime</td>
-<td><code class="docutils literal"><span class="pre">lastReceiveTime</span></code> &lt;= <code class="docutils literal"><span class="pre">to-date</span></code> (now)</td>
+<td><code class="docutils literal notranslate"><span class="pre">lastReceiveTime</span></code> &lt;= <code class="docutils literal notranslate"><span class="pre">to-date</span></code> (now)</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">sort-by</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sort-by</span></code></td>
 <td>string</td>
-<td>attr to sort by (default:<code class="docutils literal"><span class="pre">lastReceiveTime</span></code>)</td>
+<td>attr to sort by (default:<code class="docutils literal notranslate"><span class="pre">lastReceiveTime</span></code>)</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">reverse</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">reverse</span></code></td>
 <td>boolean</td>
 <td>change direction of default sort order</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">page</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">page</span></code></td>
 <td>integer</td>
 <td>number between 1 and total pages (default: 1)</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">page-size</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">page-size</span></code></td>
 <td>integer</td>
-<td>default: 1000 (set <code class="docutils literal"><span class="pre">DEFAULT_PAGE_SIZE</span></code> )</td>
+<td>default: 1000 (set <code class="docutils literal notranslate"><span class="pre">DEFAULT_PAGE_SIZE</span></code> )</td>
 </tr>
 </tbody>
 </table>
-<p>The <code class="docutils literal"><span class="pre">&lt;attr&gt;</span></code> search parameter works as follows:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;attr&gt;</span></code> search parameter works as follows:</p>
 <blockquote>
 <div><ul class="simple">
 <li>Any combination of valid alert attributes can be used to narrow down results.</li>
-<li>Search syntax is <code class="docutils literal"><span class="pre">=</span></code> (equals), <code class="docutils literal"><span class="pre">!=</span></code> (not equals), <code class="docutils literal"><span class="pre">=~</span></code> (regex match)
-and <code class="docutils literal"><span class="pre">!=~</span></code> (regex exclude).</li>
-<li>When searching for alert <code class="docutils literal"><span class="pre">id</span></code> the query will attempt to match against <code class="docutils literal"><span class="pre">id</span></code>
-and <code class="docutils literal"><span class="pre">lastReceiveId</span></code>. The “short id” (ie. first 8-characters) can
-be used. eg. <code class="docutils literal"><span class="pre">id=ba358336</span></code> instead of <code class="docutils literal"><span class="pre">id=ba358336-802d-40ee-8ace-bf5fa8529280</span></code>.</li>
-<li>Use <a class="reference external" href="https://docs.mongodb.com/v3.2/core/document/#document-dot-notation">“dot notation”</a> to query custom attributes. eg. <code class="docutils literal"><span class="pre">attributes.city=Berlin</span></code></li>
-<li>Alert <code class="docutils literal"><span class="pre">history</span></code> is limited to the 100 most recent status or severity changes.
-(set using <code class="docutils literal"><span class="pre">HISTORY_LIMIT</span></code>)</li>
-<li>If “customer views” is enabled then the appropriate <code class="docutils literal"><span class="pre">customer</span></code> filter for
+<li>Search syntax is <code class="docutils literal notranslate"><span class="pre">=</span></code> (equals), <code class="docutils literal notranslate"><span class="pre">!=</span></code> (not equals), <code class="docutils literal notranslate"><span class="pre">=~</span></code> (regex match)
+and <code class="docutils literal notranslate"><span class="pre">!=~</span></code> (regex exclude).</li>
+<li>When searching for alert <code class="docutils literal notranslate"><span class="pre">id</span></code> the query will attempt to match against <code class="docutils literal notranslate"><span class="pre">id</span></code>
+and <code class="docutils literal notranslate"><span class="pre">lastReceiveId</span></code>. The “short id” (ie. first 8-characters) can
+be used. eg. <code class="docutils literal notranslate"><span class="pre">id=ba358336</span></code> instead of <code class="docutils literal notranslate"><span class="pre">id=ba358336-802d-40ee-8ace-bf5fa8529280</span></code>.</li>
+<li>Use <a class="reference external" href="https://docs.mongodb.com/v3.2/core/document/#document-dot-notation">“dot notation”</a> to query custom attributes. eg. <code class="docutils literal notranslate"><span class="pre">attributes.city=Berlin</span></code></li>
+<li>Alert <code class="docutils literal notranslate"><span class="pre">history</span></code> is limited to the 100 most recent status or severity changes.
+(set using <code class="docutils literal notranslate"><span class="pre">HISTORY_LIMIT</span></code>)</li>
+<li>If “customer views” is enabled then the appropriate <code class="docutils literal notranslate"><span class="pre">customer</span></code> filter for
 that user will be automatically applied.</li>
 </ul>
 </div></blockquote>
-<p>The <code class="docutils literal"><span class="pre">q</span></code> search parameter works as follows:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">q</span></code> search parameter works as follows:</p>
 <blockquote>
 <div><ul class="simple">
 <li>Any valid JSON-compliant Mongo query using <a class="reference external" href="http://docs.mongodb.org/manual/reference/operator/query/">Mongo Query Operators</a>. Useful
 when there is a need to “or” several attributes to get the required
-search filter  eg. <code class="docutils literal"><span class="pre">q={&quot;$or&quot;:[{&quot;service&quot;:&quot;Web&quot;},{&quot;resource&quot;:{&quot;$regex&quot;:&quot;web&quot;}}]}</span></code></li>
+search filter  eg. <code class="docutils literal notranslate"><span class="pre">q={&quot;$or&quot;:[{&quot;service&quot;:&quot;Web&quot;},{&quot;resource&quot;:{&quot;$regex&quot;:&quot;web&quot;}}]}</span></code></li>
 </ul>
 </div></blockquote>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">In the next major release of Alerta (5.0) the <code class="docutils literal"><span class="pre">fields</span></code> parameter
-will be removed. Also the <code class="docutils literal"><span class="pre">q</span></code> search term may change and no longer be
+<p class="last">In the next major release of Alerta (5.0) the <code class="docutils literal notranslate"><span class="pre">fields</span></code> parameter
+will be removed. Also the <code class="docutils literal notranslate"><span class="pre">q</span></code> search term may change and no longer be
 mongo-specific.</p>
 </div>
 </div>
 <div class="section" id="id11">
 <h4>Example Request<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alerts?group<span class="o">=</span>Web <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alerts?group<span class="o">=</span>Web <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id12">
 <h4>Example Response<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;alerts&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -755,7 +749,7 @@ mongo-specific.</p>
 <div class="section" id="list-all-alert-history">
 <span id="get-alerts-history"></span><h3><a class="toc-backref" href="#id86">List all alert history</a><a class="headerlink" href="#list-all-alert-history" title="Permalink to this headline">¶</a></h3>
 <p>Returns a list of alert severity and status changes.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">history</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">history</span>
 </pre></div>
 </div>
 <div class="section" id="id13">
@@ -773,7 +767,7 @@ mongo-specific.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;attr&gt;</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">&lt;attr&gt;</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
@@ -782,17 +776,17 @@ mongo-specific.</p>
 </div>
 <div class="section" id="id14">
 <h4>Example Request<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alerts/history?service<span class="o">=</span>example.com <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alerts/history?service<span class="o">=</span>example.com <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id15">
 <h4>Example Response<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -864,7 +858,7 @@ mongo-specific.</p>
 <div class="section" id="get-severity-and-status-counts-for-alerts">
 <h3><a class="toc-backref" href="#id87">Get severity and status counts for alerts</a><a class="headerlink" href="#get-severity-and-status-counts-for-alerts" title="Permalink to this headline">¶</a></h3>
 <p>Returns a count of alerts grouped by severity and status.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">count</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">count</span>
 </pre></div>
 </div>
 <div class="section" id="id16">
@@ -882,7 +876,7 @@ mongo-specific.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;attr&gt;</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">&lt;attr&gt;</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
@@ -891,17 +885,17 @@ mongo-specific.</p>
 </div>
 <div class="section" id="id17">
 <h4>Example Request<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alerts/count?environment<span class="o">=</span>Production <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alerts/count?environment<span class="o">=</span>Production <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id18">
 <h4>Example Response<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;severityCounts&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;critical&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
     <span class="nt">&quot;major&quot;</span><span class="p">:</span> <span class="mi">1</span>
@@ -920,8 +914,8 @@ mongo-specific.</p>
 <div class="section" id="top-10-alerts-by-resource">
 <h3><a class="toc-backref" href="#id88">Top 10 alerts by resource</a><a class="headerlink" href="#top-10-alerts-by-resource" title="Permalink to this headline">¶</a></h3>
 <p>Returns a list of the top 10 resources grouped by an alert attribute. By
-default it is grouped by <code class="docutils literal"><span class="pre">event</span></code> but this can be any valid attribute.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">top10</span><span class="o">/</span><span class="n">count</span>
+default it is grouped by <code class="docutils literal notranslate"><span class="pre">event</span></code> but this can be any valid attribute.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">top10</span><span class="o">/</span><span class="n">count</span>
 <span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">top10</span><span class="o">/</span><span class="n">flapping</span>
 </pre></div>
 </div>
@@ -940,34 +934,34 @@ default it is grouped by <code class="docutils literal"><span class="pre">event<
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;attr&gt;</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">&lt;attr&gt;</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">q</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">q</span></code></td>
 <td>dict</td>
 <td>mongo query see <a class="reference external" href="http://docs.mongodb.org/manual/reference/operator/query/">Mongo Query Operators</a></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">group-by</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">group-by</span></code></td>
 <td>string</td>
-<td>any valid alert attribute. Default:<code class="docutils literal"><span class="pre">event</span></code></td>
+<td>any valid alert attribute. Default:<code class="docutils literal notranslate"><span class="pre">event</span></code></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="id20">
 <h4>Example Request<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alerts/top10?group-by<span class="o">=</span>group <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alerts/top10?group-by<span class="o">=</span>group <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id21">
 <h4>Example Response<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
   <span class="nt">&quot;top10&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
@@ -1008,7 +1002,7 @@ on existing alerts.</p>
 <div class="section" id="list-all-environments">
 <h3><a class="toc-backref" href="#id90">List all environments</a><a class="headerlink" href="#list-all-environments" title="Permalink to this headline">¶</a></h3>
 <p>Returns a list of environments and an alert count for each.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">environments</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">environments</span>
 </pre></div>
 </div>
 <div class="section" id="id23">
@@ -1026,7 +1020,7 @@ on existing alerts.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;attr&gt;</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">&lt;attr&gt;</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
@@ -1035,17 +1029,17 @@ on existing alerts.</p>
 </div>
 <div class="section" id="id24">
 <h4>Example Request<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/environments <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/environments <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id25">
 <h4>Example Response<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
@@ -1066,7 +1060,7 @@ on existing alerts.</p>
 <div class="section" id="list-all-services">
 <h3><a class="toc-backref" href="#id92">List all services</a><a class="headerlink" href="#list-all-services" title="Permalink to this headline">¶</a></h3>
 <p>Returns a list of services grouped by environment and an alert count for each.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">services</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">services</span>
 </pre></div>
 </div>
 <div class="section" id="id27">
@@ -1084,7 +1078,7 @@ on existing alerts.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;attr&gt;</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">&lt;attr&gt;</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
@@ -1093,17 +1087,17 @@ on existing alerts.</p>
 </div>
 <div class="section" id="id28">
 <h4>Example Request<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/services?environment<span class="o">=</span>Production <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/services?environment<span class="o">=</span>Production <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id29">
 <h4>Example Response<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
@@ -1125,7 +1119,7 @@ on existing alerts.</p>
 <div class="section" id="list-all-tags">
 <h3><a class="toc-backref" href="#id94">List all tags</a><a class="headerlink" href="#list-all-tags" title="Permalink to this headline">¶</a></h3>
 <p>Returns a list of tags grouped by environment and an alert count for each.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">tags</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">tags</span>
 </pre></div>
 </div>
 <div class="section" id="id31">
@@ -1143,7 +1137,7 @@ on existing alerts.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">&lt;attr&gt;</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">&lt;attr&gt;</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
@@ -1152,17 +1146,17 @@ on existing alerts.</p>
 </div>
 <div class="section" id="id32">
 <h4>Example Request<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/tags?environment<span class="o">=</span>Production <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/tags?environment<span class="o">=</span>Production <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id33">
 <h4>Example Response<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
     <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
@@ -1208,7 +1202,7 @@ on existing alerts.</p>
 <div class="section" id="create-a-blackout">
 <h3><a class="toc-backref" href="#id96">Create a blackout</a><a class="headerlink" href="#create-a-blackout" title="Permalink to this headline">¶</a></h3>
 <p>Create a new blackout period for alert suppression.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">blackout</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">blackout</span>
 </pre></div>
 </div>
 <div class="section" id="id34">
@@ -1226,50 +1220,50 @@ on existing alerts.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">environment</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">environment</span></code></td>
 <td>string</td>
 <td><strong>Required</strong></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">resource</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">resource</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">service</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">service</span></code></td>
 <td>list</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">event</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">event</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">group</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">group</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">tags</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">tags</span></code></td>
 <td>list</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">startTime</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">startTime</span></code></td>
 <td>datetime</td>
 <td>start time of blackout. Default: now</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">endTime</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">endTime</span></code></td>
 <td>datetime</td>
 <td>end time. Default: now +
-<code class="docutils literal"><span class="pre">BLACKOUT_DURATION</span></code></td>
+<code class="docutils literal notranslate"><span class="pre">BLACKOUT_DURATION</span></code></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">duration</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">duration</span></code></td>
 <td>integer</td>
-<td>seconds. Default: <code class="docutils literal"><span class="pre">BLACKOUT_DURATION</span></code>
-Only used if <code class="docutils literal"><span class="pre">endTime</span></code> not defined</td>
+<td>seconds. Default: <code class="docutils literal notranslate"><span class="pre">BLACKOUT_DURATION</span></code>
+Only used if <code class="docutils literal notranslate"><span class="pre">endTime</span></code> not defined</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="id35">
 <h4>Example Request<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/blackout <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/blackout <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
 -d <span class="s1">&#39;{</span>
@@ -1282,10 +1276,10 @@ Only used if <code class="docutils literal"><span class="pre">endTime</span></co
 </div>
 <div class="section" id="id36">
 <h4>Example Response<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;blackout&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
     <span class="nt">&quot;duration&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
@@ -1315,22 +1309,22 @@ Only used if <code class="docutils literal"><span class="pre">endTime</span></co
 <div class="section" id="list-all-blackouts">
 <h3><a class="toc-backref" href="#id97">List all blackouts</a><a class="headerlink" href="#list-all-blackouts" title="Permalink to this headline">¶</a></h3>
 <p>Returns a list of blackout periods, including expired blackouts.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">blackouts</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">blackouts</span>
 </pre></div>
 </div>
 <div class="section" id="id37">
 <h4>Example Request<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/blackouts <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/blackouts <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id38">
 <h4>Example Response<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;blackouts&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
@@ -1379,12 +1373,12 @@ Only used if <code class="docutils literal"><span class="pre">endTime</span></co
 <div class="section" id="delete-a-blackout">
 <h3><a class="toc-backref" href="#id98">Delete a blackout</a><a class="headerlink" href="#delete-a-blackout" title="Permalink to this headline">¶</a></h3>
 <p>Permanently deletes a blackout period. It cannot be undone.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">blackout</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">blackout</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
 </pre></div>
 </div>
 <div class="section" id="id39">
 <h4>Example Request<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/blackout/c17832d4-c477-4eb1-b2d5-662e7a3600be <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/blackout/c17832d4-c477-4eb1-b2d5-662e7a3600be <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
@@ -1396,8 +1390,8 @@ Only used if <code class="docutils literal"><span class="pre">endTime</span></co
 <div class="section" id="send-a-heartbeat">
 <h3><a class="toc-backref" href="#id100">Send a heartbeat</a><a class="headerlink" href="#send-a-heartbeat" title="Permalink to this headline">¶</a></h3>
 <p>Creates a new heartbeat, or updates an existing heartbeat if a heartbeat
-from the <code class="docutils literal"><span class="pre">origin</span></code> already exists.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">heartbeat</span>
+from the <code class="docutils literal notranslate"><span class="pre">origin</span></code> already exists.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">heartbeat</span>
 </pre></div>
 </div>
 <div class="section" id="id41">
@@ -1415,15 +1409,15 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">origin</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">origin</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">tags</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">tags</span></code></td>
 <td>list</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">timeout</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">timeout</span></code></td>
 <td>integer</td>
 <td>Seconds.</td>
 </tr>
@@ -1432,7 +1426,7 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 </div>
 <div class="section" id="id42">
 <h4>Example Request<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/heartbeat <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/heartbeat <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
 -d <span class="s1">&#39;{</span>
@@ -1445,10 +1439,10 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 </div>
 <div class="section" id="id43">
 <h4>Example Response<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;heartbeat&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:15:38.675Z&quot;</span><span class="p">,</span>
     <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
@@ -1476,22 +1470,22 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 <div class="section" id="get-a-heartbeat">
 <h3><a class="toc-backref" href="#id101">Get a heartbeat</a><a class="headerlink" href="#get-a-heartbeat" title="Permalink to this headline">¶</a></h3>
 <p>Retrieves a heartbeat based on the heartbeat ID.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">heartbeat</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">heartbeat</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
 </pre></div>
 </div>
 <div class="section" id="id44">
 <h4>Example Request<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/heartbeat/1a3f2e0a-3c65-4199-84ae-a21fb892ccc0 <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/heartbeat/1a3f2e0a-3c65-4199-84ae-a21fb892ccc0 <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id45">
 <h4>Example Response<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;heartbeat&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:15:38.675Z&quot;</span><span class="p">,</span>
     <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
@@ -1519,22 +1513,22 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 <div class="section" id="list-all-heartbeats">
 <h3><a class="toc-backref" href="#id102">List all heartbeats</a><a class="headerlink" href="#list-all-heartbeats" title="Permalink to this headline">¶</a></h3>
 <p>Returns a list of all heartbeats.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">heartbeats</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">heartbeats</span>
 </pre></div>
 </div>
 <div class="section" id="id46">
 <h4>Example Request<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/heartbeats <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/heartbeats <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id47">
 <h4>Example Response<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;heartbeats&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:17:13.922Z&quot;</span><span class="p">,</span>
@@ -1581,12 +1575,12 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 <div class="section" id="delete-a-heartbeat">
 <h3><a class="toc-backref" href="#id103">Delete a heartbeat</a><a class="headerlink" href="#delete-a-heartbeat" title="Permalink to this headline">¶</a></h3>
 <p>Permanently deletes a heartbeat. It cannot be undone.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">heartbeat</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">heartbeat</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
 </pre></div>
 </div>
 <div class="section" id="id48">
 <h4>Example Request<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/heartbeat/e0582765-ee64-4944-8a94-1869a079d81f <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/heartbeat/e0582765-ee64-4944-8a94-1869a079d81f <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
@@ -1598,7 +1592,7 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 <div class="section" id="create-an-api-key">
 <h3><a class="toc-backref" href="#id105">Create an API key</a><a class="headerlink" href="#create-an-api-key" title="Permalink to this headline">¶</a></h3>
 <p>Creates a new API key.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">key</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">key</span>
 </pre></div>
 </div>
 <div class="section" id="id50">
@@ -1616,23 +1610,23 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">user</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">user</span></code></td>
 <td>string</td>
 <td>username</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">scopes</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">scopes</span></code></td>
 <td>string</td>
-<td><code class="docutils literal"><span class="pre">admin</span></code>, <code class="docutils literal"><span class="pre">write</span></code>, or <code class="docutils literal"><span class="pre">read</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">admin</span></code>, <code class="docutils literal notranslate"><span class="pre">write</span></code>, or <code class="docutils literal notranslate"><span class="pre">read</span></code></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">text</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">text</span></code></td>
 <td>string</td>
 <td>freeform description text</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">expireTime</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">expireTime</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">customer</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">customer</span></code></td>
 <td>string</td>
 <td><strong>Admin use only</strong></td>
 </tr>
@@ -1641,7 +1635,7 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 </div>
 <div class="section" id="id51">
 <h4>Example Request<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/key <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/key <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
 -d <span class="s1">&#39;{</span>
@@ -1654,10 +1648,10 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 </div>
 <div class="section" id="id52">
 <h4>Example Response<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
@@ -1683,22 +1677,22 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 <div class="section" id="list-all-api-keys">
 <h3><a class="toc-backref" href="#id106">List all API keys</a><a class="headerlink" href="#list-all-api-keys" title="Permalink to this headline">¶</a></h3>
 <p>Returns a list of API keys.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">keys</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">keys</span>
 </pre></div>
 </div>
 <div class="section" id="id53">
 <h4>Example Request<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/keys <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/keys <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id54">
 <h4>Example Response<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;keys&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
@@ -1743,12 +1737,12 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 <div class="section" id="delete-an-api-key">
 <h3><a class="toc-backref" href="#id107">Delete an API key</a><a class="headerlink" href="#delete-an-api-key" title="Permalink to this headline">¶</a></h3>
 <p>Permanently deletes an API key. It cannot be undone.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">key</span><span class="o">/</span><span class="p">:</span><span class="n">key</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">key</span><span class="o">/</span><span class="p">:</span><span class="n">key</span>
 </pre></div>
 </div>
 <div class="section" id="id55">
 <h4>Example Request<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/key/532c9b59-9e90-40d4-8a3b-887362a79e9cO8rhJSKrdfQWXqRhvSwJQJRZg9yU0s2Z4VLP4855 <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/key/532c9b59-9e90-40d4-8a3b-887362a79e9cO8rhJSKrdfQWXqRhvSwJQJRZg9yU0s2Z4VLP4855 <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
@@ -1760,7 +1754,7 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 <div class="section" id="create-a-user">
 <h3><a class="toc-backref" href="#id109">Create a user</a><a class="headerlink" href="#create-a-user" title="Permalink to this headline">¶</a></h3>
 <p>Creates a new Basic Auth user.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">auth</span><span class="o">/</span><span class="n">signup</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">auth</span><span class="o">/</span><span class="n">signup</span>
 </pre></div>
 </div>
 <div class="section" id="id57">
@@ -1778,19 +1772,19 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">name</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">name</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">email</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">email</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">password</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">password</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">text</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">text</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
@@ -1799,7 +1793,7 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 </div>
 <div class="section" id="id58">
 <h4>Example Request<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/auth/signup <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/auth/signup <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
 -d <span class="s1">&#39;{</span>
@@ -1813,10 +1807,10 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 </div>
 <div class="section" id="id59">
 <h4>Example Response<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;token&quot;</span><span class="p">:</span> <span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4Y2IwYjYyNC0zY2Q3LTQ1YjktOThhNS01ZGZhYzVmMDE2NmMiLCJyb2xlcyI6WyJ1c2VyIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC8iLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJqb2UuYmxvZ2dzQGV4YW1wbGUuY29tIiwibmFtZSI6IkpvZSBCbG9nZ3MiLCJlbWFpbCI6ImpvZS5ibG9nZ3NAZXhhbXBsZS5jb20iLCJzY29wZSI6InJlYWQgd3JpdGUiLCJqdGkiOiI2ODlhMmY3Yy0zNTJlLTQ5M2ItYWZjYi1iOWUwOTE3ODAyMDgiLCJleHAiOjE1MTMxODIxNDcsInByb3ZpZGVyIjoiYmFzaWMiLCJpYXQiOjE1MTE5NzI1NDcsIm5iZiI6MTUxMTk3MjU0NywiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwLyJ9.c5jpr8YksoJmoZ6KUwsYP5fgwZr-jdA4W3JUCbv1vXU&quot;</span>
 <span class="p">}</span>
 </pre></div>
@@ -1827,7 +1821,7 @@ from the <code class="docutils literal"><span class="pre">origin</span></code> a
 <h3><a class="toc-backref" href="#id110">Update a user</a><a class="headerlink" href="#update-a-user" title="Permalink to this headline">¶</a></h3>
 <p>Updates the specified user by setting the values of the parameters passed.
 Any parameters not provided will be left unchanged.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="p">:</span><span class="n">user</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="p">:</span><span class="n">user</span>
 </pre></div>
 </div>
 <div class="section" id="id60">
@@ -1845,35 +1839,35 @@ Any parameters not provided will be left unchanged.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">name</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">name</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">email</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">email</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">password</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">password</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">status</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">status</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">roles</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">roles</span></code></td>
 <td>set</td>
 <td>set of roles</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">attributes</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">attributes</span></code></td>
 <td>dict</td>
 <td>dictionary of key-value pairs</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">text</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">text</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">email_verified</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">email_verified</span></code></td>
 <td>boolean</td>
 <td>&#160;</td>
 </tr>
@@ -1882,7 +1876,7 @@ Any parameters not provided will be left unchanged.</p>
 </div>
 <div class="section" id="id61">
 <h4>Example Request<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPUT http://localhost:8080/user/0a35bfd8-1175-4cd2-96f6-eda9861fd15d <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPUT http://localhost:8080/user/0a35bfd8-1175-4cd2-96f6-eda9861fd15d <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
 -d <span class="s1">&#39;{</span>
@@ -1897,22 +1891,22 @@ Any parameters not provided will be left unchanged.</p>
 <div class="section" id="list-all-users">
 <h3><a class="toc-backref" href="#id111">List all users</a><a class="headerlink" href="#list-all-users" title="Permalink to this headline">¶</a></h3>
 <p>Returns a list of users.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">users</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">users</span>
 </pre></div>
 </div>
 <div class="section" id="id62">
 <h4>Example Request<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/users <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/users <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id63">
 <h4>Example Response<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;domains&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="s2">&quot;*&quot;</span>
   <span class="p">],</span>
@@ -1955,12 +1949,12 @@ Any parameters not provided will be left unchanged.</p>
 <div class="section" id="delete-a-user">
 <h3><a class="toc-backref" href="#id112">Delete a user</a><a class="headerlink" href="#delete-a-user" title="Permalink to this headline">¶</a></h3>
 <p>Permanently deletes a user. It cannot be undone.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="p">:</span><span class="n">user</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="p">:</span><span class="n">user</span>
 </pre></div>
 </div>
 <div class="section" id="id64">
 <h4>Example Request<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/user/166b41d6-849f-440d-ba30-1a5345d86fb6 <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/user/166b41d6-849f-440d-ba30-1a5345d86fb6 <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
@@ -1972,7 +1966,7 @@ Any parameters not provided will be left unchanged.</p>
 <div class="section" id="create-permission">
 <h3><a class="toc-backref" href="#id114">Create permission</a><a class="headerlink" href="#create-permission" title="Permalink to this headline">¶</a></h3>
 <p>Creates a new permission lookup. Used to match user groups/roles to scopes.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">perm</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">perm</span>
 </pre></div>
 </div>
 <div class="section" id="id65">
@@ -1990,11 +1984,11 @@ Any parameters not provided will be left unchanged.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">scopes</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">scopes</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">match</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">match</span></code></td>
 <td>regex</td>
 <td>&#160;</td>
 </tr>
@@ -2003,7 +1997,7 @@ Any parameters not provided will be left unchanged.</p>
 </div>
 <div class="section" id="id66">
 <h4>Example Request<a class="headerlink" href="#id66" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/perm <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/perm <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
 -d <span class="s1">&#39;{</span>
@@ -2015,10 +2009,10 @@ Any parameters not provided will be left unchanged.</p>
 </div>
 <div class="section" id="id67">
 <h4>Example Response<a class="headerlink" href="#id67" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;40c2daee-1d77-44d5-b62d-e3e446396cef&quot;</span><span class="p">,</span>
   <span class="nt">&quot;permission&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;40c2daee-1d77-44d5-b62d-e3e446396cef&quot;</span><span class="p">,</span>
@@ -2038,22 +2032,22 @@ Any parameters not provided will be left unchanged.</p>
 <div class="section" id="list-all-permissions">
 <h3><a class="toc-backref" href="#id115">List all permissions</a><a class="headerlink" href="#list-all-permissions" title="Permalink to this headline">¶</a></h3>
 <p>Returns a list of permissions.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">perms</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">perms</span>
 </pre></div>
 </div>
 <div class="section" id="id68">
 <h4>Example Request<a class="headerlink" href="#id68" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/perms <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/perms <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id69">
 <h4>Example Response<a class="headerlink" href="#id69" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;permissions&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;5b726183-019f-4add-b6dc-caba87e873f7&quot;</span><span class="p">,</span>
@@ -2091,12 +2085,12 @@ Any parameters not provided will be left unchanged.</p>
 <div class="section" id="delete-a-permission">
 <h3><a class="toc-backref" href="#id116">Delete a permission</a><a class="headerlink" href="#delete-a-permission" title="Permalink to this headline">¶</a></h3>
 <p>Permanently delete a permission. It cannot be undone.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">perm</span><span class="o">/</span><span class="p">:</span><span class="n">perm</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">perm</span><span class="o">/</span><span class="p">:</span><span class="n">perm</span>
 </pre></div>
 </div>
 <div class="section" id="id70">
 <h4>Example Request<a class="headerlink" href="#id70" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/perm/1f84f919-c07a-4bd1-93b0-26e28871257f <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/perm/1f84f919-c07a-4bd1-93b0-26e28871257f <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
@@ -2108,7 +2102,7 @@ Any parameters not provided will be left unchanged.</p>
 <div class="section" id="create-a-customer">
 <h3><a class="toc-backref" href="#id118">Create a customer</a><a class="headerlink" href="#create-a-customer" title="Permalink to this headline">¶</a></h3>
 <p>Creates a new customer lookup. Used to match user logins to customers.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">customer</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">customer</span>
 </pre></div>
 </div>
 <div class="section" id="id72">
@@ -2126,11 +2120,11 @@ Any parameters not provided will be left unchanged.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">customer</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">customer</span></code></td>
 <td>string</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">match</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">match</span></code></td>
 <td>regex</td>
 <td>&#160;</td>
 </tr>
@@ -2139,7 +2133,7 @@ Any parameters not provided will be left unchanged.</p>
 </div>
 <div class="section" id="id73">
 <h4>Example Request<a class="headerlink" href="#id73" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/customer <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/customer <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
 -H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
 -d <span class="s1">&#39;{</span>
@@ -2151,10 +2145,10 @@ Any parameters not provided will be left unchanged.</p>
 </div>
 <div class="section" id="id74">
 <h4>Example Response<a class="headerlink" href="#id74" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="s2">&quot;Example Corp.&quot;</span><span class="p">,</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;289ca657-ea2c-4775-9e07-cc96844cc717&quot;</span><span class="p">,</span>
@@ -2170,22 +2164,22 @@ Any parameters not provided will be left unchanged.</p>
 <div class="section" id="list-all-customers">
 <h3><a class="toc-backref" href="#id119">List all customers</a><a class="headerlink" href="#list-all-customers" title="Permalink to this headline">¶</a></h3>
 <p>Returns a list of customers.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">customers</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">customers</span>
 </pre></div>
 </div>
 <div class="section" id="id75">
 <h4>Example Request<a class="headerlink" href="#id75" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/customers <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/customers <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id76">
 <h4>Example Response<a class="headerlink" href="#id76" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;customers&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="s2">&quot;Example Corp.&quot;</span><span class="p">,</span>
@@ -2209,12 +2203,12 @@ Any parameters not provided will be left unchanged.</p>
 <div class="section" id="delete-a-customer">
 <h3><a class="toc-backref" href="#id120">Delete a customer</a><a class="headerlink" href="#delete-a-customer" title="Permalink to this headline">¶</a></h3>
 <p>Permanently delete a customer. It cannot be undone.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">customer</span><span class="o">/</span><span class="p">:</span><span class="n">customer</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">customer</span><span class="o">/</span><span class="p">:</span><span class="n">customer</span>
 </pre></div>
 </div>
 <div class="section" id="id77">
 <h4>Example Request<a class="headerlink" href="#id77" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/customer/90f4e211-c815-4112-9e1a-6e53de5a59c6 <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/customer/90f4e211-c815-4112-9e1a-6e53de5a59c6 <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
@@ -2225,6 +2219,7 @@ Any parameters not provided will be left unchanged.</p>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -2292,6 +2287,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">Resources</a></li>
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a></li>
@@ -2309,12 +2305,14 @@ Links
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -2322,11 +2320,11 @@ Links
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015-2017, Nick Satterly. MIT License.
+      &copy;2015-2018, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="../_sources/api/reference.rst.txt"

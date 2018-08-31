@@ -13,6 +13,12 @@ For Debian/Ubuntu, run::
     $ sudo apt-get install -y mongodb-org
     $ mongod
 
+If ``apt-get`` can't locate the "mongodb-org" metapackage package then
+follow `these steps`_ to add MongoDB package repository to apt sources
+list.
+
+.. _these steps: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/#using-deb-packages-recommended
+
 For other operating systems, see the installation_ steps on the MongoDB web site.
 
 .. _installation: https://docs.mongodb.com/master/installation/#tutorials

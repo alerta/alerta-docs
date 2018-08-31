@@ -4,23 +4,16 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Frequently Asked Questions &#8212; alerta 5.0 documentation</title>
+    <title>Frequently Asked Questions &#8212; alerta 6.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '5.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -32,13 +25,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="frequently-asked-questions">
@@ -47,11 +41,11 @@
 <h2>Alerta<a class="headerlink" href="#alerta" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="why-can-t-i-see-any-alerts-in-the-web-browser">
 <h3>Why can’t I see any alerts in the web browser?<a class="headerlink" href="#why-can-t-i-see-any-alerts-in-the-web-browser" title="Permalink to this headline">¶</a></h3>
-<p>If you can send and query for alerts using the <code class="docutils literal"><span class="pre">alerta</span></code> CLI tool this
+<p>If you can send and query for alerts using the <code class="docutils literal notranslate"><span class="pre">alerta</span></code> CLI tool this
 problem is almost certainly related to cross-origin browser errors. Open
 up the Javascript developer console in your browser of choice and look
 for <a class="reference external" href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS</a> errors like:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>XMLHttpRequest cannot load http://api.alerta.io/alerts?status=open.
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>XMLHttpRequest cannot load http://api.alerta.io/alerts?status=open.
 No &#39;Access-Control-Allow-Origin&#39; header is present on the requested
 resource. Origin &#39;http://web.alerta.io&#39; is therefore not allowed access.
 </pre></div>
@@ -59,20 +53,20 @@ resource. Origin &#39;http://web.alerta.io&#39; is therefore not allowed access.
 <p>To fix this you can either serve the web UI from the <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">same origin</a> as
 the API using a web server to <a class="reference internal" href="deployment.html#reverse-proxy"><span class="std std-ref">reverse proxy</span></a> the
 web UI or ensure that the API server <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin">allows the origin</a> where the
-web UI is hosted by adding it to the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">CORS_ORIGINS</span></code> <a class="reference internal" href="configuration.html#cors-config"><span class="std std-ref">server
+web UI is hosted by adding it to the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CORS_ORIGINS</span></code> <a class="reference internal" href="configuration.html#cors-config"><span class="std std-ref">server
 configuration</span></a> setting.</p>
 </div>
 <div class="section" id="why-do-i-need-to-set-an-environment-and-service-when-they-are-not-mandatory">
-<h3>Why do I need to set an <code class="docutils literal"><span class="pre">environment</span></code> and <code class="docutils literal"><span class="pre">service</span></code> when they are not mandatory?<a class="headerlink" href="#why-do-i-need-to-set-an-environment-and-service-when-they-are-not-mandatory" title="Permalink to this headline">¶</a></h3>
-<p>Only <code class="docutils literal"><span class="pre">resource</span></code> and <code class="docutils literal"><span class="pre">event</span></code> are technically required to ensure that
+<h3>Why do I need to set an <code class="docutils literal notranslate"><span class="pre">environment</span></code> and <code class="docutils literal notranslate"><span class="pre">service</span></code> when they are not mandatory?<a class="headerlink" href="#why-do-i-need-to-set-an-environment-and-service-when-they-are-not-mandatory" title="Permalink to this headline">¶</a></h3>
+<p>Only <code class="docutils literal notranslate"><span class="pre">resource</span></code> and <code class="docutils literal notranslate"><span class="pre">event</span></code> are technically required to ensure that
 Alerta can process alerts correctly. However, the “out-of-the-box” default
-server setting for <code class="docutils literal"><span class="pre">PLUGINS</span></code> has the <code class="docutils literal"><span class="pre">reject</span></code> plugin enabled. This plugin
-enforces an alert “policy” of requiring an <code class="docutils literal"><span class="pre">environment</span></code> attribute of either
-<code class="docutils literal"><span class="pre">Production</span></code> or <code class="docutils literal"><span class="pre">Development</span></code> and a value for the <code class="docutils literal"><span class="pre">service</span></code> attribute.</p>
+server setting for <code class="docutils literal notranslate"><span class="pre">PLUGINS</span></code> has the <code class="docutils literal notranslate"><span class="pre">reject</span></code> plugin enabled. This plugin
+enforces an alert “policy” of requiring an <code class="docutils literal notranslate"><span class="pre">environment</span></code> attribute of either
+<code class="docutils literal notranslate"><span class="pre">Production</span></code> or <code class="docutils literal notranslate"><span class="pre">Development</span></code> and a value for the <code class="docutils literal notranslate"><span class="pre">service</span></code> attribute.</p>
 <p>This is to encourage good habits early in defining useful alert attributes
-that can be used to “namespace” alerts (this is what the <code class="docutils literal"><span class="pre">environment</span></code>
-attribute is for) and so that the web console can organise by <code class="docutils literal"><span class="pre">environemnt</span></code>
-and filter alerts by <code class="docutils literal"><span class="pre">service</span></code>.</p>
+that can be used to “namespace” alerts (this is what the <code class="docutils literal notranslate"><span class="pre">environment</span></code>
+attribute is for) and so that the web console can organise by <code class="docutils literal notranslate"><span class="pre">environemnt</span></code>
+and filter alerts by <code class="docutils literal notranslate"><span class="pre">service</span></code>.</p>
 <p>However, one of the principles of Alerta is not to enforce its view of the
 world on users so the plugin can be <a class="reference internal" href="configuration.html#plugin-config"><span class="std std-ref">easily configured</span></a>,
 <a class="reference internal" href="gettingstarted/tutorial-3-plugins.html#tutorial-3"><span class="std std-ref">modified</span></a> or completely disabled. It’s up to you.</p>
@@ -84,14 +78,14 @@ and colours. See <a class="reference internal" href="webui.html#webui"><span cla
 </div>
 <div class="section" id="how-can-i-add-a-priority-to-an-alert-eg-high-medium-low">
 <h3>How can I add a priority to an alert eg. High, Medium, Low?<a class="headerlink" href="#how-can-i-add-a-priority-to-an-alert-eg-high-medium-low" title="Permalink to this headline">¶</a></h3>
-<p>Use a custom attribute called <code class="docutils literal"><span class="pre">priority</span></code> when sending alerts to
+<p>Use a custom attribute called <code class="docutils literal notranslate"><span class="pre">priority</span></code> when sending alerts to
 Alerta:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta send ... --attributes priority=high ...
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta send ... --attributes priority=high ...
 </pre></div>
 </div>
-<p>Alerts of differing priority could be queried by <code class="docutils literal"><span class="pre">alerta</span></code>
+<p>Alerts of differing priority could be queried by <code class="docutils literal notranslate"><span class="pre">alerta</span></code>
 command-line tool using:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta query --filters attributes.priority=high
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta query --filters attributes.priority=high
 </pre></div>
 </div>
 <p>Using the web console to sort alerts by priority as well as severity
@@ -102,9 +96,10 @@ would require some development effort.</p>
 <p>Alerts are meant to auto-close when a corresponding <cite>normal</cite> or
 <cite>cleared</cite> alert is received for that event-resource combination. If
 no <cite>normal</cite> alert exists for a particular event (which may be the
-case for alerts from log files, for example) then the alert will
-be deleted when the timeout period has expired. Alerts timeout after
-1 day by default but that is configurable on a per-alert basis.</p>
+case for alerts from log files or SNMP traps, for example) then the
+alert will be deleted when the timeout period has expired. Alerts
+timeout after 1 day by default but that is configurable on a
+per-alert basis.</p>
 <p>If, as an operator, you want to remove an event from view then you
 can either <cite>ack</cite> the alert or DELETE it. If the alert is DELETED a
 new alert with the same event-resource combination will trigger a
@@ -126,7 +121,7 @@ more if there is <a class="reference external" href="https://github.com/alerta/a
 and each child process must create their own instances of MongoClient”.</p>
 <p>For Apache WSGI applications, an example Apache “vhost” configuration for
 the Alerta API would look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">VirtualHost</span> <span class="o">*</span><span class="p">:</span><span class="mi">8080</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">VirtualHost</span> <span class="o">*</span><span class="p">:</span><span class="mi">8080</span><span class="o">&gt;</span>
   <span class="n">ServerName</span> <span class="n">localhost</span>
   <span class="n">WSGIDaemonProcess</span> <span class="n">alerta</span> <span class="n">processes</span><span class="o">=</span><span class="mi">5</span> <span class="n">threads</span><span class="o">=</span><span class="mi">5</span>
   <span class="n">WSGIProcessGroup</span> <span class="n">alerta</span>
@@ -143,18 +138,21 @@ the Alerta API would look like this:</p>
 this is necessary is available on <a class="reference external" href="http://stackoverflow.com/questions/31030307/why-is-pymongo-3-giving-serverselectiontimeouterror">stackoverflow</a> and the PyMongo where
 they discussion PyMongo in relation to <a class="reference external" href="https://api.mongodb.com/python/current/faq.html#is-pymongo-fork-safe">forking</a> and <a class="reference external" href="http://api.mongodb.com/python/current/examples/mod_wsgi.html">mod_wsgi</a> site.</p>
 </div>
-<div class="section" id="does-alerta-support-python-3">
-<h3>Does Alerta support Python 3?<a class="headerlink" href="#does-alerta-support-python-3" title="Permalink to this headline">¶</a></h3>
-<p>Yes, the minimum version is Python 3.4. Python 3 is recommended for new
-production environments and existing installations should be switched to
-Python 3. Alerta currently supports Python 2.7, but it has been <a class="reference external" href="https://github.com/alerta/alerta/issues/480">proposed</a>
-to end support after 31st August 2018.</p>
+<div class="section" id="does-alerta-support-python-2-7-or-python-3">
+<h3>Does Alerta support Python 2.7 or Python 3?<a class="headerlink" href="#does-alerta-support-python-2-7-or-python-3" title="Permalink to this headline">¶</a></h3>
+<p>Alerta <a class="reference internal" href="release-notes.html#release-5-2"><span class="std std-ref">Release 5.2</span></a> is the <a class="reference external" href="https://github.com/alerta/alerta/issues/480">last version</a> to support
+Python 2.7 and from 31 August, 2018 it will only receive crtical bug fixes
+and security patches.</p>
+<p>Alerta <a class="reference internal" href="release-notes.html#release-6-0"><span class="std std-ref">Release 6</span></a> supports Python 3.6+ and is recommended
+for new production environments and existing installations should be switched
+to Python 3 well before 1 January, 2020 when Python 2.7 becomes <a class="reference external" href="https://pythonclock.org/">End-of-Life</a>.</p>
 </div>
 </div>
 </div>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -222,6 +220,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/reference.html">API Reference</a></li>
@@ -239,12 +238,14 @@ Links
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -252,11 +253,11 @@ Links
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015-2017, Nick Satterly. MIT License.
+      &copy;2015-2018, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="_sources/faq.rst.txt"

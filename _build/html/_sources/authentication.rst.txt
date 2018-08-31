@@ -7,10 +7,8 @@ By default, authentication is not enabled, however there are some features
 that are :ref:`not available <watched_alerts>` unless users login such as
 watching alerts.
 
-Alerta supports three authentication mechanisms for the web UI
-(:ref:`Basic Auth <basic auth>`, :ref:`OAuth <oauth2>` and
-:ref:`SAML <saml2>`) as well as :ref:`API keys <api keys>`
-for direct access to the API.
+Alerta supports three authentication mechanisms for the web UI and
+``alerta`` command-line tool.
 
 * `Basic Auth`_
 * `Google OAuth2`_
@@ -20,17 +18,16 @@ for direct access to the API.
 * `SAML 2.0`_
 * `API Keys`_
 
-The most straight-forward to implment of the three is `Basic Auth`_.
-
-To enforce authentication set ``AUTH_REQUIRED`` to ``True`` in the
-``alertad.conf`` file and ``SECRET_KEY`` to some random string::
+To enforce authentication set ``AUTH_REQUIRED`` to ``True`` and set the
+``SECRET_KEY`` to some random string in the ``alertad.conf`` server
+configuration settings file::
 
     AUTH_REQUIRED = True
     SECRET_KEY = 'UszE5hI_hx5pXKcsCP_2&1DIs&9_Ve*k'
 
 .. note:: Ensure that the :envvar:`SECRET_KEY` that is used to encode
-          cookies is a unique, randomly generated sequence of ASCII
-          characters. The following command generates a suitable
+          tokens and API keys is a unique, randomly generated sequence
+          of ASCII characters. The following command generates a suitable
           32-character random string on Mac or Linux::
 
           $ LC_CTYPE=C tr -dc A-Za-z0-9_\!\@\#\$\%\^\&\*\(\)-+= < /dev/urandom | head -c 32 && echo
@@ -40,26 +37,15 @@ To enforce authentication set ``AUTH_REQUIRED`` to ``True`` in the
 Basic Auth
 ----------
 
-HTTP `Basic authentication`_ is a very simple method for enforcing access
-control.
+The most straight-forward authentication strategy to implement of the
+three is HTTP `Basic Authentication`_ because there is no additional
+configuration required of the Alerta server to use it other than
+setting ``AUTH_REQUIRED`` to ``True``.
 
-.. _Basic authentication: https://en.wikipedia.org/wiki/Basic_access_authentication
+.. _Basic Authentication: https://en.wikipedia.org/wiki/Basic_access_authentication
 
-To use Basic Auth set the ``provider`` configuration setting in the Web
-UI :file:`config.js` file to ``basic``. There is no additional configuration
-required of the Alerta server to use Basic Auth::
-
-    'use strict';
-
-    angular.module('config', [])
-      .constant('config', {
-        'endpoint'    : "/api",
-        'provider'    : "basic"
-      })
-      .constant('colors', {});
-
-.. note:: HTTP Basic auth does not provide any encryption of the username
-          or password so it is strongly advised to only use Basic auth over
+.. note:: HTTP Basic Auth does not provide any encryption of the username
+          or password so it is strongly advised to only use Basic Auth over
           HTTPS.
 
 .. _oauth2:
@@ -68,10 +54,10 @@ OAuth2 Authentication
 ---------------------
 
 OAuth authentication is provided by Google_ `OpenID Connect`_, GitHub_,
-GitLab_ `OAuth 2.0`_ or Keycloak_ `OAuth 2.0`_ and configuration is more involved than the Basic
-Auth setup.
+GitLab_ `OAuth 2.0`_ or Keycloak_ `OAuth 2.0`_ and configuration is more
+involved than the Basic Auth setup.
 
-.. note:: If alerta is deployed to a publicly accessible web server it
+.. note:: If Alerta is deployed to a publicly accessible web server it
           is important to configure the OAuth2 settings correctly to
           ensure that only authorised users can access and modify your
           alerts.
@@ -83,25 +69,14 @@ Auth setup.
 .. _OAuth 2.0: http://tools.ietf.org/html/draft-ietf-oauth-v2-22
 .. _OpenID Connect: http://openid.net/connect/
 
-.. _google oauth2:
+Ensure ``AUTH_REQUIRED`` and ``SECRET_KEY`` are set and that the
+``AUTH_PROVIDER`` setting is
 
-To use OAuth2 set the ``provider`` configuration setting in the Web UI
-:file:`config.js` file to one of ``google``, ``github``, ``gitlab`` or ``keycloak``::
-
-    'use strict';
-
-    angular.module('config', [])
-      .constant('config', {
-        'endpoint'    : "/api",
-        'provider'    : "google",
-        'client_id'   : "INSERT-CLIENT-ID-HERE" // replace with the client id for your OAuth provider
-      })
-      .constant('colors', {});
-
-Next, follow the steps below for the chosen OAuth provider to create an
-OAuth client ID and client secret. The client ID will need to be added
-to the web UI ``config.js`` and both the client ID and client secret
+Then follow the steps below for the chosen OAuth provider to create an
+OAuth client ID and client secret. The client ID and client secret
 will need to be added to the ``alertad.conf`` file for the Alerta server.
+
+.. _google oauth2:
 
 Google OAuth2
 ~~~~~~~~~~~~~
@@ -124,6 +99,7 @@ and choose **Web Application**.
 Click **Create Client ID** and take note of the Client ID and Client
 Secret. The configuration settins for ``alerta`` server are as follows::
 
+    AUTH_PROVIDER = 'google'
     OAUTH2_CLIENT_ID = '379647311730-sj130ru952o3o7ig8u0ts8np2ojivr8d.apps.googleusercontent.com'
     OAUTH2_CLIENT_SECRET = '8HrqJhbrYn9oDtaJqExample'
 
@@ -158,6 +134,7 @@ to *Settings -> Applications -> Register New Application*.
 Click Register Application and take note of the Client ID and Client
 Secret. Then configuration settings for ``alerta`` server are as follows::
 
+    AUTH_PROVIDER = 'github'
     OAUTH2_CLIENT_ID = 'f7b0c15e2b722e0e38f4'
     OAUTH2_CLIENT_SECRET = '7aa9094369b72937910badab0424dc7393x8mpl3'
 
@@ -196,6 +173,7 @@ Click *Submit* and take note of the Application ID and Secret. Then
 configuration settings for ``alerta`` server are as follows (replacing
 the values shown below with the values generated by GitLab)::
 
+    AUTH_PROVIDER = 'gitlab'
     GITLAB_URL = 'https://gitlab.com'  # or your own GitLab server
     OAUTH2_CLIENT_ID = 'd31e9caa131f72901b16d22289c824f423bd5cbf187a11245f402e8b2707d591'
     OAUTH2_CLIENT_SECRET = '42f1de369ec706996cadda234986779eeb65c0201a6f286b9751b1f845d62c8a'
@@ -255,6 +233,7 @@ Now go to *Installation* and generate it by selecting 'Keycloak OIDC JSON'. You 
 Take note of the realm, resource and secret. Then configuration settings for ``alerta`` server are as follows (replacing
 the values shown below with the values generated by Keycloak)::
 
+    AUTH_PROVIDER = 'keycloak'
     KEYCLOAK_URL = 'https://keycloak.example.org'
     KEYCLOAK_REALM = 'master'
     OAUTH2_CLIENT_ID = 'alerta-ui'
@@ -315,6 +294,7 @@ Configure pysaml2
 ~~~~~~~~~~~~~~~~~
 Bare-minimum config example::
 
+    AUTH_PROVIDER = 'saml2'
     SAML2_CONFIG = {
         'metadata': {
             'local': ['/path/to/federationmetadata.xml']
@@ -322,6 +302,7 @@ Bare-minimum config example::
         'key_file': '/path/to/alerta.key',
         'cert_file': '/path/to/alerta.cert'
     }
+
 ..
 
 ``metadata``
@@ -342,8 +323,14 @@ ALLOWED_SAML2_GROUPS
 To restrict access to users who are members of particular group use::
 
     ALLOWED_SAML2_GROUPS = ['alerta_ro', 'alerta_rw']
-..
-Note: you need to ensure that pysaml2 authn response identity object contains ``groups`` attribute. You can do this by writing proper attribute map which will convert your IdP-specific attribute name to ``groups``. Example::
+
+.. note::
+
+    Ensure that pysaml2 authn response identity object contains ``groups``
+    attribute. You can do this by writing proper attribute map which will
+    convert your IdP-specific attribute name to ``groups``.
+
+Example::
 
     MAP = {
         ...
@@ -358,7 +345,9 @@ Note: you need to ensure that pysaml2 authn response identity object contains ``
             ...
         }
     }
+
 ..
+
 See `pysaml2 attribute-map-dir documentation <https://pysaml2.readthedocs.io/en/latest/howto/config.html#attribute-map-dir>`_. ``attribute-map-dir`` can be specified in the ``SAML2_CONFIG``, see `Configure pysaml2`_
 
 SAML2_USER_NAME_FORMAT
@@ -370,14 +359,14 @@ Default is ``'{givenName} {surname}'``.
 
 Cross-Origin
 ~~~~~~~~~~~~
-You also need to add your IdP origin to CORS headers:
-::
+You also need to add your IdP origin to CORS headers::
 
     CORS_ORIGINS = [
         ...
         'https://sso.example.com',
         ...
     ]
+
 ..
 
 Add trusted Service Provider to your Identity Provider

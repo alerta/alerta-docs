@@ -67,7 +67,7 @@ API Settings
 .. _database_config:
 
 Database Settings
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 There is a choice of either Postgres or MongoDB as the backend database.
 
@@ -337,9 +337,8 @@ Environment Variables
 
 Some configuration settings are special because they can be overridden by
 environment variables. This is to make deployment to different platforms
-and managed environments easier. eg. RedHat OpenShift, Heroku, Packer, Docker,
-and AWS or to make use of managed Postgres or MongoDB services. Note that
-not all would need to be used to deploy to each different environment.
+and managed environments such as Heroku, Kubernetes and AWS easier, or to
+make use of managed Postgres or MongoDB services.
 
 .. note:: Environment variables are read after configuration files so they
     will always override any other setting.

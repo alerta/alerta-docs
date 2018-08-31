@@ -1,7 +1,10 @@
 Alerta monitoring system
 ========================
 
-The alerta monitoring system is a tool used to consolidate and de-duplicate alerts from multiple sources for quick 'at-a-glance' visualisation. With just one system you can monitor alerts from many other monitoring tools on a single screen.
+The alerta monitoring system is a tool used to consolidate and de-duplicate
+alerts from multiple sources for quick 'at-a-glance' visualisation. With
+just one system you can monitor alerts from many other monitoring tools
+on a single screen.
 
 .. image:: _static/images/alerta-screen-shot-3.png
 
@@ -24,19 +27,23 @@ GitHub and GitLab.
 Demo Sites
 ----------
 
-There are two demonstration and testing sites -- one for Google OAuth and one for GitHub OAuth:
+There are two public web consoles available for demonstration and testing:
 
--  http://try.alerta.io (Google OAuth)
--  https://alerta.herokuapp.com (GitHub OAuth over SSL)
+- https://try.alerta.io (Google OAuth)
+- https://alerta.herokuapp.com (BasicAuth)
 
-And two API servers, configured to support Google and GitHub OAuth2:
+The web consoles are powered by a single public API which can be used
+as a sandbox for integration testing:
 
--  http://api.alerta.io
--  https://alerta-api.herokuapp.com (SSL)
+- https://alerta-api.herokuapp.com
 
-The API Explorer website can be used to query for, and send alerts to, the http://api.alerta.io API server. The command-line tool ``alerta`` can also be used to generate alerts. The required API key is ``demo-key``.
+The "API Explorer" can be used to query for and send alerts to the
+public API server:
 
-- http://explorer.alerta.io
+- https://explorer.alerta.io
+
+The ``alerta`` command-line tool can also be used to generate alerts.
+The required API key is ``demo-key``.
 
 .. toctree::
    :maxdepth: 2
@@ -56,6 +63,7 @@ The API Explorer website can be used to query for, and send alerts to, the http:
    conventions
    development
    Tutorials <tutorials>
+   resources
 
 .. toctree::
   :glob:
@@ -69,14 +77,17 @@ The API Explorer website can be used to query for, and send alerts to, the http:
 Contribute
 ----------
 
-* Core project, Web UI, Python SDK, integrations: http://github.com/alerta
+* Core project: https://github.com/alerta/alerta
+* Web UI: https://github.com/alerta/angular-alerta-webui
+* Python SDK: https://github.com/alerta/python-alerta-client
+* Contributions and integrations: https://github.com/alerta/alerta-contrib
 
 Support
 -------
 
 * Gitter chat room: https://gitter.im/alerta/chat
 * :ref:`Frequently Asked Questions <faq>`
-* Issue Tracker: http://github.com/alerta/alerta/issues
+* Issue Tracker: https://github.com/alerta/alerta/issues
 
 .. toctree::
    :maxdepth: 1
@@ -87,7 +98,7 @@ Support
 License
 -------
 
-This project is licensed under the Apache license.
+This project is licensed under the Apache license, Version 2.0 .
 
 .. toctree::
    :maxdepth: 2

@@ -4,23 +4,16 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Integrations &amp; Plugins &#8212; alerta 5.0 documentation</title>
+    <title>Integrations &amp; Plugins &#8212; alerta 6.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '5.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -32,13 +25,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="integrations-plugins">
@@ -99,28 +93,28 @@ to the Alerta server API when an event occurs.</p>
 API endpoint to an SNS topic.</p>
 <p>For details on how to set this up see the <a class="reference external" href="http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html">Sending Amazon SNS Messages to
 HTTP/HTTPS Endpoints</a> page and in the <cite>Endpoint</cite> input box append
-<code class="file docutils literal"><span class="pre">/webhooks/cloudwatch</span></code> to the Alerta API URL.</p>
+<code class="file docutils literal notranslate"><span class="pre">/webhooks/cloudwatch</span></code> to the Alerta API URL.</p>
 <p><strong>Example AWS CloudWatch Webhook URL</strong></p>
-<p><code class="file docutils literal"><span class="pre">https://alerta.example.com/api/webhooks/cloudwatch</span></code></p>
+<p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/cloudwatch</span></code></p>
 </div>
 <div class="section" id="pingdom">
 <span id="id6"></span><h3>Pingdom<a class="headerlink" href="#pingdom" title="Permalink to this headline">¶</a></h3>
 <p>Alerta can be configured to receive Pingdom URL check alerts by adding a webhook
 alerting endpoint that calls the Alerta API.</p>
 <p>For details on how to set this up see the <a class="reference external" href="https://support.pingdom.com/Knowledgebase/Article/View/94/0/users-and-alerting-end-points">Pingdom webhook</a> page and in the
-<cite>webhook URL</cite> input box append <code class="file docutils literal"><span class="pre">/webhooks/pingdom</span></code> to the Alerta API URL.</p>
+<cite>webhook URL</cite> input box append <code class="file docutils literal notranslate"><span class="pre">/webhooks/pingdom</span></code> to the Alerta API URL.</p>
 <p><strong>Example Pingdom Webhook URL</strong></p>
-<p><code class="file docutils literal"><span class="pre">https://alerta.example.com/api/webhooks/pingdom</span></code></p>
+<p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/pingdom</span></code></p>
 </div>
 <div class="section" id="pagerduty">
 <span id="pageduty"></span><h3>PagerDuty<a class="headerlink" href="#pagerduty" title="Permalink to this headline">¶</a></h3>
 <p>Alerta can be configured to receive PagerDuty incident-based webhooks – any
-change to the <code class="docutils literal"><span class="pre">status</span></code> or <code class="docutils literal"><span class="pre">assigned_to_user</span></code> of an incident will cause an
+change to the <code class="docutils literal notranslate"><span class="pre">status</span></code> or <code class="docutils literal notranslate"><span class="pre">assigned_to_user</span></code> of an incident will cause an
 outgoing message to be sent.</p>
 <p>For details on how to set this up see the <a class="reference external" href="https://developer.pagerduty.com/documentation/rest/webhooks">PagerDuty webhook</a> page and where it
-requires the webhook URL append <code class="file docutils literal"><span class="pre">/webhooks/pagerduty</span></code> to the Alerta API URL.</p>
+requires the webhook URL append <code class="file docutils literal notranslate"><span class="pre">/webhooks/pagerduty</span></code> to the Alerta API URL.</p>
 <p><strong>Example PagerDuty Webhook URL</strong></p>
-<p><code class="file docutils literal"><span class="pre">https://alerta.example.com/api/webhooks/pagerduty</span></code></p>
+<p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/pagerduty</span></code></p>
 </div>
 <div class="section" id="alertmanager">
 <span id="id7"></span><h3>Prometheus Alertmanager<a class="headerlink" href="#alertmanager" title="Permalink to this headline">¶</a></h3>
@@ -132,54 +126,62 @@ requires the webhook URL append <code class="file docutils literal"><span class=
 <p>Alerta can be configured to receive Google Stackdriver incidents by adding a
 webhook endpoint to the notifications configuration.</p>
 <p>For details on how to set this up see <a class="reference external" href="https://support.stackdriver.com/customer/portal/articles/1491775-configuring-webhooks">Stackdriver webhook</a> page and in the
-<cite>ENDPOINT URL</cite> input box append <code class="file docutils literal"><span class="pre">/webhooks/stackdriver</span></code> to the Alerta API URL.</p>
+<cite>ENDPOINT URL</cite> input box append <code class="file docutils literal notranslate"><span class="pre">/webhooks/stackdriver</span></code> to the Alerta API URL.</p>
 <p><strong>Example Stackdriver Webhook URL</strong></p>
-<p><code class="file docutils literal"><span class="pre">https://alerta.example.com/api/webhooks/stackdriver</span></code></p>
+<p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/stackdriver</span></code></p>
 </div>
 <div class="section" id="severdensity">
 <span id="serverdensity"></span><h3>SeverDensity<a class="headerlink" href="#severdensity" title="Permalink to this headline">¶</a></h3>
 <p>Alerta can be configured to receive SeverDensity alerts by adding a webhook
 endpoint to the Notification Preferences.</p>
 <p>For details on how to set this up see <a class="reference external" href="https://support.serverdensity.com/hc/en-us/articles/201017737-Setting-up-webhooks">SeverDensity webhook</a> page and in the
-<cite>Endpoint URL</cite> input box append <code class="file docutils literal"><span class="pre">/webhooks/serverdensity</span></code> to the Alerta API URL.</p>
+<cite>Endpoint URL</cite> input box append <code class="file docutils literal notranslate"><span class="pre">/webhooks/serverdensity</span></code> to the Alerta API URL.</p>
 <p><strong>Example SeverDensity Webhook URL</strong></p>
-<p><code class="file docutils literal"><span class="pre">https://alerta.example.com/api/webhooks/serverdensity</span></code></p>
+<p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/serverdensity</span></code></p>
 </div>
-<div class="section" id="new-relic">
-<span id="id9"></span><h3>New Relic<a class="headerlink" href="#new-relic" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="netdata">
+<span id="new-relic"></span><h3>netdata<a class="headerlink" href="#netdata" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/firehol/netdata/wiki/Alerta-monitoring-system">https://github.com/firehol/netdata/wiki/Alerta-monitoring-system</a></p>
+</div>
+<div class="section" id="id9">
+<h3>New Relic<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <p>Alerta can be configured to receive New Relic incidents by adding a webhook
 endpoint to the Notification Channels.</p>
 <p>For details on how to set this up see <a class="reference external" href="https://docs.newrelic.com/docs/alerts/new-relic-alerts/managing-notification-channels/notification-channels-controlling-where-send-alerts">New Relic webhook</a> page and in the
-<cite>Endpoint URL</cite> input box append <code class="file docutils literal"><span class="pre">/webhooks/newrelic</span></code> to the Alerta API URL.</p>
+<cite>Endpoint URL</cite> input box append <code class="file docutils literal notranslate"><span class="pre">/webhooks/newrelic</span></code> to the Alerta API URL.</p>
 <p><strong>Example New Relic Webhook URL</strong></p>
-<p><code class="file docutils literal"><span class="pre">https://alerta.example.com/api/webhooks/newrelic</span></code></p>
+<p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/newrelic</span></code></p>
 </div>
 <div class="section" id="grafana">
 <span id="id10"></span><h3>Grafana<a class="headerlink" href="#grafana" title="Permalink to this headline">¶</a></h3>
 <p>Alerta can be configured to receive Grafana alerts by adding a webhook
 endpoint to the Notification Channels.</p>
 <p>For details on how to set this up see <a class="reference external" href="http://docs.grafana.org/alerting/notifications/#webhook">Grafana webhook</a> page and in the
-<cite>Endpoint URL</cite> input box append <code class="file docutils literal"><span class="pre">/webhooks/grafana</span></code> to the Alerta API URL.</p>
+<cite>Endpoint URL</cite> input box append <code class="file docutils literal notranslate"><span class="pre">/webhooks/grafana</span></code> to the Alerta API URL.</p>
 <p><strong>Example Grafana Webhook URL</strong></p>
-<p><code class="file docutils literal"><span class="pre">https://alerta.example.com/api/webhooks/grafana</span></code></p>
+<p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/grafana</span></code></p>
 </div>
 <div class="section" id="telegram">
 <span id="id11"></span><h3>Telegram<a class="headerlink" href="#telegram" title="Permalink to this headline">¶</a></h3>
 <p>Alerta can be configured to receive <a class="reference external" href="https://core.telegram.org/bots/api#callbackquery">Telegram callback queries</a> from the inline
 buttons in the <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram">Telegram Bot</a> plugin.</p>
 <p>For details on how to set this up see <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram">Telegram Bot</a> page and for the
-<code class="docutils literal"><span class="pre">TELEGRAM_WEBHOOK_URL</span></code> setting append <code class="file docutils literal"><span class="pre">/webhooks/telegram</span></code> to the Alerta API URL.</p>
+<code class="docutils literal notranslate"><span class="pre">TELEGRAM_WEBHOOK_URL</span></code> setting append <code class="file docutils literal notranslate"><span class="pre">/webhooks/telegram</span></code> to the Alerta API URL.</p>
 <p><strong>Example Telegram Webhook URL</strong></p>
-<p><code class="file docutils literal"><span class="pre">https://alerta.example.com/api/webhooks/telegram</span></code></p>
+<p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/telegram</span></code></p>
 </div>
-<div class="section" id="riemann">
-<span id="id12"></span><h3>Riemann<a class="headerlink" href="#riemann" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="tick-stack">
+<span id="riemann"></span><h3>Tick Stack<a class="headerlink" href="#tick-stack" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://docs.influxdata.com/kapacitor/v1.5/event_handlers/alerta/">https://docs.influxdata.com/kapacitor/v1.5/event_handlers/alerta/</a></p>
+</div>
+<div class="section" id="id12">
+<h3>Riemann<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <p>Alerta can be configured to receive Riemann events. The integration makes
 no assumptions about the format of the Riemann events and consumes
 standard events. If events are decorated with additional metadata (eg. tags,
 environment, group, etc) then these will be used.</p>
 <p><strong>Example Riemann Webhook URL</strong></p>
-<p><code class="file docutils literal"><span class="pre">https://alerta.example.com/api/webhooks/riemann</span></code></p>
+<p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/riemann</span></code></p>
 </div>
 </div>
 <div class="section" id="widgets">
@@ -230,6 +232,7 @@ implementation-specific requirements.</p>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -303,6 +306,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/reference.html">API Reference</a></li>
@@ -320,12 +324,14 @@ Links
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -333,11 +339,11 @@ Links
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015-2017, Nick Satterly. MIT License.
+      &copy;2015-2018, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="_sources/integrations.rst.txt"

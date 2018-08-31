@@ -74,9 +74,10 @@ What's the difference between `ack`, `close` and `delete`?
 Alerts are meant to auto-close when a corresponding `normal` or
 `cleared` alert is received for that event-resource combination. If
 no `normal` alert exists for a particular event (which may be the
-case for alerts from log files, for example) then the alert will
-be deleted when the timeout period has expired. Alerts timeout after
-1 day by default but that is configurable on a per-alert basis.
+case for alerts from log files or SNMP traps, for example) then the
+alert will be deleted when the timeout period has expired. Alerts
+timeout after 1 day by default but that is configurable on a
+per-alert basis.
 
 If, as an operator, you want to remove an event from view then you
 can either `ack` the alert or DELETE it. If the alert is DELETED a
@@ -126,19 +127,22 @@ they discussion PyMongo in relation to forking_ and mod_wsgi_ site.
 .. _forking: https://api.mongodb.com/python/current/faq.html#is-pymongo-fork-safe
 .. _mod_wsgi: http://api.mongodb.com/python/current/examples/mod_wsgi.html
 
-Does Alerta support Python 3?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Does Alerta support Python 2.7 or Python 3?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Yes, the minimum version is Python 3.4. Python 3 is recommended for new 
-production environments and existing installations should be switched to 
-Python 3. Alerta currently supports Python 2.7, but it has been proposed_ 
-to end support after 31st August 2018.
+Alerta :ref:`Release 5.2 <release_5_2>` is the `last version`_ to support
+Python 2.7 and from 31 August, 2018 it will only receive crtical bug fixes
+and security patches.
 
-.. _proposed: https://github.com/alerta/alerta/issues/480
+Alerta :ref:`Release 6 <release_6_0>` supports Python 3.6+ and is recommended
+for new production environments and existing installations should be switched
+to Python 3 well before 1 January, 2020 when Python 2.7 becomes End-of-Life_.
 
+.. _last version: https://github.com/alerta/alerta/issues/480
 .. _created: https://github.com/alerta/nagios3-alerta
 .. _many: https://github.com/alerta/alerta/tree/master/alerta/plugins
 .. _plugins: https://github.com/alerta/alerta-contrib/tree/master/plugins
 .. _integrations: https://github.com/alerta/alerta-contrib/tree/master/integrations
 .. _popular: https://github.com/alerta/alerta/issues/74
 .. _demand: https://github.com/alerta/alerta/issues/75
+.. _End-of-Life: https://pythonclock.org/

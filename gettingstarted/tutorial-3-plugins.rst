@@ -325,7 +325,7 @@ three times.
 
     def rules(alert, plugins):
 
-        if alert.duplicateCount > 2:
+        if alert.duplicate_count > 2:
             return [plugins['slack']]
         else:
             return []
