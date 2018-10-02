@@ -4,23 +4,16 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Alerta CLI &#8212; alerta 5.0 documentation</title>
+    <title>Alerta CLI &#8212; alerta 6.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '5.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -32,31 +25,35 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="alerta-cli">
 <span id="cli"></span><h1>Alerta CLI<a class="headerlink" href="#alerta-cli" title="Permalink to this headline">¶</a></h1>
-<p><code class="docutils literal"><span class="pre">alerta</span></code> is the unified command-line tool for the alerta monitoring
-system. It can be used to send and query alerts, tag alerts and change
-alert status, delete alerts, dump alert history or see the raw alert data.</p>
-<p><code class="docutils literal"><span class="pre">alerta</span></code> can also be used to send heartbeats to the alerta server.</p>
+<p><code class="docutils literal notranslate"><span class="pre">alerta</span></code> is the unified command-line tool, terminal GUI and Python SDK
+for the alerta monitoring system.</p>
+<p>It can be used to send and query alerts, tag alerts and change alert status,
+delete alerts, dump alert history or see the raw alert data. It can also be
+used to send heartbeats to the alerta server, and generate alerts based on
+missing or slow heartbeats.</p>
+<img alt="_images/alerta-top-80x25.png" src="_images/alerta-top-80x25.png" />
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">alerta</span></code> client tool can be installed using pip:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ pip install alerta
+<p>The <code class="docutils literal notranslate"><span class="pre">alerta</span></code> client tool can be installed using pip:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install alerta
 </pre></div>
 </div>
 <p>Or, by cloning the git repository:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone https://github.com/alerta/python-alerta.git
-$ cd python-alerta
-$ python setup.py install
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/alerta/python-alerta-client.git
+$ cd python-alerta-client
+$ pip install .
 </pre></div>
 </div>
 </div>
@@ -84,27 +81,51 @@ configuration settings.</p>
 <tbody valign="top">
 <tr class="row-even"><td>file</td>
 <td>n/a</td>
-<td><span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALERTA_CONF_FILE</span></code></td>
-<td>n/a</td>
-<td><code class="file docutils literal"><span class="pre">~/.alerta.conf</span></code></td>
+<td><span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ALERTA_CONF_FILE</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">--config-file</span> <span class="pre">FILE</span></code></td>
+<td><code class="file docutils literal notranslate"><span class="pre">~/.alerta.conf</span></code></td>
 </tr>
 <tr class="row-odd"><td>profile</td>
 <td>profile</td>
-<td><span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALERTA_DEFAULT_PROFILE</span></code></td>
-<td><code class="docutils literal"><span class="pre">--profile</span> <span class="pre">PROFILE</span></code></td>
+<td><span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ALERTA_DEFAULT_PROFILE</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">--profile</span> <span class="pre">PROFILE</span></code></td>
 <td>None</td>
 </tr>
 <tr class="row-even"><td>endpoint</td>
 <td>endpoint</td>
-<td><span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALERTA_ENDPOINT</span></code></td>
-<td><code class="docutils literal"><span class="pre">--endpoint-url</span> <span class="pre">URL</span></code></td>
-<td><code class="docutils literal"><span class="pre">http://localhost:8080</span></code></td>
+<td><span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ALERTA_ENDPOINT</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">--endpoint-url</span> <span class="pre">URL</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">http://localhost:8080</span></code></td>
 </tr>
 <tr class="row-odd"><td>key</td>
 <td>key</td>
-<td><span class="target" id="index-3"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALERTA_API_KEY</span></code></td>
+<td><span class="target" id="index-3"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ALERTA_API_KEY</span></code></td>
 <td>n/a</td>
 <td>None</td>
+</tr>
+<tr class="row-even"><td>provider</td>
+<td>provider</td>
+<td><span class="target" id="index-4"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ALERTA_API_KEY</span></code></td>
+<td>n/a</td>
+<td>basic</td>
+</tr>
+<tr class="row-odd"><td>client id</td>
+<td>client_id</td>
+<td>n/a</td>
+<td>n/a</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>GitHub URL</td>
+<td>github_url</td>
+<td>n/a</td>
+<td>n/a</td>
+<td><code class="docutils literal notranslate"><span class="pre">https://github.com</span></code></td>
+</tr>
+<tr class="row-odd"><td>GitLab URL</td>
+<td>gitlab_url</td>
+<td>n/a</td>
+<td>n/a</td>
+<td><code class="docutils literal notranslate"><span class="pre">https://gitlab.com</span></code></td>
 </tr>
 <tr class="row-even"><td>timezone</td>
 <td>timezone</td>
@@ -112,51 +133,47 @@ configuration settings.</p>
 <td>n/a</td>
 <td>Europe/London</td>
 </tr>
-<tr class="row-odd"><td>ssl verify</td>
-<td>sslverify</td>
-<td><span class="target" id="index-4"></span><code class="xref std std-envvar docutils literal"><span class="pre">REQUESTS_CA_BUNDLE</span></code></td>
-<td>n/a</td>
-<td>verify SSL certificates</td>
-</tr>
-<tr class="row-even"><td>timeout</td>
+<tr class="row-odd"><td>timeout</td>
 <td>timeout</td>
 <td>n/a</td>
 <td>n/a</td>
 <td>5s TCP connection timeout</td>
 </tr>
+<tr class="row-even"><td>ssl verify</td>
+<td>sslverify</td>
+<td><span class="target" id="index-5"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">REQUESTS_CA_BUNDLE</span></code></td>
+<td>n/a</td>
+<td>verify SSL certificates</td>
+</tr>
 <tr class="row-odd"><td>output</td>
 <td>output</td>
 <td>n/a</td>
-<td><code class="docutils literal"><span class="pre">--output</span> <span class="pre">OUTPUT</span></code>, <code class="docutils literal"><span class="pre">--json</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">--output</span> <span class="pre">FORMAT</span></code>, <code class="docutils literal notranslate"><span class="pre">--json</span></code></td>
 <td>text</td>
 </tr>
 <tr class="row-even"><td>color</td>
 <td>color</td>
-<td><span class="target" id="index-5"></span><code class="xref std std-envvar docutils literal"><span class="pre">CLICOLOR</span></code></td>
-<td><code class="docutils literal"><span class="pre">--color</span></code>, <code class="docutils literal"><span class="pre">--no-color</span></code></td>
+<td><span class="target" id="index-6"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CLICOLOR</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">--color</span></code>, <code class="docutils literal notranslate"><span class="pre">--no-color</span></code></td>
 <td>color on</td>
 </tr>
 <tr class="row-odd"><td>debug</td>
 <td>debug</td>
-<td><span class="target" id="index-6"></span><code class="xref std std-envvar docutils literal"><span class="pre">DEBUG</span></code></td>
-<td><code class="docutils literal"><span class="pre">--debug</span></code></td>
+<td><span class="target" id="index-7"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">DEBUG</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">--debug</span></code></td>
 <td>no debug</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The <code class="docutils literal"><span class="pre">profile</span></code> option can only be set in the <code class="docutils literal"><span class="pre">[DEFAULT]</span></code> section.</p>
+<p class="last">The <code class="docutils literal notranslate"><span class="pre">profile</span></code> option can only be set in the <code class="docutils literal notranslate"><span class="pre">[DEFAULT]</span></code> section.</p>
 </div>
 <p><strong>Example</strong></p>
-<p>Configuration file <code class="file docutils literal"><span class="pre">~/.alerta.conf</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">DEFAULT</span><span class="p">]</span>
+<p>Configuration file <code class="file docutils literal notranslate"><span class="pre">~/.alerta.conf</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">DEFAULT</span><span class="p">]</span>
 <span class="n">timezone</span> <span class="o">=</span> <span class="n">Australia</span><span class="o">/</span><span class="n">Sydney</span>
 <span class="n">output</span> <span class="o">=</span> <span class="n">json</span>
-
-<span class="p">[</span><span class="n">profile</span> <span class="n">production</span><span class="p">]</span>
-<span class="n">endpoint</span> <span class="o">=</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">alerta</span><span class="o">.</span><span class="n">io</span>
-<span class="n">key</span> <span class="o">=</span> <span class="n">LMvzLsfJyGpSuLmaB9kp</span><span class="o">-</span><span class="mi">8</span><span class="n">gCl4I3YZkV4i7IGb6S</span>
 
 <span class="p">[</span><span class="n">profile</span> <span class="n">development</span><span class="p">]</span>
 <span class="n">endpoint</span> <span class="o">=</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8443</span>
@@ -167,16 +184,16 @@ configuration settings.</p>
 </pre></div>
 </div>
 <p>Set environment variables:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ export ALERTA_CONF_FILE=~/.alerta.conf
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export ALERTA_CONF_FILE=~/.alerta.conf
 $ export ALERTA_DEFAULT_PROFILE=production
 </pre></div>
 </div>
 <p>Use production configuration settings by default:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta query
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta query
 </pre></div>
 </div>
 <p>Switch to development configuration settings when required:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta --profile development query
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta --profile development query
 </pre></div>
 </div>
 </div>
@@ -184,68 +201,81 @@ $ export ALERTA_DEFAULT_PROFILE=production
 <h2>Precedence<a class="headerlink" href="#precedence" title="Permalink to this headline">¶</a></h2>
 <p>Command-line configuration options have precedence over environment
 variables, which have precedence over the configuration file. Within
-the configuration file profile-specific sections have precedence over
-the <code class="docutils literal"><span class="pre">[DEFAULT]</span></code> section.</p>
+the configuration file, profile-specific sections have precedence over
+the <code class="docutils literal notranslate"><span class="pre">[DEFAULT]</span></code> section.</p>
+</div>
+<div class="section" id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h2>
+<p>If the Alerta API enforces authentication, then the <code class="docutils literal notranslate"><span class="pre">alerta</span></code> command-line
+tool can be configured to present an API key or Bearer token to the API when
+accessing secured endpoints.</p>
+<p><strong>API Keys</strong></p>
+<p>API keys can be generated in the web UI, or by an authenticated user using
+the <code class="docutils literal notranslate"><span class="pre">alerta</span></code> CLI, and should be added to the configuration file as the “key”
+setting as shown in the following example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">profile</span> <span class="n">production</span><span class="p">]</span>
+<span class="n">endpoint</span> <span class="o">=</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">alerta</span><span class="o">.</span><span class="n">io</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">LMvzLsfJyGpSuLmaB9kp</span><span class="o">-</span><span class="mi">8</span><span class="n">gCl4I3YZkV4i7IGb6S</span>
+</pre></div>
+</div>
+<p><strong>Bearer Tokens</strong></p>
+<p>Alternatively, a user can “login” to the API and retrieve a Bearer token if
+the Alerta API is configured to use either <code class="docutils literal notranslate"><span class="pre">basic</span></code>, <code class="docutils literal notranslate"><span class="pre">github</span></code>, <code class="docutils literal notranslate"><span class="pre">gitlab</span></code>
+or <code class="docutils literal notranslate"><span class="pre">google</span></code> as the authentication provider. An OAuth Client ID is required
+if not using <code class="docutils literal notranslate"><span class="pre">basic</span></code> and settings should be added to the configuration
+file as shown in the example below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">profile</span> <span class="n">cloud</span><span class="p">]</span>
+<span class="n">endpoint</span> <span class="o">=</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">alerta</span><span class="o">-</span><span class="n">api</span><span class="o">.</span><span class="n">herokuapp</span><span class="o">.</span><span class="n">com</span>
+<span class="n">provider</span> <span class="o">=</span> <span class="n">google</span>
+<span class="n">client_id</span> <span class="o">=</span> <span class="mi">736147134702</span><span class="o">-</span><span class="n">glkb1pesv716j1utg4llg7c3rr7nnhli</span><span class="o">.</span><span class="n">apps</span><span class="o">.</span><span class="n">googleusercontent</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">alerta</span></code> tool is invoked by specifying a command using the
+<p>The <code class="docutils literal notranslate"><span class="pre">alerta</span></code> tool is invoked by specifying a command using the
 following format:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] COMMAND [FILTERS]
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] COMMAND [ARGS]...
 </pre></div>
 </div>
+<p>The following group of commands are related to creating, querying and managing
+alerts.</p>
 <div class="section" id="send">
 <span id="cli-send"></span><h3><strong class="command">send</strong><a class="headerlink" href="#send" title="Permalink to this headline">¶</a></h3>
-<p>Send an alert to the server:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] send [-r RESOURCE] [-e EVENT] [-E ENVIRONMENT]
-                        [-s SEVERITY] [-C CORRELATE] [--status STATUS]
-                        [-S SERVICE] [-g GROUP] [-v VALUE] [-t TEXT]
-                        [-T TAG] [-A ATTRIBUTES] [-O ORIGIN]
-                        [--type EVENT_TYPE] [--timeout TIMEOUT]
-                        [--raw-data RAW_DATA]
+<p>Send an alert.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta send [OPTIONS]
 
-optional arguments:
-  -h, --help            show this help message and exit
-  -r RESOURCE, --resource RESOURCE
-                        resource under alarm
-  -e EVENT, --event EVENT
-                        event
-  -E ENVIRONMENT, --environment ENVIRONMENT
-                        environment eg. &quot;production&quot;, &quot;development&quot;, &quot;testing&quot;
-  -s SEVERITY, --severity SEVERITY
-                        severity
-  -C CORRELATE, --correlate CORRELATE
-                        correlate
-  --status STATUS       status should not normally be defined as it is server-
-                        assigned eg. &quot;open&quot;, &quot;closed&quot;
-  -S SERVICE, --service SERVICE
-                        service affected eg. the application name, &quot;Web&quot;,
-                        &quot;Network&quot;, &quot;Storage&quot;, &quot;Database&quot;, &quot;Security&quot;
-  -g GROUP, --group GROUP
-                        group
-  -v VALUE, --value VALUE
-                        value
-  -t TEXT, --text TEXT  Freeform alert text eg. &quot;Host not responding to ping.&quot;
-  -T TAG, --tag TAG     List of tags eg. &quot;London&quot;, &quot;os:linux&quot;, &quot;AWS/EC2&quot;.
-  -A ATTRIBUTES, --attribute ATTRIBUTES
-                        List of Key=Value attribute pairs eg. &quot;priority=high&quot;,
-                        &quot;moreInfo=...&quot;
-  -O ORIGIN, --origin ORIGIN
-                        Origin of alert. Usually in form of &quot;app/host&quot;
-  --type EVENT_TYPE     event type eg. &quot;exceptionAlert&quot;, &quot;serviceAlert&quot;
-  --timeout TIMEOUT     Timeout in seconds before an &quot;open&quot; alert will be
-                        automatically &quot;expired&quot; or &quot;deleted&quot;
-  --raw-data RAW_DATA   raw data
+Options:
+-r, --resource RESOURCE        Resource under alarm
+-e, --event EVENT              Event name
+-E, --environment ENVIRONMENT  Environment eg. Production, Development
+-s, --severity SEVERITY        Severity eg. critical, major, minor, warning
+-C, --correlate EVENT          List of related events eg. node_up, node_down
+-S, --service SERVICE          List of affected services eg. app name, Web,
+                                Network, Storage, Database, Security
+-g, --group GROUP              Group event by type eg. OS, Performance
+-v, --value VALUE              Event value
+-t, --text DESCRIPTION         Description of alert
+-T, --tag TAG                  List of tags eg. London, os:linux, AWS/EC2
+-A, --attributes KEY=VALUE     List of attributes eg. priority=high
+-O, --origin ORIGIN            Origin of alert in form app/host
+--type EVENT_TYPE              Event type eg. exceptionAlert,
+                                performanceAlert, nagiosAlert
+--timeout SECONDS              Seconds before an open alert will be expired
+--raw-data STRING              Raw data of orignal alert eg. SNMP trap PDU.
+                                &#39;@&#39; to read from file, &#39;-&#39; to read from stdin
+--customer STRING              Customer
+-h, --help                     Show this message and exit.
 </pre></div>
 </div>
-<p>The only mandatory options are <code class="docutils literal"><span class="pre">resource</span></code> and <code class="docutils literal"><span class="pre">event</span></code>. All the others will
+<p>The only mandatory options are <code class="docutils literal notranslate"><span class="pre">resource</span></code> and <code class="docutils literal notranslate"><span class="pre">event</span></code>. All the others will
 be set to sensible defaults.</p>
 <div class="admonition attention">
 <p class="first admonition-title">Attention</p>
-<p class="last">If the <code class="docutils literal"><span class="pre">reject</span></code> plugin is enabled (which it is by
-default) then alerts must have an <code class="docutils literal"><span class="pre">environment</span></code> attribute that
-is one of either <code class="docutils literal"><span class="pre">Production</span></code> or <code class="docutils literal"><span class="pre">Development</span></code> and it must
-define a <code class="docutils literal"><span class="pre">service</span></code> attribute. For more information on configuring
+<p class="last">If the <code class="docutils literal notranslate"><span class="pre">reject</span></code> plugin is enabled (which it is by
+default) then alerts must have an <code class="docutils literal notranslate"><span class="pre">environment</span></code> attribute that
+is one of either <code class="docutils literal notranslate"><span class="pre">Production</span></code> or <code class="docutils literal notranslate"><span class="pre">Development</span></code> and it must
+define a <code class="docutils literal notranslate"><span class="pre">service</span></code> attribute. For more information on configuring
 or disabling this plugin see <a class="reference internal" href="configuration.html#plugin-config"><span class="std std-ref">Plugin Settings</span></a>.</p>
 </div>
 <table border="1" class="docutils">
@@ -263,22 +293,22 @@ or disabling this plugin see <a class="reference internal" href="configuration.h
 <td>empty string</td>
 </tr>
 <tr class="row-odd"><td>severity</td>
-<td><code class="docutils literal"><span class="pre">normal</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">normal</span></code></td>
 </tr>
 <tr class="row-even"><td>correlate</td>
 <td>empty list</td>
 </tr>
 <tr class="row-odd"><td>status</td>
-<td><code class="docutils literal"><span class="pre">unknown</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">unknown</span></code></td>
 </tr>
 <tr class="row-even"><td>service</td>
 <td>empty list</td>
 </tr>
 <tr class="row-odd"><td>group</td>
-<td><code class="docutils literal"><span class="pre">Misc</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">Misc</span></code></td>
 </tr>
 <tr class="row-even"><td>value</td>
-<td><code class="docutils literal"><span class="pre">n/a</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">n/a</span></code></td>
 </tr>
 <tr class="row-odd"><td>text</td>
 <td>empty string</td>
@@ -293,7 +323,7 @@ or disabling this plugin see <a class="reference internal" href="configuration.h
 <td>program/host</td>
 </tr>
 <tr class="row-odd"><td>type</td>
-<td><code class="docutils literal"><span class="pre">exceptionAlert</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">exceptionAlert</span></code></td>
 </tr>
 <tr class="row-even"><td>timeout</td>
 <td>86400 (1 day)</td>
@@ -304,323 +334,210 @@ or disabling this plugin see <a class="reference internal" href="configuration.h
 </tbody>
 </table>
 <p><strong>Examples</strong></p>
-<p>To send a <code class="docutils literal"><span class="pre">minor</span></code> alert followed by a <code class="docutils literal"><span class="pre">normal</span></code> alert that correlates:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta send --resource web01 --event HttpError --correlate HttpOK --group Web --severity minor
+<p>To send a <code class="docutils literal notranslate"><span class="pre">minor</span></code> alert followed by a <code class="docutils literal notranslate"><span class="pre">normal</span></code> alert that correlates:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta send --resource web01 --event HttpError --correlate HttpOK --group Web --severity minor
 $ alerta send --resource web01 --event HttpOK --correlate HttpError --group Web --severity normal
 </pre></div>
 </div>
-<p>To send an alert with custom attribute called <code class="docutils literal"><span class="pre">customer</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta send -r web01 -e HttpError -g Web -s major --attributes customer=&quot;Tyrell Corp&quot;
+<p>To send an alert with custom attribute called <code class="docutils literal notranslate"><span class="pre">customer</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta send -r web01 -e HttpError -g Web -s major --attributes customer=&quot;Tyrell Corp&quot;
 </pre></div>
 </div>
 <p>To query for major and minor open alerts for the Production environment of the Mobile API service:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta query --filters severity=major severity=minor status=open environment=Production service=&quot;Mobile API&quot;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta query --filters severity=major severity=minor status=open environment=Production service=&quot;Mobile API&quot;
 </pre></div>
 </div>
 <p>To query for all alerts with “disk” in the alert text:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta query --filters text=~disk
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta query --filters text=~disk
 </pre></div>
 </div>
 </div>
 <div class="section" id="query">
 <h3><strong class="command">query</strong><a class="headerlink" href="#query" title="Permalink to this headline">¶</a></h3>
-<p>Search for alerts:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] query [--details] [--ids IDs] [--filters FILTERS]
+<p>Query for alerts based on search filter criteria.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta query [OPTIONS]
 
-optional arguments:
-  -h, --help            show this help message and exit
-  --details             Show alert details
-  -i IDs [IDs ...], --ids IDs [IDs ...]
-                        List of alert IDs (can use short 8-char id).
-  --filters FILTERS [FILTERS ...]
-                        KEY=VALUE eg. serverity=warning resource=web
+Options:
+-i, --ids UUID       List of alert IDs (can use short 8-char id)
+-f, --filter FILTER  KEY=VALUE eg. serverity=warning resource=web
+--tabular            Tabular output
+--compact            Compact output
+--details            Compact output with details
+-h, --help           Show this message and exit.
 </pre></div>
 </div>
 </div>
 <div class="section" id="watch">
 <h3><strong class="command">watch</strong><a class="headerlink" href="#watch" title="Permalink to this headline">¶</a></h3>
-<p>Watch for new alerts:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] watch [--id ID] [--filters FILTERS]
+<p>Watch for new alerts.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta watch [OPTIONS]
 
-optional arguments:
-  -h, --help         show this help message and exit
-  --details          Show alert details
-  -i ID, --id ID     List of alert IDs (can use short 8-char id).
-  --filters FILTERS  KEY=VALUE eg. id=5108bc20
+Options:
+-i, --ids UUID          List of alert IDs (can use short 8-char id)
+-f, --filter FILTER     KEY=VALUE eg. serverity=warning resource=web
+--details               Compact output with details
+-n, --interval SECONDS  Refresh interval
+-h, --help              Show this message and exit.
 </pre></div>
 </div>
 </div>
 <div class="section" id="top">
 <h3><strong class="command">top</strong><a class="headerlink" href="#top" title="Permalink to this headline">¶</a></h3>
-<p>Show top offenders and stats:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta top --help
-usage: alerta [OPTIONS] top [-h]
+<p>Display alerts like unix “top” command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta top [OPTIONS]
 
-optional arguments:
-  -h, --help  show this help message and exit
+Options:
+-h, --help  Show this message and exit.
 </pre></div>
 </div>
-<p>See <span class="xref std std-ref">top</span> for more information.</p>
 </div>
 <div class="section" id="raw">
 <h3><strong class="command">raw</strong><a class="headerlink" href="#raw" title="Permalink to this headline">¶</a></h3>
-<p>Show raw data for alerts:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] raw [--id ID] [--filters FILTERS]
+<p>Show raw data for alerts.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta raw [OPTIONS]
 
-optional arguments:
-  -h, --help         show this help message and exit
-  -i ID, --id ID     List of alert IDs (can use short 8-char id).
-  --filters FILTERS  KEY=VALUE eg. id=5108bc20
+Options:
+-i, --ids UUID       List of alert IDs (can use short 8-char id)
+-f, --filter FILTER  KEY=VALUE eg. serverity=warning resource=web
+-h, --help           Show this message and exit.
 </pre></div>
 </div>
 </div>
 <div class="section" id="history">
 <h3><strong class="command">history</strong><a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h3>
-<p>Show alert history:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] history [--id ID] [--filters FILTERS]
+<p>Show status and severity changes for alerts.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta history [OPTIONS]
 
-optional arguments:
-  -h, --help         show this help message and exit
-  -i ID, --id ID     List of alert IDs (can use short 8-char id).
-  --filters FILTERS  KEY=VALUE eg. id=5108bc20
+Options:
+-i, --ids UUID       List of alert IDs (can use short 8-char id)
+-f, --filter FILTER  KEY=VALUE eg. serverity=warning resource=web
+-h, --help           Show this message and exit.
 </pre></div>
 </div>
 </div>
 <div class="section" id="tag">
 <h3><strong class="command">tag</strong><a class="headerlink" href="#tag" title="Permalink to this headline">¶</a></h3>
-<p>Tag alerts:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] tag -T TAG [--id ID] [--filters FILTERS]
+<p>Add tags to alerts.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta tag [OPTIONS]
 
-optional arguments:
-  -h, --help         show this help message and exit
-  -T TAG, --tag TAG  List of tags eg. &quot;London&quot;, &quot;os:linux&quot;, &quot;AWS/EC2&quot;.
-  -i ID, --id ID     List of alert IDs (can use short 8-char id).
-  --filters FILTERS  KEY=VALUE eg. id=5108bc20
+Options:
+-i, --ids UUID       List of alert IDs (can use short 8-char id)
+-f, --filter FILTER  KEY=VALUE eg. serverity=warning resource=web
+-T, --tag TEXT       List of tags  [required]
+-h, --help           Show this message and exit.
 </pre></div>
 </div>
 </div>
 <div class="section" id="untag">
 <h3><strong class="command">untag</strong><a class="headerlink" href="#untag" title="Permalink to this headline">¶</a></h3>
-<p>Untag alerts ie. remove an assigned tag from alert tag list:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] untag -T TAG [--id ID] [--filters FILTERS]
+<p>Remove tags from alerts.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta untag [OPTIONS]
 
-optional arguments:
-  -h, --help         show this help message and exit
-  -T TAG, --tag TAG  List of tags eg. &quot;London&quot;, &quot;os:linux&quot;, &quot;AWS/EC2&quot;.
-  -i ID, --id ID     List of alert IDs (can use short 8-char id).
-  --filters FILTERS  KEY=VALUE eg. id=5108bc20
+Options:
+-i, --ids UUID       List of alert IDs (can use short 8-char id)
+-f, --filter FILTER  KEY=VALUE eg. serverity=warning resource=web
+-T, --tag TEXT       List of tags  [required]
+-h, --help           Show this message and exit.ntag alerts ie. remove an assigned tag from alert tag list::
+</pre></div>
+</div>
+</div>
+<div class="section" id="update">
+<h3><strong class="command">update</strong><a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h3>
+<p>Update alert attributes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta update [OPTIONS]
+
+Options:
+-i, --ids UUID              List of alert IDs (can use short 8-char id)
+-f, --filter FILTER         KEY=VALUE eg. serverity=warning resource=web
+-A, --attributes KEY=VALUE  List of attributes eg. priority=high  [required]
+-h, --help                  Show this message and exit.
 </pre></div>
 </div>
 </div>
 <div class="section" id="ack">
 <h3><strong class="command">ack</strong><a class="headerlink" href="#ack" title="Permalink to this headline">¶</a></h3>
-<p>Acknowlege alerts ie. change alert <code class="docutils literal"><span class="pre">status</span></code> to <code class="docutils literal"><span class="pre">ack</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] ack [--id ID] [--filters FILTERS]
-
-optional arguments:
-  -h, --help         show this help message and exit
-  -i ID, --id ID     List of alert IDs (can use short 8-char id).
-  --filters FILTERS  KEY=VALUE eg. id=5108bc20
+<p>Acknowlege alerts ie. change alert <code class="docutils literal notranslate"><span class="pre">status</span></code> to <code class="docutils literal notranslate"><span class="pre">ack</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:command:`unack`
 </pre></div>
 </div>
-</div>
-<div class="section" id="unack">
-<h3><strong class="command">unack</strong><a class="headerlink" href="#unack" title="Permalink to this headline">¶</a></h3>
-<p>Unacknowledge alerts ie. change alert <code class="docutils literal"><span class="pre">status</span></code> to <code class="docutils literal"><span class="pre">open</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] unack [--id ID] [--filters FILTERS]
-
-optional arguments:
-  -h, --help         show this help message and exit
-  -i ID, --id ID     List of alert IDs (can use short 8-char id).
-  --filters FILTERS  KEY=VALUE eg. id=5108bc20
+<hr class="docutils" />
+<p>Unacknowledge alerts ie. change alert <code class="docutils literal notranslate"><span class="pre">status</span></code> to <code class="docutils literal notranslate"><span class="pre">open</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:command:`close`
 </pre></div>
 </div>
-</div>
-<div class="section" id="close">
-<h3><strong class="command">close</strong><a class="headerlink" href="#close" title="Permalink to this headline">¶</a></h3>
-<p>Close alerts ie. change alert <code class="docutils literal"><span class="pre">status</span></code> to <code class="docutils literal"><span class="pre">closed</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] close [--id ID] [--filters FILTERS]
-
-optional arguments:
-  -h, --help         show this help message and exit
-  -i ID, --id ID     List of alert IDs (can use short 8-char id).
-  --filters FILTERS  KEY=VALUE eg. id=5108bc20
+<hr class="docutils" />
+<p>Close alerts ie. change alert <code class="docutils literal notranslate"><span class="pre">status</span></code> to <code class="docutils literal notranslate"><span class="pre">closed</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:command:`delete`
 </pre></div>
 </div>
-</div>
-<div class="section" id="delete">
-<h3><strong class="command">delete</strong><a class="headerlink" href="#delete" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
 <p>Delete alerts from server:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] delete [--id ID] [--filters FILTERS]
-
-optional arguments:
-  -h, --help         show this help message and exit
-  -i ID, --id ID     List of alert IDs (can use short 8-char id).
-  --filters FILTERS  KEY=VALUE eg. id=5108bc20
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:command:`blackout`
 </pre></div>
 </div>
-</div>
-<div class="section" id="blackout">
-<h3><strong class="command">blackout</strong><a class="headerlink" href="#blackout" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
 <p>Blackout alerts based on attributes:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta blackout --help
-usage: alerta [OPTIONS] blackout [-r RESOURCE] [-e EVENT] [-E ENVIRONMENT]
-                            [-S SERVICE] [-g GROUP] [-T TAG]
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -r RESOURCE, --resource RESOURCE
-                        resource under alarm
-  -e EVENT, --event EVENT
-                        event
-  -E ENVIRONMENT, --environment ENVIRONMENT
-                        environment eg. &quot;production&quot;, &quot;development&quot;, &quot;testing&quot;
-  -S SERVICE, --service SERVICE
-                        service affected eg. the application name, &quot;Web&quot;,
-                        &quot;Network&quot;, &quot;Storage&quot;, &quot;Database&quot;, &quot;Security&quot;
-  -g GROUP, --group GROUP
-                        group
-  -T TAG, --tag TAG     List of tags eg. &quot;London&quot;, &quot;os:linux&quot;, &quot;AWS/EC2&quot;.
-  --start START         Start of blackout period
-  --duration DURATION   Duration of blackout period (default: 1 hour)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:command:`blackouts`
 </pre></div>
 </div>
-</div>
-<div class="section" id="blackouts">
-<h3><strong class="command">blackouts</strong><a class="headerlink" href="#blackouts" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
 <p>List all blackout periods:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta blackouts --help
-usage: alerta [OPTIONS] blackouts [-h]
-
-optional arguments:
-  -h, --help  show this help message and exit
-  --purge     Delete all expired blackout periods
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:command:`heartbeat`
 </pre></div>
 </div>
-</div>
-<div class="section" id="heartbeat">
-<h3><strong class="command">heartbeat</strong><a class="headerlink" href="#heartbeat" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
 <p>Send a heartbeat to the server:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta [OPTIONS] heartbeat [-T TAG] [-O ORIGIN] [--timeout TIMEOUT]
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -T TAG, --tag TAG     List of tags eg. &quot;London&quot;, &quot;os:linux&quot;, &quot;AWS/EC2&quot;.
-  -O ORIGIN, --origin ORIGIN
-                        Origin of heartbeat. Usually in form of &quot;app/host&quot;
-  --timeout TIMEOUT     Timeout in seconds before a heartbeat will be
-                        considered stale
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:command:`heartbeats`
 </pre></div>
 </div>
-</div>
-<div class="section" id="heartbeats">
-<h3><strong class="command">heartbeats</strong><a class="headerlink" href="#heartbeats" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
 <p>List all heartbeats:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta heartbeats --help
-usage: alerta [OPTIONS] heartbeats [-h]
-
-optional arguments:
-  -h, --help  show this help message and exit
-  --alert     Send alerts on stale or slow heartbeats
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:command:`user`
 </pre></div>
 </div>
-</div>
-<div class="section" id="user">
-<h3><strong class="command">user</strong><a class="headerlink" href="#user" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
 <p>Manage user details (Basic Auth only):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta user --help
-usage: alerta [OPTIONS] user --user-name USER [--password PASSWORD]
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -u USER, --user-name USER
-                        User name
-  -p PASSWORD, --password PASSWORD
-                        New password
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:command:`users`
 </pre></div>
 </div>
-</div>
-<div class="section" id="users">
-<h3><strong class="command">users</strong><a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
 <p>List all users:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta users --help
-usage: alerta [OPTIONS] users [-h]
-
-optional arguments:
-  -h, --help  show this help message and exit
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:command:`key`
 </pre></div>
 </div>
-</div>
-<div class="section" id="key">
-<h3><strong class="command">key</strong><a class="headerlink" href="#key" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
 <p>Create API key:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta key --help
-usage: alerta [OPTIONS] key [-u USER] [--readonly] [--customer CUSTOMER|--no-customer] [-t TEXT]
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -u USER, --user-name USER
-                        User name
-  -O, --readonly        read only API key
-  --customer CUSTOMER   customer view
-  --no-customer         do not associate with customer
-  -t TEXT, --text TEXT  text
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:command:`keys`
 </pre></div>
 </div>
-</div>
-<div class="section" id="keys">
-<h3><strong class="command">keys</strong><a class="headerlink" href="#keys" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
 <p>List all API keys:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta keys --help
-usage: alerta [OPTIONS] keys [-h]
-
-optional arguments:
-  -h, --help  show this help message and exit
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:command:`revoke`
 </pre></div>
 </div>
-</div>
-<div class="section" id="revoke">
-<h3><strong class="command">revoke</strong><a class="headerlink" href="#revoke" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
 <p>Revoke API key:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta revoke --help
-usage: alerta [OPTIONS] revoke [--api-key KEY]
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -K API_KEY, --api-key API_KEY
-                        API key to be revoked.
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">_cli_status</span><span class="p">:</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="status">
-<span id="cli-status"></span><h3><strong class="command">status</strong><a class="headerlink" href="#status" title="Permalink to this headline">¶</a></h3>
+<h3><strong class="command">status</strong><a class="headerlink" href="#status" title="Permalink to this headline">¶</a></h3>
 <p>Show status and metrics:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta status --help
-usage: alerta [OPTIONS] status [-h]
-
-optional arguments:
-  -h, --help  show this help message and exit
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:command:`uptime`
 </pre></div>
 </div>
-</div>
-<div class="section" id="uptime">
-<h3><strong class="command">uptime</strong><a class="headerlink" href="#uptime" title="Permalink to this headline">¶</a></h3>
+<hr class="docutils" />
 <p>Show server uptime:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta uptime --help
-usage: alerta [OPTIONS] uptime [-h]
-
-optional arguments:
-  -h, --help  show this help message and exit
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:command:`version`
 </pre></div>
 </div>
-</div>
-<div class="section" id="version">
-<h3><strong class="command">version</strong><a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h3>
-<p>Show version information for <code class="docutils literal"><span class="pre">alerta</span></code> and dependencies.</p>
+<hr class="docutils" />
+<p>Show version information for <code class="docutils literal notranslate"><span class="pre">alerta</span></code> and dependencies.</p>
 </div>
 <div class="section" id="help">
 <h3><strong class="command">help</strong><a class="headerlink" href="#help" title="Permalink to this headline">¶</a></h3>
-<p>Show all <code class="docutils literal"><span class="pre">OPTIONS</span></code>, <code class="docutils literal"><span class="pre">COMMANDS</span></code> and some example <code class="docutils literal"><span class="pre">FILTERS</span></code>.</p>
+<p>Show all <code class="docutils literal notranslate"><span class="pre">OPTIONS</span></code>, <code class="docutils literal notranslate"><span class="pre">COMMANDS</span></code> and some example <code class="docutils literal notranslate"><span class="pre">FILTERS</span></code>.</p>
 </div>
 </div>
 <div class="section" id="bugs">
@@ -631,6 +548,7 @@ optional arguments:
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -692,6 +610,7 @@ Links
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#precedence">Precedence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authentication">Authentication</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#commands">Commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bugs">Bugs</a></li>
 </ul>
@@ -705,6 +624,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/reference.html">API Reference</a></li>
@@ -722,12 +642,14 @@ Links
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -735,11 +657,11 @@ Links
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015-2017, Nick Satterly. MIT License.
+      &copy;2015-2018, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="_sources/cli.rst.txt"

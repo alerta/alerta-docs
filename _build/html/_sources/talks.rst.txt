@@ -1,0 +1,34 @@
+.. _talks
+
+Talks
+=====
+
+Server discovery with Consul and monitoring your infrastructure with open source monitoring tool alerta.
+https://skillsmatter.com/skillscasts/11741-server-discovery-with-consul-and-monitoring-your-infrastructure-with-open-source-monitoring-tool-alerta
+
+Modern Monitoring [ with Prometheus ]
+https://www.slideshare.net/hagzag/modern-monitoring-with-prometheus
+
+How to avoid failing at failure detection - Playtech
+https://www.influxdata.com/resources/playtechcasestudy/
+https://vimeo.com/283536580
+
+Articles
+
+Winning the metrics battle
+https://www.theguardian.com/info/developer-blog/2012/oct/04/winning-the-metrics-battle
+
+Make better use of Prometheus with  Grafana, Telegraf, and Alerta [$]
+http://www.admin-magazine.com/Archive/2018/46/Make-better-use-of-Prometheus-with-Grafana-Telegraf-and-Alerta
+
+Riemann Learnings
+https://the-arm.com/riemann-learnings-29466513eb5f
+
+Reports
+~~~~~~~
+
+Frankenstack: Toward Real-time Red Team Feedback
+https://ccdcoe.org/sites/default/files/multimedia/pdf/Frankenstack_MILCOM_IEEE_2017_CCDCOE.pdf
+
+EVE and ADAM: Situation Awareness Tools for NATO CCDCOE Cyber Exercises
+https://www.sto.nato.int/publications/STO%20Meeting%20Proceedings/STO-MP-SCI-300/MP-SCI-300-10.pdf

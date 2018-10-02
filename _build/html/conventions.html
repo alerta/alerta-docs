@@ -4,23 +4,16 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Conventions &#8212; alerta 5.0 documentation</title>
+    <title>Conventions &#8212; alerta 6.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '5.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -32,13 +25,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="conventions">
@@ -49,7 +43,7 @@ should have sensible defaults.</p>
 <h2>Naming Conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="resources">
 <h3>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h3>
-<p>The key alert attribute name of <code class="docutils literal"><span class="pre">resource</span></code> was specifically chosen
+<p>The key alert attribute name of <code class="docutils literal notranslate"><span class="pre">resource</span></code> was specifically chosen
 so as not to be host centric. A resource <em>can</em> be a hostname, but it
 might also be an EC2 instance ID, a Docker container ID or some other
 type of non-host unique identifier.</p>
@@ -57,12 +51,12 @@ type of non-host unique identifier.</p>
 <div class="section" id="environments-services">
 <h3>Environments &amp; Services<a class="headerlink" href="#environments-services" title="Permalink to this headline">¶</a></h3>
 <p>The environment attribute is used to <a class="reference external" href="https://en.wikipedia.org/wiki/Namespace">namespace</a> the alert resource.
-This allows you to have two resources with the same name (eg. <code class="docutils literal"><span class="pre">web01</span></code>)
-but that are differentiated by their environments (eg. <code class="docutils literal"><span class="pre">Production</span></code>
-and <code class="docutils literal"><span class="pre">Development</span></code>).</p>
-<p>Choose a set of environments and enforce them. ie. <code class="docutils literal"><span class="pre">PROD</span></code>, <code class="docutils literal"><span class="pre">DEV</span></code>
-or <code class="docutils literal"><span class="pre">Production</span></code>, <code class="docutils literal"><span class="pre">Development</span></code> but not both. The same for services
-eg. <code class="docutils literal"><span class="pre">MobileAPI</span></code>, <code class="docutils literal"><span class="pre">Mobile-API</span></code> and <code class="docutils literal"><span class="pre">mobile</span> <span class="pre">api</span></code> are all valid
+This allows you to have two resources with the same name (eg. <code class="docutils literal notranslate"><span class="pre">web01</span></code>)
+but that are differentiated by their environments (eg. <code class="docutils literal notranslate"><span class="pre">Production</span></code>
+and <code class="docutils literal notranslate"><span class="pre">Development</span></code>).</p>
+<p>Choose a set of environments and enforce them. ie. <code class="docutils literal notranslate"><span class="pre">PROD</span></code>, <code class="docutils literal notranslate"><span class="pre">DEV</span></code>
+or <code class="docutils literal notranslate"><span class="pre">Production</span></code>, <code class="docutils literal notranslate"><span class="pre">Development</span></code> but not both. The same for services
+eg. <code class="docutils literal notranslate"><span class="pre">MobileAPI</span></code>, <code class="docutils literal notranslate"><span class="pre">Mobile-API</span></code> and <code class="docutils literal notranslate"><span class="pre">mobile</span> <span class="pre">api</span></code> are all valid
 but needlessly different and impossible to query for consistently
 or generate aggregate metrics for.</p>
 <p>Note that the service attribute is a <strong>list</strong> because it is common for
@@ -75,13 +69,13 @@ cause an outage in multiple services.</p>
 <p>It can be useful to define a convention when it comes to naming
 events. Possible options are:</p>
 <ul class="simple">
-<li>Camel case - <code class="docutils literal"><span class="pre">DiskUtilHigh</span></code></li>
-<li>Hierarchy - <code class="docutils literal"><span class="pre">NW:INTERFACE:DOWN</span></code></li>
-<li>SNMP - <code class="docutils literal"><span class="pre">cpuAlarmHigh</span></code></li>
+<li>Camel case - <code class="docutils literal notranslate"><span class="pre">DiskUtilHigh</span></code></li>
+<li>Hierarchy - <code class="docutils literal notranslate"><span class="pre">NW:INTERFACE:DOWN</span></code></li>
+<li>SNMP - <code class="docutils literal notranslate"><span class="pre">cpuAlarmHigh</span></code></li>
 </ul>
-<p>Querying for all Disk utilisation alerts using the <code class="docutils literal"><span class="pre">alerta</span></code> CLI
+<p>Querying for all Disk utilisation alerts using the <code class="docutils literal notranslate"><span class="pre">alerta</span></code> CLI
 is then relatively straight-forward:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta query --filter event=~DiskUtil
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta query --filter event=~DiskUtil
 </pre></div>
 </div>
 </div>
@@ -101,50 +95,50 @@ which gives you the ability to group related alerts.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">Service</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">Service</span></code></td>
 <td>failures with entire services</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Application</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">Application</span></code></td>
 <td>errors from application logs</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">OS</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">OS</span></code></td>
 <td>disk space, time sync failing</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Performance</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">Performance</span></code></td>
 <td>system load, swap utilisation high</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">Configuration</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">Configuration</span></code></td>
 <td>config mgmt tool alerts eg. Puppet or Chef</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Web</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">Web</span></code></td>
 <td>web server errors</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">Syslog</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">Syslog</span></code></td>
 <td>unix system log messages</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Hardware</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">Hardware</span></code></td>
 <td>hardware errors</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">Storage</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">Storage</span></code></td>
 <td>NFS, SAN, NAS storage infrastructure</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Database</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">Database</span></code></td>
 <td>database errors, table space utilisation</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">Security</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">Security</span></code></td>
 <td>security/authorization messages</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Network</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">Network</span></code></td>
 <td>network devices and infrastructure</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">Cloud</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">Cloud</span></code></td>
 <td>cloud-based services or infrastructure</td>
 </tr>
 </tbody>
 </table>
-<p>Querying for all performance-related alerts using the <code class="docutils literal"><span class="pre">alerta</span></code> CLI
+<p>Querying for all performance-related alerts using the <code class="docutils literal notranslate"><span class="pre">alerta</span></code> CLI
 could then become:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta query --filter group=Performance
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta query --filter group=Performance
 </pre></div>
 </div>
 </div>
@@ -167,19 +161,19 @@ then integrating with a paging or email system becomes easier.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">critical</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">critical</span></code></td>
 <td>service unavailable</td>
 <td>immediate page out</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">major</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">major</span></code></td>
 <td>service impaired still available</td>
 <td>page during business hours</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">minor</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">minor</span></code></td>
 <td>component failure</td>
 <td>email only</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">warning</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">warning</span></code></td>
 <td>everything else</td>
 <td>consolidate into daily email</td>
 </tr>
@@ -192,14 +186,15 @@ then integrating with a paging or email system becomes easier.</p>
 using a simple <a class="reference internal" href="server.html#prereceive"><span class="std std-ref">pre-receive</span></a> plugin.</p>
 <p>A full working example called <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/plugins/reject.py">reject</a> can be found in the plugins
 directory of the project code repository and is installed by default.
-The server configuration settings <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal"><span class="pre">ORIGIN_BLACKLIST</span></code> and
-<span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal"><span class="pre">ALLOWED_ENVIRONMENTS</span></code> can be used to tailor it for your
+The server configuration settings <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ORIGIN_BLACKLIST</span></code> and
+<span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ALLOWED_ENVIRONMENTS</span></code> can be used to tailor it for your
 circumstances.</p>
 </div>
 </div>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -272,6 +267,7 @@ Links
 </li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/reference.html">API Reference</a></li>
@@ -289,12 +285,14 @@ Links
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -302,11 +300,11 @@ Links
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015-2017, Nick Satterly. MIT License.
+      &copy;2015-2018, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="_sources/conventions.rst.txt"

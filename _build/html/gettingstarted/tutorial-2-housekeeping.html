@@ -4,23 +4,16 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Alert timeouts, heartbeats and Housekeeping &#8212; alerta 5.0 documentation</title>
+    <title>Alert timeouts, heartbeats and Housekeeping &#8212; alerta 6.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '5.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -30,13 +23,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="alert-timeouts-heartbeats-and-housekeeping">
@@ -80,19 +74,19 @@ access to a similarly configured Alerta server.</p>
 <p>To work with alert timeouts you first need to setup a regular housekeeping
 job that runs every minute to expire and delete alerts. The alerta
 command-line client supports this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta housekeeping
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta housekeeping
 </pre></div>
 </div>
 <p>Add the <cite>cron</cite> entry to run every minute as root (the root user is used
 to keep the tutorial simple however there is nothing about what the
 script does that actually requires root access):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ echo &quot;* * * * * root /usr/bin/alerta housekeeping&quot; &gt;/etc/cron.d/alerta
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo &quot;* * * * * root /usr/bin/alerta housekeeping&quot; &gt;/etc/cron.d/alerta
 </pre></div>
 </div>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
 <p class="last">Your path to the alerta command-line tool may be different. Check
-the path with <code class="docutils literal"><span class="pre">$</span> <span class="pre">which</span> <span class="pre">alerta</span></code></p>
+the path with <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">which</span> <span class="pre">alerta</span></code></p>
 </div>
 </div>
 <div class="section" id="step-2-alert-timeouts">
@@ -102,7 +96,7 @@ This means that one day after the alert is last received it should be
 considered to be stale and the status changed to “expired”.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The alert <code class="docutils literal"><span class="pre">lastReceiveTime</span></code> is used to determine alert expiry. This
+<p class="last">The alert <code class="docutils literal notranslate"><span class="pre">lastReceiveTime</span></code> is used to determine alert expiry. This
 is so that alerts that continue to be sent within the timeout period
 will never expire.</p>
 </div>
@@ -114,7 +108,7 @@ are more than 12 hours old.</p>
 by adjusting the thresholds for deletion or not deleting at all.</p>
 <p>Send a test alert with a short timeout period and verify that once the
 timeout period has been exceeded the status is changed to “expired”:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta send -r user01 -e fail -s major -E Code -S Security \
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta send -r user01 -e fail -s major -E Code -S Security \
 -t &#39;user01 login failed.&#39; --timeout 20
 </pre></div>
 </div>
@@ -123,16 +117,16 @@ timeout period has been exceeded the status is changed to “expired”:</p>
 <h2>Step 3: Heartbeats<a class="headerlink" href="#step-3-heartbeats" title="Permalink to this headline">¶</a></h2>
 <p>Heartbeats can be sent to the Alerta API using the command-line tool, for
 example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta heartbeat --origin dc1-oem-01 --timeout 60
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta heartbeat --origin dc1-oem-01 --timeout 60
 </pre></div>
 </div>
 <p>To generate alerts from stale heartbeats run:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta heartbeats --alert
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta heartbeats --alert
 </pre></div>
 </div>
 <p>Add the above command as a cron job so that alerts are generated whenever
 a heartbeat is stale or slow:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ echo &quot;* * * * * root /usr/local/bin/alerta heartbeats --alert&quot; &gt;&gt;/etc/cron.d/alerta
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo &quot;* * * * * root /usr/local/bin/alerta heartbeats --alert&quot; &gt;&gt;/etc/cron.d/alerta
 </pre></div>
 </div>
 </div>
@@ -150,6 +144,7 @@ the following tutorials:</p>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -217,6 +212,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">Resources</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../api/reference.html">API Reference</a></li>
@@ -234,12 +230,14 @@ Links
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -247,11 +245,11 @@ Links
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015-2017, Nick Satterly. MIT License.
+      &copy;2015-2018, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="../_sources/gettingstarted/tutorial-2-housekeeping.rst.txt"

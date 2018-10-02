@@ -4,23 +4,16 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Alerta Web UI &#8212; alerta 5.0 documentation</title>
+    <title>Alerta Web UI &#8212; alerta 6.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '5.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -32,21 +25,30 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="alerta-web-ui">
 <span id="webui"></span><h1>Alerta Web UI<a class="headerlink" href="#alerta-web-ui" title="Permalink to this headline">¶</a></h1>
-<p>The Alerta web UI console takes full advantage of the <a class="reference internal" href="server.html#state-based-browser"><span class="std std-ref">state-based Alerta API</span></a> to ensure that the most important events at any given time are brought to the attention of operators.</p>
+<p>The Alerta web UI console takes full advantage of the <a class="reference internal" href="server.html#state-based-browser"><span class="std std-ref">state-based Alerta API</span></a>
+to ensure that the most important events at any given time are brought to the
+attention of operators.</p>
 <div class="section" id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
-<p>To configure the Alerta web UI modify “in place” the default <code class="docutils literal"><span class="pre">config.js</span></code> file that is supplied with the web application. It uses <a class="reference external" href="https://docs.angularjs.org/guide/module#configuration-blocks">AngularJS configuration block</a> syntax. More information can be found on the <a class="reference internal" href="#webui"><span class="std std-ref">web UI</span></a> page.</p>
+<p>To configure the Alerta web UI modify “in place” the default <code class="docutils literal notranslate"><span class="pre">config.json</span></code> file
+that is supplied with the web application. It uses simple JSON syntax.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The Alerta web UI before version 6.0 used an <a class="reference external" href="https://docs.angularjs.org/guide/module#configuration-blocks">AngularJS configuration block</a>
+for configuration settings which has now been deprecated.</p>
+</div>
 <p>The three main areas for configuration are:</p>
 <blockquote>
 <div><ul class="simple">
@@ -55,27 +57,44 @@
 <li>selecting colors for severity, highlighting, text and sound</li>
 </ul>
 </div></blockquote>
-<p>The default web UI <code class="file docutils literal"><span class="pre">config.js</span></code> configuration file is included below. It assumes that the Alerta API is running on the same host (but different port) that the web UI static html files are being served from (line 5), that <a class="reference internal" href="authentication.html#basic-auth"><span class="std std-ref">Basic Auth</span></a> will be used (line 6) and so no client id needs to be defined (line 7). Note also that default colours for alert severity, highlighting for multi-select and text are used (line 9):</p>
-<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>The default web UI <code class="file docutils literal notranslate"><span class="pre">config.json</span></code> configuration file is included below.
+It assumes that the Alerta API is running on the same host (but different
+port) that the web UI static html files are being served from (line 2):</p>
+<div class="highlight-json notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;endpoint&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="configuration-from-api-server">
+<h2>Configuration from API Server<a class="headerlink" href="#configuration-from-api-server" title="Permalink to this headline">¶</a></h2>
+<p>Starting from version 6.0, client configuration is supplied by the API server.
+This includes configuration for the web UI and the command-line tool.</p>
+<p>Configuration settings are made on the API server and when the web UI console
+is bootstrapping it reads the endpoint setting and downloads the rest of
+the configuration.</p>
+<p>The remote configuration from the API server is merged with the local
+configuration settings to provide the final configuration used by
+clients.</p>
+<p><strong>Example</strong></p>
+<p>The following API server settings generate the JSON client configuration
+shown below that.</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
 5
-6
-7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
-
-<span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">[])</span>
-  <span class="p">.</span><span class="nx">constant</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">{</span>
-    <span class="s1">&#39;endpoint&#39;</span>    <span class="o">:</span> <span class="s2">&quot;http://&quot;</span><span class="o">+</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hostname</span><span class="o">+</span><span class="s2">&quot;:8080&quot;</span><span class="p">,</span>
-    <span class="s1">&#39;provider&#39;</span>    <span class="o">:</span> <span class="s2">&quot;basic&quot;</span><span class="p">,</span>
-    <span class="s1">&#39;client_id&#39;</span>   <span class="o">:</span> <span class="s2">&quot;&quot;</span>
-  <span class="p">});</span>
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;google&#39;</span>
+<span class="n">AUTH_REQUIRED</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">CUSTOMER_VIEWS</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">GOOGLE_TRACKING_ID</span> <span class="o">=</span> <span class="s1">&#39;UA-44644195-5&#39;</span>
+<span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s1">&#39;736147134702-glkb1pesv716j1utg4llg7c3rr7nnhli.apps.googleusercontent.com&#39;</span>
+<span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;secret&#39;</span>
 </pre></div>
 </td></tr></table></div>
-<p><strong>Example</strong></p>
-<p>An example web UI <code class="file docutils literal"><span class="pre">config.js</span></code> configuration file that assumes that the Alerta API is running on the same host <em>and port</em>, but on a different path called <code class="docutils literal"><span class="pre">/api</span></code> (line 5), that <a class="reference internal" href="authentication.html#google-oauth2"><span class="std std-ref">Google OAuth2</span></a> is used for authentication (line 6, which requires a valid Google client ID, line 7), and defines different colors for severity levels, highlighting and text (lines 9-26):</p>
-<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-json notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -105,100 +124,86 @@
 28
 29
 30
-31</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
-
-<span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">[])</span>
-  <span class="p">.</span><span class="nx">constant</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">{</span>
-    <span class="s1">&#39;endpoint&#39;</span>    <span class="o">:</span> <span class="s2">&quot;/api&quot;</span><span class="p">,</span>
-    <span class="s1">&#39;provider&#39;</span>    <span class="o">:</span> <span class="s2">&quot;google&quot;</span><span class="p">,</span>
-    <span class="s1">&#39;client_id&#39;</span>   <span class="o">:</span> <span class="s2">&quot;379647311730-sj130ru952o3o7ig8u0ts8np2example.apps.googleusercontent.com&quot;</span>
-
-    <span class="s1">&#39;colors&#39;</span>      <span class="o">:</span> <span class="p">{</span>
-      <span class="s1">&#39;severity&#39;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s1">&#39;critical&#39;</span>     <span class="o">:</span> <span class="s1">&#39;#D8122A&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;major&#39;</span>        <span class="o">:</span> <span class="s1">&#39;#EA680F&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;minor&#39;</span>        <span class="o">:</span> <span class="s1">&#39;#FFBE1E&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;warning&#39;</span>      <span class="o">:</span> <span class="s1">&#39;#BA2222&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;indeterminate&#39;</span><span class="o">:</span> <span class="s1">&#39;#A6ACA8&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;cleared&#39;</span>      <span class="o">:</span> <span class="s1">&#39;#00AA5A&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;normal&#39;</span>       <span class="o">:</span> <span class="s1">&#39;#00AA5A&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;ok&#39;</span>           <span class="o">:</span> <span class="s1">&#39;#00AA5A&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;informational&#39;</span><span class="o">:</span> <span class="s1">&#39;#00A1BC&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;debug&#39;</span>        <span class="o">:</span> <span class="s1">&#39;#9D006D&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;security&#39;</span>     <span class="o">:</span> <span class="s1">&#39;#333333&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;unknown&#39;</span>      <span class="o">:</span> <span class="s1">&#39;#A6ACA8&#39;</span>
-      <span class="p">},</span>
-      <span class="s1">&#39;text&#39;</span><span class="o">:</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span>
-      <span class="s1">&#39;highlight&#39;</span><span class="o">:</span> <span class="s1">&#39;lightgray&#39;</span>
-    <span class="p">},</span>
-
-    <span class="s1">&#39;audio&#39;</span>       <span class="o">:</span> <span class="p">{</span>
-      <span class="s1">&#39;new&#39;</span>  <span class="o">:</span> <span class="s1">&#39;/audio/Bike Horn.mp3&#39;</span>
-    <span class="p">}</span>
-  <span class="p">});</span>
+31
+32
+33
+34
+35
+36
+37</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;audio&quot;</span><span class="p">:</span> <span class="p">{},</span>
+  <span class="nt">&quot;auth_required&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;client_id&quot;</span><span class="p">:</span> <span class="s2">&quot;736147134702-glkb1pesv716j1utg4llg7c3rr7nnhli.apps.googleusercontent.com&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;colors&quot;</span><span class="p">:</span> <span class="p">{},</span>
+  <span class="nt">&quot;customer_views&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;dates&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;longDate&quot;</span><span class="p">:</span> <span class="s2">&quot;EEEE, MMMM d, yyyy h:mm:ss.sss a (Z)&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;mediumDate&quot;</span><span class="p">:</span> <span class="s2">&quot;medium&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;shortTime&quot;</span><span class="p">:</span> <span class="s2">&quot;shortTime&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;endpoint&quot;</span><span class="p">:</span> <span class="s2">&quot;https://alerta-api.herokuapp.com&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;github_url&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&quot;gitlab_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://gitlab.com&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;keycloak_realm&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&quot;keycloak_url&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&quot;pingfederate_url&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&quot;provider&quot;</span><span class="p">:</span> <span class="s2">&quot;google&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;refresh_interval&quot;</span><span class="p">:</span> <span class="mi">5000</span><span class="p">,</span>
+  <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;cleared&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="nt">&quot;critical&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;debug&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="nt">&quot;indeterminate&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="nt">&quot;informational&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="nt">&quot;major&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;minor&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="nt">&quot;normal&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="nt">&quot;ok&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="nt">&quot;security&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;trace&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="nt">&quot;unknown&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+    <span class="nt">&quot;warning&quot;</span><span class="p">:</span> <span class="mi">4</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;signup_enabled&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;tracking_id&quot;</span><span class="p">:</span> <span class="s2">&quot;UA-44644195-5&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For completeness, the <code class="docutils literal notranslate"><span class="pre">OAUTH2_CLIENT_ID</span></code> and <code class="docutils literal notranslate"><span class="pre">OAUTH2_CLIENT_SECRET</span></code>
+configuration settings are included in the example above however it
+should be noted that only the client id is sent to the client (line 4)
+as sending the client secret is not necessary and would compromise security.</p>
 </div>
-<div class="section" id="customer-views">
-<h2>Customer Views<a class="headerlink" href="#customer-views" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="managing-alerts">
-<h2>Managing Alerts<a class="headerlink" href="#managing-alerts" title="Permalink to this headline">¶</a></h2>
-<p>The browser supports viewing the most recent alerts, a list of the top 10 “worst offenders”, and a list of watched alerts.</p>
-<div class="section" id="view-recent-alerts">
-<h3>View Recent Alerts<a class="headerlink" href="#view-recent-alerts" title="Permalink to this headline">¶</a></h3>
-<p>Filter by env, svc
-Search by any text
-Sort by any attribute</p>
-<p>showing x out of x (click for another 20 or less)</p>
-<p>Multi-select by cmd-click
-Action Buttons - open, watch, unwatch, ack, close, delete</p>
-<img alt="_images/alerta-multi-select-2.png" src="_images/alerta-multi-select-2.png" />
-<p>Alert Details by click
-Raw Data
-JSON format
-Alert History</p>
-</div>
-<div class="section" id="top-10">
-<h3>Top 10<a class="headerlink" href="#top-10" title="Permalink to this headline">¶</a></h3>
-<p>One of the most important things that can be done to improve the usefulness of an alert console is to reduce the number of alerts to only those that matter.</p>
-<p>The top 10 report helps identify alert sources that are the “worst offenders” by grouping by <code class="docutils literal"><span class="pre">event</span></code> name and then sorting by <code class="docutils literal"><span class="pre">count</span></code> and <code class="docutils literal"><span class="pre">duplicateCount</span></code>. This report should help operators take corrective action to ensure that the root cause is fixed and reduce the burden of alert management.</p>
-<p>In future, this report will support grouping alerts by <code class="docutils literal"><span class="pre">origin</span></code>, <code class="docutils literal"><span class="pre">resource</span></code>, and event <code class="docutils literal"><span class="pre">group</span></code> and filtering by date range.</p>
-</div>
-<div class="section" id="watching-alerts">
-<span id="watched-alerts"></span><h3>Watching Alerts<a class="headerlink" href="#watching-alerts" title="Permalink to this headline">¶</a></h3>
-<p>Only logged-in users can watch alerts.</p>
+<div class="section" id="client-settings">
+<h3>Client Settings<a class="headerlink" href="#client-settings" title="Permalink to this headline">¶</a></h3>
+<p>Full list of API server settings that can be used to configure clients.</p>
+<p><code class="docutils literal notranslate"><span class="pre">AUTH_REQUIRED</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">CUSTOMER_VIEWS</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">AUTH_PROVIDER</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">SIGNUP_ENABLED</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">OAUTH2_CLIENT_ID</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">GITHUB_URL</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">GITLAB_URL</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">KEYCLOAK_URL</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">KEYCLOAK_REALM</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">PINGFEDERATE_URL</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">COLOR_MAP</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">SEVERITY_MAP</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">GOOGLE_TRACKING_ID</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">AUTO_REFRESH_INTERVAL</span></code></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is not currently possible to configure dates or audio.</p>
 </div>
 </div>
-<div class="section" id="users">
-<h2>Users<a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
-<p>Managing users …</p>
-</div>
-<div class="section" id="api-keys">
-<h2>API Keys<a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h2>
-<p>Managing API Keys …</p>
-</div>
-<div class="section" id="blackout-periods">
-<h2>Blackout Periods<a class="headerlink" href="#blackout-periods" title="Permalink to this headline">¶</a></h2>
-<p>Managing blackout periods …</p>
-</div>
-<div class="section" id="authentication">
-<h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h2>
-<p>Login
-User Profile
-Logout</p>
-</div>
-<div class="section" id="metrics-heartbeats">
-<h2>Metrics &amp; Heartbeats<a class="headerlink" href="#metrics-heartbeats" title="Permalink to this headline">¶</a></h2>
-<p>Server version and stats</p>
-</div>
-<div class="section" id="chrome-extension">
-<h2>Chrome Extension<a class="headerlink" href="#chrome-extension" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -257,14 +262,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Alerta Web UI</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#customer-views">Customer Views</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#managing-alerts">Managing Alerts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#users">Users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#api-keys">API Keys</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#blackout-periods">Blackout Periods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#authentication">Authentication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#metrics-heartbeats">Metrics &amp; Heartbeats</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#chrome-extension">Chrome Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-from-api-server">Configuration from API Server</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
@@ -277,6 +275,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/reference.html">API Reference</a></li>
@@ -294,12 +293,14 @@ Links
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -307,11 +308,11 @@ Links
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015-2017, Nick Satterly. MIT License.
+      &copy;2015-2018, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="_sources/webui.rst.txt"

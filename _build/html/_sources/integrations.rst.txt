@@ -190,6 +190,11 @@ For details on how to set this up see `SeverDensity webhook`_ page and in the
 
 .. _new relic:
 
+netdata
+~~~~~~~
+
+https://github.com/firehol/netdata/wiki/Alerta-monitoring-system
+
 New Relic
 ~~~~~~~~~
 
@@ -240,6 +245,11 @@ For details on how to set this up see `Telegram Bot`_ page and for the
 :file:`https://alerta.example.com/api/webhooks/telegram`
 
 .. _riemann:
+
+Tick Stack
+~~~~~~~~~~
+
+https://docs.influxdata.com/kapacitor/v1.5/event_handlers/alerta/
 
 Riemann
 ~~~~~~~

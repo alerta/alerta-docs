@@ -4,23 +4,16 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Alerta monitoring system &#8212; alerta 5.0 documentation</title>
+    <title>Alerta monitoring system &#8212; alerta 6.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '5.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -31,18 +24,22 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="alerta-monitoring-system">
 <h1>Alerta monitoring system<a class="headerlink" href="#alerta-monitoring-system" title="Permalink to this headline">¶</a></h1>
-<p>The alerta monitoring system is a tool used to consolidate and de-duplicate alerts from multiple sources for quick ‘at-a-glance’ visualisation. With just one system you can monitor alerts from many other monitoring tools on a single screen.</p>
+<p>The alerta monitoring system is a tool used to consolidate and de-duplicate
+alerts from multiple sources for quick ‘at-a-glance’ visualisation. With
+just one system you can monitor alerts from many other monitoring tools
+on a single screen.</p>
 <img alt="_images/alerta-screen-shot-3.png" src="_images/alerta-screen-shot-3.png" />
 <p>Alerta combines a JSON API <a class="reference internal" href="server.html#server"><span class="std std-ref">server</span></a> for receiving, processing and
 rendering alerts with a simple, yet effective <a class="reference internal" href="webui.html#webui"><span class="std std-ref">Alerta Web UI</span></a> and <a class="reference internal" href="cli.html#cli"><span class="std std-ref">command-line
@@ -56,20 +53,23 @@ GitHub and GitLab.</p>
 <p><a class="reference internal" href="quick-start.html#quick-start"><span class="std std-ref">Get started</span></a> today!</p>
 <div class="section" id="demo-sites">
 <h2>Demo Sites<a class="headerlink" href="#demo-sites" title="Permalink to this headline">¶</a></h2>
-<p>There are two demonstration and testing sites – one for Google OAuth and one for GitHub OAuth:</p>
+<p>There are two public web consoles available for demonstration and testing:</p>
 <ul class="simple">
-<li><a class="reference external" href="http://try.alerta.io">http://try.alerta.io</a> (Google OAuth)</li>
-<li><a class="reference external" href="https://alerta.herokuapp.com">https://alerta.herokuapp.com</a> (GitHub OAuth over SSL)</li>
+<li><a class="reference external" href="https://try.alerta.io">https://try.alerta.io</a> (Google OAuth)</li>
+<li><a class="reference external" href="https://alerta.herokuapp.com">https://alerta.herokuapp.com</a> (BasicAuth)</li>
 </ul>
-<p>And two API servers, configured to support Google and GitHub OAuth2:</p>
+<p>The web consoles are powered by a single public API which can be used
+as a sandbox for integration testing:</p>
 <ul class="simple">
-<li><a class="reference external" href="http://api.alerta.io">http://api.alerta.io</a></li>
-<li><a class="reference external" href="https://alerta-api.herokuapp.com">https://alerta-api.herokuapp.com</a> (SSL)</li>
+<li><a class="reference external" href="https://alerta-api.herokuapp.com">https://alerta-api.herokuapp.com</a></li>
 </ul>
-<p>The API Explorer website can be used to query for, and send alerts to, the <a class="reference external" href="http://api.alerta.io">http://api.alerta.io</a> API server. The command-line tool <code class="docutils literal"><span class="pre">alerta</span></code> can also be used to generate alerts. The required API key is <code class="docutils literal"><span class="pre">demo-key</span></code>.</p>
+<p>The “API Explorer” can be used to query for and send alerts to the
+public API server:</p>
 <ul class="simple">
-<li><a class="reference external" href="http://explorer.alerta.io">http://explorer.alerta.io</a></li>
+<li><a class="reference external" href="https://explorer.alerta.io">https://explorer.alerta.io</a></li>
 </ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">alerta</span></code> command-line tool can also be used to generate alerts.
+The required API key is <code class="docutils literal notranslate"><span class="pre">demo-key</span></code>.</p>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
@@ -78,7 +78,10 @@ GitHub and GitLab.</p>
 <div class="section" id="contribute">
 <h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Core project, Web UI, Python SDK, integrations: <a class="reference external" href="http://github.com/alerta">http://github.com/alerta</a></li>
+<li>Core project: <a class="reference external" href="https://github.com/alerta/alerta">https://github.com/alerta/alerta</a></li>
+<li>Web UI: <a class="reference external" href="https://github.com/alerta/angular-alerta-webui">https://github.com/alerta/angular-alerta-webui</a></li>
+<li>Python SDK: <a class="reference external" href="https://github.com/alerta/python-alerta-client">https://github.com/alerta/python-alerta-client</a></li>
+<li>Contributions and integrations: <a class="reference external" href="https://github.com/alerta/alerta-contrib">https://github.com/alerta/alerta-contrib</a></li>
 </ul>
 </div>
 <div class="section" id="support">
@@ -86,14 +89,14 @@ GitHub and GitLab.</p>
 <ul class="simple">
 <li>Gitter chat room: <a class="reference external" href="https://gitter.im/alerta/chat">https://gitter.im/alerta/chat</a></li>
 <li><a class="reference internal" href="faq.html#faq"><span class="std std-ref">Frequently Asked Questions</span></a></li>
-<li>Issue Tracker: <a class="reference external" href="http://github.com/alerta/alerta/issues">http://github.com/alerta/alerta/issues</a></li>
+<li>Issue Tracker: <a class="reference external" href="https://github.com/alerta/alerta/issues">https://github.com/alerta/alerta/issues</a></li>
 </ul>
 <div class="toctree-wrapper compound">
 </div>
 </div>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
-<p>This project is licensed under the Apache license.</p>
+<p>This project is licensed under the Apache license, Version 2.0 .</p>
 <div class="toctree-wrapper compound">
 </div>
 </div>
@@ -108,6 +111,7 @@ GitHub and GitLab.</p>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -175,6 +179,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/reference.html">API Reference</a></li>
@@ -192,12 +197,14 @@ Links
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -205,11 +212,11 @@ Links
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015-2017, Nick Satterly. MIT License.
+      &copy;2015-2018, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="_sources/index.rst.txt"

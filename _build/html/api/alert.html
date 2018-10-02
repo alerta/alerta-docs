@@ -4,23 +4,16 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Alert Format &#8212; alerta 5.0 documentation</title>
+    <title>Alert Format &#8212; alerta 6.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '5.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -32,13 +25,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="alert-format">
@@ -60,73 +54,73 @@ systems must produce or consume messages in this format also.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">resource</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">resource</span></code></td>
 <td>resource under alarm, deliberately not host-centric</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">event</span></code></td>
-<td>event name eg. <code class="docutils literal"><span class="pre">NodeDown</span></code>, <code class="docutils literal"><span class="pre">QUEUE:LENGTH:EXCEEDED</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">event</span></code></td>
+<td>event name eg. <code class="docutils literal notranslate"><span class="pre">NodeDown</span></code>, <code class="docutils literal notranslate"><span class="pre">QUEUE:LENGTH:EXCEEDED</span></code></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">environment</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">environment</span></code></td>
 <td>effected environment, used to namespace the resource</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">severity</span></code></td>
-<td>severity of alert (default <code class="docutils literal"><span class="pre">normal</span></code>).
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">severity</span></code></td>
+<td>severity of alert (default <code class="docutils literal notranslate"><span class="pre">normal</span></code>).
 see <a class="reference internal" href="#severity-table"><span class="std std-ref">Alert Severities</span></a> table</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">correlate</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">correlate</span></code></td>
 <td>list of related event names</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">status</span></code></td>
-<td>status of alert (default <code class="docutils literal"><span class="pre">open</span></code>).
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">status</span></code></td>
+<td>status of alert (default <code class="docutils literal notranslate"><span class="pre">open</span></code>).
 see <a class="reference internal" href="#status-table"><span class="std std-ref">Alert Status</span></a> table</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">service</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">service</span></code></td>
 <td>list of effected services</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">group</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">group</span></code></td>
 <td>event group used to group events of similar type</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">value</span></code></td>
-<td>event value eg. <code class="docutils literal"><span class="pre">100%</span></code>, <code class="docutils literal"><span class="pre">Down</span></code>, <code class="docutils literal"><span class="pre">PingFail</span></code>,
-<code class="docutils literal"><span class="pre">55ms</span></code>, <code class="docutils literal"><span class="pre">ORA-1664</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">value</span></code></td>
+<td>event value eg. <code class="docutils literal notranslate"><span class="pre">100%</span></code>, <code class="docutils literal notranslate"><span class="pre">Down</span></code>, <code class="docutils literal notranslate"><span class="pre">PingFail</span></code>,
+<code class="docutils literal notranslate"><span class="pre">55ms</span></code>, <code class="docutils literal notranslate"><span class="pre">ORA-1664</span></code></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">text</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">text</span></code></td>
 <td>freeform text description</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">tags</span></code></td>
-<td>set of tags in any format eg. <code class="docutils literal"><span class="pre">aTag</span></code>,
-<code class="docutils literal"><span class="pre">aDouble:Tag</span></code>, <code class="docutils literal"><span class="pre">a:Triple=Tag</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">tags</span></code></td>
+<td>set of tags in any format eg. <code class="docutils literal notranslate"><span class="pre">aTag</span></code>,
+<code class="docutils literal notranslate"><span class="pre">aDouble:Tag</span></code>, <code class="docutils literal notranslate"><span class="pre">a:Triple=Tag</span></code></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">attributes</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">attributes</span></code></td>
 <td>dictionary of key-value pairs</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">origin</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">origin</span></code></td>
 <td>name of monitoring component that generated the alert</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">type</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">type</span></code></td>
 <td>alert type eg. snmptrapAlert, syslogAlert, gangliaAlert</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">createTime</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">createTime</span></code></td>
 <td>UTC date-time the alert was generated in ISO8601 format</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">timeout</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">timeout</span></code></td>
 <td>number of seconds before alert is considered stale</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">rawData</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">rawData</span></code></td>
 <td>unprocessed data eg. full syslog message or SNMP trap</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Only <code class="docutils literal"><span class="pre">event</span></code> and <code class="docutils literal"><span class="pre">resource</span></code> are mandatory.</p>
+<p class="last">Only <code class="docutils literal notranslate"><span class="pre">event</span></code> and <code class="docutils literal notranslate"><span class="pre">resource</span></code> are mandatory.</p>
 </div>
 <div class="admonition attention">
 <p class="first admonition-title">Attention</p>
-<p class="last">If the <code class="docutils literal"><span class="pre">reject</span></code> plugin is enabled (which it is by
-default) then alerts must have an <code class="docutils literal"><span class="pre">environment</span></code> attribute that
-is one of either <code class="docutils literal"><span class="pre">Production</span></code> or <code class="docutils literal"><span class="pre">Development</span></code> and it must
-define a <code class="docutils literal"><span class="pre">service</span></code> attribute. For more information on configuring
+<p class="last">If the <code class="docutils literal notranslate"><span class="pre">reject</span></code> plugin is enabled (which it is by
+default) then alerts must have an <code class="docutils literal notranslate"><span class="pre">environment</span></code> attribute that
+is one of either <code class="docutils literal notranslate"><span class="pre">Production</span></code> or <code class="docutils literal notranslate"><span class="pre">Development</span></code> and it must
+define a <code class="docutils literal notranslate"><span class="pre">service</span></code> attribute. For more information on configuring
 or disabling this plugin see <a class="reference internal" href="../configuration.html#plugin-config"><span class="std std-ref">Plugin Settings</span></a>.</p>
 </div>
 </div>
@@ -143,46 +137,46 @@ or disabling this plugin see <a class="reference internal" href="../configuratio
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">id</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">id</span></code></td>
 <td>globally unique random UUID</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">duplicateCount</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">duplicateCount</span></code></td>
 <td>a count of the number of times this event has been
 received for a resource</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">repeat</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">repeat</span></code></td>
 <td>if duplicateCount is 0 or the alert status has
 changed then repeat is False, otherwise it is True</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">previousSeverity</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">previousSeverity</span></code></td>
 <td>the previous severity of the same event for this
-resource. if no event or <code class="docutils literal"><span class="pre">correlate</span></code> events
+resource. if no event or <code class="docutils literal notranslate"><span class="pre">correlate</span></code> events
 exist in the database for this resource then it
-will be <code class="docutils literal"><span class="pre">unknown</span></code></td>
+will be <code class="docutils literal notranslate"><span class="pre">unknown</span></code></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">trendIndication</span></code></td>
-<td>based on <code class="docutils literal"><span class="pre">severity</span></code> and <code class="docutils literal"><span class="pre">previousSeverity</span></code>
-will be one of <code class="docutils literal"><span class="pre">moreSevere</span></code>, <code class="docutils literal"><span class="pre">lessSevere</span></code> or
-<code class="docutils literal"><span class="pre">noChange</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">trendIndication</span></code></td>
+<td>based on <code class="docutils literal notranslate"><span class="pre">severity</span></code> and <code class="docutils literal notranslate"><span class="pre">previousSeverity</span></code>
+will be one of <code class="docutils literal notranslate"><span class="pre">moreSevere</span></code>, <code class="docutils literal notranslate"><span class="pre">lessSevere</span></code> or
+<code class="docutils literal notranslate"><span class="pre">noChange</span></code></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">receiveTime</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">receiveTime</span></code></td>
 <td>UTC datetime the alert was received by the
 Alerta server daemon</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">lastReceiveId</span></code></td>
-<td>the last alert <code class="docutils literal"><span class="pre">id</span></code> received for this event</td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">lastReceiveId</span></code></td>
+<td>the last alert <code class="docutils literal notranslate"><span class="pre">id</span></code> received for this event</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">lastReceiveTime</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">lastReceiveTime</span></code></td>
 <td>the last time this alert was received. only
 different to receiveTime if the alert is a
 duplicate</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">customer</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">customer</span></code></td>
 <td>assigned based on the owner of the API key used
 when submitting the alert, if “Customer Views”
-is enabled</td>
+is enabled, or can be set if <code class="docutils literal notranslate"><span class="pre">admin</span></code> user</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">history</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">history</span></code></td>
 <td>whenever an alert changes severity or status then
 a list of key alert attributes are appended to
 the history log</td>
@@ -203,22 +197,28 @@ the history log</td>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">open</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">open</span></code></td>
 <td>1</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">assign</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">assign</span></code></td>
 <td>2</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">ack</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">ack</span></code></td>
 <td>3</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">closed</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">closed</span></code></td>
 <td>4</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">expired</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">expired</span></code></td>
 <td>5</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">unknown</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">blackout</span></code></td>
+<td>6</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">shelved</span></code></td>
+<td>7</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">unknown</span></code></td>
 <td>9</td>
 </tr>
 </tbody>
@@ -241,56 +241,56 @@ alert severities.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">security</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">security</span></code></td>
 <td>0</td>
 <td>Black</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">critical</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">critical</span></code></td>
 <td>1</td>
 <td>Red</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">major</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">major</span></code></td>
 <td>2</td>
 <td>Orange</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">minor</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">minor</span></code></td>
 <td>3</td>
 <td>Yellow</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">warning</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">warning</span></code></td>
 <td>4</td>
 <td>Blue</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">indeterminate</span></code></td>
-<td>5</td>
-<td>Silver</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">cleared</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">informational</span></code></td>
 <td>5</td>
 <td>Green</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">normal</span></code></td>
-<td>5</td>
-<td>Green</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">ok</span></code></td>
-<td>5</td>
-<td>Green</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">informational</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">debug</span></code></td>
 <td>6</td>
-<td>Green</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">debug</span></code></td>
-<td>7</td>
 <td>Purple</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">trace</span></code></td>
-<td>8</td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">trace</span></code></td>
+<td>7</td>
 <td>Grey</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">unknown</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">indeterminate</span></code></td>
+<td>8</td>
+<td>Silver</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">cleared</span></code></td>
 <td>9</td>
+<td>Green</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">normal</span></code></td>
+<td>9</td>
+<td>Green</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">ok</span></code></td>
+<td>9</td>
+<td>Green</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">unknown</span></code></td>
+<td>10</td>
 <td>Grey</td>
 </tr>
 </tbody>
@@ -310,44 +310,47 @@ alert severities.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">id</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">id</span></code></td>
 <td>alert id that history log entry relates to</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">event</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">event</span></code></td>
 <td>event name of alert changing severity or status</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">severity</span></code>  (*)</td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">severity</span></code>  (*)</td>
 <td>new severity of alert changing severity</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">status</span></code>    (+)</td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">status</span></code>    (+)</td>
 <td>new status of alert changing status</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">value</span></code>     (*)</td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">value</span></code>     (*)</td>
 <td>event value of alert changing severity</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">text</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">text</span></code></td>
 <td>text describing reason for severity or status change</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">type</span></code></td>
-<td>history type eg. <code class="docutils literal"><span class="pre">severity</span></code> or <code class="docutils literal"><span class="pre">status</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">type</span></code></td>
+<td>history type eg. <code class="docutils literal notranslate"><span class="pre">action</span></code>, <code class="docutils literal notranslate"><span class="pre">status</span></code>,
+<code class="docutils literal notranslate"><span class="pre">severity</span></code> or <code class="docutils literal notranslate"><span class="pre">value</span></code> change</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">updateTime</span></code></td>
-<td>UTC date-time the alert history was updated</td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">updateTime</span></code></td>
+<td>UTC date-time the alert triggering the change was
+created</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The <code class="docutils literal"><span class="pre">severity</span></code> and <code class="docutils literal"><span class="pre">value</span></code> attributes are only added to
-the history log for alerts with <code class="docutils literal"><span class="pre">event</span></code> changes (See <code class="docutils literal"><span class="pre">*</span></code> above).
-And the <code class="docutils literal"><span class="pre">status</span></code> attribute is only added to the history log for
-alerts with <code class="docutils literal"><span class="pre">status</span></code> changes (See <code class="docutils literal"><span class="pre">+</span></code> above).</p>
+<p class="last">The <code class="docutils literal notranslate"><span class="pre">severity</span></code> and <code class="docutils literal notranslate"><span class="pre">value</span></code> attributes are only added to
+the history log for alerts with <code class="docutils literal notranslate"><span class="pre">event</span></code> changes (See <code class="docutils literal notranslate"><span class="pre">*</span></code> above).
+And the <code class="docutils literal notranslate"><span class="pre">status</span></code> attribute is only added to the history log for
+alerts with <code class="docutils literal notranslate"><span class="pre">status</span></code> changes (See <code class="docutils literal notranslate"><span class="pre">+</span></code> above).</p>
 </div>
 </div>
 </div>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -415,6 +418,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">Resources</a></li>
 </ul>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="reference.html">API Reference</a></li>
@@ -432,12 +436,14 @@ Links
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -445,11 +451,11 @@ Links
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015-2017, Nick Satterly. MIT License.
+      &copy;2015-2018, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="../_sources/api/alert.rst.txt"

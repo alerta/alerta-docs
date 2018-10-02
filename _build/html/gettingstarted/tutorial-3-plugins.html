@@ -4,23 +4,16 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Use plugins to enhance Alerta &#8212; alerta 5.0 documentation</title>
+    <title>Use plugins to enhance Alerta &#8212; alerta 6.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '5.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -30,13 +23,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="use-plugins-to-enhance-alerta">
@@ -74,33 +68,33 @@ on an Ubuntu Xenial server.</p>
 <div class="section" id="step-1-install-a-plugin">
 <h2>Step 1: Install a plugin<a class="headerlink" href="#step-1-install-a-plugin" title="Permalink to this headline">¶</a></h2>
 <p>To install a plugin you can either clone the git repository and
-run <code class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></code> from the plugin directory or you
-can install the plugin directly using <code class="docutils literal"><span class="pre">pip</span></code>.</p>
-<p>For this tutorial use <code class="docutils literal"><span class="pre">pip</span></code> to install the <code class="docutils literal"><span class="pre">geoip</span></code> plugin:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo pip install git+https://github.com/alerta/alerta-contrib.git#subdirectory=plugins/geoip
+run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></code> from the plugin directory or you
+can install the plugin directly using <code class="docutils literal notranslate"><span class="pre">pip</span></code>.</p>
+<p>For this tutorial use <code class="docutils literal notranslate"><span class="pre">pip</span></code> to install the <code class="docutils literal notranslate"><span class="pre">geoip</span></code> plugin:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo pip install git+https://github.com/alerta/alerta-contrib.git#subdirectory=plugins/geoip
 </pre></div>
 </div>
-<p>Modify the <code class="docutils literal"><span class="pre">/etc/alertad.conf</span></code> configuration file to enable the plugin
+<p>Modify the <code class="docutils literal notranslate"><span class="pre">/etc/alertad.conf</span></code> configuration file to enable the plugin
 and use a different GeoIP lookup service than the default:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo vi /etc/alertad.conf
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo vi /etc/alertad.conf
 </pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PLUGINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;reject&#39;</span><span class="p">,</span><span class="s1">&#39;geoip&#39;</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PLUGINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;reject&#39;</span><span class="p">,</span><span class="s1">&#39;geoip&#39;</span><span class="p">]</span>
 <span class="n">GEOIP_URL</span> <span class="o">=</span> <span class="s1">&#39;http://ip-api.com/json&#39;</span>
 </pre></div>
 </div>
 <p>Restart the uwsgi server so that Alerta API picks up the new configuration:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo service uwsgi restart
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo service uwsgi restart
 </pre></div>
 </div>
 <p>Send a test alert and check that the attributes for the alert have been
 populated with Geolocation information for the IP address of the
 origin of the alert:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ alerta --debug send -r iot006 -e started -s normal -S IoT -E Production \
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta --debug send -r iot006 -e started -s normal -S IoT -E Production \
 -t &#39;iot006 has rebooted.&#39;
 </pre></div>
 </div>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;alert&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&quot;geoip&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -123,16 +117,16 @@ origin of the alert:</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The <code class="docutils literal"><span class="pre">geoip</span></code> plugin looks up the IP address that is passed to the
-Alerta API via the <code class="docutils literal"><span class="pre">X-Forwarded-For</span></code> HTTP header.</p>
+<p class="last">The <code class="docutils literal notranslate"><span class="pre">geoip</span></code> plugin looks up the IP address that is passed to the
+Alerta API via the <code class="docutils literal notranslate"><span class="pre">X-Forwarded-For</span></code> HTTP header.</p>
 </div>
 </div>
 <div class="section" id="step-2-write-a-plugin">
 <h2>Step 2: Write a plugin<a class="headerlink" href="#step-2-write-a-plugin" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="http://docs.openstack.org/developer/stevedore/tutorial/creating_plugins.html#a-plugin-base-class">base class for plugins</a> has three methods that <strong>must</strong> be implemented
-and the <code class="docutils literal"><span class="pre">__init__()</span></code> method can optionally be implemented as well as long
+and the <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> method can optionally be implemented as well as long
 as the Super class is also called.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExamplePlugin</span><span class="p">(</span><span class="n">PluginBase</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExamplePlugin</span><span class="p">(</span><span class="n">PluginBase</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
 
@@ -162,11 +156,11 @@ as the Super class is also called.</p>
 </div>
 <p>Now that you know the basic implementation of a plugin you are going
 to write one of your own to detect “<a class="reference external" href="https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/flapping.html">flapping</a>” alerts.</p>
-<p>To do this you are going to take advantage of the <code class="docutils literal"><span class="pre">is_flapping()</span></code> utility
+<p>To do this you are going to take advantage of the <code class="docutils literal notranslate"><span class="pre">is_flapping()</span></code> utility
 method that takes an alert, a time window (in seconds) and a threshold
-count and returns <code class="docutils literal"><span class="pre">True</span></code> if the number of alert severity changes
+count and returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the number of alert severity changes
 has exceeded the threshold.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="kn">from</span> <span class="nn">alerta.exceptions</span> <span class="kn">import</span> <span class="n">RateLimit</span>
 <span class="kn">from</span> <span class="nn">alerta.plugins</span> <span class="kn">import</span> <span class="n">PluginBase</span>
@@ -198,16 +192,16 @@ has exceeded the threshold.</p>
         <span class="k">return</span>
 </pre></div>
 </div>
-<p>The plugin above sets the severity to <code class="docutils literal"><span class="pre">indeterminate</span></code> and an attribute
-called <code class="docutils literal"><span class="pre">flapping</span></code> (which can be used in other plugins to perhaps not
+<p>The plugin above sets the severity to <code class="docutils literal notranslate"><span class="pre">indeterminate</span></code> and an attribute
+called <code class="docutils literal notranslate"><span class="pre">flapping</span></code> (which can be used in other plugins to perhaps not
 trigger an external notification for flapping alerts).</p>
-<p>Alternatively, the alert could be rejected (using the <code class="docutils literal"><span class="pre">RateLimit</span></code>
+<p>Alternatively, the alert could be rejected (using the <code class="docutils literal notranslate"><span class="pre">RateLimit</span></code>
 exception) or any other appropriate action can be taken that suits
 your environment.</p>
 <p>Copy the plugin code above, modifying it to suit your requirements, into
-a file called <code class="docutils literal"><span class="pre">alerta_transient.py</span></code> and copy the following into another
-file called <code class="docutils literal"><span class="pre">setup.py</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
+a file called <code class="docutils literal notranslate"><span class="pre">alerta_transient.py</span></code> and copy the following into another
+file called <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
 
 <span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;0.0.1&#39;</span>
 
@@ -235,24 +229,24 @@ file called <code class="docutils literal"><span class="pre">setup.py</span></co
 <p>Next, install the plugin and add it to the list of enabled
 plugins in the server configuration file, making sure to restart
 uwsgi so that the Alerta server picks up the changes:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo python setup.py install
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo python setup.py install
 </pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo vi /etc/alertad.conf
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo vi /etc/alertad.conf
 </pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PLUGINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;reject&#39;</span><span class="p">,</span><span class="s1">&#39;transient&#39;</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PLUGINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;reject&#39;</span><span class="p">,</span><span class="s1">&#39;transient&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Test the plugin by submitting multiple duplicate alerts in quick
 succession. Depending on your implementation the Alerta server may
-respond with a <code class="docutils literal"><span class="pre">429</span> <span class="pre">Rate</span> <span class="pre">Limited</span></code> or update the alert with a
-<code class="docutils literal"><span class="pre">flapping=True</span></code> attribute.</p>
+respond with a <code class="docutils literal notranslate"><span class="pre">429</span> <span class="pre">Rate</span> <span class="pre">Limited</span></code> or update the alert with a
+<code class="docutils literal notranslate"><span class="pre">flapping=True</span></code> attribute.</p>
 </div>
 <div class="section" id="step-3-route-alerts-to-plugins">
 <h2>Step 3: Route alerts to plugins<a class="headerlink" href="#step-3-route-alerts-to-plugins" title="Permalink to this headline">¶</a></h2>
 <p>By default, plugins are executed in the order in which they are
-listed in the <code class="docutils literal"><span class="pre">PLUGINS</span></code> setting and all plugins are executed for
+listed in the <code class="docutils literal notranslate"><span class="pre">PLUGINS</span></code> setting and all plugins are executed for
 every alert.</p>
 <p>In this step you are going to modify the default behaviour of plugins
 by using a “routing” plugin to dynamically change which plugins
@@ -261,15 +255,15 @@ are run for an alert and in which order.</p>
 the current behaviour. That is, it returns a list of the enabled
 and loaded plugin entry points (not plugin names) of all the configured
 plugins in the order they are listed.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
 
     <span class="k">print</span><span class="p">(</span><span class="n">plugins</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">plugins</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Copy the routing plugin code above into a file called <code class="docutils literal"><span class="pre">routing.py</span></code>
-and copy the following into a file called <code class="docutils literal"><span class="pre">setup.py</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
+<p>Copy the routing plugin code above into a file called <code class="docutils literal notranslate"><span class="pre">routing.py</span></code>
+and copy the following into a file called <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
 
 <span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;0.0.1&#39;</span>
 
@@ -295,16 +289,16 @@ and copy the following into a file called <code class="docutils literal"><span c
 </pre></div>
 </div>
 <p>Next, install the routing plugin. There is no need to add it
-to the <code class="docutils literal"><span class="pre">alertad.conf</span></code> file as it will be auto-detected. Do
+to the <code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code> file as it will be auto-detected. Do
 not forget to restart uwsgi so that Alerta server picks up
 the change though:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo python setup.py install
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo python setup.py install
 </pre></div>
 </div>
 <p>Test the routing plugin by submitting an alert and the routing plugin
 should print to stdout the order in which the plugins will be
-executed. As a test, change the order of the listed <code class="docutils literal"><span class="pre">PLUGINS</span></code>
-in the <code class="docutils literal"><span class="pre">alertad.conf</span></code> file and confirm this is reflected in
+executed. As a test, change the order of the listed <code class="docutils literal notranslate"><span class="pre">PLUGINS</span></code>
+in the <code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code> file and confirm this is reflected in
 the printed output.</p>
 <p>Now that you have created a basic routing plugin the following
 routing plugin simply demonstrates how to determine
@@ -312,7 +306,7 @@ which plugins should be executed for an alert at runtime. The
 code below shows what to return if no plugins are wanted to be
 executed, a subset of plugins should be executed, or all
 configured plugins should be executed.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
 
     <span class="k">if</span> <span class="n">alert</span><span class="o">.</span><span class="n">text</span><span class="o">==</span><span class="s1">&#39;no plugins&#39;</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[]</span>
@@ -325,17 +319,17 @@ configured plugins should be executed.</p>
 <p>A more useful plugin would be one that doesn’t call an external
 notification like <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/slack">Slack</a> unless an alert has been received at least
 three times.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
 
-    <span class="k">if</span> <span class="n">alert</span><span class="o">.</span><span class="n">duplicateCount</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">alert</span><span class="o">.</span><span class="n">duplicate_count</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">plugins</span><span class="p">[</span><span class="s1">&#39;slack&#39;</span><span class="p">]]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[]</span>
 </pre></div>
 </div>
 <p>The following routing plugin expands on the above but this time it
-sends <code class="docutils literal"><span class="pre">critical</span></code> and <code class="docutils literal"><span class="pre">major</span></code> alerts to <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty">PagerDuty</a> as well.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
+sends <code class="docutils literal notranslate"><span class="pre">critical</span></code> and <code class="docutils literal notranslate"><span class="pre">major</span></code> alerts to <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty">PagerDuty</a> as well.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
 
     <span class="k">if</span> <span class="n">alert</span><span class="o">.</span><span class="n">duplicateCount</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[]</span>
@@ -367,6 +361,7 @@ the following tutorials:</p>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -434,6 +429,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">Resources</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../api/reference.html">API Reference</a></li>
@@ -451,12 +447,14 @@ Links
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -464,11 +462,11 @@ Links
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015-2017, Nick Satterly. MIT License.
+      &copy;2015-2018, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="../_sources/gettingstarted/tutorial-3-plugins.rst.txt"

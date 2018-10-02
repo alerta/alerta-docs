@@ -3,11 +3,16 @@
 Alerta CLI
 ==========
 
-``alerta`` is the unified command-line tool for the alerta monitoring
-system. It can be used to send and query alerts, tag alerts and change
-alert status, delete alerts, dump alert history or see the raw alert data.
+``alerta`` is the unified command-line tool, terminal GUI and Python SDK
+for the alerta monitoring system.
 
-``alerta`` can also be used to send heartbeats to the alerta server.
+It can be used to send and query alerts, tag alerts and change alert status,
+delete alerts, dump alert history or see the raw alert data. It can also be
+used to send heartbeats to the alerta server, and generate alerts based on
+missing or slow heartbeats.
+
+.. image:: _static/images/alerta-top-80x25.png
+
 
 Installation
 ------------
@@ -18,9 +23,9 @@ The ``alerta`` client tool can be installed using pip::
 
 Or, by cloning the git repository::
 
-    $ git clone https://github.com/alerta/python-alerta.git
-    $ cd python-alerta
-    $ python setup.py install
+    $ git clone https://github.com/alerta/python-alerta-client.git
+    $ cd python-alerta-client
+    $ pip install .
 
 
 .. _cli config:
@@ -35,7 +40,7 @@ configuration settings.
 +-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
 | Option      | Config File | Environment Variable              | Optional Argument               | Default                   |
 +=============+=============+===================================+=================================+===========================+
-| file        |     n/a     | :envvar:`ALERTA_CONF_FILE`        |     n/a                         | :file:`~/.alerta.conf`    |
+| file        |     n/a     | :envvar:`ALERTA_CONF_FILE`        | ``--config-file FILE``          | :file:`~/.alerta.conf`    |
 +-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
 | profile     |  profile    | :envvar:`ALERTA_DEFAULT_PROFILE`  | ``--profile PROFILE``           | None                      |
 +-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
@@ -43,13 +48,21 @@ configuration settings.
 +-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
 | key         |  key        | :envvar:`ALERTA_API_KEY`          | n/a                             | None                      |
 +-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
-| timezone    |  timezone   | n/a                               | n/a                             | Europe/London             |
+| provider    |  provider   | :envvar:`ALERTA_API_KEY`          | n/a                             | basic                     |
 +-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
-| ssl verify  |  sslverify  | :envvar:`REQUESTS_CA_BUNDLE`      | n/a                             | verify SSL certificates   |
+| client id   |  client_id  | n/a                               | n/a                             | None                      |
++-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
+| GitHub URL  |  github_url | n/a                               | n/a                             | ``https://github.com``    |
++-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
+| GitLab URL  |  gitlab_url | n/a                               | n/a                             | ``https://gitlab.com``    |
++-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
+| timezone    |  timezone   | n/a                               | n/a                             | Europe/London             |
 +-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
 | timeout     |  timeout    | n/a                               | n/a                             | 5s TCP connection timeout |
 +-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
-| output      |  output     | n/a                               | ``--output OUTPUT``, ``--json`` | text                      |
+| ssl verify  |  sslverify  | :envvar:`REQUESTS_CA_BUNDLE`      | n/a                             | verify SSL certificates   |
++-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
+| output      |  output     | n/a                               | ``--output FORMAT``, ``--json`` | text                      |
 +-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
 | color       |  color      | :envvar:`CLICOLOR`                | ``--color``, ``--no-color``     | color on                  |
 +-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
@@ -65,10 +78,6 @@ Configuration file :file:`~/.alerta.conf`::
     [DEFAULT]
     timezone = Australia/Sydney
     output = json
-
-    [profile production]
-    endpoint = https://api.alerta.io
-    key = LMvzLsfJyGpSuLmaB9kp-8gCl4I3YZkV4i7IGb6S
 
     [profile development]
     endpoint = https://localhost:8443
@@ -95,8 +104,38 @@ Precedence
 
 Command-line configuration options have precedence over environment
 variables, which have precedence over the configuration file. Within
-the configuration file profile-specific sections have precedence over
+the configuration file, profile-specific sections have precedence over
 the ``[DEFAULT]`` section.
+
+Authentication
+--------------
+
+If the Alerta API enforces authentication, then the ``alerta`` command-line
+tool can be configured to present an API key or Bearer token to the API when
+accessing secured endpoints.
+
+**API Keys**
+
+API keys can be generated in the web UI, or by an authenticated user using
+the ``alerta`` CLI, and should be added to the configuration file as the "key"
+setting as shown in the following example::
+
+    [profile production]
+    endpoint = https://api.alerta.io
+    key = LMvzLsfJyGpSuLmaB9kp-8gCl4I3YZkV4i7IGb6S
+
+**Bearer Tokens**
+
+Alternatively, a user can "login" to the API and retrieve a Bearer token if
+the Alerta API is configured to use either ``basic``, ``github``, ``gitlab``
+or ``google`` as the authentication provider. An OAuth Client ID is required
+if not using ``basic`` and settings should be added to the configuration
+file as shown in the example below::
+
+    [profile cloud]
+    endpoint = https://alerta-api.herokuapp.com
+    provider = google
+    client_id = 736147134702-glkb1pesv716j1utg4llg7c3rr7nnhli.apps.googleusercontent.com
 
 Commands
 --------
@@ -104,54 +143,43 @@ Commands
 The ``alerta`` tool is invoked by specifying a command using the
 following format::
 
-    $ alerta [OPTIONS] COMMAND [FILTERS]
+    $ alerta [OPTIONS] COMMAND [ARGS]...
+
+The following group of commands are related to creating, querying and managing
+alerts.
 
 .. _cli_send:
 
 :command:`send`
 ~~~~~~~~~~~~~~~
 
-Send an alert to the server::
+Send an alert.
 
-    $ alerta [OPTIONS] send [-r RESOURCE] [-e EVENT] [-E ENVIRONMENT]
-                            [-s SEVERITY] [-C CORRELATE] [--status STATUS]
-                            [-S SERVICE] [-g GROUP] [-v VALUE] [-t TEXT]
-                            [-T TAG] [-A ATTRIBUTES] [-O ORIGIN]
-                            [--type EVENT_TYPE] [--timeout TIMEOUT]
-                            [--raw-data RAW_DATA]
+::
 
-    optional arguments:
-      -h, --help            show this help message and exit
-      -r RESOURCE, --resource RESOURCE
-                            resource under alarm
-      -e EVENT, --event EVENT
-                            event
-      -E ENVIRONMENT, --environment ENVIRONMENT
-                            environment eg. "production", "development", "testing"
-      -s SEVERITY, --severity SEVERITY
-                            severity
-      -C CORRELATE, --correlate CORRELATE
-                            correlate
-      --status STATUS       status should not normally be defined as it is server-
-                            assigned eg. "open", "closed"
-      -S SERVICE, --service SERVICE
-                            service affected eg. the application name, "Web",
-                            "Network", "Storage", "Database", "Security"
-      -g GROUP, --group GROUP
-                            group
-      -v VALUE, --value VALUE
-                            value
-      -t TEXT, --text TEXT  Freeform alert text eg. "Host not responding to ping."
-      -T TAG, --tag TAG     List of tags eg. "London", "os:linux", "AWS/EC2".
-      -A ATTRIBUTES, --attribute ATTRIBUTES
-                            List of Key=Value attribute pairs eg. "priority=high",
-                            "moreInfo=..."
-      -O ORIGIN, --origin ORIGIN
-                            Origin of alert. Usually in form of "app/host"
-      --type EVENT_TYPE     event type eg. "exceptionAlert", "serviceAlert"
-      --timeout TIMEOUT     Timeout in seconds before an "open" alert will be
-                            automatically "expired" or "deleted"
-      --raw-data RAW_DATA   raw data
+    $ alerta send [OPTIONS]
+
+    Options:
+    -r, --resource RESOURCE        Resource under alarm
+    -e, --event EVENT              Event name
+    -E, --environment ENVIRONMENT  Environment eg. Production, Development
+    -s, --severity SEVERITY        Severity eg. critical, major, minor, warning
+    -C, --correlate EVENT          List of related events eg. node_up, node_down
+    -S, --service SERVICE          List of affected services eg. app name, Web,
+                                    Network, Storage, Database, Security
+    -g, --group GROUP              Group event by type eg. OS, Performance
+    -v, --value VALUE              Event value
+    -t, --text DESCRIPTION         Description of alert
+    -T, --tag TAG                  List of tags eg. London, os:linux, AWS/EC2
+    -A, --attributes KEY=VALUE     List of attributes eg. priority=high
+    -O, --origin ORIGIN            Origin of alert in form app/host
+    --type EVENT_TYPE              Event type eg. exceptionAlert,
+                                    performanceAlert, nagiosAlert
+    --timeout SECONDS              Seconds before an open alert will be expired
+    --raw-data STRING              Raw data of orignal alert eg. SNMP trap PDU.
+                                    '@' to read from file, '-' to read from stdin
+    --customer STRING              Customer
+    -h, --help                     Show this message and exit.
 
 The only mandatory options are ``resource`` and ``event``. All the others will
 be set to sensible defaults.
@@ -218,274 +246,190 @@ To query for all alerts with "disk" in the alert text::
 :command:`query`
 ~~~~~~~~~~~~~~~~
 
-Search for alerts::
+Query for alerts based on search filter criteria.
 
-    $ alerta [OPTIONS] query [--details] [--ids IDs] [--filters FILTERS]
+::
 
-    optional arguments:
-      -h, --help            show this help message and exit
-      --details             Show alert details
-      -i IDs [IDs ...], --ids IDs [IDs ...]
-                            List of alert IDs (can use short 8-char id).
-      --filters FILTERS [FILTERS ...]
-                            KEY=VALUE eg. serverity=warning resource=web
+    $ alerta query [OPTIONS]
 
+    Options:
+    -i, --ids UUID       List of alert IDs (can use short 8-char id)
+    -f, --filter FILTER  KEY=VALUE eg. serverity=warning resource=web
+    --tabular            Tabular output
+    --compact            Compact output
+    --details            Compact output with details
+    -h, --help           Show this message and exit.
 
 :command:`watch`
 ~~~~~~~~~~~~~~~~
 
-Watch for new alerts::
+Watch for new alerts.
 
-    $ alerta [OPTIONS] watch [--id ID] [--filters FILTERS]
+::
 
-    optional arguments:
-      -h, --help         show this help message and exit
-      --details          Show alert details
-      -i ID, --id ID     List of alert IDs (can use short 8-char id).
-      --filters FILTERS  KEY=VALUE eg. id=5108bc20
+    $ alerta watch [OPTIONS]  
+
+    Options:
+    -i, --ids UUID          List of alert IDs (can use short 8-char id)
+    -f, --filter FILTER     KEY=VALUE eg. serverity=warning resource=web
+    --details               Compact output with details
+    -n, --interval SECONDS  Refresh interval
+    -h, --help              Show this message and exit.
 
 :command:`top`
 ~~~~~~~~~~~~~~
 
-Show top offenders and stats::
+Display alerts like unix "top" command.
 
-    $ alerta top --help
-    usage: alerta [OPTIONS] top [-h]
+::
 
-    optional arguments:
-      -h, --help  show this help message and exit
+    $ alerta top [OPTIONS]
 
-See :ref:`top` for more information.
+    Options:
+    -h, --help  Show this message and exit.
 
 :command:`raw`
 ~~~~~~~~~~~~~~
 
-Show raw data for alerts::
+Show raw data for alerts.
 
-    $ alerta [OPTIONS] raw [--id ID] [--filters FILTERS]
+::
 
-    optional arguments:
-      -h, --help         show this help message and exit
-      -i ID, --id ID     List of alert IDs (can use short 8-char id).
-      --filters FILTERS  KEY=VALUE eg. id=5108bc20
+    $ alerta raw [OPTIONS]
+
+    Options:
+    -i, --ids UUID       List of alert IDs (can use short 8-char id)
+    -f, --filter FILTER  KEY=VALUE eg. serverity=warning resource=web
+    -h, --help           Show this message and exit.
 
 :command:`history`
 ~~~~~~~~~~~~~~~~~~
 
-Show alert history::
+Show status and severity changes for alerts.
 
-    $ alerta [OPTIONS] history [--id ID] [--filters FILTERS]
+::
 
-    optional arguments:
-      -h, --help         show this help message and exit
-      -i ID, --id ID     List of alert IDs (can use short 8-char id).
-      --filters FILTERS  KEY=VALUE eg. id=5108bc20
+    $ alerta history [OPTIONS]
+
+    Options:
+    -i, --ids UUID       List of alert IDs (can use short 8-char id)
+    -f, --filter FILTER  KEY=VALUE eg. serverity=warning resource=web
+    -h, --help           Show this message and exit.
 
 :command:`tag`
 ~~~~~~~~~~~~~~
 
-Tag alerts::
+Add tags to alerts.
 
-    $ alerta [OPTIONS] tag -T TAG [--id ID] [--filters FILTERS]
+::
 
-    optional arguments:
-      -h, --help         show this help message and exit
-      -T TAG, --tag TAG  List of tags eg. "London", "os:linux", "AWS/EC2".
-      -i ID, --id ID     List of alert IDs (can use short 8-char id).
-      --filters FILTERS  KEY=VALUE eg. id=5108bc20
+    $ alerta tag [OPTIONS]
+
+    Options:
+    -i, --ids UUID       List of alert IDs (can use short 8-char id)
+    -f, --filter FILTER  KEY=VALUE eg. serverity=warning resource=web
+    -T, --tag TEXT       List of tags  [required]
+    -h, --help           Show this message and exit.
 
 :command:`untag`
 ~~~~~~~~~~~~~~~~
 
-Untag alerts ie. remove an assigned tag from alert tag list::
+Remove tags from alerts.
 
-    $ alerta [OPTIONS] untag -T TAG [--id ID] [--filters FILTERS]
+::
 
-    optional arguments:
-      -h, --help         show this help message and exit
-      -T TAG, --tag TAG  List of tags eg. "London", "os:linux", "AWS/EC2".
-      -i ID, --id ID     List of alert IDs (can use short 8-char id).
-      --filters FILTERS  KEY=VALUE eg. id=5108bc20
+    $ alerta untag [OPTIONS]
+
+    Options:
+    -i, --ids UUID       List of alert IDs (can use short 8-char id)
+    -f, --filter FILTER  KEY=VALUE eg. serverity=warning resource=web
+    -T, --tag TEXT       List of tags  [required]
+    -h, --help           Show this message and exit.ntag alerts ie. remove an assigned tag from alert tag list::
+
+:command:`update`
+~~~~~~~~~~~~~~~~~
+
+Update alert attributes.
+
+::
+
+    $ alerta update [OPTIONS]
+
+    Options:
+    -i, --ids UUID              List of alert IDs (can use short 8-char id)
+    -f, --filter FILTER         KEY=VALUE eg. serverity=warning resource=web
+    -A, --attributes KEY=VALUE  List of attributes eg. priority=high  [required]
+    -h, --help                  Show this message and exit.
 
 :command:`ack`
 ~~~~~~~~~~~~~~
 
 Acknowlege alerts ie. change alert ``status`` to ``ack``::
 
-    $ alerta [OPTIONS] ack [--id ID] [--filters FILTERS]
-
-    optional arguments:
-      -h, --help         show this help message and exit
-      -i ID, --id ID     List of alert IDs (can use short 8-char id).
-      --filters FILTERS  KEY=VALUE eg. id=5108bc20
-
 :command:`unack`
 ~~~~~~~~~~~~~~~~
 
 Unacknowledge alerts ie. change alert ``status`` to ``open``::
-
-    $ alerta [OPTIONS] unack [--id ID] [--filters FILTERS]
-
-    optional arguments:
-      -h, --help         show this help message and exit
-      -i ID, --id ID     List of alert IDs (can use short 8-char id).
-      --filters FILTERS  KEY=VALUE eg. id=5108bc20
 
 :command:`close`
 ~~~~~~~~~~~~~~~~
 
 Close alerts ie. change alert ``status`` to ``closed``::
 
-    $ alerta [OPTIONS] close [--id ID] [--filters FILTERS]
-
-    optional arguments:
-      -h, --help         show this help message and exit
-      -i ID, --id ID     List of alert IDs (can use short 8-char id).
-      --filters FILTERS  KEY=VALUE eg. id=5108bc20
 
 :command:`delete`
 ~~~~~~~~~~~~~~~~~
 
 Delete alerts from server::
 
-    $ alerta [OPTIONS] delete [--id ID] [--filters FILTERS]
-
-    optional arguments:
-      -h, --help         show this help message and exit
-      -i ID, --id ID     List of alert IDs (can use short 8-char id).
-      --filters FILTERS  KEY=VALUE eg. id=5108bc20
-
 :command:`blackout`
 ~~~~~~~~~~~~~~~~~~~
 
 Blackout alerts based on attributes::
-
-    $ alerta blackout --help
-    usage: alerta [OPTIONS] blackout [-r RESOURCE] [-e EVENT] [-E ENVIRONMENT]
-                                [-S SERVICE] [-g GROUP] [-T TAG]
-
-    optional arguments:
-      -h, --help            show this help message and exit
-      -r RESOURCE, --resource RESOURCE
-                            resource under alarm
-      -e EVENT, --event EVENT
-                            event
-      -E ENVIRONMENT, --environment ENVIRONMENT
-                            environment eg. "production", "development", "testing"
-      -S SERVICE, --service SERVICE
-                            service affected eg. the application name, "Web",
-                            "Network", "Storage", "Database", "Security"
-      -g GROUP, --group GROUP
-                            group
-      -T TAG, --tag TAG     List of tags eg. "London", "os:linux", "AWS/EC2".
-      --start START         Start of blackout period
-      --duration DURATION   Duration of blackout period (default: 1 hour)
 
 :command:`blackouts`
 ~~~~~~~~~~~~~~~~~~~~
 
 List all blackout periods::
 
-    $ alerta blackouts --help
-    usage: alerta [OPTIONS] blackouts [-h]
-
-    optional arguments:
-      -h, --help  show this help message and exit
-      --purge     Delete all expired blackout periods
 
 :command:`heartbeat`
 ~~~~~~~~~~~~~~~~~~~~
 
 Send a heartbeat to the server::
 
-    $ alerta [OPTIONS] heartbeat [-T TAG] [-O ORIGIN] [--timeout TIMEOUT]
-
-    optional arguments:
-      -h, --help            show this help message and exit
-      -T TAG, --tag TAG     List of tags eg. "London", "os:linux", "AWS/EC2".
-      -O ORIGIN, --origin ORIGIN
-                            Origin of heartbeat. Usually in form of "app/host"
-      --timeout TIMEOUT     Timeout in seconds before a heartbeat will be
-                            considered stale
-
 :command:`heartbeats`
 ~~~~~~~~~~~~~~~~~~~~~
 
 List all heartbeats::
-
-    $ alerta heartbeats --help
-    usage: alerta [OPTIONS] heartbeats [-h]
-
-    optional arguments:
-      -h, --help  show this help message and exit
-      --alert     Send alerts on stale or slow heartbeats
 
 :command:`user`
 ~~~~~~~~~~~~~~~
 
 Manage user details (Basic Auth only)::
 
-    $ alerta user --help
-    usage: alerta [OPTIONS] user --user-name USER [--password PASSWORD]
-
-    optional arguments:
-      -h, --help            show this help message and exit
-      -u USER, --user-name USER
-                            User name
-      -p PASSWORD, --password PASSWORD
-                            New password
-
 :command:`users`
 ~~~~~~~~~~~~~~~~
 
 List all users::
 
-    $ alerta users --help
-    usage: alerta [OPTIONS] users [-h]
-
-    optional arguments:
-      -h, --help  show this help message and exit
 
 :command:`key`
 ~~~~~~~~~~~~~~
 
 Create API key::
 
-    $ alerta key --help
-    usage: alerta [OPTIONS] key [-u USER] [--readonly] [--customer CUSTOMER|--no-customer] [-t TEXT]
-
-    optional arguments:
-      -h, --help            show this help message and exit
-      -u USER, --user-name USER
-                            User name
-      -O, --readonly        read only API key
-      --customer CUSTOMER   customer view
-      --no-customer         do not associate with customer
-      -t TEXT, --text TEXT  text
 
 :command:`keys`
 ~~~~~~~~~~~~~~~
 
 List all API keys::
 
-    $ alerta keys --help
-    usage: alerta [OPTIONS] keys [-h]
-
-    optional arguments:
-      -h, --help  show this help message and exit
-
 :command:`revoke`
 ~~~~~~~~~~~~~~~~~
 
 Revoke API key::
 
-    $ alerta revoke --help
-    usage: alerta [OPTIONS] revoke [--api-key KEY]
-
-    optional arguments:
-      -h, --help            show this help message and exit
-      -K API_KEY, --api-key API_KEY
-                            API key to be revoked.
 
 .. _cli_status:
 
@@ -494,22 +438,12 @@ Revoke API key::
 
 Show status and metrics::
 
-    $ alerta status --help
-    usage: alerta [OPTIONS] status [-h]
-
-    optional arguments:
-      -h, --help  show this help message and exit
 
 :command:`uptime`
 ~~~~~~~~~~~~~~~~~
 
 Show server uptime::
 
-    $ alerta uptime --help
-    usage: alerta [OPTIONS] uptime [-h]
-
-    optional arguments:
-      -h, --help  show this help message and exit
 
 :command:`version`
 ~~~~~~~~~~~~~~~~~~
