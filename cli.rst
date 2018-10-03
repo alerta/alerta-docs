@@ -446,35 +446,90 @@ Admin Commands
 The following group of commands are related to administration.
 
 :command:`status` - Display status and metrics
-+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++
 
-  status        Display status and metrics
+Display API server switch status and usage metrics.
+
+::
+
+    $ alerta status
+    METRIC                       TYPE     NAME                       VALUE        AVERAGE
+    ---------------------------  -------  -------------------------  -------  -----------
+    Total alerts                 gauge    alerts.total               993
+    Rejected alerts              counter  alerts.rejected            22
+    Alert queries                timer    alerts.queries             9132459  128.713
+    Pre-receive plugins          timer    plugins.prereceive         10889      0.0383874
+    Newly created alerts         timer    alerts.create              4442       5.06123
+    Post-receive plugins         timer    plugins.postreceive        10867      0.0149995
+    Received alerts              timer    alerts.received            15376     23.4729
+    Duplicate alerts             timer    alerts.duplicate           9167       8.26061
+    Correlated alerts            timer    alerts.correlate           429       20.9068
+    Tagging alerts               timer    alerts.tagged              246       35.5935
+    Alert status change          timer    alerts.status              687       88.2969
+    Deleted alerts               timer    alerts.deleted             8        120.25
+    Removing tags from alerts    timer    alerts.untagged            52        22.2308
+    Count alerts                 timer    alerts.counts              4388289   23.9553
+    Alerta console auto-refresh  text     switch.auto-refresh-allow  ON
+    API alert submission         text     switch.sender-api-allow    ON
 
 :command:`config` - Display remote client config
-+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++
 
-  config        Display remote client config
+Display client config downloaded from API server.
+
+::
+
+    $ alerta config
+    audio               : {}
+    auth_required       : True
+    client_id           : 736147134702-glkb1pesv716j1utg4llg7c3rr7nnhli.apps.googleusercontent.com
+    colors              : {}
+    customer_views      : True
+    dates               : {'longDate': 'EEEE, MMMM d, yyyy h:mm:ss.sss a (Z)', 'mediumDate': 'medium', 'shortTime': 'shortTime'}
+    endpoint            : https://alerta-api.herokuapp.com
+    github_url          : None
+    gitlab_url          : https://gitlab.com
+    keycloak_realm      : None
+    keycloak_url        : None
+    pingfederate_url    : None
+    provider            : google
+    refresh_interval    : 5000
+    severity            : {'cleared': 5, 'critical': 1, 'debug': 7, 'indeterminate': 5, 'informational': 6, 'major': 2, 'minor': 3, 'normal': 5, 'ok': 5, 'security': 0, 'trace': 8, 'unknown': 9, 'warning': 4}
+    signup_enabled      : True
+    tracking_id         : UA-44644195-5
 
 :command:`housekeeping` - Expired and clears old alerts
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-  housekeeping  Expired and clears old alerts.
+Trigger the expiration and deletion of alerts.
 
 :command:`uptime` - Display server uptime
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++
 
-  uptime        Display server uptime
+Show how long the Alerta API has been running.
+::
+
+    $ alerta uptime
+    01:06 up 0 days 16:15
   
 :command:`version` - Display version info
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++
 
 Show version information for ``alerta`` and dependencies.
+
+::
+
+    $ alerta version
+    alerta 6.0.0
+    alerta client 6.0.0
+    requests 2.19.1
+    click 7.0
 
 Help Commands
 ~~~~~~~~~~~~~
 
 :command:`help` - Show this help
-+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++
 
 Show all ``OPTIONS``, ``COMMANDS`` and some example ``FILTERS``.
 
