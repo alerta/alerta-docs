@@ -203,3 +203,63 @@ History log entries can be for either severity or status changes.
     the history log for alerts with ``event`` changes (See ``*`` above).
     And the ``status`` attribute is only added to the history log for
     alerts with ``status`` changes (See ``+`` above).
+
+Example
+-------
+
+::
+
+    {
+      "attributes": {
+        "flapping": false,
+        "ip": "127.0.0.1",
+        "notify": true,
+        "region": "EU"
+      },
+      "correlate": [
+        "HttpServerError",
+        "HttpServerOK"
+      ],
+      "createTime": "2018-01-27T21:00:12.999Z",
+      "customer": null,
+      "duplicateCount": 0,
+      "environment": "Production",
+      "event": "HttpServerError",
+      "group": "Web",
+      "history": [
+        {
+          "event": "HttpServerError",
+          "href": "http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+          "id": "17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+          "severity": "major",
+          "status": null,
+          "text": "Site is down.",
+          "type": "severity",
+          "updateTime": "2018-01-27T21:00:12.999Z",
+          "value": "Bad Gateway (501)"
+        }
+      ],
+      "href": "http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+      "id": "17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+      "lastReceiveId": "17d8e7ea-b3ba-4bb1-9c5a-29e60865f258",
+      "lastReceiveTime": "2018-01-27T21:00:13.070Z",
+      "origin": "curl",
+      "previousSeverity": "indeterminate",
+      "rawData": null,
+      "receiveTime": "2018-01-27T21:00:13.070Z",
+      "repeat": false,
+      "resource": "web01",
+      "service": [
+        "example.com"
+      ],
+      "severity": "major",
+      "status": "open",
+      "tags": [
+        "dc1"
+      ],
+      "text": "Site is down.",
+      "timeout": 86400,
+      "trendIndication": "moreSevere",
+      "type": "exceptionAlert",
+      "value": "Bad Gateway (501)"
+    }

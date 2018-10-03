@@ -346,6 +346,65 @@ And the <code class="docutils literal notranslate"><span class="pre">status</spa
 alerts with <code class="docutils literal notranslate"><span class="pre">status</span></code> changes (See <code class="docutils literal notranslate"><span class="pre">+</span></code> above).</p>
 </div>
 </div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;flapping&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;notify&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s2">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;EU&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HttpServerOK&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:00:12.999Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;customer&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+  <span class="s2">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+      <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;severity&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:00:12.999Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s2">&quot;17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:00:13.070Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s2">&quot;indeterminate&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;rawData&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+  <span class="s2">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:00:13.070Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;repeat&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+  <span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;example.com&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;dc1&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
+  <span class="s2">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s2">&quot;moreSevere&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;exceptionAlert&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
