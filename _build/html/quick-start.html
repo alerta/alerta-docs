@@ -42,7 +42,7 @@
 <h2>Install MongoDB<a class="headerlink" href="#install-mongodb" title="Permalink to this headline">¶</a></h2>
 <p>For Debian/Ubuntu, run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install -y mongodb-org
-$ mongod
+$ sudo mongod -f /etc/mongod.conf &amp;
 </pre></div>
 </div>
 <p>If <code class="docutils literal notranslate"><span class="pre">apt-get</span></code> can’t locate the “mongodb-org” metapackage package then
@@ -53,7 +53,7 @@ list.</p>
 <div class="section" id="install-the-alerta-server">
 <h2>Install the Alerta Server<a class="headerlink" href="#install-the-alerta-server" title="Permalink to this headline">¶</a></h2>
 <p>To install the alerta server:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install alerta-server
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip3 install alerta-server
 $ alertad run --port 8080
 </pre></div>
 </div>
@@ -68,7 +68,7 @@ $ alertad run --port 8080
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget -O alerta-web.tgz https://github.com/alerta/angular-alerta-webui/tarball/master
 $ tar zxvf alerta-web.tgz
 $ cd alerta-angular-alerta-webui-*/app
-$ python -m SimpleHTTPServer 8000
+$ python3 -m http.server 8000
 
 &gt;&gt; browse to http://localhost:8000
 </pre></div>

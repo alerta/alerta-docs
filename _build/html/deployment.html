@@ -44,11 +44,14 @@ during development or testing but when run in a production environment,
 it should <a class="reference external" href="http://flask.pocoo.org/docs/1.0/deploying/">always be deployed</a> as a WSGI application. See the list
 of <a class="reference internal" href="#real-world">real world</a> examples below for different ways to run Alerta as
 a WSGI application.</p>
-<p>When deploying with Apache mod_wsgi, be aware that by default Apache
-strips the Authentication header. This will cause you to receive
-“Missing authorization API Key or Bearer Token” errors. This can be
-fixed by setting <code class="docutils literal notranslate"><span class="pre">WSGIPassAuthorization</span> <span class="pre">On</span></code> in the configuration
-file for the site.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When deploying with Apache mod_wsgi, be aware that by default
+Apache strips the Authentication header. This will cause you to
+receive “Missing authorization API Key or Bearer Token” errors.
+This can be fixed by setting <code class="docutils literal notranslate"><span class="pre">WSGIPassAuthorization</span> <span class="pre">On</span></code> in
+the configuration file for the site.</p>
+</div>
 </div>
 <div class="section" id="web-proxy">
 <span id="reverse-proxy"></span><h2>Web Proxy<a class="headerlink" href="#web-proxy" title="Permalink to this headline">¶</a></h2>
@@ -86,15 +89,14 @@ upstream backend {
 }
 </pre></div>
 </div>
-<p>The web UI configuration file <code class="file docutils literal notranslate"><span class="pre">config.js</span></code> for this setup would
-simply be <code class="docutils literal notranslate"><span class="pre">/api</span></code> for the <code class="docutils literal notranslate"><span class="pre">endpoint</span></code> value, as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
-
-<span class="n">angular</span><span class="o">.</span><span class="n">module</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">[])</span>
-  <span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">{</span>
-    <span class="s1">&#39;endpoint&#39;</span>    <span class="p">:</span> <span class="s2">&quot;/api&quot;</span><span class="p">,</span>
-    <span class="s1">&#39;provider&#39;</span>    <span class="p">:</span> <span class="s2">&quot;basic&quot;</span>
-  <span class="p">});</span>
+<p>The server configuration file <code class="file docutils literal notranslate"><span class="pre">alertad.conf</span></code> for this setup
+would need to set <code class="docutils literal notranslate"><span class="pre">BASE_URL</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;/api&#39;</span>
+</pre></div>
+</div>
+<p>And the web UI configuration file <code class="file docutils literal notranslate"><span class="pre">config.json</span></code> would need
+the <code class="docutils literal notranslate"><span class="pre">endpoint</span></code> setting to match that:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;endpoint&quot;</span><span class="p">:</span> <span class="s2">&quot;/api&quot;</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -114,11 +116,11 @@ is from an <a class="reference external" href="http://docs.aws.amazon.com/Amazon
 <span id="auth-ssl"></span><h2>Authentication &amp; SSL<a class="headerlink" href="#authentication-ssl" title="Permalink to this headline">¶</a></h2>
 <p>Alerta supports several authentication mechanisms for both the API
 and the web UI and some key features of the web UI, like
-<a class="reference internal" href="webui.html#watched-alerts"><span class="std std-ref">watching alerts</span></a>, are only available if
+<span class="xref std std-ref">watching alerts</span>, are only available if
 authentication is enabled.</p>
 <p>The API can be secured using <a class="reference internal" href="authentication.html#api-keys"><span class="std std-ref">API Keys</span></a> and the web UI can
 be secured using <a class="reference internal" href="authentication.html#basic-auth"><span class="std std-ref">Basic Auth</span></a> or an <a class="reference internal" href="authentication.html#oauth2"><span class="std std-ref">OAuth</span></a>
-provider from either Google or Github.</p>
+provider from either GitHub, GitLab, Google, Keycloak or SAML2.</p>
 <p>If you plan to make the web UI accessible from a public URL it is
 strongly advised to <a class="reference internal" href="authentication.html#authentication"><span class="std std-ref">enforce authentication</span></a>
 and use HTTPS/SSL connections to the Alerta API to protect private
@@ -146,10 +148,15 @@ with web UI user logins.</p>
 <span id="id4"></span><h2>High Availability<a class="headerlink" href="#high-availability" title="Permalink to this headline">¶</a></h2>
 <p>To achieve high system availability the Alerta API should be
 deployed to scale out <a class="reference internal" href="#scalability"><span class="std std-ref">horizontally</span></a> and
-the MongoDB database should be deployed as a <a class="reference external" href="http://docs.mongodb.org/manual/tutorial/deploy-replica-set/#overview">replica set</a>.</p>
+the database should be deployed as a <a class="reference external" href="http://docs.mongodb.org/manual/core/replica-set-high-availability/">replica set</a>, if using
+mongoDB or as <a class="reference external" href="https://www.postgresql.org/docs/current/static/high-availability.html">master-slave</a>, if using Postgres.</p>
 </div>
 <div class="section" id="house-keeping">
 <span id="housekeeping"></span><h2>House Keeping<a class="headerlink" href="#house-keeping" title="Permalink to this headline">¶</a></h2>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 5.0: </span>The <code class="file docutils literal notranslate"><span class="pre">housekeepingAlerts.js</span></code> script that was used for
+housekeeping is deprecated. Use the following instead.</p>
+</div>
 <p>There are some jobs that should be run periodically to keep the
 Alerta console clutter free. To timeout <em>expired</em> alerts and
 delete old <em>closed</em> alerts you need to trigger housekeeping.</p>
@@ -161,18 +168,17 @@ delete old <em>closed</em> alerts you need to trigger housekeeping.</p>
 and cURL has to be used to access <code class="docutils literal notranslate"><span class="pre">/management/housekeeping</span></code>.</p>
 <p>The API key needs an admin scope if AUTH_REQUIRED is set to True.</p>
 <p>It is suggested that you run housekeeping at regular intervals via
-<code class="docutils literal notranslate"><span class="pre">cron</span></code>. Every minute is a suitable interval.</p>
-<p>By default, when you run housekeeping, Alerta will remove any alerts
-that have been expired or closed for 2 hours and any info messages that
+<code class="docutils literal notranslate"><span class="pre">cron</span></code>. Every minute or two is a suitable interval.</p>
+<p>By default, the housekeeping job will remove any alerts that have been
+expired or closed for 2 hours and any info messages that
 are 12 hours old. In some cases, these retention periods may be too
-long or too short for your needs. Bear in mind that Alerta is intended
-to reflect the here and now, so long deletion thresholds should be
-avoided. Where you do need to depart from the defaults, you can specify
-like this:</p>
-<blockquote>
-<div>$ alerta housekeeping –expired 2 –info 12</div></blockquote>
-<p>In earlier versions of Alerta, a script called housekeepingAlerts.js
-was used for housekeeping. This is now deprecated.</p>
+long or too short for your needs.</p>
+<p>Bear in mind that Alerta is intended to reflect the here and now, so
+long deletion thresholds should be avoided. Where you do need to depart
+from the defaults, you can specify like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta housekeeping --expired 2 --info 12
+</pre></div>
+</div>
 <p id="stale-heartbeats"><a class="reference internal" href="api/reference.html#heartbeats"><span class="std std-ref">Heartbeats</span></a> can be sent from any source to
 ensure that a system is ‘alive’. To generate alerts for stale
 heartbeats the <code class="docutils literal notranslate"><span class="pre">alerta</span></code> command-line tool can be used:</p>
@@ -184,27 +190,26 @@ some other scheduler.</p>
 </div>
 <div class="section" id="management-metrics">
 <span id="metrics"></span><h2>Management &amp; Metrics<a class="headerlink" href="#management-metrics" title="Permalink to this headline">¶</a></h2>
-<p>Use the management endpoint <code class="file docutils literal notranslate"><span class="pre">/management/status</span></code> to keep
+<p>There are two management endpoints that provide internal application
+metrics.</p>
+<p>The management endpoint <code class="file docutils literal notranslate"><span class="pre">/management/status</span></code> can be used to keep
 track of realtime statistics on the performance of the Alerta API
 like alert counts and average processing time. For convenience,
 these statistics can be viewed in the <em>About</em> page of the Alerta
 web UI or using the <code class="docutils literal notranslate"><span class="pre">alerta</span></code> command-line tool
 <span class="xref std std-ref">status</span> command.</p>
+<p>The same metrics are also exposed at <code class="file docutils literal notranslate"><span class="pre">/management/metrics</span></code> in
+the <a class="reference external" href="https://prometheus.io/docs/instrumenting/exposition_formats/">exposition format</a> required by Prometheus so that it can be monitored
+by Prometheus and other monitoring tools that implement the <a class="reference external" href="https://openmetrics.io/">OpenMetrics</a>
+standard.</p>
 </div>
 <div class="section" id="web-ui-analytics">
 <h2>Web UI Analytics<a class="headerlink" href="#web-ui-analytics" title="Permalink to this headline">¶</a></h2>
 <p>Google analytics can be used to track usage of the Alerta web UI
 console. Just create a new tracking code with the <a class="reference external" href="https://analytics.google.com/analytics/web/">Google analytics</a>
-console and add it to the <code class="docutils literal notranslate"><span class="pre">config.js</span></code> web console configuration
+console and add it to the <code class="file docutils literal notranslate"><span class="pre">alertad.conf</span></code> API configuration
 file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
-
-<span class="n">angular</span><span class="o">.</span><span class="n">module</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">[])</span>
-  <span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="p">{</span>
-    <span class="s1">&#39;endpoint&#39;</span>    <span class="p">:</span> <span class="s2">&quot;/api&quot;</span><span class="p">,</span>
-    <span class="s1">&#39;provider&#39;</span>    <span class="p">:</span> <span class="s2">&quot;basic&quot;</span><span class="p">,</span>
-    <span class="s1">&#39;tracking_id&#39;</span> <span class="p">:</span> <span class="s2">&quot;UA-NNNNNN-N&quot;</span>  <span class="o">//</span> <span class="n">Google</span> <span class="n">Analytics</span> <span class="n">tracking</span> <span class="n">ID</span>
-  <span class="p">});</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GOOGLE_TRACKING_ID</span> <span class="o">=</span> <span class="s1">&#39;UA-NNNNNN-N&#39;</span>
 </pre></div>
 </div>
 </div>

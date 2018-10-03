@@ -13,7 +13,6 @@ missing or slow heartbeats.
 
 .. image:: _static/images/alerta-top-80x25.png
 
-
 Installation
 ------------
 
@@ -26,7 +25,6 @@ Or, by cloning the git repository::
     $ git clone https://github.com/alerta/python-alerta-client.git
     $ cd python-alerta-client
     $ pip install .
-
 
 .. _cli config:
 
@@ -47,14 +45,6 @@ configuration settings.
 | endpoint    |  endpoint   | :envvar:`ALERTA_ENDPOINT`         | ``--endpoint-url URL``          | ``http://localhost:8080`` |
 +-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
 | key         |  key        | :envvar:`ALERTA_API_KEY`          | n/a                             | None                      |
-+-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
-| provider    |  provider   | :envvar:`ALERTA_API_KEY`          | n/a                             | basic                     |
-+-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
-| client id   |  client_id  | n/a                               | n/a                             | None                      |
-+-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
-| GitHub URL  |  github_url | n/a                               | n/a                             | ``https://github.com``    |
-+-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
-| GitLab URL  |  gitlab_url | n/a                               | n/a                             | ``https://gitlab.com``    |
 +-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
 | timezone    |  timezone   | n/a                               | n/a                             | Europe/London             |
 +-------------+-------------+-----------------------------------+---------------------------------+---------------------------+
@@ -111,7 +101,7 @@ Authentication
 --------------
 
 If the Alerta API enforces authentication, then the ``alerta`` command-line
-tool can be configured to present an API key or Bearer token to the API when
+tool can be configured to present an API key or login to the API before
 accessing secured endpoints.
 
 **API Keys**
@@ -124,18 +114,14 @@ setting as shown in the following example::
     endpoint = https://api.alerta.io
     key = LMvzLsfJyGpSuLmaB9kp-8gCl4I3YZkV4i7IGb6S
 
-**Bearer Tokens**
+**OAuth Login**
 
 Alternatively, a user can "login" to the API and retrieve a Bearer token if
 the Alerta API is configured to use either ``basic``, ``github``, ``gitlab``
-or ``google`` as the authentication provider. An OAuth Client ID is required
-if not using ``basic`` and settings should be added to the configuration
-file as shown in the example below::
+or ``google`` as the authentication provider. No additional settings are
+required but before running any commands the user must login first::
 
-    [profile cloud]
-    endpoint = https://alerta-api.herokuapp.com
-    provider = google
-    client_id = 736147134702-glkb1pesv716j1utg4llg7c3rr7nnhli.apps.googleusercontent.com
+    $ alerta login
 
 Commands
 --------
@@ -145,13 +131,20 @@ following format::
 
     $ alerta [OPTIONS] COMMAND [ARGS]...
 
-The following group of commands are related to creating, querying and managing
-alerts.
 
-.. _cli_send:
 
-:command:`send`
-~~~~~~~~~~~~~~~
+.. contents::
+   :local:
+   :depth: 2
+
+Alert Commands
+~~~~~~~~~~~~~~
+
+The following group of commands are related to sending, querying and managing
+the status of alerts.
+
+:command:`send` - Send an alert
++++++++++++++++++++++++++++++++
 
 Send an alert.
 
@@ -242,216 +235,246 @@ To query for all alerts with "disk" in the alert text::
 
     $ alerta query --filters text=~disk
 
-
-:command:`query`
-~~~~~~~~~~~~~~~~
+:command:`query` - Search for alerts
+++++++++++++++++++++++++++++++++++++
 
 Query for alerts based on search filter criteria.
 
-::
+:command:`ack` - Acknowledge alerts
++++++++++++++++++++++++++++++++++++
 
-    $ alerta query [OPTIONS]
+Acknowlege alerts ie. change alert ``status`` to ``ack``
 
-    Options:
-    -i, --ids UUID       List of alert IDs (can use short 8-char id)
-    -f, --filter FILTER  KEY=VALUE eg. serverity=warning resource=web
-    --tabular            Tabular output
-    --compact            Compact output
-    --details            Compact output with details
-    -h, --help           Show this message and exit.
+:command:`close` - Close alerts
++++++++++++++++++++++++++++++++++++
 
-:command:`watch`
-~~~~~~~~~~~~~~~~
+  close         Close alerts
 
-Watch for new alerts.
+:command:`unack` - Un-acknowledge alerts
++++++++++++++++++++++++++++++++++++
 
-::
+Unacknowledge alerts ie. change alert ``status`` to ``open``.
 
-    $ alerta watch [OPTIONS]  
+:command:`shelve` - Shelve alerts
++++++++++++++++++++++++++++++++++++
+  shelve        Shelve alerts
 
-    Options:
-    -i, --ids UUID          List of alert IDs (can use short 8-char id)
-    -f, --filter FILTER     KEY=VALUE eg. serverity=warning resource=web
-    --details               Compact output with details
-    -n, --interval SECONDS  Refresh interval
-    -h, --help              Show this message and exit.
+:command:`unshelve` - Un-shelve alerts
++++++++++++++++++++++++++++++++++++
 
-:command:`top`
-~~~~~~~~~~~~~~
+  unshelve      Un-shelve alerts
 
-Display alerts like unix "top" command.
-
-::
-
-    $ alerta top [OPTIONS]
-
-    Options:
-    -h, --help  Show this message and exit.
-
-:command:`raw`
-~~~~~~~~~~~~~~
-
-Show raw data for alerts.
-
-::
-
-    $ alerta raw [OPTIONS]
-
-    Options:
-    -i, --ids UUID       List of alert IDs (can use short 8-char id)
-    -f, --filter FILTER  KEY=VALUE eg. serverity=warning resource=web
-    -h, --help           Show this message and exit.
-
-:command:`history`
-~~~~~~~~~~~~~~~~~~
-
-Show status and severity changes for alerts.
-
-::
-
-    $ alerta history [OPTIONS]
-
-    Options:
-    -i, --ids UUID       List of alert IDs (can use short 8-char id)
-    -f, --filter FILTER  KEY=VALUE eg. serverity=warning resource=web
-    -h, --help           Show this message and exit.
-
-:command:`tag`
-~~~~~~~~~~~~~~
+:command:`tag` - Tag alerts
++++++++++++++++++++++++++++++++++++
 
 Add tags to alerts.
 
-::
-
-    $ alerta tag [OPTIONS]
-
-    Options:
-    -i, --ids UUID       List of alert IDs (can use short 8-char id)
-    -f, --filter FILTER  KEY=VALUE eg. serverity=warning resource=web
-    -T, --tag TEXT       List of tags  [required]
-    -h, --help           Show this message and exit.
-
-:command:`untag`
-~~~~~~~~~~~~~~~~
+:command:`untag` - Untag alerts
++++++++++++++++++++++++++++++++++++
 
 Remove tags from alerts.
 
-::
-
-    $ alerta untag [OPTIONS]
-
-    Options:
-    -i, --ids UUID       List of alert IDs (can use short 8-char id)
-    -f, --filter FILTER  KEY=VALUE eg. serverity=warning resource=web
-    -T, --tag TEXT       List of tags  [required]
-    -h, --help           Show this message and exit.ntag alerts ie. remove an assigned tag from alert tag list::
-
-:command:`update`
-~~~~~~~~~~~~~~~~~
+:command:`update` - Update alert attributes
++++++++++++++++++++++++++++++++++++
 
 Update alert attributes.
 
-::
+:command:`delete` - Delete alerts
++++++++++++++++++++++++++++++++++++
 
-    $ alerta update [OPTIONS]
+  delete        Delete alerts
 
-    Options:
-    -i, --ids UUID              List of alert IDs (can use short 8-char id)
-    -f, --filter FILTER         KEY=VALUE eg. serverity=warning resource=web
-    -A, --attributes KEY=VALUE  List of attributes eg. priority=high  [required]
-    -h, --help                  Show this message and exit.
+:command:`watch` - Watch alerts
++++++++++++++++++++++++++++++++++++
 
-:command:`ack`
-~~~~~~~~~~~~~~
+Watch for new alerts.
 
-Acknowlege alerts ie. change alert ``status`` to ``ack``::
+:command:`top` - Show top offenders and stats
++++++++++++++++++++++++++++++++++++
 
-:command:`unack`
-~~~~~~~~~~~~~~~~
+Display alerts like unix "top" command.
 
-Unacknowledge alerts ie. change alert ``status`` to ``open``::
+:command:`raw` - Show alert raw data
++++++++++++++++++++++++++++++++++++
 
-:command:`close`
-~~~~~~~~~~~~~~~~
+Show raw data for alerts.
 
-Close alerts ie. change alert ``status`` to ``closed``::
+:command:`history` - Show alert history
++++++++++++++++++++++++++++++++++++
 
+Show status, severity and value changes for alerts.
 
-:command:`delete`
+Blackout Commands
 ~~~~~~~~~~~~~~~~~
 
-Delete alerts from server::
+The following group of commands are related to creating and
+managing alert suppressions using blackouts.
 
-:command:`blackout`
-~~~~~~~~~~~~~~~~~~~
+:command:`blackout` - Suppress alerts
++++++++++++++++++++++++++++++++++++
 
-Blackout alerts based on attributes::
+  blackout      Suppress alerts
 
-:command:`blackouts`
-~~~~~~~~~~~~~~~~~~~~
+:command:`blackouts` - List alert suppressions
++++++++++++++++++++++++++++++++++++
 
-List all blackout periods::
+  blackouts     List alert suppressions
 
-
-:command:`heartbeat`
-~~~~~~~~~~~~~~~~~~~~
-
-Send a heartbeat to the server::
-
-:command:`heartbeats`
-~~~~~~~~~~~~~~~~~~~~~
-
-List all heartbeats::
-
-:command:`user`
-~~~~~~~~~~~~~~~
-
-Manage user details (Basic Auth only)::
-
-:command:`users`
-~~~~~~~~~~~~~~~~
-
-List all users::
-
-
-:command:`key`
-~~~~~~~~~~~~~~
-
-Create API key::
-
-
-:command:`keys`
-~~~~~~~~~~~~~~~
-
-List all API keys::
-
-:command:`revoke`
-~~~~~~~~~~~~~~~~~
-
-Revoke API key::
-
-
-.. _cli_status:
-
-:command:`status`
-~~~~~~~~~~~~~~~~~
-
-Show status and metrics::
-
-
-:command:`uptime`
-~~~~~~~~~~~~~~~~~
-
-Show server uptime::
-
-
-:command:`version`
+Heartbeat Commands
 ~~~~~~~~~~~~~~~~~~
+
+The following group of commands are related to creating and
+managing heartbeats.
+
+:command:`heartbeat` - Send a heartbeat
++++++++++++++++++++++++++++++++++++
+
+  heartbeat     Send a heartbeat
+
+:command:`heartbeats` - List heartbeats
++++++++++++++++++++++++++++++++++++
+
+  heartbeats    List heartbeats
+
+API Key Commands
+~~~~~~~~~~~~~~~~
+
+The following group of commands are related to creating and
+managing API keys.
+
+:command:`key` - Create API key
++++++++++++++++++++++++++++++++++++
+
+  key           Create API key
+
+:command:`keys` - List API keys
++++++++++++++++++++++++++++++++++++
+
+  keys          List API keys
+
+:command:`revoke` - Revoke API key
++++++++++++++++++++++++++++++++++++
+
+  revoke        Revoke API key  
+
+User Commands
+~~~~~~~~~~~~~
+
+The following group of commands are related to creating and
+managing users.
+
+:command:`user` - Update user
++++++++++++++++++++++++++++++++++++
+
+  user          Update user
+
+:command:`users` - List users
++++++++++++++++++++++++++++++++++++
+
+  users         List users
+
+:command:`me` - Update current user
++++++++++++++++++++++++++++++++++++
+
+  me            Update current user
+
+Permissions Commands
+~~~~~~~~~~~~~~~~~~~~
+
+The following group of commands are related to creating and
+managing roles, permissions and access control.
+
+:command:`perm` - Add role-permission lookup
++++++++++++++++++++++++++++++++++++
+
+  perm          Add role-permission lookup
+
+:command:`perms` - List role-permission lookups
++++++++++++++++++++++++++++++++++++
+
+  perms         List role-permission lookups
+
+Customer Commands
+~~~~~~~~~~~~~~~~~
+
+The following group of commands are related to creating and
+managing customers.
+
+:command:`customer` - Add customer lookup
++++++++++++++++++++++++++++++++++++
+
+  customer      Add customer lookup
+
+:command:`customers` - List customer lookups
++++++++++++++++++++++++++++++++++++
+
+  customers     List customer lookups
+
+Auth Commands
+~~~~~~~~~~~~~
+
+The following group of commands are related to authentication.
+
+:command:`signup` - Sign-up new user
++++++++++++++++++++++++++++++++++++
+
+  signup        Sign-up new user
+
+:command:`login` - Login with user credentials
++++++++++++++++++++++++++++++++++++
+
+  login         Login with user credentials
+
+:command:`logout` - Clear login credentials
++++++++++++++++++++++++++++++++++++
+
+  logout        Clear login credentials
+
+:command:`whoami` - Display current logged in user
++++++++++++++++++++++++++++++++++++
+
+  whoami        Display current logged in user
+
+:command:`token` - Display current auth token
++++++++++++++++++++++++++++++++++++
+
+  token         Display current auth token
+
+Admin Commands
+~~~~~~~~~~~~~~
+
+The following group of commands are related to administration.
+
+:command:`status` - Display status and metrics
++++++++++++++++++++++++++++++++++++
+
+  status        Display status and metrics
+
+:command:`config` - Display remote client config
++++++++++++++++++++++++++++++++++++
+
+  config        Display remote client config
+
+:command:`housekeeping` - Expired and clears old alerts
++++++++++++++++++++++++++++++++++++
+
+  housekeeping  Expired and clears old alerts.
+
+:command:`uptime` - Display server uptime
++++++++++++++++++++++++++++++++++++
+
+  uptime        Display server uptime
+  
+:command:`version` - Display version info
++++++++++++++++++++++++++++++++++++
 
 Show version information for ``alerta`` and dependencies.
 
-:command:`help`
-~~~~~~~~~~~~~~~
+Help Commands
+~~~~~~~~~~~~~
+
+:command:`help` - Show this help
++++++++++++++++++++++++++++++++++++
 
 Show all ``OPTIONS``, ``COMMANDS`` and some example ``FILTERS``.
 

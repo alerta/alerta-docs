@@ -8,6 +8,7 @@ Roadmap
 * Web UI redesign using `Google material design`_
 * Custom alert filters and dashboard views
 * Use alarm model based on ISA 18.2 / IEC 62682
+* Bulk API endpoints for background processing
 
 .. _Google material design: https://www.google.com/design/spec/material-design/introduction.html
 
@@ -18,13 +19,15 @@ Release History
 
 .. _release_6_0:
 
-Release 6.0.0 (01-09-2018)
+Release 6.0.0 (18-09-2018)
 --------------------------
 
 * First release to support Python 3 only
 * Add static type checking to build pipeline and start type annotations
 * Add audit info for blackouts including user and reason
 * Support every combination of alert attribute for blackouts
+* Config API endpoint for dynamically updating client configuration
+* Improved email confirmation and user reset of forgotten passwords
 
 .. _release_5_2:
 

@@ -36,8 +36,8 @@
             
   <div class="section" id="about">
 <span id="id1"></span><h1>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h1>
-<p>Alerta started at <a class="reference external" href="http://www.theguardian.com/">The Guardian</a> out of necessity as a replacement for a legacy
-monitoring tool but only after exhaustively evaluating all credible alternatives
+<p>Alerta started at <a class="reference external" href="http://www.theguardian.com/">The Guardian</a> out of necessity as a replacement for a <a class="reference external" href="https://www.quest.com/foglight/">legacy
+monitoring tool</a> but only after exhaustively evaluating all <a class="reference external" href="https://www.nagios.org/">credible</a> <a class="reference external" href="https://www.zabbix.com/">alternatives</a>
 first.</p>
 <p>Initially all we wanted was to be able to create alert thresholds against the
 hundreds of thousands of <a class="reference external" href="https://github.com/ganglia/monitor-core/wiki">Ganglia metrics</a> collected for the website and view the
@@ -51,13 +51,13 @@ became the “Alerta” project.</p>
 <p>Over the years the project has evolved to meet the constantly changing needs of
 the <a class="reference external" href="https://developers.theguardian.com/">Guardian developer teams</a> as they moved to a more agile, dynamic, “<a class="reference external" href="http://akfpartners.com/growth-blog/fault-isolative-architectures-or-swimlaning">swimlaned</a>”
 architecture which has meant, for the operations team, a shift from static,
-self-hosted infrastructureto an internal OpenStack cloud to then finally an external
+self-hosted infrastructure to an internal OpenStack cloud to then finally an external
 cloud service.</p>
 <p>In that time certain key features of Alerta have been deprecated as requirements
 changed (eg. the message bus, Ganglia, Riemann) and others added (eg. OAuth2 login,
 CloudWatch, Pingdom, PagerDuty integration). In the process it has been slimmed
 down to fewer core components making it easier to understand, deploy and manage.</p>
-<p>As such, Alerta is now quite different to the somewhat “over engineered” initial
+<p>As a result, Alerta is now quite different to the somewhat “over engineered” initial
 solution but the core concepts of being a flexible, easy-to-use tool remain and
 it is now a “cloud-ready” solution adapted to the challenges of a fast changing
 environment.</p>

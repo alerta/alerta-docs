@@ -11,7 +11,7 @@ Install MongoDB
 For Debian/Ubuntu, run::
 
     $ sudo apt-get install -y mongodb-org
-    $ mongod
+    $ sudo mongod -f /etc/mongod.conf &
 
 If ``apt-get`` can't locate the "mongodb-org" metapackage package then
 follow `these steps`_ to add MongoDB package repository to apt sources
@@ -28,7 +28,7 @@ Install the Alerta Server
 
 To install the alerta server::
 
-    $ pip install alerta-server
+    $ pip3 install alerta-server
     $ alertad run --port 8080
 
 You should see something like::
@@ -43,7 +43,7 @@ To install the web console::
     $ wget -O alerta-web.tgz https://github.com/alerta/angular-alerta-webui/tarball/master
     $ tar zxvf alerta-web.tgz
     $ cd alerta-angular-alerta-webui-*/app
-    $ python -m SimpleHTTPServer 8000
+    $ python3 -m http.server 8000
 
     >> browse to http://localhost:8000
 

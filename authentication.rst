@@ -11,9 +11,9 @@ Alerta supports three authentication mechanisms for the web UI and
 ``alerta`` command-line tool.
 
 * `Basic Auth`_
-* `Google OAuth2`_
 * `GitHub OAuth2`_
 * `GitLab OAuth2`_
+* `Google OAuth2`_
 * `Keycloak OAuth2`_
 * `SAML 2.0`_
 * `API Keys`_

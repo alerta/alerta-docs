@@ -3,16 +3,18 @@
 Configuration
 =============
 
-The following settings **only** apply to the Alerta server. For ``alerta``
+The following settings are configured on the Alerta server. For ``alerta``
 CLI configuration options see :ref:`command-line reference <cli>` and for
 Web UI configuration options see :ref:`web UI reference <webui>`.
 
 The configuration file uses standard python syntax for setting variables.
-The default settings (defined in `settings.py`) **should not** be modified
-directly. To change any of these settings create a configuration file that
-overrides these default settings. The default location for the server
-configuration file is ``/etc/alertad.conf`` however the location itself
-can be overridden by using a environment variable :envvar:`ALERTA_SVR_CONF_FILE`.
+The default settings (defined in :file:`settings.py`) **should not** be modified
+directly.
+
+To change any of these settings create a configuration file that overrides
+these default settings. The default location for the server configuration
+file is ``/etc/alertad.conf`` however the location itself can be overridden
+by using a environment variable :envvar:`ALERTA_SVR_CONF_FILE`.
 
 For example, to set the blackout period default duration to 1 day (ie. 86400
 seconds)::
@@ -27,42 +29,60 @@ Config File Settings
 
 General Settings
 ~~~~~~~~~~~~~~~~
+
+**Example**
+
 .. code:: python
 
-    DEBUG = False
-    BASE_URL = ''
-    LOGGER_NAME = 'alerta'
-    LOG_FILE = None
+    DEBUG = True
+    SECRET_KEY = 'changeme'
+    BASE_URL = '/api'
+    LOGGER_NAME = 'alerta-api'
+    LOG_FILE = '/var/log/alertad.log'
+    LOG_MAX_BYTES = 5*1024*1024  # 5 MB
+    LOG_BACKUP_COUNT = 2
+    LOG_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 
-.. index:: DEBUG, LOGGER_NAME, LOG_FILE
+.. index:: DEBUG, SECRET_KEY, BASE_URL, LOGGER_NAME, LOG_FILE, LOG_MAX_BYTES, LOG_BACKUP_COUNT, LOG_FORMAT
 
 ``DEBUG``
-    debug mode. Set to ``True`` for increased logging.
+    debug mode for increased logging (default is ``False``)
+``SECRET_KEY``
+    a unique, randomly generated sequence of ASCII characters.
 ``BASE_URL``
-    if API served behind a proxy use ``BASE_URL`` to fix relative links
+    if API served on a path or behind a proxy use it to fix relative links (no default)
 ``LOGGER_NAME``
-    name of logger used by python ``logging`` module
+    name of logger used by python ``logging`` module (default is ``alerta``)
 ``LOG_FILE``
-    full path to write rotating server log file
+    full path to write rotating server log file (no default)
+``LOG_MAX_BYTES``
+    maximum size of log file before rollover (default is 10 MB)
+``LOG_BACKUP_COUNT``
+    number of rollover files before older files are deleted (default is 2)
+``LOG_FORMAT``
+    log file format string
 
 .. _api config:
 
 API Settings
 ~~~~~~~~~~~~
-::
+
+**Example**
+
+.. code:: python
 
     DEFAULT_PAGE_SIZE = 1000
     HISTORY_LIMIT = 100
-    API_KEY_EXPIRE_DAYS = 365
+    HISTORY_ON_VALUE_CHANGE = False  # do not log if only value changes
 
-.. index:: DEFAULT_PAGE_SIZE, HISTORY_LIMIT, API_KEY_EXPIRE_DAYS
+.. index:: DEFAULT_PAGE_SIZE, HISTORY_LIMIT, HISTORY_ON_VALUE_CHANGE
 
 ``DEFAULT_PAGE_SIZE``
-    maximum number of alerts returned in a single query.
+    maximum number of alerts returned in a single query (default 1000)
 ``HISTORY_LIMIT``
-    number of history entries returned in alert details.
-``API_KEY_EXPIRE_DAYS``
-    number of days an API key is valid for.
+    number of history entries for each alert before old entries are deleted (default 100)
+``HISTORY_ON_VALUE_CHANGE``
+    create history entry for duplicate alerts if value changes (default ``True``)
 
 .. _database_config:
 
@@ -75,7 +95,8 @@ The database is defined using the standard database connection URL formats. Many
 database configuration options are supported as connection URL parameters.
 
 **Postgres Example**
-::
+
+.. code:: python
 
     DATABASE_URL = 'postgresql://other@localhost/otherdb?connect_timeout=10&application_name=myapp'
     DATABASE_NAME = 'monitoring'
@@ -85,28 +106,25 @@ See `Postgres connection strings`_ for more information.
 .. _Postgres connection strings: https://www.postgresql.org/docs/9.6/static/libpq-connect.html
 
 **MongoDB Example**
-::
+
+.. code:: python
 
     DATABASE_URL = 'mongodb://db1.example.net,db2.example.net:2500/?replicaSet=test&connectTimeoutMS=300000'
     DATABASE_NAME = 'monitoring'
+    DATABASE_RAISE_ON_ERROR = False  # creating tables & indexes manually
 
 See `MongoDB connection strings`_ for more information.
 
 .. _MongoDB connection strings: https://docs.mongodb.org/v3.0/reference/connection-string/#standard-connection-string-format
 
-.. index:: DATABASE_URL, DATABASE_NAME
+.. index:: DATABASE_URL, DATABASE_NAME, DATABASE_RAISE_ON_ERROR
 
 ``DATABASE_URL``
-    database connection URI string.
+    database connection string (default is ``mongodb://localhost:27017/monitoring``)
 ``DATABASE_NAME``
-    database name can be used to override default database defined in ``DATABASE_URL``.
-
-If the document-oriented datastore MongoDB_ is used for persistent data, then it
-can be set-up as a stand-alone server or in a `replica set`_ for high
-availability.
-
-.. _MongoDB: https://www.mongodb.com
-.. _replica set: http://docs.mongodb.org/manual/core/replica-set-high-availability/
+    database name can be used to override database in connection string (no default)
+``DATABASE_RAISE_ON_ERROR``
+    terminate startup if database configuration fails (default is ``True``)
 
 .. _auth config:
 
@@ -116,109 +134,112 @@ Authentication Settings
 If enabled, authentication provides additional benefits beyond just security,
 such as auditing, and features like the ability to assign and watch alerts.
 
-::
+**Example**
 
-    SECRET_KEY = 'changeme'
-    AUTH_REQUIRED = False
+.. code:: python
 
-    ADMIN_USERS = []
-    CUSTOMER_VIEWS = False
+    AUTH_REQUIRED = True
+    AUTH_PROVIDER = 'basic'
+    ADMIN_USERS = ['admin@alerta.io', 'devops@example.com']
+    USER_DEFAULT_SCOPES = ['read', 'write:alerts']
+    CUSTOMER_VIEWS = True
+    SIGNUP_ENABLED = False
+    ALLOWED_EMAIL_DOMAINS = ['alerta.io', 'example.com']
+    TOKEN_EXPIRE_DAYS = 4*365  # 4 years
 
-    OAUTH2_CLIENT_ID = None  # Google or GitHub OAuth2 client ID and secret
-    OAUTH2_CLIENT_SECRET = None
-    ALLOWED_EMAIL_DOMAINS = ['*']
+    LDAP_URL = 'ldap://openldap'
+    LDAP_DOMAINS = {
+        'my-domain.com': 'cn=%s,dc=my-domain,dc=com'
+    }
 
-    GITHUB_URL = None
-    ALLOWED_GITHUB_ORGS = ['*']
+.. index:: AUTH_REQUIRED, AUTH_PROVIDER, ADMIN_USERS, USER_DEFAULT_SCOPES, CUSTOMER_VIEWS, BASIC_AUTH_REALM, SIGNUP_ENABLED
+.. index:: OAUTH2_CLIENT_ID, OAUTH2_CLIENT_SECRET, ALLOWED_EMAIL_DOMAINS, GITHUB_URL, ALLOWED_GITHUB_ORGS, GITLAB_URL, ALLOWED_GITLAB_GROUPS, LDAP_URL, LDAP_DOMAINS
+.. index:: PINGFEDERATE_URL, PINGFEDERATE_PUBKEY_LOCATION, PINGFEDERATE_TOKEN_ALGORITHM, PINGFEDERATE_OPENID_PAYLOAD_USERNAME, PINGFEDERATE_OPENID_PAYLOAD_EMAIL, PINGFEDERATE_OPENID_PAYLOAD_GROUP
+.. index:: KEYCLOAK_URL, KEYCLOAK_REALM, ALLOWED_KEYCLOAK_ROLES, SAML2_CONFIG, ALLOWED_SAML2_GROUPS, SAML2_USER_NAME_FORMAT, TOKEN_EXPIRE_DAYS, API_KEY_EXPIRE_DAYS
 
-    GITLAB_URL = None
-    ALLOWED_GITLAB_GROUPS = ['*']
-
-    KEYCLOAK_URL = None
-    KEYCLOAK_REALM = None
-    ALLOWED_KEYCLOAK_ROLES = ['*']
-
-    SAML2_CONFIG = None
-    ALLOWED_SAML2_GROUPS = ['*']
-    SAML2_USER_NAME_FORMAT = '{givenName} {surname}'
-
-    TOKEN_EXPIRE_DAYS = 14
-
-.. index:: AUTH_REQUIRED, SECRET_KEY, ADMIN_USERS, OAUTH2_CLIENT_ID, OAUTH2_CLIENT_SECRET, ALLOWED_EMAIL_DOMAINS, ALLOWED_GITHUB_ORGS, GITLAB_URL, ALLOWED_GITLAB_GROUPS, KEYCLOAK_URL, KEYCLOAK_REALM, ALLOWED_KEYCLOAK_ROLES, SAML2_CONFIG, ALLOWED_SAML2_GROUPS, SAML2_USER_NAME_FORMAT
-
-``SECRET_KEY``
-    a unique, randomly generated sequence of ASCII characters.
 ``AUTH_REQUIRED``
-    set to ``True`` to force users to authenticate when using web UI or command-line tool
+    users must authenticate when using web UI or command-line tool (default ``False``)
+``AUTH_PROVIDER``
+    valid authentication providers are ``basic``, ``github``, ``gitlab``, ``google``, ``keycloak``, ``pingfederate``, ``saml2`` (default is ``basic``)
 ``ADMIN_USERS``
-    list of user email addresses or accounts that should be given admin rights.
+    email addresses or logins that have ``admin`` role
+``USER_DEFAULT_SCOPES``
+    default permissions assigned to logged in users (default is ``['read', 'write']``)
 ``CUSTOMER_VIEWS``
-    enable alert views partitioned by customer
+    alert views partitioned by customer (default is ``False``)
+``BASIC_AUTH_REALM``
+    BasicAuth authentication realm (default is ``Alerta``)
+``SIGNUP_ENABLED``
+    prevent sign-up of new users via the web UI (default is ``True``)
 ``OAUTH2_CLIENT_ID``
-    client ID required by OAuth2 provider for Google, Github, GitLab or Keycloak.
+    client ID required by OAuth2 providers (no default)
 ``OAUTH2_CLIENT_SECRET``
-    client secret required by OAuth2 provider for Google, Github, GitLab or Keycloak.
+    client secret required by OAuth2 providers (no default)
 ``ALLOWED_EMAIL_DOMAINS``
-    list of authorised email domains when using Google as OAuth2 provider.
+    authorised email domains when using email as login (default is ``*``)
 ``GITHUB_URL``
-    GitHub Enteprise URL for privately run GitHub server when using GitHub as OAuth2 provider.
+    API URL for privately run GitHub Enterprise server when using GitHub as OAuth2 provider (no default)
 ``ALLOWED_GITHUB_ORGS``
-    list of authorised GitHub organisations a user must belong to when using Github as OAuth2 provider.
+    authorised GitHub organisations a user must belong to when using Github as OAuth2 provider (default is ``*``)
 ``GITLAB_URL``
-    GitLab website URL for public or privately run GitLab server when using GitLab as OAuth2 provider.
+    API URL for public or privately run GitLab server when using GitLab as OAuth2 provider (default is ``https://gitlab.com``)
 ``ALLOWED_GITLAB_GROUPS``
-    list of authorised GitLab groups a user must belong to when using GitLab as OAuth2 provider.
+    authorised GitLab groups a user must belong to when using GitLab as OAuth2 provider (default is ``*``)
+``LDAP_URL``
+    URL of the LDAP server (no default)
+``LDAP_DOMAINS``
+    dictionary of LDAP domains and LDAP search filters (no default)
+``PINGFEDERATE_URL``
+    PingFederate OpenID access token URL (no default)
+``PINGFEDERATE_PUBKEY_LOCATION``
+    PingFederate public key location (no default)
+``PINGFEDERATE_TOKEN_ALGORITHM``
+    PingFederate JWT token algorithm (no default)
+``PINGFEDERATE_OPENID_PAYLOAD_USERNAME``
+    PingFederate JWT user attribute name (no default)
+``PINGFEDERATE_OPENID_PAYLOAD_EMAIL``
+    PingFederate JWT email attribute name (no default)
+``PINGFEDERATE_OPENID_PAYLOAD_GROUP``
+    PingFederate JWT group attribute name  (no default)
 ``KEYCLOAK_URL``
-    Keycloak website URL when using Keycloak as OAuth2 provider.
+    Keycloak website URL when using Keycloak as OAuth2 provider (no default)
 ``KEYCLOAK_REALM``
-    Keycloak realm when using Keycloak as OAuth2 provider.
+    Keycloak realm when using Keycloak as OAuth2 provider (no default)
 ``ALLOWED_KEYCLOAK_ROLES``
-    list of authorised Keycloak roles a user must belong to when using Keycloak as OAuth2 provider.
+    list of authorised Keycloak roles a user must belong to when using
+    Keycloak as OAuth2 provider (default is ``*``)
 ``SAML2_CONFIG``
-    ``pysaml2`` configuration ``dict``. See :ref:`saml2`.
+    ``pysaml2`` configuration ``dict``. See :ref:`saml2` (no default)
 ``ALLOWED_SAML2_GROUPS``
-    list of authorised groups a user must belong to. See :ref:`saml2` for details.
+    list of authorised groups a user must belong to. See :ref:`saml2` for
+    details (default is ``*``)
 ``SAML2_USER_NAME_FORMAT``
-    Python format string which will be rendered to user's name using SAML attributes. See :ref:`saml2`.
-
-
-.. _switch config:
-
-Switch Settings
-~~~~~~~~~~~~~~~
-
-Server-side switches used to control and limit access to the API by clients
-for reasons related to security, performance or availability.
-
-::
-
-    AUTO_REFRESH_ALLOW = 'ON'
-    SENDER_API_ALLOW = 'ON'
-
-.. index:: AUTO_REFRESH_ALLOW, SENDER_API_ALLOW
-
-``AUTO_REFRESH_ALLOW``
-    set to 'OFF' to reduce load on API server by forcing clients to manually refresh
-``SENDER_API_ALLOW``
-    set to 'OFF' to block clients from sending new alerts to API server
+    Python format string which will be rendered to user's name using SAML
+    attributes. See :ref:`saml2` (default is ``'{givenName} {surname}'``)
+``TOKEN_EXPIRE_DAYS``
+    number of days a bearer token is valid (default is ``14``)
+``API_KEY_EXPIRE_DAYS``
+    number of days an API key is valid (default is ``365``)
 
 .. _CORS config:
 
 CORS Settings
 ~~~~~~~~~~~~~
 
-::
+**Example**
+
+.. code:: python
 
     CORS_ORIGINS = [
-        'http://try.alerta.io',
-        'http://explorer.alerta.io',
-        'http://localhost'
+        'http://localhost',
+        'http://localhost:8000',
+        r'https?://\w*\.?local\.alerta\.io:?\d*/?.*'  # => http(s)://*.local.alerta.io:<port>
     ]
 
 .. index:: CORS_ORIGINS
 
 ``CORS_ORIGINS``
-    list of URL origins that can access the API
+    URL origins that can access the API for Cross-Origin Resource Sharing (CORS)
 
 .. _severity config:
 
@@ -228,48 +249,64 @@ Severity Settings
 The severities and their order are customisable to fit with the environment
 in which Alerta is deployed.
 
-::
+**Example**
+
+.. code:: python
 
     SEVERITY_MAP = {
-        'security': 0,
         'critical': 1,
-        'major': 2,
-        'minor': 3,
         'warning': 4,
         'indeterminate': 5,
-        'cleared': 5,
-        'normal': 5,
         'ok': 5,
-        'informational': 6,
-        'debug': 7,
-        'trace': 8,
         'unknown': 9
     }
-    DEFAULT_SEVERITY = 'indeterminate'
+    DEFAULT_NORMAL_SEVERITY = 'ok'  # 'normal', 'ok', 'cleared'
+    DEFAULT_PREVIOUS_SEVERITY = 'indeterminate'
 
-.. index:: SEVERITY_MAP, DEFAULT_SEVERITY
+    COLOR_MAP = {
+        'severity': {
+            'critical': 'red',
+            'warning': '#1E90FF',
+            'indeterminate': 'lightblue',
+            'ok': '#00CC00',
+            'unknown': 'silver'
+        },
+        'text': 'black',
+        'highlight': 'skyblue '
+    }
+
+.. index:: SEVERITY_MAP, DEFAULT_NORMAL_SEVERITY, DEFAULT_PREVIOUS_SEVERITY, COLOR_MAP
 
 ``SEVERITY_MAP``
-    severity names and levels are fully customisable.
-``DEFAULT_SEVERITY``
-    the previous severity assigned to new alerts.
+    dictionary of severity names and levels
+``DEFAULT_NORMAL_SEVERITY``
+    severity to be assigned to new alerts (default is ``normal``)
+``DEFAULT_PREVIOUS_SEVERITY``
+    previous severity to be assigned to new alerts (default is ``indeterminate``)
+``COLOR_MAP``
+    dictionary of severity colors, text and highlight color
 
-.. _blackout config:
+.. _timeout config:
 
-Blackout Periods Settings
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Timeout Settings
+~~~~~~~~~~~~~~~~
 
-Alerts can be suppressed based on alert attributes for arbitrary durations
-known as "blackout periods".
+Alert timeouts are important for housekeeping and heartbeat timeouts
+are important for generating alerts from stale heartbeats.
 
-::
+**Example**
 
-    BLACKOUT_DURATION = 3600
+.. code:: python
 
-.. index:: BLACKOUT_DURATION
+    ALERT_TIMEOUT = 43200  # 12 hours
+    HEARTBEAT_TIMEOUT = 7200  # 2 hours
 
-``BLACKOUT_DURATION``
-    default period for an alert blackout
+.. index:: ALERT_TIMEOUT, HEARTBEAT_TIMEOUT
+
+``ALERT_TIMEOUT``
+    default timeout period in seconds for alerts (default is ``86400``)
+``HEARTBEAT_TIMEOUT``
+    default timeout period in seconds for heartbeats (default is ``86400``)
 
 .. _email config:
 
@@ -280,26 +317,61 @@ If email verification is enabled then emails are sent to users when they
 sign up via BasicAuth. They must click on the provided link to verify their
 email address before they can login.
 
-::
+**Example**
 
-    EMAIL_VERIFICATION = False
-    SMTP_HOST = 'smtp.gmail.com'
-    SMTP_PORT = 587
-    MAIL_FROM = 'your@gmail.com'
-    SMTP_PASSWORD = ''
+.. code:: python
 
-.. index:: EMAIL_VERIFICATION, SMTP_HOST, SMTP_PORT, MAIL_FROM, SMTP_PASSWORD
+    EMAIL_VERIFICATION = True
+    SMTP_HOST = 'smtp.example.com'
+    MAIL_FROM = 'noreply@alerta.io'
+
+.. index:: EMAIL_VERIFICATION, SMTP_HOST, SMTP_PORT, MAIL_LOCALHOST, SMTP_STARTTLS, SMTP_USE_SSL, SSL_KEY_FILE, SSL_CERT_FILE, MAIL_FROM, SMTP_USERNAME, SMTP_PASSWORD
 
 ``EMAIL_VERIFICATION``
-    set to ``True`` to enable email verification of new users.
+    enforce email verification of new users (default is ``False``)
 ``SMTP_HOST``
-    SMTP host of mail server.
+    SMTP host of mail server (default is ``smtp.gmail.com``)
 ``SMTP_PORT``
-    SMTP port of mail server.
+    SMTP port of mail server (default is ``587``)
+``MAIL_LOCALHOST``
+    mail server to use in HELO/EHLO command (default is ``localhost``)
+``SMTP_STARTTLS``
+    SMTP connection in TLS (Transport Layer Security) mode. All SMTP commands
+    that follow will be encrypted (default is ``False``)
+``SMTP_USE_SSL``
+    used for situations where SSL is required from the beginning of the
+    connection and using ``SMTP_STARTTLS`` is not appropriate (default is ``False``)
+``SSL_KEY_FILE``
+    a PEM formatted private key file for the SSL connection(no default)
+``SSL_CERT_FILE``
+    a PEM formatted certificate chain file for the SSL connection (no default)
 ``MAIL_FROM``
-    valid email address from which verification emails are sent.
+    valid email address from which emails are sent (no default)
+``SMTP_USERNAME``
+    application-specific username, if different to MAIL_FROM user (no default)
 ``SMTP_PASSWORD``
-    password for ``MAIL_FROM`` email account, Gmail uses application-specific passwords
+    application-specific password for ``MAIL_FROM`` or ``SMTP_USERNAME`` (no default)
+
+.. _webui config:
+
+Web UI Settings
+~~~~~~~~~~~~~~~
+
+The following settings are specific to the web UI and are not used by the server.
+
+**Example**
+
+.. code:: python
+
+    GOOGLE_TRACKING_ID = 'UA-44644195-5'
+    AUTO_REFRESH_INTERVAL = 30000  # 30s
+
+.. index:: GOOGLE_TRACKING_ID, AUTO_REFRESH_INTERVAL
+
+``GOOGLE_TRACKING_ID``
+    used by the web UI to send tracking data to Google Analytics (no default)
+``AUTO_REFRESH_INTERVAL``
+    interval in milliseconds at which the web UI refreshes alert list (default is ``5000``)
 
 .. _plugin config:
 
@@ -307,30 +379,72 @@ Plugin Settings
 ~~~~~~~~~~~~~~~~
 
 Plugins are used to extend the behaviour of the Alerta server without
-having to modify the core application. The only plugin that is installed
-and enabled by default is the ``reject`` plugin. Other plugins are available
-in the `contrib repo`_.
+having to modify the core application. The only plugins that are installed
+and enabled by default are the ``reject`` and ``blackout`` plugins. Other
+plugins are available in the `contrib repo`_.
 
 .. _contrib repo: https://github.com/alerta/alerta-contrib/tree/master/plugins
 
-::
+**Example**
 
-    # Plugins
-    PLUGINS = ['reject']
+.. code:: python
 
-    ORIGIN_BLACKLIST = ['foo/bar$', '.*/qux']  # reject all foo alerts from bar, and everything from qux
-    ALLOWED_ENVIRONMENTS = ['Production', 'Development']  # reject alerts without allowed environments
+    PLUGINS = ['reject', 'blackout', 'slack']
+    PLUGINS_RAISE_ON_ERROR = False  # keep processing other plugins if exception
+
+.. index:: PLUGINS, PLUGINS_RAISE_ON_ERROR
 
 ``PLUGINS``
-    list of enabled plugins
-``ORIGIN_BLACKLIST``
-    ``reject`` plugin list of alert origins blacklisted from submitting alerts. useful for rouge alert sources.
-``ALLOWED_ENVIRONMENTS``
-    ``reject`` plugin list of allowed environments. useful for enforcing discrete set of environments.
+    list of enabled plugins (default ``['reject', 'blackout']``)
+``PLUGINS_RAISE_ON_ERROR``
+    stop processing plugins if there is an exception (default is ``True``)
 
-.. note:: To completely disable the ``reject`` plugin simply remove it
-    from the list of enabled plugins in the ``PLUGINS`` configuration
-    setting to override the default.
+**Reject Plugin Settings**
+
+Alerts can be rejected based on the ``origin`` or ``environment`` alert attributes. 
+
+**Example**
+
+.. code:: python
+
+    ORIGIN_BLACKLIST = ['foo/bar$', '.*/qux']  # reject all foo alerts from bar, and everything from qux
+    ALLOWED_ENVIRONMENTS = ['Production', 'Development', 'Testing']
+
+.. index:: ORIGIN_BLACKLIST, ALLOWED_ENVIRONMENTS
+
+``ORIGIN_BLACKLIST``
+    list of alert origins blacklisted from submitting alerts. useful for rouge alert sources (no default)
+``ALLOWED_ENVIRONMENTS``
+    list of allowed environments. useful for enforcing discrete set of environments (default is ``['Production', 'Development']``)
+
+.. note:: To disable the ``reject`` plugin simply remove it from the
+    list of enabled plugins in the ``PLUGINS`` configuration setting
+    to override the default.
+
+**Blackout Plugin Settings**
+
+Alerts can be suppressed based on alert attributes for arbitrary durations
+known as "blackout periods". An alert received during a blackout period is
+rejected, by default.
+
+**Example**
+
+.. code:: python
+
+    BLACKOUT_DURATION = 7200  # 2 hours
+    NOTIFICATION_BLACKOUT = True
+    BLACKOUT_ACCEPT = ['normal', 'ok', 'cleared']
+
+.. index:: BLACKOUT_DURATION, NOTIFICATION_BLACKOUT, BLACKOUT_ACCEPT
+
+``BLACKOUT_DURATION``
+    default period for an alert blackout (default is ``3600``)
+``NOTIFICATION_BLACKOUT``
+    instead of rejecting alerts received during blackout periods, set ``status``
+    of alert to ``blackout`` and do not forward to plugins (default is ``False``)
+``BLACKOUT_ACCEPT``
+    used with ``NOTIFICATION_BLACKOUT`` if alerts with ``status`` of ``blackout``
+    should still be closed by "ok" alerts (no default)
 
 Environment Variables
 ---------------------
@@ -347,39 +461,61 @@ General Settings
 ~~~~~~~~~~~~~~~~
 
 :envvar:`DEBUG`
-    see above
+    :ref:`see above <general config>`
 :envvar:`BASE_URL`
-    see above
+    :ref:`see above <general config>`
 :envvar:`SECRET_KEY`
-    see above
+    :ref:`see above <general config>`
 :envvar:`AUTH_REQUIRED`
-    see above
+    :ref:`see above <auth config>`
+:envvar:`AUTH_PROVIDER`
+    :ref:`see above <auth config>`
 :envvar:`ADMIN_USERS`
-    see above
+    :ref:`see above <auth config>`
 :envvar:`CUSTOMER_VIEWS`
-    see above
+    :ref:`see above <auth config>`
 :envvar:`OAUTH2_CLIENT_ID`
-    see above
+    :ref:`see above <auth config>`
 :envvar:`OAUTH2_CLIENT_SECRET`
-    see above
+    :ref:`see above <auth config>`
 :envvar:`ALLOWED_EMAIL_DOMAINS`
-    see above
+    :ref:`see above <auth config>`
 :envvar:`GITHUB_URL`
-  see above
+    :ref:`see above <auth config>`
 :envvar:`ALLOWED_GITHUB_ORGS`
-    see above
+    :ref:`see above <auth config>`
 :envvar:`GITLAB_URL`
-    see above
+    :ref:`see above <auth config>`
 :envvar:`ALLOWED_GITLAB_GROUPS`
-    see above
+    :ref:`see above <auth config>`
+:envvar:`KEYCLOAK_URL`
+    :ref:`see above <auth config>`
+:envvar:`KEYCLOAK_REALM`
+    :ref:`see above <auth config>`
+:envvar:`ALLOWED_KEYCLOAK_ROLES`
+    :ref:`see above <auth config>`
+:envvar:`PINGFEDERATE_OPENID_ACCESS_TOKEN_URL`
+    :ref:`see above <auth config>`
+:envvar:`PINGFEDERATE_OPENID_PAYLOAD_USERNAME`
+    :ref:`see above <auth config>`
+:envvar:`PINGFEDERATE_OPENID_PAYLOAD_EMAIL`
+    :ref:`see above <auth config>`
+:envvar:`PINGFEDERATE_OPENID_PAYLOAD_GROUP`
+    :ref:`see above <auth config>`
+:envvar:`PINGFEDERATE_PUBKEY_LOCATION`
+    :ref:`see above <auth config>`
+:envvar:`PINGFEDERATE_TOKEN_ALGORITHM`
+    :ref:`see above <auth config>`
 :envvar:`CORS_ORIGINS`
-    see above
+    :ref:`see above <cors config>`
 :envvar:`MAIL_FROM`
-    see above
+    :ref:`see above <email config>`
 :envvar:`SMTP_PASSWORD`
-    see above
+    :ref:`see above <email config>`
+:envvar:`GOOGLE_TRACKING_ID`
+    :ref:`see above <webui config>`
 :envvar:`PLUGINS`
-    see above
+    :ref:`see above <plugin config>`
 
 Database Settings
 ~~~~~~~~~~~~~~~~~

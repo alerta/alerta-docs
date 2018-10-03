@@ -134,7 +134,7 @@ Alerta :ref:`Release 5.2 <release_5_2>` is the `last version`_ to support
 Python 2.7 and from 31 August, 2018 it will only receive crtical bug fixes
 and security patches.
 
-Alerta :ref:`Release 6 <release_6_0>` supports Python 3.6+ and is recommended
+Alerta :ref:`Release 6 <release_6_0>` supports Python 3.5+ and is recommended
 for new production environments and existing installations should be switched
 to Python 3 well before 1 January, 2020 when Python 2.7 becomes End-of-Life_.
 

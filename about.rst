@@ -3,8 +3,8 @@
 About
 =====
 
-Alerta started at `The Guardian`_ out of necessity as a replacement for a legacy
-monitoring tool but only after exhaustively evaluating all credible alternatives
+Alerta started at `The Guardian`_ out of necessity as a replacement for a `legacy
+monitoring tool`_ but only after exhaustively evaluating all credible_ alternatives_
 first.
 
 Initially all we wanted was to be able to create alert thresholds against the
@@ -21,7 +21,7 @@ became the "Alerta" project.
 Over the years the project has evolved to meet the constantly changing needs of
 the `Guardian developer teams`_ as they moved to a more agile, dynamic, "`swimlaned`_"
 architecture which has meant, for the operations team, a shift from static,
-self-hosted infrastructureto an internal OpenStack cloud to then finally an external
+self-hosted infrastructure to an internal OpenStack cloud to then finally an external
 cloud service.
 
 In that time certain key features of Alerta have been deprecated as requirements
@@ -29,11 +29,14 @@ changed (eg. the message bus, Ganglia, Riemann) and others added (eg. OAuth2 log
 CloudWatch, Pingdom, PagerDuty integration). In the process it has been slimmed
 down to fewer core components making it easier to understand, deploy and manage.
 
-As such, Alerta is now quite different to the somewhat "over engineered" initial
+As a result, Alerta is now quite different to the somewhat "over engineered" initial
 solution but the core concepts of being a flexible, easy-to-use tool remain and
 it is now a "cloud-ready" solution adapted to the challenges of a fast changing
 environment.
 
+.. _legacy monitoring tool: https://www.quest.com/foglight/
+.. _credible: https://www.nagios.org/
+.. _alternatives: https://www.zabbix.com/
 .. _`The Guardian`: http://www.theguardian.com/
 .. _Ganglia metrics: https://github.com/ganglia/monitor-core/wiki
 .. _`metrics and monitoring system`: https://www.theguardian.com/info/developer-blog/2012/oct/04/winning-the-metrics-battle

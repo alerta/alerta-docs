@@ -59,7 +59,7 @@ or <code class="docutils literal notranslate"><span class="pre">Production</span
 eg. <code class="docutils literal notranslate"><span class="pre">MobileAPI</span></code>, <code class="docutils literal notranslate"><span class="pre">Mobile-API</span></code> and <code class="docutils literal notranslate"><span class="pre">mobile</span> <span class="pre">api</span></code> are all valid
 but needlessly different and impossible to query for consistently
 or generate aggregate metrics for.</p>
-<p>Note that the service attribute is a <strong>list</strong> because it is common for
+<p>Note that the <strong>service attribute is a list</strong> because it is common for
 infrastructure (ie. some resource) to be used by more than one
 service. That is, if a component failure occurs that problem could
 cause an outage in multiple services.</p>
@@ -145,8 +145,8 @@ could then become:</p>
 </div>
 <div class="section" id="severity-levels">
 <h2>Severity Levels<a class="headerlink" href="#severity-levels" title="Permalink to this headline">¶</a></h2>
-<p>Agree on a subset of severity levels and be consistent with what
-they mean. For example, if severity levels are used consistently
+<p>Agree on a subset of <a class="reference internal" href="api/alert.html#severity-table"><span class="std std-ref">severity levels</span></a> and be consistent
+with what they mean. For example, if severity levels are used consistently
 then integrating with a paging or email system becomes easier.</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -188,7 +188,7 @@ using a simple <a class="reference internal" href="server.html#prereceive"><span
 directory of the project code repository and is installed by default.
 The server configuration settings <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ORIGIN_BLACKLIST</span></code> and
 <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ALLOWED_ENVIRONMENTS</span></code> can be used to tailor it for your
-circumstances.</p>
+circumstances or it can be disabled completely.</p>
 </div>
 </div>
 

@@ -5,9 +5,9 @@ Integrations & Plugins
 
 There are several different ways to integrate other alert sources into Alerta.
 
-Firstly, :ref:`integrations <integrations>` with well known monitoring tools like
-Nagios_, Zabbix_ and Sensu_ make use of the Alerta API and demonstrate how to
-build integrations with other monitoring tools.
+Firstly, existing :ref:`integrations <integrations>` with well known monitoring
+tools like Nagios_, Zabbix_ and Sensu_ make use of the Alerta API and demonstrate
+how to build integrations with other monitoring tools.
 
 .. _Nagios: https://www.nagios.com
 .. _Zabbix: http://www.zabbix.com
@@ -15,7 +15,7 @@ build integrations with other monitoring tools.
 
 Secondly, there are built-in :ref:`webhooks <webhooks>` for
 `AWS Cloudwatch <https://aws.amazon.com/cloudwatch/>`_,
-:ref:`Pingdom <https://www.pingdom.com>`, :ref:`PagerDuty <https://www.pagerduty.com/>`,
+`Pingdom <https://www.pingdom.com>`_, `PagerDuty <https://www.pagerduty.com/>`_,
 `Google Stackdriver <https://cloud.google.com/stackdriver/>`_,
 `Prometheus Alertmanager <https://prometheus.io/docs/alerting/alertmanager/>`_
 and more which provide 'out-of-the-box' integrations for some of the most popular
@@ -80,6 +80,19 @@ be useful. They are:
 .. _Cisco: http://www.cisco.com/c/en/us/td/docs/routers/access/wireless/software/guide/SysMsgLogging.html
 .. _URL monitor: https://github.com/alerta/alerta-contrib/tree/master/integrations/urlmon
 
+External
+~~~~~~~~
+
+Some third-party monitoring tools have built-in support for Alerta. They are:
+
+* elastalert_ - alerting on anomalies, spikes, or other patterns of interest from data in Elasticsearch
+* netdata_ - a system for distributed real-time performance and health monitoring
+* `Tick Stack`_ - designed to handle metrics and events using Telegraf, InfluxDB, Chronograf, and Kapacitor
+
+.. _elastalert: https://elastalert.readthedocs.io/en/latest/ruletypes.html#alerta
+.. _netdata: https://github.com/firehol/netdata/wiki/Alerta-monitoring-system
+.. _Tick Stack: https://docs.influxdata.com/kapacitor/v1.5/event_handlers/alerta/
+
 .. _webhooks:
 
 Webhooks
@@ -90,7 +103,15 @@ to the Alerta server API when an event occurs.
 
 .. _HTTP callbacks: https://en.wikipedia.org/wiki/Webhook
 
-.. _cloudwatch:
+.. contents:: Built-in Webhooks
+   :local:
+   :depth: 2
+
+
+Custom Webhooks
+~~~~~~~~~~~~~~~
+
+TBC
 
 AWS CloudWatch
 ~~~~~~~~~~~~~~
@@ -107,110 +128,6 @@ HTTP/HTTPS Endpoints`_ page and in the `Endpoint` input box append
 :file:`https://alerta.example.com/api/webhooks/cloudwatch`
 
 .. _Sending Amazon SNS Messages to HTTP/HTTPS Endpoints: http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html
-
-.. _pingdom:
-
-Pingdom
-~~~~~~~
-
-Alerta can be configured to receive Pingdom URL check alerts by adding a webhook
-alerting endpoint that calls the Alerta API.
-
-For details on how to set this up see the `Pingdom webhook`_ page and in the
-`webhook URL` input box append :file:`/webhooks/pingdom` to the Alerta API URL.
-
-**Example Pingdom Webhook URL**
-
-:file:`https://alerta.example.com/api/webhooks/pingdom`
-
-.. _Pingdom webhook: https://support.pingdom.com/Knowledgebase/Article/View/94/0/users-and-alerting-end-points
-
-.. _pageduty:
-
-PagerDuty
-~~~~~~~~~
-
-Alerta can be configured to receive PagerDuty incident-based webhooks -- any
-change to the ``status`` or ``assigned_to_user`` of an incident will cause an
-outgoing message to be sent.
-
-For details on how to set this up see the `PagerDuty webhook`_ page and where it
-requires the webhook URL append :file:`/webhooks/pagerduty` to the Alerta API URL.
-
-**Example PagerDuty Webhook URL**
-
-:file:`https://alerta.example.com/api/webhooks/pagerduty`
-
-.. _PagerDuty webhook: https://developer.pagerduty.com/documentation/rest/webhooks
-
-.. _alertmanager:
-
-Prometheus Alertmanager
-~~~~~~~~~~~~~~~~~~~~~~~
-
-Alerta can be configured as a webhook receiver in Alertmanager.
-
-For details on how to set this up see the `Prometheus Config GitHub Repo`_
-
-.. _Prometheus Config GitHub Repo: https://github.com/alerta/prometheus-config
-
-.. _stackdriver:
-
-Google Stackdriver
-~~~~~~~~~~~~~~~~~~
-
-Alerta can be configured to receive Google Stackdriver incidents by adding a
-webhook endpoint to the notifications configuration.
-
-For details on how to set this up see `Stackdriver webhook`_ page and in the
-`ENDPOINT URL` input box append :file:`/webhooks/stackdriver` to the Alerta API URL.
-
-**Example Stackdriver Webhook URL**
-
-:file:`https://alerta.example.com/api/webhooks/stackdriver`
-
-.. _Stackdriver webhook: https://support.stackdriver.com/customer/portal/articles/1491775-configuring-webhooks
-
-.. _serverdensity:
-
-SeverDensity
-~~~~~~~~~~~~
-
-Alerta can be configured to receive SeverDensity alerts by adding a webhook
-endpoint to the Notification Preferences.
-
-For details on how to set this up see `SeverDensity webhook`_ page and in the
-`Endpoint URL` input box append :file:`/webhooks/serverdensity` to the Alerta API URL.
-
-.. _SeverDensity webhook: https://support.serverdensity.com/hc/en-us/articles/201017737-Setting-up-webhooks
-
-**Example SeverDensity Webhook URL**
-
-:file:`https://alerta.example.com/api/webhooks/serverdensity`
-
-.. _new relic:
-
-netdata
-~~~~~~~
-
-https://github.com/firehol/netdata/wiki/Alerta-monitoring-system
-
-New Relic
-~~~~~~~~~
-
-Alerta can be configured to receive New Relic incidents by adding a webhook
-endpoint to the Notification Channels.
-
-For details on how to set this up see `New Relic webhook`_ page and in the
-`Endpoint URL` input box append :file:`/webhooks/newrelic` to the Alerta API URL.
-
-.. _New Relic webhook: https://docs.newrelic.com/docs/alerts/new-relic-alerts/managing-notification-channels/notification-channels-controlling-where-send-alerts
-
-**Example New Relic Webhook URL**
-
-:file:`https://alerta.example.com/api/webhooks/newrelic`
-
-.. _grafana:
 
 Grafana
 ~~~~~~~
@@ -230,16 +147,116 @@ For details on how to set this up see `Grafana webhook`_ page and in the
 **The following parameters can be set in the url**
      environment, event_type, group, origin, service, severity, timeout
 
-:file:`https://alerta.example.com/api/webhooks/grafana?api-key=xxx
-      &environment=Production
-      &event_type=performanceAlert
-      &group=Performance
-      &origin=Grafana
-      &service=Grafana
-      &severity=major
-      &timeout=86400`
+**Example Grafana Webhook URL with parameters**
 
-.. _telegram:
+:file:`https://alerta.example.com/api/webhooks/grafana?api-key=xxx&environment=Production&service=Web&timeout=3600`
+
+Graylog
+~~~~~~~
+
+TBC
+
+New Relic
+~~~~~~~~~
+
+Alerta can be configured to receive New Relic incidents by adding a webhook
+endpoint to the Notification Channels.
+
+For details on how to set this up see `New Relic webhook`_ page and in the
+`Endpoint URL` input box append :file:`/webhooks/newrelic` to the Alerta API URL.
+
+.. _New Relic webhook: https://docs.newrelic.com/docs/alerts/new-relic-alerts/managing-notification-channels/notification-channels-controlling-where-send-alerts
+
+**Example New Relic Webhook URL**
+
+:file:`https://alerta.example.com/api/webhooks/newrelic`
+
+PagerDuty
+~~~~~~~~~
+
+Alerta can be configured to receive PagerDuty incident-based webhooks -- any
+change to the ``status`` or ``assigned_to_user`` of an incident will cause an
+outgoing message to be sent.
+
+For details on how to set this up see the `PagerDuty webhook`_ page and where it
+requires the webhook URL append :file:`/webhooks/pagerduty` to the Alerta API URL.
+
+**Example PagerDuty Webhook URL**
+
+:file:`https://alerta.example.com/api/webhooks/pagerduty`
+
+.. _PagerDuty webhook: https://developer.pagerduty.com/documentation/rest/webhooks
+
+Pingdom
+~~~~~~~
+
+Alerta can be configured to receive Pingdom URL check alerts by adding a webhook
+alerting endpoint that calls the Alerta API.
+
+For details on how to set this up see the `Pingdom webhook`_ page and in the
+`webhook URL` input box append :file:`/webhooks/pingdom` to the Alerta API URL.
+
+**Example Pingdom Webhook URL**
+
+:file:`https://alerta.example.com/api/webhooks/pingdom`
+
+.. _Pingdom webhook: https://support.pingdom.com/Knowledgebase/Article/View/94/0/users-and-alerting-end-points
+
+Prometheus Alertmanager
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Alerta can be configured as a webhook receiver in Alertmanager.
+
+For details on how to set this up see the `Prometheus Config GitHub Repo`_
+
+.. _Prometheus Config GitHub Repo: https://github.com/alerta/prometheus-config
+
+Riemann
+~~~~~~~
+
+Alerta can be configured to receive Riemann events. The integration makes
+no assumptions about the format of the Riemann events and consumes
+standard events. If events are decorated with additional metadata (eg. tags,
+environment, group, etc) then these will be used.
+
+**Example Riemann Webhook URL**
+
+:file:`https://alerta.example.com/api/webhooks/riemann`
+
+SeverDensity
+~~~~~~~~~~~~
+
+Alerta can be configured to receive SeverDensity alerts by adding a webhook
+endpoint to the Notification Preferences.
+
+For details on how to set this up see `SeverDensity webhook`_ page and in the
+`Endpoint URL` input box append :file:`/webhooks/serverdensity` to the Alerta API URL.
+
+.. _SeverDensity webhook: https://support.serverdensity.com/hc/en-us/articles/201017737-Setting-up-webhooks
+
+**Example SeverDensity Webhook URL**
+
+:file:`https://alerta.example.com/api/webhooks/serverdensity`
+
+Slack
+~~~~~
+
+TBC
+
+Google Stackdriver
+~~~~~~~~~~~~~~~~~~
+
+Alerta can be configured to receive Google Stackdriver incidents by adding a
+webhook endpoint to the notifications configuration.
+
+For details on how to set this up see `Stackdriver webhook`_ page and in the
+`ENDPOINT URL` input box append :file:`/webhooks/stackdriver` to the Alerta API URL.
+
+**Example Stackdriver Webhook URL**
+
+:file:`https://alerta.example.com/api/webhooks/stackdriver`
+
+.. _Stackdriver webhook: https://support.stackdriver.com/customer/portal/articles/1491775-configuring-webhooks
 
 Telegram
 ~~~~~~~~
@@ -256,24 +273,6 @@ For details on how to set this up see `Telegram Bot`_ page and for the
 
 :file:`https://alerta.example.com/api/webhooks/telegram`
 
-.. _riemann:
-
-Tick Stack
-~~~~~~~~~~
-
-https://docs.influxdata.com/kapacitor/v1.5/event_handlers/alerta/
-
-Riemann
-~~~~~~~
-
-Alerta can be configured to receive Riemann events. The integration makes
-no assumptions about the format of the Riemann events and consumes
-standard events. If events are decorated with additional metadata (eg. tags,
-environment, group, etc) then these will be used.
-
-**Example Riemann Webhook URL**
-
-:file:`https://alerta.example.com/api/webhooks/riemann`
 
 .. _widgets:
 
@@ -308,14 +307,16 @@ Core
 .. _Core plugins: https://github.com/alerta/alerta/tree/master/alerta/plugins
 
 * `Reject`_ - reject alerts before processing. used to enforce custom alert format policies
+* `Blackout`_ - suppression handler that will drop alerts that match a blackout period
 
 .. _Reject: https://github.com/alerta/alerta/blob/master/alerta/plugins/reject.py
+.. _Blackout: https://github.com/alerta/alerta/blob/master/alerta/plugins/blackout.py
 
 Contrib
 ~~~~~~~
 
-`Contributed plugins`_ are made available for popular tools but
-implementation-specific requirements.
+More than two dozen `contributed plugins`_ are made available for popular tools. Some
+of the most popular are:
 
 .. _Contributed plugins: https://github.com/alerta/alerta-contrib/tree/master/plugins
 

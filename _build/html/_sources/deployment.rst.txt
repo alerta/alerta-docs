@@ -12,11 +12,12 @@ it should `always be deployed`_ as a WSGI application. See the list
 of `real world`_ examples below for different ways to run Alerta as
 a WSGI application.
 
-When deploying with Apache mod_wsgi, be aware that by default Apache 
-strips the Authentication header. This will cause you to receive 
-"Missing authorization API Key or Bearer Token" errors. This can be 
-fixed by setting ``WSGIPassAuthorization On`` in the configuration 
-file for the site.
+.. note::
+    When deploying with Apache mod_wsgi, be aware that by default
+    Apache strips the Authentication header. This will cause you to
+    receive "Missing authorization API Key or Bearer Token" errors.
+    This can be fixed by setting ``WSGIPassAuthorization On`` in
+    the configuration file for the site.
 
 .. _always be deployed: http://flask.pocoo.org/docs/1.0/deploying/
 .. _WSGI: http://www.fullstackpython.com/wsgi-servers.html
@@ -67,16 +68,15 @@ the WSGI application running on port 8080::
             server localhost:8080 fail_timeout=0;
     }
 
-The web UI configuration file :file:`config.js` for this setup would
-simply be ``/api`` for the ``endpoint`` value, as follows::
+The server configuration file :file:`alertad.conf` for this setup
+would need to set ``BASE_URL``::
 
-    'use strict';
+    BASE_URL = '/api'
 
-    angular.module('config', [])
-      .constant('config', {
-        'endpoint'    : "/api",
-        'provider'    : "basic"
-      });
+And the web UI configuration file :file:`config.json` would need
+the ``endpoint`` setting to match that::
+
+    {"endpoint": "/api"}
 
 .. _static website:
 
@@ -105,7 +105,7 @@ authentication is enabled.
 
 The API can be secured using :ref:`API keys` and the web UI can
 be secured using :ref:`Basic Auth <basic auth>` or an :ref:`OAuth <oauth2>`
-provider from either Google or Github.
+provider from either GitHub, GitLab, Google, Keycloak or SAML2.
 
 If you plan to make the web UI accessible from a public URL it is
 strongly advised to :ref:`enforce authentication <Authentication>`
@@ -143,14 +143,20 @@ High Availability
 
 To achieve high system availability the Alerta API should be
 deployed to scale out :ref:`horizontally <scalability>` and
-the MongoDB database should be deployed as a `replica set`_.
+the database should be deployed as a `replica set`_, if using
+mongoDB or as `master-slave`_, if using Postgres.
 
-.. _replica set: http://docs.mongodb.org/manual/tutorial/deploy-replica-set/#overview
+.. _replica set: http://docs.mongodb.org/manual/core/replica-set-high-availability/
+.. _master-slave: https://www.postgresql.org/docs/current/static/high-availability.html
 
 .. _housekeeping:
 
 House Keeping
 -------------
+
+.. deprecated:: 5.0
+    The :file:`housekeepingAlerts.js` script that was used for
+    housekeeping is deprecated. Use the following instead.
 
 There are some jobs that should be run periodically to keep the
 Alerta console clutter free. To timeout *expired* alerts and
@@ -166,20 +172,18 @@ and cURL has to be used to access ``/management/housekeeping``.
 The API key needs an admin scope if AUTH_REQUIRED is set to True.
 
 It is suggested that you run housekeeping at regular intervals via
-``cron``. Every minute is a suitable interval.
+``cron``. Every minute or two is a suitable interval.
 
-By default, when you run housekeeping, Alerta will remove any alerts
-that have been expired or closed for 2 hours and any info messages that
+By default, the housekeeping job will remove any alerts that have been
+expired or closed for 2 hours and any info messages that
 are 12 hours old. In some cases, these retention periods may be too
-long or too short for your needs. Bear in mind that Alerta is intended
-to reflect the here and now, so long deletion thresholds should be
-avoided. Where you do need to depart from the defaults, you can specify
-like this:
+long or too short for your needs.
+
+Bear in mind that Alerta is intended to reflect the here and now, so
+long deletion thresholds should be avoided. Where you do need to depart
+from the defaults, you can specify like this::
 
     $ alerta housekeeping --expired 2 --info 12
-
-In earlier versions of Alerta, a script called housekeepingAlerts.js
-was used for housekeeping. This is now deprecated.
 
 .. _stale heartbeats:
 
@@ -197,29 +201,33 @@ some other scheduler.
 Management & Metrics
 --------------------
 
-Use the management endpoint :file:`/management/status` to keep
+There are two management endpoints that provide internal application
+metrics.
+
+The management endpoint :file:`/management/status` can be used to keep
 track of realtime statistics on the performance of the Alerta API
 like alert counts and average processing time. For convenience,
 these statistics can be viewed in the *About* page of the Alerta
 web UI or using the ``alerta`` command-line tool
 :ref:`status <cli_status>` command.
 
+The same metrics are also exposed at :file:`/management/metrics` in
+the `exposition format`_ required by Prometheus so that it can be monitored
+by Prometheus and other monitoring tools that implement the OpenMetrics_
+standard.
+
+.. _exposition format: https://prometheus.io/docs/instrumenting/exposition_formats/
+.. _OpenMetrics: https://openmetrics.io/
+
 Web UI Analytics
 ----------------
 
 Google analytics can be used to track usage of the Alerta web UI
 console. Just create a new tracking code with the `Google analytics`_
-console and add it to the ``config.js`` web console configuration
+console and add it to the :file:`alertad.conf` API configuration
 file::
 
-    'use strict';
-
-    angular.module('config', [])
-      .constant('config', {
-        'endpoint'    : "/api",
-        'provider'    : "basic",
-        'tracking_id' : "UA-NNNNNN-N"  // Google Analytics tracking ID
-      });
+    GOOGLE_TRACKING_ID = 'UA-NNNNNN-N'
 
 .. _Google analytics: https://analytics.google.com/analytics/web/
 

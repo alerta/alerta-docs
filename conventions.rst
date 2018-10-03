@@ -33,7 +33,7 @@ eg. ``MobileAPI``, ``Mobile-API`` and ``mobile api`` are all valid
 but needlessly different and impossible to query for consistently
 or generate aggregate metrics for.
 
-Note that the service attribute is a **list** because it is common for
+Note that the **service attribute is a list** because it is common for
 infrastructure (ie. some resource) to be used by more than one
 service. That is, if a component failure occurs that problem could
 cause an outage in multiple services.
@@ -99,8 +99,8 @@ could then become::
 Severity Levels
 ---------------
 
-Agree on a subset of severity levels and be consistent with what
-they mean. For example, if severity levels are used consistently
+Agree on a subset of :ref:`severity levels <severity table>` and be consistent
+with what they mean. For example, if severity levels are used consistently
 then integrating with a paging or email system becomes easier.
 
 +--------------+----------------------------------+--------------------------------+
@@ -125,6 +125,6 @@ A full working example called reject_ can be found in the plugins
 directory of the project code repository and is installed by default.
 The server configuration settings :envvar:`ORIGIN_BLACKLIST` and
 :envvar:`ALLOWED_ENVIRONMENTS` can be used to tailor it for your
-circumstances.
+circumstances or it can be disabled completely.
 
 .. _reject: https://github.com/alerta/alerta/blob/master/alerta/plugins/reject.py
