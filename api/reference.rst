@@ -298,6 +298,8 @@ Input
 +-----------------+----------+----------------------------------------------+
 | ``text``        | string   | reason for status change                     |
 +-----------------+----------+----------------------------------------------+
+| ``timeout``     | integer  | Seconds.                                     |
++-----------------+----------+----------------------------------------------+
 
 Example Request
 +++++++++++++++
@@ -309,7 +311,46 @@ Example Request
     -H 'Content-type: application/json' \
     -d '{
           "status": "ack",
-          "text": "disk needs replacing."
+          "text": "disk needs replacing.",
+          "timeout": 7200
+        }'
+
+Action alert
+~~~~~~~~~~~~
+
+Takes an action against an alert which can change the status or severity
+of the alert and logs the action to the alert history.
+
+::
+
+    PUT /alert/:id/action
+
+Input
++++++
+
++-----------------+----------+----------------------------------------------+
+| Name            | Type     | Description                                  |
++=================+==========+==============================================+
+| ``action``      | string   | **Required** Action from ``ack``, ``unack``` |
+|                 |          | ``shelve``, ``unshelve``, ``close``          |
++-----------------+----------+----------------------------------------------+
+| ``text``        | string   | reason for action                            |
++-----------------+----------+----------------------------------------------+
+| ``timeout``     | integer  | Seconds.                                     |
++-----------------+----------+----------------------------------------------+
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPUT http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258/action \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+          "action": "shelve",
+          "text": "swap out servers.",
+          "timeout": 7200
         }'
 
 Tag and untag alerts
@@ -1622,6 +1663,115 @@ Example Request
           "text": "test user",
           "email_verified": false
         }'
+
+Update me
+~~~~~~~~~
+
+Updates the logged in user by setting the values of the parameters passed.
+Any parameters not provided will be left unchanged.
+
+It is not allowed to update ``roles``, ``email_verified`` status or change
+the ``email`` to one that is already associated with another user.
+
+::
+
+    PUT /user/me
+
+Input
++++++
+
++--------------------+----------+-------------------------------------------+
+| Name               | Type     | Description                               |
++====================+==========+===========================================+
+| ``name``           | string   |                                           |
++--------------------+----------+-------------------------------------------+
+| ``email``          | string   |                                           |
++--------------------+----------+-------------------------------------------+
+| ``password``       | string   |                                           |
++--------------------+----------+-------------------------------------------+
+| ``status``         | string   |                                           |
++--------------------+----------+-------------------------------------------+
+| ``attributes``     | dict     | dictionary of key-value pairs             |
++--------------------+----------+-------------------------------------------+
+| ``text``           | string   |                                           |
++--------------------+----------+-------------------------------------------+
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPUT http://localhost:8080/user/me \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+          "password": "p8ssw0rd",
+          "text": "test user me"
+        }'
+
+Update user attributes
+~~~~~~~~~~~~~~~~~~~~~~
+
+Updates the specified user attributes.
+
+::
+
+    PUT /user/:id/attributes
+
+Input
++++++
+
++--------------------+----------+-------------------------------------------+
+| Name               | Type     | Description                               |
++====================+==========+===========================================+
+| ``attributes``     | dict     | dictionary of key-value pairs             |
++--------------------+----------+-------------------------------------------+
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPUT http://localhost:8080/user/0a35bfd8-1175-4cd2-96f6-eda9861fd15d/attributes \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+          "attributes": {
+            "team": "developers"
+          }
+      }'
+
+Update user me attributes
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Updates the logged in user attributes.
+
+::
+
+    PUT /user/me/attributes
+
+Input
++++++
+
++--------------------+----------+-------------------------------------------+
+| Name               | Type     | Description                               |
++====================+==========+===========================================+
+| ``attributes``     | dict     | dictionary of key-value pairs             |
++--------------------+----------+-------------------------------------------+
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPUT http://localhost:8080/user/me/attributes \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+          "attributes": {
+            "teams": ["developers", "operations"]
+          }
+      }'
 
 List all users
 ~~~~~~~~~~~~~~
