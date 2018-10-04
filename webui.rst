@@ -151,3 +151,50 @@ Full list of API server settings that can be used to configure clients.
 ``AUTO_REFRESH_INTERVAL``
 
 .. note:: It is not currently possible to configure dates or audio.
+
+.. raw:: html
+    <style> .red { background-color: red } </style>
+
+Severity Colors
+---------------
+
+.. |blu| image:: https://via.placeholder.com/16x16/0000ff/0000ff
+.. |red| image:: https://via.placeholder.com/16x16/ff0000/ff0000
+.. |org| image:: https://via.placeholder.com/16x16/ffa500/ffa500
+.. |ylw| image:: https://via.placeholder.com/16x16/ffff00/ffff00
+.. |dbl| image:: https://via.placeholder.com/16x16/1e90ff/1e90ff
+.. |lbl| image:: https://via.placeholder.com/16x16/add8e6/add8e6
+.. |grn| image:: https://via.placeholder.com/16x16/00cc00/00cc00
+.. |prp| image:: https://via.placeholder.com/16x16/9d006d/9d006d
+.. |vlt| image:: https://via.placeholder.com/16x16/7554bf/7554bf
+.. |slv| image:: https://via.placeholder.com/16x16/c0c0c0/c0c0c0
+
++-------------------+---------------+---------------------------------+
+| Severity          | Severity Code | Colour                          |
++===================+===============+=================================+
+| ``security``      | 0             | |blu| ``#0000FF``  (Blue)       |
++-------------------+---------------+---------------------------------+
+| ``critical``      | 1             | |red| ``#FF0000``  (Red)        |
++-------------------+---------------+---------------------------------+
+| ``major``         | 2             | |org| ``#FFA500``  (Orange)     |
++-------------------+---------------+---------------------------------+
+| ``minor``         | 3             | |ylw| ``#FFFF00``  (Yellow)     |
++-------------------+---------------+---------------------------------+
+| ``warning``       | 4             | |dbl| ``#1E90FF``  (DodgerBlue) |
++-------------------+---------------+---------------------------------+
+| ``indeterminate`` | 5             | |lbl| ``#00CC00`` (LightBlue)   |
++-------------------+---------------+---------------------------------+
+| ``cleared``       | 5             | |grn| ``#00CC00`` (Green*)      |
++-------------------+---------------+---------------------------------+
+| ``normal``        | 5             | |grn| ``#00CC00`` (Green*)      |
++-------------------+---------------+---------------------------------+
+| ``ok``            | 5             | |grn| ``#00CC00`` (Green*)      |
++-------------------+---------------+---------------------------------+
+| ``informational`` | 6             | |grn| ``#00CC00`` (Green*)      |
++-------------------+---------------+---------------------------------+
+| ``debug``         | 7             | |prp| ``#9D006D`` (Purple*)     |
++-------------------+---------------+---------------------------------+
+| ``trace``         | 8             | |vlt| ``#7554BF`` (Violet*)     |
++-------------------+---------------+---------------------------------+
+| ``unknown``       | 9             | |slv| ``#C0C0C0`` (Silver)      |
++-------------------+---------------+---------------------------------+
