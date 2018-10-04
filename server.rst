@@ -108,6 +108,10 @@ in Alerta for that alert to be uniquely identified at a later date.
 .. _silence: https://prometheus.io/docs/alerting/alertmanager/#silences
 .. _corresponding alert in Alertmanager: https://github.com/alerta/alerta-contrib/tree/master/plugins/prometheus
 
+More information about bi-directional integration and real-world examples
+for Telegram, Zabbix, Prometheus and many others can be found on the
+:ref:`Integrations & Plugins<bidirection integ>` page.
+
 .. _blackout periods:
 
 Blackout Periods

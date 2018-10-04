@@ -29,6 +29,10 @@ on any web page using oEmbed_ for easy integration with existing dashboards.
 Lastly, :ref:`plugins <plugins>` can be used to quickly and easily forward alerts
 to or notify other systems like Slack or Hipchat.
 
+.. contents:: Contents
+   :local:
+   :depth: 2
+
 .. _integrations:
 
 Integrations
@@ -93,6 +97,37 @@ Some third-party monitoring tools have built-in support for Alerta. They are:
 .. _netdata: https://github.com/firehol/netdata/wiki/Alerta-monitoring-system
 .. _Tick Stack: https://docs.influxdata.com/kapacitor/v1.5/event_handlers/alerta/
 
+.. _bidirection integ:
+
+Bi-directional
+~~~~~~~~~~~~~~
+
+Bi-directional integration is where the system integrating with Alerta
+provides information that enables Alerta to link back to the originating
+system, either via an external link or simply a hostname and reference ID.
+
+There are several examples of this two-way integration and they mostly
+take advantage of the flexible nature of the the ``tags`` and ``attributes``
+alert attributes which can be used to keep track of the external reference.
+
+The following is a list of integrations, webbhooks and plugins that highlight
+the use of bi-directional integration in different ways.
+
+* AWS Cloudwatch webhook - includes the `SNS subscription confirmation`_ link in the text of the alert
+* Zabbix integration & plugin - 
+* Grafana webhook - includes `rule and image links`_ in Grafana alert attributes if available
+* NewRelic webhook - includes `incident and runbook links`_ in NewRelic alerts
+* PagerDuty webhook - includes the `incident URL`_ in alert history text when status changes
+* Prometheus webhook - includes `external and generator URLs`_ in the alert attributes
+* Zabbix integration - includes `moreInfo`_ link back to Zabbix console event trigger page in alert attribute
+
+.. _SNS subscription confirmation: https://github.com/alerta/alerta/blob/master/alerta/webhooks/cloudwatch.py#L39-L40
+.. _rule and image links: https://github.com/alerta/alerta/blob/master/alerta/webhooks/grafana.py#L39-L43
+.. _incident and runbook links: https://github.com/alerta/alerta/blob/master/alerta/webhooks/newrelic.py#L33-L37
+.. _incident URL: https://github.com/alerta/alerta/blob/master/alerta/webhooks/pagerduty.py#L18
+.. _external and generator URLs: https://github.com/alerta/alerta/blob/master/alerta/webhooks/prometheus.py#L62-L65
+.. _moreInfo: https://github.com/alerta/zabbix-alerta/blob/master/zabbix_alerta.py#L67
+
 .. _webhooks:
 
 Webhooks
@@ -106,7 +141,6 @@ to the Alerta server API when an event occurs.
 .. contents:: Built-in Webhooks
    :local:
    :depth: 2
-
 
 Custom Webhooks
 ~~~~~~~~~~~~~~~
