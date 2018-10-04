@@ -44,9 +44,8 @@ attention of operators.</p>
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
 <p>To configure the Alerta web UI modify “in place” the default <code class="docutils literal notranslate"><span class="pre">config.json</span></code> file
 that is supplied with the web application. It uses simple JSON syntax.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The Alerta web UI before version 6.0 used an <a class="reference external" href="https://docs.angularjs.org/guide/module#configuration-blocks">AngularJS configuration block</a>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 6.0: </span>The Alerta web UI previously used an <a class="reference external" href="https://docs.angularjs.org/guide/module#configuration-blocks">AngularJS configuration block</a>
 for configuration settings which has now been deprecated.</p>
 </div>
 <p>The three main areas for configuration are:</p>
@@ -67,6 +66,10 @@ port) that the web UI static html files are being served from (line 2):</p>
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
+<p><strong>config.js Javascript Configuration</strong></p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 5.0: </span>Use <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">DATABASE_URL</span></code> and <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">DATABASE_NAME</span></code> instead.</p>
+</div>
 </div>
 <div class="section" id="configuration-from-api-server">
 <h2>Configuration from API Server<a class="headerlink" href="#configuration-from-api-server" title="Permalink to this headline">¶</a></h2>

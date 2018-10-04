@@ -13,8 +13,9 @@ Configuration
 To configure the Alerta web UI modify "in place" the default ``config.json`` file
 that is supplied with the web application. It uses simple JSON syntax.
 
-.. note:: The Alerta web UI before version 6.0 used an `AngularJS configuration block`_
-          for configuration settings which has now been deprecated.
+.. deprecated:: 6.0
+    The Alerta web UI previously used an `AngularJS configuration block`_
+    for configuration settings which has now been deprecated.
 
 .. _AngularJS configuration block: https://docs.angularjs.org/guide/module#configuration-blocks
 
@@ -35,6 +36,11 @@ port) that the web UI static html files are being served from (line 2):
       "endpoint": "http://localhost:8080"
     }
 
+
+**config.js Javascript Configuration**
+
+.. deprecated:: 5.0
+    Use :envvar:`DATABASE_URL` and :envvar:`DATABASE_NAME` instead.
 
 Configuration from API Server
 -----------------------------
