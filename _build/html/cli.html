@@ -387,10 +387,15 @@ or disabling this plugin see <a class="reference internal" href="configuration.h
 $ alerta send --resource web01 --event HttpOK --correlate HttpError --group Web --severity normal
 </pre></div>
 </div>
-<p>To send an alert with custom attribute called <code class="docutils literal notranslate"><span class="pre">customer</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta send -r web01 -e HttpError -g Web -s major --attributes customer=&quot;Tyrell Corp&quot;
+<p>To send an alert with custom attribute called <code class="docutils literal notranslate"><span class="pre">region</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta send -r web01 -e HttpError -g Web -s major --attributes region=&quot;EU&quot;
 </pre></div>
 </div>
+</div>
+<div class="section" id="query-search-for-alerts">
+<h4><a class="toc-backref" href="#id3"><strong class="command">query</strong> - Search for alerts</a><a class="headerlink" href="#query-search-for-alerts" title="Permalink to this headline">¶</a></h4>
+<p>Query for alerts based on search filter criteria.</p>
+<p><strong>Examples</strong></p>
 <p>To query for major and minor open alerts for the Production environment of the Mobile API service:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta query --filters severity=major severity=minor status=open environment=Production service=&quot;Mobile API&quot;
 </pre></div>
@@ -400,18 +405,13 @@ $ alerta send --resource web01 --event HttpOK --correlate HttpError --group Web 
 </pre></div>
 </div>
 </div>
-<div class="section" id="query-search-for-alerts">
-<h4><a class="toc-backref" href="#id3"><strong class="command">query</strong> - Search for alerts</a><a class="headerlink" href="#query-search-for-alerts" title="Permalink to this headline">¶</a></h4>
-<p>Query for alerts based on search filter criteria.</p>
-</div>
 <div class="section" id="ack-acknowledge-alerts">
 <h4><a class="toc-backref" href="#id4"><strong class="command">ack</strong> - Acknowledge alerts</a><a class="headerlink" href="#ack-acknowledge-alerts" title="Permalink to this headline">¶</a></h4>
 <p>Acknowlege alerts ie. change alert <code class="docutils literal notranslate"><span class="pre">status</span></code> to <code class="docutils literal notranslate"><span class="pre">ack</span></code></p>
 </div>
 <div class="section" id="close-close-alerts">
 <h4><a class="toc-backref" href="#id5"><strong class="command">close</strong> - Close alerts</a><a class="headerlink" href="#close-close-alerts" title="Permalink to this headline">¶</a></h4>
-<blockquote>
-<div>close         Close alerts</div></blockquote>
+<p>Close alerts ie. change alert <code class="docutils literal notranslate"><span class="pre">status</span></code> to <code class="docutils literal notranslate"><span class="pre">closed</span></code>.</p>
 </div>
 <div class="section" id="unack-un-acknowledge-alerts">
 <h4><a class="toc-backref" href="#id6"><strong class="command">unack</strong> - Un-acknowledge alerts</a><a class="headerlink" href="#unack-un-acknowledge-alerts" title="Permalink to this headline">¶</a></h4>
@@ -419,13 +419,13 @@ $ alerta send --resource web01 --event HttpOK --correlate HttpError --group Web 
 </div>
 <div class="section" id="shelve-shelve-alerts">
 <h4><a class="toc-backref" href="#id7"><strong class="command">shelve</strong> - Shelve alerts</a><a class="headerlink" href="#shelve-shelve-alerts" title="Permalink to this headline">¶</a></h4>
-<blockquote>
-<div>shelve        Shelve alerts</div></blockquote>
+<p>Shelve alerts ie. change alert <code class="docutils literal notranslate"><span class="pre">status</span></code> to <code class="docutils literal notranslate"><span class="pre">shelved</span></code> which removes the
+alerts from the active console and prevents any further notifications.</p>
 </div>
 <div class="section" id="unshelve-un-shelve-alerts">
 <h4><a class="toc-backref" href="#id8"><strong class="command">unshelve</strong> - Un-shelve alerts</a><a class="headerlink" href="#unshelve-un-shelve-alerts" title="Permalink to this headline">¶</a></h4>
-<blockquote>
-<div>unshelve      Un-shelve alerts</div></blockquote>
+<p>Unshelve alerts ie. change alert <code class="docutils literal notranslate"><span class="pre">status</span></code> to <code class="docutils literal notranslate"><span class="pre">open</span></code> which returns the
+alerts to the active console and does not prevent future notifications.</p>
 </div>
 <div class="section" id="tag-tag-alerts">
 <h4><a class="toc-backref" href="#id9"><strong class="command">tag</strong> - Tag alerts</a><a class="headerlink" href="#tag-tag-alerts" title="Permalink to this headline">¶</a></h4>
@@ -441,8 +441,7 @@ $ alerta send --resource web01 --event HttpOK --correlate HttpError --group Web 
 </div>
 <div class="section" id="delete-delete-alerts">
 <h4><a class="toc-backref" href="#id12"><strong class="command">delete</strong> - Delete alerts</a><a class="headerlink" href="#delete-delete-alerts" title="Permalink to this headline">¶</a></h4>
-<blockquote>
-<div>delete        Delete alerts</div></blockquote>
+<p>Delete alerts.</p>
 </div>
 <div class="section" id="watch-watch-alerts">
 <h4><a class="toc-backref" href="#id13"><strong class="command">watch</strong> - Watch alerts</a><a class="headerlink" href="#watch-watch-alerts" title="Permalink to this headline">¶</a></h4>
@@ -458,7 +457,7 @@ $ alerta send --resource web01 --event HttpOK --correlate HttpError --group Web 
 </div>
 <div class="section" id="history-show-alert-history">
 <h4><a class="toc-backref" href="#id16"><strong class="command">history</strong> - Show alert history</a><a class="headerlink" href="#history-show-alert-history" title="Permalink to this headline">¶</a></h4>
-<p>Show status, severity and value changes for alerts.</p>
+<p>Show action, status, severity and value changes for alerts.</p>
 </div>
 </div>
 <div class="section" id="blackout-commands">

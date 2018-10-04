@@ -222,10 +222,16 @@ To send a ``minor`` alert followed by a ``normal`` alert that correlates::
     $ alerta send --resource web01 --event HttpError --correlate HttpOK --group Web --severity minor
     $ alerta send --resource web01 --event HttpOK --correlate HttpError --group Web --severity normal
 
-To send an alert with custom attribute called ``customer``::
+To send an alert with custom attribute called ``region``::
 
-    $ alerta send -r web01 -e HttpError -g Web -s major --attributes customer="Tyrell Corp"
+    $ alerta send -r web01 -e HttpError -g Web -s major --attributes region="EU"
 
+:command:`query` - Search for alerts
+++++++++++++++++++++++++++++++++++++
+
+Query for alerts based on search filter criteria.
+
+**Examples**
 
 To query for major and minor open alerts for the Production environment of the Mobile API service::
 
@@ -235,74 +241,72 @@ To query for all alerts with "disk" in the alert text::
 
     $ alerta query --filters text=~disk
 
-:command:`query` - Search for alerts
-++++++++++++++++++++++++++++++++++++
-
-Query for alerts based on search filter criteria.
-
 :command:`ack` - Acknowledge alerts
 +++++++++++++++++++++++++++++++++++
 
 Acknowlege alerts ie. change alert ``status`` to ``ack``
 
 :command:`close` - Close alerts
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++
 
-  close         Close alerts
+Close alerts ie. change alert ``status`` to ``closed``.
 
 :command:`unack` - Un-acknowledge alerts
-+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++
 
 Unacknowledge alerts ie. change alert ``status`` to ``open``.
 
 :command:`shelve` - Shelve alerts
-+++++++++++++++++++++++++++++++++++
-  shelve        Shelve alerts
++++++++++++++++++++++++++++++++++
+
+Shelve alerts ie. change alert ``status`` to ``shelved`` which removes the
+alerts from the active console and prevents any further notifications.
 
 :command:`unshelve` - Un-shelve alerts
-+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++
 
-  unshelve      Un-shelve alerts
+Unshelve alerts ie. change alert ``status`` to ``open`` which returns the
+alerts to the active console and does not prevent future notifications.
 
 :command:`tag` - Tag alerts
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++
 
 Add tags to alerts.
 
 :command:`untag` - Untag alerts
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++
 
 Remove tags from alerts.
 
 :command:`update` - Update alert attributes
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++
 
 Update alert attributes.
 
 :command:`delete` - Delete alerts
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++
 
-  delete        Delete alerts
+Delete alerts.
 
 :command:`watch` - Watch alerts
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++
 
 Watch for new alerts.
 
 :command:`top` - Show top offenders and stats
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++
 
 Display alerts like unix "top" command.
 
 :command:`raw` - Show alert raw data
-+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++
 
 Show raw data for alerts.
 
 :command:`history` - Show alert history
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++
 
-Show status, severity and value changes for alerts.
+Show action, status, severity and value changes for alerts.
 
 Blackout Commands
 ~~~~~~~~~~~~~~~~~
