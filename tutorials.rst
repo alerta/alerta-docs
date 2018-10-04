@@ -9,23 +9,12 @@ Alerta in common scenarios.
 Tutorials
 ---------
 
-# 1 - :ref:`Deploy an Alerta Server <tutorial 1>`
-
-# 2 - :ref:`Alert timeouts, heartbeats and housekeeping <tutorial 2>`
-
-# 3 - :ref:`Use plugins to enhance Alerta <tutorial 3>`
-
-# 4 - :ref:`Alerts explored in-depth <tutorial 4>`
-
-# 5 - :ref:`Suppressing Alerts using Blackouts <tutorial 5>`
-
-# 6 - :ref:`Authentication & Authorization <tutorial 6>`
-
-.. toctree::
-  :glob:
-  :maxdepth: 1
-
-..  gettingstarted/*
+* :ref:`Deploy an Alerta Server <tutorial 1>`
+* :ref:`Alert timeouts, heartbeats and housekeeping <tutorial 2>`
+* :ref:`Use plugins to enhance Alerta <tutorial 3>`
+* :ref:`Alerts explored in-depth <tutorial 4>`
+* :ref:`Suppressing Alerts using Blackouts <tutorial 5>`
+* :ref:`Authentication & Authorization <tutorial 6>`
 
 .. note:: If you require help with any of the above tutorials post a question on Gitter_.
 
