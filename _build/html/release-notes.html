@@ -42,12 +42,25 @@
 <ul class="simple">
 <li>Web UI redesign using <a class="reference external" href="https://www.google.com/design/spec/material-design/introduction.html">Google material design</a></li>
 <li>Custom alert filters and dashboard views</li>
-<li>Use alarm model based on ISA 18.2 / IEC 62682</li>
-<li>Bulk API endpoints for background processing</li>
+<li>Use OpenAPI (Swagger) to generate client libraries</li>
 </ul>
 </div>
 <div class="section" id="release-history">
 <span id="id1"></span><h2>Release History<a class="headerlink" href="#release-history" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="release-6-1-0-11-10-2018">
+<span id="release-6-1"></span><h3>Release 6.1.0 (11-10-2018)<a class="headerlink" href="#release-6-1-0-11-10-2018" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Added bulk API endpoints for background processing (experimental)</li>
+<li>Added alternative alarm model based on ISA 18.2 / IEC 62682 (experimental)</li>
+<li>Allow users to replace “alerta” web navbar logo with company logo</li>
+<li>Sort by “Create Time” for better integration with Prometheus</li>
+<li>Lots more Python 3 type annotations (and some resulting bug fixes)</li>
+<li>Remove redundant duplicate messages from API logging</li>
+<li>Run tests against Python 3.7 &amp; MongoDB 4.0 for forward compatibility checking</li>
+<li>Add date/time formats and audio back to web UI config and tweak severity colors</li>
+<li>Add support for X-API-Key authentication header (for OpenAPI support)</li>
+</ul>
+</div>
 <div class="section" id="release-6-0-0-18-09-2018">
 <span id="release-6-0"></span><h3>Release 6.0.0 (18-09-2018)<a class="headerlink" href="#release-6-0-0-18-09-2018" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -272,7 +285,7 @@
     
 
 <p>
-<a href="https://travis-ci.org/alerta/alerta">
+<a class="badge" href="https://travis-ci.org/alerta/alerta">
     <img
         alt="https://secure.travis-ci.org/alerta/alerta.svg?branch=master"
         src="https://secure.travis-ci.org/alerta/alerta.svg?branch=master"
@@ -346,6 +359,14 @@ Links
     </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
@@ -354,8 +375,8 @@ Links
       &copy;2015-2018, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.0</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="_sources/release-notes.rst.txt"

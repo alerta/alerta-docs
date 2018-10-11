@@ -7,8 +7,7 @@ Roadmap
 
 * Web UI redesign using `Google material design`_
 * Custom alert filters and dashboard views
-* Use alarm model based on ISA 18.2 / IEC 62682
-* Bulk API endpoints for background processing
+* Use OpenAPI (Swagger) to generate client libraries
 
 .. _Google material design: https://www.google.com/design/spec/material-design/introduction.html
 
@@ -16,6 +15,21 @@ Roadmap
 
 Release History
 +++++++++++++++
+
+.. _release_6_1:
+
+Release 6.1.0 (11-10-2018)
+--------------------------
+
+* Added bulk API endpoints for background processing (experimental)
+* Added alternative alarm model based on ISA 18.2 / IEC 62682 (experimental)
+* Allow users to replace "alerta" web navbar logo with company logo
+* Sort by "Create Time" for better integration with Prometheus
+* Lots more Python 3 type annotations (and some resulting bug fixes)
+*  Remove redundant duplicate messages from API logging
+* Run tests against Python 3.7 & MongoDB 4.0 for forward compatibility checking
+* Add date/time formats and audio back to web UI config and tweak severity colors
+* Add support for X-API-Key authentication header (for OpenAPI support)
 
 .. _release_6_0:
 
