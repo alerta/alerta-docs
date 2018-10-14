@@ -7,14 +7,29 @@ Roadmap
 
 * Web UI redesign using `Google material design`_
 * Custom alert filters and dashboard views
-* Use OpenAPI (Swagger) to generate client libraries
+* Use OpenAPI (Swagger_) to generate client libraries
+* Replace "q" search filter with GraphQL_ for flexible alert queries
 
 .. _Google material design: https://www.google.com/design/spec/material-design/introduction.html
+.. _Swagger: https://swagger.io/specification/
+.. _GraphQL: https://graphql.org/learn/schema/
 
 .. _releases:
 
 Release History
 +++++++++++++++
+
+.. _release_6_2:
+
+Release 6.2.0 (13-10-2018)
+--------------------------
+
+* Make web UI alert list columns user-configurable
+* Add "take action" method to plugins for triggering external actions
+* Allow admins to sign-up new users even when sign-up is disabled
+* Add filtering and auto-refresh to Watch List and Top10 web pages
+* Show all possible menu options when authentication not enabled
+* Use scopes instead of type aliases when defining API key permissions
 
 .. _release_6_1:
 
