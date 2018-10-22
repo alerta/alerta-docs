@@ -71,6 +71,7 @@ The required API key is ``demo-key``.
   :hidden:
 
   api/reference
+  api/query-syntax
   api/alert
   api/heartbeat
 

@@ -1,0 +1,18 @@
+API Queries
+
+Alerta API supports two types of query syntax.
+
+ * standard URL query parameters
+ * queries based on Lucene query syntax
+
+Queries are supported by the following resource endpoints:
+
+ * alerts
+ * blackouts
+ * customers
+ * heartbeats
+ * users
+ * oembed
+
+
+

@@ -461,9 +461,8 @@ Parameters
 +=================+==========+==============================================+
 | ``<attr>``      | string   | any alert attribute. eg. ``status=open``     |
 +-----------------+----------+----------------------------------------------+
-| ``q`` (*)       | json     | mongo query (see `Mongo Query Operators`_)   |
-+-----------------+----------+----------------------------------------------+
-| ``fields`` (*)  | list     | show or hide alert attributes                |
+| ``q`` (*)       | string   | query string :ref:`query syntax <api query>` |
+|                 |          | eg. ``service:Web OR resource:web``          |
 +-----------------+----------+----------------------------------------------+
 | ``from-date``   | datetime | ``lastReceiveTime`` > ``from-date``          |
 +-----------------+----------+----------------------------------------------+
@@ -478,38 +477,14 @@ Parameters
 | ``page-size``   | integer  | default: 1000 (set ``DEFAULT_PAGE_SIZE`` )   |
 +-----------------+----------+----------------------------------------------+
 
-.. _Mongo Query Operators: http://docs.mongodb.org/manual/reference/operator/query/
+.. deprecated:: 6.3
+    The ``q`` parameter using `Mongo-style query`_ format has been replaced with
+    a query format based on `Lucene query syntax`_ supported by both MongoDB and
+    Postgres backends.
+    For more information see :ref:`API Query String Syntax <query_string_syntax>`.
 
-The ``<attr>`` search parameter works as follows:
-
-  * Any combination of valid alert attributes can be used to narrow down results.
-
-  * Search syntax is ``=`` (equals), ``!=`` (not equals), ``=~`` (regex match)
-    and ``!=~`` (regex exclude).
-
-  * When searching for alert ``id`` the query will attempt to match against ``id``
-    and ``lastReceiveId``. The "short id" (ie. first 8-characters) can
-    be used. eg. ``id=ba358336`` instead of ``id=ba358336-802d-40ee-8ace-bf5fa8529280``.
-
-  * Use `"dot notation"`_ to query custom attributes. eg. ``attributes.city=Berlin``
-
-  * Alert ``history`` is limited to the 100 most recent status or severity changes.
-    (set using ``HISTORY_LIMIT``)
-
-  * If "customer views" is enabled then the appropriate ``customer`` filter for
-    that user will be automatically applied.
-
-.. _"dot notation": https://docs.mongodb.com/v3.2/core/document/#document-dot-notation
-
-The ``q`` search parameter works as follows:
-
-  * Any valid JSON-compliant Mongo query using `Mongo Query Operators`_. Useful
-    when there is a need to "or" several attributes to get the required
-    search filter  eg. ``q={"$or":[{"service":"Web"},{"resource":{"$regex":"web"}}]}``
-
-.. warning:: In the next major release of Alerta (5.0) the ``fields`` parameter
-     will be removed. Also the ``q`` search term may change and no longer be
-     mongo-specific.
+.. _Mongo-style query: http://docs.mongodb.org/manual/reference/operator/query/
+.. _Lucene query syntax: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax
 
 Example Request
 +++++++++++++++
@@ -1112,6 +1087,8 @@ Example Response
       "status": "ok"
     }
 
+.. _get_blackouts:
+
 List all blackouts
 ~~~~~~~~~~~~~~~~~~
 
@@ -1318,6 +1295,8 @@ Example Response
       "status": "ok",
       "total": 1
     }
+
+.. _get_heartbeats:
 
 List all heartbeats
 ~~~~~~~~~~~~~~~~~~~
@@ -1773,6 +1752,8 @@ Example Request
           }
       }'
 
+.. _get_users:
+
 List all users
 ~~~~~~~~~~~~~~
 
@@ -2045,6 +2026,8 @@ Example Response
       "id": "289ca657-ea2c-4775-9e07-cc96844cc717",
       "status": "ok"
     }
+
+.. _get_customers:
 
 List all customers
 ~~~~~~~~~~~~~~~~~~
