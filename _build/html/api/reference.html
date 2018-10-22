@@ -17,7 +17,7 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Alert Format" href="alert.html" />
+    <link rel="next" title="API Query Syntax" href="query-syntax.html" />
     <link rel="prev" title="Resources" href="../resources.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -641,68 +641,41 @@ filter results.</p>
 <td>any alert attribute. eg. <code class="docutils literal notranslate"><span class="pre">status=open</span></code></td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">q</span></code> (*)</td>
-<td>json</td>
-<td>mongo query (see <a class="reference external" href="http://docs.mongodb.org/manual/reference/operator/query/">Mongo Query Operators</a>)</td>
+<td>string</td>
+<td>query string <a class="reference internal" href="query-syntax.html#api-query"><span class="std std-ref">query syntax</span></a>
+eg. <code class="docutils literal notranslate"><span class="pre">service:Web</span> <span class="pre">OR</span> <span class="pre">resource:web</span></code></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">fields</span></code> (*)</td>
-<td>list</td>
-<td>show or hide alert attributes</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">from-date</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">from-date</span></code></td>
 <td>datetime</td>
 <td><code class="docutils literal notranslate"><span class="pre">lastReceiveTime</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">from-date</span></code></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">to-date</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">to-date</span></code></td>
 <td>datetime</td>
 <td><code class="docutils literal notranslate"><span class="pre">lastReceiveTime</span></code> &lt;= <code class="docutils literal notranslate"><span class="pre">to-date</span></code> (now)</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sort-by</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sort-by</span></code></td>
 <td>string</td>
 <td>attr to sort by (default:<code class="docutils literal notranslate"><span class="pre">lastReceiveTime</span></code>)</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">reverse</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">reverse</span></code></td>
 <td>boolean</td>
 <td>change direction of default sort order</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">page</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">page</span></code></td>
 <td>integer</td>
 <td>number between 1 and total pages (default: 1)</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">page-size</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">page-size</span></code></td>
 <td>integer</td>
 <td>default: 1000 (set <code class="docutils literal notranslate"><span class="pre">DEFAULT_PAGE_SIZE</span></code> )</td>
 </tr>
 </tbody>
 </table>
-<p>The <code class="docutils literal notranslate"><span class="pre">&lt;attr&gt;</span></code> search parameter works as follows:</p>
-<blockquote>
-<div><ul class="simple">
-<li>Any combination of valid alert attributes can be used to narrow down results.</li>
-<li>Search syntax is <code class="docutils literal notranslate"><span class="pre">=</span></code> (equals), <code class="docutils literal notranslate"><span class="pre">!=</span></code> (not equals), <code class="docutils literal notranslate"><span class="pre">=~</span></code> (regex match)
-and <code class="docutils literal notranslate"><span class="pre">!=~</span></code> (regex exclude).</li>
-<li>When searching for alert <code class="docutils literal notranslate"><span class="pre">id</span></code> the query will attempt to match against <code class="docutils literal notranslate"><span class="pre">id</span></code>
-and <code class="docutils literal notranslate"><span class="pre">lastReceiveId</span></code>. The “short id” (ie. first 8-characters) can
-be used. eg. <code class="docutils literal notranslate"><span class="pre">id=ba358336</span></code> instead of <code class="docutils literal notranslate"><span class="pre">id=ba358336-802d-40ee-8ace-bf5fa8529280</span></code>.</li>
-<li>Use <a class="reference external" href="https://docs.mongodb.com/v3.2/core/document/#document-dot-notation">“dot notation”</a> to query custom attributes. eg. <code class="docutils literal notranslate"><span class="pre">attributes.city=Berlin</span></code></li>
-<li>Alert <code class="docutils literal notranslate"><span class="pre">history</span></code> is limited to the 100 most recent status or severity changes.
-(set using <code class="docutils literal notranslate"><span class="pre">HISTORY_LIMIT</span></code>)</li>
-<li>If “customer views” is enabled then the appropriate <code class="docutils literal notranslate"><span class="pre">customer</span></code> filter for
-that user will be automatically applied.</li>
-</ul>
-</div></blockquote>
-<p>The <code class="docutils literal notranslate"><span class="pre">q</span></code> search parameter works as follows:</p>
-<blockquote>
-<div><ul class="simple">
-<li>Any valid JSON-compliant Mongo query using <a class="reference external" href="http://docs.mongodb.org/manual/reference/operator/query/">Mongo Query Operators</a>. Useful
-when there is a need to “or” several attributes to get the required
-search filter  eg. <code class="docutils literal notranslate"><span class="pre">q={&quot;$or&quot;:[{&quot;service&quot;:&quot;Web&quot;},{&quot;resource&quot;:{&quot;$regex&quot;:&quot;web&quot;}}]}</span></code></li>
-</ul>
-</div></blockquote>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">In the next major release of Alerta (5.0) the <code class="docutils literal notranslate"><span class="pre">fields</span></code> parameter
-will be removed. Also the <code class="docutils literal notranslate"><span class="pre">q</span></code> search term may change and no longer be
-mongo-specific.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 6.3: </span>The <code class="docutils literal notranslate"><span class="pre">q</span></code> parameter using <a class="reference external" href="http://docs.mongodb.org/manual/reference/operator/query/">Mongo-style query</a> format has been replaced with
+a query format based on <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax">Lucene query syntax</a> supported by both MongoDB and
+Postgres backends.
+For more information see <a class="reference internal" href="query-syntax.html#query-string-syntax"><span class="std std-ref">API Query String Syntax</span></a>.</p>
 </div>
 </div>
 <div class="section" id="id13">
@@ -1001,7 +974,7 @@ default it is grouped by <code class="docutils literal notranslate"><span class=
 </tr>
 <tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">q</span></code></td>
 <td>dict</td>
-<td>mongo query see <a class="reference external" href="http://docs.mongodb.org/manual/reference/operator/query/">Mongo Query Operators</a></td>
+<td>mongo query see <a href="#id133"><span class="problematic" id="id134">`Mongo Query Operators`_</span></a></td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">group-by</span></code></td>
 <td>string</td>
@@ -1368,7 +1341,7 @@ Only used if <code class="docutils literal notranslate"><span class="pre">endTim
 </div>
 </div>
 <div class="section" id="list-all-blackouts">
-<h3><a class="toc-backref" href="#id106">List all blackouts</a><a class="headerlink" href="#list-all-blackouts" title="Permalink to this headline">¶</a></h3>
+<span id="get-blackouts"></span><h3><a class="toc-backref" href="#id106">List all blackouts</a><a class="headerlink" href="#list-all-blackouts" title="Permalink to this headline">¶</a></h3>
 <p>Returns a list of blackout periods, including expired blackouts.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">blackouts</span>
 </pre></div>
@@ -1572,7 +1545,7 @@ from the <code class="docutils literal notranslate"><span class="pre">origin</sp
 </div>
 </div>
 <div class="section" id="list-all-heartbeats">
-<h3><a class="toc-backref" href="#id111">List all heartbeats</a><a class="headerlink" href="#list-all-heartbeats" title="Permalink to this headline">¶</a></h3>
+<span id="get-heartbeats"></span><h3><a class="toc-backref" href="#id111">List all heartbeats</a><a class="headerlink" href="#list-all-heartbeats" title="Permalink to this headline">¶</a></h3>
 <p>Returns a list of all heartbeats.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">heartbeats</span>
 </pre></div>
@@ -2098,7 +2071,7 @@ the <code class="docutils literal notranslate"><span class="pre">email</span></c
 </div>
 </div>
 <div class="section" id="list-all-users">
-<h3><a class="toc-backref" href="#id123">List all users</a><a class="headerlink" href="#list-all-users" title="Permalink to this headline">¶</a></h3>
+<span id="get-users"></span><h3><a class="toc-backref" href="#id123">List all users</a><a class="headerlink" href="#list-all-users" title="Permalink to this headline">¶</a></h3>
 <p>Returns a list of users.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">users</span>
 </pre></div>
@@ -2371,7 +2344,7 @@ the <code class="docutils literal notranslate"><span class="pre">email</span></c
 </div>
 </div>
 <div class="section" id="list-all-customers">
-<h3><a class="toc-backref" href="#id131">List all customers</a><a class="headerlink" href="#list-all-customers" title="Permalink to this headline">¶</a></h3>
+<span id="get-customers"></span><h3><a class="toc-backref" href="#id131">List all customers</a><a class="headerlink" href="#list-all-customers" title="Permalink to this headline">¶</a></h3>
 <p>Returns a list of customers.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">customers</span>
 </pre></div>
@@ -2500,6 +2473,7 @@ Links
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="query-syntax.html">API Query Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alert.html">Alert Format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="heartbeat.html">Heartbeat Format</a></li>
 </ul>
