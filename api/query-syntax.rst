@@ -51,6 +51,10 @@ Query String Syntax
 The query string syntax is used by the ``q`` query string parameter. It is based
 on the Lucene query string syntax and is described below.
 
+.. contents::
+   :local:
+   :depth: 2
+
 Search terms
 ~~~~~~~~~~~~
 
@@ -110,24 +114,55 @@ Wildcards
 Wildcard searches can be used on individual terms using ``?`` to replace
 single characters and ``*`` to replace one or more characters:
 
+To search for "foo bar" and "fu baz" use:
+
 .. code-block:: html
 
-    fo* ba? t?st
+    f* ba?
+    
+To search for "test" or "text" use:
+
+.. code-block:: html
+    
+    t?st
 
 Regular expressions
 ~~~~~~~~~~~~~~~~~~~
 
 Regular expression patterns can be embedded in the query string by wrapping
-them in forward-slashes (``/``)::
+them in forward-slashes (``/``). Typical examples include:
 
-    resource:/net(wo?rk)[0-9]/
+.. code-block:: html
+
+    /[mb]oat/
+
+and:
+
+.. code-block:: html
+
+    name:/joh?n(ath[oa]n)/
+
+To search for numbered devices beginning with "net", "netwrk" or "network" use:
+
+.. code-block:: html
+  
+    resource:/net(wo?rk)?[0-9]/
+
+.. note:: Regular expressions are implemented by the database backends so
+    there may be subtle differences between `Postgres POSIX regular expressions`_
+    and `MongoDB PCRE $regex pattern matching`_ in practice.
+
+.. _Postgres POSIX regular expressions: https://www.postgresql.org/docs/9.6/static/functions-matching.html#FUNCTIONS-POSIX-REGEXP
+.. _MongoDB PCRE $regex pattern matching: https://docs.mongodb.com/manual/reference/operator/query/regex/
 
 Ranges
 ~~~~~~
 
 Ranges can be specified for numeric or string fields. Inclusive
 ranges are specified with square brackets ``[min TO max]`` and exclusive
-ranges with curly brackets ``{min TO max}``::
+ranges with curly brackets ``{min TO max}``:
+
+.. code-block:: html
 
     timeout:[1 TO 86400]
     group:{alpha TO zulu}
@@ -152,6 +187,14 @@ to form sub-queries:
 .. code-block:: html
 
     (foo OR bar) AND baz
+
+Field Grouping
+~~~~~~~~~~~~~~
+
+Parentheses can be used to group multiple clauses to a single field:
+
+.. code-block:: html
+
     status:(open OR ack)
     text:(full text search)
 
@@ -159,4 +202,4 @@ to form sub-queries:
     queries by date, and range queries based on severity levels.
 
 .. note:: The following will not be supported: fuzziness, proximity searches, and
-    boosting which are specific to Lucene and/or Elasticsearch.
+    boosting which are features specific to Lucene and/or Elasticsearch.
