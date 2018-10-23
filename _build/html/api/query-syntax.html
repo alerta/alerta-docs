@@ -80,8 +80,19 @@ that user will be automatically applied.</li>
 <span id="id1"></span><h2>Query String Syntax<a class="headerlink" href="#query-string-syntax" title="Permalink to this headline">¶</a></h2>
 <p>The query string syntax is used by the <code class="docutils literal notranslate"><span class="pre">q</span></code> query string parameter. It is based
 on the Lucene query string syntax and is described below.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#search-terms" id="id2">Search terms</a></li>
+<li><a class="reference internal" href="#field-names" id="id3">Field names</a></li>
+<li><a class="reference internal" href="#wildcards" id="id4">Wildcards</a></li>
+<li><a class="reference internal" href="#regular-expressions" id="id5">Regular expressions</a></li>
+<li><a class="reference internal" href="#ranges" id="id6">Ranges</a></li>
+<li><a class="reference internal" href="#grouping" id="id7">Grouping</a></li>
+<li><a class="reference internal" href="#field-grouping" id="id8">Field Grouping</a></li>
+</ul>
+</div>
 <div class="section" id="search-terms">
-<h3>Search terms<a class="headerlink" href="#search-terms" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id2">Search terms</a><a class="headerlink" href="#search-terms" title="Permalink to this headline">¶</a></h3>
 <p>A search term can be a single word:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>foo
 </pre></div>
@@ -97,7 +108,7 @@ for all the words in the phrase, in the same order:</p>
 </div>
 </div>
 <div class="section" id="field-names">
-<h3>Field names<a class="headerlink" href="#field-names" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id3">Field names</a><a class="headerlink" href="#field-names" title="Permalink to this headline">¶</a></h3>
 <p>When no explicit field name is specified to search on in the query string
 the default field <code class="docutils literal notranslate"><span class="pre">text</span></code> will be used unless a prefix is specified.</p>
 <p>For example, where <code class="docutils literal notranslate"><span class="pre">status</span></code> field contains “ack”:</p>
@@ -119,30 +130,49 @@ group:(Network Performance)
 </div>
 </div>
 <div class="section" id="wildcards">
-<h3>Wildcards<a class="headerlink" href="#wildcards" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id4">Wildcards</a><a class="headerlink" href="#wildcards" title="Permalink to this headline">¶</a></h3>
 <p>Wildcard searches can be used on individual terms using <code class="docutils literal notranslate"><span class="pre">?</span></code> to replace
 single characters and <code class="docutils literal notranslate"><span class="pre">*</span></code> to replace one or more characters:</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>fo* ba? t?st
+<p>To search for “foo bar” and “fu baz” use:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>f* ba?
+</pre></div>
+</div>
+<p>To search for “test” or “text” use:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>t?st
 </pre></div>
 </div>
 </div>
 <div class="section" id="regular-expressions">
-<h3>Regular expressions<a class="headerlink" href="#regular-expressions" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">Regular expressions</a><a class="headerlink" href="#regular-expressions" title="Permalink to this headline">¶</a></h3>
 <p>Regular expression patterns can be embedded in the query string by wrapping
-them in forward-slashes (<code class="docutils literal notranslate"><span class="pre">/</span></code>):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>resource:/net(wo?rk)[0-9]/
+them in forward-slashes (<code class="docutils literal notranslate"><span class="pre">/</span></code>). Typical examples include:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>/[mb]oat/
 </pre></div>
+</div>
+<p>and:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>name:/joh?n(ath[oa]n)/
+</pre></div>
+</div>
+<p>To search for numbered devices beginning with “net”, “netwrk” or “network” use:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>resource:/net(wo?rk)?[0-9]/
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Regular expressions are implemented by the database backends so
+there may be subtle differences between <a class="reference external" href="https://www.postgresql.org/docs/9.6/static/functions-matching.html#FUNCTIONS-POSIX-REGEXP">Postgres POSIX regular expressions</a>
+and <a class="reference external" href="https://docs.mongodb.com/manual/reference/operator/query/regex/">MongoDB PCRE $regex pattern matching</a> in practice.</p>
 </div>
 </div>
 <div class="section" id="ranges">
-<h3>Ranges<a class="headerlink" href="#ranges" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">Ranges</a><a class="headerlink" href="#ranges" title="Permalink to this headline">¶</a></h3>
 <p>Ranges can be specified for numeric or string fields. Inclusive
 ranges are specified with square brackets <code class="docutils literal notranslate"><span class="pre">[min</span> <span class="pre">TO</span> <span class="pre">max]</span></code> and exclusive
 ranges with curly brackets <code class="docutils literal notranslate"><span class="pre">{min</span> <span class="pre">TO</span> <span class="pre">max}</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">timeout</span><span class="p">:[</span><span class="mi">1</span> <span class="n">TO</span> <span class="mi">86400</span><span class="p">]</span>
-<span class="n">group</span><span class="p">:{</span><span class="n">alpha</span> <span class="n">TO</span> <span class="n">zulu</span><span class="p">}</span>
-<span class="n">value</span><span class="p">:{</span><span class="o">*</span> <span class="n">TO</span> <span class="mi">300</span><span class="p">}</span>
-<span class="n">value</span><span class="p">:[</span><span class="mi">500</span> <span class="n">TO</span> <span class="o">*</span><span class="p">]</span>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>timeout:[1 TO 86400]
+group:{alpha TO zulu}
+value:{* TO 300}
+value:[500 TO *]
 </pre></div>
 </div>
 <p>Ranges with one side unbounded (using <code class="docutils literal notranslate"><span class="pre">*</span></code>) can use a simplified syntax:</p>
@@ -154,11 +184,17 @@ value:&lt;=500
 </div>
 </div>
 <div class="section" id="grouping">
-<h3>Grouping<a class="headerlink" href="#grouping" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">Grouping</a><a class="headerlink" href="#grouping" title="Permalink to this headline">¶</a></h3>
 <p>Multiple terms or clauses can be grouped together with parentheses,
 to form sub-queries:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>(foo OR bar) AND baz
-status:(open OR ack)
+</pre></div>
+</div>
+</div>
+<div class="section" id="field-grouping">
+<h3><a class="toc-backref" href="#id8">Field Grouping</a><a class="headerlink" href="#field-grouping" title="Permalink to this headline">¶</a></h3>
+<p>Parentheses can be used to group multiple clauses to a single field:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>status:(open OR ack)
 text:(full text search)
 </pre></div>
 </div>
@@ -170,7 +206,7 @@ queries by date, and range queries based on severity levels.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">The following will not be supported: fuzziness, proximity searches, and
-boosting which are specific to Lucene and/or Elasticsearch.</p>
+boosting which are features specific to Lucene and/or Elasticsearch.</p>
 </div>
 </div>
 </div>
