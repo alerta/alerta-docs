@@ -64,9 +64,13 @@ periods that match on different alert attributes.</p>
 <p>It is assumed that you have completed <a class="reference internal" href="tutorial-1-deploy-alerta.html#tutorial-1"><span class="std std-ref">Tutorial 1</span></a>
 or you have access to an Alerta server that you can send alerts to
 using the <code class="docutils literal notranslate"><span class="pre">alerta</span></code> command-line tool.</p>
+<p>Preferably you have also completed <a class="reference internal" href="tutorial-3-plugins.html#tutorial-3"><span class="std std-ref">Tutorial 3</span></a> which
+explains how to enable/disable plugins and how they work. For this tutorial
+the “blackout” plugin must be enabled. To enable a built-in plugin simply
+add it to the list of <code class="docutils literal notranslate"><span class="pre">PLUGINS</span></code> in the server configuration file.</p>
 <p>It would also help to have access to the Alerta web console as
 it can be very helpful to see the alerts update in the console
-in realtime rather than having to continually run the <code class="docutils literal notranslate"><span class="pre">alerta</span> <span class="pre">query</span></code>
+in real time rather than having to continually run the <code class="docutils literal notranslate"><span class="pre">alerta</span> <span class="pre">query</span></code>
 command to see the results.</p>
 </div>
 <div class="section" id="step-1-blackout-by-environment">
@@ -261,6 +265,7 @@ Links
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../api/reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/query-syntax.html">API Query Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/alert.html">Alert Format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/heartbeat.html">Heartbeat Format</a></li>
 </ul>

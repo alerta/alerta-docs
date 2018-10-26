@@ -35,9 +35,14 @@ It is assumed that you have completed :ref:`Tutorial 1 <tutorial 1>`
 or you have access to an Alerta server that you can send alerts to
 using the ``alerta`` command-line tool.
 
+Preferably you have also completed :ref:`Tutorial 3 <tutorial 3>` which
+explains how to enable/disable plugins and how they work. For this tutorial
+the "blackout" plugin must be enabled. To enable a built-in plugin simply
+add it to the list of ``PLUGINS`` in the server configuration file.
+
 It would also help to have access to the Alerta web console as
 it can be very helpful to see the alerts update in the console
-in realtime rather than having to continually run the ``alerta query``
+in real time rather than having to continually run the ``alerta query``
 command to see the results.
 
 Step 1: Blackout by Environment
