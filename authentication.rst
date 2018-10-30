@@ -11,6 +11,7 @@ Alerta supports three authentication mechanisms for the web UI and
 ``alerta`` command-line tool.
 
 * `Basic Auth`_
+* `Basic Auth using LDAP`_
 * `GitHub OAuth2`_
 * `GitLab OAuth2`_
 * `Google OAuth2`_
@@ -37,16 +38,55 @@ configuration settings file::
 Basic Auth
 ----------
 
+Basic Auth (built-in)
+~~~~~~~~~~~~~~~~~~~~~
+
 The most straight-forward authentication strategy to implement of the
-three is HTTP `Basic Authentication`_ because there is no additional
-configuration required of the Alerta server to use it other than
-setting ``AUTH_REQUIRED`` to ``True``.
+three is HTTP `Basic Authentication`_ provided by the Alerta API
+because there is no additional configuration required of the Alerta
+server to use it other than setting ``AUTH_REQUIRED`` to ``True``.
 
 .. _Basic Authentication: https://en.wikipedia.org/wiki/Basic_access_authentication
 
 .. note:: HTTP Basic Auth does not provide any encryption of the username
           or password so it is strongly advised to only use Basic Auth over
           HTTPS.
+
+.. _basic_auth_ldap:
+
+Basic Auth using LDAP
+~~~~~~~~~~~~~~~~~~~~~
+
+LDAP can be used as the Basic Auth provider to authenticate users
+if desired. It requires the installation of an additional Python
+package called "`python-ldap`_" and can be installed like so::
+
+    $ pip install python-ldap
+
+.. _`python-ldap`: https://pypi.org/project/python-ldap/
+
+.. important:: If the Alerta API is installed in a Python virtual
+    environment ensure that the ``python-ldap`` package is installed
+    into the same environment otherwise it won't be auto-detected.
+
+The configuration settings for LDAP authentication include the LDAP
+server URL and a map of LDAP domains to search filters which means
+that multiple LDAP domains can be supported::
+
+    LDAP_URL = 'ldap://localhost:389'  # replace with your LDAP server
+    LDAP_DOMAINS = {
+        'my-domain.com': 'uid=%s,ou=users,dc=my-domain,dc=com'
+    }
+
+A typical user called ``user1``, for the example above, would login
+using an email address of ``user1@my-domain.com`` even if that
+email address doesn't actually exist.
+
+All users are initially assigned the "user" role by default. 
+
+.. note:: User sign-up, email verfication and password reset through the
+    Alerta web UI or CLI is not supported. Self-service user management
+    needs to be handled by the LDAP authentication provider.
 
 .. _oauth2:
 
@@ -58,9 +98,9 @@ GitLab_ `OAuth 2.0`_ or Keycloak_ `OAuth 2.0`_ and configuration is more
 involved than the Basic Auth setup.
 
 .. note:: If Alerta is deployed to a publicly accessible web server it
-          is important to configure the OAuth2 settings correctly to
-          ensure that only authorised users can access and modify your
-          alerts.
+    is important to configure the OAuth2 settings correctly to
+    ensure that only authorised users can access and modify your
+    alerts.
 
 .. _Google: https://developers.google.com/accounts/docs/OpenIDConnect
 .. _GitHub: https://developer.github.com/v3/oauth/
@@ -97,7 +137,7 @@ and choose **Web Application**.
 - Authorized Redirect URIs: http://alerta.example.com
 
 Click **Create Client ID** and take note of the Client ID and Client
-Secret. The configuration settins for ``alerta`` server are as follows::
+Secret. The configuration settings for ``alerta`` server are as follows::
 
     AUTH_PROVIDER = 'google'
     OAUTH2_CLIENT_ID = '379647311730-sj130ru952o3o7ig8u0ts8np2ojivr8d.apps.googleusercontent.com'
