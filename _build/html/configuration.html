@@ -61,6 +61,7 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 <div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;changeme&#39;</span>
 <span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;/api&#39;</span>
+<span class="n">USE_PROXYFIX</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="n">LOGGER_NAME</span> <span class="o">=</span> <span class="s1">&#39;alerta-api&#39;</span>
 <span class="n">LOG_FILE</span> <span class="o">=</span> <span class="s1">&#39;/var/log/alertad.log&#39;</span>
 <span class="n">LOG_MAX_BYTES</span> <span class="o">=</span> <span class="mi">5</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span>  <span class="c1"># 5 MB</span>
@@ -75,6 +76,8 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 <dd>a unique, randomly generated sequence of ASCII characters.</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">BASE_URL</span></code></dt>
 <dd>if API served on a path or behind a proxy use it to fix relative links (no default)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">USE_PROXYFIX</span></code></dt>
+<dd>if API served behind SSL terminating proxy (default is <code class="docutils literal notranslate"><span class="pre">False</span></code>)</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">LOGGER_NAME</span></code></dt>
 <dd>name of logger used by python <code class="docutils literal notranslate"><span class="pre">logging</span></code> module (default is <code class="docutils literal notranslate"><span class="pre">alerta</span></code>)</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">LOG_FILE</span></code></dt>
@@ -90,12 +93,18 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 <div class="section" id="api-settings">
 <span id="api-config"></span><h3>API Settings<a class="headerlink" href="#api-settings" title="Permalink to this headline">¶</a></h3>
 <p><strong>Example</strong></p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DEFAULT_PAGE_SIZE</span> <span class="o">=</span> <span class="mi">1000</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ALARM_MODEL</span><span class="o">=</span><span class="s1">&#39;ALERTA&#39;</span>
+<span class="n">DEFAULT_FIELD</span> <span class="o">=</span> <span class="s1">&#39;text&#39;</span>
+<span class="n">DEFAULT_PAGE_SIZE</span> <span class="o">=</span> <span class="mi">1000</span>
 <span class="n">HISTORY_LIMIT</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">HISTORY_ON_VALUE_CHANGE</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># do not log if only value changes</span>
 </pre></div>
 </div>
 <dl class="docutils" id="index-2">
+<dt><code class="docutils literal notranslate"><span class="pre">ALARM_MODEL</span></code></dt>
+<dd>set to <code class="docutils literal notranslate"><span class="pre">ISA_18_2</span></code> to use experimental alarm model (default is <code class="docutils literal notranslate"><span class="pre">ALERTA</span></code>)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DEFAULT_FIELD</span></code></dt>
+<dd>search default field when no field given when using lucene query syntax (default is <code class="docutils literal notranslate"><span class="pre">text</span></code>)</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">DEFAULT_PAGE_SIZE</span></code></dt>
 <dd>maximum number of alerts returned in a single query (default 1000)</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">HISTORY_LIMIT</span></code></dt>
@@ -131,8 +140,27 @@ database configuration options are supported as connection URL parameters.</p>
 <dd>terminate startup if database configuration fails (default is <code class="docutils literal notranslate"><span class="pre">True</span></code>)</dd>
 </dl>
 </div>
+<div class="section" id="bulk-api-settings">
+<span id="auth-config"></span><h3>Bulk API Settings<a class="headerlink" href="#bulk-api-settings" title="Permalink to this headline">¶</a></h3>
+<p>The bulk API requires a Celery backend and can be used to off-load
+long-running tasks. (experimental)</p>
+<p><strong>Example Redis Task Queue</strong></p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BULK_QUERY_LIMIT</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">CELERY_BROKER_URL</span><span class="o">=</span><span class="s1">&#39;redis://localhost:6379/0&#39;</span>
+<span class="n">CELERY_RESULT_BACKEND</span><span class="o">=</span><span class="s1">&#39;redis://localhost:6379/0&#39;</span>
+</pre></div>
+</div>
+<dl class="docutils" id="index-4">
+<dt><code class="docutils literal notranslate"><span class="pre">BULK_QUERY_LIMIT</span></code></dt>
+<dd>limit the number of tasks in a single bulk query (default is <code class="docutils literal notranslate"><span class="pre">100000</span></code>)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">CELERY_BROKER_URL</span></code></dt>
+<dd>URL of Celery-supported broker (no default)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">CELERY_RESULT_BACKEND</span></code></dt>
+<dd>URL of Celery-supported result backend (no default)</dd>
+</dl>
+</div>
 <div class="section" id="authentication-settings">
-<span id="auth-config"></span><h3>Authentication Settings<a class="headerlink" href="#authentication-settings" title="Permalink to this headline">¶</a></h3>
+<h3>Authentication Settings<a class="headerlink" href="#authentication-settings" title="Permalink to this headline">¶</a></h3>
 <p>If enabled, authentication provides additional benefits beyond just security,
 such as auditing, and features like the ability to assign and watch alerts.</p>
 <p><strong>Example</strong></p>
@@ -151,7 +179,7 @@ such as auditing, and features like the ability to assign and watch alerts.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<span class="target" id="index-4"></span><span class="target" id="index-5"></span><span class="target" id="index-6"></span><dl class="docutils" id="index-7">
+<span class="target" id="index-5"></span><span class="target" id="index-6"></span><span class="target" id="index-7"></span><dl class="docutils" id="index-8">
 <dt><code class="docutils literal notranslate"><span class="pre">AUTH_REQUIRED</span></code></dt>
 <dd>users must authenticate when using web UI or command-line tool (default <code class="docutils literal notranslate"><span class="pre">False</span></code>)</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">AUTH_PROVIDER</span></code></dt>
@@ -217,6 +245,26 @@ attributes. See <a class="reference internal" href="authentication.html#saml2"><
 <dd>number of days an API key is valid (default is <code class="docutils literal notranslate"><span class="pre">365</span></code>)</dd>
 </dl>
 </div>
+<div class="section" id="audit-log-settings">
+<span id="audit-log-config"></span><h3>Audit Log Settings<a class="headerlink" href="#audit-log-settings" title="Permalink to this headline">¶</a></h3>
+<p>Audit events can be logged locally to the standard application log (which
+could also help with general debugging) or forwarded to a HTTP endpoint
+using a POST.</p>
+<p><strong>Example</strong></p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AUDIT_TRAIL</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;write&#39;</span><span class="p">,</span> <span class="s1">&#39;auth&#39;</span><span class="p">]</span>
+<span class="n">AUDIT_LOG</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># log to Flask application logger</span>
+<span class="n">AUDIT_URL</span> <span class="o">=</span> <span class="s1">&#39;https://listener.logz.io:8071/?token=TOKEN&#39;</span>
+</pre></div>
+</div>
+<dl class="docutils" id="index-9">
+<dt><code class="docutils literal notranslate"><span class="pre">AUDIT_TRAIL</span></code></dt>
+<dd>audit trail for <code class="docutils literal notranslate"><span class="pre">admin</span></code>, <code class="docutils literal notranslate"><span class="pre">write</span></code> or <code class="docutils literal notranslate"><span class="pre">auth</span></code> changes. (default is <code class="docutils literal notranslate"><span class="pre">['admin']</span></code>)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">AUDIT_LOG</span></code></dt>
+<dd>enable audit logging to configured application log file (default is <code class="docutils literal notranslate"><span class="pre">False</span></code>)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">AUDIT_URL</span></code></dt>
+<dd>forward audit logs to HTTP POST URL (no default)</dd>
+</dl>
+</div>
 <div class="section" id="cors-settings">
 <span id="cors-config"></span><h3>CORS Settings<a class="headerlink" href="#cors-settings" title="Permalink to this headline">¶</a></h3>
 <p><strong>Example</strong></p>
@@ -227,7 +275,7 @@ attributes. See <a class="reference internal" href="authentication.html#saml2"><
 <span class="p">]</span>
 </pre></div>
 </div>
-<dl class="docutils" id="index-8">
+<dl class="docutils" id="index-10">
 <dt><code class="docutils literal notranslate"><span class="pre">CORS_ORIGINS</span></code></dt>
 <dd>URL origins that can access the API for Cross-Origin Resource Sharing (CORS)</dd>
 </dl>
@@ -260,7 +308,7 @@ in which Alerta is deployed.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<dl class="docutils" id="index-9">
+<dl class="docutils" id="index-11">
 <dt><code class="docutils literal notranslate"><span class="pre">SEVERITY_MAP</span></code></dt>
 <dd>dictionary of severity names and levels</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">DEFAULT_NORMAL_SEVERITY</span></code></dt>
@@ -280,7 +328,7 @@ are important for generating alerts from stale heartbeats.</p>
 <span class="n">HEARTBEAT_TIMEOUT</span> <span class="o">=</span> <span class="mi">7200</span>  <span class="c1"># 2 hours</span>
 </pre></div>
 </div>
-<dl class="docutils" id="index-10">
+<dl class="docutils" id="index-12">
 <dt><code class="docutils literal notranslate"><span class="pre">ALERT_TIMEOUT</span></code></dt>
 <dd>default timeout period in seconds for alerts (default is <code class="docutils literal notranslate"><span class="pre">86400</span></code>)</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">HEARTBEAT_TIMEOUT</span></code></dt>
@@ -298,7 +346,7 @@ email address before they can login.</p>
 <span class="n">MAIL_FROM</span> <span class="o">=</span> <span class="s1">&#39;noreply@alerta.io&#39;</span>
 </pre></div>
 </div>
-<dl class="docutils" id="index-11">
+<dl class="docutils" id="index-13">
 <dt><code class="docutils literal notranslate"><span class="pre">EMAIL_VERIFICATION</span></code></dt>
 <dd>enforce email verification of new users (default is <code class="docutils literal notranslate"><span class="pre">False</span></code>)</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">SMTP_HOST</span></code></dt>
@@ -329,11 +377,36 @@ connection and using <code class="docutils literal notranslate"><span class="pre
 <span id="webui-config"></span><h3>Web UI Settings<a class="headerlink" href="#web-ui-settings" title="Permalink to this headline">¶</a></h3>
 <p>The following settings are specific to the web UI and are not used by the server.</p>
 <p><strong>Example</strong></p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GOOGLE_TRACKING_ID</span> <span class="o">=</span> <span class="s1">&#39;UA-44644195-5&#39;</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SITE_LOGO_URL</span> <span class="o">=</span> <span class="s1">&#39;http://pigment.github.io/fake-logos/logos/vector/color/fast-banana.svg&#39;</span>
+<span class="n">DATE_FORMAT_SHORT_TIME</span> <span class="o">=</span> <span class="s1">&#39;HH:mm&#39;</span>
+<span class="n">DATE_FORMAT_MEDIUM_DATE</span> <span class="o">=</span> <span class="s1">&#39;EEE d MMM HH:mm&#39;</span>
+<span class="n">DATE_FORMAT_LONG_DATE</span> <span class="o">=</span> <span class="s1">&#39;d/M/yyyy h:mm:ss.sss a&#39;</span>
+<span class="n">DEFAULT_AUDIO_FILE</span> <span class="o">=</span> <span class="s1">&#39;/audio/Bike Horn.mp3&#39;</span>
+<span class="n">COLUMNS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;severity&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;lastReceiveTime&#39;</span><span class="p">,</span> <span class="s1">&#39;duplicateCount&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;customer&#39;</span><span class="p">,</span> <span class="s1">&#39;environment&#39;</span><span class="p">,</span> <span class="s1">&#39;service&#39;</span><span class="p">,</span> <span class="s1">&#39;resource&#39;</span><span class="p">,</span> <span class="s1">&#39;event&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">]</span>
+<span class="n">SORT_LIST_BY</span> <span class="o">=</span> <span class="s1">&#39;lastReceiveTime&#39;</span>
+<span class="n">ACTIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;createIssue&#39;</span><span class="p">,</span> <span class="s1">&#39;updateIssue&#39;</span><span class="p">]</span>
+<span class="n">GOOGLE_TRACKING_ID</span> <span class="o">=</span> <span class="s1">&#39;UA-44644195-5&#39;</span>
 <span class="n">AUTO_REFRESH_INTERVAL</span> <span class="o">=</span> <span class="mi">30000</span>  <span class="c1"># 30s</span>
 </pre></div>
 </div>
-<dl class="docutils" id="index-12">
+<span class="target" id="index-14"></span><dl class="docutils" id="index-15">
+<dt><code class="docutils literal notranslate"><span class="pre">SITE_LOGO_URL</span></code></dt>
+<dd>URL of company logo to replace “alerta” in navigation bar (no default)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DATE_FORMAT_SHORT_TIME</span></code></dt>
+<dd>format used for time in columns eg. <code class="docutils literal notranslate"><span class="pre">09:24</span></code> (default is <code class="docutils literal notranslate"><span class="pre">HH:mm</span></code>)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DATE_FORMAT_MEDIUM_DATE</span></code></dt>
+<dd>format used for dates in columns eg. <code class="docutils literal notranslate"><span class="pre">Tue</span> <span class="pre">9</span> <span class="pre">Oct</span> <span class="pre">09:24</span></code> (default is <code class="docutils literal notranslate"><span class="pre">EEE</span> <span class="pre">d</span> <span class="pre">MMM</span> <span class="pre">HH:mm</span></code>)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DATE_FORMAT_LONG_DATE</span></code></dt>
+<dd>format used for date and time in detail views eg. <code class="docutils literal notranslate"><span class="pre">9/10/2018</span> <span class="pre">9:24:03.036</span> <span class="pre">AM</span></code> (default is <code class="docutils literal notranslate"><span class="pre">d/M/yyyy</span> <span class="pre">h:mm:ss.sss</span> <span class="pre">a</span></code>)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">DEFAULT_AUDIO_FILE</span></code></dt>
+<dd>make sound when new alert arrives. must exist on client at relative path eg. <code class="docutils literal notranslate"><span class="pre">/audio/Bike</span> <span class="pre">Horn.mp3</span></code> (no default)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">COLUMNS</span></code></dt>
+<dd>user defined columns and column order for alert list view (default is standard web console column order)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">SORT_LIST_BY</span></code></dt>
+<dd>to sort by newest use <code class="docutils literal notranslate"><span class="pre">lastReceiveTime</span></code> or oldest use <code class="docutils literal notranslate"><span class="pre">-createTime</span></code>. minus means reverse (default is <code class="docutils literal notranslate"><span class="pre">lastReceiveTime</span></code>)</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ACTIONS</span></code></dt>
+<dd>adds buttons to web console for operators to trigger custom actions against alert (no default)</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">GOOGLE_TRACKING_ID</span></code></dt>
 <dd>used by the web UI to send tracking data to Google Analytics (no default)</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">AUTO_REFRESH_INTERVAL</span></code></dt>
@@ -351,7 +424,7 @@ plugins are available in the <a class="reference external" href="https://github.
 <span class="n">PLUGINS_RAISE_ON_ERROR</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># keep processing other plugins if exception</span>
 </pre></div>
 </div>
-<dl class="docutils" id="index-13">
+<dl class="docutils" id="index-16">
 <dt><code class="docutils literal notranslate"><span class="pre">PLUGINS</span></code></dt>
 <dd>list of enabled plugins (default <code class="docutils literal notranslate"><span class="pre">['reject',</span> <span class="pre">'blackout']</span></code>)</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">PLUGINS_RAISE_ON_ERROR</span></code></dt>
@@ -364,7 +437,7 @@ plugins are available in the <a class="reference external" href="https://github.
 <span class="n">ALLOWED_ENVIRONMENTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Production&#39;</span><span class="p">,</span> <span class="s1">&#39;Development&#39;</span><span class="p">,</span> <span class="s1">&#39;Testing&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<dl class="docutils" id="index-14">
+<dl class="docutils" id="index-17">
 <dt><code class="docutils literal notranslate"><span class="pre">ORIGIN_BLACKLIST</span></code></dt>
 <dd>list of alert origins blacklisted from submitting alerts. useful for rouge alert sources (no default)</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">ALLOWED_ENVIRONMENTS</span></code></dt>
@@ -386,7 +459,7 @@ rejected, by default.</p>
 <span class="n">BLACKOUT_ACCEPT</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="s1">&#39;ok&#39;</span><span class="p">,</span> <span class="s1">&#39;cleared&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<dl class="docutils" id="index-15">
+<dl class="docutils" id="index-18">
 <dt><code class="docutils literal notranslate"><span class="pre">BLACKOUT_DURATION</span></code></dt>
 <dd>default period for an alert blackout (default is <code class="docutils literal notranslate"><span class="pre">3600</span></code>)</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">NOTIFICATION_BLACKOUT</span></code></dt>
@@ -412,89 +485,91 @@ will always override any other setting.</p>
 <div class="section" id="id2">
 <h3>General Settings<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
-<dt><span class="target" id="index-16"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">DEBUG</span></code></dt>
+<dt><span class="target" id="index-19"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">DEBUG</span></code></dt>
 <dd><a class="reference internal" href="#general-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-17"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">BASE_URL</span></code></dt>
+<dt><span class="target" id="index-20"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">BASE_URL</span></code></dt>
 <dd><a class="reference internal" href="#general-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-18"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">SECRET_KEY</span></code></dt>
+<dt><span class="target" id="index-21"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">USE_PROXYFIX</span></code></dt>
 <dd><a class="reference internal" href="#general-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-19"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">AUTH_REQUIRED</span></code></dt>
+<dt><span class="target" id="index-22"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">SECRET_KEY</span></code></dt>
+<dd><a class="reference internal" href="#general-config"><span class="std std-ref">see above</span></a></dd>
+<dt><span class="target" id="index-23"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">AUTH_REQUIRED</span></code></dt>
 <dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-20"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">AUTH_PROVIDER</span></code></dt>
+<dt><span class="target" id="index-24"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">AUTH_PROVIDER</span></code></dt>
 <dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-21"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ADMIN_USERS</span></code></dt>
+<dt><span class="target" id="index-25"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ADMIN_USERS</span></code></dt>
 <dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-22"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CUSTOMER_VIEWS</span></code></dt>
+<dt><span class="target" id="index-26"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CUSTOMER_VIEWS</span></code></dt>
 <dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-23"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">OAUTH2_CLIENT_ID</span></code></dt>
+<dt><span class="target" id="index-27"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">OAUTH2_CLIENT_ID</span></code></dt>
 <dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-24"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">OAUTH2_CLIENT_SECRET</span></code></dt>
+<dt><span class="target" id="index-28"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">OAUTH2_CLIENT_SECRET</span></code></dt>
 <dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-25"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code></dt>
+<dt><span class="target" id="index-29"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code></dt>
 <dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-26"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">GITHUB_URL</span></code></dt>
+<dt><span class="target" id="index-30"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">GITHUB_URL</span></code></dt>
 <dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-27"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ALLOWED_GITHUB_ORGS</span></code></dt>
+<dt><span class="target" id="index-31"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ALLOWED_GITHUB_ORGS</span></code></dt>
 <dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-28"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">GITLAB_URL</span></code></dt>
+<dt><span class="target" id="index-32"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">GITLAB_URL</span></code></dt>
 <dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-29"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ALLOWED_GITLAB_GROUPS</span></code></dt>
+<dt><span class="target" id="index-33"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ALLOWED_GITLAB_GROUPS</span></code></dt>
 <dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-30"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">KEYCLOAK_URL</span></code></dt>
+<dt><span class="target" id="index-34"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">KEYCLOAK_URL</span></code></dt>
 <dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-31"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">KEYCLOAK_REALM</span></code></dt>
+<dt><span class="target" id="index-35"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">KEYCLOAK_REALM</span></code></dt>
 <dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-32"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ALLOWED_KEYCLOAK_ROLES</span></code></dt>
+<dt><span class="target" id="index-36"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ALLOWED_KEYCLOAK_ROLES</span></code></dt>
 <dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-33"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PINGFEDERATE_OPENID_ACCESS_TOKEN_URL</span></code></dt>
+<dt><span class="target" id="index-37"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PINGFEDERATE_OPENID_ACCESS_TOKEN_URL</span></code></dt>
 <dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-34"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PINGFEDERATE_OPENID_PAYLOAD_USERNAME</span></code></dt>
+<dt><span class="target" id="index-38"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PINGFEDERATE_OPENID_PAYLOAD_USERNAME</span></code></dt>
 <dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-35"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PINGFEDERATE_OPENID_PAYLOAD_EMAIL</span></code></dt>
+<dt><span class="target" id="index-39"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PINGFEDERATE_OPENID_PAYLOAD_EMAIL</span></code></dt>
 <dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-36"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PINGFEDERATE_OPENID_PAYLOAD_GROUP</span></code></dt>
+<dt><span class="target" id="index-40"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PINGFEDERATE_OPENID_PAYLOAD_GROUP</span></code></dt>
 <dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-37"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PINGFEDERATE_PUBKEY_LOCATION</span></code></dt>
+<dt><span class="target" id="index-41"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PINGFEDERATE_PUBKEY_LOCATION</span></code></dt>
 <dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-38"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PINGFEDERATE_TOKEN_ALGORITHM</span></code></dt>
+<dt><span class="target" id="index-42"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PINGFEDERATE_TOKEN_ALGORITHM</span></code></dt>
 <dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-39"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CORS_ORIGINS</span></code></dt>
+<dt><span class="target" id="index-43"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CORS_ORIGINS</span></code></dt>
 <dd><a class="reference internal" href="#cors-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-40"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MAIL_FROM</span></code></dt>
+<dt><span class="target" id="index-44"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MAIL_FROM</span></code></dt>
 <dd><a class="reference internal" href="#email-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-41"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">SMTP_PASSWORD</span></code></dt>
+<dt><span class="target" id="index-45"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">SMTP_PASSWORD</span></code></dt>
 <dd><a class="reference internal" href="#email-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-42"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">GOOGLE_TRACKING_ID</span></code></dt>
+<dt><span class="target" id="index-46"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">GOOGLE_TRACKING_ID</span></code></dt>
 <dd><a class="reference internal" href="#webui-config"><span class="std std-ref">see above</span></a></dd>
-<dt><span class="target" id="index-43"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PLUGINS</span></code></dt>
+<dt><span class="target" id="index-47"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PLUGINS</span></code></dt>
 <dd><a class="reference internal" href="#plugin-config"><span class="std std-ref">see above</span></a></dd>
 </dl>
 </div>
 <div class="section" id="id3">
 <h3>Database Settings<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
-<dt><span class="target" id="index-44"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">DATABASE_URL</span></code></dt>
+<dt><span class="target" id="index-48"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">DATABASE_URL</span></code></dt>
 <dd>used by both <span class="xref std std-ref">Postgres</span> and
 <span class="xref std std-ref">MongoDB</span> for database connection strings</dd>
-<dt><span class="target" id="index-45"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">DATABASE_NAME</span></code></dt>
+<dt><span class="target" id="index-49"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">DATABASE_NAME</span></code></dt>
 <dd>database name can be used to override default database defined in <code class="docutils literal notranslate"><span class="pre">DATABASE_URL</span></code></dd>
 </dl>
 </div>
 <div class="section" id="mongodb-settings">
 <h3>MongoDB Settings<a class="headerlink" href="#mongodb-settings" title="Permalink to this headline">¶</a></h3>
 <div class="deprecated">
-<p><span class="versionmodified">Deprecated since version 5.0: </span>Use <span class="target" id="index-46"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">DATABASE_URL</span></code> and <span class="target" id="index-47"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">DATABASE_NAME</span></code> instead.</p>
+<p><span class="versionmodified">Deprecated since version 5.0: </span>Use <span class="target" id="index-50"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">DATABASE_URL</span></code> and <span class="target" id="index-51"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">DATABASE_NAME</span></code> instead.</p>
 </div>
 <dl class="docutils">
-<dt><span class="target" id="index-48"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MONGO_URI</span></code></dt>
+<dt><span class="target" id="index-52"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MONGO_URI</span></code></dt>
 <dd>used to override <code class="docutils literal notranslate"><span class="pre">MONGO_URI</span></code> config variable using the standard connection string format</dd>
-<dt><span class="target" id="index-49"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MONGODB_URI</span></code></dt>
+<dt><span class="target" id="index-53"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MONGODB_URI</span></code></dt>
 <dd>alternative name for <code class="docutils literal notranslate"><span class="pre">MONGO_URI</span></code> environment variable which is used by some managed services</dd>
-<dt><span class="target" id="index-50"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MONGOHQ_URL</span></code></dt>
+<dt><span class="target" id="index-54"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MONGOHQ_URL</span></code></dt>
 <dd>automatically set when using <a class="reference external" href="https://devcenter.heroku.com/articles/mongohq">Heroku MongoHQ</a> managed service</dd>
-<dt><span class="target" id="index-51"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MONGOLAB_URI</span></code></dt>
+<dt><span class="target" id="index-55"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MONGOLAB_URI</span></code></dt>
 <dd>automatically set when using <a class="reference external" href="https://devcenter.heroku.com/articles/mongolab">Heroku MongoLab</a> managed service</dd>
-<dt><span class="target" id="index-52"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MONGO_PORT</span></code></dt>
+<dt><span class="target" id="index-56"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MONGO_PORT</span></code></dt>
 <dd>automatically set when deploying <a class="reference external" href="https://github.com/alerta/docker-alerta">Alerta to a Docker</a> linked mongo container</dd>
 </dl>
 </div>
