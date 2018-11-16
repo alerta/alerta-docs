@@ -135,7 +135,7 @@ See `MongoDB connection strings`_ for more information.
 ``DATABASE_RAISE_ON_ERROR``
     terminate startup if database configuration fails (default is ``True``)
 
-.. _auth config:
+.. _bulk_api_config:
 
 Bulk API Settings
 ~~~~~~~~~~~~~~~~~
@@ -159,6 +159,8 @@ long-running tasks. (experimental)
     URL of Celery-supported broker (no default)
 ``CELERY_RESULT_BACKEND``
     URL of Celery-supported result backend (no default)
+
+.. _auth_config:
 
 Authentication Settings
 ~~~~~~~~~~~~~~~~~~~~~~~

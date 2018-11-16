@@ -141,7 +141,7 @@ database configuration options are supported as connection URL parameters.</p>
 </dl>
 </div>
 <div class="section" id="bulk-api-settings">
-<span id="auth-config"></span><h3>Bulk API Settings<a class="headerlink" href="#bulk-api-settings" title="Permalink to this headline">¶</a></h3>
+<span id="bulk-api-config"></span><h3>Bulk API Settings<a class="headerlink" href="#bulk-api-settings" title="Permalink to this headline">¶</a></h3>
 <p>The bulk API requires a Celery backend and can be used to off-load
 long-running tasks. (experimental)</p>
 <p><strong>Example Redis Task Queue</strong></p>
@@ -160,7 +160,7 @@ long-running tasks. (experimental)</p>
 </dl>
 </div>
 <div class="section" id="authentication-settings">
-<h3>Authentication Settings<a class="headerlink" href="#authentication-settings" title="Permalink to this headline">¶</a></h3>
+<span id="auth-config"></span><h3>Authentication Settings<a class="headerlink" href="#authentication-settings" title="Permalink to this headline">¶</a></h3>
 <p>If enabled, authentication provides additional benefits beyond just security,
 such as auditing, and features like the ability to assign and watch alerts.</p>
 <p><strong>Example</strong></p>
@@ -494,45 +494,45 @@ will always override any other setting.</p>
 <dt><span class="target" id="index-22"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">SECRET_KEY</span></code></dt>
 <dd><a class="reference internal" href="#general-config"><span class="std std-ref">see above</span></a></dd>
 <dt><span class="target" id="index-23"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">AUTH_REQUIRED</span></code></dt>
-<dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
+<dd><span class="xref std std-ref">see above</span></dd>
 <dt><span class="target" id="index-24"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">AUTH_PROVIDER</span></code></dt>
-<dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
+<dd><span class="xref std std-ref">see above</span></dd>
 <dt><span class="target" id="index-25"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ADMIN_USERS</span></code></dt>
-<dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
+<dd><span class="xref std std-ref">see above</span></dd>
 <dt><span class="target" id="index-26"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CUSTOMER_VIEWS</span></code></dt>
-<dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
+<dd><span class="xref std std-ref">see above</span></dd>
 <dt><span class="target" id="index-27"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">OAUTH2_CLIENT_ID</span></code></dt>
-<dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
+<dd><span class="xref std std-ref">see above</span></dd>
 <dt><span class="target" id="index-28"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">OAUTH2_CLIENT_SECRET</span></code></dt>
-<dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
+<dd><span class="xref std std-ref">see above</span></dd>
 <dt><span class="target" id="index-29"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code></dt>
-<dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
+<dd><span class="xref std std-ref">see above</span></dd>
 <dt><span class="target" id="index-30"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">GITHUB_URL</span></code></dt>
-<dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
+<dd><span class="xref std std-ref">see above</span></dd>
 <dt><span class="target" id="index-31"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ALLOWED_GITHUB_ORGS</span></code></dt>
-<dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
+<dd><span class="xref std std-ref">see above</span></dd>
 <dt><span class="target" id="index-32"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">GITLAB_URL</span></code></dt>
-<dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
+<dd><span class="xref std std-ref">see above</span></dd>
 <dt><span class="target" id="index-33"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ALLOWED_GITLAB_GROUPS</span></code></dt>
-<dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
+<dd><span class="xref std std-ref">see above</span></dd>
 <dt><span class="target" id="index-34"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">KEYCLOAK_URL</span></code></dt>
-<dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
+<dd><span class="xref std std-ref">see above</span></dd>
 <dt><span class="target" id="index-35"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">KEYCLOAK_REALM</span></code></dt>
-<dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
+<dd><span class="xref std std-ref">see above</span></dd>
 <dt><span class="target" id="index-36"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ALLOWED_KEYCLOAK_ROLES</span></code></dt>
-<dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
+<dd><span class="xref std std-ref">see above</span></dd>
 <dt><span class="target" id="index-37"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PINGFEDERATE_OPENID_ACCESS_TOKEN_URL</span></code></dt>
-<dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
+<dd><span class="xref std std-ref">see above</span></dd>
 <dt><span class="target" id="index-38"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PINGFEDERATE_OPENID_PAYLOAD_USERNAME</span></code></dt>
-<dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
+<dd><span class="xref std std-ref">see above</span></dd>
 <dt><span class="target" id="index-39"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PINGFEDERATE_OPENID_PAYLOAD_EMAIL</span></code></dt>
-<dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
+<dd><span class="xref std std-ref">see above</span></dd>
 <dt><span class="target" id="index-40"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PINGFEDERATE_OPENID_PAYLOAD_GROUP</span></code></dt>
-<dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
+<dd><span class="xref std std-ref">see above</span></dd>
 <dt><span class="target" id="index-41"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PINGFEDERATE_PUBKEY_LOCATION</span></code></dt>
-<dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
+<dd><span class="xref std std-ref">see above</span></dd>
 <dt><span class="target" id="index-42"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PINGFEDERATE_TOKEN_ALGORITHM</span></code></dt>
-<dd><a class="reference internal" href="#auth-config"><span class="std std-ref">see above</span></a></dd>
+<dd><span class="xref std std-ref">see above</span></dd>
 <dt><span class="target" id="index-43"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CORS_ORIGINS</span></code></dt>
 <dd><a class="reference internal" href="#cors-config"><span class="std std-ref">see above</span></a></dd>
 <dt><span class="target" id="index-44"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MAIL_FROM</span></code></dt>

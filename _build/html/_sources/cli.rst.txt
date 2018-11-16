@@ -351,6 +351,13 @@ managing API keys.
 
   key           Create API key
 
+
+.. important::
+
+    To prevent privilege escalation it is not possible to create an API key
+    with associated roles that are greater than that with which that API key
+    has.
+
 :command:`keys` - List API keys
 +++++++++++++++++++++++++++++++++++
 
