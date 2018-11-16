@@ -73,6 +73,11 @@ would need to set ``BASE_URL``::
 
     BASE_URL = '/api'
 
+Additionally add the ``USE_PROXYFIX`` setting to fix relative links in HTTP
+responses if the web proxy is used for SSL termination::
+
+    USE_PROXYFIX = True  # use if proxy is terminating HTTPS traffic
+
 And the web UI configuration file :file:`config.json` would need
 the ``endpoint`` setting to match that::
 

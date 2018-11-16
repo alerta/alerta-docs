@@ -94,6 +94,11 @@ would need to set <code class="docutils literal notranslate"><span class="pre">B
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;/api&#39;</span>
 </pre></div>
 </div>
+<p>Additionally add the <code class="docutils literal notranslate"><span class="pre">USE_PROXYFIX</span></code> setting to fix relative links in HTTP
+responses if the web proxy is used for SSL termination:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">USE_PROXYFIX</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># use if proxy is terminating HTTPS traffic</span>
+</pre></div>
+</div>
 <p>And the web UI configuration file <code class="file docutils literal notranslate"><span class="pre">config.json</span></code> would need
 the <code class="docutils literal notranslate"><span class="pre">endpoint</span></code> setting to match that:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;endpoint&quot;</span><span class="p">:</span> <span class="s2">&quot;/api&quot;</span><span class="p">}</span>
