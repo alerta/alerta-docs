@@ -66,19 +66,29 @@ Use these scopes to request access to API resources.
 +------------------------+--------------------------------------------------------------+
 | ``write:alerts``       | Grants read/write access to alerts.                          |
 +------------------------+--------------------------------------------------------------+
-| ``admin:alerts``       | Grants read, write and delete access to alerts.              |
+| ``admin:alerts``       | Grants read/write to alerts for any customer.                |
 +------------------------+--------------------------------------------------------------+
 | ``read:blackouts``     | Grants read-only access to blackouts.                        |
 +------------------------+--------------------------------------------------------------+
 | ``write:blackouts``    | Grants read/write access to blackouts.                       |
 +------------------------+--------------------------------------------------------------+
+| ``admin:blackouts``    | Grants read/write access to blackouts for any customer.      |
++------------------------+--------------------------------------------------------------+
 | ``read:heartbeats``    | Read-only access to heartbeats.                              |
 +------------------------+--------------------------------------------------------------+
 | ``write:heartbeats``   | Grants read/write access to heartbeats.                      |
 +------------------------+--------------------------------------------------------------+
-| ``admin:heartbeats``   | Grants read, write and delete access to heartbeats.          |
+| ``admin:heartbeats``   | Grants read/write access to heartbeats for any customer.     |
++------------------------+--------------------------------------------------------------+
+| ``write:users``        | Grant write access to users.                                 |
 +------------------------+--------------------------------------------------------------+
 | ``admin:users``        | Fully manage users.                                          |
++------------------------+--------------------------------------------------------------+
+| ``read:perms``         | Grants read-only access to permissions and scopes.           |
++------------------------+--------------------------------------------------------------+
+| ``admin:perms``        | Grants read, write and delete access to permissions.         |
++------------------------+--------------------------------------------------------------+
+| ``read:customers``     | Grants read-only access to customers.                        |
 +------------------------+--------------------------------------------------------------+
 | ``admin:customers``    | Fully manage customers.                                      |
 +------------------------+--------------------------------------------------------------+
@@ -86,7 +96,7 @@ Use these scopes to request access to API resources.
 +------------------------+--------------------------------------------------------------+
 | ``write:keys``         | Create, list and view API keys.                              |
 +------------------------+--------------------------------------------------------------+
-| ``admin:keys``         | Fully manage API keys.                                       |
+| ``admin:keys``         | Fully manage API keys for any customer.                                       |
 +------------------------+--------------------------------------------------------------+
 | ``write:webhooks``     | Grants write access to webhooks.                             |
 +------------------------+--------------------------------------------------------------+
