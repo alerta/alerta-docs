@@ -203,9 +203,12 @@ To use GitLab as the OAuth2 provider for Alerta, login to GitLab and go
 to *Profile Settings -> Applications -> New Application*.
 
 - Name: Alerta
-- Redirect URL: http://alerta.example.com
+- Callback URL: http://alerta.example.com
+- Scopes: ``openid``
 
-.. note:: The `Redirect URL` is the most important setting and it
+.. image:: _static/images/gitlab-oauth2-screen-shot-3.png
+
+.. note:: The `Callback URL` is the most important setting and it
           is nothing more than the URL domain (ie. without any path)
           where the alerta Web UI is being hosted.
 
