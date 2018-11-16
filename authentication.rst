@@ -419,7 +419,7 @@ API Keys
 --------
 
 If authentication is enforced, then an API key is needed to access
-the alerta API programatically or to use the :ref:`alerta CLI <cli>`.
+the alerta API programatically and can be to used by the :ref:`alerta CLI <cli>`.
 Keys can be easily generated from the Alerta web UI and can be `read-write`
 or `read-only`. They are valid for 1 year but this period is configurable
 using ``API_KEY_EXPIRE_DAYS`` in the :ref:`server configuration <api config>`.

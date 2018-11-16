@@ -45,11 +45,11 @@ is used which defines two roles:
 
 .. note::
 
-    The ``user`` and ``admin`` roles are protected can **not** be deleted. And new
-    roles with the same names are forbidden. The scopes associated with the default
-    ``user`` role are managed using the ``USER_DEFAULT_SCOPES`` setting in the API
-    :ref:`server settings <auth_config>`. All other roles are managed via the web
-    console or ``alerta`` CLI.  
+    The ``user`` and ``admin`` roles are protected preventing them from being
+    deleted and preventing new roles from being created with the same names.
+    The scopes associated with the default ``user`` role are managed using the 
+    ``USER_DEFAULT_SCOPES`` setting in the API :ref:`server settings <auth_config>`.
+    All other roles are managed via the web console or ``alerta`` CLI.  
 
 Custom Authorization
 ++++++++++++++++++++
