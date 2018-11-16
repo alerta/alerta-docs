@@ -331,7 +331,7 @@ three times.</p>
 sends <code class="docutils literal notranslate"><span class="pre">critical</span></code> and <code class="docutils literal notranslate"><span class="pre">major</span></code> alerts to <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty">PagerDuty</a> as well.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
 
-    <span class="k">if</span> <span class="n">alert</span><span class="o">.</span><span class="n">duplicateCount</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">alert</span><span class="o">.</span><span class="n">duplicate_count</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[]</span>
     <span class="k">elif</span> <span class="n">alert</span><span class="o">.</span><span class="n">severity</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;critical&#39;</span><span class="p">,</span> <span class="s1">&#39;major&#39;</span><span class="p">]:</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">plugins</span><span class="p">[</span><span class="s1">&#39;slack&#39;</span><span class="p">],</span> <span class="n">plugins</span><span class="p">[</span><span class="s1">&#39;pagerduty&#39;</span><span class="p">]]</span>
