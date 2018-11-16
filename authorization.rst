@@ -96,7 +96,7 @@ Use these scopes to request access to API resources.
 +------------------------+--------------------------------------------------------------+
 | ``write:keys``         | Create, list and view API keys.                              |
 +------------------------+--------------------------------------------------------------+
-| ``admin:keys``         | Fully manage API keys for any customer.                                       |
+| ``admin:keys``         | Fully manage API keys for any customer.                      |
 +------------------------+--------------------------------------------------------------+
 | ``write:webhooks``     | Grants write access to webhooks.                             |
 +------------------------+--------------------------------------------------------------+

@@ -77,6 +77,97 @@ with the required scopes. See below for list of valid scopes.</p>
 <div class="section" id="scopes-and-permissions">
 <h2>Scopes and Permissions<a class="headerlink" href="#scopes-and-permissions" title="Permalink to this headline">¶</a></h2>
 <p>Use these scopes to request access to API resources.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Scope</th>
+<th class="head">Permissions</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">read</span></code></td>
+<td>Grants read-only access to all scopes.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">write</span></code></td>
+<td>Grants read/write access to all scopes.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">admin</span></code></td>
+<td>Grants admin, read, write and delete access to all scopes.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">read:alerts</span></code></td>
+<td>Read-only access to alerts.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">write:alerts</span></code></td>
+<td>Grants read/write access to alerts.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">admin:alerts</span></code></td>
+<td>Grants read/write to alerts for any customer.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">read:blackouts</span></code></td>
+<td>Grants read-only access to blackouts.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">write:blackouts</span></code></td>
+<td>Grants read/write access to blackouts.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">admin:blackouts</span></code></td>
+<td>Grants read/write access to blackouts for any customer.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">read:heartbeats</span></code></td>
+<td>Read-only access to heartbeats.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">write:heartbeats</span></code></td>
+<td>Grants read/write access to heartbeats.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">admin:heartbeats</span></code></td>
+<td>Grants read/write access to heartbeats for any customer.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">write:users</span></code></td>
+<td>Grant write access to users.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">admin:users</span></code></td>
+<td>Fully manage users.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">read:perms</span></code></td>
+<td>Grants read-only access to permissions and scopes.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">admin:perms</span></code></td>
+<td>Grants read, write and delete access to permissions.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">read:customers</span></code></td>
+<td>Grants read-only access to customers.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">admin:customers</span></code></td>
+<td>Fully manage customers.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">read:keys</span></code></td>
+<td>List and view API keys.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">write:keys</span></code></td>
+<td>Create, list and view API keys.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">admin:keys</span></code></td>
+<td>Fully manage API keys for any customer.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">write:webhooks</span></code></td>
+<td>Grants write access to webhooks.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">read:oembed</span></code></td>
+<td>Grants read-only to oembed endpoints.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">read:management</span></code></td>
+<td>Grants read-only access to management endpoints.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">admin:management</span></code></td>
+<td>Fully manage management endpoints.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">read:userinfo</span></code></td>
+<td>Grants read-only access to userinfo.</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last"><code class="docutils literal notranslate"><span class="pre">write</span></code> implicitly includes <code class="docutils literal notranslate"><span class="pre">read</span></code>, and <code class="docutils literal notranslate"><span class="pre">admin</span></code> implicitly
