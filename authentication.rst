@@ -419,26 +419,40 @@ API Keys
 --------
 
 If authentication is enforced, then an API key is needed to access
-the alerta API programatically and can be to used by the :ref:`alerta CLI <cli>`.
-Keys can be easily generated from the Alerta web UI and can be `read-write`
-or `read-only`. They are valid for 1 year but this period is configurable
-using ``API_KEY_EXPIRE_DAYS`` in the :ref:`server configuration <api config>`.
+the alerta API programatically. An API key can also be to used by the
+:ref:`alerta CLI <cli>` for when the CLI is used in scripts. See the
+:ref:`example CLI config <cli config>` for how to set the API key for
+the command-line tool.
 
-See the :ref:`example CLI config <cli config>` for how to set the
-API key for the command-line tool.
+Keys can be easily generated from the Alerta web UI and can have any scopes
+associated with them. They are valid for 1 year by default but this period
+is configurable using ``API_KEY_EXPIRE_DAYS`` in the
+:ref:`server configuration <api config>`.
 
-To use an API key in an API query you must set the correct HTTP
-``Authorization`` header::
+To use an API key in an API query you must put the key in either an
+HTTP header or a query parameter.
 
-    curl 'http://api.alerta.io/alerts' -H 'Authorization: Key demo-key' -H 'Accept: application/json'
+.. important::
 
-or use the ``api-key`` GET parameter::
+    Using an HTTP header is the preferred method so that API keys are
+    not exposed even when using HTTPS or inadvertently captured in log
+    files. 
 
-    curl 'http://api.alerta.io/alerts?api-key=demo-key' -H 'Accept: application/json'
+**Example using HTTP header**
 
-.. note:: Using the HTTP ``Authorization`` header is preferred so that API
-          keys are not inadvertently captured in log files and accidentally
-          exposed.
+Use either the ``Authorization`` header with authorization type of ``Key``::
+
+    $ curl 'http://api.alerta.io/alerts' -H 'Authorization: Key demo-key' -H 'Accept: application/json'
+
+or the custom header ``X-API-Key``::
+
+    $ curl 'http://api.alerta.io/alerts' -H 'X-API-Key: demo-key' -H 'Accept: application/json'
+
+**Example using query paramter**
+
+Use the ``api-key`` URL parameter::
+
+    $ curl 'http://api.alerta.io/alerts?api-key=demo-key' -H 'Accept: application/json'
 
 .. _user auth:
 

@@ -418,26 +418,35 @@ Default is <code class="docutils literal notranslate"><span class="pre">'{givenN
 <div class="section" id="api-keys">
 <span id="id7"></span><h2>API Keys<a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h2>
 <p>If authentication is enforced, then an API key is needed to access
-the alerta API programatically and can be to used by the <a class="reference internal" href="cli.html#cli"><span class="std std-ref">alerta CLI</span></a>.
-Keys can be easily generated from the Alerta web UI and can be <cite>read-write</cite>
-or <cite>read-only</cite>. They are valid for 1 year but this period is configurable
-using <code class="docutils literal notranslate"><span class="pre">API_KEY_EXPIRE_DAYS</span></code> in the <a class="reference internal" href="configuration.html#api-config"><span class="std std-ref">server configuration</span></a>.</p>
-<p>See the <a class="reference internal" href="cli.html#cli-config"><span class="std std-ref">example CLI config</span></a> for how to set the
-API key for the command-line tool.</p>
-<p>To use an API key in an API query you must set the correct HTTP
-<code class="docutils literal notranslate"><span class="pre">Authorization</span></code> header:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="s1">&#39;http://api.alerta.io/alerts&#39;</span> <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Accept: application/json&#39;</span>
+the alerta API programatically. An API key can also be to used by the
+<a class="reference internal" href="cli.html#cli"><span class="std std-ref">alerta CLI</span></a> for when the CLI is used in scripts. See the
+<a class="reference internal" href="cli.html#cli-config"><span class="std std-ref">example CLI config</span></a> for how to set the API key for
+the command-line tool.</p>
+<p>Keys can be easily generated from the Alerta web UI and can have any scopes
+associated with them. They are valid for 1 year by default but this period
+is configurable using <code class="docutils literal notranslate"><span class="pre">API_KEY_EXPIRE_DAYS</span></code> in the
+<a class="reference internal" href="configuration.html#api-config"><span class="std std-ref">server configuration</span></a>.</p>
+<p>To use an API key in an API query you must put the key in either an
+HTTP header or a query parameter.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Using an HTTP header is the preferred method so that API keys are
+not exposed even when using HTTPS or inadvertently captured in log
+files.</p>
+</div>
+<p><strong>Example using HTTP header</strong></p>
+<p>Use either the <code class="docutils literal notranslate"><span class="pre">Authorization</span></code> header with authorization type of <code class="docutils literal notranslate"><span class="pre">Key</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl &#39;http://api.alerta.io/alerts&#39; -H &#39;Authorization: Key demo-key&#39; -H &#39;Accept: application/json&#39;
 </pre></div>
 </div>
-<p>or use the <code class="docutils literal notranslate"><span class="pre">api-key</span></code> GET parameter:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="s1">&#39;http://api.alerta.io/alerts?api-key=demo-key&#39;</span> <span class="o">-</span><span class="n">H</span> <span class="s1">&#39;Accept: application/json&#39;</span>
+<p>or the custom header <code class="docutils literal notranslate"><span class="pre">X-API-Key</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl &#39;http://api.alerta.io/alerts&#39; -H &#39;X-API-Key: demo-key&#39; -H &#39;Accept: application/json&#39;
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Using the HTTP <code class="docutils literal notranslate"><span class="pre">Authorization</span></code> header is preferred so that API
-keys are not inadvertently captured in log files and accidentally
-exposed.</p>
+<p><strong>Example using query paramter</strong></p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">api-key</span></code> URL parameter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl &#39;http://api.alerta.io/alerts?api-key=demo-key&#39; -H &#39;Accept: application/json&#39;
+</pre></div>
 </div>
 </div>
 <div class="section" id="user-authorisation">
