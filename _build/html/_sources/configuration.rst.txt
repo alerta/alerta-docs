@@ -37,13 +37,14 @@ General Settings
     DEBUG = True
     SECRET_KEY = 'changeme'
     BASE_URL = '/api'
+    USE_PROXYFIX = False
     LOGGER_NAME = 'alerta-api'
     LOG_FILE = '/var/log/alertad.log'
     LOG_MAX_BYTES = 5*1024*1024  # 5 MB
     LOG_BACKUP_COUNT = 2
     LOG_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 
-.. index:: DEBUG, SECRET_KEY, BASE_URL, LOGGER_NAME, LOG_FILE, LOG_MAX_BYTES, LOG_BACKUP_COUNT, LOG_FORMAT
+.. index:: DEBUG, SECRET_KEY, BASE_URL, USE_PROXYFIX, LOGGER_NAME, LOG_FILE, LOG_MAX_BYTES, LOG_BACKUP_COUNT, LOG_FORMAT
 
 ``DEBUG``
     debug mode for increased logging (default is ``False``)
@@ -51,6 +52,8 @@ General Settings
     a unique, randomly generated sequence of ASCII characters.
 ``BASE_URL``
     if API served on a path or behind a proxy use it to fix relative links (no default)
+``USE_PROXYFIX``
+    if API served behind SSL terminating proxy (default is ``False``)
 ``LOGGER_NAME``
     name of logger used by python ``logging`` module (default is ``alerta``)
 ``LOG_FILE``
@@ -71,12 +74,18 @@ API Settings
 
 .. code:: python
 
+    ALARM_MODEL='ALERTA'
+    DEFAULT_FIELD = 'text'
     DEFAULT_PAGE_SIZE = 1000
     HISTORY_LIMIT = 100
     HISTORY_ON_VALUE_CHANGE = False  # do not log if only value changes
 
-.. index:: DEFAULT_PAGE_SIZE, HISTORY_LIMIT, HISTORY_ON_VALUE_CHANGE
+.. index:: ALARM_MODEL, DEFAULT_FIELD, DEFAULT_PAGE_SIZE, HISTORY_LIMIT, HISTORY_ON_VALUE_CHANGE
 
+``ALARM_MODEL``
+    set to ``ISA_18_2`` to use experimental alarm model (default is ``ALERTA``)
+``DEFAULT_FIELD``
+    search default field when no field given when using lucene query syntax (default is ``text``)
 ``DEFAULT_PAGE_SIZE``
     maximum number of alerts returned in a single query (default 1000)
 ``HISTORY_LIMIT``
@@ -127,6 +136,29 @@ See `MongoDB connection strings`_ for more information.
     terminate startup if database configuration fails (default is ``True``)
 
 .. _auth config:
+
+Bulk API Settings
+~~~~~~~~~~~~~~~~~
+
+The bulk API requires a Celery backend and can be used to off-load
+long-running tasks. (experimental)
+
+**Example Redis Task Queue**
+
+.. code:: python
+
+    BULK_QUERY_LIMIT = 10000
+    CELERY_BROKER_URL='redis://localhost:6379/0'
+    CELERY_RESULT_BACKEND='redis://localhost:6379/0'
+
+.. index:: BULK_QUERY_LIMIT, CELERY_BROKER_URL, CELERY_RESULT_BACKEND
+
+``BULK_QUERY_LIMIT``
+    limit the number of tasks in a single bulk query (default is ``100000``)
+``CELERY_BROKER_URL``
+    URL of Celery-supported broker (no default)
+``CELERY_RESULT_BACKEND``
+    URL of Celery-supported result backend (no default)
 
 Authentication Settings
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -220,6 +252,32 @@ such as auditing, and features like the ability to assign and watch alerts.
     number of days a bearer token is valid (default is ``14``)
 ``API_KEY_EXPIRE_DAYS``
     number of days an API key is valid (default is ``365``)
+
+.. _Audit Log config:
+
+Audit Log Settings
+~~~~~~~~~~~~~~~~~~
+
+Audit events can be logged locally to the standard application log (which
+could also help with general debugging) or forwarded to a HTTP endpoint
+using a POST.
+
+**Example**
+
+.. code:: python
+
+    AUDIT_TRAIL = ['admin', 'write', 'auth']
+    AUDIT_LOG = True  # log to Flask application logger
+    AUDIT_URL = 'https://listener.logz.io:8071/?token=TOKEN'
+
+.. index:: AUDIT_TRAIL, AUDIT_LOG, AUDIT_URL
+
+``AUDIT_TRAIL``
+    audit trail for ``admin``, ``write`` or ``auth`` changes. (default is ``['admin']``)
+``AUDIT_LOG``
+    enable audit logging to configured application log file (default is ``False``)
+``AUDIT_URL``
+    forward audit logs to HTTP POST URL (no default)
 
 .. _CORS config:
 
@@ -363,11 +421,37 @@ The following settings are specific to the web UI and are not used by the server
 
 .. code:: python
 
+    SITE_LOGO_URL = 'http://pigment.github.io/fake-logos/logos/vector/color/fast-banana.svg'
+    DATE_FORMAT_SHORT_TIME = 'HH:mm'
+    DATE_FORMAT_MEDIUM_DATE = 'EEE d MMM HH:mm'
+    DATE_FORMAT_LONG_DATE = 'd/M/yyyy h:mm:ss.sss a'
+    DEFAULT_AUDIO_FILE = '/audio/Bike Horn.mp3'
+    COLUMNS = ['severity', 'status', 'lastReceiveTime', 'duplicateCount',
+            'customer', 'environment', 'service', 'resource', 'event', 'value', 'text']
+    SORT_LIST_BY = 'lastReceiveTime'
+    ACTIONS = ['createIssue', 'updateIssue']
     GOOGLE_TRACKING_ID = 'UA-44644195-5'
     AUTO_REFRESH_INTERVAL = 30000  # 30s
 
-.. index:: GOOGLE_TRACKING_ID, AUTO_REFRESH_INTERVAL
+.. index:: SITE_LOGO_URL, DATE_FORMAT_SHORT_TIME, DATE_FORMAT_MEDIUM_DATE, DATE_FORMAT_LONG_DATE
+.. index:: DEFAULT_AUDIO_FILE, COLUMNS, SORT_LIST_BY, ACTIONS, GOOGLE_TRACKING_ID, AUTO_REFRESH_INTERVAL
 
+``SITE_LOGO_URL``
+    URL of company logo to replace "alerta" in navigation bar (no default)
+``DATE_FORMAT_SHORT_TIME``
+    format used for time in columns eg. ``09:24`` (default is ``HH:mm``)
+``DATE_FORMAT_MEDIUM_DATE``
+    format used for dates in columns eg. ``Tue 9 Oct 09:24`` (default is ``EEE d MMM HH:mm``) 
+``DATE_FORMAT_LONG_DATE``
+    format used for date and time in detail views eg. ``9/10/2018 9:24:03.036 AM`` (default is ``d/M/yyyy h:mm:ss.sss a``) 
+``DEFAULT_AUDIO_FILE``
+    make sound when new alert arrives. must exist on client at relative path eg. ``/audio/Bike Horn.mp3`` (no default)
+``COLUMNS``
+  user defined columns and column order for alert list view (default is standard web console column order)
+``SORT_LIST_BY``
+    to sort by newest use ``lastReceiveTime`` or oldest use ``-createTime``. minus means reverse (default is ``lastReceiveTime``)
+``ACTIONS``
+    adds buttons to web console for operators to trigger custom actions against alert (no default)
 ``GOOGLE_TRACKING_ID``
     used by the web UI to send tracking data to Google Analytics (no default)
 ``AUTO_REFRESH_INTERVAL``
@@ -463,6 +547,8 @@ General Settings
 :envvar:`DEBUG`
     :ref:`see above <general config>`
 :envvar:`BASE_URL`
+    :ref:`see above <general config>`
+:envvar:`USE_PROXYFIX`
     :ref:`see above <general config>`
 :envvar:`SECRET_KEY`
     :ref:`see above <general config>`
