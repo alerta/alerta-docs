@@ -63,9 +63,20 @@ configuration.</p>
 <p>If <a class="reference internal" href="authentication.html#authentication"><span class="std std-ref">authentication</span></a> is enabled then the default authorization
 is used which defines two roles:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">user</span></code> role - everyone is a “user” unless listed in the <code class="docutils literal notranslate"><span class="pre">ADMIN_USERS</span></code> setting</li>
-<li><code class="docutils literal notranslate"><span class="pre">admin</span></code> role - only admins can delete alerts and heartbeats, create users etc.</li>
+<li><code class="docutils literal notranslate"><span class="pre">user</span></code> role - everyone is a “user” unless listed in the <code class="docutils literal notranslate"><span class="pre">ADMIN_USERS</span></code> setting.
+(default scopes are <code class="docutils literal notranslate"><span class="pre">read</span></code> and <code class="docutils literal notranslate"><span class="pre">write</span></code>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">admin</span></code> role - only admins can delete alerts and heartbeats, create users etc.
+(default scope is simply <code class="docutils literal notranslate"><span class="pre">admin</span></code>, however that implicitly includes <code class="docutils literal notranslate"><span class="pre">read</span></code>
+and <code class="docutils literal notranslate"><span class="pre">write</span></code>)</li>
 </ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <code class="docutils literal notranslate"><span class="pre">user</span></code> and <code class="docutils literal notranslate"><span class="pre">admin</span></code> roles are protected can <strong>not</strong> be deleted. And new
+roles with the same names are forbidden. The scopes associated with the default
+<code class="docutils literal notranslate"><span class="pre">user</span></code> role are managed using the <code class="docutils literal notranslate"><span class="pre">USER_DEFAULT_SCOPES</span></code> setting in the API
+<a class="reference internal" href="configuration.html#auth-config"><span class="std std-ref">server settings</span></a>. All other roles are managed via the web
+console or <code class="docutils literal notranslate"><span class="pre">alerta</span></code> CLI.</p>
+</div>
 </div>
 <div class="section" id="custom-authorization">
 <h3>Custom Authorization<a class="headerlink" href="#custom-authorization" title="Permalink to this headline">¶</a></h3>

@@ -37,8 +37,19 @@ Default Authorization
 If :ref:`authentication <authentication>` is enabled then the default authorization
 is used which defines two roles:
 
-* ``user`` role - everyone is a "user" unless listed in the ``ADMIN_USERS`` setting
+* ``user`` role - everyone is a "user" unless listed in the ``ADMIN_USERS`` setting.
+  (default scopes are ``read`` and ``write``)
 * ``admin`` role - only admins can delete alerts and heartbeats, create users etc.
+  (default scope is simply ``admin``, however that implicitly includes ``read``
+  and ``write``)
+
+.. note::
+
+    The ``user`` and ``admin`` roles are protected can **not** be deleted. And new
+    roles with the same names are forbidden. The scopes associated with the default
+    ``user`` role are managed using the ``USER_DEFAULT_SCOPES`` setting in the API
+    :ref:`server settings <auth_config>`. All other roles are managed via the web
+    console or ``alerta`` CLI.  
 
 Custom Authorization
 ++++++++++++++++++++
