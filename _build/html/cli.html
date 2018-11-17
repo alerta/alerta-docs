@@ -481,13 +481,45 @@ managing alert suppressions using blackouts.</p>
 managing heartbeats.</p>
 <div class="section" id="heartbeat-send-a-heartbeat">
 <h4><a class="toc-backref" href="#id21"><strong class="command">heartbeat</strong> - Send a heartbeat</a><a class="headerlink" href="#heartbeat-send-a-heartbeat" title="Permalink to this headline">¶</a></h4>
-<blockquote>
-<div>heartbeat     Send a heartbeat</div></blockquote>
+<p>Send or delete a heartbeat.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta heartbeat [OPTIONS]
+
+Options:
+  -O, --origin ORIGIN  Origin of heartbeat.
+  -T, --tag TAG        List of tags eg. London, os:linux, AWS/EC2
+  --timeout SECONDS    Seconds before heartbeat is stale
+  --customer STRING    Customer
+  -D, --delete ID      Delete hearbeat using ID
+  -h, --help           Show this message and exit.
+</pre></div>
+</div>
 </div>
 <div class="section" id="heartbeats-list-heartbeats">
 <h4><a class="toc-backref" href="#id22"><strong class="command">heartbeats</strong> - List heartbeats</a><a class="headerlink" href="#heartbeats-list-heartbeats" title="Permalink to this headline">¶</a></h4>
-<blockquote>
-<div>heartbeats    List heartbeats</div></blockquote>
+<p>List heartbeats and generate heartbeat alerts.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta heartbeats [OPTIONS]
+
+Options:
+  --alert                  Alert on stale or slow heartbeats
+  -s, --severity SEVERITY  Severity for stale heartbeat alerts
+  --purge                  Delete all stale heartbeats
+  -h, --help               Show this message and exit.
+</pre></div>
+</div>
+<p>Alerts can be generated from stale or slow heartbeats using
+the <code class="docutils literal notranslate"><span class="pre">--alert</span></code> option. It is expected that this would be run
+at regular intervals using a scheduling service such as <code class="docutils literal notranslate"><span class="pre">cron</span></code>.</p>
+<p>Tags can be used to set the <code class="docutils literal notranslate"><span class="pre">environment</span></code> or <code class="docutils literal notranslate"><span class="pre">group</span></code> of a heartbeat
+alert using the format <code class="docutils literal notranslate"><span class="pre">environment:[ENV]</span></code> and <code class="docutils literal notranslate"><span class="pre">group:[GRP]</span></code>. These
+tags will be visible in the heartbeat but removed as tags from the alert.</p>
+<p><strong>Example</strong></p>
+<p>To send a <code class="docutils literal notranslate"><span class="pre">major</span></code> alert with an environment of <code class="docutils literal notranslate"><span class="pre">Infra</span></code> in the <code class="docutils literal notranslate"><span class="pre">Network</span></code>
+group when a heartbeat is missed or slow for an origin called <code class="docutils literal notranslate"><span class="pre">system1</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta heartbeat -O system1 -T environment:Infra -T group:Network --timeout 10
+(wait &gt;10 seconds)
+$ alerta heartbeats --alert --severity major
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="api-key-commands">

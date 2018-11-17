@@ -99,6 +99,10 @@ To generate alerts from stale heartbeats run::
 
     $ alerta heartbeats --alert
 
+To set the ``environment`` or ``group`` for a heartbeat alert use tags.
+
+    $ alerta heartbeat -O dc1-oem-02 -T environment:Development -T group:Network
+
 Add the above command as a cron job so that alerts are generated whenever
 a heartbeat is stale or slow::
 
