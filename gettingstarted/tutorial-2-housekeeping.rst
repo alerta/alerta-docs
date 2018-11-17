@@ -99,7 +99,7 @@ To generate alerts from stale heartbeats run::
 
     $ alerta heartbeats --alert
 
-To set the ``environment`` or ``group`` for a heartbeat alert use tags.
+To set the ``environment`` or ``group`` for a heartbeat alert use tags::
 
     $ alerta heartbeat -O dc1-oem-02 -T environment:Development -T group:Network
 
