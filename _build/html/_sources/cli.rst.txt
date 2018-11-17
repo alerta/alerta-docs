@@ -333,14 +333,53 @@ The following group of commands are related to creating and
 managing heartbeats.
 
 :command:`heartbeat` - Send a heartbeat
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++
 
-  heartbeat     Send a heartbeat
+Send or delete a heartbeat.
+
+::
+
+    $ alerta heartbeat [OPTIONS]
+
+    Options:
+      -O, --origin ORIGIN  Origin of heartbeat.
+      -T, --tag TAG        List of tags eg. London, os:linux, AWS/EC2
+      --timeout SECONDS    Seconds before heartbeat is stale
+      --customer STRING    Customer
+      -D, --delete ID      Delete hearbeat using ID
+      -h, --help           Show this message and exit.
 
 :command:`heartbeats` - List heartbeats
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++
 
-  heartbeats    List heartbeats
+List heartbeats and generate heartbeat alerts.
+
+::
+
+    $ alerta heartbeats [OPTIONS]
+
+    Options:
+      --alert                  Alert on stale or slow heartbeats
+      -s, --severity SEVERITY  Severity for stale heartbeat alerts
+      --purge                  Delete all stale heartbeats
+      -h, --help               Show this message and exit.
+
+Alerts can be generated from stale or slow heartbeats using
+the ``--alert`` option. It is expected that this would be run
+at regular intervals using a scheduling service such as ``cron``.
+
+Tags can be used to set the ``environment`` or ``group`` of a heartbeat
+alert using the format ``environment:[ENV]`` and ``group:[GRP]``. These
+tags will be visible in the heartbeat but removed as tags from the alert.
+
+**Example**
+
+To send a ``major`` alert with an environment of ``Infra`` in the ``Network``
+group when a heartbeat is missed or slow for an origin called ``system1``::
+
+    $ alerta heartbeat -O system1 -T environment:Infra -T group:Network --timeout 10
+    (wait >10 seconds)
+    $ alerta heartbeats --alert --severity major
 
 API Key Commands
 ~~~~~~~~~~~~~~~~
