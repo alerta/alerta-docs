@@ -143,6 +143,8 @@ Alert Commands
 The following group of commands are related to sending, querying and managing
 the status of alerts.
 
+.. _cli_send:
+
 :command:`send` - Send an alert
 +++++++++++++++++++++++++++++++
 

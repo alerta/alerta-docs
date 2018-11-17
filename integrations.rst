@@ -114,7 +114,7 @@ The following is a list of integrations, webbhooks and plugins that highlight
 the use of bi-directional integration in different ways.
 
 * AWS Cloudwatch webhook - includes the `SNS subscription confirmation`_ link in the text of the alert
-* Zabbix integration & plugin - 
+* Zabbix integration & plugin - TBC
 * Grafana webhook - includes `rule and image links`_ in Grafana alert attributes if available
 * NewRelic webhook - includes `incident and runbook links`_ in NewRelic alerts
 * PagerDuty webhook - includes the `incident URL`_ in alert history text when status changes

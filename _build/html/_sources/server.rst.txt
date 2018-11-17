@@ -14,11 +14,12 @@ Alerts can be intercepted as they are received to modify, enhance or
 reject them using :ref:`pre-receive hooks <prereceive>`. Alerts can also be
 used to trigger actions in other systems after the alert has been
 processed using :ref:`post-receive hooks <postreceive>` or following an
-alert :ref:`status change <status_change>` for bi-directional integration.
+:ref:`operator action <take_action>` or alert
+:ref:`status change <status_change>` for bi-directional integration.
 
 There are several :ref:`integrations <integrations>` with popular monitoring
 tools available and :ref:`webhooks <webhooks>` can be used to trivially
-integrate with AWS Cloudwatch, Pingdom, PagerDuty and many more.
+integrate with AWS Prometheus, Grafana, PagerDuty and many more.
 
 .. _event_processing:
 
@@ -29,27 +30,28 @@ Alerta comes `out-of-the-box` with key features designed to reduce the burden of
 alert management. When an event is received it it is processed in the following
 way:
 
-1. all plugin pre-receive hooks are run in alphabetical order, an alert
+1. all plugin pre-receive hooks are run in listed order, an alert
    is immediately rejected if any plugins return a ``RejectException``
-2. alert is checked against any active blackout periods, alert suppressed if any
-   match
-3. alert is checked if duplicate, if so duplicate count is increased and repeat
-   set to `True`
+   or ``RateLimit`` exception
+2. alert is checked against any active blackout periods, alert suppressed
+   if any match
+3. alert is checked if duplicate, if so duplicate count is increased and
+   repeat set to `True`
 4. alert is checked if correlated, if so change severity and/or status etc
-5. alert is neither a duplicate or correlated so create new alert
-6. all plugin post-receive hooks are run in alphabetical order
-7. new or updated alert returned in response
-8. timeout used to expire alerts from the console
+5. if alert is neither a duplicate or correlated then create new alert
+6. all plugin post-receive hooks are run in listed order
+7. any tags or attributes changed in post-receive hooks are persisted
 
 Each of the above actions are explained in more detail in the following sections.
 
-Plug-ins
---------
+Plugins
+-------
 
-Plug-ins are small python scripts that can run either before or after an alert is
-saved to the database, or before a status change update. This is achieved by
-registering *pre-receive hooks* for transformers, *post-receive hooks* for
-external notification and *status change hooks* for bi-directional integration.
+Plugins are small python scripts that can run either before or after an alert is
+saved to the database, or before an operator action or status change update. This
+is achieved by registering *pre-receive hooks* for transformers, *post-receive
+hooks* for external notification and *status change hooks* for bi-directional
+integration.
 
 .. _prereceive:
 
@@ -89,6 +91,16 @@ more.
 .. _HipChat: https://github.com/alerta/alerta-contrib/blob/master/plugins/hipchat
 .. _Slack: https://github.com/alerta/alerta-contrib/blob/master/plugins/slack
 .. _Twilio: https://github.com/alerta/alerta-contrib/blob/master/plugins/twilio
+
+.. _take_action:
+
+Operator Actions
+~~~~~~~~~~~~~~~~
+
+Actions taken against alerts can be used as triggers for further integrations
+with external systems.
+
+TBC
 
 .. _status_change:
 

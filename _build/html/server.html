@@ -44,36 +44,38 @@ them, and makes the alerts available via a <a class="reference external" href="h
 reject them using <a class="reference internal" href="#prereceive"><span class="std std-ref">pre-receive hooks</span></a>. Alerts can also be
 used to trigger actions in other systems after the alert has been
 processed using <a class="reference internal" href="#postreceive"><span class="std std-ref">post-receive hooks</span></a> or following an
-alert <a class="reference internal" href="#status-change"><span class="std std-ref">status change</span></a> for bi-directional integration.</p>
+<a class="reference internal" href="#take-action"><span class="std std-ref">operator action</span></a> or alert
+<a class="reference internal" href="#status-change"><span class="std std-ref">status change</span></a> for bi-directional integration.</p>
 <p>There are several <a class="reference internal" href="integrations.html#integrations"><span class="std std-ref">integrations</span></a> with popular monitoring
 tools available and <a class="reference internal" href="integrations.html#webhooks"><span class="std std-ref">webhooks</span></a> can be used to trivially
-integrate with AWS Cloudwatch, Pingdom, PagerDuty and many more.</p>
+integrate with AWS Prometheus, Grafana, PagerDuty and many more.</p>
 <div class="section" id="event-processing">
 <span id="id1"></span><h2>Event Processing<a class="headerlink" href="#event-processing" title="Permalink to this headline">¶</a></h2>
 <p>Alerta comes <cite>out-of-the-box</cite> with key features designed to reduce the burden of
 alert management. When an event is received it it is processed in the following
 way:</p>
 <ol class="arabic simple">
-<li>all plugin pre-receive hooks are run in alphabetical order, an alert
-is immediately rejected if any plugins return a <code class="docutils literal notranslate"><span class="pre">RejectException</span></code></li>
-<li>alert is checked against any active blackout periods, alert suppressed if any
-match</li>
-<li>alert is checked if duplicate, if so duplicate count is increased and repeat
-set to <cite>True</cite></li>
+<li>all plugin pre-receive hooks are run in listed order, an alert
+is immediately rejected if any plugins return a <code class="docutils literal notranslate"><span class="pre">RejectException</span></code>
+or <code class="docutils literal notranslate"><span class="pre">RateLimit</span></code> exception</li>
+<li>alert is checked against any active blackout periods, alert suppressed
+if any match</li>
+<li>alert is checked if duplicate, if so duplicate count is increased and
+repeat set to <cite>True</cite></li>
 <li>alert is checked if correlated, if so change severity and/or status etc</li>
-<li>alert is neither a duplicate or correlated so create new alert</li>
-<li>all plugin post-receive hooks are run in alphabetical order</li>
-<li>new or updated alert returned in response</li>
-<li>timeout used to expire alerts from the console</li>
+<li>if alert is neither a duplicate or correlated then create new alert</li>
+<li>all plugin post-receive hooks are run in listed order</li>
+<li>any tags or attributes changed in post-receive hooks are persisted</li>
 </ol>
 <p>Each of the above actions are explained in more detail in the following sections.</p>
 </div>
-<div class="section" id="plug-ins">
-<h2>Plug-ins<a class="headerlink" href="#plug-ins" title="Permalink to this headline">¶</a></h2>
-<p>Plug-ins are small python scripts that can run either before or after an alert is
-saved to the database, or before a status change update. This is achieved by
-registering <em>pre-receive hooks</em> for transformers, <em>post-receive hooks</em> for
-external notification and <em>status change hooks</em> for bi-directional integration.</p>
+<div class="section" id="plugins">
+<h2>Plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h2>
+<p>Plugins are small python scripts that can run either before or after an alert is
+saved to the database, or before an operator action or status change update. This
+is achieved by registering <em>pre-receive hooks</em> for transformers, <em>post-receive
+hooks</em> for external notification and <em>status change hooks</em> for bi-directional
+integration.</p>
 <div class="section" id="transformers">
 <span id="prereceive"></span><h3>Transformers<a class="headerlink" href="#transformers" title="Permalink to this headline">¶</a></h3>
 <p>Using pre-receive hooks, plugins provide the ability to transform raw alert data
@@ -93,6 +95,12 @@ systems with alerts in realtime for external notification. For example, pushing
 alerts onto an <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/sns">AWS SNS topic</a>, <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp">AMQP queue</a>, logging to a <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/logstash">Logstash/Kibana</a>
 stack, or sending notifications to <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/hipchat">HipChat</a>, <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/slack">Slack</a> or <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/twilio">Twilio</a> and many
 more.</p>
+</div>
+<div class="section" id="operator-actions">
+<span id="take-action"></span><h3>Operator Actions<a class="headerlink" href="#operator-actions" title="Permalink to this headline">¶</a></h3>
+<p>Actions taken against alerts can be used as triggers for further integrations
+with external systems.</p>
+<p>TBC</p>
 </div>
 <div class="section" id="bi-directional-integration">
 <span id="status-change"></span><h3>Bi-directional Integration<a class="headerlink" href="#bi-directional-integration" title="Permalink to this headline">¶</a></h3>
@@ -284,7 +292,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Server &amp; API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#event-processing">Event Processing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#plug-ins">Plug-ins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plugins">Plugins</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#blackout-periods">Blackout Periods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#de-duplication">De-Duplication</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#simple-correlation">Simple Correlation</a></li>
