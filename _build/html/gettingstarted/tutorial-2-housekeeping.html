@@ -124,9 +124,10 @@ example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta heartbeats --alert
 </pre></div>
 </div>
-<p>To set the <code class="docutils literal notranslate"><span class="pre">environment</span></code> or <code class="docutils literal notranslate"><span class="pre">group</span></code> for a heartbeat alert use tags.</p>
-<blockquote>
-<div>$ alerta heartbeat -O dc1-oem-02 -T environment:Development -T group:Network</div></blockquote>
+<p>To set the <code class="docutils literal notranslate"><span class="pre">environment</span></code> or <code class="docutils literal notranslate"><span class="pre">group</span></code> for a heartbeat alert use tags:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta heartbeat -O dc1-oem-02 -T environment:Development -T group:Network
+</pre></div>
+</div>
 <p>Add the above command as a cron job so that alerts are generated whenever
 a heartbeat is stale or slow:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo &quot;* * * * * root /usr/local/bin/alerta heartbeats --alert&quot; &gt;&gt;/etc/cron.d/alerta

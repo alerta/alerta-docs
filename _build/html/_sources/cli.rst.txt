@@ -332,6 +332,8 @@ Heartbeat Commands
 The following group of commands are related to creating and
 managing heartbeats.
 
+.. _cli_heartbeat:
+
 :command:`heartbeat` - Send a heartbeat
 +++++++++++++++++++++++++++++++++++++++
 
@@ -348,6 +350,8 @@ Send or delete a heartbeat.
       --customer STRING    Customer
       -D, --delete ID      Delete hearbeat using ID
       -h, --help           Show this message and exit.
+
+.. _cli_heartbeats:
 
 :command:`heartbeats` - List heartbeats
 +++++++++++++++++++++++++++++++++++++++

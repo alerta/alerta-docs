@@ -263,7 +263,9 @@ They are visible in the Alerta console (*About* page) and via the ``alerta``
 command-line tool using the ``heartbeat`` sub-command to send them, and the
 ``heartbeats`` sub-command to view them.
 
-Alerts can be generated from :index:`stale heartbeats <pair: heartbeat; stale>`
-using ``alerta heartbeats --alert``.
+Alerts can be generated from :index:`stale or slow heartbeats <pair: heartbeat; stale>`
+using ``alerta heartbeats --alert``. For more information about generating
+alerts from heartbeats see the :ref:`heartbeats command<cli_heartbeats>`
+reference.
 
 .. _wiki: https://en.wikipedia.org/wiki/Heartbeat_(computing)
