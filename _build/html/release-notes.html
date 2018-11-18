@@ -40,14 +40,28 @@
 <div class="section" id="roadmap">
 <h2>Roadmap<a class="headerlink" href="#roadmap" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Web UI redesign using <a class="reference external" href="https://www.google.com/design/spec/material-design/introduction.html">Google material design</a></li>
+<li>Web UI redesign using <a class="reference external" href="https://www.google.com/design/spec/material-design/introduction.html">Google material design</a> and <a class="reference external" href="https://vuejs.org/">Vue.js</a></li>
 <li>Custom alert filters and dashboard views</li>
 <li>Use OpenAPI (<a class="reference external" href="https://swagger.io/specification/">Swagger</a>) to generate client libraries</li>
-<li>Replace “q” search filter with <a class="reference external" href="https://graphql.org/learn/schema/">GraphQL</a> for flexible alert queries</li>
+<li>Use Celery tasks for bulk API requests (productionalize)</li>
 </ul>
 </div>
 <div class="section" id="release-history">
 <span id="id1"></span><h2>Release History<a class="headerlink" href="#release-history" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="release-6-4-0-14-11-2018">
+<span id="release-6-4"></span><h3>Release 6.4.0 (14-11-2018)<a class="headerlink" href="#release-6-4-0-14-11-2018" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Add audit trail for “admin”, “write” and “auth” requests</li>
+<li>Fix bi-directional prometheus integration (#740)</li>
+</ul>
+</div>
+<div class="section" id="release-6-3-0-21-10-2018">
+<span id="release-6-3"></span><h3>Release 6.3.0 (21-10-2018)<a class="headerlink" href="#release-6-3-0-21-10-2018" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Enhance query to use <a class="reference internal" href="api/query-syntax.html#query-string-syntax"><span class="std std-ref">Lucene query syntax</span></a></li>
+<li>Add “proxy fix” server config option if using SSL terminating proxy</li>
+</ul>
+</div>
 <div class="section" id="release-6-2-0-13-10-2018">
 <span id="release-6-2"></span><h3>Release 6.2.0 (13-10-2018)<a class="headerlink" href="#release-6-2-0-13-10-2018" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">

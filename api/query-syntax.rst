@@ -19,6 +19,8 @@ Queries are supported by the following resource endpoints:
  * :ref:`customers <get_customers>`
  * :ref:`oembed <oembed>`
 
+.. _url_query_params:
+
 Standard URL Query parameters
 -----------------------------
 

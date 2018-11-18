@@ -5,19 +5,35 @@ Releases
 Roadmap
 +++++++
 
-* Web UI redesign using `Google material design`_
+* Web UI redesign using `Google material design`_ and `Vue.js`_
 * Custom alert filters and dashboard views
 * Use OpenAPI (Swagger_) to generate client libraries
-* Replace "q" search filter with GraphQL_ for flexible alert queries
+* Use Celery tasks for bulk API requests (productionalize)
 
 .. _Google material design: https://www.google.com/design/spec/material-design/introduction.html
+.. _Vue.js: https://vuejs.org/
 .. _Swagger: https://swagger.io/specification/
-.. _GraphQL: https://graphql.org/learn/schema/
 
 .. _releases:
 
 Release History
 +++++++++++++++
+
+.. _release_6_4:
+
+Release 6.4.0 (14-11-2018)
+--------------------------
+
+* Add audit trail for "admin", "write" and "auth" requests
+* Fix bi-directional prometheus integration (#740)
+
+.. _release_6_3:
+
+Release 6.3.0 (21-10-2018)
+--------------------------
+
+* Enhance query to use :ref:`Lucene query syntax <query_string_syntax>`
+* Add "proxy fix" server config option if using SSL terminating proxy
 
 .. _release_6_2:
 
