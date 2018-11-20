@@ -47,11 +47,13 @@ Each of the above actions are explained in more detail in the following sections
 Plugins
 -------
 
-Plugins are small python scripts that can run either before or after an alert is
+Plugins_ are small python scripts that can run either before or after an alert is
 saved to the database, or before an operator action or status change update. This
 is achieved by registering *pre-receive hooks* for transformers, *post-receive
 hooks* for external notification and *status change hooks* for bi-directional
 integration.
+
+.. _Plugins: https://en.wikipedia.org/wiki/Plug-in_(computing)
 
 .. _prereceive:
 

@@ -4,15 +4,21 @@ Authorization
 =============
 
 Authorization is used to limit access to Alerta API resources. The
-authorization model is based on `Role Based Access Control`_ (RBAC)
+authorization model is based on `Role-Based Access Control`_ (RBAC)
 which assigns permissions to functional roles and then users are
 assigned to one or more of those roles.
 
-.. _`Role Based Access Control`: http://csrc.nist.gov/groups/SNS/rbac/faq.html
+.. _`Role-Based Access Control`: http://csrc.nist.gov/groups/SNS/rbac/faq.html
 
 This "role-based access" allows for fine-grained control over exactly
 what resources are accessible to which users and exactly what type of
 access is allowed -- in a way that is scalable.
+
+.. note::
+
+    Alerta implements the "flat" RBAC model as defined by NIST (aka.
+    "Core RBAC") and as such does not support any form of role
+    hierarchy where roles can inherit other roles.
 
 For example, to create a new alert the sender will need to be assigned to
 a role with ``write:alerts`` permissions. If the sender is not a member of
@@ -54,10 +60,18 @@ is used which defines two roles:
 Custom Authorization
 ++++++++++++++++++++
 
-To use custom authorization simply define one or more permission scope lookups.
+To use custom authorization simply define one or more permission-scope lookups.
 
 As an "admin" user go to *Configuration -> Permissions* and add a new role
-with the required scopes. See below for list of valid scopes.
+with the required scopes (see below for list of valid scopes). Those roles
+should match the roles, groups or organisations associated with users for the
+configured Authentication provider.
+
+.. tip::
+
+    It is encouraged to employ the principle of least privilege when creating
+    roles. That is, do not give to a user any more privilege than is necessary
+    to perform their job function.
 
 Scopes and Permissions
 ----------------------

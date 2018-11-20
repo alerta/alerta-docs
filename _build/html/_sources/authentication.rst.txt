@@ -462,8 +462,8 @@ Use the ``api-key`` URL parameter::
 User Authorisation
 ------------------
 
-Google, GitHub, GitLab OAuth, Keycloak OAuth are used for user authentication, not
-user authorisation. Authentication proves that you are who you say you
+Google, GitHub, GitLab and Keycloak OAuth are used for user authentication,
+not user authorisation. Authentication proves that you are who you say you
 are. Authorization says that you are allowed to access what you have
 requested.
 
@@ -479,13 +479,22 @@ by setting ``ALLOWED_KEYCLOAK_ROLES`` when using Keycloak OAuth2
 
 For those situations where it is not possible to group users in this
 way it is possible to selectively allow access on a per-user basis. How
-this is done depends on whether you are using Google, GitHub, GitLab or Keycloak
-as OAuth2 provider for user login.
-
+this is done depends on whether you are using Google, GitHub, GitLab
+or Keycloak as OAuth2 provider for user login.
 
 .. _user roles:
 
 User Roles
 ----------
 
-TBC
+Only allowing certain groups to login is very course. Fine-grained
+access control can be acheived by using user roles and permissions.
+
+RBAC is an authorisation model where users acquire permissions
+through roles. Default roles are "admin" and "user". You create
+roles  relevant to your business functions and assign permissions
+as appropriate. For example, custom roles can be created for jobs
+like "engineer", "devops", "sysadmin", "dba" or access types like
+"read-only" and "read-write".
+
+For more information, see :ref:`Role-Based Access Control <authorization>`.

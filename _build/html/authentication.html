@@ -453,8 +453,8 @@ files.</p>
 </div>
 <div class="section" id="user-authorisation">
 <span id="user-auth"></span><h2>User Authorisation<a class="headerlink" href="#user-authorisation" title="Permalink to this headline">¶</a></h2>
-<p>Google, GitHub, GitLab OAuth, Keycloak OAuth are used for user authentication, not
-user authorisation. Authentication proves that you are who you say you
+<p>Google, GitHub, GitLab and Keycloak OAuth are used for user authentication,
+not user authorisation. Authentication proves that you are who you say you
 are. Authorization says that you are allowed to access what you have
 requested.</p>
 <p>To control who has access to Alerta you can restrict access to users
@@ -468,12 +468,20 @@ belong to a <a class="reference internal" href="#allowed-keycloak-roles"><span c
 by setting <code class="docutils literal notranslate"><span class="pre">ALLOWED_KEYCLOAK_ROLES</span></code> when using Keycloak OAuth2</p>
 <p>For those situations where it is not possible to group users in this
 way it is possible to selectively allow access on a per-user basis. How
-this is done depends on whether you are using Google, GitHub, GitLab or Keycloak
-as OAuth2 provider for user login.</p>
+this is done depends on whether you are using Google, GitHub, GitLab
+or Keycloak as OAuth2 provider for user login.</p>
 </div>
 <div class="section" id="user-roles">
 <span id="id8"></span><h2>User Roles<a class="headerlink" href="#user-roles" title="Permalink to this headline">¶</a></h2>
-<p>TBC</p>
+<p>Only allowing certain groups to login is very course. Fine-grained
+access control can be acheived by using user roles and permissions.</p>
+<p>RBAC is an authorisation model where users acquire permissions
+through roles. Default roles are “admin” and “user”. You create
+roles  relevant to your business functions and assign permissions
+as appropriate. For example, custom roles can be created for jobs
+like “engineer”, “devops”, “sysadmin”, “dba” or access types like
+“read-only” and “read-write”.</p>
+<p>For more information, see <a class="reference internal" href="authorization.html#authorization"><span class="std std-ref">Role-Based Access Control</span></a>.</p>
 </div>
 </div>
 
