@@ -14,14 +14,25 @@ This "role-based access" allows for fine-grained control over exactly
 what resources are accessible to which users and exactly what type of
 access is allowed -- in a way that is scalable.
 
-.. note::
+Flat RBAC
++++++++++
 
-    Alerta implements the "flat" RBAC model as defined by NIST (aka.
-    "Core RBAC") and as such does not support any form of role
-    hierarchy where roles can inherit other roles.
+Alerta implements the "flat" RBAC model as defined by NIST (aka.
+"Core RBAC") and as such does not support any form of role hierarchy
+where roles can inherit other roles.
 
-For example, to create a new alert the sender will need to be assigned to
-a role with ``write:alerts`` permissions. If the sender is not a member of
+Flat RBAC has the following features:
+
+  * users acquire permissions through roles
+  * must support many-to-many user-role assignment
+  * must support many-to-many permission-role assignment
+  * must support user-role assignment review
+  * users can use permissions of multiple roles simultaneously
+
+**Example**
+
+To create a new alert the sender will need to be assigned to at least
+one role with ``write:alerts`` permissions. If the sender is not a member of
 a role with those permisssions then the request will be rejected with a
 ``403 Forbidden`` response code.
 
