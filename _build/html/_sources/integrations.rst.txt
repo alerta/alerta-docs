@@ -110,6 +110,20 @@ There are several examples of this two-way integration and they mostly
 take advantage of the flexible nature of the the ``tags`` and ``attributes``
 alert attributes which can be used to keep track of the external reference.
 
+**Usage**
+
+In it's simplest form, pass the URL of the external system that generated
+the alert in an attribute called ``externalUrl`` (or similar)::
+
+    $ alerta send -E ... --attribute externalUrl=https://my.example.com/go?id=1234
+
+Better still, surroud the URL with HTML markup to make the link clickable
+in the web UI::
+
+    $ alerta send -E ... --attribute externalUrl='<a href="https://my.example.com/go?id=1234">ref 1234</a>'
+
+**Examples**
+
 The following is a list of integrations, webbhooks and plugins that highlight
 the use of bi-directional integration in different ways.
 
