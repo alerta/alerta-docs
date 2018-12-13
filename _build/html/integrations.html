@@ -133,6 +133,18 @@ system, either via an external link or simply a hostname and reference ID.</p>
 <p>There are several examples of this two-way integration and they mostly
 take advantage of the flexible nature of the the <code class="docutils literal notranslate"><span class="pre">tags</span></code> and <code class="docutils literal notranslate"><span class="pre">attributes</span></code>
 alert attributes which can be used to keep track of the external reference.</p>
+<p><strong>Usage</strong></p>
+<p>In it’s simplest form, pass the URL of the external system that generated
+the alert in an attribute called <code class="docutils literal notranslate"><span class="pre">externalUrl</span></code> (or similar):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta send -E ... --attribute externalUrl=https://my.example.com/go?id=1234
+</pre></div>
+</div>
+<p>Better still, surroud the URL with HTML markup to make the link clickable
+in the web UI:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta send -E ... --attribute externalUrl=&#39;&lt;a href=&quot;https://my.example.com/go?id=1234&quot;&gt;ref 1234&lt;/a&gt;&#39;
+</pre></div>
+</div>
+<p><strong>Examples</strong></p>
 <p>The following is a list of integrations, webbhooks and plugins that highlight
 the use of bi-directional integration in different ways.</p>
 <ul class="simple">
