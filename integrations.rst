@@ -299,7 +299,7 @@ For details on how to set this up see `Stackdriver webhook`_ page and in the
 
 :file:`https://alerta.example.com/api/webhooks/stackdriver`
 
-.. _Stackdriver webhook: https://support.stackdriver.com/customer/portal/articles/1491775-configuring-webhooks
+.. _Stackdriver webhook: https://cloud.google.com/monitoring/support/notification-options#webhooks
 
 Telegram
 ~~~~~~~~
