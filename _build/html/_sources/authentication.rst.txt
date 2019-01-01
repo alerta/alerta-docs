@@ -97,8 +97,8 @@ OAuth authentication is provided by Google_ `OpenID Connect`_, GitHub_,
 GitLab_ `OAuth 2.0`_ or Keycloak_ `OAuth 2.0`_ and configuration is more
 involved than the Basic Auth setup.
 
-.. note:: If Alerta is deployed to a publicly accessible web server it
-    is important to configure the OAuth2 settings correctly to
+.. note:: If Alerta is deployed to a publicly accessible web server
+    it is important to configure the OAuth2 settings correctly to
     ensure that only authorised users can access and modify your
     alerts.
 
@@ -121,7 +121,7 @@ will need to be added to the ``alertad.conf`` file for the Alerta server.
 Google OAuth2
 ~~~~~~~~~~~~~
 
-To use Google as the OAuth2 provider for Alerta, login to
+To use Google as the OAuth2 provider for Alerta, login to the
 `Google Developer Console`_ and create a new project for alerta.
 
 .. _Google Developer Console: https://console.developers.google.com
@@ -129,19 +129,37 @@ To use Google as the OAuth2 provider for Alerta, login to
 - Project Name: alerta
 - Project ID: (automatically assigned)
 
-Go to *APIs and auth -> APIs* and set *Google+ API* to **ON**. Next
-go to *APIs and auth -> Credentials* and click **Create New Client ID**
-and choose **Web Application**.
+Next go to *APIs & Services* and select *Credentials* from the
+sidebar menu. Click **Create credentials** and choose "OAuth
+client ID" and "Web Application" for application type.
 
+- Name: Alerta
 - Authorized Javscript Origins: http://alerta.example.com
 - Authorized Redirect URIs: http://alerta.example.com
 
-Click **Create Client ID** and take note of the Client ID and Client
-Secret. The configuration settings for ``alerta`` server are as follows::
+Click **Create** and take note of the Client ID and Client
+Secret. Use this information to configure the settings for
+``alerta`` server.
+
+**Example**
+
+.. code:: python
 
     AUTH_PROVIDER = 'google'
     OAUTH2_CLIENT_ID = '379647311730-sj130ru952o3o7ig8u0ts8np2ojivr8d.apps.googleusercontent.com'
     OAUTH2_CLIENT_SECRET = '8HrqJhbrYn9oDtaJqExample'
+
+.. deprecated:: 6.6 Google+ API is no longer a requirement.
+
+.. warning::
+
+    It is no longer necessary to enable `Google+ API`_
+    to use Google OAuth. Google+ API will be shutdown
+    on March 7, 2019 and Alerta installations configured
+    to use Google+ API will cease to function after that
+    date.
+
+.. _Google+ API: https://developers.google.com/+/api-shutdown
 
 .. _allowed_email_domains:
 
