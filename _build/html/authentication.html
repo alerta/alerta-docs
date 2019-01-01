@@ -126,8 +126,8 @@ needs to be handled by the LDAP authentication provider.</p>
 involved than the Basic Auth setup.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If Alerta is deployed to a publicly accessible web server it
-is important to configure the OAuth2 settings correctly to
+<p class="last">If Alerta is deployed to a publicly accessible web server
+it is important to configure the OAuth2 settings correctly to
 ensure that only authorised users can access and modify your
 alerts.</p>
 </div>
@@ -138,25 +138,39 @@ OAuth client ID and client secret. The client ID and client secret
 will need to be added to the <code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code> file for the Alerta server.</p>
 <div class="section" id="google-oauth2">
 <span id="id3"></span><h3>Google OAuth2<a class="headerlink" href="#google-oauth2" title="Permalink to this headline">¶</a></h3>
-<p>To use Google as the OAuth2 provider for Alerta, login to
+<p>To use Google as the OAuth2 provider for Alerta, login to the
 <a class="reference external" href="https://console.developers.google.com">Google Developer Console</a> and create a new project for alerta.</p>
 <ul class="simple">
 <li>Project Name: alerta</li>
 <li>Project ID: (automatically assigned)</li>
 </ul>
-<p>Go to <em>APIs and auth -&gt; APIs</em> and set <em>Google+ API</em> to <strong>ON</strong>. Next
-go to <em>APIs and auth -&gt; Credentials</em> and click <strong>Create New Client ID</strong>
-and choose <strong>Web Application</strong>.</p>
+<p>Next go to <em>APIs &amp; Services</em> and select <em>Credentials</em> from the
+sidebar menu. Click <strong>Create credentials</strong> and choose “OAuth
+client ID” and “Web Application” for application type.</p>
 <ul class="simple">
+<li>Name: Alerta</li>
 <li>Authorized Javscript Origins: <a class="reference external" href="http://alerta.example.com">http://alerta.example.com</a></li>
 <li>Authorized Redirect URIs: <a class="reference external" href="http://alerta.example.com">http://alerta.example.com</a></li>
 </ul>
-<p>Click <strong>Create Client ID</strong> and take note of the Client ID and Client
-Secret. The configuration settings for <code class="docutils literal notranslate"><span class="pre">alerta</span></code> server are as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;google&#39;</span>
+<p>Click <strong>Create</strong> and take note of the Client ID and Client
+Secret. Use this information to configure the settings for
+<code class="docutils literal notranslate"><span class="pre">alerta</span></code> server.</p>
+<p><strong>Example</strong></p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;google&#39;</span>
 <span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s1">&#39;379647311730-sj130ru952o3o7ig8u0ts8np2ojivr8d.apps.googleusercontent.com&#39;</span>
 <span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;8HrqJhbrYn9oDtaJqExample&#39;</span>
 </pre></div>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 6.6: </span>Google+ API is no longer a requirement.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">It is no longer necessary to enable <a class="reference external" href="https://developers.google.com/+/api-shutdown">Google+ API</a>
+to use Google OAuth. Google+ API will be shutdown
+on March 7, 2019 and Alerta installations configured
+to use Google+ API will cease to function after that
+date.</p>
 </div>
 <p id="allowed-email-domains">To restrict access to users with particular <a class="reference external" href="https://www.google.co.uk/intx/en_au/work/apps/business/">Google apps domains</a> use:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;example.org&#39;</span><span class="p">,</span> <span class="s1">&#39;mycompany.com&#39;</span><span class="p">]</span>

@@ -478,6 +478,7 @@ Parameters
 +-----------------+----------+----------------------------------------------+
 
 .. deprecated:: 6.3
+
     The ``q`` parameter using `Mongo-style query`_ format has been replaced with
     a query format based on `Lucene query syntax`_ supported by both MongoDB and
     Postgres backends.
