@@ -38,13 +38,13 @@ General Settings
     SECRET_KEY = 'changeme'
     BASE_URL = '/api'
     USE_PROXYFIX = False
-    LOGGER_NAME = 'alerta-api'
     LOG_FILE = '/var/log/alertad.log'
     LOG_MAX_BYTES = 5*1024*1024  # 5 MB
     LOG_BACKUP_COUNT = 2
-    LOG_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    LOG_FORMAT = 'verbose'
 
-.. index:: DEBUG, SECRET_KEY, BASE_URL, USE_PROXYFIX, LOGGER_NAME, LOG_FILE, LOG_MAX_BYTES, LOG_BACKUP_COUNT, LOG_FORMAT
+.. index:: DEBUG, SECRET_KEY, BASE_URL, USE_PROXYFIX
+.. index:: LOG_CONFIG_FILE, LOG_HANDLERS, LOG_FILE, LOG_MAX_BYTES, LOG_BACKUP_COUNT, LOG_FORMAT, LOG_METHODS
 
 ``DEBUG``
     debug mode for increased logging (default is ``False``)
@@ -54,8 +54,10 @@ General Settings
     if API served on a path or behind a proxy use it to fix relative links (no default)
 ``USE_PROXYFIX``
     if API served behind SSL terminating proxy (default is ``False``)
-``LOGGER_NAME``
-    name of logger used by python ``logging`` module (default is ``alerta``)
+``LOG_CONFIG_FILE``
+    full path to logging configuration file in dictConfig format (no default)
+``LOG_HANDLERS``
+    list of log handlers eg. 'console', 'file', 'wsgi' (default is 'console')
 ``LOG_FILE``
     full path to write rotating server log file (no default)
 ``LOG_MAX_BYTES``
@@ -63,7 +65,9 @@ General Settings
 ``LOG_BACKUP_COUNT``
     number of rollover files before older files are deleted (default is 2)
 ``LOG_FORMAT``
-    log file format string
+    log file formatter name eg. 'default', 'simple', 'verbose', 'json'
+``LOG_METHODS``
+    only log listed HTTP methods eg. 'GET', 'POST', 'PUT', 'DELETE' (default is all HTTP methods)
 
 .. _api config:
 
