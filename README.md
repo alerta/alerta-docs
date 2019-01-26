@@ -26,7 +26,7 @@ Requirements
 License
 -------
 
-Copyright (c) 2015 by Nick Satterly.
+Copyright (c) 2015-2019 by Nick Satterly.
 
 This work is licensed under the Creative Commons Attribution 3.0 Unported
 License (CC BY 3.0). To view a copy of this license, visit
