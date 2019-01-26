@@ -164,7 +164,7 @@ long-running tasks. (experimental)
 ``CELERY_RESULT_BACKEND``
     URL of Celery-supported result backend (no default)
 
-.. _auth_config:
+.. _auth config:
 
 Authentication Settings
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -613,8 +613,8 @@ Database Settings
 ~~~~~~~~~~~~~~~~~
 
 :envvar:`DATABASE_URL`
-    used by both :ref:`Postgres <Postgres connection string>` and
-    :ref:`MongoDB <MongoDB connection string>` for database connection strings
+    used by both :ref:`Postgres <Postgres connection strings>` and
+    :ref:`MongoDB <MongoDB connection strings>` for database connection strings
 :envvar:`DATABASE_NAME`
     database name can be used to override default database defined in ``DATABASE_URL``
 

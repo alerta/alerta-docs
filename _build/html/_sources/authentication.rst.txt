@@ -274,6 +274,7 @@ Add the following mapper under the *Mappers* tab::
 
     Name: role memberships
     Mapper type: User Realm Role
+    Multivalued: ON
     Token Claim Name: roles
     Claim JSON type: String
     Add to userinfo: ON
