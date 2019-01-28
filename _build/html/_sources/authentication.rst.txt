@@ -312,48 +312,32 @@ To restrict access to users who are associated with a particular `Keycloak role`
 .. note:: ``ALLOWED_KEYCLOAK_ROLES`` can be an asterisk (``*``) to force
           login but *not* restrict who can login.
 
-.. _cross_origin:
-
-Cross-Origin
-~~~~~~~~~~~~
-
-If the Alerta API is not being served from the same domain as the Alerta
-Web UI then the ``CORS_ORIGINS`` setting needs to be updated to prevent
-`modern browsers <http://enable-cors.org/client.html>`_ from blocking
-the cross-origin requests.
-
-::
-
-    CORS_ORIGINS = [
-        'http://try.alerta.io',
-        'http://explorer.alerta.io',
-        'chrome-extension://jplkjnjaegjgacpfafdopnpnhmobhlaf',
-        'http://localhost'
-    ]
-
 .. _saml2:
-
-SAML 2.0 Authentication
------------------------
-
-OAuth authentication is provided by Google_ `OpenID Connect`_, GitHub_,
-GitLab_ `OAuth 2.0`_ or Keycloak_ `OAuth 2.0`_ and configuration is more involved than the Basic
-Auth setup.
 
 SAML 2.0
 --------
-Generate private/public key pair
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To use SAML as the authentication provider for Alerta, install `PySAML2`_ on the Alerta
+server and follow the configuration steps below.
+
+.. _PySAML2: https://pysaml2.readthedocs.io
+
 ::
 
-    openssl req -utf8 -new -x509 -days 3652 -nodes -out "alerta.cert" -keyout "alerta.key"
+    $ pip install PySAML2
+
+Generate private/public key pair:
+
+::
+
+    $ openssl req -utf8 -new -x509 -days 3652 -nodes -out "alerta.cert" -keyout "alerta.key"
 
 .. note::
 
     This key pair is not related to HTTPS.
 
-Configure pysaml2
-~~~~~~~~~~~~~~~~~
+Configure pysaml2:
+
 Bare-minimum config example::
 
     AUTH_PROVIDER = 'saml2'
@@ -379,8 +363,7 @@ Refer to pysaml2 documentation and source code if you need additional options:
 
 Note: entityid and service provider endpoints are configured by default based on your BASE_URL value which is mandatory if you use SAML (see :ref:`general config`)
 
-ALLOWED_SAML2_GROUPS
-~~~~~~~~~~~~~~~~~~~~
+``ALLOWED_SAML2_GROUPS``
 
 To restrict access to users who are members of particular group use::
 
@@ -410,17 +393,22 @@ Example::
 
 ..
 
-See `pysaml2 attribute-map-dir documentation <https://pysaml2.readthedocs.io/en/latest/howto/config.html#attribute-map-dir>`_. ``attribute-map-dir`` can be specified in the ``SAML2_CONFIG``, see `Configure pysaml2`_
+See `pysaml2 attribute-map-dir documentation <https://pysaml2.readthedocs.io/en/latest/howto/config.html#attribute-map-dir>`_.
+The ``attribute-map-dir`` can be specified in the ``SAML2_CONFIG``.
 
-SAML2_USER_NAME_FORMAT
-~~~~~~~~~~~~~~~~~~~~~~
-This is a python string template which is used to generate user's name based on attributes (make sure that `attribute-map-dir <https://pysaml2.readthedocs.io/en/latest/howto/config.html#attribute-map-dir>`_ is properly configured in case default does not fit).
+``SAML2_USER_NAME_FORMAT``
+
+The username format can be customized using the ``SAML2_USER_NAME_FORMAT``
+setting. It is a python string template which is used to generate user's name
+based on attributes (make sure that `attribute-map-dir <https://pysaml2.readthedocs.io/en/latest/howto/config.html#attribute-map-dir>`_
+is properly configured in case default does not fit).
+
 Default is ``'{givenName} {surname}'``.
 
 .. _cross_origin_saml2:
 
-Cross-Origin
-~~~~~~~~~~~~
+``CORS_ORIGINS``
+
 You also need to add your IdP origin to CORS headers::
 
     CORS_ORIGINS = [
@@ -432,8 +420,28 @@ You also need to add your IdP origin to CORS headers::
 ..
 
 Add trusted Service Provider to your Identity Provider
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Your metadata url is: ``{BASE_URL}/auth/saml/metadata.xml``, pass it to your IdP administrator.
+
+.. _cross_origin:
+
+Cross-Origin
+------------
+
+If the Alerta API is not being served from the same domain as the Alerta
+Web UI then the ``CORS_ORIGINS`` setting needs to be updated to prevent
+`modern browsers <http://enable-cors.org/client.html>`_ from blocking
+the cross-origin requests.
+
+::
+
+    CORS_ORIGINS = [
+        'http://try.alerta.io',
+        'http://explorer.alerta.io',
+        'chrome-extension://jplkjnjaegjgacpfafdopnpnhmobhlaf',
+        'http://localhost'
+    ]
+
 
 .. _api keys:
 
