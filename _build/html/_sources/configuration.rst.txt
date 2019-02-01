@@ -38,6 +38,7 @@ General Settings
     SECRET_KEY = 'changeme'
     BASE_URL = '/api'
     USE_PROXYFIX = False
+    LOG_HANDLERS = ['console', 'file']
     LOG_FILE = '/var/log/alertad.log'
     LOG_MAX_BYTES = 5*1024*1024  # 5 MB
     LOG_BACKUP_COUNT = 2
