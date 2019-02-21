@@ -31,6 +31,6 @@ How-to Guides
 
 `Installing Alerta on Debian | Ubuntu <https://github.com/ccdcoe/CDMCS/blob/master/TICK/Alerta/README.md>`_ in `Cyber Defence Monitoring Course Suite (CDMCS) <https://github.com/ccdcoe/CDMCS>`_
 
-`SRE Engineering Practice – Alarm Based on Time Series to Store Data <http://www.dockermall.com/sre-engineering-practice-alarm-based-on-time-series-to-store-data/>`_ on `Docker Mail <http://www.dockermall.com/>`_
+`SRE Engineering Practice – Alarm Based on Time Series to Store Data <http://docker.codescode.com/sre-engineering-practice-alarm-based-on-time-series-to-store-data/>`_ on `Docker Mail <http://docker.codescode.com/>`_
 
 `Simple tutorial for wetting your appetite on using alerta.io <https://github.com/deeplook/alerta_tutorial>`_ by `deeplook <https://github.com/deeplook>`_
