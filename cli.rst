@@ -365,6 +365,7 @@ List heartbeats and generate heartbeat alerts.
     Options:
       --alert                  Alert on stale or slow heartbeats
       -s, --severity SEVERITY  Severity for stale heartbeat alerts
+      --timeout SECONDS        Seconds before a stale heartbeat alert will be expired
       --purge                  Delete all stale heartbeats
       -h, --help               Show this message and exit.
 
