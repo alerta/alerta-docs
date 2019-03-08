@@ -15,6 +15,8 @@ Tutorials
 * :ref:`Alerts explored in-depth <tutorial 4>`
 * :ref:`Suppressing Alerts using Blackouts <tutorial 5>`
 * :ref:`Authentication & Authorization <tutorial 6>`
+* :ref:`Multitenancy support using Customer Views <tutorial 7>`
+* :ref:`Use webhooks to extend Alerta <tutorial 8>`
 
 .. note:: If you require help with any of the above tutorials post a question on Gitter_.
 
