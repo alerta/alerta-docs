@@ -5,19 +5,63 @@ Releases
 Roadmap
 +++++++
 
-* Web UI redesign using `Google material design`_ and `Vue.js`_
 * Custom alert filters and dashboard views
 * Use OpenAPI (Swagger_) to generate client libraries
 * Use Celery tasks for bulk API requests (productionalize)
 
-.. _Google material design: https://www.google.com/design/spec/material-design/introduction.html
-.. _Vue.js: https://vuejs.org/
 .. _Swagger: https://swagger.io/specification/
 
 .. _releases:
 
 Release History
 +++++++++++++++
+
+.. _release_7_0:
+
+Release 7.0.0 (14-04-2019)
+--------------------------
+
+* Web UI redesign using `Google material design`_ and `Vue.js`_
+* Supports any OpenID Connect compliant auth provider
+* Add user groups for Basic Auth role and customer assignment
+* Edit users, groups, customers, blackouts, permissions and API keys
+* Added user preferences eg. custom shelve time, date/time formats and dark mode
+* Add operator notes to alerts and supplementary notes to alert actions
+* Multi-select alerts and actions on hover
+* Minimum MongoDB version is now 3.2
+
+.. _Google material design: https://www.google.com/design/spec/material-design/introduction.html
+.. _Vue.js: https://vuejs.org/
+
+.. _release_6_8:
+
+Release 6.8.0 (2-3-2019)
+------------------------
+
+* Prevent invalid actions for a given alert status
+* Lock down Python package versions for deterministic builds
+* And sundry fixes
+
+.. _release_6_7:
+
+Release 6.7.0 (17-1-2019)
+-------------------------
+
+* Sundry fixes
+
+.. _release_6_6:
+
+Release 6.6.0 (1-1-2019)
+------------------------
+
+* Remove dependency on deprecated Google+ API (#788)
+
+.. _release_6_5:
+
+Release 6.5.0 (23-11-2018)
+--------------------------
+
+* Add missing single resource endpoints (#763)
 
 .. _release_6_4:
 
