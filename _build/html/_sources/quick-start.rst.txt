@@ -40,9 +40,9 @@ Install the Web Console
 
 To install the web console::
 
-    $ wget -O alerta-web.tgz https://github.com/alerta/angular-alerta-webui/tarball/master
-    $ tar zxvf alerta-web.tgz
-    $ cd alerta-angular-alerta-webui-*/app
+    $ wget https://github.com/alerta/alerta-webui/releases/latest/download/alerta-webui.tar.gz
+    $ tar zxvf alerta-webui.tar.gz
+    $ cd dist
     $ python3 -m http.server 8000
 
     >> browse to http://localhost:8000

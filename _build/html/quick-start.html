@@ -65,9 +65,9 @@ $ alertad run --port 8080
 <div class="section" id="install-the-web-console">
 <h2>Install the Web Console<a class="headerlink" href="#install-the-web-console" title="Permalink to this headline">¶</a></h2>
 <p>To install the web console:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget -O alerta-web.tgz https://github.com/alerta/angular-alerta-webui/tarball/master
-$ tar zxvf alerta-web.tgz
-$ cd alerta-angular-alerta-webui-*/app
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget https://github.com/alerta/alerta-webui/releases/latest/download/alerta-webui.tar.gz
+$ tar zxvf alerta-webui.tar.gz
+$ cd dist
 $ python3 -m http.server 8000
 
 &gt;&gt; browse to http://localhost:8000
