@@ -50,13 +50,13 @@ and doing some basic configuration and customisation.</p>
 </div></blockquote>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>The server is based on the most recent stable Ubuntu cloud image, <a class="reference external" href="https://wiki.ubuntu.com/XenialXerus/ReleaseNotes">Ubuntu 16.04
-LTS (Xenial)</a>. The Alerta server will be installed to run as a <a class="reference external" href="https://uwsgi-docs.readthedocs.io">uWsgi</a>
+<p>The server is based on the most recent stable Ubuntu cloud image, <a class="reference external" href="https://wiki.ubuntu.com/BionicBeaver/ReleaseNotes">Ubuntu 18.04
+LTS (Bionic Beaver)</a>. The Alerta server will be installed to run as a <a class="reference external" href="https://uwsgi-docs.readthedocs.io">uWsgi</a>
 application proxied behind an <a class="reference external" href="https://www.nginx.com">nginx</a> web server. The web console will
 be served from the same nginx server and configured to support Basic Auth
 logins.</p>
 <p>Customisation will involve defining a new alert severity called
-“Fatal” that will be black in colour, and allowing an additional alert
+“fatal” that will be blue in colour, and allowing an additional alert
 environment called “Code” in addition to “Production” and “Development”.</p>
 </div>
 <div class="section" id="prerequisites">
@@ -67,33 +67,17 @@ and remote <code class="docutils literal notranslate"><span class="pre">ssh</spa
 </div>
 <div class="section" id="step-1-install-packages">
 <h2>Step 1: Install Packages<a class="headerlink" href="#step-1-install-packages" title="Permalink to this headline">¶</a></h2>
-<p>To install MongoDB 3.2 run the following commands:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
-$ echo &quot;deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse&quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
-$ sudo apt-get update -y &amp;&amp; sudo apt-get upgrade -y
+<p>To install MongoDB 4.0 run the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+$ echo &quot;deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse&quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
+$ sudo apt-get update
 $ sudo apt-get install -y mongodb-org
 </pre></div>
 </div>
-<p>Configure MongoDB to run via <code class="docutils literal notranslate"><span class="pre">systemd</span></code> and start at boot:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo vi /etc/systemd/system/mongodb.service
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Unit</span><span class="p">]</span>
-<span class="n">Description</span><span class="o">=</span><span class="n">High</span><span class="o">-</span><span class="n">performance</span><span class="p">,</span> <span class="n">schema</span><span class="o">-</span><span class="n">free</span> <span class="n">document</span><span class="o">-</span><span class="n">oriented</span> <span class="n">database</span>
-<span class="n">After</span><span class="o">=</span><span class="n">network</span><span class="o">.</span><span class="n">target</span>
-
-<span class="p">[</span><span class="n">Service</span><span class="p">]</span>
-<span class="n">User</span><span class="o">=</span><span class="n">mongodb</span>
-<span class="n">ExecStart</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">mongod</span> <span class="o">--</span><span class="n">quiet</span> <span class="o">--</span><span class="n">config</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">mongod</span><span class="o">.</span><span class="n">conf</span>
-
-<span class="p">[</span><span class="n">Install</span><span class="p">]</span>
-<span class="n">WantedBy</span><span class="o">=</span><span class="n">multi</span><span class="o">-</span><span class="n">user</span><span class="o">.</span><span class="n">target</span>
-</pre></div>
-</div>
 <p>Start the MongoDB server, check it is running and set it to start on reboot:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo systemctl start mongodb
-$ sudo systemctl status mongodb
-$ sudo systemctl enable mongodb
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo service start mongodb
+$ sudo service status mongodb
+$ sudo service enable mongodb
 </pre></div>
 </div>
 <p>To run Alerta we need to ensure all Python 3 dependencies are installed:</p>
@@ -109,9 +93,9 @@ $ alerta/bin/pip install --upgrade pip wheel alerta-server alerta uwsgi
 </pre></div>
 </div>
 <p>To install the web console run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd /var/www/html
-$ wget -q -O - https://github.com/alerta/angular-alerta-webui/tarball/master | sudo tar zxf -
-$ sudo mv alerta*/app/* .
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget https://github.com/alerta/alerta-webui/releases/latest/download/alerta-webui.tar.gz
+$ tar zxvf alerta-webui.tar.gz
+$ cp dist /var/www/html
 </pre></div>
 </div>
 </div>
@@ -165,9 +149,9 @@ uses a unix socket to communicate with the nginx web server:</p>
 </div>
 <p>Start the uwsgi server, check the current status and enable it to start
 on reboot:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo systemctl start uwsgi
-$ sudo systemctl status uwsgi
-$ sudo systemctl enable uwsgi
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo service start uwsgi
+$ sudo service status uwsgi
+$ sudo service enable uwsgi
 </pre></div>
 </div>
 <p>Configure nginx to serve Alerta as a uWsgi application on <code class="docutils literal notranslate"><span class="pre">/api</span></code> and

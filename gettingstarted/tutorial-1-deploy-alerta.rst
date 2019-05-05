@@ -18,17 +18,17 @@ and doing some basic configuration and customisation.
 Overview
 --------
 
-The server is based on the most recent stable Ubuntu cloud image, `Ubuntu 16.04
-LTS (Xenial)`_. The Alerta server will be installed to run as a `uWsgi`_
+The server is based on the most recent stable Ubuntu cloud image, `Ubuntu 18.04
+LTS (Bionic Beaver)`_. The Alerta server will be installed to run as a `uWsgi`_
 application proxied behind an `nginx`_ web server. The web console will
 be served from the same nginx server and configured to support Basic Auth
 logins.
 
 Customisation will involve defining a new alert severity called
-"Fatal" that will be black in colour, and allowing an additional alert
+"fatal" that will be blue in colour, and allowing an additional alert
 environment called "Code" in addition to "Production" and "Development".
 
-.. _`Ubuntu 16.04 LTS (Xenial)`: https://wiki.ubuntu.com/XenialXerus/ReleaseNotes
+.. _`Ubuntu 18.04 LTS (Bionic Beaver)`: https://wiki.ubuntu.com/BionicBeaver/ReleaseNotes
 .. _uWsgi: https://uwsgi-docs.readthedocs.io
 .. _nginx: https://www.nginx.com
 
@@ -42,35 +42,18 @@ and remote ``ssh`` access to the server you are deploying to.
 Step 1: Install Packages
 ------------------------
 
-To install MongoDB 3.2 run the following commands::
+To install MongoDB 4.0 run the following commands::
 
-    $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
-    $ echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
-    $ sudo apt-get update -y && sudo apt-get upgrade -y
+    $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+    $ echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
+    $ sudo apt-get update
     $ sudo apt-get install -y mongodb-org
-
-Configure MongoDB to run via ``systemd`` and start at boot::
-
-    $ sudo vi /etc/systemd/system/mongodb.service
-
-::
-
-    [Unit]
-    Description=High-performance, schema-free document-oriented database
-    After=network.target
-
-    [Service]
-    User=mongodb
-    ExecStart=/usr/bin/mongod --quiet --config /etc/mongod.conf
-
-    [Install]
-    WantedBy=multi-user.target
 
 Start the MongoDB server, check it is running and set it to start on reboot::
 
-    $ sudo systemctl start mongodb
-    $ sudo systemctl status mongodb
-    $ sudo systemctl enable mongodb
+    $ sudo service start mongodb
+    $ sudo service status mongodb
+    $ sudo service enable mongodb
 
 To run Alerta we need to ensure all Python 3 dependencies are installed::
 
@@ -86,9 +69,9 @@ Python 3 virtual environment run::
 
 To install the web console run::
 
-    $ cd /var/www/html
-    $ wget -q -O - https://github.com/alerta/angular-alerta-webui/tarball/master | sudo tar zxf -
-    $ sudo mv alerta*/app/* .
+    $ wget https://github.com/alerta/alerta-webui/releases/latest/download/alerta-webui.tar.gz
+    $ tar zxvf alerta-webui.tar.gz
+    $ cp dist /var/www/html
 
 Step 2: Configuration
 ---------------------
@@ -145,9 +128,9 @@ Create a ``systemd`` configuration file for the uwsgi server::
 Start the uwsgi server, check the current status and enable it to start
 on reboot::
 
-    $ sudo systemctl start uwsgi
-    $ sudo systemctl status uwsgi
-    $ sudo systemctl enable uwsgi
+    $ sudo service start uwsgi
+    $ sudo service status uwsgi
+    $ sudo service enable uwsgi
 
 ::
 
