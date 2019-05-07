@@ -79,9 +79,10 @@ Contribute
 ----------
 
 * Core project: https://github.com/alerta/alerta
-* Web UI: https://github.com/alerta/angular-alerta-webui
+* Web UI: https://github.com/alerta/alerta-webui
 * Python SDK: https://github.com/alerta/python-alerta-client
 * Contributions and integrations: https://github.com/alerta/alerta-contrib
+* Docker container: https://github.com/alerta/docker-alerta
 
 Support
 -------

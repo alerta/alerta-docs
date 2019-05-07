@@ -5,6 +5,7 @@ Releases
 Roadmap
 +++++++
 
+* Improve documentation esp. tutorials and web UI guides
 * Custom alert filters and dashboard views
 * Use OpenAPI (Swagger_) to generate client libraries
 * Use Celery tasks for bulk API requests (productionalize)
@@ -21,7 +22,7 @@ Release History
 Release 7.0.0 (14-04-2019)
 --------------------------
 
-* Web UI redesign using `Google material design`_ and `Vue.js`_
+* Web UI `version 7`_ complete redesign based on `Vue.js`_ and `Vuetify`_
 * Supports any OpenID Connect compliant auth provider
 * Add user groups for Basic Auth role and customer assignment
 * Edit users, groups, customers, blackouts, permissions and API keys
@@ -30,8 +31,10 @@ Release 7.0.0 (14-04-2019)
 * Multi-select alerts and actions on hover
 * Minimum MongoDB version is now 3.2
 
+.. _version 7: https://github.com/alerta/alerta-webui
 .. _Google material design: https://www.google.com/design/spec/material-design/introduction.html
 .. _Vue.js: https://vuejs.org/
+.. _Vuetify: https://vuetifyjs.com
 
 .. _release_6_8:
 
