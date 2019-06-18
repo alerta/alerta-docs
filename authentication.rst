@@ -77,10 +77,24 @@ that multiple LDAP domains can be supported::
     LDAP_DOMAINS = {
         'my-domain.com': 'uid=%s,ou=users,dc=my-domain,dc=com'
     }
+    LDAP_DOMAINS_BASEDN = {
+        'my-domain.com': 'dc=my-domain,dc=com'
+    }
+    LDAP_DOMAINS_GROUP = {
+        'my-domain.com': '(&(memberUid={username})(objectClass=groupOfUniqueNames))'
+        #OR
+        'my-domain.com': '(&(member={userdn})(objectClass=groupOfUniqueNames))'
+        #OR
+        'my-domain.com': '(&(member={email})(objectClass=groupOfUniqueNames))'
+    }
 
 A typical user called ``user1``, for the example above, would login
 using an email address of ``user1@my-domain.com`` even if that
 email address doesn't actually exist.
+
+You can fetch ldap groups dynamically from LDAP server and use them as customer
+name by using ``LDAP_DOMAINS_GROUP`` configuration. Either of ``{username}``,
+``{userdn}`` or ``{email}`` can be used for the same.
 
 All users are initially assigned the "user" role by default. 
 
