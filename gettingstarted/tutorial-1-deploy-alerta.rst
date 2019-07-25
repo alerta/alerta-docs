@@ -214,6 +214,12 @@ severity and remove some unwanted severity levels::
         'unknown': 9
     }
 
+The default "normal" severity is ``normal`` however it is no longer
+a valid severity following the changes made above so you must explicity
+set the default severity to ``ok`` by adding::
+
+    DEFAULT_NORMAL_SEVERITY = 'ok'
+
 And change the color map to reflect the new severities::
 
     COLOR_MAP = {

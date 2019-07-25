@@ -105,11 +105,24 @@ that multiple LDAP domains can be supported:</p>
 <span class="n">LDAP_DOMAINS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;my-domain.com&#39;</span><span class="p">:</span> <span class="s1">&#39;uid=</span><span class="si">%s</span><span class="s1">,ou=users,dc=my-domain,dc=com&#39;</span>
 <span class="p">}</span>
+<span class="n">LDAP_DOMAINS_BASEDN</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;my-domain.com&#39;</span><span class="p">:</span> <span class="s1">&#39;dc=my-domain,dc=com&#39;</span>
+<span class="p">}</span>
+<span class="n">LDAP_DOMAINS_GROUP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;my-domain.com&#39;</span><span class="p">:</span> <span class="s1">&#39;(&amp;(memberUid=</span><span class="si">{username}</span><span class="s1">)(objectClass=groupOfUniqueNames))&#39;</span>
+    <span class="c1">#OR</span>
+    <span class="s1">&#39;my-domain.com&#39;</span><span class="p">:</span> <span class="s1">&#39;(&amp;(member=</span><span class="si">{userdn}</span><span class="s1">)(objectClass=groupOfUniqueNames))&#39;</span>
+    <span class="c1">#OR</span>
+    <span class="s1">&#39;my-domain.com&#39;</span><span class="p">:</span> <span class="s1">&#39;(&amp;(member=</span><span class="si">{email}</span><span class="s1">)(objectClass=groupOfUniqueNames))&#39;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>A typical user called <code class="docutils literal notranslate"><span class="pre">user1</span></code>, for the example above, would login
 using an email address of <code class="docutils literal notranslate"><span class="pre">user1&#64;my-domain.com</span></code> even if that
 email address doesn’t actually exist.</p>
+<p>You can fetch ldap groups dynamically from LDAP server and use them as customer
+name by using <code class="docutils literal notranslate"><span class="pre">LDAP_DOMAINS_GROUP</span></code> configuration. Either of <code class="docutils literal notranslate"><span class="pre">{username}</span></code>,
+<code class="docutils literal notranslate"><span class="pre">{userdn}</span></code> or <code class="docutils literal notranslate"><span class="pre">{email}</span></code> can be used for the same.</p>
 <p>All users are initially assigned the “user” role by default.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>

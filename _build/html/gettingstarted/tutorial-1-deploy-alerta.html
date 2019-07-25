@@ -227,6 +227,12 @@ severity and remove some unwanted severity levels:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>The default “normal” severity is <code class="docutils literal notranslate"><span class="pre">normal</span></code> however it is no longer
+a valid severity following the changes made above so you must explicity
+set the default severity to <code class="docutils literal notranslate"><span class="pre">ok</span></code> by adding:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DEFAULT_NORMAL_SEVERITY</span> <span class="o">=</span> <span class="s1">&#39;ok&#39;</span>
+</pre></div>
+</div>
 <p>And change the color map to reflect the new severities:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">COLOR_MAP</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;severity&#39;</span><span class="p">:</span> <span class="p">{</span>
