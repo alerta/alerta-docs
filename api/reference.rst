@@ -388,6 +388,35 @@ Example Request
           ]
         }'
 
+
+Add an alert note
+~~~~~~~~~~~~~~~~~~~~
+
+Adds a note to an alert.
+
+::
+
+    PUT /alert/:id/note
+
+Input
++++++
+
++-----------------+----------+----------------------------------------------+
+| Name            | Type     | Description                                  |
++=================+==========+==============================================+
+| ``note``        | string   | note text                                    |
++-----------------+----------+----------------------------------------------+
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPUT http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258/note \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{ "note": "This is the sample note" }'
+
 Update alert attributes
 ~~~~~~~~~~~~~~~~~~~~~~~
 
