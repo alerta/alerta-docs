@@ -140,43 +140,47 @@ or disabling this plugin see <a class="reference internal" href="../configuratio
 <tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">id</span></code></td>
 <td>globally unique random UUID</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">duplicateCount</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">customer</span></code></td>
+<td>assigned based on the owner of the API key used
+when submitting the alert, if “Customer Views”
+is enabled, or can be set if <code class="docutils literal notranslate"><span class="pre">admin</span></code> user</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">duplicateCount</span></code></td>
 <td>a count of the number of times this event has been
 received for a resource</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">repeat</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">repeat</span></code></td>
 <td>if duplicateCount is 0 or the alert status has
 changed then repeat is False, otherwise it is True</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">previousSeverity</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">previousSeverity</span></code></td>
 <td>the previous severity of the same event for this
 resource. if no event or <code class="docutils literal notranslate"><span class="pre">correlate</span></code> events
 exist in the database for this resource then it
 will be <code class="docutils literal notranslate"><span class="pre">unknown</span></code></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">trendIndication</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">trendIndication</span></code></td>
 <td>based on <code class="docutils literal notranslate"><span class="pre">severity</span></code> and <code class="docutils literal notranslate"><span class="pre">previousSeverity</span></code>
 will be one of <code class="docutils literal notranslate"><span class="pre">moreSevere</span></code>, <code class="docutils literal notranslate"><span class="pre">lessSevere</span></code> or
 <code class="docutils literal notranslate"><span class="pre">noChange</span></code></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">receiveTime</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">receiveTime</span></code></td>
 <td>UTC datetime the alert was received by the
 Alerta server daemon</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">lastReceiveId</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">lastReceiveId</span></code></td>
 <td>the last alert <code class="docutils literal notranslate"><span class="pre">id</span></code> received for this event</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">lastReceiveTime</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">lastReceiveTime</span></code></td>
 <td>the last time this alert was received. only
 different to receiveTime if the alert is a
 duplicate</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">customer</span></code></td>
-<td>assigned based on the owner of the API key used
-when submitting the alert, if “Customer Views”
-is enabled, or can be set if <code class="docutils literal notranslate"><span class="pre">admin</span></code> user</td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">updateTime</span></code></td>
+<td>the last time the alert status changed. used to
+calculate time remaining until an alert times out</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">history</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">history</span></code></td>
 <td>whenever an alert changes severity or status then
 a list of key alert attributes are appended to
 the history log</td>

@@ -72,6 +72,10 @@ Attributes added when processing alerts
 +======================+====================================================+
 | ``id``               | globally unique random UUID                        |
 +----------------------+----------------------------------------------------+
+| ``customer``         | assigned based on the owner of the API key used    |
+|                      | when submitting the alert, if "Customer Views"     |
+|                      | is enabled, or can be set if ``admin`` user        |
++----------------------+----------------------------------------------------+
 | ``duplicateCount``   | a count of the number of times this event has been |
 |                      | received for a resource                            |
 +----------------------+----------------------------------------------------+
@@ -96,9 +100,8 @@ Attributes added when processing alerts
 |                      | different to receiveTime if the alert is a         |
 |                      | duplicate                                          |
 +----------------------+----------------------------------------------------+
-| ``customer``         | assigned based on the owner of the API key used    |
-|                      | when submitting the alert, if "Customer Views"     |
-|                      | is enabled, or can be set if ``admin`` user        |
+| ``updateTime``       | the last time the alert status changed. used to    |
+|                      | calculate time remaining until an alert times out  |
 +----------------------+----------------------------------------------------+
 | ``history``          | whenever an alert changes severity or status then  |
 |                      | a list of key alert attributes are appended to     |
