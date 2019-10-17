@@ -58,8 +58,10 @@ Basic Auth using LDAP
 ~~~~~~~~~~~~~~~~~~~~~
 
 LDAP can be used as the Basic Auth provider to authenticate users
-if desired. It requires the installation of an additional Python
-package called "`python-ldap`_" and can be installed like so::
+if desired by setting the ``AUTH_PROVIDER`` to ``ldap``.
+
+It requires the installation of an additional Python package
+called "`python-ldap`_" and can be installed like so::
 
     $ pip install python-ldap
 
@@ -71,8 +73,13 @@ package called "`python-ldap`_" and can be installed like so::
 
 The configuration settings for LDAP authentication include the LDAP
 server URL and a map of LDAP domains to search filters which means
-that multiple LDAP domains can be supported::
+that multiple LDAP domains can be supported.
 
+**Example**
+
+.. code:: python
+
+    AUTH_PROVIDER = 'ldap'
     LDAP_URL = 'ldap://localhost:389'  # replace with your LDAP server
     LDAP_DOMAINS = {
         'my-domain.com': 'uid=%s,ou=users,dc=my-domain,dc=com'

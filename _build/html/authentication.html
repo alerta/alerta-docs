@@ -87,8 +87,9 @@ HTTPS.</p>
 <div class="section" id="basic-auth-using-ldap">
 <span id="basic-auth-ldap"></span><h3>Basic Auth using LDAP<a class="headerlink" href="#basic-auth-using-ldap" title="Permalink to this headline">¶</a></h3>
 <p>LDAP can be used as the Basic Auth provider to authenticate users
-if desired. It requires the installation of an additional Python
-package called “<a class="reference external" href="https://pypi.org/project/python-ldap/">python-ldap</a>” and can be installed like so:</p>
+if desired by setting the <code class="docutils literal notranslate"><span class="pre">AUTH_PROVIDER</span></code> to <code class="docutils literal notranslate"><span class="pre">ldap</span></code>.</p>
+<p>It requires the installation of an additional Python package
+called “<a class="reference external" href="https://pypi.org/project/python-ldap/">python-ldap</a>” and can be installed like so:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install python-ldap
 </pre></div>
 </div>
@@ -100,8 +101,10 @@ into the same environment otherwise it won’t be auto-detected.</p>
 </div>
 <p>The configuration settings for LDAP authentication include the LDAP
 server URL and a map of LDAP domains to search filters which means
-that multiple LDAP domains can be supported:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LDAP_URL</span> <span class="o">=</span> <span class="s1">&#39;ldap://localhost:389&#39;</span>  <span class="c1"># replace with your LDAP server</span>
+that multiple LDAP domains can be supported.</p>
+<p><strong>Example</strong></p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;ldap&#39;</span>
+<span class="n">LDAP_URL</span> <span class="o">=</span> <span class="s1">&#39;ldap://localhost:389&#39;</span>  <span class="c1"># replace with your LDAP server</span>
 <span class="n">LDAP_DOMAINS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;my-domain.com&#39;</span><span class="p">:</span> <span class="s1">&#39;uid=</span><span class="si">%s</span><span class="s1">,ou=users,dc=my-domain,dc=com&#39;</span>
 <span class="p">}</span>
