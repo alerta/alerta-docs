@@ -156,6 +156,11 @@ to the Alerta server API when an event occurs.
    :local:
    :depth: 2
 
+.. Note::
+    If authentication is enforced, then an API key is needed to access the alerta API programatically and use the webhooks. 
+    
+    Please follow this page for more information on how to pass your api-key : https://docs.alerta.io/en/latest/authentication.html#api-keys
+
 AWS CloudWatch
 ~~~~~~~~~~~~~~
 
@@ -169,6 +174,10 @@ HTTP/HTTPS Endpoints`_ page and in the `Endpoint` input box append
 **Example AWS CloudWatch Webhook URL**
 
 :file:`https://alerta.example.com/api/webhooks/cloudwatch`
+
+**Example AWS CloudWatch Webhook URL with authentication**
+
+:file:`https://alerta.example.com/api/webhooks/cloudwatch?api-key=xxxxx`
 
 .. _Sending Amazon SNS Messages to HTTP/HTTPS Endpoints: http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html
 
@@ -214,6 +223,10 @@ For details on how to set this up see `New Relic webhook`_ page and in the
 
 :file:`https://alerta.example.com/api/webhooks/newrelic`
 
+**Example New Relic Webhook URL with authentication**
+
+:file:`https://alerta.example.com/api/webhooks/newrelic?api-key=xxxxx`
+
 PagerDuty
 ~~~~~~~~~
 
@@ -227,6 +240,10 @@ requires the webhook URL append :file:`/webhooks/pagerduty` to the Alerta API UR
 **Example PagerDuty Webhook URL**
 
 :file:`https://alerta.example.com/api/webhooks/pagerduty`
+
+**Example PagerDuty Webhook URL with authentication**
+
+:file:`https://alerta.example.com/api/webhooks/pagerduty?api-key=xxxxx`
 
 .. _PagerDuty webhook: https://developer.pagerduty.com/documentation/rest/webhooks
 
@@ -242,6 +259,10 @@ For details on how to set this up see the `Pingdom webhook`_ page and in the
 **Example Pingdom Webhook URL**
 
 :file:`https://alerta.example.com/api/webhooks/pingdom`
+
+**Example Pingdom Webhook URL with authentication**
+
+:file:`https://alerta.example.com/api/webhooks/pingdom?api-key=xxxx`
 
 .. _Pingdom webhook: https://support.pingdom.com/Knowledgebase/Article/View/94/0/users-and-alerting-end-points
 
@@ -266,6 +287,10 @@ environment, group, etc) then these will be used.
 
 :file:`https://alerta.example.com/api/webhooks/riemann`
 
+**Example Riemann Webhook URL with authentication**
+
+:file:`https://alerta.example.com/api/webhooks/riemann?api-key=xxxxx`
+
 SeverDensity
 ~~~~~~~~~~~~
 
@@ -280,6 +305,10 @@ For details on how to set this up see `SeverDensity webhook`_ page and in the
 **Example SeverDensity Webhook URL**
 
 :file:`https://alerta.example.com/api/webhooks/serverdensity`
+
+**Example SeverDensity Webhook URL with authentication**
+
+:file:`https://alerta.example.com/api/webhooks/serverdensity?api-key=xxxxx`
 
 Slack
 ~~~~~
@@ -299,6 +328,10 @@ For details on how to set this up see `Stackdriver webhook`_ page and in the
 
 :file:`https://alerta.example.com/api/webhooks/stackdriver`
 
+**Example Stackdriver Webhook URL with authentication**
+
+:file:`https://alerta.example.com/api/webhooks/stackdriver?api-key=xxxxx`
+
 .. _Stackdriver webhook: https://cloud.google.com/monitoring/support/notification-options#webhooks
 
 Telegram
@@ -315,6 +348,10 @@ For details on how to set this up see `Telegram Bot`_ page and for the
 **Example Telegram Webhook URL**
 
 :file:`https://alerta.example.com/api/webhooks/telegram`
+
+**Example Telegram Webhook URL with authentication**
+
+:file:`https://alerta.example.com/api/webhooks/telegram?api-key=xxxxx`
 
 Custom Webhooks
 ~~~~~~~~~~~~~~~
