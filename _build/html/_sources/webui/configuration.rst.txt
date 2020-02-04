@@ -1,4 +1,4 @@
-.. _webui_config:
+.. _webui config:
 
 Configuration
 -------------
