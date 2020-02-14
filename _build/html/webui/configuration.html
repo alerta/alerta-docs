@@ -1,0 +1,404 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Configuration &#8212; alerta 6.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="configuration">
+<span id="webui-config"></span><h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
+<p>To configure the Alerta web UI modify “in place” the default <code class="docutils literal notranslate"><span class="pre">config.json</span></code> file
+that is supplied with the web application. It uses simple JSON syntax.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 6.0: </span>The Alerta web UI previously used an <a class="reference external" href="https://docs.angularjs.org/guide/module#configuration-blocks">AngularJS configuration block</a>
+for configuration settings which has now been deprecated.</p>
+</div>
+<p>The three main areas for configuration are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>defining the Alerta API endpoint</li>
+<li>enforcing a use authentication strategy</li>
+<li>selecting colors for severity, highlighting, text and sound</li>
+</ul>
+</div></blockquote>
+<p>The default web UI <code class="file docutils literal notranslate"><span class="pre">config.json</span></code> configuration file is included below.
+It assumes that the Alerta API is running on the same host (but different
+port) that the web UI static html files are being served from (line 2):</p>
+<div class="highlight-json notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;endpoint&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p><strong>config.js Javascript Configuration</strong></p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 5.0: </span>Use <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">DATABASE_URL</span></code> and <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">DATABASE_NAME</span></code> instead.</p>
+</div>
+</div>
+<div class="section" id="configuration-from-api-server">
+<h1>Configuration from API Server<a class="headerlink" href="#configuration-from-api-server" title="Permalink to this headline">¶</a></h1>
+<p>Starting from version 6.0, client configuration is supplied by the API server.
+This includes configuration for the web UI and the command-line tool.</p>
+<p>Configuration settings are made on the API server and when the web UI console
+is bootstrapping it reads the endpoint setting and downloads the rest of
+the configuration.</p>
+<p>The remote configuration from the API server is merged with the local
+configuration settings to provide the final configuration used by
+clients.</p>
+<p><strong>Example</strong></p>
+<p>The following API server settings generate the JSON client configuration
+shown below that.</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;google&#39;</span>
+<span class="n">AUTH_REQUIRED</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">CUSTOMER_VIEWS</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">GOOGLE_TRACKING_ID</span> <span class="o">=</span> <span class="s1">&#39;UA-44644195-5&#39;</span>
+<span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s1">&#39;736147134702-glkb1pesv716j1utg4llg7c3rr7nnhli.apps.googleusercontent.com&#39;</span>
+<span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;secret&#39;</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-json notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;audio&quot;</span><span class="p">:</span> <span class="p">{},</span>
+  <span class="nt">&quot;auth_required&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;client_id&quot;</span><span class="p">:</span> <span class="s2">&quot;736147134702-glkb1pesv716j1utg4llg7c3rr7nnhli.apps.googleusercontent.com&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;colors&quot;</span><span class="p">:</span> <span class="p">{},</span>
+  <span class="nt">&quot;customer_views&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;dates&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;longDate&quot;</span><span class="p">:</span> <span class="s2">&quot;EEEE, MMMM d, yyyy h:mm:ss.sss a (Z)&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;mediumDate&quot;</span><span class="p">:</span> <span class="s2">&quot;medium&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;shortTime&quot;</span><span class="p">:</span> <span class="s2">&quot;shortTime&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;endpoint&quot;</span><span class="p">:</span> <span class="s2">&quot;https://alerta-api.herokuapp.com&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;github_url&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&quot;gitlab_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://gitlab.com&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;keycloak_realm&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&quot;keycloak_url&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&quot;pingfederate_url&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&quot;provider&quot;</span><span class="p">:</span> <span class="s2">&quot;google&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;refresh_interval&quot;</span><span class="p">:</span> <span class="mi">5000</span><span class="p">,</span>
+  <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;cleared&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="nt">&quot;critical&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;debug&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="nt">&quot;indeterminate&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="nt">&quot;informational&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="nt">&quot;major&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;minor&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="nt">&quot;normal&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="nt">&quot;ok&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="nt">&quot;security&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;trace&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="nt">&quot;unknown&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+    <span class="nt">&quot;warning&quot;</span><span class="p">:</span> <span class="mi">4</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;signup_enabled&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;tracking_id&quot;</span><span class="p">:</span> <span class="s2">&quot;UA-44644195-5&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For completeness, the <code class="docutils literal notranslate"><span class="pre">OAUTH2_CLIENT_ID</span></code> and <code class="docutils literal notranslate"><span class="pre">OAUTH2_CLIENT_SECRET</span></code>
+configuration settings are included in the example above however it
+should be noted that only the client id is sent to the client (line 4)
+as sending the client secret is not necessary and would compromise security.</p>
+</div>
+<div class="section" id="client-settings">
+<h2>Client Settings<a class="headerlink" href="#client-settings" title="Permalink to this headline">¶</a></h2>
+<p>Full list of API server settings that can be used to configure clients.</p>
+<p><code class="docutils literal notranslate"><span class="pre">AUTH_REQUIRED</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">CUSTOMER_VIEWS</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">AUTH_PROVIDER</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">SIGNUP_ENABLED</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">OAUTH2_CLIENT_ID</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">GITHUB_URL</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">GITLAB_URL</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">KEYCLOAK_URL</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">KEYCLOAK_REALM</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">PINGFEDERATE_URL</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">COLOR_MAP</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">SEVERITY_MAP</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">GOOGLE_TRACKING_ID</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">AUTO_REFRESH_INTERVAL</span></code></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is not currently possible to configure dates or audio.</p>
+</div>
+</div>
+</div>
+<div class="section" id="severity-colors">
+<h1>Severity Colors<a class="headerlink" href="#severity-colors" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="22%" />
+<col width="49%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Severity</th>
+<th class="head">Severity Code</th>
+<th class="head">Colour</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">security</span></code></td>
+<td>0</td>
+<td><img alt="blu" src="https://via.placeholder.com/16x16/0000ff/0000ff" /> <code class="docutils literal notranslate"><span class="pre">#0000FF</span></code>  (Blue)</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">critical</span></code></td>
+<td>1</td>
+<td><img alt="red" src="https://via.placeholder.com/16x16/ff0000/ff0000" /> <code class="docutils literal notranslate"><span class="pre">#FF0000</span></code>  (Red)</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">major</span></code></td>
+<td>2</td>
+<td><img alt="org" src="https://via.placeholder.com/16x16/ffa500/ffa500" /> <code class="docutils literal notranslate"><span class="pre">#FFA500</span></code>  (Orange)</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">minor</span></code></td>
+<td>3</td>
+<td><img alt="ylw" src="https://via.placeholder.com/16x16/ffff00/ffff00" /> <code class="docutils literal notranslate"><span class="pre">#FFFF00</span></code>  (Yellow)</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">warning</span></code></td>
+<td>4</td>
+<td><img alt="dbl" src="https://via.placeholder.com/16x16/1e90ff/1e90ff" /> <code class="docutils literal notranslate"><span class="pre">#1E90FF</span></code>  (DodgerBlue)</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">indeterminate</span></code></td>
+<td>5</td>
+<td><img alt="lbl" src="https://via.placeholder.com/16x16/add8e6/add8e6" /> <code class="docutils literal notranslate"><span class="pre">#00CC00</span></code> (LightBlue)</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">cleared</span></code></td>
+<td>5</td>
+<td><img alt="grn" src="https://via.placeholder.com/16x16/00cc00/00cc00" /> <code class="docutils literal notranslate"><span class="pre">#00CC00</span></code> (Green*)</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">normal</span></code></td>
+<td>5</td>
+<td><img alt="grn" src="https://via.placeholder.com/16x16/00cc00/00cc00" /> <code class="docutils literal notranslate"><span class="pre">#00CC00</span></code> (Green*)</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">ok</span></code></td>
+<td>5</td>
+<td><img alt="grn" src="https://via.placeholder.com/16x16/00cc00/00cc00" /> <code class="docutils literal notranslate"><span class="pre">#00CC00</span></code> (Green*)</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">informational</span></code></td>
+<td>6</td>
+<td><img alt="grn" src="https://via.placeholder.com/16x16/00cc00/00cc00" /> <code class="docutils literal notranslate"><span class="pre">#00CC00</span></code> (Green*)</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">debug</span></code></td>
+<td>7</td>
+<td><img alt="prp" src="https://via.placeholder.com/16x16/9d006d/9d006d" /> <code class="docutils literal notranslate"><span class="pre">#9D006D</span></code> (Purple*)</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">trace</span></code></td>
+<td>8</td>
+<td><img alt="vlt" src="https://via.placeholder.com/16x16/7554bf/7554bf" /> <code class="docutils literal notranslate"><span class="pre">#7554BF</span></code> (Violet*)</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">unknown</span></code></td>
+<td>9</td>
+<td><img alt="slv" src="https://via.placeholder.com/16x16/c0c0c0/c0c0c0" /> <code class="docutils literal notranslate"><span class="pre">#C0C0C0</span></code> (Silver)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">alerta</a></h1>
+
+
+
+<p class="blurb">monitoring system</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=alerta&repo=alerta&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a href="https://travis-ci.org/alerta/alerta">
+    <img
+        alt="https://secure.travis-ci.org/alerta/alerta.svg?branch=master"
+        src="https://secure.travis-ci.org/alerta/alerta.svg?branch=master"
+    />
+</a>
+</p>
+
+
+
+
+<h3>
+Links
+</h3>
+<ul>
+  <li>
+    <a href="http://alerta.io" rel="me">Web</a>
+  </li>
+  <li>
+    <a href="https://twitter.com/alertaio" rel="me">Twitter</a>
+  </li>
+  <li>
+    <a href="https://gitter.im/alerta/chat" rel="me">Gitter</a>
+  </li>
+</ul>
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick-start.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server.html">Server &amp; API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui.html">Alerta Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">Alerta CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../integrations.html">Integrations &amp; Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authorization.html">Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../customer-views.html">Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">Resources</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/query-syntax.html">API Query Syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/alert.html">Alert Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/heartbeat.html">Heartbeat Format</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015-2018, Nick Satterly. MIT License.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      
+      |
+      <a href="../_sources/webui/configuration.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-44644195-3']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>
