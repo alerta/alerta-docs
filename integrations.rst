@@ -360,8 +360,18 @@ Custom webhooks are a simple but effective way of adding support for direct inte
 to any system via a webhook without having to modify the core source code.  They are
 written in python and are required to implement all methods of a base class.
 
+.. code-block:: python
+
+    def incoming(self, path: str, query_string: ImmutableMultiDict, payload: Any) -> Union[Alert, JSON]:
+        """
+        Parse webhook path, query string and/or payload in JSON or plain text and
+        return an alert or a custom JSON response.
+        """
+        raise NotImplementedError
+
 They are loaded into memory when the Alerta API starts up and dynamically add an
-API endpoint path to the list of available webhooks.
+API endpoint path to the list of available webhooks at :file:`/webhooks/<webhook_name>`
+and trigger for that and all subpaths of that URL. eg. :file:`/webhooks/<webhook_name>/<alert_id>`
 
 To set this up follow the instructions for triggering a webhook in the system to be 
 integrated with and for the webhook URL append :file:`/webhooks/<webhook_name>` to

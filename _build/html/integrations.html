@@ -308,8 +308,17 @@ buttons in the <a class="reference external" href="https://github.com/alerta/ale
 <p>Custom webhooks are a simple but effective way of adding support for direct integration
 to any system via a webhook without having to modify the core source code.  They are
 written in python and are required to implement all methods of a base class.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">incoming</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">query_string</span><span class="p">:</span> <span class="n">ImmutableMultiDict</span><span class="p">,</span> <span class="n">payload</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Alert</span><span class="p">,</span> <span class="n">JSON</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse webhook path, query string and/or payload in JSON or plain text and</span>
+<span class="sd">    return an alert or a custom JSON response.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</pre></div>
+</div>
 <p>They are loaded into memory when the Alerta API starts up and dynamically add an
-API endpoint path to the list of available webhooks.</p>
+API endpoint path to the list of available webhooks at <code class="file docutils literal notranslate"><span class="pre">/webhooks/&lt;webhook_name&gt;</span></code>
+and trigger for that and all subpaths of that URL. eg. <code class="file docutils literal notranslate"><span class="pre">/webhooks/&lt;webhook_name&gt;/&lt;alert_id&gt;</span></code></p>
 <p>To set this up follow the instructions for triggering a webhook in the system to be
 integrated with and for the webhook URL append <code class="file docutils literal notranslate"><span class="pre">/webhooks/&lt;webhook_name&gt;</span></code> to
 to the Alerta API URL but replace <code class="docutils literal notranslate"><span class="pre">&lt;webhook_name&gt;</span></code> with the name of the of the system.</p>
