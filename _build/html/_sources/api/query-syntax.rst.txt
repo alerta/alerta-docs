@@ -102,7 +102,7 @@ Nested Field names
 *New in version 7.5.*
 
 Nested fields can be queried using dot notation (``.``) that
-includes the complete path of the field.:
+includes the complete path of the field.
 
 For example, where the ``region`` custom attribute is "EU"::
 
@@ -113,7 +113,9 @@ Where the ``vendor`` custom attribute  is "cisco" or "juniper"::
     attributes.vendor:(cisco OR juniper)
 
 For custom attributes the underscore (``_``) shortcut can be
-used to replace the ``attributes`` parent field name::
+used to replace the ``attributes`` parent field name.
+
+So the above can be more simply expressed as::
 
     _.region:EU
     _.vendor:(cisco OR juniper)

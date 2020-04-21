@@ -129,7 +129,7 @@ the default field <code class="docutils literal notranslate"><span class="pre">t
 <h2>Nested Field names<a class="headerlink" href="#nested-field-names" title="Permalink to this headline">¶</a></h2>
 <p><em>New in version 7.5.</em></p>
 <p>Nested fields can be queried using dot notation (<code class="docutils literal notranslate"><span class="pre">.</span></code>) that
-includes the complete path of the field.:</p>
+includes the complete path of the field.</p>
 <p>For example, where the <code class="docutils literal notranslate"><span class="pre">region</span></code> custom attribute is “EU”:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">attributes</span><span class="o">.</span><span class="n">region</span><span class="p">:</span><span class="n">EU</span>
 </pre></div>
@@ -139,7 +139,8 @@ includes the complete path of the field.:</p>
 </pre></div>
 </div>
 <p>For custom attributes the underscore (<code class="docutils literal notranslate"><span class="pre">_</span></code>) shortcut can be
-used to replace the <code class="docutils literal notranslate"><span class="pre">attributes</span></code> parent field name:</p>
+used to replace the <code class="docutils literal notranslate"><span class="pre">attributes</span></code> parent field name.</p>
+<p>So the above can be more simply expressed as:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="o">.</span><span class="n">region</span><span class="p">:</span><span class="n">EU</span>
 <span class="n">_</span><span class="o">.</span><span class="n">vendor</span><span class="p">:(</span><span class="n">cisco</span> <span class="n">OR</span> <span class="n">juniper</span><span class="p">)</span>
 </pre></div>
