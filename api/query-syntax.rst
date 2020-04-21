@@ -96,6 +96,29 @@ Where the custom attribute ``region`` has any non-null value::
 
     _exists_:region
 
+Nested Field names
+------------------
+
+*New in version 7.5.*
+
+Nested fields can be queried using dot notation (``.``) that
+includes the complete path of the field.:
+
+For example, where the ``region`` custom attribute is "EU"::
+
+    attributes.region:EU
+
+Where the ``vendor`` custom attribute  is "cisco" or "juniper"::
+
+    attributes.vendor:(cisco OR juniper)
+
+For custom attributes the underscore (``_``) shortcut can be
+used to replace the ``attributes`` parent field name::
+
+    _.region:EU
+    _.vendor:(cisco OR juniper)
+
+
 Wildcards
 ~~~~~~~~~
 
@@ -155,7 +178,7 @@ Ranges with one side unbounded (using ``*``) can use a simplified syntax::
 Grouping
 ~~~~~~~~
 
-Multiple terms or clauses can be grouped together with parentheses,
+Multiple terms or clauses **must** be grouped together with parentheses,
 to form sub-queries::
 
     (foo OR bar) AND baz
