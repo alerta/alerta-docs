@@ -55,7 +55,7 @@ on the Lucene query string syntax and is described below.
 
 .. contents::
    :local:
-   :depth: 2
+   :depth: 3
 
 Search terms
 ~~~~~~~~~~~~
@@ -97,7 +97,7 @@ Where the custom attribute ``region`` has any non-null value::
     _exists_:region
 
 Nested Field names
-------------------
+~~~~~~~~~~~~~~~~~~
 
 *New in version 7.5.*
 
@@ -130,7 +130,7 @@ single characters and ``*`` to replace one or more characters:
 To search for "foo", "fu", "bar" or "baz" use::
 
     f* ba?
-    
+
 To search for "test" or "text" use::
 
     te?t
@@ -176,6 +176,56 @@ Ranges with one side unbounded (using ``*``) can use a simplified syntax::
     value:>=500
     value:<500
     value:<=500
+
+
+Boolean Operators
+~~~~~~~~~~~~~~~~~
+
+*New in version 7.5.*
+
+Boolean logic operators can be used to combine search terms. They
+are always in uppercase letters or can be replaced with a symbol.
+
+OR (``||``)
+^^^^^^^^^^^
+
+The ``OR`` operator is the default when no operator is specified. A
+search succeeds if either of the terms are found. The ``||`` can be
+used in place of the word ``OR``.
+
+To search for "foo bar" or "baz" use::
+
+    "foo bar" baz
+    "foo bar" OR baz
+    "foo bar" || baz
+
+AND (``&&``)
+^^^^^^^^^^^^
+
+The ``AND`` operator is used to combine two terms when both must match.
+The symbol ``&&`` can be used in place of the word ``AND``.
+
+To search for "foo bar" and "baz" use::
+
+    "foo bar" AND baz
+    "foo bar" && baz
+
+NOT (``!``)
+^^^^^^^^^^^
+
+The ``NOT`` operator is used to exclude matches that contain the search
+term directly following ``NOT``. The symbol ``!`` can be used in place
+of the word ``NOT``.
+
+To search for "foo bar" but not "baz" use::
+
+    "foo bar" NOT baz
+    "foo bar" AND NOT baz
+    "foo bar" !baz
+
+The ``NOT`` operator can be used with a single term::
+
+    NOT "foo bar"
 
 Grouping
 ~~~~~~~~

@@ -84,6 +84,18 @@ on the Lucene query string syntax and is described below.</p>
 <ul class="simple">
 <li><a class="reference internal" href="#search-terms" id="id2">Search terms</a></li>
 <li><a class="reference internal" href="#field-names" id="id3">Field names</a></li>
+<li><a class="reference internal" href="#nested-field-names" id="id4">Nested Field names</a></li>
+<li><a class="reference internal" href="#wildcards" id="id5">Wildcards</a></li>
+<li><a class="reference internal" href="#regular-expressions" id="id6">Regular expressions</a></li>
+<li><a class="reference internal" href="#ranges" id="id7">Ranges</a></li>
+<li><a class="reference internal" href="#boolean-operators" id="id8">Boolean Operators</a><ul>
+<li><a class="reference internal" href="#or" id="id9">OR (<code class="docutils literal notranslate"><span class="pre">||</span></code>)</a></li>
+<li><a class="reference internal" href="#and" id="id10">AND (<code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>)</a></li>
+<li><a class="reference internal" href="#not" id="id11">NOT (<code class="docutils literal notranslate"><span class="pre">!</span></code>)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#grouping" id="id12">Grouping</a></li>
+<li><a class="reference internal" href="#field-grouping" id="id13">Field Grouping</a></li>
 </ul>
 </div>
 <div class="section" id="search-terms">
@@ -124,9 +136,8 @@ the default field <code class="docutils literal notranslate"><span class="pre">t
 </pre></div>
 </div>
 </div>
-</div>
 <div class="section" id="nested-field-names">
-<h2>Nested Field names<a class="headerlink" href="#nested-field-names" title="Permalink to this headline">¶</a></h2>
+<h3><a class="toc-backref" href="#id4">Nested Field names</a><a class="headerlink" href="#nested-field-names" title="Permalink to this headline">¶</a></h3>
 <p><em>New in version 7.5.</em></p>
 <p>Nested fields can be queried using dot notation (<code class="docutils literal notranslate"><span class="pre">.</span></code>) that
 includes the complete path of the field.</p>
@@ -145,8 +156,9 @@ used to replace the <code class="docutils literal notranslate"><span class="pre"
 <span class="n">_</span><span class="o">.</span><span class="n">vendor</span><span class="p">:(</span><span class="n">cisco</span> <span class="n">OR</span> <span class="n">juniper</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
 <div class="section" id="wildcards">
-<h3>Wildcards<a class="headerlink" href="#wildcards" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">Wildcards</a><a class="headerlink" href="#wildcards" title="Permalink to this headline">¶</a></h3>
 <p>Wildcard searches can be used on individual terms using <code class="docutils literal notranslate"><span class="pre">?</span></code> to replace
 single characters and <code class="docutils literal notranslate"><span class="pre">*</span></code> to replace one or more characters:</p>
 <p>To search for “foo”, “fu”, “bar” or “baz” use:</p>
@@ -159,7 +171,7 @@ single characters and <code class="docutils literal notranslate"><span class="pr
 </div>
 </div>
 <div class="section" id="regular-expressions">
-<h3>Regular expressions<a class="headerlink" href="#regular-expressions" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">Regular expressions</a><a class="headerlink" href="#regular-expressions" title="Permalink to this headline">¶</a></h3>
 <p>Regular expression patterns can be embedded in the query string by wrapping
 them in forward-slashes (<code class="docutils literal notranslate"><span class="pre">/</span></code>). Typical examples include:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="p">[</span><span class="n">mb</span><span class="p">]</span><span class="n">oat</span><span class="o">/</span>
@@ -181,7 +193,7 @@ and <a class="reference external" href="https://docs.mongodb.com/manual/referenc
 </div>
 </div>
 <div class="section" id="ranges">
-<h3>Ranges<a class="headerlink" href="#ranges" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">Ranges</a><a class="headerlink" href="#ranges" title="Permalink to this headline">¶</a></h3>
 <p>Ranges can be specified for numeric or string fields. Inclusive
 ranges are specified with square brackets <code class="docutils literal notranslate"><span class="pre">[min</span> <span class="pre">TO</span> <span class="pre">max]</span></code> and exclusive
 ranges with curly brackets <code class="docutils literal notranslate"><span class="pre">{min</span> <span class="pre">TO</span> <span class="pre">max}</span></code>:</p>
@@ -199,8 +211,52 @@ ranges with curly brackets <code class="docutils literal notranslate"><span clas
 </pre></div>
 </div>
 </div>
+<div class="section" id="boolean-operators">
+<h3><a class="toc-backref" href="#id8">Boolean Operators</a><a class="headerlink" href="#boolean-operators" title="Permalink to this headline">¶</a></h3>
+<p><em>New in version 7.5.</em></p>
+<p>Boolean logic operators can be used to combine search terms. They
+are always in uppercase letters or can be replaced with a symbol.</p>
+<div class="section" id="or">
+<h4><a class="toc-backref" href="#id9">OR (<code class="docutils literal notranslate"><span class="pre">||</span></code>)</a><a class="headerlink" href="#or" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">OR</span></code> operator is the default when no operator is specified. A
+search succeeds if either of the terms are found. The <code class="docutils literal notranslate"><span class="pre">||</span></code> can be
+used in place of the word <code class="docutils literal notranslate"><span class="pre">OR</span></code>.</p>
+<p>To search for “foo bar” or “baz” use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;foo bar&quot;</span> <span class="n">baz</span>
+<span class="s2">&quot;foo bar&quot;</span> <span class="n">OR</span> <span class="n">baz</span>
+<span class="s2">&quot;foo bar&quot;</span> <span class="o">||</span> <span class="n">baz</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="and">
+<h4><a class="toc-backref" href="#id10">AND (<code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>)</a><a class="headerlink" href="#and" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">AND</span></code> operator is used to combine two terms when both must match.
+The symbol <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> can be used in place of the word <code class="docutils literal notranslate"><span class="pre">AND</span></code>.</p>
+<p>To search for “foo bar” and “baz” use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;foo bar&quot;</span> <span class="n">AND</span> <span class="n">baz</span>
+<span class="s2">&quot;foo bar&quot;</span> <span class="o">&amp;&amp;</span> <span class="n">baz</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="not">
+<h4><a class="toc-backref" href="#id11">NOT (<code class="docutils literal notranslate"><span class="pre">!</span></code>)</a><a class="headerlink" href="#not" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">NOT</span></code> operator is used to exclude matches that contain the search
+term directly following <code class="docutils literal notranslate"><span class="pre">NOT</span></code>. The symbol <code class="docutils literal notranslate"><span class="pre">!</span></code> can be used in place
+of the word <code class="docutils literal notranslate"><span class="pre">NOT</span></code>.</p>
+<p>To search for “foo bar” but not “baz” use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&quot;foo bar&quot; NOT baz
+&quot;foo bar&quot; AND NOT baz
+&quot;foo bar&quot; !baz
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">NOT</span></code> operator can be used with a single term:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NOT</span> <span class="s2">&quot;foo bar&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="grouping">
-<h3>Grouping<a class="headerlink" href="#grouping" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">Grouping</a><a class="headerlink" href="#grouping" title="Permalink to this headline">¶</a></h3>
 <p>Multiple terms or clauses <strong>must</strong> be grouped together with parentheses,
 to form sub-queries:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">foo</span> <span class="n">OR</span> <span class="n">bar</span><span class="p">)</span> <span class="n">AND</span> <span class="n">baz</span>
@@ -208,7 +264,7 @@ to form sub-queries:</p>
 </div>
 </div>
 <div class="section" id="field-grouping">
-<h3>Field Grouping<a class="headerlink" href="#field-grouping" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id13">Field Grouping</a><a class="headerlink" href="#field-grouping" title="Permalink to this headline">¶</a></h3>
 <p>Parentheses can be used to group multiple clauses to a single field:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="p">:(</span><span class="nb">open</span> <span class="n">OR</span> <span class="n">ack</span><span class="p">)</span>
 <span class="n">text</span><span class="p">:(</span><span class="n">full</span> <span class="n">text</span> <span class="n">search</span><span class="p">)</span>
