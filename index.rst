@@ -60,6 +60,7 @@ The required API key is ``demo-key``.
    configuration
    deployment
    customer-views
+   federated
    conventions
    development
    Tutorials <tutorials>
