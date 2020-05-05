@@ -128,7 +128,7 @@ and the <code class="docutils literal notranslate"><span class="pre">__init__()<
 as the Super class is also called.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExamplePlugin</span><span class="p">(</span><span class="n">PluginBase</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
         <span class="c1"># plugin-specific init goes here</span>
         <span class="c1"># if not required, leave &quot;__init__()&quot; out completely</span>
@@ -177,11 +177,11 @@ has exceeded the threshold.</p>
         <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Detecting transient alerts...&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">alert</span><span class="o">.</span><span class="n">is_flapping</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="n">FLAPPING_WINDOW</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="n">FLAPPING_COUNT</span><span class="p">):</span>
             <span class="n">alert</span><span class="o">.</span><span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;indeterminate&#39;</span>
-            <span class="n">alert</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;flapping&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">alert</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;flapping&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="c1"># uncomment following line to stop alerts from being processed</span>
             <span class="c1"># raise RateLimit(&quot;Flapping alert received more than %s times in %s seconds&quot; % (FLAPPING_COUNT, FLAPPING_WINDOW))</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">alert</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;flapping&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="n">alert</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;flapping&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="k">return</span> <span class="n">alert</span>
 
@@ -216,8 +216,8 @@ file called <code class="docutils literal notranslate"><span class="pre">setup.p
     <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(),</span>
     <span class="n">py_modules</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;alerta_transient&#39;</span><span class="p">],</span>
     <span class="n">install_requires</span><span class="o">=</span><span class="p">[],</span>
-    <span class="n">include_package_data</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-    <span class="n">zip_safe</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">include_package_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">zip_safe</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
         <span class="s1">&#39;alerta.plugins&#39;</span><span class="p">:</span> <span class="p">[</span>
             <span class="s1">&#39;transient = alerta_transient:TransientAlert&#39;</span>
@@ -257,7 +257,7 @@ and loaded plugin entry points (not plugin names) of all the configured
 plugins in the order they are listed.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
 
-    <span class="k">print</span><span class="p">(</span><span class="n">plugins</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">plugins</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">plugins</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -278,8 +278,8 @@ and copy the following into a file called <code class="docutils literal notransl
     <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(),</span>
     <span class="n">py_modules</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;routing&#39;</span><span class="p">],</span>
     <span class="n">install_requires</span><span class="o">=</span><span class="p">[],</span>
-    <span class="n">include_package_data</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-    <span class="n">zip_safe</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">include_package_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">zip_safe</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
         <span class="s1">&#39;alerta.routing&#39;</span><span class="p">:</span> <span class="p">[</span>
           <span class="s1">&#39;rules = routing:rules&#39;</span>
@@ -387,7 +387,7 @@ the following tutorials:</p>
     
 
 <p>
-<a class="badge" href="https://travis-ci.org/alerta/alerta">
+<a href="https://travis-ci.org/alerta/alerta">
     <img
         alt="https://secure.travis-ci.org/alerta/alerta.svg?branch=master"
         src="https://secure.travis-ci.org/alerta/alerta.svg?branch=master"
@@ -426,6 +426,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../customer-views.html">Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../federated.html">Federated Alerta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
@@ -458,14 +459,6 @@ Links
     </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
-
         </div>
       </div>
       <div class="clearer"></div>
@@ -474,8 +467,8 @@ Links
       &copy;2015-2018, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
       <a href="../_sources/gettingstarted/tutorial-3-plugins.rst.txt"
