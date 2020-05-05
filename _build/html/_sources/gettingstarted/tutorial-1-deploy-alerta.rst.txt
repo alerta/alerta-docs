@@ -82,7 +82,8 @@ Create a wsgi python file, uWsgi configuration file and ``systemd`` script::
 
 ::
 
-    from alerta import app
+    from alerta import create_app
+    app = create_app()
 
 The uwsgi server mounts the Alerta API on ``/api``, logs to syslog and
 uses a unix socket to communicate with the nginx web server::
