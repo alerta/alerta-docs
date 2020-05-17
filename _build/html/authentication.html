@@ -1,19 +1,17 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>Authentication &#8212; alerta 6.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -43,14 +41,14 @@ watching alerts.</p>
 <p>Alerta supports three authentication mechanisms for the web UI and
 <code class="docutils literal notranslate"><span class="pre">alerta</span></code> command-line tool.</p>
 <ul class="simple">
-<li><a class="reference internal" href="#basic-auth">Basic Auth</a></li>
-<li><a class="reference internal" href="#basic-auth-using-ldap">Basic Auth using LDAP</a></li>
-<li><a class="reference internal" href="#id4">GitHub OAuth2</a></li>
-<li><a class="reference internal" href="#gitlab-oauth2">GitLab OAuth2</a></li>
-<li><a class="reference internal" href="#google-oauth2">Google OAuth2</a></li>
-<li><a class="reference internal" href="#keycloak-oauth2">Keycloak OAuth2</a></li>
-<li><a class="reference internal" href="#saml-2-0">SAML 2.0</a></li>
-<li><a class="reference internal" href="#api-keys">API Keys</a></li>
+<li><p><a class="reference internal" href="#basic-auth">Basic Auth</a></p></li>
+<li><p><a class="reference internal" href="#basic-auth-using-ldap">Basic Auth using LDAP</a></p></li>
+<li><p><a class="reference internal" href="#id4">GitHub OAuth2</a></p></li>
+<li><p><a class="reference internal" href="#gitlab-oauth2">GitLab OAuth2</a></p></li>
+<li><p><a class="reference internal" href="#google-oauth2">Google OAuth2</a></p></li>
+<li><p><a class="reference internal" href="#keycloak-oauth2">Keycloak OAuth2</a></p></li>
+<li><p><a class="reference internal" href="#saml-2-0">SAML 2.0</a></p></li>
+<li><p><a class="reference internal" href="#api-keys">API Keys</a></p></li>
 </ul>
 <p>To enforce authentication set <code class="docutils literal notranslate"><span class="pre">AUTH_REQUIRED</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> and set the
 <code class="docutils literal notranslate"><span class="pre">SECRET_KEY</span></code> to some random string in the <code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code> server
@@ -60,12 +58,12 @@ configuration settings file:</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>Ensure that the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">SECRET_KEY</span></code> that is used to encode
 tokens and API keys is a unique, randomly generated sequence
 of ASCII characters. The following command generates a suitable
 32-character random string on Mac or Linux:</p>
-<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span>$ LC_CTYPE=C tr -dc A-Za-z0-9_\!\@\#\$\%\^\&amp;\*\(\)-+= &lt; /dev/urandom | head -c 32 &amp;&amp; echo
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ LC_CTYPE=C tr -dc A-Za-z0-9_\!\@\#\$\%\^\&amp;\*\(\)-+= &lt; /dev/urandom | head -c 32 &amp;&amp; echo
 </pre></div>
 </div>
 </div>
@@ -78,8 +76,8 @@ three is HTTP <a class="reference external" href="https://en.wikipedia.org/wiki/
 because there is no additional configuration required of the Alerta
 server to use it other than setting <code class="docutils literal notranslate"><span class="pre">AUTH_REQUIRED</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">HTTP Basic Auth does not provide any encryption of the username
+<p class="admonition-title">Note</p>
+<p>HTTP Basic Auth does not provide any encryption of the username
 or password so it is strongly advised to only use Basic Auth over
 HTTPS.</p>
 </div>
@@ -94,8 +92,8 @@ called “<a class="reference external" href="https://pypi.org/project/python-ld
 </pre></div>
 </div>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">If the Alerta API is installed in a Python virtual
+<p class="admonition-title">Important</p>
+<p>If the Alerta API is installed in a Python virtual
 environment ensure that the <code class="docutils literal notranslate"><span class="pre">python-ldap</span></code> package is installed
 into the same environment otherwise it won’t be auto-detected.</p>
 </div>
@@ -103,7 +101,7 @@ into the same environment otherwise it won’t be auto-detected.</p>
 server URL and a map of LDAP domains to search filters which means
 that multiple LDAP domains can be supported.</p>
 <p><strong>Example</strong></p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;ldap&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;ldap&#39;</span>
 <span class="n">LDAP_URL</span> <span class="o">=</span> <span class="s1">&#39;ldap://localhost:389&#39;</span>  <span class="c1"># replace with your LDAP server</span>
 <span class="n">LDAP_DOMAINS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;my-domain.com&#39;</span><span class="p">:</span> <span class="s1">&#39;uid=</span><span class="si">%s</span><span class="s1">,ou=users,dc=my-domain,dc=com&#39;</span>
@@ -128,8 +126,8 @@ name by using <code class="docutils literal notranslate"><span class="pre">LDAP_
 <code class="docutils literal notranslate"><span class="pre">{userdn}</span></code> or <code class="docutils literal notranslate"><span class="pre">{email}</span></code> can be used for the same.</p>
 <p>All users are initially assigned the “user” role by default.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">User sign-up, email verfication and password reset through the
+<p class="admonition-title">Note</p>
+<p>User sign-up, email verfication and password reset through the
 Alerta web UI or CLI is not supported. Self-service user management
 needs to be handled by the LDAP authentication provider.</p>
 </div>
@@ -141,8 +139,8 @@ needs to be handled by the LDAP authentication provider.</p>
 <a class="reference external" href="https://docs.gitlab.com/ce/integration/oauth_provider.html">GitLab</a> <a class="reference external" href="http://tools.ietf.org/html/draft-ietf-oauth-v2-22">OAuth 2.0</a> or <a class="reference external" href="https://www.keycloak.org/documentation.html">Keycloak</a> <a class="reference external" href="http://tools.ietf.org/html/draft-ietf-oauth-v2-22">OAuth 2.0</a> and configuration is more
 involved than the Basic Auth setup.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">If Alerta is deployed to a publicly accessible web server
+<p class="admonition-title">Note</p>
+<p>If Alerta is deployed to a publicly accessible web server
 it is important to configure the OAuth2 settings correctly to
 ensure that only authorised users can access and modify your
 alerts.</p>
@@ -157,32 +155,32 @@ will need to be added to the <code class="docutils literal notranslate"><span cl
 <p>To use Google as the OAuth2 provider for Alerta, login to the
 <a class="reference external" href="https://console.developers.google.com">Google Developer Console</a> and create a new project for alerta.</p>
 <ul class="simple">
-<li>Project Name: alerta</li>
-<li>Project ID: (automatically assigned)</li>
+<li><p>Project Name: alerta</p></li>
+<li><p>Project ID: (automatically assigned)</p></li>
 </ul>
 <p>Next go to <em>APIs &amp; Services</em> and select <em>Credentials</em> from the
 sidebar menu. Click <strong>Create credentials</strong> and choose “OAuth
 client ID” and “Web Application” for application type.</p>
 <ul class="simple">
-<li>Name: Alerta</li>
-<li>Authorized Javscript Origins: <a class="reference external" href="http://alerta.example.com">http://alerta.example.com</a></li>
-<li>Authorized Redirect URIs: <a class="reference external" href="http://alerta.example.com">http://alerta.example.com</a></li>
+<li><p>Name: Alerta</p></li>
+<li><p>Authorized Javscript Origins: <a class="reference external" href="http://alerta.example.com">http://alerta.example.com</a></p></li>
+<li><p>Authorized Redirect URIs: <a class="reference external" href="http://alerta.example.com">http://alerta.example.com</a></p></li>
 </ul>
 <p>Click <strong>Create</strong> and take note of the Client ID and Client
 Secret. Use this information to configure the settings for
 <code class="docutils literal notranslate"><span class="pre">alerta</span></code> server.</p>
 <p><strong>Example</strong></p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;google&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;google&#39;</span>
 <span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s1">&#39;379647311730-sj130ru952o3o7ig8u0ts8np2ojivr8d.apps.googleusercontent.com&#39;</span>
 <span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;8HrqJhbrYn9oDtaJqExample&#39;</span>
 </pre></div>
 </div>
 <div class="deprecated">
-<p><span class="versionmodified">Deprecated since version 6.6: </span>Google+ API is no longer a requirement.</p>
+<p><span class="versionmodified deprecated">Deprecated since version 6.6: </span>Google+ API is no longer a requirement.</p>
 </div>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">It is no longer necessary to enable <a class="reference external" href="https://developers.google.com/+/api-shutdown">Google+ API</a>
+<p class="admonition-title">Warning</p>
+<p>It is no longer necessary to enable <a class="reference external" href="https://developers.google.com/+/api-shutdown">Google+ API</a>
 to use Google OAuth. Google+ API will be shutdown
 on March 7, 2019 and Alerta installations configured
 to use Google+ API will cease to function after that
@@ -193,8 +191,8 @@ date.</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last"><code class="docutils literal notranslate"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code> can be an asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>) to force
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code> can be an asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>) to force
 login but <em>not</em> restrict who can login.</p>
 </div>
 </div>
@@ -203,14 +201,14 @@ login but <em>not</em> restrict who can login.</p>
 <p>To use GitHub as the OAuth2 provider for Alerta, login to GitHub and go
 to <em>Settings -&gt; Applications -&gt; Register New Application</em>.</p>
 <ul class="simple">
-<li>Application Name: Alerta</li>
-<li>Homepage URL: <a class="reference external" href="http://alerta.io">http://alerta.io</a></li>
-<li>Application description (optional): Guardian Alerta monitoring system</li>
-<li>Authorization callback URL: <a class="reference external" href="http://alerta.example.com">http://alerta.example.com</a></li>
+<li><p>Application Name: Alerta</p></li>
+<li><p>Homepage URL: <a class="reference external" href="http://alerta.io">http://alerta.io</a></p></li>
+<li><p>Application description (optional): Guardian Alerta monitoring system</p></li>
+<li><p>Authorization callback URL: <a class="reference external" href="http://alerta.example.com">http://alerta.example.com</a></p></li>
 </ul>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The <cite>Authorization callback URL</cite> is the most important setting
+<p class="admonition-title">Note</p>
+<p>The <cite>Authorization callback URL</cite> is the most important setting
 and it is nothing more than the URL domain (ie. without any path)
 where the alerta Web UI is being hosted.</p>
 </div>
@@ -227,13 +225,13 @@ Secret. Then configuration settings for <code class="docutils literal notranslat
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last"><code class="docutils literal notranslate"><span class="pre">ALLOWED_GITHUB_ORGS</span></code> can be an asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>) to force login
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">ALLOWED_GITHUB_ORGS</span></code> can be an asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>) to force login
 but <em>not</em> restrict who can login.</p>
 </div>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">To revoke access of your instance of alerta to your GitHub
+<p class="admonition-title">Important</p>
+<p>To revoke access of your instance of alerta to your GitHub
 user info at any time go to
 <em>Settings -&gt; Applications -&gt; Authorized</em> applications, find
 alerta in the list of applications and click the <strong>Revoke</strong>
@@ -245,14 +243,14 @@ button.</p>
 <p>To use GitLab as the OAuth2 provider for Alerta, login to GitLab and go
 to <em>Profile Settings -&gt; Applications -&gt; New Application</em>.</p>
 <ul class="simple">
-<li>Name: Alerta</li>
-<li>Callback URL: <a class="reference external" href="http://alerta.example.com">http://alerta.example.com</a></li>
-<li>Scopes: <code class="docutils literal notranslate"><span class="pre">openid</span></code></li>
+<li><p>Name: Alerta</p></li>
+<li><p>Callback URL: <a class="reference external" href="http://alerta.example.com">http://alerta.example.com</a></p></li>
+<li><p>Scopes: <code class="docutils literal notranslate"><span class="pre">openid</span></code></p></li>
 </ul>
 <img alt="_images/gitlab-oauth2-screen-shot-3.png" src="_images/gitlab-oauth2-screen-shot-3.png" />
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The <cite>Callback URL</cite> is the most important setting and it
+<p class="admonition-title">Note</p>
+<p>The <cite>Callback URL</cite> is the most important setting and it
 is nothing more than the URL domain (ie. without any path)
 where the alerta Web UI is being hosted.</p>
 </div>
@@ -270,13 +268,13 @@ the values shown below with the values generated by GitLab):</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last"><code class="docutils literal notranslate"><span class="pre">ALLOWED_GITLAB_GROUPS</span></code> can be an asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>) to force
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">ALLOWED_GITLAB_GROUPS</span></code> can be an asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>) to force
 login but <em>not</em> restrict who can login.</p>
 </div>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">To revoke access of your instance of alerta to your
+<p class="admonition-title">Important</p>
+<p>To revoke access of your instance of alerta to your
 GitLab user info at any time go to
 <em>Profile Settings -&gt; Applications -&gt; Authorized appliations</em>,
 find alerta in the list of applications and click the <strong>Revoke</strong>
@@ -288,13 +286,13 @@ button.</p>
 <p>To use Keycloak as the OAuth2 provider for Alerta, login to Keycloak admin interface, select the realm and go
 to <em>Clients -&gt; Create</em>.</p>
 <ul class="simple">
-<li>Client ID: alerta-ui</li>
-<li>Client protocol: openid-connect</li>
-<li>Root URL: <a class="reference external" href="http://alerta.example.org">http://alerta.example.org</a></li>
+<li><p>Client ID: alerta-ui</p></li>
+<li><p>Client protocol: openid-connect</p></li>
+<li><p>Root URL: <a class="reference external" href="http://alerta.example.org">http://alerta.example.org</a></p></li>
 </ul>
 <p>After the client is created, edit it and change the following properties:</p>
 <ul class="simple">
-<li>Access Type: confindential</li>
+<li><p>Access Type: confindential</p></li>
 </ul>
 <p>Add the following mapper under the <em>Mappers</em> tab:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Name</span><span class="p">:</span> <span class="n">role</span> <span class="n">memberships</span>
@@ -332,8 +330,8 @@ the values shown below with the values generated by Keycloak):</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last"><code class="docutils literal notranslate"><span class="pre">ALLOWED_KEYCLOAK_ROLES</span></code> can be an asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>) to force
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">ALLOWED_KEYCLOAK_ROLES</span></code> can be an asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>) to force
 login but <em>not</em> restrict who can login.</p>
 </div>
 </div>
@@ -350,8 +348,8 @@ server and follow the configuration steps below.</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">This key pair is not related to HTTPS.</p>
+<p class="admonition-title">Note</p>
+<p>This key pair is not related to HTTPS.</p>
 </div>
 <p>Configure pysaml2:</p>
 <p>Bare-minimum config example:</p>
@@ -365,16 +363,16 @@ server and follow the configuration steps below.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">metadata</span></code></dt>
-<dd>IdP metadata (refer to <a class="reference external" href="https://pysaml2.readthedocs.io/en/latest/howto/config.html#metadata">saml2 documentation</a> for possible ways of specifying it)</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">key_file</span></code>, <code class="docutils literal notranslate"><span class="pre">cert_file</span></code></dt>
-<dd>path to aforementioned keys</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">metadata</span></code></dt><dd><p>IdP metadata (refer to <a class="reference external" href="https://pysaml2.readthedocs.io/en/latest/howto/config.html#metadata">saml2 documentation</a> for possible ways of specifying it)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">key_file</span></code>, <code class="docutils literal notranslate"><span class="pre">cert_file</span></code></dt><dd><p>path to aforementioned keys</p>
+</dd>
 </dl>
 <p>Refer to pysaml2 documentation and source code if you need additional options:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://pysaml2.readthedocs.io/en/latest/howto/config.html">https://pysaml2.readthedocs.io/en/latest/howto/config.html</a></li>
-<li><a class="reference external" href="https://github.com/rohe/pysaml2/blob/master/src/saml2/config.py">https://github.com/rohe/pysaml2/blob/master/src/saml2/config.py</a></li>
+<li><p><a class="reference external" href="https://pysaml2.readthedocs.io/en/latest/howto/config.html">https://pysaml2.readthedocs.io/en/latest/howto/config.html</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rohe/pysaml2/blob/master/src/saml2/config.py">https://github.com/rohe/pysaml2/blob/master/src/saml2/config.py</a></p></li>
 </ul>
 <p>Note: entityid and service provider endpoints are configured by default based on your BASE_URL value which is mandatory if you use SAML (see <a class="reference internal" href="configuration.html#general-config"><span class="std std-ref">General Settings</span></a>)</p>
 <p><code class="docutils literal notranslate"><span class="pre">ALLOWED_SAML2_GROUPS</span></code></p>
@@ -383,8 +381,8 @@ server and follow the configuration steps below.</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Ensure that pysaml2 authn response identity object contains <code class="docutils literal notranslate"><span class="pre">groups</span></code>
+<p class="admonition-title">Note</p>
+<p>Ensure that pysaml2 authn response identity object contains <code class="docutils literal notranslate"><span class="pre">groups</span></code>
 attribute. You can do this by writing proper attribute map which will
 convert your IdP-specific attribute name to <code class="docutils literal notranslate"><span class="pre">groups</span></code>.</p>
 </div>
@@ -453,8 +451,8 @@ is configurable using <code class="docutils literal notranslate"><span class="pr
 <p>To use an API key in an API query you must put the key in either an
 HTTP header or a query parameter.</p>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">Using an HTTP header is the preferred method so that API keys are
+<p class="admonition-title">Important</p>
+<p>Using an HTTP header is the preferred method so that API keys are
 not exposed even when using HTTPS or inadvertently captured in log
 files.</p>
 </div>
@@ -583,6 +581,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="federated.html">Federated Alerta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
@@ -604,17 +603,15 @@ Links
 
 
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 
 
 
@@ -631,7 +628,7 @@ Links
       &copy;2015-2018, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

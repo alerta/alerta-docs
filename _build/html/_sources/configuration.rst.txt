@@ -4,8 +4,8 @@ Configuration
 =============
 
 The following settings are configured on the Alerta server. For ``alerta``
-CLI configuration options see :ref:`command-line reference <cli>` and for
-Web UI configuration options see :ref:`web UI reference <webui>`.
+CLI configuration options see the :ref:`command-line reference <cli>` and for
+Web UI configuration options see the :ref:`web UI reference <webui>`.
 
 The configuration file uses standard python syntax for setting variables.
 The default settings (defined in :file:`settings.py`) **should not** be modified
@@ -38,37 +38,51 @@ General Settings
     SECRET_KEY = 'changeme'
     BASE_URL = '/api'
     USE_PROXYFIX = False
+
+.. index:: DEBUG, SECRET_KEY, BASE_URL, USE_PROXYFIX
+
+:envvar:`DEBUG`
+    debug mode for increased logging (default is ``False``)
+:envvar:`SECRET_KEY`
+    a unique, randomly generated sequence of ASCII characters.
+:envvar:`BASE_URL`
+    if API served on a path or behind a proxy use it to fix relative links (no default)
+:envvar:`USE_PROXYFIX`
+    if API served behind SSL terminating proxy (default is ``False``)
+
+.. _logging config:
+
+Logging Settings
+~~~~~~~~~~~~~~~~
+
+**Example**
+
+.. code:: python
+
     LOG_HANDLERS = ['console', 'file']
     LOG_FILE = '/var/log/alertad.log'
     LOG_MAX_BYTES = 5*1024*1024  # 5 MB
     LOG_BACKUP_COUNT = 2
     LOG_FORMAT = 'verbose'
 
-.. index:: DEBUG, SECRET_KEY, BASE_URL, USE_PROXYFIX
 .. index:: LOG_CONFIG_FILE, LOG_HANDLERS, LOG_FILE, LOG_MAX_BYTES, LOG_BACKUP_COUNT, LOG_FORMAT, LOG_METHODS
 
-``DEBUG``
-    debug mode for increased logging (default is ``False``)
-``SECRET_KEY``
-    a unique, randomly generated sequence of ASCII characters.
-``BASE_URL``
-    if API served on a path or behind a proxy use it to fix relative links (no default)
-``USE_PROXYFIX``
-    if API served behind SSL terminating proxy (default is ``False``)
-``LOG_CONFIG_FILE``
-    full path to logging configuration file in dictConfig format (no default)
-``LOG_HANDLERS``
+:envvar:`LOG_CONFIG_FILE`
+    full path to logging configuration file in `dictConfig format`_ (no default)
+:envvar:`LOG_HANDLERS`
     list of log handlers eg. 'console', 'file', 'wsgi' (default is 'console')
-``LOG_FILE``
-    full path to write rotating server log file (no default)
-``LOG_MAX_BYTES``
+:envvar:`LOG_FILE`
+    full path to write rotating server log file (default is :file:`alertad.log`)
+:envvar:`LOG_MAX_BYTES`
     maximum size of log file before rollover (default is 10 MB)
-``LOG_BACKUP_COUNT``
+:envvar:`LOG_BACKUP_COUNT`
     number of rollover files before older files are deleted (default is 2)
-``LOG_FORMAT``
+:envvar:`LOG_FORMAT`
     log file formatter name eg. 'default', 'simple', 'verbose', 'json'
-``LOG_METHODS``
+:envvar:`LOG_METHODS`
     only log listed HTTP methods eg. 'GET', 'POST', 'PUT', 'DELETE' (default is all HTTP methods)
+
+.. _dictConfig format: https://docs.python.org/2/library/logging.config.html#logging.config.dictConfig
 
 .. _api config:
 
@@ -80,23 +94,38 @@ API Settings
 .. code:: python
 
     ALARM_MODEL='ALERTA'
-    DEFAULT_FIELD = 'text'
     DEFAULT_PAGE_SIZE = 1000
     HISTORY_LIMIT = 100
     HISTORY_ON_VALUE_CHANGE = False  # do not log if only value changes
 
-.. index:: ALARM_MODEL, DEFAULT_FIELD, DEFAULT_PAGE_SIZE, HISTORY_LIMIT, HISTORY_ON_VALUE_CHANGE
+.. index:: ALARM_MODEL, DEFAULT_PAGE_SIZE, HISTORY_LIMIT, HISTORY_ON_VALUE_CHANGE
 
-``ALARM_MODEL``
-    set to ``ISA_18_2`` to use experimental alarm model (default is ``ALERTA``)
-``DEFAULT_FIELD``
-    search default field when no field given when using lucene query syntax (default is ``text``)
-``DEFAULT_PAGE_SIZE``
+:envvar:`ALARM_MODEL`
+    set to ``ISA_18_2`` to use experimental `ANSI/ISA 18.2 alarm model`_ (default is ``ALERTA``)
+:envvar:`DEFAULT_PAGE_SIZE`
     maximum number of alerts returned in a single query (default 1000)
-``HISTORY_LIMIT``
+:envvar:`HISTORY_LIMIT`
     number of history entries for each alert before old entries are deleted (default 100)
-``HISTORY_ON_VALUE_CHANGE``
+:envvar:`HISTORY_ON_VALUE_CHANGE`
     create history entry for duplicate alerts if value changes (default ``True``)
+
+.. _`ANSI/ISA 18.2 alarm model`: https://www.isa.org/standards-and-publications/isa-publications/intech-magazine/white-papers/pas-understanding-and-applying-ansi-isa-18-2-alarm-management-standard/
+
+.. _search_config:
+
+Search Settings
+~~~~~~~~~~~~~~~
+
+**Example**
+
+.. code:: python
+
+    DEFAULT_FIELD = 'text'
+
+.. index:: DEFAULT_FIELD
+
+:envvar:`DEFAULT_FIELD`
+    search default field when no field given when using lucene query syntax (default is ``text``)
 
 .. _database_config:
 

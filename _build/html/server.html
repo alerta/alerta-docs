@@ -1,19 +1,17 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>Server &amp; API &#8212; alerta 6.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -55,17 +53,17 @@ integrate with AWS Prometheus, Grafana, PagerDuty and many more.</p>
 alert management. When an event is received it it is processed in the following
 way:</p>
 <ol class="arabic simple">
-<li>all plugin pre-receive hooks are run in listed order, an alert
+<li><p>all plugin pre-receive hooks are run in listed order, an alert
 is immediately rejected if any plugins return a <code class="docutils literal notranslate"><span class="pre">RejectException</span></code>
-or <code class="docutils literal notranslate"><span class="pre">RateLimit</span></code> exception</li>
-<li>alert is checked against any active blackout periods, alert suppressed
-if any match</li>
-<li>alert is checked if duplicate, if so duplicate count is increased and
-repeat set to <cite>True</cite></li>
-<li>alert is checked if correlated, if so change severity and/or status etc</li>
-<li>if alert is neither a duplicate or correlated then create new alert</li>
-<li>all plugin post-receive hooks are run in listed order</li>
-<li>any tags or attributes changed in post-receive hooks are persisted</li>
+or <code class="docutils literal notranslate"><span class="pre">RateLimit</span></code> exception</p></li>
+<li><p>alert is checked against any active blackout periods, alert suppressed
+if any match</p></li>
+<li><p>alert is checked if duplicate, if so duplicate count is increased and
+repeat set to <cite>True</cite></p></li>
+<li><p>alert is checked if correlated, if so change severity and/or status etc</p></li>
+<li><p>if alert is neither a duplicate or correlated then create new alert</p></li>
+<li><p>all plugin post-receive hooks are run in listed order</p></li>
+<li><p>any tags or attributes changed in post-receive hooks are persisted</p></li>
 </ol>
 <p>Each of the above actions are explained in more detail in the following sections.</p>
 </div>
@@ -134,13 +132,13 @@ using a plugin. Note that one or more tags can be required to match an alert
 for the suppression to apply.</p>
 <p>In summary, blackout rules can be any of:</p>
 <ul class="simple">
-<li>an entire environment eg. <code class="docutils literal notranslate"><span class="pre">environment=Production</span></code></li>
-<li>a particular resource eg. <code class="docutils literal notranslate"><span class="pre">resource=host55</span></code></li>
-<li>an entire service eg. <code class="docutils literal notranslate"><span class="pre">service=Web</span></code></li>
-<li>every occurrence of a specific event eg. <code class="docutils literal notranslate"><span class="pre">event=DiskFull</span></code></li>
-<li>a group of events eg. <code class="docutils literal notranslate"><span class="pre">group=Syslog</span></code></li>
-<li>a specific event for a resource eg. <code class="docutils literal notranslate"><span class="pre">resource=host55</span> <span class="pre">and</span> <span class="pre">event=DiskFull</span></code></li>
-<li>all events that have a specific set of tags eg. <code class="docutils literal notranslate"><span class="pre">tags=[</span> <span class="pre">blackout,</span> <span class="pre">london</span> <span class="pre">]</span></code></li>
+<li><p>an entire environment eg. <code class="docutils literal notranslate"><span class="pre">environment=Production</span></code></p></li>
+<li><p>a particular resource eg. <code class="docutils literal notranslate"><span class="pre">resource=host55</span></code></p></li>
+<li><p>an entire service eg. <code class="docutils literal notranslate"><span class="pre">service=Web</span></code></p></li>
+<li><p>every occurrence of a specific event eg. <code class="docutils literal notranslate"><span class="pre">event=DiskFull</span></code></p></li>
+<li><p>a group of events eg. <code class="docutils literal notranslate"><span class="pre">group=Syslog</span></code></p></li>
+<li><p>a specific event for a resource eg. <code class="docutils literal notranslate"><span class="pre">resource=host55</span> <span class="pre">and</span> <span class="pre">event=DiskFull</span></code></p></li>
+<li><p>all events that have a specific set of tags eg. <code class="docutils literal notranslate"><span class="pre">tags=[</span> <span class="pre">blackout,</span> <span class="pre">london</span> <span class="pre">]</span></code></p></li>
 </ul>
 <p>Note that an <code class="docutils literal notranslate"><span class="pre">environment</span></code> is always required to be defined for a blackout rule.</p>
 </div>
@@ -165,12 +163,12 @@ in combination with de-duplication, provides straight-forward and
 effective ways to reduce the burden of managing an alert console.</p>
 <p>With Alerta, there are two ways alerts can be correlated, namely:</p>
 <ol class="arabic simple">
-<li>When an alert with the same <code class="docutils literal notranslate"><span class="pre">environment</span></code>-<code class="docutils literal notranslate"><span class="pre">resource</span></code>-<code class="docutils literal notranslate"><span class="pre">event</span></code>
+<li><p>When an alert with the same <code class="docutils literal notranslate"><span class="pre">environment</span></code>-<code class="docutils literal notranslate"><span class="pre">resource</span></code>-<code class="docutils literal notranslate"><span class="pre">event</span></code>
 combination is received with a <strong>different</strong> <code class="docutils literal notranslate"><span class="pre">severity</span></code>, then the
-alert is correlated.</li>
-<li>When a alert with the same <code class="docutils literal notranslate"><span class="pre">environment</span></code>-<code class="docutils literal notranslate"><span class="pre">resource</span></code> combination
+alert is correlated.</p></li>
+<li><p>When a alert with the same <code class="docutils literal notranslate"><span class="pre">environment</span></code>-<code class="docutils literal notranslate"><span class="pre">resource</span></code> combination
 is received with an <code class="docutils literal notranslate"><span class="pre">event</span></code> in the <code class="docutils literal notranslate"><span class="pre">correlate</span></code> list of related
-events with <strong>any</strong> severity, then the alert is correlated.</li>
+events with <strong>any</strong> severity, then the alert is correlated.</p></li>
 </ol>
 <p>In both cases, this means that information from the correlated alert is
 used to update key attributes of the existing alert (like <code class="docutils literal notranslate"><span class="pre">severity</span></code>,
@@ -184,24 +182,24 @@ the alert status</em> based on the current and previous severity of alerts
 and subsequent user actions.</p>
 <p>The Alerta API will:</p>
 <ul class="simple">
-<li>only show the most recent state of any alert</li>
-<li>change the status of an alert to <code class="docutils literal notranslate"><span class="pre">closed</span></code> if a <code class="docutils literal notranslate"><span class="pre">normal</span></code>, <code class="docutils literal notranslate"><span class="pre">ok</span></code> or
-<code class="docutils literal notranslate"><span class="pre">cleared</span></code> is received</li>
-<li>change the status of a <code class="docutils literal notranslate"><span class="pre">closed</span></code> alert to <code class="docutils literal notranslate"><span class="pre">open</span></code> if the event reoccurs</li>
-<li>change the status of an <code class="docutils literal notranslate"><span class="pre">acknowledged</span></code> alert to <code class="docutils literal notranslate"><span class="pre">open</span></code> if the new severity
-is higher than the current <code class="docutils literal notranslate"><span class="pre">severity</span></code></li>
-<li>update the <code class="docutils literal notranslate"><span class="pre">severity</span></code> and other key attributes of an alert when a more recent
-alert is received (see <a class="reference internal" href="#correlation">correlation</a> and <a class="reference internal" href="#deduplication">deduplication</a>)</li>
-<li>update the <code class="docutils literal notranslate"><span class="pre">trendIndication</span></code> attribute based on <code class="docutils literal notranslate"><span class="pre">previousSeverity</span></code> and
-current <code class="docutils literal notranslate"><span class="pre">severity</span></code> with either <code class="docutils literal notranslate"><span class="pre">moreSevere</span></code>, <code class="docutils literal notranslate"><span class="pre">lessSevere</span></code> or <code class="docutils literal notranslate"><span class="pre">noChange</span></code></li>
-<li>update the <code class="docutils literal notranslate"><span class="pre">history</span></code> log following a <code class="docutils literal notranslate"><span class="pre">severity</span></code> or <code class="docutils literal notranslate"><span class="pre">status</span></code> change (see
-<a class="reference internal" href="#alert-history">alert history</a>)</li>
+<li><p>only show the most recent state of any alert</p></li>
+<li><p>change the status of an alert to <code class="docutils literal notranslate"><span class="pre">closed</span></code> if a <code class="docutils literal notranslate"><span class="pre">normal</span></code>, <code class="docutils literal notranslate"><span class="pre">ok</span></code> or
+<code class="docutils literal notranslate"><span class="pre">cleared</span></code> is received</p></li>
+<li><p>change the status of a <code class="docutils literal notranslate"><span class="pre">closed</span></code> alert to <code class="docutils literal notranslate"><span class="pre">open</span></code> if the event reoccurs</p></li>
+<li><p>change the status of an <code class="docutils literal notranslate"><span class="pre">acknowledged</span></code> alert to <code class="docutils literal notranslate"><span class="pre">open</span></code> if the new severity
+is higher than the current <code class="docutils literal notranslate"><span class="pre">severity</span></code></p></li>
+<li><p>update the <code class="docutils literal notranslate"><span class="pre">severity</span></code> and other key attributes of an alert when a more recent
+alert is received (see <a class="reference internal" href="#correlation">correlation</a> and <a class="reference internal" href="#deduplication">deduplication</a>)</p></li>
+<li><p>update the <code class="docutils literal notranslate"><span class="pre">trendIndication</span></code> attribute based on <code class="docutils literal notranslate"><span class="pre">previousSeverity</span></code> and
+current <code class="docutils literal notranslate"><span class="pre">severity</span></code> with either <code class="docutils literal notranslate"><span class="pre">moreSevere</span></code>, <code class="docutils literal notranslate"><span class="pre">lessSevere</span></code> or <code class="docutils literal notranslate"><span class="pre">noChange</span></code></p></li>
+<li><p>update the <code class="docutils literal notranslate"><span class="pre">history</span></code> log following a <code class="docutils literal notranslate"><span class="pre">severity</span></code> or <code class="docutils literal notranslate"><span class="pre">status</span></code> change (see
+<a class="reference internal" href="#alert-history">alert history</a>)</p></li>
 </ul>
 <p>All of these automatic actions combine to ensure that important alerts are given
 the priority they deserve.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">To take full advantage of the state-based browser it is recommended to
+<p class="admonition-title">Note</p>
+<p>To take full advantage of the state-based browser it is recommended to
 implement the timeout of <code class="docutils literal notranslate"><span class="pre">expired</span></code> alerts using the <a class="reference internal" href="deployment.html#housekeeping"><span class="std std-ref">House Keeping</span></a>
 script.</p>
 </div>
@@ -311,6 +309,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="federated.html">Federated Alerta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
@@ -332,17 +331,15 @@ Links
 
 
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 
 
 
@@ -359,7 +356,7 @@ Links
       &copy;2015-2018, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
