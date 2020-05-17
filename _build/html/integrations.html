@@ -1,19 +1,17 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>Integrations &amp; Plugins &#8212; alerta 6.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -53,35 +51,38 @@ on any web page using <a class="reference external" href="http://oembed.com/">oE
 <p>Lastly, <a class="reference internal" href="#plugins"><span class="std std-ref">plugins</span></a> can be used to quickly and easily forward alerts
 to or notify other systems like Slack or Hipchat.</p>
 <div class="contents local topic" id="contents">
-<p class="topic-title first">Contents</p>
+<p class="topic-title">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#integrations" id="id15">Integrations</a><ul>
-<li><a class="reference internal" href="#core" id="id16">Core</a></li>
-<li><a class="reference internal" href="#contrib" id="id17">Contrib</a></li>
-<li><a class="reference internal" href="#external" id="id18">External</a></li>
-<li><a class="reference internal" href="#bi-directional" id="id19">Bi-directional</a></li>
+<li><p><a class="reference internal" href="#integrations" id="id15">Integrations</a></p>
+<ul>
+<li><p><a class="reference internal" href="#core" id="id16">Core</a></p></li>
+<li><p><a class="reference internal" href="#contrib" id="id17">Contrib</a></p></li>
+<li><p><a class="reference internal" href="#external" id="id18">External</a></p></li>
+<li><p><a class="reference internal" href="#bi-directional" id="id19">Bi-directional</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#webhooks" id="id20">Webhooks</a><ul>
-<li><a class="reference internal" href="#id5" id="id21">AWS CloudWatch</a></li>
-<li><a class="reference internal" href="#grafana" id="id22">Grafana</a></li>
-<li><a class="reference internal" href="#graylog" id="id23">Graylog</a></li>
-<li><a class="reference internal" href="#new-relic" id="id24">New Relic</a></li>
-<li><a class="reference internal" href="#id6" id="id25">PagerDuty</a></li>
-<li><a class="reference internal" href="#id7" id="id26">Pingdom</a></li>
-<li><a class="reference internal" href="#id8" id="id27">Prometheus Alertmanager</a></li>
-<li><a class="reference internal" href="#riemann" id="id28">Riemann</a></li>
-<li><a class="reference internal" href="#severdensity" id="id29">SeverDensity</a></li>
-<li><a class="reference internal" href="#slack" id="id30">Slack</a></li>
-<li><a class="reference internal" href="#id9" id="id31">Google Stackdriver</a></li>
-<li><a class="reference internal" href="#telegram" id="id32">Telegram</a></li>
-<li><a class="reference internal" href="#custom-webhooks" id="id33">Custom Webhooks</a></li>
+<li><p><a class="reference internal" href="#webhooks" id="id20">Webhooks</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id5" id="id21">AWS CloudWatch</a></p></li>
+<li><p><a class="reference internal" href="#grafana" id="id22">Grafana</a></p></li>
+<li><p><a class="reference internal" href="#graylog" id="id23">Graylog</a></p></li>
+<li><p><a class="reference internal" href="#new-relic" id="id24">New Relic</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id25">PagerDuty</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id26">Pingdom</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id27">Prometheus Alertmanager</a></p></li>
+<li><p><a class="reference internal" href="#riemann" id="id28">Riemann</a></p></li>
+<li><p><a class="reference internal" href="#severdensity" id="id29">SeverDensity</a></p></li>
+<li><p><a class="reference internal" href="#slack" id="id30">Slack</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id31">Google Stackdriver</a></p></li>
+<li><p><a class="reference internal" href="#telegram" id="id32">Telegram</a></p></li>
+<li><p><a class="reference internal" href="#custom-webhooks" id="id33">Custom Webhooks</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#widgets" id="id34">Widgets</a></li>
-<li><a class="reference internal" href="#plugins" id="id35">Plugins</a><ul>
-<li><a class="reference internal" href="#id12" id="id36">Core</a></li>
-<li><a class="reference internal" href="#id13" id="id37">Contrib</a></li>
+<li><p><a class="reference internal" href="#widgets" id="id34">Widgets</a></p></li>
+<li><p><a class="reference internal" href="#plugins" id="id35">Plugins</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id12" id="id36">Core</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id37">Contrib</a></p></li>
 </ul>
 </li>
 </ul>
@@ -93,12 +94,12 @@ to or notify other systems like Slack or Hipchat.</p>
 <p>There are a few core integrations which have been developed to showcase how easy
 it is to get alerts or events from other tools into Alerta. They are:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/alerta/nagios-alerta">Nagios Event Broker</a> - forward host/service check results with suppression during downtime</li>
-<li><a class="reference external" href="https://docs.influxdata.com/kapacitor/latest/nodes/alert_node/#alerta">InfluxData Kapacitor</a> - forward alerts for metric anomalies and dynamic thresholds</li>
-<li><a class="reference external" href="https://github.com/alerta/zabbix-alerta">Zabbix Alert Script</a> - forward problems, acknowledged and OK events</li>
-<li><a class="reference external" href="https://github.com/alerta/sensu-alerta">Sensu Plugin</a> - forward sensu events</li>
-<li><a class="reference external" href="https://github.com/alerta/riemann-alerta">Riemann Plugin</a> - generate alerts from thresholds defined against metric streams</li>
-<li><a class="reference external" href="https://github.com/alerta/kibana-alerta">Kibana Logging</a> - log alerts to Elasticsearch for historical visualisation of alert trends</li>
+<li><p><a class="reference external" href="https://github.com/alerta/nagios-alerta">Nagios Event Broker</a> - forward host/service check results with suppression during downtime</p></li>
+<li><p><a class="reference external" href="https://docs.influxdata.com/kapacitor/latest/nodes/alert_node/#alerta">InfluxData Kapacitor</a> - forward alerts for metric anomalies and dynamic thresholds</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/zabbix-alerta">Zabbix Alert Script</a> - forward problems, acknowledged and OK events</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/sensu-alerta">Sensu Plugin</a> - forward sensu events</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/riemann-alerta">Riemann Plugin</a> - generate alerts from thresholds defined against metric streams</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/kibana-alerta">Kibana Logging</a> - log alerts to Elasticsearch for historical visualisation of alert trends</p></li>
 </ul>
 </div>
 <div class="section" id="contrib">
@@ -106,23 +107,23 @@ it is to get alerts or events from other tools into Alerta. They are:</p>
 <p>There are several more integrations available in the <a class="reference external" href="https://github.com/alerta/alerta-contrib">contrib</a> repo which may
 be useful. They are:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/sqs">Amazon SQS</a> - receive alerts from SQS that were sent using the SNS core plugin</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/mailer">E-mail</a> - send emails after a hold-time has expired (requires the <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp">AMQP</a> message queue core plugin)</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/opsweekly">Opsweekly</a> - query Alerta to generate Opsweekly reports</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/pinger">Pinger</a> - generate ping alerts from list of network resources being pinged</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/snmptrap">SNMP Trap</a> - generate alerts from SNMPv1 and SNMPv2 sources</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/supervisor">Supervisor</a> - trigger alerts and heartbeats based on process deamon events</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/syslog">Syslog Forwarder</a> - receive <span class="target" id="index-0"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc5424.html"><strong>RFC 5424</strong></a>, <span class="target" id="index-1"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc3164.html"><strong>RFC 3164</strong></a> syslog and <a class="reference external" href="http://www.cisco.com/c/en/us/td/docs/routers/access/wireless/software/guide/SysMsgLogging.html">Cisco</a> syslog messages</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/urlmon">URL monitor</a> - trigger alerts from web service query responses</li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/sqs">Amazon SQS</a> - receive alerts from SQS that were sent using the SNS core plugin</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/mailer">E-mail</a> - send emails after a hold-time has expired (requires the <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp">AMQP</a> message queue core plugin)</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/opsweekly">Opsweekly</a> - query Alerta to generate Opsweekly reports</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/pinger">Pinger</a> - generate ping alerts from list of network resources being pinged</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/snmptrap">SNMP Trap</a> - generate alerts from SNMPv1 and SNMPv2 sources</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/supervisor">Supervisor</a> - trigger alerts and heartbeats based on process deamon events</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/syslog">Syslog Forwarder</a> - receive <span class="target" id="index-0"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc5424.html"><strong>RFC 5424</strong></a>, <span class="target" id="index-1"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc3164.html"><strong>RFC 3164</strong></a> syslog and <a class="reference external" href="http://www.cisco.com/c/en/us/td/docs/routers/access/wireless/software/guide/SysMsgLogging.html">Cisco</a> syslog messages</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/urlmon">URL monitor</a> - trigger alerts from web service query responses</p></li>
 </ul>
 </div>
 <div class="section" id="external">
 <h3><a class="toc-backref" href="#id18">External</a><a class="headerlink" href="#external" title="Permalink to this headline">¶</a></h3>
 <p>Some third-party monitoring tools have built-in support for Alerta. They are:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://elastalert.readthedocs.io/en/latest/ruletypes.html#alerta">elastalert</a> - alerting on anomalies, spikes, or other patterns of interest from data in Elasticsearch</li>
-<li><a class="reference external" href="https://github.com/firehol/netdata/wiki/Alerta-monitoring-system">netdata</a> - a system for distributed real-time performance and health monitoring</li>
-<li><a class="reference external" href="https://docs.influxdata.com/kapacitor/v1.5/event_handlers/alerta/">Tick Stack</a> - designed to handle metrics and events using Telegraf, InfluxDB, Chronograf, and Kapacitor</li>
+<li><p><a class="reference external" href="https://elastalert.readthedocs.io/en/latest/ruletypes.html#alerta">elastalert</a> - alerting on anomalies, spikes, or other patterns of interest from data in Elasticsearch</p></li>
+<li><p><a class="reference external" href="https://github.com/firehol/netdata/wiki/Alerta-monitoring-system">netdata</a> - a system for distributed real-time performance and health monitoring</p></li>
+<li><p><a class="reference external" href="https://docs.influxdata.com/kapacitor/v1.5/event_handlers/alerta/">Tick Stack</a> - designed to handle metrics and events using Telegraf, InfluxDB, Chronograf, and Kapacitor</p></li>
 </ul>
 </div>
 <div class="section" id="bi-directional">
@@ -148,13 +149,13 @@ in the web UI:</p>
 <p>The following is a list of integrations, webbhooks and plugins that highlight
 the use of bi-directional integration in different ways.</p>
 <ul class="simple">
-<li>AWS Cloudwatch webhook - includes the <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/webhooks/cloudwatch.py#L39-L40">SNS subscription confirmation</a> link in the text of the alert</li>
-<li>Zabbix integration &amp; plugin - TBC</li>
-<li>Grafana webhook - includes <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/webhooks/grafana.py#L39-L43">rule and image links</a> in Grafana alert attributes if available</li>
-<li>NewRelic webhook - includes <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/webhooks/newrelic.py#L33-L37">incident and runbook links</a> in NewRelic alerts</li>
-<li>PagerDuty webhook - includes the <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/webhooks/pagerduty.py#L18">incident URL</a> in alert history text when status changes</li>
-<li>Prometheus webhook - includes <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/webhooks/prometheus.py#L62-L65">external and generator URLs</a> in the alert attributes</li>
-<li>Zabbix integration - includes <a class="reference external" href="https://github.com/alerta/zabbix-alerta/blob/master/zabbix_alerta.py#L67">moreInfo</a> link back to Zabbix console event trigger page in alert attribute</li>
+<li><p>AWS Cloudwatch webhook - includes the <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/webhooks/cloudwatch.py#L39-L40">SNS subscription confirmation</a> link in the text of the alert</p></li>
+<li><p>Zabbix integration &amp; plugin - TBC</p></li>
+<li><p>Grafana webhook - includes <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/webhooks/grafana.py#L39-L43">rule and image links</a> in Grafana alert attributes if available</p></li>
+<li><p>NewRelic webhook - includes <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/webhooks/newrelic.py#L33-L37">incident and runbook links</a> in NewRelic alerts</p></li>
+<li><p>PagerDuty webhook - includes the <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/webhooks/pagerduty.py#L18">incident URL</a> in alert history text when status changes</p></li>
+<li><p>Prometheus webhook - includes <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/webhooks/prometheus.py#L62-L65">external and generator URLs</a> in the alert attributes</p></li>
+<li><p>Zabbix integration - includes <a class="reference external" href="https://github.com/alerta/zabbix-alerta/blob/master/zabbix_alerta.py#L67">moreInfo</a> link back to Zabbix console event trigger page in alert attribute</p></li>
 </ul>
 </div>
 </div>
@@ -163,27 +164,27 @@ the use of bi-directional integration in different ways.</p>
 <p>Webhooks are a way of integrating with other systems by triggering <a class="reference external" href="https://en.wikipedia.org/wiki/Webhook">HTTP callbacks</a>
 to the Alerta server API when an event occurs.</p>
 <div class="contents local topic" id="built-in-webhooks">
-<p class="topic-title first">Built-in Webhooks</p>
+<p class="topic-title">Built-in Webhooks</p>
 <ul class="simple">
-<li><a class="reference internal" href="#id5" id="id38">AWS CloudWatch</a></li>
-<li><a class="reference internal" href="#grafana" id="id39">Grafana</a></li>
-<li><a class="reference internal" href="#graylog" id="id40">Graylog</a></li>
-<li><a class="reference internal" href="#new-relic" id="id41">New Relic</a></li>
-<li><a class="reference internal" href="#id6" id="id42">PagerDuty</a></li>
-<li><a class="reference internal" href="#id7" id="id43">Pingdom</a></li>
-<li><a class="reference internal" href="#id8" id="id44">Prometheus Alertmanager</a></li>
-<li><a class="reference internal" href="#riemann" id="id45">Riemann</a></li>
-<li><a class="reference internal" href="#severdensity" id="id46">SeverDensity</a></li>
-<li><a class="reference internal" href="#slack" id="id47">Slack</a></li>
-<li><a class="reference internal" href="#id9" id="id48">Google Stackdriver</a></li>
-<li><a class="reference internal" href="#telegram" id="id49">Telegram</a></li>
-<li><a class="reference internal" href="#custom-webhooks" id="id50">Custom Webhooks</a></li>
+<li><p><a class="reference internal" href="#id5" id="id38">AWS CloudWatch</a></p></li>
+<li><p><a class="reference internal" href="#grafana" id="id39">Grafana</a></p></li>
+<li><p><a class="reference internal" href="#graylog" id="id40">Graylog</a></p></li>
+<li><p><a class="reference internal" href="#new-relic" id="id41">New Relic</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id42">PagerDuty</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id43">Pingdom</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id44">Prometheus Alertmanager</a></p></li>
+<li><p><a class="reference internal" href="#riemann" id="id45">Riemann</a></p></li>
+<li><p><a class="reference internal" href="#severdensity" id="id46">SeverDensity</a></p></li>
+<li><p><a class="reference internal" href="#slack" id="id47">Slack</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id48">Google Stackdriver</a></p></li>
+<li><p><a class="reference internal" href="#telegram" id="id49">Telegram</a></p></li>
+<li><p><a class="reference internal" href="#custom-webhooks" id="id50">Custom Webhooks</a></p></li>
 </ul>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>If authentication is enforced, then an API key is needed to access the alerta API programatically and use the webhooks.</p>
-<p class="last">Please follow this page for more information on how to pass your api-key : <a class="reference external" href="https://docs.alerta.io/en/latest/authentication.html#api-keys">https://docs.alerta.io/en/latest/authentication.html#api-keys</a></p>
+<p>Please follow this page for more information on how to pass your api-key : <a class="reference external" href="https://docs.alerta.io/en/latest/authentication.html#api-keys">https://docs.alerta.io/en/latest/authentication.html#api-keys</a></p>
 </div>
 <div class="section" id="id5">
 <h3><a class="toc-backref" href="#id38">AWS CloudWatch</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
@@ -205,9 +206,9 @@ endpoint to the Notification Channels.</p>
 <cite>Endpoint URL</cite> input box append <code class="file docutils literal notranslate"><span class="pre">/webhooks/grafana</span></code> to the Alerta API URL.</p>
 <p><strong>Example Grafana Webhook URL</strong></p>
 <p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/grafana</span></code></p>
-<dl class="docutils">
-<dt><strong>The following parameters can be set in the url</strong></dt>
-<dd>environment, event_type, group, origin, service, severity, timeout</dd>
+<dl class="simple">
+<dt><strong>The following parameters can be set in the url</strong></dt><dd><p>environment, event_type, group, origin, service, severity, timeout</p>
+</dd>
 </dl>
 <p><strong>Example Grafana Webhook URL with parameters</strong></p>
 <p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/grafana?api-key=xxx&amp;environment=Production&amp;service=Web&amp;timeout=3600</span></code></p>
@@ -346,8 +347,8 @@ a specific end-user requirement.</p>
 <h3><a class="toc-backref" href="#id36">Core</a><a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/alerta/alerta/tree/master/alerta/plugins">Core plugins</a> have been developed as examples of common use-cases.</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/plugins/reject.py">Reject</a> - reject alerts before processing. used to enforce custom alert format policies</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/plugins/blackout.py">Blackout</a> - suppression handler that will drop alerts that match a blackout period</li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/plugins/reject.py">Reject</a> - reject alerts before processing. used to enforce custom alert format policies</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/plugins/blackout.py">Blackout</a> - suppression handler that will drop alerts that match a blackout period</p></li>
 </ul>
 </div>
 <div class="section" id="id13">
@@ -355,22 +356,22 @@ a specific end-user requirement.</p>
 <p>More than two dozen <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins">contributed plugins</a> are made available for popular tools. Some
 of the most popular are:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp">AMQP</a> - publish alerts to an AMQP fanout topic after processing</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/cachet">Cachet</a> - create incidents for display on Cachet status page</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/enhance">Enhance</a> - add new information to an alert based on existing information</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/geoip">GeoIP Location</a> - use remote IP address to submitted alert to add location data</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/hipchat">HipChat</a> - send alerts to HipChat room</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/influxdb">InfluxDB</a> - send alerts to InfluxDB for graphing with Grafana</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/logstash">Logstash/Kibana</a> - send alerts to logstash agent after processing</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/normalise">Normalise</a> - ensure alerts a formatted in a consistent manner</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty">PagerDuty Plugin</a> - send alerts to PagerDuty (webhooks used to receive callbacks)</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/prometheus">Prometheus Silencer</a> - silence alerts in Prometheus Alertmanager if ack’ed in Alerta</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pushover">Pushover.net</a> - send alerts to Pushover.net</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/slack">Slack</a> - send alerts to Slack room</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/sns">AWS SNS</a> - publish alerts to SNS topic after processing</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/syslog">Syslog Logger</a> - send alerts via syslog</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram">Telegram Bot</a> - send alerts to Telegram channel</li>
-<li><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/twilio">Twilio SMS</a> - send alerts via SMS using Twilio</li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp">AMQP</a> - publish alerts to an AMQP fanout topic after processing</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/cachet">Cachet</a> - create incidents for display on Cachet status page</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/enhance">Enhance</a> - add new information to an alert based on existing information</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/geoip">GeoIP Location</a> - use remote IP address to submitted alert to add location data</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/hipchat">HipChat</a> - send alerts to HipChat room</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/influxdb">InfluxDB</a> - send alerts to InfluxDB for graphing with Grafana</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/logstash">Logstash/Kibana</a> - send alerts to logstash agent after processing</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/normalise">Normalise</a> - ensure alerts a formatted in a consistent manner</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty">PagerDuty Plugin</a> - send alerts to PagerDuty (webhooks used to receive callbacks)</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/prometheus">Prometheus Silencer</a> - silence alerts in Prometheus Alertmanager if ack’ed in Alerta</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pushover">Pushover.net</a> - send alerts to Pushover.net</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/slack">Slack</a> - send alerts to Slack room</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/sns">AWS SNS</a> - publish alerts to SNS topic after processing</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/syslog">Syslog Logger</a> - send alerts via syslog</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram">Telegram Bot</a> - send alerts to Telegram channel</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/twilio">Twilio SMS</a> - send alerts via SMS using Twilio</p></li>
 </ul>
 </div>
 </div>
@@ -404,7 +405,7 @@ of the most popular are:</p>
     
 
 <p>
-<a href="https://travis-ci.org/alerta/alerta">
+<a class="badge" href="https://travis-ci.org/alerta/alerta">
     <img
         alt="https://secure.travis-ci.org/alerta/alerta.svg?branch=master"
         src="https://secure.travis-ci.org/alerta/alerta.svg?branch=master"
@@ -471,17 +472,23 @@ Links
 
 
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
@@ -490,8 +497,8 @@ Links
       &copy;2015-2018, Nick Satterly. MIT License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.0</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="_sources/integrations.rst.txt"
