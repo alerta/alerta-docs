@@ -4,8 +4,8 @@ Configuration
 =============
 
 The following settings are configured on the Alerta server. For ``alerta``
-CLI configuration options see :ref:`command-line reference <cli>` and for
-Web UI configuration options see :ref:`web UI reference <webui>`.
+CLI configuration options see the :ref:`command-line reference <cli>` and for
+Web UI configuration options see the :ref:`web UI reference <webui>`.
 
 The configuration file uses standard python syntax for setting variables.
 The default settings (defined in :file:`settings.py`) **should not** be modified
@@ -25,7 +25,7 @@ seconds)::
 Config File Settings
 --------------------
 
-.. _general config:
+.. _general_config:
 
 General Settings
 ~~~~~~~~~~~~~~~~
@@ -38,14 +38,8 @@ General Settings
     SECRET_KEY = 'changeme'
     BASE_URL = '/api'
     USE_PROXYFIX = False
-    LOG_HANDLERS = ['console', 'file']
-    LOG_FILE = '/var/log/alertad.log'
-    LOG_MAX_BYTES = 5*1024*1024  # 5 MB
-    LOG_BACKUP_COUNT = 2
-    LOG_FORMAT = 'verbose'
 
 .. index:: DEBUG, SECRET_KEY, BASE_URL, USE_PROXYFIX
-.. index:: LOG_CONFIG_FILE, LOG_HANDLERS, LOG_FILE, LOG_MAX_BYTES, LOG_BACKUP_COUNT, LOG_FORMAT, LOG_METHODS
 
 ``DEBUG``
     debug mode for increased logging (default is ``False``)
@@ -55,12 +49,32 @@ General Settings
     if API served on a path or behind a proxy use it to fix relative links (no default)
 ``USE_PROXYFIX``
     if API served behind SSL terminating proxy (default is ``False``)
+
+.. _logging_config:
+
+Logging Settings
+~~~~~~~~~~~~~~~~
+
+**Example**
+
+.. code:: python
+
+    LOG_HANDLERS = ['console', 'file']
+    LOG_FILE = '/var/log/alertad.log'
+    LOG_MAX_BYTES = 5*1024*1024  # 5 MB
+    LOG_BACKUP_COUNT = 2
+    LOG_FORMAT = 'verbose'
+
+.. index:: LOG_CONFIG_FILE, LOG_HANDLERS, LOG_FILE, LOG_MAX_BYTES, LOG_BACKUP_COUNT, LOG_FORMAT, LOG_METHODS
+
 ``LOG_CONFIG_FILE``
-    full path to logging configuration file in dictConfig format (no default)
+    full path to logging configuration file in `dictConfig format`_ (no default)
 ``LOG_HANDLERS``
     list of log handlers eg. 'console', 'file', 'wsgi' (default is 'console')
 ``LOG_FILE``
-    full path to write rotating server log file (no default)
+    full path to write rotating server log file (default is :file:`alertad.log`)
+``LOG_LEVEL``
+    only log messages with log severity level or higher (default is ``WARNING``)
 ``LOG_MAX_BYTES``
     maximum size of log file before rollover (default is 10 MB)
 ``LOG_BACKUP_COUNT``
@@ -70,7 +84,9 @@ General Settings
 ``LOG_METHODS``
     only log listed HTTP methods eg. 'GET', 'POST', 'PUT', 'DELETE' (default is all HTTP methods)
 
-.. _api config:
+.. _dictConfig format: https://docs.python.org/2/library/logging.config.html#logging.config.dictConfig
+
+.. _api_config:
 
 API Settings
 ~~~~~~~~~~~~
@@ -80,23 +96,38 @@ API Settings
 .. code:: python
 
     ALARM_MODEL='ALERTA'
-    DEFAULT_FIELD = 'text'
     DEFAULT_PAGE_SIZE = 1000
     HISTORY_LIMIT = 100
     HISTORY_ON_VALUE_CHANGE = False  # do not log if only value changes
 
-.. index:: ALARM_MODEL, DEFAULT_FIELD, DEFAULT_PAGE_SIZE, HISTORY_LIMIT, HISTORY_ON_VALUE_CHANGE
+.. index:: ALARM_MODEL, DEFAULT_PAGE_SIZE, HISTORY_LIMIT, HISTORY_ON_VALUE_CHANGE
 
 ``ALARM_MODEL``
-    set to ``ISA_18_2`` to use experimental alarm model (default is ``ALERTA``)
-``DEFAULT_FIELD``
-    search default field when no field given when using lucene query syntax (default is ``text``)
+    set to ``ISA_18_2`` to use experimental `ANSI/ISA 18.2 alarm model`_ (default is ``ALERTA``)
 ``DEFAULT_PAGE_SIZE``
-    maximum number of alerts returned in a single query (default 1000)
+    maximum number of alerts returned in a single query (default is 1000)
 ``HISTORY_LIMIT``
-    number of history entries for each alert before old entries are deleted (default 100)
+    number of history entries for each alert before old entries are deleted (default is 100)
 ``HISTORY_ON_VALUE_CHANGE``
-    create history entry for duplicate alerts if value changes (default ``True``)
+    create history entry for duplicate alerts if value changes (default is ``True``)
+
+.. _`ANSI/ISA 18.2 alarm model`: https://www.isa.org/standards-and-publications/isa-publications/intech-magazine/white-papers/pas-understanding-and-applying-ansi-isa-18-2-alarm-management-standard/
+
+.. _search_config:
+
+Search Settings
+~~~~~~~~~~~~~~~
+
+**Example**
+
+.. code:: python
+
+    DEFAULT_FIELD = 'text'
+
+.. index:: DEFAULT_FIELD
+
+``DEFAULT_FIELD``
+    search default field when no field given when using :ref:`query string syntax <query_string_syntax>` (default is ``text``)
 
 .. _database_config:
 
@@ -104,6 +135,13 @@ Database Settings
 ~~~~~~~~~~~~~~~~~
 
 There is a choice of either Postgres or MongoDB as the backend database.
+
+.. note::
+    Development first began using MongoDB and then Postgres support was
+    added later. At present, new features are tested against Postgres
+    first and then ported to MongoDB. Both backends have extensive tests
+    to ensure they are functionally equivalent however there a still
+    minor differences in how each implements some search features.
 
 The database is defined using the standard database connection URL formats. Many
 database configuration options are supported as connection URL parameters.
@@ -165,7 +203,7 @@ long-running tasks. (experimental)
 ``CELERY_RESULT_BACKEND``
     URL of Celery-supported result backend (no default)
 
-.. _auth config:
+.. _auth_config:
 
 Authentication Settings
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -178,68 +216,226 @@ such as auditing, and features like the ability to assign and watch alerts.
 .. code:: python
 
     AUTH_REQUIRED = True
-    AUTH_PROVIDER = 'basic'
     ADMIN_USERS = ['admin@alerta.io', 'devops@example.com']
+    DEFAULT_ADMIN_ROLE = 'ops'
+    ADMIN_ROLES = ['ops', 'devops', 'coolkids']
     USER_DEFAULT_SCOPES = ['read', 'write:alerts']
     CUSTOMER_VIEWS = True
-    SIGNUP_ENABLED = False
-    ALLOWED_EMAIL_DOMAINS = ['alerta.io', 'example.com']
-    TOKEN_EXPIRE_DAYS = 4*365  # 4 years
 
-    LDAP_URL = 'ldap://openldap'
+.. index:: AUTH_REQUIRED, ADMIN_USERS, DEFAULT_ADMIN_ROLE, ADMIN_ROLES, USER_DEFAULT_SCOPES, GUEST_DEFAULT_SCOPES, CUSTOMER_VIEWS
+
+
+``AUTH_REQUIRED``
+    users must authenticate when using web UI or command-line tool (default ``False``)
+``ADMIN_USERS``
+    email addresses or logins that are assigned the "admin" role
+``DEFAULT_ADMIN_ROLE``
+    default role name used by ``ADMIN_ROLES` (default is ``admin```)
+``ADMIN_ROLES``
+    list of "roles" or "groups" that are assigned the "admin" role (default is a list containing the ``DEFAULT_ADMIN_ROLE``)
+``USER_DEFAULT_SCOPES``
+    default permissions assigned to logged in users (default is ``['read', 'write']``)
+``GUEST_DEFAULT_SCOPES``
+    default permissions assigned to guest users (default is ``['read:alerts']``)
+``CUSTOMER_VIEWS``
+    enable `multi-tenacy`_ based on ``customer`` attribute (default is ``False``)
+
+.. _multi-tenacy: https://en.wikipedia.org/wiki/Multitenancy
+
+.. _auth_provider_config:
+
+Auth Provider Settings
+~~~~~~~~~~~~~~~~~~~~~~
+
+**Example**
+
+.. code:: python
+
+    AUTH_PROVIDER = 'basic'
+
+.. index:: AUTH_PROVIDER
+
+``AUTH_PROVIDER``
+    valid authentication providers are ``basic``, ``ldap``, ``openid``, ``saml2``,
+    ``azure``, ``cognito``, ``github``, ``gitlab``, ``google``, ``keycloak``,
+    and ``pingfederate``  (default is ``basic``)
+.. note::
+    Any authentication provider that is `OpenID Connect compliant`_ is supported. Set the
+    ``AUTH_PROVIDER`` to ``openid`` and configure the required ``OIDC`` settings
+    :ref:`below <oidc_auth_config>`.
+
+.. _basic_auth_config:
+
+Basic Auth Settings
+~~~~~~~~~~~~~~~~~~~
+
+**Example**
+
+.. code:: python
+
+    AUTH_PROVIDER = 'basic'
+    BASIC_AUTH_REALM = 'Monitoring'
+    SIGNUP_ENABLED = True
+    ALLOWED_EMAIL_DOMAINS = ['alerta.io', 'alerta.dev']
+
+.. index:: BASIC_AUTH_REALM, SIGNUP_ENABLED, ALLOWED_EMAIL_DOMAINS
+
+``BASIC_AUTH_REALM``
+    BasicAuth authentication realm (default is ``Alerta``)
+``SIGNUP_ENABLED``
+    prevent self-service sign-up of new users via the web UI (default is ``True``)
+``ALLOWED_EMAIL_DOMAINS``
+    authorised email domains when using email as login (default is ``*``)
+
+.. _ldap_auth_config:
+
+LDAP Auth Settings
+~~~~~~~~~~~~~~~~~~
+
+**Example**
+
+.. code:: python
+
+    AUTH_PROVIDER = 'ldap'
+    LDAP_URL = 'ldap://openldap:389'
     LDAP_DOMAINS = {
         'my-domain.com': 'cn=%s,dc=my-domain,dc=com'
     }
 
-.. index:: AUTH_REQUIRED, AUTH_PROVIDER, ADMIN_USERS, USER_DEFAULT_SCOPES, CUSTOMER_VIEWS, BASIC_AUTH_REALM, SIGNUP_ENABLED
-.. index:: OAUTH2_CLIENT_ID, OAUTH2_CLIENT_SECRET, ALLOWED_EMAIL_DOMAINS, GITHUB_URL, ALLOWED_GITHUB_ORGS, GITLAB_URL, ALLOWED_GITLAB_GROUPS, LDAP_URL, LDAP_DOMAINS
-.. index:: PINGFEDERATE_URL, PINGFEDERATE_PUBKEY_LOCATION, PINGFEDERATE_TOKEN_ALGORITHM, PINGFEDERATE_OPENID_PAYLOAD_USERNAME, PINGFEDERATE_OPENID_PAYLOAD_EMAIL, PINGFEDERATE_OPENID_PAYLOAD_GROUP
-.. index:: KEYCLOAK_URL, KEYCLOAK_REALM, ALLOWED_KEYCLOAK_ROLES, SAML2_CONFIG, ALLOWED_SAML2_GROUPS, SAML2_USER_NAME_FORMAT, TOKEN_EXPIRE_DAYS, API_KEY_EXPIRE_DAYS
+.. index:: LDAP_URL, LDAP_DOMAINS
 
-``AUTH_REQUIRED``
-    users must authenticate when using web UI or command-line tool (default ``False``)
-``AUTH_PROVIDER``
-    valid authentication providers are ``basic``, ``github``, ``gitlab``, ``google``, ``keycloak``, ``pingfederate``, ``saml2`` (default is ``basic``)
-``ADMIN_USERS``
-    email addresses or logins that have ``admin`` role
-``USER_DEFAULT_SCOPES``
-    default permissions assigned to logged in users (default is ``['read', 'write']``)
-``CUSTOMER_VIEWS``
-    alert views partitioned by customer (default is ``False``)
-``BASIC_AUTH_REALM``
-    BasicAuth authentication realm (default is ``Alerta``)
-``SIGNUP_ENABLED``
-    prevent sign-up of new users via the web UI (default is ``True``)
+``LDAP_URL``
+    URL of the LDAP server (no default)
+``LDAP_DOMAINS``
+    dictionary of LDAP domains and LDAP search filters (no default)
+``LDAP_DOMAINS_GROUP``
+    (default is empty dict ``{}``)
+``LDAP_DOMAINS_BASEDN``
+    (default is empty dict ``{}``)
+``LDAP_ALLOW_SELF_SIGNED_CERT``
+    (default is ``False``)
+
+.. _oidc_auth_config:
+
+OpenID Connect Auth Settings
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``OIDC_ISSUER_URL``
+    (no default)
+``OIDC_AUTH_URL``
+    (no default)
+``OIDC_LOGOUT_URL``
+    (no default)
+``OIDC_VERIFY_TOKEN``
+    (default is ``False``)
+``OIDC_ROLE_CLAIM``
+    (default is ``roles``)
+``OIDC_GROUP_CLAIM``
+    (default is ``groups``)
+``ALLOWED_OIDC_ROLES``
+    (default is ``*``)
 ``OAUTH2_CLIENT_ID``
     client ID required by OAuth2 providers (no default)
 ``OAUTH2_CLIENT_SECRET``
     client secret required by OAuth2 providers (no default)
 ``ALLOWED_EMAIL_DOMAINS``
     authorised email domains when using email as login (default is ``*``)
+
+.. _OpenID Connect compliant: https://openid.net/developers/certified/#OPServices
+
+.. _saml_auth_config:
+
+SAML 2.0 Auth Settings
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. index:: SAML2_CONFIG, ALLOWED_SAML2_GROUPS, SAML2_USER_NAME_FORMAT
+
+``SAML2_ENTITY_ID``
+    (no default)
+``SAML2_METADATA_URL``
+    (no default)
+``SAML2_USER_NAME_FORMAT``
+    Python format string which will be rendered to user's name using SAML
+    attributes. See :ref:`saml2` (default is ``'{givenName} {surname}'``)
+``SAML2_EMAIL_ATTRIBUTE``
+    (default is ``'emailAddress'``)
+``SAML2_CONFIG``
+    ``pysaml2`` configuration ``dict``. See :ref:`saml2` (no default)
+``ALLOWED_SAML2_GROUPS``
+    list of authorised groups a user must belong to. See :ref:`saml2` for
+    details (default is ``*``)
+``ALLOWED_EMAIL_DOMAINS``
+    authorised email domains when using email as login (default is ``*``)
+
+.. _azure_auth_config:
+
+MS Azure Auth Settings
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. index:: AZURE_TENANT
+
+``AZURE_TENANT```
+    "common", "organizations", "consumers" or tenant ID (defalt is ``common``)
+
+.. _cognito_auth_config:
+
+Cognito Auth Settings
+~~~~~~~~~~~~~~~~~~~~~
+
+.. index:: AWS_REGION, COGNITO_USER_POOL_ID, COGNITO_DOMAIN
+
+``AWS_REGION``
+    AWS region (default is ``us-east-1``)
+``COGNITO_USER_POOL_ID``
+    (no default)
+``COGNITO_DOMAIN``
+    (no default)
+
+.. _github_auth_config:
+
+GitHub Auth Settings
+~~~~~~~~~~~~~~~~~~~~
+
+.. index:: GITHUB_URL, ALLOWED_GITHUB_ORGS
+
 ``GITHUB_URL``
     API URL for privately run GitHub Enterprise server when using GitHub as OAuth2 provider (no default)
 ``ALLOWED_GITHUB_ORGS``
     authorised GitHub organisations a user must belong to when using Github as OAuth2 provider (default is ``*``)
+
+.. _gitlab_auth_config:
+
+GitLab Auth Settings
+~~~~~~~~~~~~~~~~~~~~
+
+.. index:: GITLAB_URL, ALLOWED_GITLAB_GROUPS
+
 ``GITLAB_URL``
     API URL for public or privately run GitLab server when using GitLab as OAuth2 provider (default is ``https://gitlab.com``)
 ``ALLOWED_GITLAB_GROUPS``
     authorised GitLab groups a user must belong to when using GitLab as OAuth2 provider (default is ``*``)
-``LDAP_URL``
-    URL of the LDAP server (no default)
-``LDAP_DOMAINS``
-    dictionary of LDAP domains and LDAP search filters (no default)
-``PINGFEDERATE_URL``
-    PingFederate OpenID access token URL (no default)
-``PINGFEDERATE_PUBKEY_LOCATION``
-    PingFederate public key location (no default)
-``PINGFEDERATE_TOKEN_ALGORITHM``
-    PingFederate JWT token algorithm (no default)
-``PINGFEDERATE_OPENID_PAYLOAD_USERNAME``
-    PingFederate JWT user attribute name (no default)
-``PINGFEDERATE_OPENID_PAYLOAD_EMAIL``
-    PingFederate JWT email attribute name (no default)
-``PINGFEDERATE_OPENID_PAYLOAD_GROUP``
-    PingFederate JWT group attribute name  (no default)
+
+.. _google_auth_config:
+
+Google Auth Settings
+~~~~~~~~~~~~~~~~~~~~
+
+.. index:: OAUTH2_CLIENT_ID, OAUTH2_CLIENT_SECRET, ALLOWED_EMAIL_DOMAINS
+
+``OAUTH2_CLIENT_ID``
+    client ID required by OAuth2 providers (no default)
+``OAUTH2_CLIENT_SECRET``
+    client secret required by OAuth2 providers (no default)
+``ALLOWED_EMAIL_DOMAINS``
+    authorised email domains when using email as login (default is ``*``)
+
+.. _keycloak_auth_config:
+
+Keycloack Auth Settings
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. index:: KEYCLOAK_URL, KEYCLOAK_REALM, ALLOWED_KEYCLOAK_ROLES
+
 ``KEYCLOAK_URL``
     Keycloak website URL when using Keycloak as OAuth2 provider (no default)
 ``KEYCLOAK_REALM``
@@ -247,18 +443,48 @@ such as auditing, and features like the ability to assign and watch alerts.
 ``ALLOWED_KEYCLOAK_ROLES``
     list of authorised Keycloak roles a user must belong to when using
     Keycloak as OAuth2 provider (default is ``*``)
-``SAML2_CONFIG``
-    ``pysaml2`` configuration ``dict``. See :ref:`saml2` (no default)
-``ALLOWED_SAML2_GROUPS``
-    list of authorised groups a user must belong to. See :ref:`saml2` for
-    details (default is ``*``)
-``SAML2_USER_NAME_FORMAT``
-    Python format string which will be rendered to user's name using SAML
-    attributes. See :ref:`saml2` (default is ``'{givenName} {surname}'``)
+
+.. _pingfederate_auth_config:
+
+PingFederate Auth Settings
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. index:: PINGFEDERATE_URL
+
+``PINGFEDERATE_URL``
+    PingFederate URL (no default)
+
+.. _api_key_config:
+
+API Key & Bearer Token Settings
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. index:: TOKEN_EXPIRE_DAYS, API_KEY_EXPIRE_DAYS
+
 ``TOKEN_EXPIRE_DAYS``
-    number of days a bearer token is valid (default is ``14``)
+    number of days a web UI bearer token is valid (default is ``14``)
 ``API_KEY_EXPIRE_DAYS``
     number of days an API key is valid (default is ``365``)
+
+.. _hmac_auth_config:
+
+HMAC Auth Settings
+~~~~~~~~~~~~~~~~~~
+
+.. index:: HMAC_AUTH_CREDENTIALS
+
+::
+
+    HMAC_AUTH_CREDENTIALS = [
+    # {
+    # 'id': '', # access key id => $ uuidgen | tr '[:upper:]' '[:lower:]'
+    # 'key': '', # secret key => $ date | md5 | base64
+    # 'algorithm': 'sha256' # valid hmac algorithm eg. sha256, sha384, sha512
+    # }
+    ] # type: List[Dict[str, Any]]
+
+``HMAC_AUTH_CREDENTIALS``
+    HMAC credentials
 
 .. _Audit Log config:
 
@@ -275,14 +501,20 @@ using a POST.
 
     AUDIT_TRAIL = ['admin', 'write', 'auth']
     AUDIT_LOG = True  # log to Flask application logger
+    AUDIT_LOG_REDACT = True
+    AUDIT_LOG_JSON = False
     AUDIT_URL = 'https://listener.logz.io:8071/?token=TOKEN'
 
-.. index:: AUDIT_TRAIL, AUDIT_LOG, AUDIT_URL
+.. index:: AUDIT_TRAIL, AUDIT_LOG, AUDIT_LOG_REDACT, AUDIT_LOG_JSON, AUDIT_URL
 
 ``AUDIT_TRAIL``
     audit trail for ``admin``, ``write`` or ``auth`` changes. (default is ``['admin']``)
 ``AUDIT_LOG``
     enable audit logging to configured application log file (default is ``False``)
+``AUDIT_LOG_REDACT``
+    redact sensitive data before logging (default is ``True``)
+``AUDIT_LOG_JSON``
+    log alert data as JSON object (default is ``False``)
 ``AUDIT_URL``
     forward audit logs to HTTP POST URL (no default)
 
@@ -365,13 +597,35 @@ are important for generating alerts from stale heartbeats.
 
     ALERT_TIMEOUT = 43200  # 12 hours
     HEARTBEAT_TIMEOUT = 7200  # 2 hours
+    HEARTBEAT_MAX_LATENCY
 
-.. index:: ALERT_TIMEOUT, HEARTBEAT_TIMEOUT
+.. index:: ALERT_TIMEOUT, HEARTBEAT_TIMEOUT, HEARTBEAT_MAX_LATENCY
 
 ``ALERT_TIMEOUT``
-    default timeout period in seconds for alerts (default is ``86400``)
+    default timeout period in seconds for alerts (default is 86400)
 ``HEARTBEAT_TIMEOUT``
-    default timeout period in seconds for heartbeats (default is ``86400``)
+    default timeout period in seconds for heartbeats (default is 86400)
+``HEARTBEAT_MAX_LATENCY``
+    stale heartbeat threshold in milliseconds (default is 2000)
+
+.. _housekeeping_config:
+
+Housekeeping Settings
+~~~~~~~~~~~~~~~~~~~~~
+
+**Example**
+
+.. code:: python
+
+    DEFAULT_EXPIRED_DELETE_HRS = 12  # hours
+    DEFAULT_INFO_DELETE_HRS = 0  # do not delete info alerts
+
+.. index:: DEFAULT_EXPIRED_DELETE_HRS, DEFAULT_INFO_DELETE_HRS
+
+``DEFAULT_EXPIRED_DELETE_HRS``
+    delete expired alerts after defined hours (0=do not delete, default is 2)
+``DEFAULT_INFO_DELETE_HRS``
+    delete informational alerts after defined hours (0=do not delete, default is 12)
 
 .. _email config:
 
@@ -457,12 +711,38 @@ The following settings are specific to the web UI and are not used by the server
   user defined columns and column order for alert list view (default is standard web console column order)
 ``SORT_LIST_BY``
     to sort by newest use ``lastReceiveTime`` or oldest use ``-createTime``. minus means reverse (default is ``lastReceiveTime``)
+``DEFAULT_FILTER``
+    default alert list filter as query filter (default is ``{'status':['open','ack']}``)
 ``ACTIONS``
     adds buttons to web console for operators to trigger custom actions against alert (no default)
 ``GOOGLE_TRACKING_ID``
     used by the web UI to send tracking data to Google Analytics (no default)
 ``AUTO_REFRESH_INTERVAL``
     interval in milliseconds at which the web UI refreshes alert list (default is ``5000``)
+
+.. asi_config:
+
+Alert Status Indicator Settings
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Example**
+
+::
+
+ASI_SEVERITY = [
+    'critical', 'major', 'minor', 'warning', 'indeterminate', 'informational'
+]
+ASI_QUERIES = [
+    {'text': 'Production', 'query': [['environment', 'Production']]},
+    {'text': 'Development', 'query': [['environment', 'Development']]},
+    {'text': 'Heartbeats', 'query': {'q': 'event:Heartbeat'}},
+    {'text': 'Misc.', 'query': 'group=Misc'},
+]
+
+``ASI_SEVERITY``
+    severity counts to include in status indicator (default is all non-normal)
+``ASI_QUERIES``
+    list of alert queries applied to filter status indicators (see example for default)
 
 .. _plugin config:
 
