@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Alerta CLI &#8212; alerta 6.0 documentation</title>
+    <title>Alerta CLI &#8212; alerta 7.5 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -405,11 +405,11 @@ $ alerta send --resource web01 --event HttpOK --correlate HttpError --group Web 
 <p>Query for alerts based on search filter criteria.</p>
 <p><strong>Examples</strong></p>
 <p>To query for major and minor open alerts for the Production environment of the Mobile API service:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta query --filters severity=major severity=minor status=open environment=Production service=&quot;Mobile API&quot;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta query --filter severity=major --filter severity=minor --filter status=open --filter environment=Production --filter service=&quot;Mobile API&quot;
 </pre></div>
 </div>
 <p>To query for all alerts with “disk” in the alert text:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta query --filters text=~disk
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta query --filter text=~disk
 </pre></div>
 </div>
 </div>
@@ -862,7 +862,7 @@ Links
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015-2018, Nick Satterly. MIT License.
+      &copy;2015-2020, Nick Satterly. MIT License.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>

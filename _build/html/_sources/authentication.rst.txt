@@ -317,8 +317,8 @@ To restrict access to users who are members of particular
 
 .. _helper_auth:
 
-OIDC Helpers
--------------------
+OIDC Providers
+--------------
 
 OpenID Connect authentication is provided by Google_ `OAuth2`_,
 GitLab_ `OAuth 2.0`_ or Keycloak_ `OAuth 2.0`_ and configuration is more
@@ -344,12 +344,12 @@ OAuth client ID and client secret. The client ID and client secret
 will need to be added to the ``alertad.conf`` file for the Alerta server.
 
 Azure Active Directory
-----------------------
+~~~~~~~~~~~~~~~~~~~~~~
 
 .. note:: TBC
 
 Amazon Cognito
---------------
+~~~~~~~~~~~~~~
 
 .. note:: TBC
 

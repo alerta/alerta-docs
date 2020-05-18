@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Authentication &#8212; alerta 6.0 documentation</title>
+    <title>Authentication &#8212; alerta 7.5 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -306,8 +306,8 @@ button.</p>
 </div>
 </div>
 </div>
-<div class="section" id="oidc-helpers">
-<span id="helper-auth"></span><h2>OIDC Helpers<a class="headerlink" href="#oidc-helpers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="oidc-providers">
+<span id="helper-auth"></span><h2>OIDC Providers<a class="headerlink" href="#oidc-providers" title="Permalink to this headline">¶</a></h2>
 <p>OpenID Connect authentication is provided by <a class="reference external" href="https://developers.google.com/accounts/docs/OpenIDConnect">Google</a> <a href="#id10"><span class="problematic" id="id11">`OAuth2`_</span></a>,
 <a class="reference external" href="https://docs.gitlab.com/ce/integration/oauth_provider.html">GitLab</a> <a class="reference external" href="http://tools.ietf.org/html/draft-ietf-oauth-v2-22">OAuth 2.0</a> or <a class="reference external" href="https://www.keycloak.org/documentation.html">Keycloak</a> <a class="reference external" href="http://tools.ietf.org/html/draft-ietf-oauth-v2-22">OAuth 2.0</a> and configuration is more
 involved than the Basic Auth setup.</p>
@@ -323,19 +323,19 @@ alerts.</p>
 <p>Then follow the steps below for the chosen OAuth provider to create an
 OAuth client ID and client secret. The client ID and client secret
 will need to be added to the <code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code> file for the Alerta server.</p>
-</div>
 <div class="section" id="azure-active-directory">
-<h2>Azure Active Directory<a class="headerlink" href="#azure-active-directory" title="Permalink to this headline">¶</a></h2>
+<h3>Azure Active Directory<a class="headerlink" href="#azure-active-directory" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>TBC</p>
 </div>
 </div>
 <div class="section" id="amazon-cognito">
-<h2>Amazon Cognito<a class="headerlink" href="#amazon-cognito" title="Permalink to this headline">¶</a></h2>
+<h3>Amazon Cognito<a class="headerlink" href="#amazon-cognito" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>TBC</p>
+</div>
 </div>
 <div class="section" id="gitlab-oauth2">
 <span id="id5"></span><h3>GitLab OAuth2<a class="headerlink" href="#gitlab-oauth2" title="Permalink to this headline">¶</a></h3>
@@ -597,9 +597,7 @@ Links
 <li class="toctree-l2"><a class="reference internal" href="#basic-auth">Basic Auth</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#openid-connect">OpenID Connect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#saml-2-0">SAML 2.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#oidc-helpers">OIDC Helpers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#azure-active-directory">Azure Active Directory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#amazon-cognito">Amazon Cognito</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#oidc-providers">OIDC Providers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#api-keys">API Keys</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#hmac-auth">HMAC Auth</a></li>
 </ul>
@@ -652,7 +650,7 @@ Links
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015-2018, Nick Satterly. MIT License.
+      &copy;2015-2020, Nick Satterly. MIT License.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>

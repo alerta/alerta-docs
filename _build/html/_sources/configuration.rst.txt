@@ -68,7 +68,7 @@ Logging Settings
 .. index:: LOG_CONFIG_FILE, LOG_HANDLERS, LOG_FILE, LOG_MAX_BYTES, LOG_BACKUP_COUNT, LOG_FORMAT, LOG_METHODS
 
 ``LOG_CONFIG_FILE``
-    full path to logging configuration file in `dictConfig format`_ (no default)
+    full path to logging configuration file in `dictConfig format`_ (`default logging config`_)
 ``LOG_HANDLERS``
     list of log handlers eg. 'console', 'file', 'wsgi' (default is 'console')
 ``LOG_FILE``
@@ -85,7 +85,7 @@ Logging Settings
     only log listed HTTP methods eg. 'GET', 'POST', 'PUT', 'DELETE' (default is all HTTP methods)
 
 .. _dictConfig format: https://docs.python.org/2/library/logging.config.html#logging.config.dictConfig
-
+.. _default logging config: https://github.com/alerta/alerta/blob/master/alerta/utils/logging.py#L46
 .. _api_config:
 
 API Settings
@@ -224,13 +224,12 @@ such as auditing, and features like the ability to assign and watch alerts.
 
 .. index:: AUTH_REQUIRED, ADMIN_USERS, DEFAULT_ADMIN_ROLE, ADMIN_ROLES, USER_DEFAULT_SCOPES, GUEST_DEFAULT_SCOPES, CUSTOMER_VIEWS
 
-
 ``AUTH_REQUIRED``
     users must authenticate when using web UI or command-line tool (default ``False``)
 ``ADMIN_USERS``
     email addresses or logins that are assigned the "admin" role
 ``DEFAULT_ADMIN_ROLE``
-    default role name used by ``ADMIN_ROLES` (default is ``admin```)
+    default role name used by ``ADMIN_ROLES`` (default is ``admin``)
 ``ADMIN_ROLES``
     list of "roles" or "groups" that are assigned the "admin" role (default is a list containing the ``DEFAULT_ADMIN_ROLE``)
 ``USER_DEFAULT_SCOPES``
@@ -320,6 +319,10 @@ LDAP Auth Settings
 OpenID Connect Auth Settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+``OAUTH2_CLIENT_ID``
+    client ID required by OAuth2 providers (no default)
+``OAUTH2_CLIENT_SECRET``
+    client secret required by OAuth2 providers (no default)
 ``OIDC_ISSUER_URL``
     (no default)
 ``OIDC_AUTH_URL``
@@ -334,10 +337,6 @@ OpenID Connect Auth Settings
     (default is ``groups``)
 ``ALLOWED_OIDC_ROLES``
     (default is ``*``)
-``OAUTH2_CLIENT_ID``
-    client ID required by OAuth2 providers (no default)
-``OAUTH2_CLIENT_SECRET``
-    client secret required by OAuth2 providers (no default)
 ``ALLOWED_EMAIL_DOMAINS``
     authorised email domains when using email as login (default is ``*``)
 
@@ -369,8 +368,8 @@ SAML 2.0 Auth Settings
 
 .. _azure_auth_config:
 
-MS Azure Auth Settings
-~~~~~~~~~~~~~~~~~~~~~~
+Azure Active Directory Auth Settings
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. index:: AZURE_TENANT
 
@@ -379,8 +378,8 @@ MS Azure Auth Settings
 
 .. _cognito_auth_config:
 
-Cognito Auth Settings
-~~~~~~~~~~~~~~~~~~~~~
+Amazon Cognito Auth Settings
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. index:: AWS_REGION, COGNITO_USER_POOL_ID, COGNITO_DOMAIN
 
@@ -399,9 +398,9 @@ GitHub Auth Settings
 .. index:: GITHUB_URL, ALLOWED_GITHUB_ORGS
 
 ``GITHUB_URL``
-    API URL for privately run GitHub Enterprise server when using GitHub as OAuth2 provider (no default)
+    API URL for public or privately run GitHub Enterprise server (default is ``https://github.com``)
 ``ALLOWED_GITHUB_ORGS``
-    authorised GitHub organisations a user must belong to when using Github as OAuth2 provider (default is ``*``)
+    authorised GitHub organisations a user must belong to (default is ``*``)
 
 .. _gitlab_auth_config:
 
@@ -411,9 +410,9 @@ GitLab Auth Settings
 .. index:: GITLAB_URL, ALLOWED_GITLAB_GROUPS
 
 ``GITLAB_URL``
-    API URL for public or privately run GitLab server when using GitLab as OAuth2 provider (default is ``https://gitlab.com``)
+    API URL for public or privately run GitLab server (default is ``https://gitlab.com``)
 ``ALLOWED_GITLAB_GROUPS``
-    authorised GitLab groups a user must belong to when using GitLab as OAuth2 provider (default is ``*``)
+    authorised GitLab groups a user must belong to (default is ``*``)
 
 .. _google_auth_config:
 
@@ -441,18 +440,7 @@ Keycloack Auth Settings
 ``KEYCLOAK_REALM``
     Keycloak realm when using Keycloak as OAuth2 provider (no default)
 ``ALLOWED_KEYCLOAK_ROLES``
-    list of authorised Keycloak roles a user must belong to when using
-    Keycloak as OAuth2 provider (default is ``*``)
-
-.. _pingfederate_auth_config:
-
-PingFederate Auth Settings
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. index:: PINGFEDERATE_URL
-
-``PINGFEDERATE_URL``
-    PingFederate URL (no default)
+    list of authorised roles a user must belong to (no default)
 
 .. _api_key_config:
 
@@ -471,17 +459,19 @@ API Key & Bearer Token Settings
 HMAC Auth Settings
 ~~~~~~~~~~~~~~~~~~
 
-.. index:: HMAC_AUTH_CREDENTIALS
+**Example**
 
-::
+.. code:: python
 
     HMAC_AUTH_CREDENTIALS = [
-    # {
-    # 'id': '', # access key id => $ uuidgen | tr '[:upper:]' '[:lower:]'
-    # 'key': '', # secret key => $ date | md5 | base64
-    # 'algorithm': 'sha256' # valid hmac algorithm eg. sha256, sha384, sha512
-    # }
-    ] # type: List[Dict[str, Any]]
+        # {
+        #     'id': '',  # access key id  => $ uuidgen | tr '[:upper:]' '[:lower:]'
+        #     'key': '',  # secret key => $ date | md5 | base64
+        #     'algorithm': 'sha256'  # valid hmac algorithm eg. sha256, sha384, sha512
+        # }
+    ]  # type: List[Dict[str, Any]]
+
+.. index:: HMAC_AUTH_CREDENTIALS
 
 ``HMAC_AUTH_CREDENTIALS``
     HMAC credentials
@@ -727,17 +717,17 @@ Alert Status Indicator Settings
 
 **Example**
 
-::
+.. code:: python
 
-ASI_SEVERITY = [
-    'critical', 'major', 'minor', 'warning', 'indeterminate', 'informational'
-]
-ASI_QUERIES = [
-    {'text': 'Production', 'query': [['environment', 'Production']]},
-    {'text': 'Development', 'query': [['environment', 'Development']]},
-    {'text': 'Heartbeats', 'query': {'q': 'event:Heartbeat'}},
-    {'text': 'Misc.', 'query': 'group=Misc'},
-]
+    ASI_SEVERITY = [
+        'critical', 'major', 'minor', 'warning', 'indeterminate', 'informational'
+    ]
+    ASI_QUERIES = [
+        {'text': 'Production', 'query': [['environment', 'Production']]},
+        {'text': 'Development', 'query': [['environment', 'Development']]},
+        {'text': 'Heartbeats', 'query': {'q': 'event:Heartbeat'}},
+        {'text': 'Misc.', 'query': 'group=Misc'},
+    ]
 
 ``ASI_SEVERITY``
     severity counts to include in status indicator (default is all non-normal)

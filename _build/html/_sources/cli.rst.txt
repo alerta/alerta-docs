@@ -237,11 +237,11 @@ Query for alerts based on search filter criteria.
 
 To query for major and minor open alerts for the Production environment of the Mobile API service::
 
-    $ alerta query --filters severity=major severity=minor status=open environment=Production service="Mobile API"
+    $ alerta query --filter severity=major --filter severity=minor --filter status=open --filter environment=Production --filter service="Mobile API"
 
 To query for all alerts with "disk" in the alert text::
 
-    $ alerta query --filters text=~disk
+    $ alerta query --filter text=~disk
 
 :command:`ack` - Acknowledge alerts
 +++++++++++++++++++++++++++++++++++
