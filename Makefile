@@ -2,10 +2,11 @@
 #
 
 # You can set these variables from the command line.
-SPHINXOPTS    =
-SPHINXBUILD   = sphinx-build
-PAPER         =
-BUILDDIR      = _build
+SPHINXOPTS      =
+SPHINXBUILD     = venv/bin/sphinx-build
+SPHINXAUTOBUILD = venv/bin/sphinx-autobuild
+PAPER           =
+BUILDDIR        = _build
 
 # User-friendly check for sphinx-build
 ifeq ($(shell which $(SPHINXBUILD) >/dev/null 2>&1; echo $$?), 1)
@@ -65,7 +66,7 @@ singlehtml:
 	@echo "Build finished. The HTML page is in $(BUILDDIR)/singlehtml."
 
 livehtml:
-	sphinx-autobuild -b html -i ".git/*" $(ALLSPHINXOPTS) $(BUILDDIR)/html
+	$(SPHINXAUTOBUILD) -b html -i ".git/*" $(ALLSPHINXOPTS) $(BUILDDIR)/html
 
 pickle:
 	$(SPHINXBUILD) -b pickle $(ALLSPHINXOPTS) $(BUILDDIR)/pickle
