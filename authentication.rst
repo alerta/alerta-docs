@@ -346,7 +346,59 @@ will need to be added to the ``alertad.conf`` file for the Alerta server.
 Azure Active Directory
 ~~~~~~~~~~~~~~~~~~~~~~
 
-.. note:: TBC
+To use Azure Active Directory (now known as "Microsoft identity platform (v2.0)") as
+the OpenID Connect authentication provider for Alerta follow the steps below.
+
+#. Login to Azure portal
+    https://portal.azure.com/
+
+#. Navigate to "Azure Active Directory" service page
+
+#. From the "Manage" sidebar choose "App registrations"
+
+#. Click the button that says "New registration"
+    Fill in the "Register an application" form for your environment:
+
+    - Name: Alerta AD
+    - Supported Account Types: Multitenant and Personal (common)
+    - Redirect URI: (web) https://alerta.example.com
+
+    ... and click the "Register" button.
+
+    .. note::
+
+        The ``AZURE_TENANT`` setting will vary depending on what
+        "Supported Account Type" is chosen. It will be either "common",
+        "organizations", "consumers" or a tenant ID. To check which
+        account type click the "Endpoints" button on the "Overview"
+        page and check the "OpenID Connect metadata document" URL.
+
+        **Example of OpenID Connect metadata URL for "organizations"**
+
+        https://login.microsoftonline.com/organizations/v2.0/.well-known/openid-configuration
+
+
+    Copy the App registration details for client ID, for example:
+
+    Application (client) ID: ``3aab3fa8-cb9b-457f-8283-811d1ebd4975``
+
+#. From the "Manage" sidebar again choose "Certificates & secrets"
+
+    Click the "New client secret" button
+
+    Add description "Alerta Web UI" and choose an expiry time
+
+    Copy the client secret, for example:
+
+    ``jj2cw7~nc1.55l3.UAy8C3O9Ng-.~GYWYp``
+
+#. Add the above details to the Alerta server configuration file, like so:
+
+.. code:: python
+
+    AZURE_TENANT = 'common'
+    OAUTH2_CLIENT_ID = '3aab3fa8-cb9b-457f-8283-811d1ebd4975'
+    OAUTH2_CLIENT_SECRET = 'jj2cw7~nc1.55l3.UAy8C3O9Ng-.~GYWYp'
 
 Amazon Cognito
 ~~~~~~~~~~~~~~

@@ -15,8 +15,8 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Deployment" href="deployment.html" />
-    <link rel="prev" title="Authorization" href="authorization.html" />
+    <link rel="next" title="Authentication" href="authentication.html" />
+    <link rel="prev" title="Integrations &amp; Plugins" href="integrations.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -53,8 +53,41 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 </div>
 <div class="section" id="config-file-settings">
 <h2>Config File Settings<a class="headerlink" href="#config-file-settings" title="Permalink to this headline">¶</a></h2>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#general-settings" id="id4">General Settings</a></p></li>
+<li><p><a class="reference internal" href="#logging-settings" id="id5">Logging Settings</a></p></li>
+<li><p><a class="reference internal" href="#api-settings" id="id6">API Settings</a></p></li>
+<li><p><a class="reference internal" href="#search-settings" id="id7">Search Settings</a></p></li>
+<li><p><a class="reference internal" href="#database-settings" id="id8">Database Settings</a></p></li>
+<li><p><a class="reference internal" href="#bulk-api-settings" id="id9">Bulk API Settings</a></p></li>
+<li><p><a class="reference internal" href="#authentication-settings" id="id10">Authentication Settings</a></p></li>
+<li><p><a class="reference internal" href="#auth-provider-settings" id="id11">Auth Provider Settings</a></p></li>
+<li><p><a class="reference internal" href="#basic-auth-settings" id="id12">Basic Auth Settings</a></p></li>
+<li><p><a class="reference internal" href="#ldap-auth-settings" id="id13">LDAP Auth Settings</a></p></li>
+<li><p><a class="reference internal" href="#openid-connect-auth-settings" id="id14">OpenID Connect Auth Settings</a></p></li>
+<li><p><a class="reference internal" href="#saml-2-0-auth-settings" id="id15">SAML 2.0 Auth Settings</a></p></li>
+<li><p><a class="reference internal" href="#azure-active-directory-auth-settings" id="id16">Azure Active Directory Auth Settings</a></p></li>
+<li><p><a class="reference internal" href="#amazon-cognito-auth-settings" id="id17">Amazon Cognito Auth Settings</a></p></li>
+<li><p><a class="reference internal" href="#github-auth-settings" id="id18">GitHub Auth Settings</a></p></li>
+<li><p><a class="reference internal" href="#gitlab-auth-settings" id="id19">GitLab Auth Settings</a></p></li>
+<li><p><a class="reference internal" href="#google-auth-settings" id="id20">Google Auth Settings</a></p></li>
+<li><p><a class="reference internal" href="#keycloack-auth-settings" id="id21">Keycloack Auth Settings</a></p></li>
+<li><p><a class="reference internal" href="#api-key-bearer-token-settings" id="id22">API Key &amp; Bearer Token Settings</a></p></li>
+<li><p><a class="reference internal" href="#hmac-auth-settings" id="id23">HMAC Auth Settings</a></p></li>
+<li><p><a class="reference internal" href="#audit-log-settings" id="id24">Audit Log Settings</a></p></li>
+<li><p><a class="reference internal" href="#cors-settings" id="id25">CORS Settings</a></p></li>
+<li><p><a class="reference internal" href="#severity-settings" id="id26">Severity Settings</a></p></li>
+<li><p><a class="reference internal" href="#timeout-settings" id="id27">Timeout Settings</a></p></li>
+<li><p><a class="reference internal" href="#housekeeping-settings" id="id28">Housekeeping Settings</a></p></li>
+<li><p><a class="reference internal" href="#email-settings" id="id29">Email Settings</a></p></li>
+<li><p><a class="reference internal" href="#web-ui-settings" id="id30">Web UI Settings</a></p></li>
+<li><p><a class="reference internal" href="#alert-status-indicator-settings" id="id31">Alert Status Indicator Settings</a></p></li>
+<li><p><a class="reference internal" href="#plugin-settings" id="id32">Plugin Settings</a></p></li>
+</ul>
+</div>
 <div class="section" id="general-settings">
-<span id="general-config"></span><h3>General Settings<a class="headerlink" href="#general-settings" title="Permalink to this headline">¶</a></h3>
+<span id="general-config"></span><h3><a class="toc-backref" href="#id4">General Settings</a><a class="headerlink" href="#general-settings" title="Permalink to this headline">¶</a></h3>
 <p><strong>Example</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;changeme&#39;</span>
@@ -74,7 +107,7 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 </dl>
 </div>
 <div class="section" id="logging-settings">
-<span id="logging-config"></span><h3>Logging Settings<a class="headerlink" href="#logging-settings" title="Permalink to this headline">¶</a></h3>
+<span id="logging-config"></span><h3><a class="toc-backref" href="#id5">Logging Settings</a><a class="headerlink" href="#logging-settings" title="Permalink to this headline">¶</a></h3>
 <p><strong>Example</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">LOG_HANDLERS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;console&#39;</span><span class="p">,</span> <span class="s1">&#39;file&#39;</span><span class="p">]</span>
 <span class="n">LOG_FILE</span> <span class="o">=</span> <span class="s1">&#39;/var/log/alertad.log&#39;</span>
@@ -103,7 +136,7 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 </dl>
 </div>
 <div class="section" id="api-settings">
-<span id="api-config"></span><h3>API Settings<a class="headerlink" href="#api-settings" title="Permalink to this headline">¶</a></h3>
+<span id="api-config"></span><h3><a class="toc-backref" href="#id6">API Settings</a><a class="headerlink" href="#api-settings" title="Permalink to this headline">¶</a></h3>
 <p><strong>Example</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ALARM_MODEL</span><span class="o">=</span><span class="s1">&#39;ALERTA&#39;</span>
 <span class="n">DEFAULT_PAGE_SIZE</span> <span class="o">=</span> <span class="mi">1000</span>
@@ -123,7 +156,7 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 </dl>
 </div>
 <div class="section" id="search-settings">
-<span id="search-config"></span><h3>Search Settings<a class="headerlink" href="#search-settings" title="Permalink to this headline">¶</a></h3>
+<span id="search-config"></span><h3><a class="toc-backref" href="#id7">Search Settings</a><a class="headerlink" href="#search-settings" title="Permalink to this headline">¶</a></h3>
 <p><strong>Example</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DEFAULT_FIELD</span> <span class="o">=</span> <span class="s1">&#39;text&#39;</span>
 </pre></div>
@@ -134,7 +167,7 @@ $ echo &quot;BLACKOUT_DURATION = 86400&quot; &gt;$ALERTA_SVR_CONF_FILE
 </dl>
 </div>
 <div class="section" id="database-settings">
-<span id="database-config"></span><h3>Database Settings<a class="headerlink" href="#database-settings" title="Permalink to this headline">¶</a></h3>
+<span id="database-config"></span><h3><a class="toc-backref" href="#id8">Database Settings</a><a class="headerlink" href="#database-settings" title="Permalink to this headline">¶</a></h3>
 <p>There is a choice of either Postgres or MongoDB as the backend database.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -169,7 +202,7 @@ database configuration options are supported as connection URL parameters.</p>
 </dl>
 </div>
 <div class="section" id="bulk-api-settings">
-<span id="bulk-api-config"></span><h3>Bulk API Settings<a class="headerlink" href="#bulk-api-settings" title="Permalink to this headline">¶</a></h3>
+<span id="bulk-api-config"></span><h3><a class="toc-backref" href="#id9">Bulk API Settings</a><a class="headerlink" href="#bulk-api-settings" title="Permalink to this headline">¶</a></h3>
 <p>The bulk API requires a Celery backend and can be used to off-load
 long-running tasks. (experimental)</p>
 <p><strong>Example Redis Task Queue</strong></p>
@@ -188,7 +221,7 @@ long-running tasks. (experimental)</p>
 </dl>
 </div>
 <div class="section" id="authentication-settings">
-<span id="auth-config"></span><h3>Authentication Settings<a class="headerlink" href="#authentication-settings" title="Permalink to this headline">¶</a></h3>
+<span id="auth-config"></span><h3><a class="toc-backref" href="#id10">Authentication Settings</a><a class="headerlink" href="#authentication-settings" title="Permalink to this headline">¶</a></h3>
 <p>If enabled, authentication provides additional benefits beyond just security,
 such as auditing, and features like the ability to assign and watch alerts.</p>
 <p><strong>Example</strong></p>
@@ -218,7 +251,7 @@ such as auditing, and features like the ability to assign and watch alerts.</p>
 </dl>
 </div>
 <div class="section" id="auth-provider-settings">
-<span id="auth-provider-config"></span><h3>Auth Provider Settings<a class="headerlink" href="#auth-provider-settings" title="Permalink to this headline">¶</a></h3>
+<span id="auth-provider-config"></span><h3><a class="toc-backref" href="#id11">Auth Provider Settings</a><a class="headerlink" href="#auth-provider-settings" title="Permalink to this headline">¶</a></h3>
 <p><strong>Example</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;basic&#39;</span>
 </pre></div>
@@ -237,7 +270,7 @@ and <code class="docutils literal notranslate"><span class="pre">pingfederate</s
 </div>
 </div>
 <div class="section" id="basic-auth-settings">
-<span id="basic-auth-config"></span><h3>Basic Auth Settings<a class="headerlink" href="#basic-auth-settings" title="Permalink to this headline">¶</a></h3>
+<span id="basic-auth-config"></span><h3><a class="toc-backref" href="#id12">Basic Auth Settings</a><a class="headerlink" href="#basic-auth-settings" title="Permalink to this headline">¶</a></h3>
 <p><strong>Example</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;basic&#39;</span>
 <span class="n">BASIC_AUTH_REALM</span> <span class="o">=</span> <span class="s1">&#39;Monitoring&#39;</span>
@@ -255,7 +288,7 @@ and <code class="docutils literal notranslate"><span class="pre">pingfederate</s
 </dl>
 </div>
 <div class="section" id="ldap-auth-settings">
-<span id="ldap-auth-config"></span><h3>LDAP Auth Settings<a class="headerlink" href="#ldap-auth-settings" title="Permalink to this headline">¶</a></h3>
+<span id="ldap-auth-config"></span><h3><a class="toc-backref" href="#id13">LDAP Auth Settings</a><a class="headerlink" href="#ldap-auth-settings" title="Permalink to this headline">¶</a></h3>
 <p><strong>Example</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;ldap&#39;</span>
 <span class="n">LDAP_URL</span> <span class="o">=</span> <span class="s1">&#39;ldap://openldap:389&#39;</span>
@@ -278,15 +311,14 @@ and <code class="docutils literal notranslate"><span class="pre">pingfederate</s
 </dl>
 </div>
 <div class="section" id="openid-connect-auth-settings">
-<span id="oidc-auth-config"></span><h3>OpenID Connect Auth Settings<a class="headerlink" href="#openid-connect-auth-settings" title="Permalink to this headline">¶</a></h3>
+<span id="oidc-auth-config"></span><h3><a class="toc-backref" href="#id14">OpenID Connect Auth Settings</a><a class="headerlink" href="#openid-connect-auth-settings" title="Permalink to this headline">¶</a></h3>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">OAUTH2_CLIENT_ID</span></code></dt><dd><p>client ID required by OAuth2 providers (no default)</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">OAUTH2_CLIENT_SECRET</span></code></dt><dd><p>client secret required by OAuth2 providers (no default)</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">OIDC_ISSUER_URL</span></code></dt><dd><p>(no default)</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">OIDC_AUTH_URL</span></code></dt><dd><p>(no default)</p>
+<dt><code class="docutils literal notranslate"><span class="pre">OIDC_ISSUER_URL</span></code></dt><dd><p>issuer URL also known as Discovery Document is used to auto-discover
+all necessary auth endpoints for an OIDC client (no default)</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">OIDC_LOGOUT_URL</span></code></dt><dd><p>(no default)</p>
 </dd>
@@ -303,7 +335,7 @@ and <code class="docutils literal notranslate"><span class="pre">pingfederate</s
 </dl>
 </div>
 <div class="section" id="saml-2-0-auth-settings">
-<span id="saml-auth-config"></span><h3>SAML 2.0 Auth Settings<a class="headerlink" href="#saml-2-0-auth-settings" title="Permalink to this headline">¶</a></h3>
+<span id="saml-auth-config"></span><h3><a class="toc-backref" href="#id15">SAML 2.0 Auth Settings</a><a class="headerlink" href="#saml-2-0-auth-settings" title="Permalink to this headline">¶</a></h3>
 <dl class="simple" id="index-11">
 <dt><code class="docutils literal notranslate"><span class="pre">SAML2_ENTITY_ID</span></code></dt><dd><p>(no default)</p>
 </dd>
@@ -324,14 +356,22 @@ details (default is <code class="docutils literal notranslate"><span class="pre"
 </dl>
 </div>
 <div class="section" id="azure-active-directory-auth-settings">
-<span id="azure-auth-config"></span><h3>Azure Active Directory Auth Settings<a class="headerlink" href="#azure-active-directory-auth-settings" title="Permalink to this headline">¶</a></h3>
+<span id="azure-auth-config"></span><h3><a class="toc-backref" href="#id16">Azure Active Directory Auth Settings</a><a class="headerlink" href="#azure-active-directory-auth-settings" title="Permalink to this headline">¶</a></h3>
+<p><strong>Example</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AZURE_TENANT</span> <span class="o">=</span> <span class="s1">&#39;common&#39;</span>
+<span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s1">&#39;d8de5642-52e5-480e-abab-9db88e9e341f&#39;</span>
+<span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;a7Xx6eV~-4XUjycF.-9Lxw53N46G.L_raO&#39;</span>
+<span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="s1">&#39;alerta.dev&#39;</span>
+<span class="n">ADMIN_USERS</span> <span class="o">=</span> <span class="s1">&#39;admin@alerta.dev&#39;</span>
+</pre></div>
+</div>
 <dl class="simple" id="index-12">
-<dt><code class="docutils literal notranslate"><span class="pre">AZURE_TENANT`</span></code></dt><dd><p>“common”, “organizations”, “consumers” or tenant ID (defalt is <code class="docutils literal notranslate"><span class="pre">common</span></code>)</p>
+<dt><code class="docutils literal notranslate"><span class="pre">AZURE_TENANT</span></code></dt><dd><p>“common”, “organizations”, “consumers” or tenant ID (defalt is <code class="docutils literal notranslate"><span class="pre">common</span></code>)</p>
 </dd>
 </dl>
 </div>
 <div class="section" id="amazon-cognito-auth-settings">
-<span id="cognito-auth-config"></span><h3>Amazon Cognito Auth Settings<a class="headerlink" href="#amazon-cognito-auth-settings" title="Permalink to this headline">¶</a></h3>
+<span id="cognito-auth-config"></span><h3><a class="toc-backref" href="#id17">Amazon Cognito Auth Settings</a><a class="headerlink" href="#amazon-cognito-auth-settings" title="Permalink to this headline">¶</a></h3>
 <dl class="simple" id="index-13">
 <dt><code class="docutils literal notranslate"><span class="pre">AWS_REGION</span></code></dt><dd><p>AWS region (default is <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code>)</p>
 </dd>
@@ -342,7 +382,7 @@ details (default is <code class="docutils literal notranslate"><span class="pre"
 </dl>
 </div>
 <div class="section" id="github-auth-settings">
-<span id="github-auth-config"></span><h3>GitHub Auth Settings<a class="headerlink" href="#github-auth-settings" title="Permalink to this headline">¶</a></h3>
+<span id="github-auth-config"></span><h3><a class="toc-backref" href="#id18">GitHub Auth Settings</a><a class="headerlink" href="#github-auth-settings" title="Permalink to this headline">¶</a></h3>
 <dl class="simple" id="index-14">
 <dt><code class="docutils literal notranslate"><span class="pre">GITHUB_URL</span></code></dt><dd><p>API URL for public or privately run GitHub Enterprise server (default is <code class="docutils literal notranslate"><span class="pre">https://github.com</span></code>)</p>
 </dd>
@@ -351,7 +391,7 @@ details (default is <code class="docutils literal notranslate"><span class="pre"
 </dl>
 </div>
 <div class="section" id="gitlab-auth-settings">
-<span id="gitlab-auth-config"></span><h3>GitLab Auth Settings<a class="headerlink" href="#gitlab-auth-settings" title="Permalink to this headline">¶</a></h3>
+<span id="gitlab-auth-config"></span><h3><a class="toc-backref" href="#id19">GitLab Auth Settings</a><a class="headerlink" href="#gitlab-auth-settings" title="Permalink to this headline">¶</a></h3>
 <dl class="simple" id="index-15">
 <dt><code class="docutils literal notranslate"><span class="pre">GITLAB_URL</span></code></dt><dd><p>API URL for public or privately run GitLab server (default is <code class="docutils literal notranslate"><span class="pre">https://gitlab.com</span></code>)</p>
 </dd>
@@ -360,7 +400,7 @@ details (default is <code class="docutils literal notranslate"><span class="pre"
 </dl>
 </div>
 <div class="section" id="google-auth-settings">
-<span id="google-auth-config"></span><h3>Google Auth Settings<a class="headerlink" href="#google-auth-settings" title="Permalink to this headline">¶</a></h3>
+<span id="google-auth-config"></span><h3><a class="toc-backref" href="#id20">Google Auth Settings</a><a class="headerlink" href="#google-auth-settings" title="Permalink to this headline">¶</a></h3>
 <dl class="simple" id="index-16">
 <dt><code class="docutils literal notranslate"><span class="pre">OAUTH2_CLIENT_ID</span></code></dt><dd><p>client ID required by OAuth2 providers (no default)</p>
 </dd>
@@ -371,7 +411,7 @@ details (default is <code class="docutils literal notranslate"><span class="pre"
 </dl>
 </div>
 <div class="section" id="keycloack-auth-settings">
-<span id="keycloak-auth-config"></span><h3>Keycloack Auth Settings<a class="headerlink" href="#keycloack-auth-settings" title="Permalink to this headline">¶</a></h3>
+<span id="keycloak-auth-config"></span><h3><a class="toc-backref" href="#id21">Keycloack Auth Settings</a><a class="headerlink" href="#keycloack-auth-settings" title="Permalink to this headline">¶</a></h3>
 <dl class="simple" id="index-17">
 <dt><code class="docutils literal notranslate"><span class="pre">KEYCLOAK_URL</span></code></dt><dd><p>Keycloak website URL when using Keycloak as OAuth2 provider (no default)</p>
 </dd>
@@ -382,7 +422,7 @@ details (default is <code class="docutils literal notranslate"><span class="pre"
 </dl>
 </div>
 <div class="section" id="api-key-bearer-token-settings">
-<span id="api-key-config"></span><h3>API Key &amp; Bearer Token Settings<a class="headerlink" href="#api-key-bearer-token-settings" title="Permalink to this headline">¶</a></h3>
+<span id="api-key-config"></span><h3><a class="toc-backref" href="#id22">API Key &amp; Bearer Token Settings</a><a class="headerlink" href="#api-key-bearer-token-settings" title="Permalink to this headline">¶</a></h3>
 <dl class="simple" id="index-18">
 <dt><code class="docutils literal notranslate"><span class="pre">TOKEN_EXPIRE_DAYS</span></code></dt><dd><p>number of days a web UI bearer token is valid (default is <code class="docutils literal notranslate"><span class="pre">14</span></code>)</p>
 </dd>
@@ -391,7 +431,7 @@ details (default is <code class="docutils literal notranslate"><span class="pre"
 </dl>
 </div>
 <div class="section" id="hmac-auth-settings">
-<span id="hmac-auth-config"></span><h3>HMAC Auth Settings<a class="headerlink" href="#hmac-auth-settings" title="Permalink to this headline">¶</a></h3>
+<span id="hmac-auth-config"></span><h3><a class="toc-backref" href="#id23">HMAC Auth Settings</a><a class="headerlink" href="#hmac-auth-settings" title="Permalink to this headline">¶</a></h3>
 <p><strong>Example</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">HMAC_AUTH_CREDENTIALS</span> <span class="o">=</span> <span class="p">[</span>
     <span class="c1"># {</span>
@@ -408,7 +448,7 @@ details (default is <code class="docutils literal notranslate"><span class="pre"
 </dl>
 </div>
 <div class="section" id="audit-log-settings">
-<span id="audit-log-config"></span><h3>Audit Log Settings<a class="headerlink" href="#audit-log-settings" title="Permalink to this headline">¶</a></h3>
+<span id="audit-log-config"></span><h3><a class="toc-backref" href="#id24">Audit Log Settings</a><a class="headerlink" href="#audit-log-settings" title="Permalink to this headline">¶</a></h3>
 <p>Audit events can be logged locally to the standard application log (which
 could also help with general debugging) or forwarded to a HTTP endpoint
 using a POST.</p>
@@ -434,7 +474,7 @@ using a POST.</p>
 </dl>
 </div>
 <div class="section" id="cors-settings">
-<span id="cors-config"></span><h3>CORS Settings<a class="headerlink" href="#cors-settings" title="Permalink to this headline">¶</a></h3>
+<span id="cors-config"></span><h3><a class="toc-backref" href="#id25">CORS Settings</a><a class="headerlink" href="#cors-settings" title="Permalink to this headline">¶</a></h3>
 <p><strong>Example</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CORS_ORIGINS</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;http://localhost&#39;</span><span class="p">,</span>
@@ -449,7 +489,7 @@ using a POST.</p>
 </dl>
 </div>
 <div class="section" id="severity-settings">
-<span id="severity-config"></span><h3>Severity Settings<a class="headerlink" href="#severity-settings" title="Permalink to this headline">¶</a></h3>
+<span id="severity-config"></span><h3><a class="toc-backref" href="#id26">Severity Settings</a><a class="headerlink" href="#severity-settings" title="Permalink to this headline">¶</a></h3>
 <p>The severities and their order are customisable to fit with the environment
 in which Alerta is deployed.</p>
 <p><strong>Example</strong></p>
@@ -488,7 +528,7 @@ in which Alerta is deployed.</p>
 </dl>
 </div>
 <div class="section" id="timeout-settings">
-<span id="timeout-config"></span><h3>Timeout Settings<a class="headerlink" href="#timeout-settings" title="Permalink to this headline">¶</a></h3>
+<span id="timeout-config"></span><h3><a class="toc-backref" href="#id27">Timeout Settings</a><a class="headerlink" href="#timeout-settings" title="Permalink to this headline">¶</a></h3>
 <p>Alert timeouts are important for housekeeping and heartbeat timeouts
 are important for generating alerts from stale heartbeats.</p>
 <p><strong>Example</strong></p>
@@ -507,7 +547,7 @@ are important for generating alerts from stale heartbeats.</p>
 </dl>
 </div>
 <div class="section" id="housekeeping-settings">
-<span id="housekeeping-config"></span><h3>Housekeeping Settings<a class="headerlink" href="#housekeeping-settings" title="Permalink to this headline">¶</a></h3>
+<span id="housekeeping-config"></span><h3><a class="toc-backref" href="#id28">Housekeeping Settings</a><a class="headerlink" href="#housekeeping-settings" title="Permalink to this headline">¶</a></h3>
 <p><strong>Example</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DEFAULT_EXPIRED_DELETE_HRS</span> <span class="o">=</span> <span class="mi">12</span>  <span class="c1"># hours</span>
 <span class="n">DEFAULT_INFO_DELETE_HRS</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># do not delete info alerts</span>
@@ -521,7 +561,7 @@ are important for generating alerts from stale heartbeats.</p>
 </dl>
 </div>
 <div class="section" id="email-settings">
-<span id="email-config"></span><h3>Email Settings<a class="headerlink" href="#email-settings" title="Permalink to this headline">¶</a></h3>
+<span id="email-config"></span><h3><a class="toc-backref" href="#id29">Email Settings</a><a class="headerlink" href="#email-settings" title="Permalink to this headline">¶</a></h3>
 <p>If email verification is enabled then emails are sent to users when they
 sign up via BasicAuth. They must click on the provided link to verify their
 email address before they can login.</p>
@@ -559,7 +599,7 @@ connection and using <code class="docutils literal notranslate"><span class="pre
 </dl>
 </div>
 <div class="section" id="web-ui-settings">
-<span id="webui-config"></span><h3>Web UI Settings<a class="headerlink" href="#web-ui-settings" title="Permalink to this headline">¶</a></h3>
+<span id="webui-config"></span><h3><a class="toc-backref" href="#id30">Web UI Settings</a><a class="headerlink" href="#web-ui-settings" title="Permalink to this headline">¶</a></h3>
 <p>The following settings are specific to the web UI and are not used by the server.</p>
 <p><strong>Example</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SITE_LOGO_URL</span> <span class="o">=</span> <span class="s1">&#39;http://pigment.github.io/fake-logos/logos/vector/color/fast-banana.svg&#39;</span>
@@ -601,7 +641,7 @@ connection and using <code class="docutils literal notranslate"><span class="pre
 </dl>
 </div>
 <div class="section" id="alert-status-indicator-settings">
-<h3>Alert Status Indicator Settings<a class="headerlink" href="#alert-status-indicator-settings" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id31">Alert Status Indicator Settings</a><a class="headerlink" href="#alert-status-indicator-settings" title="Permalink to this headline">¶</a></h3>
 <p><strong>Example</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ASI_SEVERITY</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;critical&#39;</span><span class="p">,</span> <span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="s1">&#39;warning&#39;</span><span class="p">,</span> <span class="s1">&#39;indeterminate&#39;</span><span class="p">,</span> <span class="s1">&#39;informational&#39;</span>
@@ -622,7 +662,7 @@ connection and using <code class="docutils literal notranslate"><span class="pre
 </dl>
 </div>
 <div class="section" id="plugin-settings">
-<span id="plugin-config"></span><h3>Plugin Settings<a class="headerlink" href="#plugin-settings" title="Permalink to this headline">¶</a></h3>
+<span id="plugin-config"></span><h3><a class="toc-backref" href="#id32">Plugin Settings</a><a class="headerlink" href="#plugin-settings" title="Permalink to this headline">¶</a></h3>
 <p>Plugins are used to extend the behaviour of the Alerta server without
 having to modify the core application. The only plugins that are installed
 and enabled by default are the <code class="docutils literal notranslate"><span class="pre">reject</span></code> and <code class="docutils literal notranslate"><span class="pre">blackout</span></code> plugins. Other
@@ -747,7 +787,7 @@ will always override any other setting.</p>
 </dd>
 <dt><span class="target" id="index-57"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">SMTP_PASSWORD</span></code></dt><dd><p><a class="reference internal" href="#email-config"><span class="std std-ref">see above</span></a></p>
 </dd>
-<dt><span class="target" id="index-58"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">GOOGLE_TRACKING_ID</span></code></dt><dd><p><a class="reference internal" href="webui/configuration.html#webui-config"><span class="std std-ref">see above</span></a></p>
+<dt><span class="target" id="index-58"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">GOOGLE_TRACKING_ID</span></code></dt><dd><p><a class="reference internal" href="#webui-config"><span class="std std-ref">see above</span></a></p>
 </dd>
 <dt><span class="target" id="index-59"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PLUGINS</span></code></dt><dd><p><a class="reference internal" href="#plugin-config"><span class="std std-ref">see above</span></a></p>
 </dd>
@@ -863,14 +903,14 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="webui.html">Alerta Web UI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#config-file-settings">Config File Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#environment-variables">Environment Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dynamic-settings">Dynamic Settings</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="federated.html">Federated Alerta</a></li>

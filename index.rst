@@ -55,9 +55,9 @@ The required API key is ``demo-key``.
    webui
    cli
    integrations
+   configuration
    authentication
    authorization
-   configuration
    deployment
    customer-views
    federated
@@ -68,7 +68,7 @@ The required API key is ``demo-key``.
 
 .. toctree::
   :glob:
-  :titlesonly:
+  :maxdepth: 2
   :hidden:
 
   api/reference

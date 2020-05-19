@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Authorization" href="authorization.html" />
-    <link rel="prev" title="Integrations &amp; Plugins" href="integrations.html" />
+    <link rel="prev" title="Configuration" href="configuration.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -325,9 +325,53 @@ OAuth client ID and client secret. The client ID and client secret
 will need to be added to the <code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code> file for the Alerta server.</p>
 <div class="section" id="azure-active-directory">
 <h3>Azure Active Directory<a class="headerlink" href="#azure-active-directory" title="Permalink to this headline">¶</a></h3>
+<p>To use Azure Active Directory (now known as “Microsoft identity platform (v2.0)”) as
+the OpenID Connect authentication provider for Alerta follow the steps below.</p>
+<ol class="arabic">
+<li><dl class="simple">
+<dt>Login to Azure portal</dt><dd><p><a class="reference external" href="https://portal.azure.com/">https://portal.azure.com/</a></p>
+</dd>
+</dl>
+</li>
+<li><p>Navigate to “Azure Active Directory” service page</p></li>
+<li><p>From the “Manage” sidebar choose “App registrations”</p></li>
+<li><dl>
+<dt>Click the button that says “New registration”</dt><dd><p>Fill in the “Register an application” form for your environment:</p>
+<ul class="simple">
+<li><p>Name: Alerta AD</p></li>
+<li><p>Supported Account Types: Multitenant and Personal (common)</p></li>
+<li><p>Redirect URI: (web) <a class="reference external" href="https://alerta.example.com">https://alerta.example.com</a></p></li>
+</ul>
+<p>… and click the “Register” button.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>TBC</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">AZURE_TENANT</span></code> setting will vary depending on what
+“Supported Account Type” is chosen. It will be either “common”,
+“organizations”, “consumers” or a tenant ID. To check which
+account type click the “Endpoints” button on the “Overview”
+page and check the “OpenID Connect metadata document” URL.</p>
+<p><strong>Example of OpenID Connect metadata URL for “organizations”</strong></p>
+<p><a class="reference external" href="https://login.microsoftonline.com/organizations/v2.0/.well-known/openid-configuration">https://login.microsoftonline.com/organizations/v2.0/.well-known/openid-configuration</a></p>
+</div>
+<p>Copy the App registration details for client ID, for example:</p>
+<p>Application (client) ID: <code class="docutils literal notranslate"><span class="pre">3aab3fa8-cb9b-457f-8283-811d1ebd4975</span></code></p>
+</dd>
+</dl>
+</li>
+<li><p>From the “Manage” sidebar again choose “Certificates &amp; secrets”</p>
+<blockquote>
+<div><p>Click the “New client secret” button</p>
+<p>Add description “Alerta Web UI” and choose an expiry time</p>
+<p>Copy the client secret, for example:</p>
+<p><code class="docutils literal notranslate"><span class="pre">jj2cw7~nc1.55l3.UAy8C3O9Ng-.~GYWYp</span></code></p>
+</div></blockquote>
+</li>
+<li><p>Add the above details to the Alerta server configuration file, like so:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AZURE_TENANT</span> <span class="o">=</span> <span class="s1">&#39;common&#39;</span>
+<span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s1">&#39;3aab3fa8-cb9b-457f-8283-811d1ebd4975&#39;</span>
+<span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;jj2cw7~nc1.55l3.UAy8C3O9Ng-.~GYWYp&#39;</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="amazon-cognito">
@@ -593,6 +637,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="webui.html">Alerta Web UI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Authentication</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#basic-auth">Basic Auth</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#openid-connect">OpenID Connect</a></li>
@@ -603,7 +648,6 @@ Links
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="federated.html">Federated Alerta</a></li>

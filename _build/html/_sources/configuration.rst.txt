@@ -25,6 +25,9 @@ seconds)::
 Config File Settings
 --------------------
 
+.. contents::
+   :local:
+
 .. _general_config:
 
 General Settings
@@ -324,9 +327,8 @@ OpenID Connect Auth Settings
 ``OAUTH2_CLIENT_SECRET``
     client secret required by OAuth2 providers (no default)
 ``OIDC_ISSUER_URL``
-    (no default)
-``OIDC_AUTH_URL``
-    (no default)
+    issuer URL also known as Discovery Document is used to auto-discover
+    all necessary auth endpoints for an OIDC client (no default)
 ``OIDC_LOGOUT_URL``
     (no default)
 ``OIDC_VERIFY_TOKEN``
@@ -371,9 +373,19 @@ SAML 2.0 Auth Settings
 Azure Active Directory Auth Settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+**Example**
+
+.. code:: python
+
+    AZURE_TENANT = 'common'
+    OAUTH2_CLIENT_ID = 'd8de5642-52e5-480e-abab-9db88e9e341f'
+    OAUTH2_CLIENT_SECRET = 'a7Xx6eV~-4XUjycF.-9Lxw53N46G.L_raO'
+    ALLOWED_EMAIL_DOMAINS = 'alerta.dev'
+    ADMIN_USERS = 'admin@alerta.dev'
+
 .. index:: AZURE_TENANT
 
-``AZURE_TENANT```
+``AZURE_TENANT``
     "common", "organizations", "consumers" or tenant ID (defalt is ``common``)
 
 .. _cognito_auth_config:
