@@ -19,7 +19,7 @@ The OpenID Connect authentication strategy can be used to integrate with
 any `OIDC compliant`_ auth provider however Alerta has specific
 implementations for some auth providers to simplify the integration:
 
-* `Azure Active Directory`_
+* :ref:`Azure Active Directory <azure_ad_oidc>`
 * `Amazon Cognito`_
 * `GitLab OAuth2`_
 * `Google OAuth2`_
@@ -29,6 +29,8 @@ Alerta also supports two "machine-to-machine" authentication strategies:
 
 * `API Keys`_
 * `HMAC Auth`_
+
+.. _OIDC compliant: https://openid.net/developers/certified/
 
 To enforce authentication set ``AUTH_REQUIRED`` to ``True`` and set the
 ``SECRET_KEY`` to some random string in the ``alertad.conf`` server
@@ -343,10 +345,12 @@ Then follow the steps below for the chosen OAuth provider to create an
 OAuth client ID and client secret. The client ID and client secret
 will need to be added to the ``alertad.conf`` file for the Alerta server.
 
+.. _azure_ad_oidc:
+
 Azure Active Directory
 ~~~~~~~~~~~~~~~~~~~~~~
 
-To use Azure Active Directory (now known as "Microsoft identity platform (v2.0)") as
+To use `Azure Active Directory`_ (now known as `Microsoft identity platform (v2.0)`_) as
 the OpenID Connect authentication provider for Alerta follow the steps below.
 
 #. Login to Azure portal
@@ -399,6 +403,9 @@ the OpenID Connect authentication provider for Alerta follow the steps below.
     AZURE_TENANT = 'common'
     OAUTH2_CLIENT_ID = '3aab3fa8-cb9b-457f-8283-811d1ebd4975'
     OAUTH2_CLIENT_SECRET = 'jj2cw7~nc1.55l3.UAy8C3O9Ng-.~GYWYp'
+
+.. _Azure Active Directory: https://docs.microsoft.com/en-us/azure/active-directory/authentication/overview-authentication
+.. _Microsoft identity platform (v2.0): https://docs.microsoft.com/en-us/azure/active-directory/develop/about-microsoft-identity-platform
 
 Amazon Cognito
 ~~~~~~~~~~~~~~
