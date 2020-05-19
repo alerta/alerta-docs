@@ -381,7 +381,6 @@ the OpenID Connect authentication provider for Alerta follow the steps below.
 
         https://login.microsoftonline.com/organizations/v2.0/.well-known/openid-configuration
 
-
     Copy the App registration details for client ID, for example:
 
     Application (client) ID: ``3aab3fa8-cb9b-457f-8283-811d1ebd4975``
@@ -404,7 +403,7 @@ the OpenID Connect authentication provider for Alerta follow the steps below.
     OAUTH2_CLIENT_ID = '3aab3fa8-cb9b-457f-8283-811d1ebd4975'
     OAUTH2_CLIENT_SECRET = 'jj2cw7~nc1.55l3.UAy8C3O9Ng-.~GYWYp'
 
-.. _Azure Active Directory: https://docs.microsoft.com/en-us/azure/active-directory/authentication/overview-authentication
+.. _Azure Active Directory: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc
 .. _Microsoft identity platform (v2.0): https://docs.microsoft.com/en-us/azure/active-directory/develop/about-microsoft-identity-platform
 
 Amazon Cognito
