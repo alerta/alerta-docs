@@ -14,7 +14,7 @@ Tutorials
 * :ref:`Alerts explored in-depth <tutorial 4>`
 * :ref:`Suppressing Alerts using Blackouts <tutorial 5>`
 * :ref:`Authentication & Authorization <tutorial 6>`
-* :ref:`Docker <tutorial 7>`
+* :ref:`Using Docker to deploy Alerta <tutorial-7>`
 
 .. note:: If you require help with any of the above tutorials post a question on Gitter_.
 
