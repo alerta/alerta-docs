@@ -1,4 +1,3 @@
-.. _tutorials:
 
 Getting Started
 ===============
@@ -15,6 +14,7 @@ Tutorials
 * :ref:`Alerts explored in-depth <tutorial 4>`
 * :ref:`Suppressing Alerts using Blackouts <tutorial 5>`
 * :ref:`Authentication & Authorization <tutorial 6>`
+* :ref:`Docker <tutorial 7>`
 
 .. note:: If you require help with any of the above tutorials post a question on Gitter_.
 
@@ -23,9 +23,11 @@ Tutorials
 How-to Guides
 -------------
 
-`How To Monitor Nagios Alerts with Alerta on Ubuntu 16.04 <https://www.digitalocean.com/community/tutorials/how-to-monitor-nagios-alerts-with-alerta-on-ubuntu-16-04>`_ by `Vadym Kalsin <https://www.digitalocean.com/community/users/neformat>`_
+`How To Monitor Nagios Alerts with Alerta on Ubuntu 16.04 <https://www.digitalocean.com/community/tutorials/how-to-monitor-nagios-alerts-with-alerta-on-ubuntu-16-04>`_ by `Vadym Kalsin`_
 
-`How To Monitor Zabbix Alerts with Alerta on CentOS 7 <https://www.digitalocean.com/community/tutorials/how-to-monitor-zabbix-alerts-with-alerta-on-centos-7>`_ by `Vadym Kalsin <https://www.digitalocean.com/community/users/neformat>`_
+`How To Monitor Zabbix Alerts with Alerta on CentOS 7 <https://www.digitalocean.com/community/tutorials/how-to-monitor-zabbix-alerts-with-alerta-on-centos-7>`_ by `Vadym Kalsin`_
+
+.. _Vadym Kalsin: https://www.digitalocean.com/community/users/neformat
 
 `OpenSource Metric Based Monitoring <http://crapworks.de/post/metric-based-monitoring/>`_ by `Christian Eichelmann <https://github.com/Crapworks>`_
 
