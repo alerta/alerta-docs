@@ -173,11 +173,13 @@ enable ``DEBUG`` run::
   $ docker run --name alerta-web \
     -e DATABASE_URL=$DATABASE_URL \
     -e DEBUG=1 \
-    -e ADMIN_PASSWORD=ZDY1N2FhMj \
-    -e ADMIN_KEY=5226852b-207c-47a6-9c7c-fce4d849347d \
+    -e ADMIN_PASSWORD=ZDY1N2FhMjEXAMPLE \
+    -e ADMIN_KEY=5226852b-207c-47a6-9c7c-example \
     --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
 
-.. note:: Set your ``ADMIN_PASSWORD`` and ``ADMIN_KEY`` to something different.
+.. note:: Use the above command for this tutorial but remember to set your
+    ``ADMIN_PASSWORD`` and ``ADMIN_KEY`` to something different when deploying
+    to your environment.
 
 The default admin username is "alerta". This can be set using ``ADMIN_USERS`` which
 allows you to set one or more admin users to be created at container launch time::
@@ -250,18 +252,18 @@ Then to mount this file into the docker container at run time use::
 
 You should see that if you log out of the web UI you will be forced
 to login if you want to continue. This proves that the ``AUTH_REQUIRED``
-setting was read from the supplied configuration file.
+setting was read from the supplied configuration file. Excellent!
 
-Things are starting to get a little more complex now as we have an
-additional file to manage as well as remembering the exact command to
-launch Postgres and the Alerta API. And stopping and starting the
-containers at the right time and in the right order becomes tricky if
-we add more dependencies to your monitoring stack, like Prometheus and
-Alertmanager, for example.
+However, things are starting to get a little more complex now as we
+have an additional file to manage as well as remembering the exact
+command to launch Postgres and the Alerta API. And stopping and starting
+the containers at the right time and in the right order becomes tricky
+if we add more dependencies to your monitoring stack, like Prometheus
+and Alertmanager, for example.
 
 This is where container orchestration comes into play. And the first
-step towards easy Docker container configuration and deployment is to
-use ``docker-compose`` which we will look at now.
+step towards Docker container configuration and deployment is to
+use the ``docker-compose`` tool which we will look at now.
 
 Step 3: Run using docker-compose
 --------------------------------

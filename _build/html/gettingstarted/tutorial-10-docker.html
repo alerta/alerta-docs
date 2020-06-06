@@ -174,14 +174,16 @@ enable <code class="docutils literal notranslate"><span class="pre">DEBUG</span>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker run --name alerta-web \
   -e DATABASE_URL=$DATABASE_URL \
   -e DEBUG=1 \
-  -e ADMIN_PASSWORD=ZDY1N2FhMj \
-  -e ADMIN_KEY=5226852b-207c-47a6-9c7c-fce4d849347d \
+  -e ADMIN_PASSWORD=ZDY1N2FhMjEXAMPLE \
+  -e ADMIN_KEY=5226852b-207c-47a6-9c7c-example \
   --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Set your <code class="docutils literal notranslate"><span class="pre">ADMIN_PASSWORD</span></code> and <code class="docutils literal notranslate"><span class="pre">ADMIN_KEY</span></code> to something different.</p>
+<p>Use the above command for this tutorial but remember to set your
+<code class="docutils literal notranslate"><span class="pre">ADMIN_PASSWORD</span></code> and <code class="docutils literal notranslate"><span class="pre">ADMIN_KEY</span></code> to something different when deploying
+to your environment.</p>
 </div>
 <p>The default admin username is “alerta”. This can be set using <code class="docutils literal notranslate"><span class="pre">ADMIN_USERS</span></code> which
 allows you to set one or more admin users to be created at container launch time:</p>
@@ -247,7 +249,18 @@ become Python lists, <code class="docutils literal notranslate"><span class="pre
 <p class="admonition-title">Note</p>
 <p>You may first need to stop your previous Alerta container.</p>
 </div>
-<p>You should see that</p>
+<p>You should see that if you log out of the web UI you will be forced
+to login if you want to continue. This proves that the <code class="docutils literal notranslate"><span class="pre">AUTH_REQUIRED</span></code>
+setting was read from the supplied configuration file. Excellent!</p>
+<p>However, things are starting to get a little more complex now as we
+have an additional file to manage as well as remembering the exact
+command to launch Postgres and the Alerta API. And stopping and starting
+the containers at the right time and in the right order becomes tricky
+if we add more dependencies to your monitoring stack, like Prometheus
+and Alertmanager, for example.</p>
+<p>This is where container orchestration comes into play. And the first
+step towards Docker container configuration and deployment is to
+use the <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> tool which we will look at now.</p>
 </div>
 </div>
 <div class="section" id="step-3-run-using-docker-compose">
