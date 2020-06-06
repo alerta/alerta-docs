@@ -173,8 +173,8 @@ enable ``DEBUG`` run::
   $ docker run --name alerta-web \
     -e DATABASE_URL=$DATABASE_URL \
     -e DEBUG=1 \
-    -e ADMIN_PASSWORD=ZDY1N2FhMjEXAMPLE \
-    -e ADMIN_KEY=5226852b-207c-47a6-9c7c-example \
+    -e ADMIN_PASSWORD=ZDY1N2FhMj \
+    -e ADMIN_KEY=5226852b-207c-47a6-9c7c-fce4d849347d \
     --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
 
 .. note:: Use the above command for this tutorial but remember to set your
@@ -268,7 +268,84 @@ use the ``docker-compose`` tool which we will look at now.
 Step 3: Run using docker-compose
 --------------------------------
 
-- docker-compose up
+The ``docker-compose`` tool can be used to launch an entire Docker
+container stack with one command, namely ``docker-compose up``.
+
+Create a new file called ``docker-compose.yaml`` in your current
+working directory and include the following:
+
+.. code-block:: yaml
+
+  version: '3'
+  services:
+    api:
+      image: alerta/alerta-web
+      ports:
+        - 8080:8080
+      environment:
+        - DEBUG=1
+        - DATABASE_URL=postgres://alerta:8l3rt8@db:5432/alerta
+        - AUTH_REQUIRED=True
+        - ADMIN_USERS=alice,bob,charlotte,dave
+        - ADMIN_PASSWORD=ZDY1N2FhMj
+        - ADMIN_KEY=5226852b-207c-47a6-9c7c-fce4d849347d
+        - PLUGINS=reject,heartbeat,blackout,normalise
+      networks:
+        - net
+      depends_on:
+        - db
+      restart: always
+    db:
+      image: postgres
+      volumes:
+        - ./pg-data:/var/lib/postgresql/data
+      environment:
+        POSTGRES_DB: alerta
+        POSTGRES_USER: alerta
+        POSTGRES_PASSWORD: 8l3rt8
+      networks:
+        - net
+      restart: always
+  networks:
+    net: {}
+
+Now launch both Alerta and Postgres at the same time using::
+
+  $ docker-compose up
+
+And verify by browsing to http://localhost:8080 as before.
+
+You can replace ``environment:`` with ``volumes:`` if you want or need
+to use a configuration file like so:
+
+.. code-block:: yaml
+
+  version: '3'
+  services:
+    api:
+      image: alerta/alerta-web
+      ports:
+        - 8080:8080
+      volumes:
+        - ./alertad.conf:/app/alertad.conf
+      networks:
+        - net
+      depends_on:
+        - db
+      restart: always
+    db:
+      image: postgres
+      volumes:
+        - ./pg-data:/var/lib/postgresql/data
+      environment:
+        POSTGRES_DB: alerta
+        POSTGRES_USER: alerta
+        POSTGRES_PASSWORD: 8l3rt8
+      networks:
+        - net
+      restart: always
+  networks:
+    net: {}
 
 Step 4: Install additional plugins or webhooks
 ----------------------------------------------

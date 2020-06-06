@@ -174,8 +174,8 @@ enable <code class="docutils literal notranslate"><span class="pre">DEBUG</span>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker run --name alerta-web \
   -e DATABASE_URL=$DATABASE_URL \
   -e DEBUG=1 \
-  -e ADMIN_PASSWORD=ZDY1N2FhMjEXAMPLE \
-  -e ADMIN_KEY=5226852b-207c-47a6-9c7c-example \
+  -e ADMIN_PASSWORD=ZDY1N2FhMj \
+  -e ADMIN_KEY=5226852b-207c-47a6-9c7c-fce4d849347d \
   --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
 </pre></div>
 </div>
@@ -265,9 +265,79 @@ use the <code class="docutils literal notranslate"><span class="pre">docker-comp
 </div>
 <div class="section" id="step-3-run-using-docker-compose">
 <h2>Step 3: Run using docker-compose<a class="headerlink" href="#step-3-run-using-docker-compose" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>docker-compose up</p></li>
-</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> tool can be used to launch an entire Docker
+container stack with one command, namely <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span></code>.</p>
+<p>Create a new file called <code class="docutils literal notranslate"><span class="pre">docker-compose.yaml</span></code> in your current
+working directory and include the following:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3&#39;</span>
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">api</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">alerta/alerta-web</span>
+    <span class="nt">ports</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">8080:8080</span>
+    <span class="nt">environment</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">DEBUG=1</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">DATABASE_URL=postgres://alerta:8l3rt8@db:5432/alerta</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">AUTH_REQUIRED=True</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ADMIN_USERS=alice,bob,charlotte,dave</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ADMIN_PASSWORD=ZDY1N2FhMj</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ADMIN_KEY=5226852b-207c-47a6-9c7c-fce4d849347d</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">PLUGINS=reject,heartbeat,blackout,normalise</span>
+    <span class="nt">networks</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">net</span>
+    <span class="nt">depends_on</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">db</span>
+    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+  <span class="nt">db</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">postgres</span>
+    <span class="nt">volumes</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./pg-data:/var/lib/postgresql/data</span>
+    <span class="nt">environment</span><span class="p">:</span>
+      <span class="nt">POSTGRES_DB</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">alerta</span>
+      <span class="nt">POSTGRES_USER</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">alerta</span>
+      <span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8l3rt8</span>
+    <span class="nt">networks</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">net</span>
+    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="nt">networks</span><span class="p">:</span>
+  <span class="nt">net</span><span class="p">:</span> <span class="p p-Indicator">{}</span>
+</pre></div>
+</div>
+<p>Now launch both Alerta and Postgres at the same time using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker-compose up
+</pre></div>
+</div>
+<p>And verify by browsing to <a class="reference external" href="http://localhost:8080">http://localhost:8080</a> as before.</p>
+<p>You can replace <code class="docutils literal notranslate"><span class="pre">environment:</span></code> with <code class="docutils literal notranslate"><span class="pre">volumes:</span></code> if you want or need
+to use a configuration file like so:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3&#39;</span>
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">api</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">alerta/alerta-web</span>
+    <span class="nt">ports</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">8080:8080</span>
+    <span class="nt">volumes</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./alertad.conf:/app/alertad.conf</span>
+    <span class="nt">networks</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">net</span>
+    <span class="nt">depends_on</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">db</span>
+    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+  <span class="nt">db</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">postgres</span>
+    <span class="nt">volumes</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./pg-data:/var/lib/postgresql/data</span>
+    <span class="nt">environment</span><span class="p">:</span>
+      <span class="nt">POSTGRES_DB</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">alerta</span>
+      <span class="nt">POSTGRES_USER</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">alerta</span>
+      <span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8l3rt8</span>
+    <span class="nt">networks</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">net</span>
+    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="nt">networks</span><span class="p">:</span>
+  <span class="nt">net</span><span class="p">:</span> <span class="p p-Indicator">{}</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="step-4-install-additional-plugins-or-webhooks">
 <h2>Step 4: Install additional plugins or webhooks<a class="headerlink" href="#step-4-install-additional-plugins-or-webhooks" title="Permalink to this headline">¶</a></h2>
