@@ -34,7 +34,7 @@
   <div class="section" id="using-docker-to-deploy-alerta">
 <span id="tutorial-10"></span><h1>Using Docker to deploy Alerta<a class="headerlink" href="#using-docker-to-deploy-alerta" title="Permalink to this headline">¶</a></h1>
 <p>In this tutorial, you will learn how to deploy Alerta using
-Docker.</p>
+<a class="reference external" href="https://www.docker.com/why-docker">Docker</a>.</p>
 <p><strong>Contents</strong></p>
 <blockquote>
 <div><ul class="simple">
@@ -95,7 +95,8 @@ $ docker run --name alerta-db \
 </div>
 <p>Next, we start the Alerta docker container:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export DATABASE_URL=postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@db:5432/alerta
-$ docker run --name alerta-web -e DATABASE_URL=$DATABASE_URL \
+$ docker run --name alerta-web \
+  -e DATABASE_URL=$DATABASE_URL \
   --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
 </pre></div>
 </div>
@@ -148,9 +149,106 @@ X-Request-ID: aff1e858-7547-4c26-bff1-f884da47ea12
 </div>
 <div class="section" id="step-2-customise-configuration">
 <h2>Step 2: Customise configuration<a class="headerlink" href="#step-2-customise-configuration" title="Permalink to this headline">¶</a></h2>
-<p>configuration
-- using env vars
-- using external config file</p>
+<p>In <a class="reference internal" href="#step-1">Step 1</a> you launched an Alerta container using the default configuration.</p>
+<p>To customise your Alerta server for your environment you can override
+the defaults using either environment variables (for common settings) or
+by mounting a configuration file into the container.</p>
+<div class="section" id="configuration-via-environment-variables">
+<h3>Configuration via Environment variables<a class="headerlink" href="#configuration-via-environment-variables" title="Permalink to this headline">¶</a></h3>
+<p>A full list of environment variables supported by the Alerta docker image
+can be found in the <a class="reference external" href="https://github.com/alerta/docker-alerta/blob/master/README.md#environment-variables">README</a> file. They include all of the most
+common settings for a standard deployment.</p>
+<p>You already used one environment variable (<code class="docutils literal notranslate"><span class="pre">DATABASE_URL</span></code>) to tell Alerta
+where the database could be found and what the database credentials were.</p>
+<p>The environment variables <code class="docutils literal notranslate"><span class="pre">ADMIN_PASSWORD</span></code>, <code class="docutils literal notranslate"><span class="pre">ADMIN_KEY</span></code>, <code class="docutils literal notranslate"><span class="pre">ADMIN_KEY_MAXAGE</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">HEARTBEAT_SEVERITY</span></code> are only supported by the Docker container and are
+provided specifically to ease the deployment of Alerta in Docker environments.</p>
+<p>Of these, it is really only <code class="docutils literal notranslate"><span class="pre">ADMIN_PASSWORD</span></code> that needs to be set otherwise
+the default password of “alerta” will be assigned.</p>
+<p>It can be useful to also set <code class="docutils literal notranslate"><span class="pre">ADMIN_KEY</span></code> to a known value otherwise an random API
+key will be generated with <code class="docutils literal notranslate"><span class="pre">admin</span></code> privileges. That API key can be assigned
+by a configuration management tool and used when integrating with other tools,
+for example.</p>
+<p>So, to run Alerta with set values for <code class="docutils literal notranslate"><span class="pre">ADMIN_PASSWORD</span></code> and <code class="docutils literal notranslate"><span class="pre">ADMIN_KEY</span></code>, and to
+enable <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker run --name alerta-web \
+  -e DATABASE_URL=$DATABASE_URL \
+  -e DEBUG=1 \
+  -e ADMIN_PASSWORD=ZDY1N2FhMj \
+  -e ADMIN_KEY=5226852b-207c-47a6-9c7c-fce4d849347d \
+  --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Set your <code class="docutils literal notranslate"><span class="pre">ADMIN_PASSWORD</span></code> and <code class="docutils literal notranslate"><span class="pre">ADMIN_KEY</span></code> to something different.</p>
+</div>
+<p>The default admin username is “alerta”. This can be set using <code class="docutils literal notranslate"><span class="pre">ADMIN_USERS</span></code> which
+allows you to set one or more admin users to be created at container launch time:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker run --name alerta-web \
+  -e DATABASE_URL=$DATABASE_URL \
+  -e ADMIN_USERS=alice,bob,charlotte,dave \
+  -e ADMIN_PASSWORD=ZDY1N2FhMj \
+  -e ADMIN_KEY=5226852b-207c-47a6-9c7c-fce4d849347d \
+  --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
+</pre></div>
+</div>
+<p>One of the important benefits of the Docker image is that many plugins come
+pre-installed so the container starts immediately the database is available.</p>
+<p>However, only a few plugins are enabled by default ie. <code class="docutils literal notranslate"><span class="pre">remote_ip</span></code>,
+<code class="docutils literal notranslate"><span class="pre">reject</span></code>, <code class="docutils literal notranslate"><span class="pre">heartbeat</span></code>, <code class="docutils literal notranslate"><span class="pre">blackout</span></code>, <code class="docutils literal notranslate"><span class="pre">forwarder</span></code>. To enable more, or
+to disable some of the defaults, use the <code class="docutils literal notranslate"><span class="pre">PLUGINS</span></code> environment variable
+like so:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker run --name alerta-web \
+  -e DATABASE_URL=$DATABASE_URL \
+  -e ADMIN_USERS=alice,bob,charlotte,dave \
+  -e ADMIN_PASSWORD=ZDY1N2FhMj \
+  -e ADMIN_KEY=5226852b-207c-47a6-9c7c-fce4d849347d \
+  -e PLUGINS=reject,heartbeat,blackout,normalise \
+  --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
+</pre></div>
+</div>
+<p>By now, you can see that the number of environment variables listed
+on the command line is growing and becoming unmanageable and we
+haven’t even looked at all the different authentication settings.</p>
+</div>
+<div class="section" id="configuration-via-external-alertad-conf-file">
+<h3>Configuration via external <code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code> file<a class="headerlink" href="#configuration-via-external-alertad-conf-file" title="Permalink to this headline">¶</a></h3>
+<p>So now we will use a configuration file that we can mount into the
+container at run time. The alternative is to continue using
+environment variables (if we only need to set configuration that is
+supported by environment variables) but instead of using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code>
+we use <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> and its YAML configuration file.</p>
+<p>We look at using <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> next, however, for now let’s see
+how we can set <a class="reference internal" href="../configuration.html#configuration"><span class="std std-ref">any configuration setting</span></a> using
+an exernal <code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code> file.</p>
+<p>Create a file called <code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code> in your current working directory
+and we will include all of the environment variable settings from above
+and a few more, so you can see how they compare:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DEBUG</span><span class="o">=</span><span class="kc">True</span>
+<span class="n">DATABASE_URL</span><span class="o">=</span><span class="s1">&#39;postgres://alerta:al3rt8@db:5432/alerta&#39;</span>
+<span class="n">AUTH_REQUIRED</span><span class="o">=</span><span class="kc">True</span>
+<span class="n">ADMIN_USERS</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;alice&#39;</span><span class="p">,</span><span class="s1">&#39;bob&#39;</span><span class="p">,</span><span class="s1">&#39;charlotte&#39;</span><span class="p">,</span><span class="s1">&#39;dave&#39;</span><span class="p">]</span>
+<span class="n">ADMIN_PASSWORD</span><span class="o">=</span><span class="s1">&#39;ZDY1N2FhMj&#39;</span>
+<span class="n">ADMIN_KEY</span><span class="o">=</span><span class="s1">&#39;5226852b-207c-47a6-9c7c-fce4d849347d&#39;</span>
+<span class="n">PLUGINS</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;reject&#39;</span><span class="p">,</span><span class="s1">&#39;heartbeat&#39;</span><span class="p">,</span><span class="s1">&#39;blackout&#39;</span><span class="p">,</span><span class="s1">&#39;normalise&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The most important difference to note is that the configuration file
+must be valid Python, so strings must be quoted, comma-separated variables
+become Python lists, <code class="docutils literal notranslate"><span class="pre">1</span></code> becomes <code class="docutils literal notranslate"><span class="pre">True</span></code> etc.</p>
+<p>Then to mount this file into the docker container at run time use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker run --name alerta-web \
+  -v $PWD/alertad.conf:/app/alertad.conf \
+  --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You may first need to stop your previous Alerta container.</p>
+</div>
+<p>You should see that</p>
+</div>
 </div>
 <div class="section" id="step-3-run-using-docker-compose">
 <h2>Step 3: Run using docker-compose<a class="headerlink" href="#step-3-run-using-docker-compose" title="Permalink to this headline">¶</a></h2>
@@ -185,7 +283,8 @@ using a tool called <code class="docutils literal notranslate"><span class="pre"
 </div>
 <div class="section" id="debugging-and-troubleshooting">
 <h2>Debugging and Troubleshooting<a class="headerlink" href="#debugging-and-troubleshooting" title="Permalink to this headline">¶</a></h2>
-<p>tbc</p>
+<p>Set <code class="docutils literal notranslate"><span class="pre">DEBUG=1</span></code> environment variable.</p>
+<p>Exec into the container and run <code class="docutils literal notranslate"><span class="pre">alerta</span></code> command-line tool.</p>
 </div>
 </div>
 

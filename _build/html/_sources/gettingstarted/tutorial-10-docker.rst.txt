@@ -4,7 +4,9 @@ Using Docker to deploy Alerta
 =============================
 
 In this tutorial, you will learn how to deploy Alerta using
-Docker.
+Docker_.
+
+.. _Docker: https://www.docker.com/why-docker
 
 **Contents**
 
@@ -17,7 +19,6 @@ Docker.
   * `Step 5: Complex setups`_ 
   * `Step 6: Production deployments (Bonus)`_ 
   * `Debugging and Troubleshooting`_ 
-
 
 Overview
 --------
@@ -80,7 +81,8 @@ required by Alerta::
 Next, we start the Alerta docker container::
 
   $ export DATABASE_URL=postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@db:5432/alerta
-  $ docker run --name alerta-web -e DATABASE_URL=$DATABASE_URL \
+  $ docker run --name alerta-web \
+    -e DATABASE_URL=$DATABASE_URL \
     --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
 
 Now get the container id of the Alerta server and tail the logs::
@@ -135,9 +137,118 @@ And finally, try browsing to the web UI using http://localhost:8080/
 Step 2: Customise configuration
 -------------------------------
 
-configuration
-- using env vars
-- using external config file
+In `Step 1`_ you launched an Alerta container using the default configuration.
+
+To customise your Alerta server for your environment you can override
+the defaults using either environment variables (for common settings) or
+by mounting a configuration file into the container.
+
+Configuration via Environment variables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A full list of environment variables supported by the Alerta docker image
+can be found in the `README`_ file. They include all of the most
+common settings for a standard deployment.
+
+.. _README: https://github.com/alerta/docker-alerta/blob/master/README.md#environment-variables
+
+You already used one environment variable (``DATABASE_URL``) to tell Alerta
+where the database could be found and what the database credentials were.
+
+The environment variables ``ADMIN_PASSWORD``, ``ADMIN_KEY``, ``ADMIN_KEY_MAXAGE``,
+and ``HEARTBEAT_SEVERITY`` are only supported by the Docker container and are
+provided specifically to ease the deployment of Alerta in Docker environments.
+
+Of these, it is really only ``ADMIN_PASSWORD`` that needs to be set otherwise
+the default password of "alerta" will be assigned.
+
+It can be useful to also set ``ADMIN_KEY`` to a known value otherwise an random API
+key will be generated with ``admin`` privileges. That API key can be assigned
+by a configuration management tool and used when integrating with other tools,
+for example.
+
+So, to run Alerta with set values for ``ADMIN_PASSWORD`` and ``ADMIN_KEY``, and to
+enable ``DEBUG`` run::
+
+  $ docker run --name alerta-web \
+    -e DATABASE_URL=$DATABASE_URL \
+    -e DEBUG=1 \
+    -e ADMIN_PASSWORD=ZDY1N2FhMj \
+    -e ADMIN_KEY=5226852b-207c-47a6-9c7c-fce4d849347d \
+    --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
+
+.. note:: Set your ``ADMIN_PASSWORD`` and ``ADMIN_KEY`` to something different.
+
+The default admin username is "alerta". This can be set using ``ADMIN_USERS`` which
+allows you to set one or more admin users to be created at container launch time::
+
+  $ docker run --name alerta-web \
+    -e DATABASE_URL=$DATABASE_URL \
+    -e ADMIN_USERS=alice,bob,charlotte,dave \
+    -e ADMIN_PASSWORD=ZDY1N2FhMj \
+    -e ADMIN_KEY=5226852b-207c-47a6-9c7c-fce4d849347d \
+    --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
+
+One of the important benefits of the Docker image is that many plugins come
+pre-installed so the container starts immediately the database is available.
+
+However, only a few plugins are enabled by default ie. ``remote_ip``,
+``reject``, ``heartbeat``, ``blackout``, ``forwarder``. To enable more, or
+to disable some of the defaults, use the ``PLUGINS`` environment variable
+like so::
+
+  $ docker run --name alerta-web \
+    -e DATABASE_URL=$DATABASE_URL \
+    -e ADMIN_USERS=alice,bob,charlotte,dave \
+    -e ADMIN_PASSWORD=ZDY1N2FhMj \
+    -e ADMIN_KEY=5226852b-207c-47a6-9c7c-fce4d849347d \
+    -e PLUGINS=reject,heartbeat,blackout,normalise \
+    --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
+
+By now, you can see that the number of environment variables listed
+on the command line is growing and becoming unmanageable and we
+haven't even looked at all the different authentication settings.
+
+Configuration via external ``alertad.conf`` file
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+So now we will use a configuration file that we can mount into the
+container at run time. The alternative is to continue using
+environment variables (if we only need to set configuration that is
+supported by environment variables) but instead of using ``docker run``
+we use ``docker-compose`` and its YAML configuration file.
+
+We look at using ``docker-compose`` next, however, for now let's see
+how we can set :ref:`any configuration setting <configuration>` using
+an exernal ``alertad.conf`` file.
+
+Create a file called ``alertad.conf`` in your current working directory
+and we will include all of the environment variable settings from above
+and a few more, so you can see how they compare:
+
+.. code-block:: python
+
+  DEBUG=True
+  DATABASE_URL='postgres://alerta:al3rt8@db:5432/alerta'
+  AUTH_REQUIRED=True
+  ADMIN_USERS=['alice','bob','charlotte','dave']
+  ADMIN_PASSWORD='ZDY1N2FhMj'
+  ADMIN_KEY='5226852b-207c-47a6-9c7c-fce4d849347d'
+  PLUGINS=['reject','heartbeat','blackout','normalise']
+
+The most important difference to note is that the configuration file
+must be valid Python, so strings must be quoted, comma-separated variables
+become Python lists, ``1`` becomes ``True`` etc.
+
+Then to mount this file into the docker container at run time use::
+
+  $ docker run --name alerta-web \
+    -v $PWD/alertad.conf:/app/alertad.conf \
+    --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
+
+.. note:: You may first need to stop your previous Alerta container.
+
+You should see that 
 
 Step 3: Run using docker-compose
 --------------------------------
@@ -184,5 +295,6 @@ using a tool called ``mini-kube``.
 Debugging and Troubleshooting
 -----------------------------
 
-tbc
+Set ``DEBUG=1`` environment variable.
 
+Exec into the container and run ``alerta`` command-line tool.
