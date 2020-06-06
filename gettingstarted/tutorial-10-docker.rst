@@ -1,4 +1,4 @@
-.. _tutorial 7:
+.. _tutorial 10:
 
 Using Docker to deploy Alerta
 =============================

@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Using Docker to deploy Alerta &#8212; alerta 7.5 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="using-docker-to-deploy-alerta">
+<span id="tutorial-10"></span><h1>Using Docker to deploy Alerta<a class="headerlink" href="#using-docker-to-deploy-alerta" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial, you will learn how to deploy Alerta using
+Docker.</p>
+<p><strong>Contents</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#overview">Overview</a></p></li>
+<li><p><a class="reference internal" href="#prerequisites">Prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#step-1-run-the-container">Step 1: Run the container</a></p></li>
+<li><p><a class="reference internal" href="#step-2-customise-configuration">Step 2: Customise configuration</a></p></li>
+<li><p><a class="reference internal" href="#step-3-run-using-docker-compose">Step 3: Run using docker-compose</a></p></li>
+<li><p><a class="reference internal" href="#step-4-install-additional-plugins-or-webhooks">Step 4: Install additional plugins or webhooks</a></p></li>
+<li><p><a class="reference internal" href="#step-5-complex-setups">Step 5: Complex setups</a></p></li>
+<li><p><a class="reference internal" href="#step-6-production-deployments-bonus">Step 6: Production deployments (Bonus)</a></p></li>
+<li><p><a class="reference internal" href="#debugging-and-troubleshooting">Debugging and Troubleshooting</a></p></li>
+</ul>
+</div></blockquote>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://hub.docker.com/r/alerta/alerta-web/">“official” Docker image</a> for Alerta has been download more
+than <a class="reference external" href="https://hub.docker.com/v2/repositories/alerta/alerta-web/">2 million times</a> and contains everything needed
+to deploy Alerta in most scenarios, such as:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Alerta API</p></li>
+<li><p>Alerta Web UI</p></li>
+<li><p>housekeeping</p></li>
+<li><p>built-in and contributed plugins</p></li>
+<li><p>built-in webhooks</p></li>
+<li><p>all auth providers “ready-to-go”</p></li>
+</ul>
+</div></blockquote>
+<p>More complex deployments can either use it as a base image and
+extend it with additional plugins, webhooks or alternatively,
+the <a class="reference external" href="https://github.com/alerta/docker-alerta/blob/master/Dockerfile">Dockerfile</a> can be used as a starting point to build your
+own base image.</p>
+</div>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>To follow this tutorial you will need access to a Docker
+environment where you can build Docker images and run containers.
+The fastest way to get going is to use <a class="reference external" href="https://www.docker.com/products/docker-desktop">Docker Desktop</a>.</p>
+<p>Follow the instructions on the Docker website and then return
+to this tutorial and continue with <a class="reference internal" href="#step-1">Step 1</a>.</p>
+<p>To get bonus points, <a class="reference external" href="https://kubernetes.io/docs/tasks/tools/install-minikube/">install Minikube</a>, the “single-node Kubernetes
+cluster in a virtual machine on your personal computer” which you
+will need to complete <a class="reference internal" href="#step-6">Step 6</a> where you mimic deploying to production.</p>
+</div>
+<div class="section" id="step-1-run-the-container">
+<span id="step-1"></span><h2>Step 1: Run the container<a class="headerlink" href="#step-1-run-the-container" title="Permalink to this headline">¶</a></h2>
+<p>We will first start a Postgres database container which is
+required by Alerta:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export POSTGRES_USER=alerta
+$ export POSTGRES_PASSWORD=al3rt8
+
+$ docker run --name alerta-db \
+  -e POSTGRES_USER=$POSTGRES_USER \
+  -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
+  -d postgres
+</pre></div>
+</div>
+<p>Next, we start the Alerta docker container:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export DATABASE_URL=postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@db:5432/alerta
+$ docker run --name alerta-web -e DATABASE_URL=$DATABASE_URL \
+  --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
+</pre></div>
+</div>
+<p>Now get the container id of the Alerta server and tail the logs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                    NAMES
+523906cd28e5        alerta/alerta-web   &quot;docker-entrypoint.s…&quot;   21 seconds ago       Up 21 seconds       0.0.0.0:8080-&gt;8080/tcp   alerta-web
+ddd2a1333b38        postgres            &quot;docker-entrypoint.s…&quot;   About a minute ago   Up About a minute   5432/tcp                 alerta-db
+
+$ docker logs -f 523906cd28e5  # note that your container id will be different
+</pre></div>
+</div>
+<p>If it is running you should see log entries for the API server similar to the
+following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2020</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">06</span> <span class="mi">19</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span><span class="mi">507</span> <span class="n">DEBG</span> <span class="s1">&#39;nginx&#39;</span> <span class="n">stdout</span> <span class="n">output</span><span class="p">:</span>
+<span class="n">ip</span><span class="o">=</span>\<span class="o">-</span> <span class="p">[</span>\<span class="mi">06</span><span class="o">/</span><span class="n">Jun</span><span class="o">/</span><span class="mi">2020</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span><span class="mi">12</span> <span class="o">+</span><span class="mi">0000</span><span class="p">]</span> <span class="s2">&quot;\GET /api/config HTTP/1.1&quot;</span> \<span class="mi">200</span> \<span class="mi">873</span> <span class="s2">&quot;\-&quot;</span> <span class="s2">&quot;\python-requests/2.21.0&quot;</span>
+<span class="o">/</span><span class="n">web</span> <span class="o">|</span> <span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">config</span> <span class="o">|</span> <span class="o">&gt;</span> <span class="n">GET</span> <span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">config</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+</pre></div>
+</div>
+<p>Next try the API endpoint. Using the <a class="reference external" href="https://httpie.org/docs#installation">http</a> tool the output would look like
+the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ http http://localhost:8080/api/alerts
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: http://localhost
+Connection: keep-alive
+Content-Length: 203
+Content-Type: application/json
+Date: Sat, 06 Jun 2020 19:19:45 GMT
+Server: nginx/1.14.2
+Vary: Origin
+X-Request-ID: aff1e858-7547-4c26-bff1-f884da47ea12
+
+{
+    &quot;alerts&quot;: [],
+    &quot;autoRefresh&quot;: true,
+    &quot;lastTime&quot;: &quot;2020-06-06T19:19:45.318Z&quot;,
+    &quot;message&quot;: &quot;not found&quot;,
+    &quot;more&quot;: false,
+    &quot;page&quot;: 1,
+    &quot;pageSize&quot;: 1000,
+    &quot;pages&quot;: 0,
+    &quot;severityCounts&quot;: {},
+    &quot;status&quot;: &quot;ok&quot;,
+    &quot;statusCounts&quot;: {},
+    &quot;total&quot;: 0
+}
+</pre></div>
+</div>
+<p>And finally, try browsing to the web UI using <a class="reference external" href="http://localhost:8080/">http://localhost:8080/</a></p>
+</div>
+<div class="section" id="step-2-customise-configuration">
+<h2>Step 2: Customise configuration<a class="headerlink" href="#step-2-customise-configuration" title="Permalink to this headline">¶</a></h2>
+<p>configuration
+- using env vars
+- using external config file</p>
+</div>
+<div class="section" id="step-3-run-using-docker-compose">
+<h2>Step 3: Run using docker-compose<a class="headerlink" href="#step-3-run-using-docker-compose" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>docker-compose up</p></li>
+</ul>
+</div>
+<div class="section" id="step-4-install-additional-plugins-or-webhooks">
+<h2>Step 4: Install additional plugins or webhooks<a class="headerlink" href="#step-4-install-additional-plugins-or-webhooks" title="Permalink to this headline">¶</a></h2>
+<p>extending base image
+- installing plugins
+- installing webhooks</p>
+</div>
+<div class="section" id="step-5-complex-setups">
+<h2>Step 5: Complex setups<a class="headerlink" href="#step-5-complex-setups" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>behind proxy</p></li>
+<li><p>ssl termination</p></li>
+<li><p>sub path</p></li>
+</ul>
+<p>build your own
+- custom web ui subpath</p>
+</div>
+<div class="section" id="step-6-production-deployments-bonus">
+<span id="step-6"></span><h2>Step 6: Production deployments (Bonus)<a class="headerlink" href="#step-6-production-deployments-bonus" title="Permalink to this headline">¶</a></h2>
+<p>Despite <a class="reference external" href="https://docs.docker.com/compose/production/">what Docker say</a>, it is not advisable to use <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code>
+for production deployments. Instead you should consider container
+runtime platforms such as <a class="reference external" href="https://kubernetes.io/">Kubernetes</a>, <a class="reference external" href="https://aws.amazon.com/ecs/">AWS Elastic Container Service</a>,
+or <a class="reference external" href="https://cloud.google.com/kubernetes-engine/">Google Cloud GKE</a>.</p>
+<p>For the purpose of this tutorial, you can run Alerta in Kubernetes
+using a tool called <code class="docutils literal notranslate"><span class="pre">mini-kube</span></code>.</p>
+</div>
+<div class="section" id="debugging-and-troubleshooting">
+<h2>Debugging and Troubleshooting<a class="headerlink" href="#debugging-and-troubleshooting" title="Permalink to this headline">¶</a></h2>
+<p>tbc</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">alerta</a></h1>
+
+
+
+<p class="blurb">monitoring system</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=alerta&repo=alerta&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a class="badge" href="https://travis-ci.org/alerta/alerta">
+    <img
+        alt="https://secure.travis-ci.org/alerta/alerta.svg?branch=master"
+        src="https://secure.travis-ci.org/alerta/alerta.svg?branch=master"
+    />
+</a>
+</p>
+
+
+
+
+<h3>
+Links
+</h3>
+<ul>
+  <li>
+    <a href="http://alerta.io" rel="me">Web</a>
+  </li>
+  <li>
+    <a href="https://twitter.com/alertaio" rel="me">Twitter</a>
+  </li>
+  <li>
+    <a href="https://gitter.im/alerta/chat" rel="me">Gitter</a>
+  </li>
+</ul>
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick-start.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server.html">Server &amp; API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui.html">Alerta Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">Alerta CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../integrations.html">Integrations &amp; Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authorization.html">Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../customer-views.html">Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../federated.html">Federated Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">Resources</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/query-syntax.html">API Query Syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/alert.html">Alert Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/heartbeat.html">Heartbeat Format</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015-2020, Nick Satterly. MIT License.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/gettingstarted/tutorial-10-docker.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-44644195-3']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>
