@@ -101,38 +101,41 @@ following::
   ip=\- [\06/Jun/2020:19:21:12 +0000] "\GET /api/config HTTP/1.1" \200 \873 "\-" "\python-requests/2.21.0"
   /web | /api/config | > GET /api/config HTTP/1.1
 
-Next try the API endpoint. Using the `http`_ tool the output would look like
+Next try the API endpoint. Using ``curl`` the output would look like
 the following::
 
-  $ http http://localhost:8080/api/alerts
-  HTTP/1.1 200 OK
-  Access-Control-Allow-Origin: http://localhost
-  Connection: keep-alive
-  Content-Length: 203
-  Content-Type: application/json
-  Date: Sat, 06 Jun 2020 19:19:45 GMT
-  Server: nginx/1.14.2
-  Vary: Origin
-  X-Request-ID: aff1e858-7547-4c26-bff1-f884da47ea12
-
+  $ curl http://localhost:8080/api/alerts\?api-key\=5226852b-207c-47a6-9c7c-fce4d849347d
   {
-      "alerts": [],
-      "autoRefresh": true,
-      "lastTime": "2020-06-06T19:19:45.318Z",
-      "message": "not found",
-      "more": false,
-      "page": 1,
-      "pageSize": 1000,
-      "pages": 0,
-      "severityCounts": {},
-      "status": "ok",
-      "statusCounts": {},
-      "total": 0
+    "alerts": [], 
+    "autoRefresh": true, 
+    "lastTime": "2020-06-07T12:35:26.085Z", 
+    "message": "not found", 
+    "more": false, 
+    "page": 1, 
+    "pageSize": 1000, 
+    "pages": 0, 
+    "severityCounts": {}, 
+    "status": "ok", 
+    "statusCounts": {}, 
+    "total": 0
   }
 
-.. _http: https://httpie.org/docs#installation
+Generate an alert that you can then view in the Alerta web UI by running::
+
+  $ docker exec -ti 523906cd28e5 \
+    alerta send \
+    -E Development \
+    -S Web \
+    -r web01 \
+    -e http5xx \
+    -s warning \
+    -t 'Too many 5xx responses'
+
+.. tip:: Keep a copy of the returned alert id. You will need this in `Step 4`_.
 
 And finally, try browsing to the web UI using http://localhost:8080/
+
+.. _Step 2:
 
 Step 2: Customise configuration
 -------------------------------
@@ -173,8 +176,8 @@ enable ``DEBUG`` run::
   $ docker run --name alerta-web \
     -e DATABASE_URL=$DATABASE_URL \
     -e DEBUG=1 \
-    -e ADMIN_PASSWORD=ZDY1N2FhMj \
-    -e ADMIN_KEY=5226852b-207c-47a6-9c7c-fce4d849347d \
+    -e ADMIN_PASSWORD=Pa55w0rd \
+    -e ADMIN_KEY=docker-api-key \
     --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
 
 .. note:: Use the above command for this tutorial but remember to set your
@@ -187,8 +190,8 @@ allows you to set one or more admin users to be created at container launch time
   $ docker run --name alerta-web \
     -e DATABASE_URL=$DATABASE_URL \
     -e ADMIN_USERS=alice,bob,charlotte,dave \
-    -e ADMIN_PASSWORD=ZDY1N2FhMj \
-    -e ADMIN_KEY=5226852b-207c-47a6-9c7c-fce4d849347d \
+    -e ADMIN_PASSWORD=Pa55w0rd \
+    -e ADMIN_KEY=docker-api-key \
     --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
 
 One of the important benefits of the Docker image is that many plugins come
@@ -202,8 +205,8 @@ like so::
   $ docker run --name alerta-web \
     -e DATABASE_URL=$DATABASE_URL \
     -e ADMIN_USERS=alice,bob,charlotte,dave \
-    -e ADMIN_PASSWORD=ZDY1N2FhMj \
-    -e ADMIN_KEY=5226852b-207c-47a6-9c7c-fce4d849347d \
+    -e ADMIN_PASSWORD=Pa55w0rd \
+    -e ADMIN_KEY=docker-api-key \
     -e PLUGINS=reject,heartbeat,blackout,normalise \
     --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
 
@@ -234,8 +237,8 @@ and a few more, so you can see how they compare:
   DATABASE_URL='postgres://alerta:al3rt8@db:5432/alerta'
   AUTH_REQUIRED=True
   ADMIN_USERS=['alice','bob','charlotte','dave']
-  ADMIN_PASSWORD='ZDY1N2FhMj'
-  ADMIN_KEY='5226852b-207c-47a6-9c7c-fce4d849347d'
+  ADMIN_PASSWORD='Pa55w0rd'
+  ADMIN_KEY='docker-api-key'
   PLUGINS=['reject','heartbeat','blackout','normalise']
 
 The most important difference to note is that the configuration file
@@ -265,6 +268,8 @@ This is where container orchestration comes into play. And the first
 step towards Docker container configuration and deployment is to
 use the ``docker-compose`` tool which we will look at now.
 
+.. _Step 3:
+
 Step 3: Run using docker-compose
 --------------------------------
 
@@ -287,8 +292,8 @@ working directory and include the following:
         - DATABASE_URL=postgres://alerta:8l3rt8@db:5432/alerta
         - AUTH_REQUIRED=True
         - ADMIN_USERS=alice,bob,charlotte,dave
-        - ADMIN_PASSWORD=ZDY1N2FhMj
-        - ADMIN_KEY=5226852b-207c-47a6-9c7c-fce4d849347d
+        - ADMIN_PASSWORD=Pa55w0rd
+        - ADMIN_KEY=docker-api-key
         - PLUGINS=reject,heartbeat,blackout,normalise
       networks:
         - net
@@ -316,7 +321,7 @@ Now launch both Alerta and Postgres at the same time using::
 And verify by browsing to http://localhost:8080 as before.
 
 You can replace ``environment:`` with ``volumes:`` if you want or need
-to use a configuration file like so:
+to mount a configuration file into the container, like so:
 
 .. code-block:: yaml
 
@@ -347,6 +352,8 @@ to use a configuration file like so:
   networks:
     net: {}
 
+.. _Step 4:
+
 Step 4: Install additional plugins or webhooks
 ----------------------------------------------
 
@@ -358,19 +365,20 @@ during image build time, not after the container as been deployed.
 .. _`"immutable"`: https://www.oreilly.com/radar/an-introduction-to-immutable-infrastructure/
 
 To do this you can extend the base image by creating a ``Dockerfile`` and
-using the ``FROM`` instruction. For example to install the MS Teams webhook
+using the ``FROM`` instruction. For example, to install the MS Teams webhook
 create a ``Dockerfile`` as below:
 
 .. code-block:: yaml
 
   FROM alerta/alerta-web
 
-  RUN /venv/bin/pip install git+https://github.com/alerta/alerta-contrib.git#subdirectory=webhooks/msteams
+  RUN /venv/bin/pip install \
+      git+https://github.com/alerta/alerta-contrib.git#subdirectory=webhooks/msteams
 
 You can either build the Docker image using the ``docker build`` command or
 add a reference to your ``docker-compose.yaml`` file and use ``docker-compose build``.
-Modify the ``docker-compose.yaml`` as follows adding ``build`` and changing ``image``
-slightly to remove "alerta/" like so:
+Modify the ``docker-compose.yaml`` as follows adding the ``build`` line and changing
+the ``image`` line slightly to remove the "alerta/" organisation reference like so:
 
 .. code-block:: yaml
 
@@ -406,27 +414,20 @@ Now build the new image and run it using::
 
   $ docker-compose up --build
 
-Once again you should be able to browse to http://localhost:8080 and log in
-to the web console.
+Once again you should be able to browse to http://localhost:8080 and log
+in to the web console.
 
-To verify that the MS Teams webhook is now available, use http to send a HTTP
-POST request to the webhook URL::
+To verify that the MS Teams webhook is now available, use curl to send a
+HTTP POST request to the webhook URL (replace alert_id with your alert
+id from `Step 1`_)::
 
-  $ http http://localhost:8080/api/webhooks/msteams X-API-Key:5226852b-207c-47a6-9c7c-fce4d849347d action=ack alert_id=8f1e95f4-3e12-43c0-947d-7eef1205238c
-  HTTP/1.1 200 OK
-  Access-Control-Allow-Origin: http://localhost
-  CARD-ACTION-STATUS: Alert Ackd
-  Connection: keep-alive
-  Content-Length: 53
-  Content-Type: application/json
-  Date: Sun, 07 Jun 2020 10:10:18 GMT
-  Server: nginx/1.14.2
-  Vary: Origin
-  X-Request-ID: 81492b2a-8751-4d2e-94f3-b545de4aee16
-
+  $ curl -XPOST http://localhost:8080/api/webhooks/msteams \
+  -H 'Content-Type: application/json' \
+  -H 'X-API-Key: docker-api-key' \
+  -d '{"action":"ack","alert_id":"da9b3d24-3ee3-4cdc-8a58-a6533c9e9af9"}'
   {
-      "message": "status changed",
-      "status": "ok"
+    "message": "status changed", 
+    "status": "ok"
   }
 
 Step 5: Complex setups

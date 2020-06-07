@@ -116,39 +116,44 @@ following:</p>
 <span class="o">/</span><span class="n">web</span> <span class="o">|</span> <span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">config</span> <span class="o">|</span> <span class="o">&gt;</span> <span class="n">GET</span> <span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">config</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
 </pre></div>
 </div>
-<p>Next try the API endpoint. Using the <a class="reference external" href="https://httpie.org/docs#installation">http</a> tool the output would look like
+<p>Next try the API endpoint. Using <code class="docutils literal notranslate"><span class="pre">curl</span></code> the output would look like
 the following:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ http http://localhost:8080/api/alerts
-HTTP/1.1 200 OK
-Access-Control-Allow-Origin: http://localhost
-Connection: keep-alive
-Content-Length: 203
-Content-Type: application/json
-Date: Sat, 06 Jun 2020 19:19:45 GMT
-Server: nginx/1.14.2
-Vary: Origin
-X-Request-ID: aff1e858-7547-4c26-bff1-f884da47ea12
-
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/api/alerts\?api-key\=5226852b-207c-47a6-9c7c-fce4d849347d
 {
-    &quot;alerts&quot;: [],
-    &quot;autoRefresh&quot;: true,
-    &quot;lastTime&quot;: &quot;2020-06-06T19:19:45.318Z&quot;,
-    &quot;message&quot;: &quot;not found&quot;,
-    &quot;more&quot;: false,
-    &quot;page&quot;: 1,
-    &quot;pageSize&quot;: 1000,
-    &quot;pages&quot;: 0,
-    &quot;severityCounts&quot;: {},
-    &quot;status&quot;: &quot;ok&quot;,
-    &quot;statusCounts&quot;: {},
-    &quot;total&quot;: 0
+  &quot;alerts&quot;: [],
+  &quot;autoRefresh&quot;: true,
+  &quot;lastTime&quot;: &quot;2020-06-07T12:35:26.085Z&quot;,
+  &quot;message&quot;: &quot;not found&quot;,
+  &quot;more&quot;: false,
+  &quot;page&quot;: 1,
+  &quot;pageSize&quot;: 1000,
+  &quot;pages&quot;: 0,
+  &quot;severityCounts&quot;: {},
+  &quot;status&quot;: &quot;ok&quot;,
+  &quot;statusCounts&quot;: {},
+  &quot;total&quot;: 0
 }
 </pre></div>
+</div>
+<p>Generate an alert that you can then view in the Alerta web UI by running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker exec -ti 523906cd28e5 \
+  alerta send \
+  -E Development \
+  -S Web \
+  -r web01 \
+  -e http5xx \
+  -s warning \
+  -t &#39;Too many 5xx responses&#39;
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Keep a copy of the returned alert id. You will need this in <a class="reference internal" href="#step-4">Step 4</a>.</p>
 </div>
 <p>And finally, try browsing to the web UI using <a class="reference external" href="http://localhost:8080/">http://localhost:8080/</a></p>
 </div>
 <div class="section" id="step-2-customise-configuration">
-<h2>Step 2: Customise configuration<a class="headerlink" href="#step-2-customise-configuration" title="Permalink to this headline">¶</a></h2>
+<span id="step-2"></span><h2>Step 2: Customise configuration<a class="headerlink" href="#step-2-customise-configuration" title="Permalink to this headline">¶</a></h2>
 <p>In <a class="reference internal" href="#step-1">Step 1</a> you launched an Alerta container using the default configuration.</p>
 <p>To customise your Alerta server for your environment you can override
 the defaults using either environment variables (for common settings) or
@@ -174,8 +179,8 @@ enable <code class="docutils literal notranslate"><span class="pre">DEBUG</span>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker run --name alerta-web \
   -e DATABASE_URL=$DATABASE_URL \
   -e DEBUG=1 \
-  -e ADMIN_PASSWORD=ZDY1N2FhMj \
-  -e ADMIN_KEY=5226852b-207c-47a6-9c7c-fce4d849347d \
+  -e ADMIN_PASSWORD=Pa55w0rd \
+  -e ADMIN_KEY=docker-api-key \
   --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
 </pre></div>
 </div>
@@ -190,8 +195,8 @@ allows you to set one or more admin users to be created at container launch time
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker run --name alerta-web \
   -e DATABASE_URL=$DATABASE_URL \
   -e ADMIN_USERS=alice,bob,charlotte,dave \
-  -e ADMIN_PASSWORD=ZDY1N2FhMj \
-  -e ADMIN_KEY=5226852b-207c-47a6-9c7c-fce4d849347d \
+  -e ADMIN_PASSWORD=Pa55w0rd \
+  -e ADMIN_KEY=docker-api-key \
   --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
 </pre></div>
 </div>
@@ -204,8 +209,8 @@ like so:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker run --name alerta-web \
   -e DATABASE_URL=$DATABASE_URL \
   -e ADMIN_USERS=alice,bob,charlotte,dave \
-  -e ADMIN_PASSWORD=ZDY1N2FhMj \
-  -e ADMIN_KEY=5226852b-207c-47a6-9c7c-fce4d849347d \
+  -e ADMIN_PASSWORD=Pa55w0rd \
+  -e ADMIN_KEY=docker-api-key \
   -e PLUGINS=reject,heartbeat,blackout,normalise \
   --link alerta-db:db -d -p 8080:8080 alerta/alerta-web
 </pre></div>
@@ -231,8 +236,8 @@ and a few more, so you can see how they compare:</p>
 <span class="n">DATABASE_URL</span><span class="o">=</span><span class="s1">&#39;postgres://alerta:al3rt8@db:5432/alerta&#39;</span>
 <span class="n">AUTH_REQUIRED</span><span class="o">=</span><span class="kc">True</span>
 <span class="n">ADMIN_USERS</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;alice&#39;</span><span class="p">,</span><span class="s1">&#39;bob&#39;</span><span class="p">,</span><span class="s1">&#39;charlotte&#39;</span><span class="p">,</span><span class="s1">&#39;dave&#39;</span><span class="p">]</span>
-<span class="n">ADMIN_PASSWORD</span><span class="o">=</span><span class="s1">&#39;ZDY1N2FhMj&#39;</span>
-<span class="n">ADMIN_KEY</span><span class="o">=</span><span class="s1">&#39;5226852b-207c-47a6-9c7c-fce4d849347d&#39;</span>
+<span class="n">ADMIN_PASSWORD</span><span class="o">=</span><span class="s1">&#39;Pa55w0rd&#39;</span>
+<span class="n">ADMIN_KEY</span><span class="o">=</span><span class="s1">&#39;docker-api-key&#39;</span>
 <span class="n">PLUGINS</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;reject&#39;</span><span class="p">,</span><span class="s1">&#39;heartbeat&#39;</span><span class="p">,</span><span class="s1">&#39;blackout&#39;</span><span class="p">,</span><span class="s1">&#39;normalise&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -264,7 +269,7 @@ use the <code class="docutils literal notranslate"><span class="pre">docker-comp
 </div>
 </div>
 <div class="section" id="step-3-run-using-docker-compose">
-<h2>Step 3: Run using docker-compose<a class="headerlink" href="#step-3-run-using-docker-compose" title="Permalink to this headline">¶</a></h2>
+<span id="step-3"></span><h2>Step 3: Run using docker-compose<a class="headerlink" href="#step-3-run-using-docker-compose" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> tool can be used to launch an entire Docker
 container stack with one command, namely <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span></code>.</p>
 <p>Create a new file called <code class="docutils literal notranslate"><span class="pre">docker-compose.yaml</span></code> in your current
@@ -280,8 +285,8 @@ working directory and include the following:</p>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">DATABASE_URL=postgres://alerta:8l3rt8@db:5432/alerta</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">AUTH_REQUIRED=True</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ADMIN_USERS=alice,bob,charlotte,dave</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ADMIN_PASSWORD=ZDY1N2FhMj</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ADMIN_KEY=5226852b-207c-47a6-9c7c-fce4d849347d</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ADMIN_PASSWORD=Pa55w0rd</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ADMIN_KEY=docker-api-key</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">PLUGINS=reject,heartbeat,blackout,normalise</span>
     <span class="nt">networks</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">net</span>
@@ -309,7 +314,7 @@ working directory and include the following:</p>
 </div>
 <p>And verify by browsing to <a class="reference external" href="http://localhost:8080">http://localhost:8080</a> as before.</p>
 <p>You can replace <code class="docutils literal notranslate"><span class="pre">environment:</span></code> with <code class="docutils literal notranslate"><span class="pre">volumes:</span></code> if you want or need
-to use a configuration file like so:</p>
+to mount a configuration file into the container, like so:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3&#39;</span>
 <span class="nt">services</span><span class="p">:</span>
   <span class="nt">web</span><span class="p">:</span>
@@ -340,23 +345,24 @@ to use a configuration file like so:</p>
 </div>
 </div>
 <div class="section" id="step-4-install-additional-plugins-or-webhooks">
-<h2>Step 4: Install additional plugins or webhooks<a class="headerlink" href="#step-4-install-additional-plugins-or-webhooks" title="Permalink to this headline">¶</a></h2>
+<span id="step-4"></span><h2>Step 4: Install additional plugins or webhooks<a class="headerlink" href="#step-4-install-additional-plugins-or-webhooks" title="Permalink to this headline">¶</a></h2>
 <p>Docker containers should be treated as <a class="reference external" href="https://www.oreilly.com/radar/an-introduction-to-immutable-infrastructure/">“immutable”</a> infrastructure which means
 that once deployed they should not be modified. So if you need to use a custom
 plugin or webhook not already pre-installed then you will need to install it
 during image build time, not after the container as been deployed.</p>
 <p>To do this you can extend the base image by creating a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> and
-using the <code class="docutils literal notranslate"><span class="pre">FROM</span></code> instruction. For example to install the MS Teams webhook
+using the <code class="docutils literal notranslate"><span class="pre">FROM</span></code> instruction. For example, to install the MS Teams webhook
 create a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> as below:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">FROM alerta/alerta-web</span>
 
-<span class="l l-Scalar l-Scalar-Plain">RUN /venv/bin/pip install git+https://github.com/alerta/alerta-contrib.git#subdirectory=webhooks/msteams</span>
+<span class="l l-Scalar l-Scalar-Plain">RUN /venv/bin/pip install \</span>
+    <span class="l l-Scalar l-Scalar-Plain">git+https://github.com/alerta/alerta-contrib.git#subdirectory=webhooks/msteams</span>
 </pre></div>
 </div>
 <p>You can either build the Docker image using the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span></code> command or
 add a reference to your <code class="docutils literal notranslate"><span class="pre">docker-compose.yaml</span></code> file and use <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">build</span></code>.
-Modify the <code class="docutils literal notranslate"><span class="pre">docker-compose.yaml</span></code> as follows adding <code class="docutils literal notranslate"><span class="pre">build</span></code> and changing <code class="docutils literal notranslate"><span class="pre">image</span></code>
-slightly to remove “alerta/” like so:</p>
+Modify the <code class="docutils literal notranslate"><span class="pre">docker-compose.yaml</span></code> as follows adding the <code class="docutils literal notranslate"><span class="pre">build</span></code> line and changing
+the <code class="docutils literal notranslate"><span class="pre">image</span></code> line slightly to remove the “alerta/” organisation reference like so:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3&#39;</span>
 <span class="nt">services</span><span class="p">:</span>
   <span class="nt">web</span><span class="p">:</span>
@@ -390,25 +396,18 @@ slightly to remove “alerta/” like so:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker-compose up --build
 </pre></div>
 </div>
-<p>Once again you should be able to browse to <a class="reference external" href="http://localhost:8080">http://localhost:8080</a> and log in
-to the web console.</p>
-<p>To verify that the MS Teams webhook is now available, use http to send a HTTP
-POST request to the webhook URL:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ http http://localhost:8080/api/webhooks/msteams X-API-Key:5226852b-207c-47a6-9c7c-fce4d849347d action=ack alert_id=8f1e95f4-3e12-43c0-947d-7eef1205238c
-HTTP/1.1 200 OK
-Access-Control-Allow-Origin: http://localhost
-CARD-ACTION-STATUS: Alert Ackd
-Connection: keep-alive
-Content-Length: 53
-Content-Type: application/json
-Date: Sun, 07 Jun 2020 10:10:18 GMT
-Server: nginx/1.14.2
-Vary: Origin
-X-Request-ID: 81492b2a-8751-4d2e-94f3-b545de4aee16
-
+<p>Once again you should be able to browse to <a class="reference external" href="http://localhost:8080">http://localhost:8080</a> and log
+in to the web console.</p>
+<p>To verify that the MS Teams webhook is now available, use curl to send a
+HTTP POST request to the webhook URL (replace alert_id with your alert
+id from <a class="reference internal" href="#step-1">Step 1</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/api/webhooks/msteams \
+-H &#39;Content-Type: application/json&#39; \
+-H &#39;X-API-Key: vXFmZoPQJCx1gW6SHzIeIa5k8Ghejd2HyWPsxXy0&#39; \
+-d &#39;{&quot;action&quot;:&quot;ack&quot;,&quot;alert_id&quot;:&quot;da9b3d24-3ee3-4cdc-8a58-a6533c9e9af9&quot;}&#39;
 {
-    &quot;message&quot;: &quot;status changed&quot;,
-    &quot;status&quot;: &quot;ok&quot;
+  &quot;message&quot;: &quot;status changed&quot;,
+  &quot;status&quot;: &quot;ok&quot;
 }
 </pre></div>
 </div>
