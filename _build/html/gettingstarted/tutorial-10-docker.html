@@ -312,7 +312,7 @@ working directory and include the following:</p>
 to use a configuration file like so:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3&#39;</span>
 <span class="nt">services</span><span class="p">:</span>
-  <span class="nt">api</span><span class="p">:</span>
+  <span class="nt">web</span><span class="p">:</span>
     <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">alerta/alerta-web</span>
     <span class="nt">ports</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">8080:8080</span>
@@ -341,9 +341,77 @@ to use a configuration file like so:</p>
 </div>
 <div class="section" id="step-4-install-additional-plugins-or-webhooks">
 <h2>Step 4: Install additional plugins or webhooks<a class="headerlink" href="#step-4-install-additional-plugins-or-webhooks" title="Permalink to this headline">¶</a></h2>
-<p>extending base image
-- installing plugins
-- installing webhooks</p>
+<p>Docker containers should be treated as <a class="reference external" href="https://www.oreilly.com/radar/an-introduction-to-immutable-infrastructure/">“immutable”</a> infrastructure which means
+that once deployed they should not be modified. So if you need to use a custom
+plugin or webhook not already pre-installed then you will need to install it
+during image build time, not after the container as been deployed.</p>
+<p>To do this you can extend the base image by creating a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> and
+using the <code class="docutils literal notranslate"><span class="pre">FROM</span></code> instruction. For example to install the MS Teams webhook
+create a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> as below:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">FROM alerta/alerta-web</span>
+
+<span class="l l-Scalar l-Scalar-Plain">RUN /venv/bin/pip install git+https://github.com/alerta/alerta-contrib.git#subdirectory=webhooks/msteams</span>
+</pre></div>
+</div>
+<p>You can either build the Docker image using the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span></code> command or
+add a reference to your <code class="docutils literal notranslate"><span class="pre">docker-compose.yaml</span></code> file and use <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">build</span></code>.
+Modify the <code class="docutils literal notranslate"><span class="pre">docker-compose.yaml</span></code> as follows adding <code class="docutils literal notranslate"><span class="pre">build</span></code> and changing <code class="docutils literal notranslate"><span class="pre">image</span></code>
+slightly to remove “alerta/” like so:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3&#39;</span>
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">web</span><span class="p">:</span>
+    <span class="nt">build</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">.</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">alerta-web</span>
+    <span class="nt">ports</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">8080:8080</span>
+    <span class="nt">volumes</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./alertad.conf:/app/alertad.conf</span>
+    <span class="nt">networks</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">net</span>
+    <span class="nt">depends_on</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">db</span>
+    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+  <span class="nt">db</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">postgres</span>
+    <span class="nt">volumes</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./pg-data:/var/lib/postgresql/data</span>
+    <span class="nt">environment</span><span class="p">:</span>
+      <span class="nt">POSTGRES_DB</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">alerta</span>
+      <span class="nt">POSTGRES_USER</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">alerta</span>
+      <span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8l3rt8</span>
+    <span class="nt">networks</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">net</span>
+    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="nt">networks</span><span class="p">:</span>
+  <span class="nt">net</span><span class="p">:</span> <span class="p p-Indicator">{}</span>
+</pre></div>
+</div>
+<p>Now build the new image and run it using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker-compose up --build
+</pre></div>
+</div>
+<p>Once again you should be able to browse to <a class="reference external" href="http://localhost:8080">http://localhost:8080</a> and log in
+to the web console.</p>
+<p>To verify that the MS Teams webhook is now available, use http to send a HTTP
+POST request to the webhook URL:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ http http://localhost:8080/api/webhooks/msteams X-API-Key:5226852b-207c-47a6-9c7c-fce4d849347d action=ack alert_id=8f1e95f4-3e12-43c0-947d-7eef1205238c
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: http://localhost
+CARD-ACTION-STATUS: Alert Ackd
+Connection: keep-alive
+Content-Length: 53
+Content-Type: application/json
+Date: Sun, 07 Jun 2020 10:10:18 GMT
+Server: nginx/1.14.2
+Vary: Origin
+X-Request-ID: 81492b2a-8751-4d2e-94f3-b545de4aee16
+
+{
+    &quot;message&quot;: &quot;status changed&quot;,
+    &quot;status&quot;: &quot;ok&quot;
+}
+</pre></div>
+</div>
 </div>
 <div class="section" id="step-5-complex-setups">
 <h2>Step 5: Complex setups<a class="headerlink" href="#step-5-complex-setups" title="Permalink to this headline">¶</a></h2>

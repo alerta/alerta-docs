@@ -322,7 +322,7 @@ to use a configuration file like so:
 
   version: '3'
   services:
-    api:
+    web:
       image: alerta/alerta-web
       ports:
         - 8080:8080
@@ -350,10 +350,84 @@ to use a configuration file like so:
 Step 4: Install additional plugins or webhooks
 ----------------------------------------------
 
-extending base image
-- installing plugins
-- installing webhooks
+Docker containers should be treated as `"immutable"`_ infrastructure which means
+that once deployed they should not be modified. So if you need to use a custom
+plugin or webhook not already pre-installed then you will need to install it
+during image build time, not after the container as been deployed.
 
+.. _`"immutable"`: https://www.oreilly.com/radar/an-introduction-to-immutable-infrastructure/
+
+To do this you can extend the base image by creating a ``Dockerfile`` and
+using the ``FROM`` instruction. For example to install the MS Teams webhook
+create a ``Dockerfile`` as below:
+
+.. code-block:: yaml
+
+  FROM alerta/alerta-web
+
+  RUN /venv/bin/pip install git+https://github.com/alerta/alerta-contrib.git#subdirectory=webhooks/msteams
+
+You can either build the Docker image using the ``docker build`` command or
+add a reference to your ``docker-compose.yaml`` file and use ``docker-compose build``.
+Modify the ``docker-compose.yaml`` as follows adding ``build`` and changing ``image``
+slightly to remove "alerta/" like so:
+
+.. code-block:: yaml
+
+  version: '3'
+  services:
+    web:
+      build: .
+      image: alerta-web
+      ports:
+        - 8080:8080
+      volumes:
+        - ./alertad.conf:/app/alertad.conf
+      networks:
+        - net
+      depends_on:
+        - db
+      restart: always
+    db:
+      image: postgres
+      volumes:
+        - ./pg-data:/var/lib/postgresql/data
+      environment:
+        POSTGRES_DB: alerta
+        POSTGRES_USER: alerta
+        POSTGRES_PASSWORD: 8l3rt8
+      networks:
+        - net
+      restart: always
+  networks:
+    net: {}
+
+Now build the new image and run it using::
+
+  $ docker-compose up --build
+
+Once again you should be able to browse to http://localhost:8080 and log in
+to the web console.
+
+To verify that the MS Teams webhook is now available, use http to send a HTTP
+POST request to the webhook URL::
+
+  $ http http://localhost:8080/api/webhooks/msteams X-API-Key:5226852b-207c-47a6-9c7c-fce4d849347d action=ack alert_id=8f1e95f4-3e12-43c0-947d-7eef1205238c
+  HTTP/1.1 200 OK
+  Access-Control-Allow-Origin: http://localhost
+  CARD-ACTION-STATUS: Alert Ackd
+  Connection: keep-alive
+  Content-Length: 53
+  Content-Type: application/json
+  Date: Sun, 07 Jun 2020 10:10:18 GMT
+  Server: nginx/1.14.2
+  Vary: Origin
+  X-Request-ID: 81492b2a-8751-4d2e-94f3-b545de4aee16
+
+  {
+      "message": "status changed",
+      "status": "ok"
+  }
 
 Step 5: Complex setups
 ----------------------
