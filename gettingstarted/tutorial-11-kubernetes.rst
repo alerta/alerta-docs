@@ -47,16 +47,7 @@ own base image.
 Prerequisites
 -------------
 
-To follow this tutorial you will need access to a Docker
-environment where you can build Docker images and run containers.
-The fastest way to get going is to use `Docker Desktop`_.
-
-.. _Docker Desktop: https://www.docker.com/products/docker-desktop
-
-Follow the instructions on the Docker website and then return
-to this tutorial and continue with `Step 1`_.
-
-To get bonus points, `install Minikube`_, the "single-node Kubernetes
+To follow this tutorial you will need to `install Minikube`_, the "single-node Kubernetes
 cluster in a virtual machine on your personal computer" which you
 will need to complete `Step 6`_ where you mimic deploying to production.
 

@@ -17,7 +17,7 @@ Docker_.
   * `Step 3: Run using docker-compose`_
   * `Step 4: Install additional plugins or webhooks`_ 
   * `Step 5: Complex setups`_ 
-  * `Step 6: Production deployments (Bonus)`_ 
+  * `Production deployments`_ 
   * `Debugging and Troubleshooting`_ 
 
 Overview
@@ -56,11 +56,13 @@ The fastest way to get going is to use `Docker Desktop`_.
 Follow the instructions on the Docker website and then return
 to this tutorial and continue with `Step 1`_.
 
-To get bonus points, `install Minikube`_, the "single-node Kubernetes
-cluster in a virtual machine on your personal computer" which you
-will need to complete `Step 6`_ where you mimic deploying to production.
 
-.. _install Minikube: https://kubernetes.io/docs/tasks/tools/install-minikube/
+.. note:: If at any point in this tutorial something doesn't work as
+  expected remember that you can set ``DEBUG=1`` for more verbose logging
+  which you can access using the ``docker logs`` command. And you can
+  always run a shell inside the container using
+  ``docker exec -ti <container> sh`` command. All important configuration
+  files are in the ``/app`` and ``/web`` directories.
 
 .. _Step 1:
 
@@ -437,16 +439,27 @@ id from `Step 1`_)::
 Step 5: Complex setups
 ----------------------
 
-- behind proxy
-- ssl termination
-- sub path
-build your own
-- custom web ui subpath
+Alerta, just like any web service, can be deployed in numerous different
+ways to suit your environment. Most commonly, it will be deployed behind
+a reverse proxy (which would be responsible for SSL termination) and perhaps
+on a sub-path such as ``/alerta`` (eg. https://monitoring.example.com/alerta/ui)
 
-.. _Step 6:
+It is beyond the scope of this introductory tutorial to step you through
+every possible scenario however, below is a list of example ``docker-compose``
+deployments that illustrate some of these scenarios:
 
-Step 6: Production deployments (Bonus)
---------------------------------------
+  * `Apache reverse proxy`_
+  * `Envoy proxy`_
+  * `nginx reverse proxy`_
+  * `Traefik proxy`_
+
+.. _Apache reverse proxy:  https://github.com/alerta/docker-alerta/tree/master/examples/apache
+.. _Envoy proxy: https://github.com/alerta/docker-alerta/tree/master/examples/envoy
+.. _nginx reverse proxy: https://github.com/alerta/docker-alerta/tree/master/examples/nginx
+.. _Traefik proxy: https://github.com/alerta/docker-alerta/tree/master/examples/traefik
+
+Production deployments
+----------------------
 
 Despite `what Docker say`_, it is not advisable to use ``docker-compose``
 for production deployments. Instead you should consider container
@@ -458,14 +471,8 @@ or `Google Cloud GKE`_.
 .. _AWS Elastic Container Service: https://aws.amazon.com/ecs/
 .. _Google Cloud GKE: https://cloud.google.com/kubernetes-engine/
 
-For the purpose of this tutorial, you can run Alerta in Kubernetes
-using a tool called ``mini-kube``.
+Next Steps
+----------
 
-
-
-Debugging and Troubleshooting
------------------------------
-
-Set ``DEBUG=1`` environment variable.
-
-Exec into the container and run ``alerta`` command-line tool.
+In a future tutorial, you will learn how to deploy Alerta with Kubernetes
+using a tool called ``mini-kube``. So stay tuned!

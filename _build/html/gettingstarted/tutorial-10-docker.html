@@ -45,8 +45,8 @@
 <li><p><a class="reference internal" href="#step-3-run-using-docker-compose">Step 3: Run using docker-compose</a></p></li>
 <li><p><a class="reference internal" href="#step-4-install-additional-plugins-or-webhooks">Step 4: Install additional plugins or webhooks</a></p></li>
 <li><p><a class="reference internal" href="#step-5-complex-setups">Step 5: Complex setups</a></p></li>
-<li><p><a class="reference internal" href="#step-6-production-deployments-bonus">Step 6: Production deployments (Bonus)</a></p></li>
-<li><p><a class="reference internal" href="#debugging-and-troubleshooting">Debugging and Troubleshooting</a></p></li>
+<li><p><a class="reference internal" href="#production-deployments">Production deployments</a></p></li>
+<li><p><a href="#id1"><span class="problematic" id="id2">`Debugging and Troubleshooting`_</span></a></p></li>
 </ul>
 </div></blockquote>
 <div class="section" id="overview">
@@ -76,9 +76,15 @@ environment where you can build Docker images and run containers.
 The fastest way to get going is to use <a class="reference external" href="https://www.docker.com/products/docker-desktop">Docker Desktop</a>.</p>
 <p>Follow the instructions on the Docker website and then return
 to this tutorial and continue with <a class="reference internal" href="#step-1">Step 1</a>.</p>
-<p>To get bonus points, <a class="reference external" href="https://kubernetes.io/docs/tasks/tools/install-minikube/">install Minikube</a>, the “single-node Kubernetes
-cluster in a virtual machine on your personal computer” which you
-will need to complete <a class="reference internal" href="#step-6">Step 6</a> where you mimic deploying to production.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If at any point in this tutorial something doesn’t work as
+expected remember that you can set <code class="docutils literal notranslate"><span class="pre">DEBUG=1</span></code> for more verbose logging
+which you can access using the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logs</span></code> command. And you can
+always run a shell inside the container using
+<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-ti</span> <span class="pre">&lt;container&gt;</span> <span class="pre">sh</span></code> command. All important configuration
+files are in the <code class="docutils literal notranslate"><span class="pre">/app</span></code> and <code class="docutils literal notranslate"><span class="pre">/web</span></code> directories.</p>
+</div>
 </div>
 <div class="section" id="step-1-run-the-container">
 <span id="step-1"></span><h2>Step 1: Run the container<a class="headerlink" href="#step-1-run-the-container" title="Permalink to this headline">¶</a></h2>
@@ -414,27 +420,33 @@ id from <a class="reference internal" href="#step-1">Step 1</a>):</p>
 </div>
 <div class="section" id="step-5-complex-setups">
 <span id="step-5"></span><h2>Step 5: Complex setups<a class="headerlink" href="#step-5-complex-setups" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>behind proxy</p></li>
-<li><p>ssl termination</p></li>
-<li><p>sub path</p></li>
+<p>Alerta, just like any web service, can be deployed in numerous different
+ways to suit your environment. Most commonly, it will be deployed behind
+a reverse proxy (which would be responsible for SSL termination) and perhaps
+on a sub-path such as <code class="docutils literal notranslate"><span class="pre">/alerta</span></code> (eg. <a class="reference external" href="https://monitoring.example.com/alerta/ui">https://monitoring.example.com/alerta/ui</a>)</p>
+<p>It is beyond the scope of this introductory tutorial to step you through
+every possible scenario however, below is a list of example <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code>
+deployments that illustrate some of these scenarios:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/alerta/docker-alerta/tree/master/examples/apache">Apache reverse proxy</a></p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/docker-alerta/tree/master/examples/envoy">Envoy proxy</a></p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/docker-alerta/tree/master/examples/nginx">nginx reverse proxy</a></p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/docker-alerta/tree/master/examples/traefik">Traefik proxy</a></p></li>
 </ul>
-<p>build your own
-- custom web ui subpath</p>
+</div></blockquote>
 </div>
-<div class="section" id="step-6-production-deployments-bonus">
-<span id="step-6"></span><h2>Step 6: Production deployments (Bonus)<a class="headerlink" href="#step-6-production-deployments-bonus" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="production-deployments">
+<h2>Production deployments<a class="headerlink" href="#production-deployments" title="Permalink to this headline">¶</a></h2>
 <p>Despite <a class="reference external" href="https://docs.docker.com/compose/production/">what Docker say</a>, it is not advisable to use <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code>
 for production deployments. Instead you should consider container
 runtime platforms such as <a class="reference external" href="https://kubernetes.io/">Kubernetes</a>, <a class="reference external" href="https://aws.amazon.com/ecs/">AWS Elastic Container Service</a>,
 or <a class="reference external" href="https://cloud.google.com/kubernetes-engine/">Google Cloud GKE</a>.</p>
-<p>For the purpose of this tutorial, you can run Alerta in Kubernetes
-using a tool called <code class="docutils literal notranslate"><span class="pre">mini-kube</span></code>.</p>
 </div>
-<div class="section" id="debugging-and-troubleshooting">
-<h2>Debugging and Troubleshooting<a class="headerlink" href="#debugging-and-troubleshooting" title="Permalink to this headline">¶</a></h2>
-<p>Set <code class="docutils literal notranslate"><span class="pre">DEBUG=1</span></code> environment variable.</p>
-<p>Exec into the container and run <code class="docutils literal notranslate"><span class="pre">alerta</span></code> command-line tool.</p>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+<p>In a future tutorial, you will learn how to deploy Alerta with Kubernetes
+using a tool called <code class="docutils literal notranslate"><span class="pre">mini-kube</span></code>. So stay tuned!</p>
 </div>
 </div>
 
