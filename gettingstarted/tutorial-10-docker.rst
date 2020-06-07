@@ -365,8 +365,10 @@ during image build time, not after the container as been deployed.
 .. _`"immutable"`: https://www.oreilly.com/radar/an-introduction-to-immutable-infrastructure/
 
 To do this you can extend the base image by creating a ``Dockerfile`` and
-using the ``FROM`` instruction. For example, to install the MS Teams webhook
+using the ``FROM`` instruction. For example, to install the `MS Teams webhook`_
 create a ``Dockerfile`` as below:
+
+.. _`MS Teams webhook`: https://github.com/alerta/alerta-contrib/tree/master/webhooks/msteams
 
 .. code-block:: yaml
 
@@ -418,7 +420,7 @@ Once again you should be able to browse to http://localhost:8080 and log
 in to the web console.
 
 To verify that the MS Teams webhook is now available, use curl to send a
-HTTP POST request to the webhook URL (replace alert_id with your alert
+HTTP POST request to the webhook URL (replace ``alert_id`` with your alert
 id from `Step 1`_)::
 
   $ curl -XPOST http://localhost:8080/api/webhooks/msteams \
@@ -430,6 +432,8 @@ id from `Step 1`_)::
     "status": "ok"
   }
 
+.. _Step 5:
+
 Step 5: Complex setups
 ----------------------
 
@@ -439,7 +443,7 @@ Step 5: Complex setups
 build your own
 - custom web ui subpath
 
-.. _step 6:
+.. _Step 6:
 
 Step 6: Production deployments (Bonus)
 --------------------------------------

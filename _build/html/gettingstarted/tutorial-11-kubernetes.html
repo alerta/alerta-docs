@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Using Docker to deploy Alerta &#8212; alerta 7.5 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="using-docker-to-deploy-alerta">
+<span id="tutorial-11"></span><h1>Using Docker to deploy Alerta<a class="headerlink" href="#using-docker-to-deploy-alerta" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial, you will learn how to deploy Alerta using
+<a class="reference internal" href="#kubernetes">Kubernetes</a>.</p>
+<p id="kubernetes"><strong>Contents</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#overview">Overview</a></p></li>
+<li><p><a class="reference internal" href="#prerequisites">Prerequisites</a></p></li>
+<li><p><a href="#id1"><span class="problematic" id="id2">`Step 1: Run the container`_</span></a></p></li>
+<li><p><a href="#id3"><span class="problematic" id="id4">`Step 2: Customise configuration`_</span></a></p></li>
+<li><p><a href="#id5"><span class="problematic" id="id6">`Step 3: Run using docker-compose`_</span></a></p></li>
+<li><p><a href="#id7"><span class="problematic" id="id8">`Step 4: Install additional plugins or webhooks`_</span></a></p></li>
+<li><p><a href="#id9"><span class="problematic" id="id10">`Step 5: Complex setups`_</span></a></p></li>
+<li><p><a href="#id11"><span class="problematic" id="id12">`Step 6: Production deployments (Bonus)`_</span></a></p></li>
+<li><p><a href="#id13"><span class="problematic" id="id14">`Debugging and Troubleshooting`_</span></a></p></li>
+</ul>
+</div></blockquote>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://hub.docker.com/r/alerta/alerta-web/">“official” Docker image</a> for Alerta has been download more
+than <a class="reference external" href="https://hub.docker.com/v2/repositories/alerta/alerta-web/">2 million times</a> and contains everything needed
+to deploy Alerta in most scenarios, such as:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Alerta API</p></li>
+<li><p>Alerta Web UI</p></li>
+<li><p>housekeeping</p></li>
+<li><p>built-in and contributed plugins</p></li>
+<li><p>built-in webhooks</p></li>
+<li><p>all auth providers “ready-to-go”</p></li>
+</ul>
+</div></blockquote>
+<p>More complex deployments can either use it as a base image and
+extend it with additional plugins, webhooks or alternatively,
+the <a class="reference external" href="https://github.com/alerta/docker-alerta/blob/master/Dockerfile">Dockerfile</a> can be used as a starting point to build your
+own base image.</p>
+</div>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>To follow this tutorial you will need access to a Docker
+environment where you can build Docker images and run containers.
+The fastest way to get going is to use <a class="reference external" href="https://www.docker.com/products/docker-desktop">Docker Desktop</a>.</p>
+<p>Follow the instructions on the Docker website and then return
+to this tutorial and continue with <a href="#id15"><span class="problematic" id="id16">`Step 1`_</span></a>.</p>
+<p>To get bonus points, <a class="reference external" href="https://kubernetes.io/docs/tasks/tools/install-minikube/">install Minikube</a>, the “single-node Kubernetes
+cluster in a virtual machine on your personal computer” which you
+will need to complete <a href="#id17"><span class="problematic" id="id18">`Step 6`_</span></a> where you mimic deploying to production.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">alerta</a></h1>
+
+
+
+<p class="blurb">monitoring system</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=alerta&repo=alerta&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a class="badge" href="https://travis-ci.org/alerta/alerta">
+    <img
+        alt="https://secure.travis-ci.org/alerta/alerta.svg?branch=master"
+        src="https://secure.travis-ci.org/alerta/alerta.svg?branch=master"
+    />
+</a>
+</p>
+
+
+
+
+<h3>
+Links
+</h3>
+<ul>
+  <li>
+    <a href="http://alerta.io" rel="me">Web</a>
+  </li>
+  <li>
+    <a href="https://twitter.com/alertaio" rel="me">Twitter</a>
+  </li>
+  <li>
+    <a href="https://gitter.im/alerta/chat" rel="me">Gitter</a>
+  </li>
+</ul>
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick-start.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server.html">Server &amp; API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui.html">Alerta Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">Alerta CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../integrations.html">Integrations &amp; Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authorization.html">Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../customer-views.html">Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../federated.html">Federated Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">Resources</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/query-syntax.html">API Query Syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/alert.html">Alert Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/heartbeat.html">Heartbeat Format</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015-2020, Nick Satterly. MIT License.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/gettingstarted/tutorial-11-kubernetes.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-44644195-3']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

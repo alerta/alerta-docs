@@ -351,7 +351,7 @@ that once deployed they should not be modified. So if you need to use a custom
 plugin or webhook not already pre-installed then you will need to install it
 during image build time, not after the container as been deployed.</p>
 <p>To do this you can extend the base image by creating a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> and
-using the <code class="docutils literal notranslate"><span class="pre">FROM</span></code> instruction. For example, to install the MS Teams webhook
+using the <code class="docutils literal notranslate"><span class="pre">FROM</span></code> instruction. For example, to install the <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/webhooks/msteams">MS Teams webhook</a>
 create a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> as below:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">FROM alerta/alerta-web</span>
 
@@ -399,11 +399,11 @@ the <code class="docutils literal notranslate"><span class="pre">image</span></c
 <p>Once again you should be able to browse to <a class="reference external" href="http://localhost:8080">http://localhost:8080</a> and log
 in to the web console.</p>
 <p>To verify that the MS Teams webhook is now available, use curl to send a
-HTTP POST request to the webhook URL (replace alert_id with your alert
+HTTP POST request to the webhook URL (replace <code class="docutils literal notranslate"><span class="pre">alert_id</span></code> with your alert
 id from <a class="reference internal" href="#step-1">Step 1</a>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/api/webhooks/msteams \
 -H &#39;Content-Type: application/json&#39; \
--H &#39;X-API-Key: vXFmZoPQJCx1gW6SHzIeIa5k8Ghejd2HyWPsxXy0&#39; \
+-H &#39;X-API-Key: docker-api-key&#39; \
 -d &#39;{&quot;action&quot;:&quot;ack&quot;,&quot;alert_id&quot;:&quot;da9b3d24-3ee3-4cdc-8a58-a6533c9e9af9&quot;}&#39;
 {
   &quot;message&quot;: &quot;status changed&quot;,
@@ -413,7 +413,7 @@ id from <a class="reference internal" href="#step-1">Step 1</a>):</p>
 </div>
 </div>
 <div class="section" id="step-5-complex-setups">
-<h2>Step 5: Complex setups<a class="headerlink" href="#step-5-complex-setups" title="Permalink to this headline">¶</a></h2>
+<span id="step-5"></span><h2>Step 5: Complex setups<a class="headerlink" href="#step-5-complex-setups" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>behind proxy</p></li>
 <li><p>ssl termination</p></li>
