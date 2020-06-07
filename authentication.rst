@@ -578,7 +578,9 @@ To restrict access to users who are associated with a particular `Keycloak role`
 .. note:: When using self-hosted authentication providers, such as Keycloak,
         it may be necessary to set the ``REQUESTS_CA_BUNDLE`` environment
         variable, supported by the Python ``requests`` package, to the self-issued
-        CA bundle to avoid SSL verification issues.
+        CA bundle to avoid `SSL verification issues`_.
+
+.. _`SSL verification issues`: https://2.python-requests.org/en/master/user/advanced/#ssl-cert-verification
 
 .. _api keys:
 
