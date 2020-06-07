@@ -575,6 +575,11 @@ To restrict access to users who are associated with a particular `Keycloak role`
 .. note:: ``ALLOWED_KEYCLOAK_ROLES`` can be an asterisk (``*``) to force
           login but *not* restrict who can login.
 
+.. note:: When using self-hosted authentication providers, such as Keycloak,
+        it may be necessary to set the ``REQUESTS_CA_BUNDLE`` environment
+        variable, supported by the Python ``requests`` package, to the self-issued
+        CA bundle to avoid SSL verification issues.
+
 .. _api keys:
 
 API Keys
