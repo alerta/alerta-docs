@@ -47,6 +47,13 @@ To install the web console::
 
     >> browse to http://localhost:8000
 
+Install the Alerta CLI
+----------------------
+
+To install the ``alerta`` command-line tool::
+
+    $ pip3 install alerta
+
 Send some alerts
 ----------------
 
