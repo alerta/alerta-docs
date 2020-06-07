@@ -21,6 +21,8 @@ The following heartbeat attributes are populated at source:
 +----------------------+---------------------------------------------------------------------------------+
 | ``tags``             | set of tags in any format eg. ``aTag``, ``aDouble:Tag``, ``a:Triple=Tag``       |
 +----------------------+---------------------------------------------------------------------------------+
+| ``attributes``       | dictionary of key-value pairs                                                   |
++----------------------+---------------------------------------------------------------------------------+
 | ``type``             | heartbeat type. only ``Heartbeat`` is currently supported                       |
 +----------------------+---------------------------------------------------------------------------------+
 | ``createTime``       | UTC date and time the heartbeat was generated in ISO 8601 format                |
@@ -48,16 +50,29 @@ Example
 ::
 
     {
-      "origin": "macbook",
+      "attributes": {
+        "environment": "Production", 
+        "group": "Network", 
+        "service": [
+          "Core", 
+          "HA"
+        ], 
+        "severity": "major"
+      }, 
+      "createTime": "2020-06-07T20:31:58.244Z", 
+      "customer": null, 
+      "href": "http://api.alerta.io/heartbeat/ea2f41e3-16c4-412f-aaf2-874e3c4c771b", 
+      "id": "ea2f41e3-16c4-412f-aaf2-874e3c4c771b", 
+      "latency": 0, 
+      "maxLatency": 2000, 
+      "origin": "cluster05", 
+      "receiveTime": "2020-06-07T20:31:58.244Z", 
+      "since": 91, 
+      "status": "ok", 
       "tags": [
-        "foo",
-        "bar",
-        "baz"
-      ],
-      "createTime": "2015-10-03T00:00:59.055Z",
-      "href": "http://api.alerta.io/heartbeat/a8b97056-8415-4b4f-83c8-e84ffcc676a3",
-      "timeout": 300,
-      "receiveTime": "2015-10-03T00:00:59.681Z",
-      "type": "Heartbeat",
-      "id": "a8b97056-8415-4b4f-83c8-e84ffcc676a3"
+        "db05", 
+        "dc2"
+      ], 
+      "timeout": 120, 
+      "type": "Heartbeat"
     }

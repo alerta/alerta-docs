@@ -259,9 +259,9 @@ Alerta API to indicate normal operation of the origin of the heartbeat.
 They can be used to ensure components of the Alerta monitoring system are
 operating normally or sent from any other source. As well as an ``origin``
 they include a ``timeout`` in seconds (after which they will be considered stale),
-and optional ``tags``.
+and optional ``tags`` and ``attributes``.
 
-They are visible in the Alerta console (*About* page) and via the ``alerta``
+They are visible in the Alerta console (*Heartbeats* page) and via the ``alerta``
 command-line tool using the ``heartbeat`` sub-command to send them, and the
 ``heartbeats`` sub-command to view them.
 

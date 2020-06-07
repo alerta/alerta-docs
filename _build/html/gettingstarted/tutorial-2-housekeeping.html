@@ -122,13 +122,23 @@ example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta heartbeats --alert
 </pre></div>
 </div>
-<p>To set the <code class="docutils literal notranslate"><span class="pre">environment</span></code> or <code class="docutils literal notranslate"><span class="pre">group</span></code> for a heartbeat alert use tags:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta heartbeat -O dc1-oem-02 -T environment:Development -T group:Network
+<p>To set the <code class="docutils literal notranslate"><span class="pre">environment</span></code>, <code class="docutils literal notranslate"><span class="pre">severity</span></code>, <code class="docutils literal notranslate"><span class="pre">service</span></code> or <code class="docutils literal notranslate"><span class="pre">group</span></code> for
+a heartbeat alert use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta heartbeat -O dc1-oem-02 -E Development -s major -S Core -g Network
 </pre></div>
 </div>
 <p>Add the above command as a cron job so that alerts are generated whenever
 a heartbeat is stale or slow:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo &quot;* * * * * root /usr/local/bin/alerta heartbeats --alert&quot; &gt;&gt;/etc/cron.d/alerta
+</pre></div>
+</div>
+<p>Stale or slow heartbeats can generate alerts, but alerts can also generate heartbeats.
+This is useful if a downstream system can only send alerts but you wish to make use
+of Alerta heartbeats to keep track of these systems.</p>
+<p>Ensure the <code class="docutils literal notranslate"><span class="pre">heartbeat</span></code> plugin is enabled and send an alert with an event of <code class="docutils literal notranslate"><span class="pre">Heartbeat</span></code>
+and it will be converted in to a heartbeat:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta send -O net02 -E Development -S Core -g Network -s informational -r net02 -e Heartbeat
+98b24ee4-d2be-4b95-b78c-42bb24a463f8 (Alert converted to heartbeat)
 </pre></div>
 </div>
 </div>

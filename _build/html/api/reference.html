@@ -1498,6 +1498,14 @@ from the <code class="docutils literal notranslate"><span class="pre">origin</sp
 <td><p>list</p></td>
 <td></td>
 </tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">attributes</span></code></p></td>
+<td><p>dict</p></td>
+<td><p>dictionary of key-value pairs</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">createTime</span></code></p></td>
+<td><p>datetime</p></td>
+<td><p>time alert was generated at the origin</p></td>
+</tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">timeout</span></code></p></td>
 <td><p>integer</p></td>
 <td><p>Seconds.</p></td>
@@ -1513,7 +1521,16 @@ from the <code class="docutils literal notranslate"><span class="pre">origin</sp
 -d <span class="s1">&#39;{</span>
 <span class="s1">      &quot;origin&quot;: &quot;cluster05&quot;,</span>
 <span class="s1">      &quot;timeout&quot;: 120,</span>
-<span class="s1">      &quot;tags&quot;: [&quot;db05&quot;, &quot;dc2&quot;]</span>
+<span class="s1">      &quot;tags&quot;: [&quot;db05&quot;, &quot;dc2&quot;],</span>
+<span class="s1">      &quot;attributes&quot;: {</span>
+<span class="s1">        &quot;environment&quot;: &quot;Production&quot;,</span>
+<span class="s1">        &quot;service&quot;: [</span>
+<span class="s1">          &quot;Core&quot;,</span>
+<span class="s1">          &quot;HA&quot;</span>
+<span class="s1">        ],</span>
+<span class="s1">        &quot;group&quot;: &quot;Network&quot;,</span>
+<span class="s1">        &quot;severity&quot;: &quot;major&quot;</span>
+<span class="s1">      }</span>
 <span class="s1">    }&#39;</span>
 </pre></div>
 </div>
@@ -1525,13 +1542,23 @@ from the <code class="docutils literal notranslate"><span class="pre">origin</sp
 </div>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;heartbeat&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:15:38.675Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Network&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Core&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;HA&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-06-07T20:31:58.244Z&quot;</span><span class="p">,</span>
     <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/heartbeat/1a3f2e0a-3c65-4199-84ae-a21fb892ccc0&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1a3f2e0a-3c65-4199-84ae-a21fb892ccc0&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/heartbeat/ea2f41e3-16c4-412f-aaf2-874e3c4c771b&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;ea2f41e3-16c4-412f-aaf2-874e3c4c771b&quot;</span><span class="p">,</span>
     <span class="nt">&quot;latency&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;maxLatency&quot;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>
     <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;cluster05&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:15:38.675Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-06-07T20:31:58.244Z&quot;</span><span class="p">,</span>
     <span class="nt">&quot;since&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
     <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -1541,7 +1568,7 @@ from the <code class="docutils literal notranslate"><span class="pre">origin</sp
     <span class="nt">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span>
     <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Heartbeat&quot;</span>
   <span class="p">},</span>
-  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1a3f2e0a-3c65-4199-84ae-a21fb892ccc0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;ea2f41e3-16c4-412f-aaf2-874e3c4c771b&quot;</span><span class="p">,</span>
   <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
 <span class="p">}</span>
 </pre></div>
@@ -1556,7 +1583,7 @@ from the <code class="docutils literal notranslate"><span class="pre">origin</sp
 </div>
 <div class="section" id="id48">
 <h4>Example Request<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/heartbeat/1a3f2e0a-3c65-4199-84ae-a21fb892ccc0 <span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/heartbeat/ea2f41e3-16c4-412f-aaf2-874e3c4c771b <span class="se">\</span>
 -H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
 </pre></div>
 </div>
@@ -1568,14 +1595,24 @@ from the <code class="docutils literal notranslate"><span class="pre">origin</sp
 </div>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;heartbeat&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:15:38.675Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Network&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Core&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;HA&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-06-07T20:31:58.244Z&quot;</span><span class="p">,</span>
     <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-    <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/heartbeat/1a3f2e0a-3c65-4199-84ae-a21fb892ccc0&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1a3f2e0a-3c65-4199-84ae-a21fb892ccc0&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/heartbeat/ea2f41e3-16c4-412f-aaf2-874e3c4c771b&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;ea2f41e3-16c4-412f-aaf2-874e3c4c771b&quot;</span><span class="p">,</span>
     <span class="nt">&quot;latency&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;maxLatency&quot;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>
     <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;cluster05&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:15:38.675Z&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;since&quot;</span><span class="p">:</span> <span class="mi">34</span><span class="p">,</span>
+    <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-06-07T20:31:58.244Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;since&quot;</span><span class="p">:</span> <span class="mi">91</span><span class="p">,</span>
     <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
     <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
       <span class="s2">&quot;db05&quot;</span><span class="p">,</span>
@@ -1612,32 +1649,25 @@ from the <code class="docutils literal notranslate"><span class="pre">origin</sp
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;heartbeats&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:17:13.922Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Network&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="s2">&quot;Core&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;HA&quot;</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-06-07T20:31:58.244Z&quot;</span><span class="p">,</span>
       <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/heartbeat/f5eb11ef-e02b-42f2-9013-6efca6eca22a&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;f5eb11ef-e02b-42f2-9013-6efca6eca22a&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/heartbeat/ea2f41e3-16c4-412f-aaf2-874e3c4c771b&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;ea2f41e3-16c4-412f-aaf2-874e3c4c771b&quot;</span><span class="p">,</span>
       <span class="nt">&quot;latency&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;web02&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:17:13.922Z&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;since&quot;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span>
-      <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s2">&quot;linux&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;dc1&quot;</span>
-      <span class="p">],</span>
-      <span class="nt">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span>
-      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Heartbeat&quot;</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-      <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:17:55.936Z&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/heartbeat/e0582765-ee64-4944-8a94-1869a079d81f&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;e0582765-ee64-4944-8a94-1869a079d81f&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;latency&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="nt">&quot;maxLatency&quot;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>
       <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;cluster05&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:17:55.936Z&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;since&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-      <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-06-07T20:31:58.244Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;since&quot;</span><span class="p">:</span> <span class="mi">136</span><span class="p">,</span>
+      <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;expired&quot;</span><span class="p">,</span>
       <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="s2">&quot;db05&quot;</span><span class="p">,</span>
         <span class="s2">&quot;dc2&quot;</span>
@@ -1647,7 +1677,7 @@ from the <code class="docutils literal notranslate"><span class="pre">origin</sp
     <span class="p">}</span>
   <span class="p">],</span>
   <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">1</span>
 <span class="p">}</span>
 </pre></div>
 </div>

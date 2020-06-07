@@ -1230,6 +1230,10 @@ Input
 +-----------------+----------+----------------------------------------------+
 | ``tags``        | list     |                                              |
 +-----------------+----------+----------------------------------------------+
+| ``attributes``  | dict     | dictionary of key-value pairs                |
++-----------------+----------+----------------------------------------------+
+| ``createTime``  | datetime | time alert was generated at the origin       |
++-----------------+----------+----------------------------------------------+
 | ``timeout``     | integer  | Seconds.                                     |
 +-----------------+----------+----------------------------------------------+
 
@@ -1244,7 +1248,16 @@ Example Request
     -d '{
           "origin": "cluster05",
           "timeout": 120,
-          "tags": ["db05", "dc2"]
+          "tags": ["db05", "dc2"],
+          "attributes": {
+            "environment": "Production",
+            "service": [
+              "Core",
+              "HA"
+            ],
+            "group": "Network",
+            "severity": "major"
+          }
         }'
 
 Example Response
@@ -1258,23 +1271,33 @@ Example Response
 
     {
       "heartbeat": {
-        "createTime": "2018-01-27T21:15:38.675Z",
-        "customer": null,
-        "href": "http://localhost:8080/heartbeat/1a3f2e0a-3c65-4199-84ae-a21fb892ccc0",
-        "id": "1a3f2e0a-3c65-4199-84ae-a21fb892ccc0",
-        "latency": 0,
-        "origin": "cluster05",
-        "receiveTime": "2018-01-27T21:15:38.675Z",
-        "since": 0,
-        "status": "ok",
+        "attributes": {
+          "environment": "Production", 
+          "group": "Network", 
+          "service": [
+            "Core", 
+            "HA"
+          ], 
+          "severity": "major"
+        }, 
+        "createTime": "2020-06-07T20:31:58.244Z", 
+        "customer": null, 
+        "href": "http://localhost:8080/heartbeat/ea2f41e3-16c4-412f-aaf2-874e3c4c771b", 
+        "id": "ea2f41e3-16c4-412f-aaf2-874e3c4c771b", 
+        "latency": 0, 
+        "maxLatency": 2000, 
+        "origin": "cluster05", 
+        "receiveTime": "2020-06-07T20:31:58.244Z", 
+        "since": 0, 
+        "status": "ok", 
         "tags": [
-          "db05",
+          "db05", 
           "dc2"
-        ],
-        "timeout": 120,
+        ], 
+        "timeout": 120, 
         "type": "Heartbeat"
-      },
-      "id": "1a3f2e0a-3c65-4199-84ae-a21fb892ccc0",
+      }, 
+      "id": "ea2f41e3-16c4-412f-aaf2-874e3c4c771b", 
       "status": "ok"
     }
 
@@ -1292,7 +1315,7 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl http://localhost:8080/heartbeat/1a3f2e0a-3c65-4199-84ae-a21fb892ccc0 \
+    $ curl http://localhost:8080/heartbeat/ea2f41e3-16c4-412f-aaf2-874e3c4c771b \
     -H 'Authorization: Key demo-key'
 
 Example Response
@@ -1306,23 +1329,33 @@ Example Response
 
     {
       "heartbeat": {
-        "createTime": "2018-01-27T21:15:38.675Z",
-        "customer": null,
-        "href": "http://localhost:8080/heartbeat/1a3f2e0a-3c65-4199-84ae-a21fb892ccc0",
-        "id": "1a3f2e0a-3c65-4199-84ae-a21fb892ccc0",
-        "latency": 0,
-        "origin": "cluster05",
-        "receiveTime": "2018-01-27T21:15:38.675Z",
-        "since": 34,
-        "status": "ok",
+        "attributes": {
+          "environment": "Production", 
+          "group": "Network", 
+          "service": [
+            "Core", 
+            "HA"
+          ], 
+          "severity": "major"
+        }, 
+        "createTime": "2020-06-07T20:31:58.244Z", 
+        "customer": null, 
+        "href": "http://localhost:8080/heartbeat/ea2f41e3-16c4-412f-aaf2-874e3c4c771b", 
+        "id": "ea2f41e3-16c4-412f-aaf2-874e3c4c771b", 
+        "latency": 0, 
+        "maxLatency": 2000, 
+        "origin": "cluster05", 
+        "receiveTime": "2020-06-07T20:31:58.244Z", 
+        "since": 91, 
+        "status": "ok", 
         "tags": [
-          "db05",
+          "db05", 
           "dc2"
-        ],
-        "timeout": 120,
+        ], 
+        "timeout": 120, 
         "type": "Heartbeat"
-      },
-      "status": "ok",
+      }, 
+      "status": "ok", 
       "total": 1
     }
 
@@ -1357,42 +1390,35 @@ Example Response
     {
       "heartbeats": [
         {
-          "createTime": "2018-01-27T21:17:13.922Z",
-          "customer": null,
-          "href": "http://localhost:8080/heartbeat/f5eb11ef-e02b-42f2-9013-6efca6eca22a",
-          "id": "f5eb11ef-e02b-42f2-9013-6efca6eca22a",
-          "latency": 0,
-          "origin": "web02",
-          "receiveTime": "2018-01-27T21:17:13.922Z",
-          "since": 45,
-          "status": "ok",
+          "attributes": {
+            "environment": "Production", 
+            "group": "Network", 
+            "service": [
+              "Core", 
+              "HA"
+            ], 
+            "severity": "major"
+          }, 
+          "createTime": "2020-06-07T20:31:58.244Z", 
+          "customer": null, 
+          "href": "http://localhost:8080/heartbeat/ea2f41e3-16c4-412f-aaf2-874e3c4c771b", 
+          "id": "ea2f41e3-16c4-412f-aaf2-874e3c4c771b", 
+          "latency": 0, 
+          "maxLatency": 2000, 
+          "origin": "cluster05", 
+          "receiveTime": "2020-06-07T20:31:58.244Z", 
+          "since": 136, 
+          "status": "expired", 
           "tags": [
-            "linux",
-            "dc1"
-          ],
-          "timeout": 120,
-          "type": "Heartbeat"
-        },
-        {
-          "createTime": "2018-01-27T21:17:55.936Z",
-          "customer": null,
-          "href": "http://localhost:8080/heartbeat/e0582765-ee64-4944-8a94-1869a079d81f",
-          "id": "e0582765-ee64-4944-8a94-1869a079d81f",
-          "latency": 0,
-          "origin": "cluster05",
-          "receiveTime": "2018-01-27T21:17:55.936Z",
-          "since": 3,
-          "status": "ok",
-          "tags": [
-            "db05",
+            "db05", 
             "dc2"
-          ],
-          "timeout": 120,
+          ], 
+          "timeout": 120, 
           "type": "Heartbeat"
         }
-      ],
-      "status": "ok",
-      "total": 2
+      ], 
+      "status": "ok", 
+      "total": 1
     }
 
 Delete a heartbeat

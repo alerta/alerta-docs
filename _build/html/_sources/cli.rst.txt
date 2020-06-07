@@ -344,12 +344,21 @@ Send or delete a heartbeat.
     $ alerta heartbeat [OPTIONS]
 
     Options:
-      -O, --origin ORIGIN  Origin of heartbeat.
-      -T, --tag TAG        List of tags eg. London, os:linux, AWS/EC2
-      --timeout SECONDS    Seconds before heartbeat is stale
-      --customer STRING    Customer
-      -D, --delete ID      Delete hearbeat using ID
-      -h, --help           Show this message and exit.
+      -O, --origin ORIGIN            Origin of heartbeat.
+      -E, --environment ENVIRONMENT  Environment eg. Production, Development
+      -s, --severity SEVERITY        Severity eg. critical, major, minor, warning
+      -S, --service SERVICE          List of affected services eg. app name, Web,
+                                     Network, Storage, Database, Security
+
+      -g, --group GROUP              Group event by type eg. OS, Performance
+      -T, --tag TAG                  List of tags eg. London, os:linux, AWS/EC2
+      --timeout SECONDS              Seconds before heartbeat is stale
+      --customer STRING              Customer
+      -D, --delete ID                Delete hearbeat using ID
+      -h, --help                     Show this message and exit.
+
+.. note:: The "environment", "severity", "service" and "group" values are only
+  used when heartbeat alerts are generated from slow or stale heartbeats.
 
 .. _cli_heartbeats:
 

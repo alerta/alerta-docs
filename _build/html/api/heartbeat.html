@@ -59,13 +59,16 @@
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tags</span></code></p></td>
 <td><p>set of tags in any format eg. <code class="docutils literal notranslate"><span class="pre">aTag</span></code>, <code class="docutils literal notranslate"><span class="pre">aDouble:Tag</span></code>, <code class="docutils literal notranslate"><span class="pre">a:Triple=Tag</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">attributes</span></code></p></td>
+<td><p>dictionary of key-value pairs</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
 <td><p>heartbeat type. only <code class="docutils literal notranslate"><span class="pre">Heartbeat</span></code> is currently supported</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">createTime</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">createTime</span></code></p></td>
 <td><p>UTC date and time the heartbeat was generated in ISO 8601 format</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">timeout</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">timeout</span></code></p></td>
 <td><p>number of seconds before heartbeat is considered stale</p></td>
 </tr>
 </tbody>
@@ -101,18 +104,31 @@ if “Customer Views” are enabled</p></td>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;macbook&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Network&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;Core&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;HA&quot;</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-06-07T20:31:58.244Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;customer&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+  <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/heartbeat/ea2f41e3-16c4-412f-aaf2-874e3c4c771b&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;ea2f41e3-16c4-412f-aaf2-874e3c4c771b&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;latency&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;maxLatency&quot;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>
+  <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;cluster05&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-06-07T20:31:58.244Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;since&quot;</span><span class="p">:</span> <span class="mi">91</span><span class="p">,</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
   <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;bar&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;baz&quot;</span>
+    <span class="s2">&quot;db05&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;dc2&quot;</span>
   <span class="p">],</span>
-  <span class="s2">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-10-03T00:00:59.055Z&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.alerta.io/heartbeat/a8b97056-8415-4b4f-83c8-e84ffcc676a3&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
-  <span class="s2">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-10-03T00:00:59.681Z&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Heartbeat&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;a8b97056-8415-4b4f-83c8-e84ffcc676a3&quot;</span>
+  <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span>
+  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Heartbeat&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
