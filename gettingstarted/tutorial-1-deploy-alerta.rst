@@ -51,9 +51,9 @@ To install MongoDB 4.0 run the following commands::
 
 Start the MongoDB server, check it is running and set it to start on reboot::
 
-    $ sudo service start mongodb
-    $ sudo service status mongodb
-    $ sudo service enable mongodb
+    $ sudo systemctl start mongod
+    $ sudo systemctl status mongod
+    $ sudo systemctl enable mongod
 
 To run Alerta we need to ensure all Python 3 dependencies are installed::
 

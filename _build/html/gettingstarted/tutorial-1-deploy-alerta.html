@@ -73,9 +73,9 @@ $ sudo apt-get install -y mongodb-org
 </pre></div>
 </div>
 <p>Start the MongoDB server, check it is running and set it to start on reboot:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo service start mongodb
-$ sudo service status mongodb
-$ sudo service enable mongodb
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo systemctl start mongod
+$ sudo systemctl status mongod
+$ sudo systemctl enable mongod
 </pre></div>
 </div>
 <p>To run Alerta we need to ensure all Python 3 dependencies are installed:</p>
