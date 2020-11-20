@@ -16,9 +16,9 @@ Tutorials
 * :ref:`Authentication & Authorization <tutorial 6>`
 * :ref:`Using Docker to deploy Alerta <tutorial 10>`
 
-.. note:: If you require help with any of the above tutorials post a question on Gitter_.
+.. note:: If you require help with any of the above tutorials post a question on Slack_.
 
-.. _Gitter: https://gitter.im/alerta/chat
+.. _Slack: https://slack.alerta.dev
 
 How-to Guides
 -------------

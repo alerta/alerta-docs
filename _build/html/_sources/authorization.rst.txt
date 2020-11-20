@@ -100,6 +100,8 @@ Use these scopes to request access to API resources.
 +------------------------+--------------------------------------------------------------+
 | ``write:alerts``       | Grants read/write access to alerts.                          |
 +------------------------+--------------------------------------------------------------+
+| ``delete:alerts`` (*)  | Required to delete alerts, unless have admin access.         |
++------------------------+--------------------------------------------------------------+
 | ``admin:alerts``       | Grants read/write to alerts for any customer.                |
 +------------------------+--------------------------------------------------------------+
 | ``read:blackouts``     | Grants read-only access to blackouts.                        |
@@ -147,6 +149,8 @@ Use these scopes to request access to API resources.
 
     ``write`` implicitly includes ``read``, and ``admin`` implicitly
     includes ``read`` and ``write``.
+
+    ``delete:alerts`` only required to delete alerts if the `DELETE_SCOPES` setting is enabled.
 
 Audit Log
 ---------

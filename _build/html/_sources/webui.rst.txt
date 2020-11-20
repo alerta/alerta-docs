@@ -21,6 +21,6 @@ the Alerta web UI.
 * :ref:`Understanding the Alert Reports <webui reports>`
 * :ref:`User preference settings <settings>`
 
-.. note:: If you require help with any of the above information post a question on Gitter_.
+.. note:: If you require help with any of the above information post a question on Slack_.
 
-.. _Gitter: https://gitter.im/alerta/chat
+.. _Slack: https://slack.alerta.dev

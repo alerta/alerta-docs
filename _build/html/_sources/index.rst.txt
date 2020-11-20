@@ -88,7 +88,7 @@ Contribute
 Support
 -------
 
-* Gitter chat room: https://gitter.im/alerta/chat
+* Slack: https://slack.alerta.dev
 * :ref:`Frequently Asked Questions <faq>`
 * Issue Tracker: https://github.com/alerta/alerta/issues
 
