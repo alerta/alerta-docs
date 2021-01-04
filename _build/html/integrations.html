@@ -4,14 +4,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Integrations &amp; Plugins &#8212; alerta 7.5 documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Integrations &amp; Plugins &#8212; alerta 8.2 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -39,7 +39,7 @@
 <p>Firstly, existing <a class="reference internal" href="#integrations"><span class="std std-ref">integrations</span></a> with well known monitoring
 tools like <a class="reference external" href="https://www.nagios.com">Nagios</a>, <a class="reference external" href="http://www.zabbix.com">Zabbix</a> and <a class="reference external" href="https://sensuapp.org">Sensu</a> make use of the Alerta API and demonstrate
 how to build integrations with other monitoring tools.</p>
-<p>Secondly, there are built-in <a class="reference internal" href="#webhooks"><span class="std std-ref">webhooks</span></a> for
+<p>Secondly, there are built-in <a class="reference internal" href="webhooks.html#webhooks"><span class="std std-ref">webhooks</span></a> for
 <a class="reference external" href="https://aws.amazon.com/cloudwatch/">AWS Cloudwatch</a>,
 <a class="reference external" href="https://www.pingdom.com">Pingdom</a>, <a class="reference external" href="https://www.pagerduty.com/">PagerDuty</a>,
 <a class="reference external" href="https://cloud.google.com/stackdriver/">Google Stackdriver</a>,
@@ -48,49 +48,42 @@ and more which provide ‘out-of-the-box’ integrations for some of the most po
 monitoring systems available.</p>
 <p>Thirdly, <a class="reference internal" href="#widgets"><span class="std std-ref">alert severity indicators</span></a> or widgets can be placed
 on any web page using <a class="reference external" href="http://oembed.com/">oEmbed</a> for easy integration with existing dashboards.</p>
-<p>Lastly, <a class="reference internal" href="#plugins"><span class="std std-ref">plugins</span></a> can be used to quickly and easily forward alerts
+<p>Lastly, <span class="xref std std-ref">plugins</span> can be used to quickly and easily forward alerts
 to or notify other systems like Slack or Hipchat.</p>
 <div class="contents local topic" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#integrations" id="id15">Integrations</a></p>
+<li><p><a class="reference internal" href="#integrations" id="id11">Integrations</a></p>
 <ul>
-<li><p><a class="reference internal" href="#core" id="id16">Core</a></p></li>
-<li><p><a class="reference internal" href="#contrib" id="id17">Contrib</a></p></li>
-<li><p><a class="reference internal" href="#external" id="id18">External</a></p></li>
-<li><p><a class="reference internal" href="#bi-directional" id="id19">Bi-directional</a></p></li>
+<li><p><a class="reference internal" href="#core" id="id12">Core</a></p></li>
+<li><p><a class="reference internal" href="#contrib" id="id13">Contrib</a></p></li>
+<li><p><a class="reference internal" href="#external" id="id14">External</a></p></li>
+<li><p><a class="reference internal" href="#bi-directional" id="id15">Bi-directional</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#webhooks" id="id20">Webhooks</a></p>
+<li><p><a class="reference internal" href="#webhooks" id="id16">Webhooks</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id5" id="id21">AWS CloudWatch</a></p></li>
-<li><p><a class="reference internal" href="#grafana" id="id22">Grafana</a></p></li>
-<li><p><a class="reference internal" href="#graylog" id="id23">Graylog</a></p></li>
-<li><p><a class="reference internal" href="#new-relic" id="id24">New Relic</a></p></li>
-<li><p><a class="reference internal" href="#id6" id="id25">PagerDuty</a></p></li>
-<li><p><a class="reference internal" href="#id7" id="id26">Pingdom</a></p></li>
-<li><p><a class="reference internal" href="#id8" id="id27">Prometheus Alertmanager</a></p></li>
-<li><p><a class="reference internal" href="#riemann" id="id28">Riemann</a></p></li>
-<li><p><a class="reference internal" href="#severdensity" id="id29">SeverDensity</a></p></li>
-<li><p><a class="reference internal" href="#slack" id="id30">Slack</a></p></li>
-<li><p><a class="reference internal" href="#id9" id="id31">Google Stackdriver</a></p></li>
-<li><p><a class="reference internal" href="#telegram" id="id32">Telegram</a></p></li>
-<li><p><a class="reference internal" href="#custom-webhooks" id="id33">Custom Webhooks</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id17">AWS CloudWatch</a></p></li>
+<li><p><a class="reference internal" href="#grafana" id="id18">Grafana</a></p></li>
+<li><p><a class="reference internal" href="#graylog" id="id19">Graylog</a></p></li>
+<li><p><a class="reference internal" href="#new-relic" id="id20">New Relic</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id21">PagerDuty</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id22">Pingdom</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id23">Prometheus Alertmanager</a></p></li>
+<li><p><a class="reference internal" href="#riemann" id="id24">Riemann</a></p></li>
+<li><p><a class="reference internal" href="#severdensity" id="id25">SeverDensity</a></p></li>
+<li><p><a class="reference internal" href="#slack" id="id26">Slack</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id27">Google Stackdriver</a></p></li>
+<li><p><a class="reference internal" href="#telegram" id="id28">Telegram</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#widgets" id="id34">Widgets</a></p></li>
-<li><p><a class="reference internal" href="#plugins" id="id35">Plugins</a></p>
-<ul>
-<li><p><a class="reference internal" href="#id12" id="id36">Core</a></p></li>
-<li><p><a class="reference internal" href="#id13" id="id37">Contrib</a></p></li>
-</ul>
-</li>
+<li><p><a class="reference internal" href="#widgets" id="id29">Widgets</a></p></li>
 </ul>
 </div>
 <div class="section" id="integrations">
-<span id="id2"></span><h2><a class="toc-backref" href="#id15">Integrations</a><a class="headerlink" href="#integrations" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2><a class="toc-backref" href="#id11">Integrations</a><a class="headerlink" href="#integrations" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="core">
-<h3><a class="toc-backref" href="#id16">Core</a><a class="headerlink" href="#core" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">Core</a><a class="headerlink" href="#core" title="Permalink to this headline">¶</a></h3>
 <p>There are a few core integrations which have been developed to showcase how easy
 it is to get alerts or events from other tools into Alerta. They are:</p>
 <ul class="simple">
@@ -103,12 +96,12 @@ it is to get alerts or events from other tools into Alerta. They are:</p>
 </ul>
 </div>
 <div class="section" id="contrib">
-<h3><a class="toc-backref" href="#id17">Contrib</a><a class="headerlink" href="#contrib" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id13">Contrib</a><a class="headerlink" href="#contrib" title="Permalink to this headline">¶</a></h3>
 <p>There are several more integrations available in the <a class="reference external" href="https://github.com/alerta/alerta-contrib">contrib</a> repo which may
 be useful. They are:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/sqs">Amazon SQS</a> - receive alerts from SQS that were sent using the SNS core plugin</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/mailer">E-mail</a> - send emails after a hold-time has expired (requires the <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp">AMQP</a> message queue core plugin)</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/mailer">E-mail</a> - send emails after a hold-time has expired (requires the <a href="#id42"><span class="problematic" id="id43">`AMQP`_</span></a> message queue core plugin)</p></li>
 <li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/opsweekly">Opsweekly</a> - query Alerta to generate Opsweekly reports</p></li>
 <li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/pinger">Pinger</a> - generate ping alerts from list of network resources being pinged</p></li>
 <li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations/snmptrap">SNMP Trap</a> - generate alerts from SNMPv1 and SNMPv2 sources</p></li>
@@ -118,7 +111,7 @@ be useful. They are:</p>
 </ul>
 </div>
 <div class="section" id="external">
-<h3><a class="toc-backref" href="#id18">External</a><a class="headerlink" href="#external" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id14">External</a><a class="headerlink" href="#external" title="Permalink to this headline">¶</a></h3>
 <p>Some third-party monitoring tools have built-in support for Alerta. They are:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://elastalert.readthedocs.io/en/latest/ruletypes.html#alerta">elastalert</a> - alerting on anomalies, spikes, or other patterns of interest from data in Elasticsearch</p></li>
@@ -127,7 +120,7 @@ be useful. They are:</p>
 </ul>
 </div>
 <div class="section" id="bi-directional">
-<span id="bidirection-integ"></span><h3><a class="toc-backref" href="#id19">Bi-directional</a><a class="headerlink" href="#bi-directional" title="Permalink to this headline">¶</a></h3>
+<span id="bidirection-integ"></span><h3><a class="toc-backref" href="#id15">Bi-directional</a><a class="headerlink" href="#bi-directional" title="Permalink to this headline">¶</a></h3>
 <p>Bi-directional integration is where the system integrating with Alerta
 provides information that enables Alerta to link back to the originating
 system, either via an external link or simply a hostname and reference ID.</p>
@@ -160,25 +153,24 @@ the use of bi-directional integration in different ways.</p>
 </div>
 </div>
 <div class="section" id="webhooks">
-<span id="id4"></span><h2><a class="toc-backref" href="#id20">Webhooks</a><a class="headerlink" href="#webhooks" title="Permalink to this headline">¶</a></h2>
+<span id="id4"></span><h2><a class="toc-backref" href="#id16">Webhooks</a><a class="headerlink" href="#webhooks" title="Permalink to this headline">¶</a></h2>
 <p>Webhooks are a way of integrating with other systems by triggering <a class="reference external" href="https://en.wikipedia.org/wiki/Webhook">HTTP callbacks</a>
 to the Alerta server API when an event occurs.</p>
 <div class="contents local topic" id="built-in-webhooks">
 <p class="topic-title">Built-in Webhooks</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#id5" id="id38">AWS CloudWatch</a></p></li>
-<li><p><a class="reference internal" href="#grafana" id="id39">Grafana</a></p></li>
-<li><p><a class="reference internal" href="#graylog" id="id40">Graylog</a></p></li>
-<li><p><a class="reference internal" href="#new-relic" id="id41">New Relic</a></p></li>
-<li><p><a class="reference internal" href="#id6" id="id42">PagerDuty</a></p></li>
-<li><p><a class="reference internal" href="#id7" id="id43">Pingdom</a></p></li>
-<li><p><a class="reference internal" href="#id8" id="id44">Prometheus Alertmanager</a></p></li>
-<li><p><a class="reference internal" href="#riemann" id="id45">Riemann</a></p></li>
-<li><p><a class="reference internal" href="#severdensity" id="id46">SeverDensity</a></p></li>
-<li><p><a class="reference internal" href="#slack" id="id47">Slack</a></p></li>
-<li><p><a class="reference internal" href="#id9" id="id48">Google Stackdriver</a></p></li>
-<li><p><a class="reference internal" href="#telegram" id="id49">Telegram</a></p></li>
-<li><p><a class="reference internal" href="#custom-webhooks" id="id50">Custom Webhooks</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id30">AWS CloudWatch</a></p></li>
+<li><p><a class="reference internal" href="#grafana" id="id31">Grafana</a></p></li>
+<li><p><a class="reference internal" href="#graylog" id="id32">Graylog</a></p></li>
+<li><p><a class="reference internal" href="#new-relic" id="id33">New Relic</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id34">PagerDuty</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id35">Pingdom</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id36">Prometheus Alertmanager</a></p></li>
+<li><p><a class="reference internal" href="#riemann" id="id37">Riemann</a></p></li>
+<li><p><a class="reference internal" href="#severdensity" id="id38">SeverDensity</a></p></li>
+<li><p><a class="reference internal" href="#slack" id="id39">Slack</a></p></li>
+<li><p><a class="reference internal" href="#id9" id="id40">Google Stackdriver</a></p></li>
+<li><p><a class="reference internal" href="#telegram" id="id41">Telegram</a></p></li>
 </ul>
 </div>
 <div class="admonition note">
@@ -187,7 +179,7 @@ to the Alerta server API when an event occurs.</p>
 <p>Please follow this page for more information on how to pass your api-key : <a class="reference external" href="https://docs.alerta.io/en/latest/authentication.html#api-keys">https://docs.alerta.io/en/latest/authentication.html#api-keys</a></p>
 </div>
 <div class="section" id="id5">
-<h3><a class="toc-backref" href="#id38">AWS CloudWatch</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id30">AWS CloudWatch</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>Alerta can be configured to receive AWS CloudWatch alarms by subscribing the Alerta
 API endpoint to an SNS topic.</p>
 <p>For details on how to set this up see the <a class="reference external" href="http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html">Sending Amazon SNS Messages to
@@ -199,7 +191,7 @@ HTTP/HTTPS Endpoints</a> page and in the <cite>Endpoint</cite> input box append
 <p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/cloudwatch?api-key=xxxxx</span></code></p>
 </div>
 <div class="section" id="grafana">
-<h3><a class="toc-backref" href="#id39">Grafana</a><a class="headerlink" href="#grafana" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id31">Grafana</a><a class="headerlink" href="#grafana" title="Permalink to this headline">¶</a></h3>
 <p>Alerta can be configured to receive Grafana alerts by adding a webhook
 endpoint to the Notification Channels.</p>
 <p>For details on how to set this up see <a class="reference external" href="http://docs.grafana.org/alerting/notifications/#webhook">Grafana webhook</a> page and in the
@@ -214,11 +206,11 @@ endpoint to the Notification Channels.</p>
 <p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/grafana?api-key=xxx&amp;environment=Production&amp;service=Web&amp;timeout=3600</span></code></p>
 </div>
 <div class="section" id="graylog">
-<h3><a class="toc-backref" href="#id40">Graylog</a><a class="headerlink" href="#graylog" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id32">Graylog</a><a class="headerlink" href="#graylog" title="Permalink to this headline">¶</a></h3>
 <p>TBC</p>
 </div>
 <div class="section" id="new-relic">
-<h3><a class="toc-backref" href="#id41">New Relic</a><a class="headerlink" href="#new-relic" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id33">New Relic</a><a class="headerlink" href="#new-relic" title="Permalink to this headline">¶</a></h3>
 <p>Alerta can be configured to receive New Relic incidents by adding a webhook
 endpoint to the Notification Channels.</p>
 <p>For details on how to set this up see <a class="reference external" href="https://docs.newrelic.com/docs/alerts/new-relic-alerts/managing-notification-channels/notification-channels-controlling-where-send-alerts">New Relic webhook</a> page and in the
@@ -229,7 +221,7 @@ endpoint to the Notification Channels.</p>
 <p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/newrelic?api-key=xxxxx</span></code></p>
 </div>
 <div class="section" id="id6">
-<h3><a class="toc-backref" href="#id42">PagerDuty</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id34">PagerDuty</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>Alerta can be configured to receive PagerDuty incident-based webhooks – any
 change to the <code class="docutils literal notranslate"><span class="pre">status</span></code> or <code class="docutils literal notranslate"><span class="pre">assigned_to_user</span></code> of an incident will cause an
 outgoing message to be sent.</p>
@@ -241,7 +233,7 @@ requires the webhook URL append <code class="file docutils literal notranslate">
 <p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/pagerduty?api-key=xxxxx</span></code></p>
 </div>
 <div class="section" id="id7">
-<h3><a class="toc-backref" href="#id43">Pingdom</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id35">Pingdom</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>Alerta can be configured to receive Pingdom URL check alerts by adding a webhook
 alerting endpoint that calls the Alerta API.</p>
 <p>For details on how to set this up see the <a class="reference external" href="https://support.pingdom.com/Knowledgebase/Article/View/94/0/users-and-alerting-end-points">Pingdom webhook</a> page and in the
@@ -252,12 +244,12 @@ alerting endpoint that calls the Alerta API.</p>
 <p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/pingdom?api-key=xxxx</span></code></p>
 </div>
 <div class="section" id="id8">
-<h3><a class="toc-backref" href="#id44">Prometheus Alertmanager</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id36">Prometheus Alertmanager</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <p>Alerta can be configured as a webhook receiver in Alertmanager.</p>
 <p>For details on how to set this up see the <a class="reference external" href="https://github.com/alerta/prometheus-config">Prometheus Config GitHub Repo</a></p>
 </div>
 <div class="section" id="riemann">
-<h3><a class="toc-backref" href="#id45">Riemann</a><a class="headerlink" href="#riemann" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id37">Riemann</a><a class="headerlink" href="#riemann" title="Permalink to this headline">¶</a></h3>
 <p>Alerta can be configured to receive Riemann events. The integration makes
 no assumptions about the format of the Riemann events and consumes
 standard events. If events are decorated with additional metadata (eg. tags,
@@ -268,7 +260,7 @@ environment, group, etc) then these will be used.</p>
 <p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/riemann?api-key=xxxxx</span></code></p>
 </div>
 <div class="section" id="severdensity">
-<h3><a class="toc-backref" href="#id46">SeverDensity</a><a class="headerlink" href="#severdensity" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id38">SeverDensity</a><a class="headerlink" href="#severdensity" title="Permalink to this headline">¶</a></h3>
 <p>Alerta can be configured to receive SeverDensity alerts by adding a webhook
 endpoint to the Notification Preferences.</p>
 <p>For details on how to set this up see <a class="reference external" href="https://support.serverdensity.com/hc/en-us/articles/201017737-Setting-up-webhooks">SeverDensity webhook</a> page and in the
@@ -279,11 +271,11 @@ endpoint to the Notification Preferences.</p>
 <p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/serverdensity?api-key=xxxxx</span></code></p>
 </div>
 <div class="section" id="slack">
-<h3><a class="toc-backref" href="#id47">Slack</a><a class="headerlink" href="#slack" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id39">Slack</a><a class="headerlink" href="#slack" title="Permalink to this headline">¶</a></h3>
 <p>TBC</p>
 </div>
 <div class="section" id="id9">
-<h3><a class="toc-backref" href="#id48">Google Stackdriver</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id40">Google Stackdriver</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <p>Alerta can be configured to receive Google Stackdriver incidents by adding a
 webhook endpoint to the notifications configuration.</p>
 <p>For details on how to set this up see <a class="reference external" href="https://cloud.google.com/monitoring/support/notification-options#webhooks">Stackdriver webhook</a> page and in the
@@ -294,86 +286,25 @@ webhook endpoint to the notifications configuration.</p>
 <p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/stackdriver?api-key=xxxxx</span></code></p>
 </div>
 <div class="section" id="telegram">
-<h3><a class="toc-backref" href="#id49">Telegram</a><a class="headerlink" href="#telegram" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id41">Telegram</a><a class="headerlink" href="#telegram" title="Permalink to this headline">¶</a></h3>
 <p>Alerta can be configured to receive <a class="reference external" href="https://core.telegram.org/bots/api#callbackquery">Telegram callback queries</a> from the inline
-buttons in the <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram">Telegram Bot</a> plugin.</p>
-<p>For details on how to set this up see <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram">Telegram Bot</a> page and for the
+buttons in the <a href="#id44"><span class="problematic" id="id45">`Telegram Bot`_</span></a> plugin.</p>
+<p>For details on how to set this up see <a href="#id46"><span class="problematic" id="id47">`Telegram Bot`_</span></a> page and for the
 <code class="docutils literal notranslate"><span class="pre">TELEGRAM_WEBHOOK_URL</span></code> setting append <code class="file docutils literal notranslate"><span class="pre">/webhooks/telegram</span></code> to the Alerta API URL.</p>
 <p><strong>Example Telegram Webhook URL</strong></p>
 <p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/telegram</span></code></p>
 <p><strong>Example Telegram Webhook URL with authentication</strong></p>
 <p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/telegram?api-key=xxxxx</span></code></p>
 </div>
-<div class="section" id="custom-webhooks">
-<h3><a class="toc-backref" href="#id50">Custom Webhooks</a><a class="headerlink" href="#custom-webhooks" title="Permalink to this headline">¶</a></h3>
-<p>Custom webhooks are a simple but effective way of adding support for direct integration
-to any system via a webhook without having to modify the core source code.  They are
-written in python and are required to implement all methods of a base class.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">incoming</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">query_string</span><span class="p">:</span> <span class="n">ImmutableMultiDict</span><span class="p">,</span> <span class="n">payload</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Alert</span><span class="p">,</span> <span class="n">JSON</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Parse webhook path, query string and/or payload in JSON or plain text and</span>
-<span class="sd">    return an alert or a custom JSON response.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-</pre></div>
-</div>
-<p>They are loaded into memory when the Alerta API starts up and dynamically add an
-API endpoint path to the list of available webhooks at <code class="file docutils literal notranslate"><span class="pre">/webhooks/&lt;webhook_name&gt;</span></code>
-and trigger for that and all subpaths of that URL. eg. <code class="file docutils literal notranslate"><span class="pre">/webhooks/&lt;webhook_name&gt;/&lt;alert_id&gt;</span></code></p>
-<p>To set this up follow the instructions for triggering a webhook in the system to be
-integrated with and for the webhook URL append <code class="file docutils literal notranslate"><span class="pre">/webhooks/&lt;webhook_name&gt;</span></code> to
-to the Alerta API URL but replace <code class="docutils literal notranslate"><span class="pre">&lt;webhook_name&gt;</span></code> with the name of the of the system.</p>
-<p>Next, write the webhook python code. For more information on how to write the python
-code see the <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/webhooks">webhook examples</a> in the contrib repo or follow the tutorial.</p>
-<p><strong>Example Custom Webhook URL for Sentry</strong></p>
-<p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/sentry</span></code></p>
-<p>Code for the webhook can be found in the contrib repo <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/webhooks/sentry">Sentry webhook</a> directory.</p>
-</div>
 </div>
 <div class="section" id="widgets">
-<span id="id10"></span><h2><a class="toc-backref" href="#id34">Widgets</a><a class="headerlink" href="#widgets" title="Permalink to this headline">¶</a></h2>
+<span id="id10"></span><h2><a class="toc-backref" href="#id29">Widgets</a><a class="headerlink" href="#widgets" title="Permalink to this headline">¶</a></h2>
 <p>Add an alert severity indicator (aka. widget) to any dashboard using the
 Oembed API endpoint. The severity indicator is coloured with the maximum
 severity for that alert query filter and has a count for the total number
 of matching alerts for each severity.</p>
 <p>Multiple severity indicators can be placed on the same page each for a
 different environment, service or group. See the <a class="reference external" href="https://github.com/alerta/alerta/blob/master/examples/oembed.html">example oembed web page</a>.</p>
-</div>
-<div class="section" id="plugins">
-<span id="id11"></span><h2><a class="toc-backref" href="#id35">Plugins</a><a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Plug-in_(computing)">Plugin extensions</a> are an easy way of adding new features to Alerta that meet
-a specific end-user requirement.</p>
-<div class="section" id="id12">
-<h3><a class="toc-backref" href="#id36">Core</a><a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://github.com/alerta/alerta/tree/master/alerta/plugins">Core plugins</a> have been developed as examples of common use-cases.</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/plugins/reject.py">Reject</a> - reject alerts before processing. used to enforce custom alert format policies</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/plugins/blackout.py">Blackout</a> - suppression handler that will drop alerts that match a blackout period</p></li>
-</ul>
-</div>
-<div class="section" id="id13">
-<h3><a class="toc-backref" href="#id37">Contrib</a><a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
-<p>More than two dozen <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins">contributed plugins</a> are made available for popular tools. Some
-of the most popular are:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp">AMQP</a> - publish alerts to an AMQP fanout topic after processing</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/cachet">Cachet</a> - create incidents for display on Cachet status page</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/enhance">Enhance</a> - add new information to an alert based on existing information</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/geoip">GeoIP Location</a> - use remote IP address to submitted alert to add location data</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/hipchat">HipChat</a> - send alerts to HipChat room</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/influxdb">InfluxDB</a> - send alerts to InfluxDB for graphing with Grafana</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/logstash">Logstash/Kibana</a> - send alerts to logstash agent after processing</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/normalise">Normalise</a> - ensure alerts a formatted in a consistent manner</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty">PagerDuty Plugin</a> - send alerts to PagerDuty (webhooks used to receive callbacks)</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/prometheus">Prometheus Silencer</a> - silence alerts in Prometheus Alertmanager if ack’ed in Alerta</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pushover">Pushover.net</a> - send alerts to Pushover.net</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/slack">Slack</a> - send alerts to Slack room</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/sns">AWS SNS</a> - publish alerts to SNS topic after processing</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/syslog">Syslog Logger</a> - send alerts via syslog</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram">Telegram Bot</a> - send alerts to Telegram channel</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/twilio">Twilio SMS</a> - send alerts via SMS using Twilio</p></li>
-</ul>
-</div>
 </div>
 </div>
 
@@ -400,18 +331,6 @@ of the most popular are:</p>
 
 
 
-
-
-    
-
-<p>
-<a class="badge" href="https://travis-ci.org/alerta/alerta">
-    <img
-        alt="https://secure.travis-ci.org/alerta/alerta.svg?branch=master"
-        src="https://secure.travis-ci.org/alerta/alerta.svg?branch=master"
-    />
-</a>
-</p>
 
 
 
@@ -442,13 +361,14 @@ Links
 <li class="toctree-l2"><a class="reference internal" href="#integrations">Integrations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#webhooks">Webhooks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#widgets">Widgets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#plugins">Plugins</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webhooks.html">Custom Webhooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="federated.html">Federated Alerta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
@@ -483,7 +403,15 @@ Links
 <script>$('#searchbox').show(0);</script>
 
 
+<h3 class="donation">Donate/support</h3>
 
+
+
+<p>
+<a class="badge" href="https://github.com/sponsors/satterly">
+<img src="https://img.shields.io/badge/donate-%E2%9D%A4%C2%A0-ff69b4.svg?style=flat" alt="Donate">
+</a>
+</p>
 
 
 
@@ -494,10 +422,10 @@ Links
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2015-2020, Nick Satterly. MIT License.
+      &copy;2015-2021, Nick Satterly. Creative Commons Attribution-ShareAlike 3.0 License.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

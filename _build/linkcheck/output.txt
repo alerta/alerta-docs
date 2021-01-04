@@ -1,0 +1,124 @@
+authentication.rst:286: [broken] http://alerta.example.com: HTTPConnectionPool(host='alerta.example.com', port=80): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10c5212e8>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+authentication.rst:530: [broken] http://alerta.example.org: HTTPConnectionPool(host='alerta.example.org', port=80): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10c5212e8>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+authentication.rst:284: [redirected permanently] http://alerta.io to https://alerta.io/
+faq.rst:121: [broken] http://api.mongodb.com/python/current/examples/mod_wsgi.html: 403 Client Error: Forbidden for url: https://api.mongodb.com/python/current/examples/mod_wsgi.html
+release-notes.rst:183: [broken] http://api.mongodb.com/python/current/examples/tls.html: 403 Client Error: Forbidden for url: https://api.mongodb.com/python/current/examples/tls.html
+about.rst:21: [redirected permanently] http://akfpartners.com/growth-blog/fault-isolative-architectures-or-swimlaning to https://akfpartners.com/growth-blog/fault-isolative-architectures-or-swimlaning
+server.rst:6: [redirected with Found] http://apigee.com/about/resources/webcasts/restful-api-design-second-edition to https://cloud.google.com/apigee/
+venv/lib/python3.7/site-packages/alabaster-0.7.12.dist-info/DESCRIPTION.rst:11: [redirected with Found] http://alabaster.readthedocs.io to https://alabaster.readthedocs.io/en/latest/
+venv/lib/python3.7/site-packages/argh-0.26.2.dist-info/DESCRIPTION.rst:2: [redirected with Found] http://argh.readthedocs.org/en/latest/ to https://argh.readthedocs.io/en/latest/
+venv/lib/python3.7/site-packages/argh-0.26.2.dist-info/DESCRIPTION.rst:2: [redirected with Found] http://argh.readthedocs.org/en/stable/ to https://argh.readthedocs.io/en/stable/
+venv/lib/python3.7/site-packages/argh-0.26.2.dist-info/DESCRIPTION.rst:223: [redirected with Found] http://argh.readthedocs.org to https://argh.readthedocs.io/en/latest/
+release-notes.rst:169: [redirected permanently] http://csrc.nist.gov/groups/SNS/rbac/ to https://csrc.nist.gov/projects/role-based-access-control
+server.rst:6: [redirected permanently] http://developers.squarespace.com/what-is-json/ to https://developers.squarespace.com/what-is-json/
+integrations.rst:190: [redirected permanently] http://docs.grafana.org/alerting/notifications/#webhook to https://grafana.com/docs/grafana/latest/alerting/notifications/#webhook
+deployment.rst:91: [redirected with Found] http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html to https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-custom-domain-walkthrough.html
+integrations.rst:170: [redirected with Found] http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html to https://docs.aws.amazon.com/sns/latest/dg/sns-http-https-endpoint-as-subscriber.html
+authorization.rst:6: [redirected permanently] http://csrc.nist.gov/groups/SNS/rbac/faq.html to https://csrc.nist.gov/projects/role-based-access-control/faqs
+design.rst:33: [redirected permanently] http://en.wikipedia.org/wiki/Robustness_principle to https://en.wikipedia.org/wiki/Robustness_principle
+api/reference.rst:513: [redirected permanently] http://docs.mongodb.org/manual/reference/operator/query/ to https://docs.mongodb.com/manual/reference/operator/query/
+deployment.rst:149: [redirected permanently] http://docs.mongodb.org/manual/core/replica-set-high-availability/ to https://docs.mongodb.com/manual/core/replica-set-high-availability/
+venv/lib/python3.7/site-packages/argh-0.26.2.dist-info/DESCRIPTION.rst:222: [redirected permanently] http://github.com/neithere/argh/ to https://github.com/neithere/argh/
+venv/lib/python3.7/site-packages/alabaster-0.7.12.dist-info/DESCRIPTION.rst:11: [redirected permanently] http://fabfile.org to https://www.fabfile.org/
+deployment.rst:9: [redirected permanently] http://flask.pocoo.org/docs/1.0/deploying/ to https://flask.palletsprojects.com/en/1.0.x/deploying/
+deployment.rst:259: [broken] http://flask.pocoo.org/docs/0.10/quickstart/#deploying-to-a-web-server: 404 Client Error: Not Found for url: https://flask.palletsprojects.com/en/0.10.x/quickstart/
+gettingstarted/tutorial-3-plugins.rst:100: [broken] http://docs.openstack.org/developer/stevedore/tutorial/creating_plugins.html#a-plugin-base-class: Anchor 'a-plugin-base-class' not found
+gettingstarted/tutorial-10-docker.rst:323: [broken] http://localhost:8080: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10c5b2128>: Failed to establish a new connection: [Errno 61] Connection refused'))
+gettingstarted/tutorial-10-docker.rst:138: [broken] http://localhost:8080/: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10c597400>: Failed to establish a new connection: [Errno 61] Connection refused'))
+integrations.rst:24: [redirected permanently] http://oembed.com/ to https://oembed.com/
+release-notes.rst:197: [redirected permanently] http://grafana.org/ to https://grafana.com/
+venv/lib/python3.7/site-packages/argh-0.26.2.dist-info/DESCRIPTION.rst:227: [redirected permanently] http://github.com/neithere/argh/issues/ to https://github.com/neithere/argh/issues/
+venv/lib/python3.7/site-packages/argh-0.26.2.dist-info/DESCRIPTION.rst:269: [redirected permanently] http://gnu.org/licenses/ to http://www.gnu.org/licenses/
+venv/lib/python3.7/site-packages/alabaster-0.7.12.dist-info/DESCRIPTION.rst:11: [redirected permanently] http://paramiko.org to https://www.paramiko.org/
+release-notes.rst:215: [redirected permanently] http://prometheus.io/docs/alerting/alertmanager/ to https://prometheus.io/docs/alerting/latest/alertmanager/
+release-notes.rst:158: [redirected permanently] http://pythonwheels.com/ to https://pythonwheels.com/
+venv/lib/python3.7/site-packages/argh-0.26.2.dist-info/DESCRIPTION.rst:224: [redirected permanently] http://pypi.python.org/pypi/argh to https://pypi.org/project/argh/
+faq.rst:121: [redirected permanently] http://stackoverflow.com/questions/31030307/why-is-pymongo-3-giving-serverselectiontimeouterror to https://stackoverflow.com/questions/31030307/why-is-pymongo-3-giving-serverselectiontimeouterror
+venv/lib/python3.7/site-packages/alabaster-0.7.12.dist-info/DESCRIPTION.rst:4: [redirected with Found] http://sphinx-doc.org to https://www.sphinx-doc.org/en/master/
+venv/lib/python3.7/site-packages/alabaster-0.7.12.dist-info/DESCRIPTION.rst:11: [redirected permanently] http://pyinvoke.org to https://www.pyinvoke.org/
+integrations.rst:73: [redirected permanently] http://www.cisco.com/c/en/us/td/docs/routers/access/wireless/software/guide/SysMsgLogging.html to https://www.cisco.com/c/en/us/td/docs/routers/access/wireless/software/guide/SysMsgLogging.html
+resources.rst:20: [redirected with Found] http://www.admin-magazine.com/Archive/2018/46/Make-better-use-of-Prometheus-with-Grafana-Telegraf-and-Alerta to https://www.admin-magazine.com/Archive/2018/46/Make-better-use-of-Prometheus-with-Grafana-Telegraf-and-Alerta
+venv/lib/python3.7/site-packages/argh-0.26.2.dist-info/DESCRIPTION.rst:228: [redirected with Found] http://groups.google.com/group/argh-users to http://groups.google.com/forum/#!forum/argh-users
+server.rst:185: [redirected permanently] http://www.drools.org/ to https://www.drools.org/
+authentication.rst:325: [redirected permanently] http://tools.ietf.org/html/draft-ietf-oauth-v2-22 to https://tools.ietf.org/html/draft-ietf-oauth-v2-22
+design.rst:21: [redirected permanently] http://www.itu.int/rec/T-REC-X.733/en to https://www.itu.int/rec/T-REC-X.733/en
+api/alert.rst:141: [redirected permanently] http://tools.ietf.org/html/rfc5674#section-2 to https://tools.ietf.org/html/rfc5674#section-2
+about.rst:6: [redirected with Found] http://www.theguardian.com/ to https://www.theguardian.com/international
+integrations.rst:8: [redirected permanently] http://www.zabbix.com to https://www.zabbix.com/
+venv/lib/python3.7/site-packages/pytz-2020.1.dist-info/DESCRIPTION.rst:587: [broken] http://www.twinsun.com/tz/tz-link.htm: 404 Client Error: Not Found for url: http://www.twinsun.com/tz/tz-link.htm
+authentication.rst:368: [broken] https://alerta.example.com: HTTPSConnectionPool(host='alerta.example.com', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10c4f46d8>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+venv/lib/python3.7/site-packages/argh-0.26.2.dist-info/DESCRIPTION.rst:253: [redirected permanently] https://api.flattr.com/button/flattr-badge-large.png to https://button.flattr.com/flattr-badge-large.png
+resources.rst:22: [redirected permanently] http://www.linux-magazin.de/ausgaben/2018/05/prometheus-add-ons/ to https://www.linux-magazin.de/ausgaben/2018/05/prometheus-add-ons/
+faq.rst:121: [broken] https://api.mongodb.com/python/current/faq.html#is-pymongo-fork-safe: 403 Client Error: Forbidden for url: https://api.mongodb.com/python/current/faq.html
+faq.rst:101: [broken] https://api.mongodb.com/python/current/faq.html#multiprocessing: 403 Client Error: Forbidden for url: https://api.mongodb.com/python/current/faq.html
+server.rst:185: [redirected permanently] http://www.espertech.com/ to https://www.espertech.com/
+resources.rst:20: [redirected permanently] http://www.linux-magazin.de/author/mloschwitz/ to https://www.linux-magazin.de/author/mloschwitz/
+resources.rst:29: [broken] https://ccdcoe.org/sites/default/files/multimedia/pdf/Frankenstack_MILCOM_IEEE_2017_CCDCOE.pdf: 404 Client Error: Not Found for url: https://ccdcoe.org/sites/default/files/multimedia/pdf/Frankenstack_MILCOM_IEEE_2017_CCDCOE.pdf
+venv/lib/python3.7/site-packages/chardet-3.0.4.dist-info/DESCRIPTION.rst:47: [redirected with Found] https://chardet.readthedocs.io/ to https://chardet.readthedocs.io/en/latest/
+authentication.rst:464: [redirected with Found] https://console.developers.google.com to https://accounts.google.com/ServiceLogin?service=cloudconsole&passive=1209600&osid=1&continue=https://console.developers.google.com/&followup=https://console.developers.google.com/
+integrations.rst:16: [redirected permanently] https://cloud.google.com/stackdriver/ to https://cloud.google.com/products/operations
+resources.rst:11: [redirected permanently] https://conferences.oreilly.com/velocity/velocityeu2012/public/schedule/detail/26576 to https://www.oreilly.com/conferences/
+resources.rst:11: [redirected permanently] https://conferences.oreilly.com/velocity/velocityeu2012 to https://www.oreilly.com/conferences/
+venv/lib/python3.7/site-packages/chardet-3.0.4.dist-info/DESCRIPTION.rst:2: [redirected permanently] https://coveralls.io/r/chardet/chardet to https://coveralls.io/github/chardet/chardet
+venv/lib/python3.7/site-packages/argh-0.26.2.dist-info/DESCRIPTION.rst:2: [redirected permanently] https://coveralls.io/r/neithere/argh to https://coveralls.io/github/neithere/argh
+deployment.rst:36: [redirected permanently] https://developer.mozilla.org/en-US/docs/Security/MixedContent/How_to_fix_website_with_mixed_content to https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content/How_to_fix_website_with_mixed_content
+configuration.rst:915: [redirected permanently] https://devcenter.heroku.com/articles/mongohq to https://devcenter.heroku.com/articles/ormongo
+faq.rst:21: [broken] https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin: Anchor 'Access-Control-Allow-Origin' not found
+authentication.rst:325: [redirected permanently] https://developers.google.com/accounts/docs/OpenIDConnect to https://developers.google.com/identity/protocols/oauth2/openid-connect
+webui/configuration.rst:12: [broken] https://docs.angularjs.org/guide/module#configuration-blocks: Anchor 'configuration-blocks' not found
+integrations.rst:48: [redirected with Found] https://docs.influxdata.com/kapacitor/latest/nodes/alert_node/#alerta to https://docs.influxdata.com/kapacitor/v1.5/nodes/alert_node/#alerta
+quick-start.rst:16: [broken] https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/#using-deb-packages-recommended: Anchor 'using-deb-packages-recommended' not found
+authentication.rst:353: [redirected permanently] https://docs.microsoft.com/en-us/azure/active-directory/develop/about-microsoft-identity-platform to https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-overview
+quick-start.rst:22: [broken] https://docs.mongodb.com/master/installation/#tutorials: Anchor 'tutorials' not found
+deployment.rst:244: [redirected permanently] https://docs.vagrantup.com/v2/boxes.html to https://www.vagrantup.com/docs/boxes
+configuration.rst:171: [redirected permanently] https://docs.mongodb.org/v3.0/reference/connection-string/#standard-connection-string-format to https://docs.mongodb.com/v3.0/reference/connection-string/#standard-connection-string-format
+integrations.rst:217: [redirected permanently] https://docs.newrelic.com/docs/alerts/new-relic-alerts/managing-notification-channels/notification-channels-controlling-where-send-alerts to https://docs.newrelic.com/docs/alerts-applied-intelligence/new-relic-alerts/alert-notifications/notification-channels-control-where-send-alerts
+venv/lib/python3.7/site-packages/argh-0.26.2.dist-info/DESCRIPTION.rst:250: [broken] https://flattr.com/submit/auto?user_id=neithere&url=http%3A%2F%2Fpypi.python.org%2Fpypi%2Fargh: 404 Client Error: Not Found for url: https://flattr.com/submit/auto?user_id=neithere&url=http%3A%2F%2Fpypi.python.org%2Fpypi%2Fargh
+deployment.rst:254: [broken] https://github.com/alerta/alerta#deploy-to-the-cloud: Anchor 'deploy-to-the-cloud' not found
+server.rst:84: [broken] https://github.com/alerta/alerta-contrib/blob/master/plugins/hipchat: 404 Client Error: Not Found for url: https://github.com/alerta/alerta-contrib/blob/master/plugins/hipchat
+server.rst:84: [redirected permanently] https://github.com/alerta/alerta-contrib/blob/master/plugins/twilio to https://github.com/alerta/alerta-contrib/tree/master/plugins/twilio
+server.rst:84: [redirected permanently] https://github.com/alerta/alerta-contrib/blob/master/plugins/slack to https://github.com/alerta/alerta-contrib/tree/master/plugins/slack
+integrations.rst:442: [broken] https://github.com/alerta/alerta-contrib/tree/master/plugins/hipchat: 404 Client Error: Not Found for url: https://github.com/alerta/alerta-contrib/tree/master/plugins/hipchat
+quick-start.rst:64: [redirected with Found] https://github.com/alerta/alerta-docs/issues/new to https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Falerta%2Falerta-docs%2Fissues%2Fnew
+development.rst:79: [broken] https://github.com/alerta/alerta-ruby: 404 Client Error: Not Found for url: https://github.com/alerta/alerta-ruby
+integrations.rst:132: [broken] https://github.com/alerta/alerta/blob/master/alerta/webhooks/grafana.py#L39-L43: Anchor 'L39-L43' not found
+integrations.rst:130: [broken] https://github.com/alerta/alerta/blob/master/alerta/webhooks/cloudwatch.py#L39-L40: Anchor 'L39-L40' not found
+integrations.rst:133: [broken] https://github.com/alerta/alerta/blob/master/alerta/webhooks/newrelic.py#L33-L37: Anchor 'L33-L37' not found
+integrations.rst:135: [broken] https://github.com/alerta/alerta/blob/master/alerta/webhooks/prometheus.py#L62-L65: Anchor 'L62-L65' not found
+deployment.rst:254: [broken] https://github.com/alerta/angular-alerta-webui#deploy-to-the-cloud: Anchor 'deploy-to-the-cloud' not found
+gettingstarted/tutorial-10-docker.rst:154: [broken] https://github.com/alerta/docker-alerta/blob/master/README.md#environment-variables: Anchor 'environment-variables' not found
+faq.rst:91: [redirected permanently] https://github.com/alerta/nagios3-alerta to https://github.com/alerta/nagios-alerta
+cli.rst:605: [redirected permanently] https://github.com/alerta/python-alerta/issues to https://github.com/alerta/python-alerta-client/issues
+cli.rst:605: [redirected permanently] https://github.com/alerta/python-alerta/pulls to https://github.com/alerta/python-alerta-client/pulls
+integrations.rst:50: [redirected permanently] https://github.com/alerta/sensu-alerta to https://github.com/alerta/sensu-alerta-handler
+authentication.rst:301: [redirected permanently] https://github.com/blog/674-introducing-organizations to https://github.blog/2010-06-29-introducing-organizations/
+integrations.rst:93: [redirected with Found] https://github.com/firehol/netdata/wiki/Alerta-monitoring-system to https://github.com/netdata/netdata/wiki
+faq.rst:121: [broken] https://github.com/search?q=org%3Aalerta+WSGIApplicationGroup&type=Code: 500 Server Error: Internal Server Error for url: https://github.com/search?q=org%3Aalerta+WSGIApplicationGroup&type=Code
+authentication.rst:200: [redirected permanently] https://github.com/rohe/pysaml2/blob/master/src/saml2/config.py to https://github.com/IdentityPython/pysaml2/blob/master/src/saml2/config.py
+venv/lib/python3.7/site-packages/chardet-3.0.4.dist-info/DESCRIPTION.rst:62: [redirected permanently] https://github.com/sigmavirus24/charade to https://github.com/sv24-archive/charade
+resources.rst:29: [redirected with Found] https://ieeexplore.ieee.org/xpl/mostRecentIssue.jsp?punumber=8125230 to https://ieeexplore.ieee.org/xpl/conhome/8125230/proceeding
+gettingstarted/tutorial-11-kubernetes.rst:50: [redirected with Found] https://kubernetes.io/docs/tasks/tools/install-minikube/ to https://minikube.sigs.k8s.io/docs/start/
+gettingstarted/tutorial-10-docker.rst:442: [broken] https://monitoring.example.com/alerta/ui: HTTPSConnectionPool(host='monitoring.example.com', port=443): Max retries exceeded with url: /alerta/ui (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10c315dd8>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+authentication.rst:569: [broken] https://keycloak.gitbooks.io/documentation/server_admin/topics/roles.html: 404 Client Error: Book keycloak/documentation not found for url: https://keycloak.gitbooks.io/documentation/content/server_admin/topics/roles.html
+authentication.rst:357: [redirected with Found] https://portal.azure.com/ to https://portal.azure.com/Error/UE_404?aspxerrorpath=/
+integrations.rst:16: [redirected permanently] https://prometheus.io/docs/alerting/alertmanager/ to https://prometheus.io/docs/alerting/latest/alertmanager/
+venv/lib/python3.7/site-packages/argh-0.26.2.dist-info/DESCRIPTION.rst:2: [redirected permanently] https://pypi.python.org/pypi/argh to https://pypi.org/project/argh/
+server.rst:117: [redirected permanently] https://prometheus.io/docs/alerting/alertmanager/#silences to https://prometheus.io/docs/alerting/latest/alertmanager/#silences
+venv/lib/python3.7/site-packages/chardet-3.0.4.dist-info/DESCRIPTION.rst:40: [redirected permanently] https://pypi.python.org/pypi/chardet to https://pypi.org/project/chardet/
+authentication.rst:158: [redirected with Found] https://pysaml2.readthedocs.io to https://pysaml2.readthedocs.io/en/latest/
+integrations.rst:300: [broken] https://support.serverdensity.com/hc/en-us/articles/201017737-Setting-up-webhooks: 404 Client Error: Not Found for url: https://support.serverdensity.com/hc/en-us/articles/201017737-Setting-up-webhooks
+index.rst:91: [redirected with Found] https://slack.alerta.dev to https://alerta.slack.com/join/shared_invite/zt-ms87wqqa-7jlKqfm3g647SnF9legv4Q
+resources.rst:24: [broken] https://the-arm.com/riemann-learnings-29466513eb5f: HTTPSConnectionPool(host='the-arm.com', port=443): Max retries exceeded with url: /riemann-learnings-29466513eb5f (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10c4f4320>: Failed to establish a new connection: [Errno 61] Connection refused'))
+resources.rst:24: [broken] https://the-arm.com/@javame: HTTPSConnectionPool(host='the-arm.com', port=443): Max retries exceeded with url: /@javame (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x10c4f4da0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+integrations.rst:256: [redirected permanently] https://support.pingdom.com/Knowledgebase/Article/View/94/0/users-and-alerting-end-points to https://documentation.solarwinds.com/en/success_center/pingdom/default.htm#cshid=pd-rd_gen
+integrations.rst:8: [redirected permanently] https://sensuapp.org to http://sensu.io/
+gettingstarted/tutorial-1-deploy-alerta.rst:21: [redirected with Found] https://uwsgi-docs.readthedocs.io to https://uwsgi-docs.readthedocs.io/en/latest/
+venv/lib/python3.7/site-packages/chardet-3.0.4.dist-info/DESCRIPTION.rst:2: [redirected permanently] https://warehouse.python.org/project/chardet/ to https://pypi.org/project/chardet/
+deployment.rst:244: [redirected permanently] https://www.docker.com/whatisdocker to https://www.docker.com/why-docker
+authentication.rst:513: [redirected permanently] https://www.google.co.uk/intx/en_au/work/apps/business/ to https://workspace.google.com/index.html
+authorization.rst:205: [redirected permanently] https://www.loggly.com/docs/http-endpoint/ to https://documentation.solarwinds.com/en/Success_Center/loggly/default.htm#cshid=loggly_http-endpoint
+api/query-syntax.rst:154: [redirected permanently] https://www.postgresql.org/docs/9.6/static/functions-matching.html#FUNCTIONS-POSIX-REGEXP to https://www.postgresql.org/docs/9.6/functions-matching.html#FUNCTIONS-POSIX-REGEXP
+configuration.rst:159: [redirected permanently] https://www.postgresql.org/docs/9.6/static/libpq-connect.html to https://www.postgresql.org/docs/9.6/libpq-connect.html
+deployment.rst:149: [redirected permanently] https://www.postgresql.org/docs/current/static/high-availability.html to https://www.postgresql.org/docs/current/high-availability.html
+resources.rst:34: [redirected permanently] https://www.vttresearch.com/ to https://www.vttresearch.com/en
+resources.rst:29: [redirected permanently] https://www.ttu.ee/ to https://www.taltech.ee/
