@@ -266,7 +266,7 @@ from a Debian `vagrant box`_, an `AWS EC2 instance`_,
 .. _web UI to Heroku: https://github.com/alerta/angular-alerta-webui#deploy-to-the-cloud
 .. _AWS EC2: https://github.com/alerta/alerta-cloudformation
 .. _Docker: https://github.com/alerta/docker-alerta
-.. _Docker Alpine: https://github.com/mytaxi/docker-alpine-alerta
+.. _Docker Alpine: https://github.com/bl1nk/docker-alpine-alerta
 .. _Packer: https://github.com/alerta/packer-templates
 .. _Flask deploy: http://flask.pocoo.org/docs/0.10/quickstart/#deploying-to-a-web-server
 .. _Ansible: https://github.com/ramshankarjaiswal/ansible/tree/master/roles/alerta
