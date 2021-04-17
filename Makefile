@@ -46,6 +46,7 @@ help:
 	@echo "  pseudoxml  to make pseudoxml-XML files for display purposes"
 	@echo "  linkcheck  to check all external links for integrity"
 	@echo "  doctest    to run all doctests embedded in the documentation (if enabled)"
+	@echo "  tree       show directories with reST files"
 
 clean:
 	rm -rf $(BUILDDIR)/*
@@ -66,7 +67,7 @@ singlehtml:
 	@echo "Build finished. The HTML page is in $(BUILDDIR)/singlehtml."
 
 livehtml:
-	$(SPHINXAUTOBUILD) -b html -i ".git/*" $(ALLSPHINXOPTS) $(BUILDDIR)/html
+	$(SPHINXAUTOBUILD) -b html --re-ignore ".git/*" --open-browser --port 7000 $(ALLSPHINXOPTS) $(BUILDDIR)/html
 
 pickle:
 	$(SPHINXBUILD) -b pickle $(ALLSPHINXOPTS) $(BUILDDIR)/pickle
@@ -179,3 +180,6 @@ pseudoxml:
 	$(SPHINXBUILD) -b pseudoxml $(ALLSPHINXOPTS) $(BUILDDIR)/pseudoxml
 	@echo
 	@echo "Build finished. The pseudo-XML files are in $(BUILDDIR)/pseudoxml."
+
+tree:
+	@tree -P "*.rst" -L 2

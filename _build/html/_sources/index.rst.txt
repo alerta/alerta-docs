@@ -59,6 +59,8 @@ The required API key is ``demo-key``.
    authentication
    authorization
    deployment
+   plugins
+   webhooks
    customer-views
    federated
    conventions

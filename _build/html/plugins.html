@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plug-ins &#8212; alerta 8.2 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Custom Webhooks" href="webhooks.html" />
+    <link rel="prev" title="Deployment" href="deployment.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="plug-ins">
+<span id="plugins"></span><h1>Plug-ins<a class="headerlink" href="#plug-ins" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<span id="id2"></span><h2>Plugins<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Plug-in_(computing)">Plugin extensions</a> are an easy way of adding new features to Alerta that meet
+a specific end-user requirement.</p>
+<div class="section" id="core">
+<h3>Core<a class="headerlink" href="#core" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/alerta/alerta/tree/master/alerta/plugins">Core plugins</a> have been developed as examples of common use-cases.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/plugins/reject.py">Reject</a> - reject alerts before processing. used to enforce custom alert format policies</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/plugins/blackout.py">Blackout</a> - suppression handler that will drop alerts that match a blackout period</p></li>
+</ul>
+</div>
+<div class="section" id="contrib">
+<h3>Contrib<a class="headerlink" href="#contrib" title="Permalink to this headline">¶</a></h3>
+<p>More than two dozen <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins">contributed plugins</a> are made available for popular tools. Some
+of the most popular are:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp">AMQP</a> - publish alerts to an AMQP fanout topic after processing</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/cachet">Cachet</a> - create incidents for display on Cachet status page</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/enhance">Enhance</a> - add new information to an alert based on existing information</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/geoip">GeoIP Location</a> - use remote IP address to submitted alert to add location data</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/hipchat">HipChat</a> - send alerts to HipChat room</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/influxdb">InfluxDB</a> - send alerts to InfluxDB for graphing with Grafana</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/logstash">Logstash/Kibana</a> - send alerts to logstash agent after processing</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/normalise">Normalise</a> - ensure alerts a formatted in a consistent manner</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty">PagerDuty Plugin</a> - send alerts to PagerDuty (webhooks used to receive callbacks)</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/prometheus">Prometheus Silencer</a> - silence alerts in Prometheus Alertmanager if ack’ed in Alerta</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pushover">Pushover.net</a> - send alerts to Pushover.net</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/slack">Slack</a> - send alerts to Slack room</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/sns">AWS SNS</a> - publish alerts to SNS topic after processing</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/syslog">Syslog Logger</a> - send alerts via syslog</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram">Telegram Bot</a> - send alerts to Telegram channel</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/twilio">Twilio SMS</a> - send alerts via SMS using Twilio</p></li>
+</ul>
+<p>custom error responses</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">alerta</a></h1>
+
+
+
+<p class="blurb">monitoring system</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=alerta&repo=alerta&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+
+<h3>
+Links
+</h3>
+<ul>
+  <li>
+    <a href="http://alerta.io" rel="me">Web</a>
+  </li>
+  <li>
+    <a href="https://twitter.com/alertaio" rel="me">Twitter</a>
+  </li>
+  <li>
+    <a href="https://slack.alerta.dev" rel="me">Slack</a>
+  </li>
+</ul>
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui.html">Alerta Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Plug-ins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="webhooks.html">Custom Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="federated.html">Federated Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/query-syntax.html">API Query Syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/alert.html">Alert Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/heartbeat.html">Heartbeat Format</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release-notes.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+<h3 class="donation">Donate/support</h3>
+
+
+
+<p>
+<a class="badge" href="https://github.com/sponsors/satterly">
+<img src="https://img.shields.io/badge/donate-%E2%9D%A4%C2%A0-ff69b4.svg?style=flat" alt="Donate">
+</a>
+</p>
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015-2021, Nick Satterly. Creative Commons Attribution-ShareAlike 3.0 License.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/plugins.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-44644195-3']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>
