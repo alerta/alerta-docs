@@ -2156,6 +2156,36 @@ Example Request
 Management
 ----------
 
+Manifest
+~~~~~~~~
+
+::
+
+    GET /management/manifest
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/management/manifest
+
+Example Response
+++++++++++++++++
+
+::
+
+    200 OK
+
+.. code-block:: json
+
+  {
+    "build": "PROD", 
+    "date": "2021-11-22T23:46:52Z", 
+    "release": "8.6.2", 
+    "revision": "ecfe6ff2295ddc1a01be5aaeeef7dd9159fdfcf9"
+  }
+
 .. _mgmt_get_metrics:
 
 Get metrics
