@@ -2,8 +2,8 @@ name: Publish
 
 on:
   push:
-    tags:
-    - 'v*'
+    # tags:
+    # - 'v*'
 
 env:
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
