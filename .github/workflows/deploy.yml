@@ -9,7 +9,7 @@ env:
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
 jobs:
-  test:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -19,7 +19,7 @@ jobs:
       - name: build
         id: build
         run:
-          make html
+          sphinx-build -b html -d _build/doctrees . _build/html
 
       - uses: EndBug/add-and-commit@v7
         with:
