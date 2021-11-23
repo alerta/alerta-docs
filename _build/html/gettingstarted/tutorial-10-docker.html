@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Using Docker to deploy Alerta &#8212; alerta 8.2 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -47,7 +47,7 @@
 <li><p><a class="reference internal" href="#step-4-install-additional-plugins-or-webhooks">Step 4: Install additional plugins or webhooks</a></p></li>
 <li><p><a class="reference internal" href="#step-5-complex-setups">Step 5: Complex setups</a></p></li>
 <li><p><a class="reference internal" href="#production-deployments">Production deployments</a></p></li>
-<li><p><a href="#id1"><span class="problematic" id="id2">`Debugging and Troubleshooting`_</span></a></p></li>
+<li><p><a href="#system-message-1"><span class="problematic" id="problematic-1">`Debugging and Troubleshooting`_</span></a></p></li>
 </ul>
 </div></blockquote>
 <section id="overview">
@@ -85,7 +85,7 @@ which you can access using the <code class="docutils literal notranslate"><span 
 always run a shell inside the container using
 <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-ti</span> <span class="pre">&lt;container&gt;</span> <span class="pre">sh</span></code> command. All important configuration
 files are in the <code class="docutils literal notranslate"><span class="pre">/app</span></code> and <code class="docutils literal notranslate"><span class="pre">/web</span></code> directories.</p>
-</div>
+</aside>
 </section>
 <section id="step-1-run-the-container">
 <span id="step-1"></span><h2>Step 1: Run the container<a class="headerlink" href="#step-1-run-the-container" title="Permalink to this headline">¶</a></h2>
@@ -156,7 +156,7 @@ the following:</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Keep a copy of the returned alert id. You will need this in <a class="reference internal" href="#step-4">Step 4</a>.</p>
-</div>
+</aside>
 <p>And finally, try browsing to the web UI using <a class="reference external" href="http://localhost:8080/">http://localhost:8080/</a></p>
 </section>
 <section id="step-2-customise-configuration">
@@ -196,7 +196,7 @@ enable <code class="docutils literal notranslate"><span class="pre">DEBUG</span>
 <p>Use the above command for this tutorial but remember to set your
 <code class="docutils literal notranslate"><span class="pre">ADMIN_PASSWORD</span></code> and <code class="docutils literal notranslate"><span class="pre">ADMIN_KEY</span></code> to something different when deploying
 to your environment.</p>
-</div>
+</aside>
 <p>The default admin username is “alerta”. This can be set using <code class="docutils literal notranslate"><span class="pre">ADMIN_USERS</span></code> which
 allows you to set one or more admin users to be created at container launch time:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker run --name alerta-web \
@@ -239,9 +239,9 @@ an exernal <code class="docutils literal notranslate"><span class="pre">alertad.
 <p>Create a file called <code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code> in your current working directory
 and we will include all of the environment variable settings from above
 and a few more, so you can see how they compare:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DEBUG</span><span class="o">=</span><span class="kc">True</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DEBUG</span><span class="o">=</span><span class="bp">True</span>
 <span class="n">DATABASE_URL</span><span class="o">=</span><span class="s1">&#39;postgres://alerta:al3rt8@db:5432/alerta&#39;</span>
-<span class="n">AUTH_REQUIRED</span><span class="o">=</span><span class="kc">True</span>
+<span class="n">AUTH_REQUIRED</span><span class="o">=</span><span class="bp">True</span>
 <span class="n">ADMIN_USERS</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;alice&#39;</span><span class="p">,</span><span class="s1">&#39;bob&#39;</span><span class="p">,</span><span class="s1">&#39;charlotte&#39;</span><span class="p">,</span><span class="s1">&#39;dave&#39;</span><span class="p">]</span>
 <span class="n">ADMIN_PASSWORD</span><span class="o">=</span><span class="s1">&#39;Pa55w0rd&#39;</span>
 <span class="n">ADMIN_KEY</span><span class="o">=</span><span class="s1">&#39;docker-api-key&#39;</span>
@@ -260,7 +260,7 @@ become Python lists, <code class="docutils literal notranslate"><span class="pre
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You may first need to stop your previous Alerta container.</p>
-</div>
+</aside>
 <p>You should see that if you log out of the web UI you will be forced
 to login if you want to continue. This proves that the <code class="docutils literal notranslate"><span class="pre">AUTH_REQUIRED</span></code>
 setting was read from the supplied configuration file. Excellent!</p>

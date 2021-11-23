@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Alert timeouts, heartbeats and Housekeeping &#8212; alerta 8.2 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -86,7 +86,7 @@ script does that actually requires root access):</p>
 <p class="admonition-title">Tip</p>
 <p>Your path to the alerta command-line tool may be different. Check
 the path with <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">which</span> <span class="pre">alerta</span></code></p>
-</div>
+</aside>
 </section>
 <section id="step-2-alert-timeouts">
 <h2>Step 2: Alert Timeouts<a class="headerlink" href="#step-2-alert-timeouts" title="Permalink to this headline">¶</a></h2>
@@ -98,7 +98,7 @@ considered to be stale and the status changed to “expired”.</p>
 <p>The alert <code class="docutils literal notranslate"><span class="pre">lastReceiveTime</span></code> is used to determine alert expiry. This
 is so that alerts that continue to be sent within the timeout period
 will never expire.</p>
-</div>
+</aside>
 <p>In addition to expiring timed-out alerts, the script in step 1 is
 also responsible for deleting “closed” or “expired” alerts more than
 2 hours old and deleting alerts with severity “informational” that

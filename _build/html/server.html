@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Server &amp; API &#8212; alerta 8.2 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -48,8 +48,8 @@ processed using <a class="reference internal" href="#postreceive"><span class="s
 <p>There are several <a class="reference internal" href="integrations.html#integrations"><span class="std std-ref">integrations</span></a> with popular monitoring
 tools available and <a class="reference internal" href="webhooks.html#webhooks"><span class="std std-ref">webhooks</span></a> can be used to trivially
 integrate with AWS Prometheus, Grafana, PagerDuty and many more.</p>
-<section id="event-processing">
-<span id="id1"></span><h2>Event Processing<a class="headerlink" href="#event-processing" title="Permalink to this headline">¶</a></h2>
+<section id="event-processing-1">
+<span id="event-processing"></span><h2>Event Processing<a class="headerlink" href="#event-processing-1" title="Permalink to this headline">¶</a></h2>
 <p>Alerta comes <cite>out-of-the-box</cite> with key features designed to reduce the burden of
 alert management. When an event is received it it is processed in the following
 way:</p>
@@ -116,8 +116,8 @@ for Telegram, Zabbix, Prometheus and many others can be found on the
 <a class="reference internal" href="integrations.html#bidirection-integ"><span class="std std-ref">Integrations &amp; Plugins</span></a> page.</p>
 </section>
 </section>
-<section id="blackout-periods">
-<span id="id3"></span><h2>Blackout Periods<a class="headerlink" href="#blackout-periods" title="Permalink to this headline">¶</a></h2>
+<section id="blackout-periods-1">
+<span id="blackout-periods"></span><h2>Blackout Periods<a class="headerlink" href="#blackout-periods-1" title="Permalink to this headline">¶</a></h2>
 <p>An alert that is received during a <span class="target" id="index-0"></span>blackout period
 is suppressed. That is, it is received by Alerta and a <code class="docutils literal notranslate"><span class="pre">202</span> <span class="pre">Accepted</span></code> status
 code is returned however this means that even though the alert has been accepted,
@@ -176,8 +176,8 @@ used to update key attributes of the existing alert (like <code class="docutils 
 <code class="docutils literal notranslate"><span class="pre">event</span></code>, <code class="docutils literal notranslate"><span class="pre">value</span></code>, <code class="docutils literal notranslate"><span class="pre">text</span></code> and <code class="docutils literal notranslate"><span class="pre">lastReceiveTime</span></code>) and the new alert
 is not shown.</p>
 </section>
-<section id="state-based-browser">
-<span id="id4"></span><h2>State-based Browser<a class="headerlink" href="#state-based-browser" title="Permalink to this headline">¶</a></h2>
+<section id="state-based-browser-1">
+<span id="state-based-browser"></span><h2>State-based Browser<a class="headerlink" href="#state-based-browser-1" title="Permalink to this headline">¶</a></h2>
 <p>Alerta is called state-based because it will <strong>automatically</strong> <em>change
 the alert status</em> based on the current and previous severity of alerts
 and subsequent user actions.</p>
@@ -203,7 +203,7 @@ the priority they deserve.</p>
 <p>To take full advantage of the state-based browser it is recommended to
 implement the timeout of <code class="docutils literal notranslate"><span class="pre">expired</span></code> alerts using the <a class="reference internal" href="deployment.html#housekeeping"><span class="std std-ref">House Keeping</span></a>
 script.</p>
-</div>
+</aside>
 </section>
 <section id="alert-history">
 <h2>Alert History<a class="headerlink" href="#alert-history" title="Permalink to this headline">¶</a></h2>
@@ -280,12 +280,12 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Server &amp; API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#event-processing">Event Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#event-processing-1">Event Processing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#plugins">Plugins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#blackout-periods">Blackout Periods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#blackout-periods-1">Blackout Periods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#de-duplication">De-Duplication</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#simple-correlation">Simple Correlation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#state-based-browser">State-based Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#state-based-browser-1">State-based Browser</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#alert-history">Alert History</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#heartbeats">Heartbeats</a></li>
 </ul>

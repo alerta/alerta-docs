@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Suppressing Alerts using Blackouts &#8212; alerta 8.2 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -79,14 +79,14 @@ active blackout periods. At a minimum, a blackout period must define
 an alert <code class="docutils literal notranslate"><span class="pre">environment</span></code> to suppress.</p>
 <p>To demonstrate how to suppress all alerts for the <code class="docutils literal notranslate"><span class="pre">Production</span></code>
 environment run the following commands:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta send -r host05:/dev/disk1 -e FsInodeUtil -s major -E Production -S System <span class="se">\</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta send -r host05:/dev/disk1 -e FsInodeUtil -s major -E Production -S System <span class="se">\</span>
 -g OS -t <span class="s1">&#39;/dev/disk1 inode utilisation high.&#39;</span>
 <span class="go">ed8dd6b3-37a5-4687-8a98-99d318eb6c37 (indeterminate -&gt; major)</span>
 
-<span class="gp">$ </span>alerta blackout --environment Production
+<span class="gp">$</span> alerta blackout --environment Production
 <span class="go">26997703-6705-457a-b603-0c151762129c</span>
 
-<span class="gp">$ </span>alerta send -r host05:/dev/disk1 -e FsInodeUtil -s major -E Production -S System <span class="se">\</span>
+<span class="gp">$</span> alerta send -r host05:/dev/disk1 -e FsInodeUtil -s major -E Production -S System <span class="se">\</span>
 -g OS -t <span class="s1">&#39;/dev/disk1 inode utilisation high.&#39;</span>
 <span class="go">217ebb7e-b51a-4f15-b8b6-852c5e965894 (Suppressed alert during blackout period)</span>
 </pre></div>
@@ -95,7 +95,7 @@ environment run the following commands:</p>
 the response was instead to indicate that the alert matched a blackout
 period and would be suppressed.</p>
 <p>To confirm that the blackout period is active run:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta blackouts
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta blackouts
 <span class="go">ID       CUSTOMER         ENVIRONMENT      SERVICE          RESOURCE         EVENT            GROUP            TAGS                     STATUS   START               DURATION</span>
 <span class="go">26997703 *                Production       *                *                *                *                *                        active   2017/08/01 08:27:03 3600s</span>
 </pre></div>
@@ -107,13 +107,13 @@ above matches the id returned from the <code class="docutils literal notranslate
 <h2>Step 2: Blackout by Service or Group<a class="headerlink" href="#step-2-blackout-by-service-or-group" title="Permalink to this headline">¶</a></h2>
 <p>Blanket alert suppression can be acheived by defining a blackout period
 based on <code class="docutils literal notranslate"><span class="pre">service</span></code> or <code class="docutils literal notranslate"><span class="pre">group</span></code>:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta blackout -E Development -S Network --duration <span class="m">86400</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta blackout -E Development -S Network --duration <span class="m">86400</span>
 <span class="go">51ca8a3b-39fd-4315-a748-9150c63632aa</span>
 
-<span class="gp">$ </span>alerta blackout -E Development -g Performance
+<span class="gp">$</span> alerta blackout -E Development -g Performance
 <span class="go">06beb220-26ac-4c8a-9e23-bd05911a13b2</span>
 
-<span class="gp">$ </span>alerta blackouts
+<span class="gp">$</span> alerta blackouts
 <span class="go">ID       CUSTOMER         ENVIRONMENT      SERVICE          RESOURCE         EVENT            GROUP            TAGS                     STATUS   START               DURATION</span>
 <span class="go">51ca8a3b *                Development      Network          *                *                *                *                        active   2017/08/01 21:02:14 86400s</span>
 <span class="go">06beb220 *                Development      *                *                *                Performance      *                        active   2017/08/01 21:03:36 3600s</span>
@@ -140,10 +140,10 @@ ID       CUSTOMER         ENVIRONMENT      SERVICE          RESOURCE         EVE
 blackouts based on <code class="docutils literal notranslate"><span class="pre">resource</span></code> or <code class="docutils literal notranslate"><span class="pre">event</span></code> don’t meet the requirements
 it is possible to define a blackout rule based on <code class="docutils literal notranslate"><span class="pre">tags</span></code> for maximum
 flexibility.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta blackout --environment Production --tag blackout
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta blackout --environment Production --tag blackout
 <span class="go">f4fc4ba5-a36f-4508-bd01-5550124ce26f</span>
 
-<span class="gp">$ </span>alerta send -r host05:/dev/disk1 -e FsInodeUtil -s major -E Production -S System <span class="se">\</span>
+<span class="gp">$</span> alerta send -r host05:/dev/disk1 -e FsInodeUtil -s major -E Production -S System <span class="se">\</span>
 -g OS -t <span class="s1">&#39;/dev/disk1 inode utilisation high.&#39;</span> --tag blackout
 <span class="go">488ea442-73b6-4b28-bd3e-dd0ae281d094 (Suppressed alert during blackout period)</span>
 </pre></div>
@@ -153,7 +153,7 @@ flexibility.</p>
 <p>Add the “blackout” <code class="docutils literal notranslate"><span class="pre">tag</span></code> dynamically using a pre-receive hook to make
 alert suppression dynamic based on some lookup table, which could be managed
 externally to Alerta.</p>
-</div>
+</aside>
 </section>
 <section id="step-5-accept-alerts-during-blackout-periods">
 <h2>Step 5: Accept alerts during Blackout Periods<a class="headerlink" href="#step-5-accept-alerts-during-blackout-periods" title="Permalink to this headline">¶</a></h2>

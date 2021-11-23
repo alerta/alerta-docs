@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Deployment &#8212; alerta 8.2 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -34,8 +34,8 @@
 
           <div class="body" role="main">
             
-  <section id="deployment">
-<span id="id1"></span><h1>Deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h1>
+  <section id="deployment-1">
+<span id="deployment"></span><h1>Deployment<a class="headerlink" href="#deployment-1" title="Permalink to this headline">¶</a></h1>
 <section id="wsgi-server">
 <h2>WSGI Server<a class="headerlink" href="#wsgi-server" title="Permalink to this headline">¶</a></h2>
 <p>There are many ways to deploy Alerta. It can be run as <code class="docutils literal notranslate"><span class="pre">alertad</span></code>
@@ -50,7 +50,7 @@ Apache strips the Authentication header. This will cause you to
 receive “Missing authorization API Key or Bearer Token” errors.
 This can be fixed by setting <code class="docutils literal notranslate"><span class="pre">WSGIPassAuthorization</span> <span class="pre">On</span></code> in
 the configuration file for the site.</p>
-</div>
+</aside>
 </section>
 <section id="web-proxy">
 <span id="reverse-proxy"></span><h2>Web Proxy<a class="headerlink" href="#web-proxy" title="Permalink to this headline">¶</a></h2>
@@ -104,8 +104,8 @@ the <code class="docutils literal notranslate"><span class="pre">endpoint</span>
 </pre></div>
 </div>
 </section>
-<section id="static-website">
-<span id="id2"></span><h2>Static Website<a class="headerlink" href="#static-website" title="Permalink to this headline">¶</a></h2>
+<section id="static-website-1">
+<span id="static-website"></span><h2>Static Website<a class="headerlink" href="#static-website-1" title="Permalink to this headline">¶</a></h2>
 <p>The Alerta web UI is just a directory of static assets that can be
 served from any location. An easy and cheap way to serve the web UI
 is from an <a class="reference external" href="http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html">Amazon S3 bucket</a> as a static website.</p>
@@ -114,7 +114,7 @@ is from an <a class="reference external" href="http://docs.aws.amazon.com/Amazon
 <p>Serving the Alerta web UI from a static web hosting site
 <strong>will not work</strong> unless that domain is listed in the
 <code class="docutils literal notranslate"><span class="pre">CORS_ORIGINS</span></code> Alerta API server configuration settings.</p>
-</div>
+</aside>
 </section>
 <section id="authentication-ssl">
 <span id="auth-ssl"></span><h2>Authentication &amp; SSL<a class="headerlink" href="#authentication-ssl" title="Permalink to this headline">¶</a></h2>
@@ -135,8 +135,8 @@ alert data.</p>
 <p>To restrict access to certain features use <span class="xref std std-ref">roles</span>
 and <a class="reference internal" href="customer-views.html#customer-views"><span class="std std-ref">customer views</span></a>.</p>
 </section>
-<section id="scalability">
-<span id="id3"></span><h2>Scalability<a class="headerlink" href="#scalability" title="Permalink to this headline">¶</a></h2>
+<section id="scalability-1">
+<span id="scalability"></span><h2>Scalability<a class="headerlink" href="#scalability-1" title="Permalink to this headline">¶</a></h2>
 <p>Alerta can scale horizontally, in the same way any other web
 application scales horizontally – a load balancer handles the
 HTTP requests and distributes those requests between all available
@@ -146,10 +146,10 @@ application servers.</p>
 <p>If using multiple API servers ensure the same <code class="docutils literal notranslate"><span class="pre">SECRET_KEY</span></code>
 is used across all servers otherwise there will be problems
 with web UI user logins.</p>
-</div>
+</aside>
 </section>
-<section id="high-availability">
-<span id="id4"></span><h2>High Availability<a class="headerlink" href="#high-availability" title="Permalink to this headline">¶</a></h2>
+<section id="high-availability-1">
+<span id="high-availability"></span><h2>High Availability<a class="headerlink" href="#high-availability-1" title="Permalink to this headline">¶</a></h2>
 <p>To achieve high system availability the Alerta API should be
 deployed to scale out <a class="reference internal" href="#scalability"><span class="std std-ref">horizontally</span></a> and
 the database should be deployed as a <a class="reference external" href="http://docs.mongodb.org/manual/core/replica-set-high-availability/">replica set</a>, if using
@@ -293,11 +293,11 @@ Links
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Deployment</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#wsgi-server">WSGI Server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#web-proxy">Web Proxy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#static-website">Static Website</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#static-website-1">Static Website</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#authentication-ssl">Authentication &amp; SSL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#authorisation-customer-views">Authorisation &amp; Customer Views</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#scalability">Scalability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#high-availability">High Availability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scalability-1">Scalability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#high-availability-1">High Availability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#house-keeping">House Keeping</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#management-metrics">Management &amp; Metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#web-ui-analytics">Web UI Analytics</a></li>

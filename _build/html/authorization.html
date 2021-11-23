@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Authorization &#8212; alerta 8.2 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -34,8 +34,8 @@
 
           <div class="body" role="main">
             
-  <section id="authorization">
-<span id="id1"></span><h1>Authorization<a class="headerlink" href="#authorization" title="Permalink to this headline">¶</a></h1>
+  <section id="authorization-1">
+<span id="authorization"></span><h1>Authorization<a class="headerlink" href="#authorization-1" title="Permalink to this headline">¶</a></h1>
 <p>Authorization is used to limit access to Alerta API resources. The
 authorization model is based on <a class="reference external" href="http://csrc.nist.gov/groups/SNS/rbac/faq.html">Role-Based Access Control</a> (RBAC)
 which assigns permissions to functional roles and then users are
@@ -67,7 +67,7 @@ where roles can inherit other roles.</p>
 <p>All access is through roles. Permissions can not be assigned directly
 to users. The only exception to this is the <code class="docutils literal notranslate"><span class="pre">ADMIN_USERS</span></code> setting
 which overrides all other roles a user might belong to.</p>
-</div>
+</aside>
 </section>
 <section id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
@@ -91,7 +91,7 @@ deleted and preventing new roles from being created with the same names.
 The scopes associated with the default <code class="docutils literal notranslate"><span class="pre">user</span></code> role are managed using the
 <code class="docutils literal notranslate"><span class="pre">USER_DEFAULT_SCOPES</span></code> setting in the API <a class="reference internal" href="configuration.html#auth-config"><span class="std std-ref">server settings</span></a>.
 All other roles are managed via the web console or <code class="docutils literal notranslate"><span class="pre">alerta</span></code> CLI.</p>
-</div>
+</aside>
 </section>
 <section id="custom-authorization">
 <h3>Custom Authorization<a class="headerlink" href="#custom-authorization" title="Permalink to this headline">¶</a></h3>
@@ -105,17 +105,13 @@ configured Authentication provider.</p>
 <p>It is encouraged to employ the principle of least privilege when creating
 roles. That is, do not give to a user any more privilege than is necessary
 to perform their job function.</p>
-</div>
+</aside>
 </section>
 </section>
 <section id="scopes-and-permissions">
 <h2>Scopes and Permissions<a class="headerlink" href="#scopes-and-permissions" title="Permalink to this headline">¶</a></h2>
 <p>Use these scopes to request access to API resources.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 28%" />
-<col style="width: 72%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Scope</p></th>
 <th class="head"><p>Permissions</p></th>
@@ -210,7 +206,7 @@ to perform their job function.</p>
 <p><code class="docutils literal notranslate"><span class="pre">write</span></code> implicitly includes <code class="docutils literal notranslate"><span class="pre">read</span></code>, and <code class="docutils literal notranslate"><span class="pre">admin</span></code> implicitly
 includes <code class="docutils literal notranslate"><span class="pre">read</span></code> and <code class="docutils literal notranslate"><span class="pre">write</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">delete:alerts</span></code> only required to delete alerts if the <cite>DELETE_SCOPES</cite> setting is enabled.</p>
-</div>
+</aside>
 </section>
 <section id="audit-log">
 <h2>Audit Log<a class="headerlink" href="#audit-log" title="Permalink to this headline">¶</a></h2>
@@ -260,7 +256,7 @@ HTTP endpoint using a POST.</p>
 forward the events to the <a class="reference external" href="https://www.loggly.com/docs/http-endpoint/">Loggly</a> “logging-as-a-service” endpoint,
 replacing <code class="docutils literal notranslate"><span class="pre">TOKEN</span></code> in the Loggly URL with your customer token.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AUDIT_TRAIL</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;write&#39;</span><span class="p">,</span> <span class="s1">&#39;auth&#39;</span><span class="p">]</span>
-<span class="n">AUDIT_LOG</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># log to Flask application logger</span>
+<span class="n">AUDIT_LOG</span> <span class="o">=</span> <span class="bp">True</span>  <span class="c1"># log to Flask application logger</span>
 <span class="n">AUDIT_URL</span><span class="o">=</span><span class="s1">&#39;http://logs-01.loggly.com/inputs/TOKEN/tag/http/&#39;</span>
 </pre></div>
 </div>

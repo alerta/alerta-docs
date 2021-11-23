@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>API Query Syntax &#8212; alerta 8.2 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -75,31 +75,31 @@ that user will be automatically applied.</p></li>
 </ul>
 </div></blockquote>
 </section>
-<section id="query-string-syntax">
-<span id="id1"></span><h2>Query String Syntax<a class="headerlink" href="#query-string-syntax" title="Permalink to this headline">¶</a></h2>
+<section id="query-string-syntax-1">
+<span id="query-string-syntax"></span><h2>Query String Syntax<a class="headerlink" href="#query-string-syntax-1" title="Permalink to this headline">¶</a></h2>
 <p>The query string syntax is used by the <code class="docutils literal notranslate"><span class="pre">q</span></code> query string parameter. It is based
 on the Lucene query string syntax and is described below.</p>
-<div class="contents local topic" id="contents">
+<nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#search-terms" id="id2">Search terms</a></p></li>
-<li><p><a class="reference internal" href="#field-names" id="id3">Field names</a></p></li>
-<li><p><a class="reference internal" href="#nested-field-names" id="id4">Nested Field names</a></p></li>
-<li><p><a class="reference internal" href="#wildcards" id="id5">Wildcards</a></p></li>
-<li><p><a class="reference internal" href="#regular-expressions" id="id6">Regular expressions</a></p></li>
-<li><p><a class="reference internal" href="#ranges" id="id7">Ranges</a></p></li>
-<li><p><a class="reference internal" href="#boolean-operators" id="id8">Boolean Operators</a></p>
+<li><p><a class="reference internal" href="#search-terms" id="toc-entry-1">Search terms</a></p></li>
+<li><p><a class="reference internal" href="#field-names" id="toc-entry-2">Field names</a></p></li>
+<li><p><a class="reference internal" href="#nested-field-names" id="toc-entry-3">Nested Field names</a></p></li>
+<li><p><a class="reference internal" href="#wildcards" id="toc-entry-4">Wildcards</a></p></li>
+<li><p><a class="reference internal" href="#regular-expressions" id="toc-entry-5">Regular expressions</a></p></li>
+<li><p><a class="reference internal" href="#ranges" id="toc-entry-6">Ranges</a></p></li>
+<li><p><a class="reference internal" href="#boolean-operators" id="toc-entry-7">Boolean Operators</a></p>
 <ul>
-<li><p><a class="reference internal" href="#or" id="id9">OR (<code class="docutils literal notranslate"><span class="pre">||</span></code>)</a></p></li>
-<li><p><a class="reference internal" href="#and" id="id10">AND (<code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>)</a></p></li>
-<li><p><a class="reference internal" href="#not" id="id11">NOT (<code class="docutils literal notranslate"><span class="pre">!</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#or" id="toc-entry-8">OR (<code class="docutils literal notranslate"><span class="pre">||</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#and" id="toc-entry-9">AND (<code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#not" id="toc-entry-10">NOT (<code class="docutils literal notranslate"><span class="pre">!</span></code>)</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#grouping" id="id12">Grouping</a></p></li>
-<li><p><a class="reference internal" href="#field-grouping" id="id13">Field Grouping</a></p></li>
+<li><p><a class="reference internal" href="#grouping" id="toc-entry-11">Grouping</a></p></li>
+<li><p><a class="reference internal" href="#field-grouping" id="toc-entry-12">Field Grouping</a></p></li>
 </ul>
-</div>
+</nav>
 <section id="search-terms">
-<h3><a class="toc-backref" href="#id2">Search terms</a><a class="headerlink" href="#search-terms" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-1" role="doc-backlink">Search terms</a><a class="headerlink" href="#search-terms" title="Permalink to this headline">¶</a></h3>
 <p>A search term can be a single word:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">foo</span>
 </pre></div>
@@ -115,7 +115,7 @@ for all the words in the phrase, in the same order:</p>
 </div>
 </section>
 <section id="field-names">
-<h3><a class="toc-backref" href="#id3">Field names</a><a class="headerlink" href="#field-names" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-2" role="doc-backlink">Field names</a><a class="headerlink" href="#field-names" title="Permalink to this headline">¶</a></h3>
 <p>When no explicit field name is specified to search on in the query string
 the default field <code class="docutils literal notranslate"><span class="pre">text</span></code> will be used unless a prefix is specified.</p>
 <p>For example, where <code class="docutils literal notranslate"><span class="pre">status</span></code> field contains “ack”:</p>
@@ -137,7 +137,7 @@ the default field <code class="docutils literal notranslate"><span class="pre">t
 </div>
 </section>
 <section id="nested-field-names">
-<h3><a class="toc-backref" href="#id4">Nested Field names</a><a class="headerlink" href="#nested-field-names" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-3" role="doc-backlink">Nested Field names</a><a class="headerlink" href="#nested-field-names" title="Permalink to this headline">¶</a></h3>
 <p><em>New in version 7.5.</em></p>
 <p>Nested fields can be queried using dot notation (<code class="docutils literal notranslate"><span class="pre">.</span></code>) that
 includes the complete path of the field.</p>
@@ -158,7 +158,7 @@ used to replace the <code class="docutils literal notranslate"><span class="pre"
 </div>
 </section>
 <section id="wildcards">
-<h3><a class="toc-backref" href="#id5">Wildcards</a><a class="headerlink" href="#wildcards" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-4" role="doc-backlink">Wildcards</a><a class="headerlink" href="#wildcards" title="Permalink to this headline">¶</a></h3>
 <p>Wildcard searches can be used on individual terms using <code class="docutils literal notranslate"><span class="pre">?</span></code> to replace
 single characters and <code class="docutils literal notranslate"><span class="pre">*</span></code> to replace one or more characters:</p>
 <p>To search for “foo”, “fu”, “bar” or “baz” use:</p>
@@ -171,7 +171,7 @@ single characters and <code class="docutils literal notranslate"><span class="pr
 </div>
 </section>
 <section id="regular-expressions">
-<h3><a class="toc-backref" href="#id6">Regular expressions</a><a class="headerlink" href="#regular-expressions" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-5" role="doc-backlink">Regular expressions</a><a class="headerlink" href="#regular-expressions" title="Permalink to this headline">¶</a></h3>
 <p>Regular expression patterns can be embedded in the query string by wrapping
 them in forward-slashes (<code class="docutils literal notranslate"><span class="pre">/</span></code>). Typical examples include:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="p">[</span><span class="n">mb</span><span class="p">]</span><span class="n">oat</span><span class="o">/</span>
@@ -190,10 +190,10 @@ them in forward-slashes (<code class="docutils literal notranslate"><span class=
 <p>Regular expressions are implemented by the database backends so
 there may be subtle differences between <a class="reference external" href="https://www.postgresql.org/docs/9.6/static/functions-matching.html#FUNCTIONS-POSIX-REGEXP">Postgres POSIX regular expressions</a>
 and <a class="reference external" href="https://docs.mongodb.com/manual/reference/operator/query/regex/">MongoDB PCRE $regex pattern matching</a> in practice.</p>
-</div>
+</aside>
 </section>
 <section id="ranges">
-<h3><a class="toc-backref" href="#id7">Ranges</a><a class="headerlink" href="#ranges" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-6" role="doc-backlink">Ranges</a><a class="headerlink" href="#ranges" title="Permalink to this headline">¶</a></h3>
 <p>Ranges can be specified for numeric or string fields. Inclusive
 ranges are specified with square brackets <code class="docutils literal notranslate"><span class="pre">[min</span> <span class="pre">TO</span> <span class="pre">max]</span></code> and exclusive
 ranges with curly brackets <code class="docutils literal notranslate"><span class="pre">{min</span> <span class="pre">TO</span> <span class="pre">max}</span></code>:</p>
@@ -212,12 +212,12 @@ ranges with curly brackets <code class="docutils literal notranslate"><span clas
 </div>
 </section>
 <section id="boolean-operators">
-<h3><a class="toc-backref" href="#id8">Boolean Operators</a><a class="headerlink" href="#boolean-operators" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-7" role="doc-backlink">Boolean Operators</a><a class="headerlink" href="#boolean-operators" title="Permalink to this headline">¶</a></h3>
 <p><em>New in version 7.5.</em></p>
 <p>Boolean logic operators can be used to combine search terms. They
 are always in uppercase letters or can be replaced with a symbol.</p>
 <section id="or">
-<h4><a class="toc-backref" href="#id9">OR (<code class="docutils literal notranslate"><span class="pre">||</span></code>)</a><a class="headerlink" href="#or" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#toc-entry-8" role="doc-backlink">OR (<code class="docutils literal notranslate"><span class="pre">||</span></code>)</a><a class="headerlink" href="#or" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">OR</span></code> operator is the default when no operator is specified. A
 search succeeds if either of the terms are found. The <code class="docutils literal notranslate"><span class="pre">||</span></code> can be
 used in place of the word <code class="docutils literal notranslate"><span class="pre">OR</span></code>.</p>
@@ -229,7 +229,7 @@ used in place of the word <code class="docutils literal notranslate"><span class
 </div>
 </section>
 <section id="and">
-<h4><a class="toc-backref" href="#id10">AND (<code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>)</a><a class="headerlink" href="#and" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#toc-entry-9" role="doc-backlink">AND (<code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>)</a><a class="headerlink" href="#and" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">AND</span></code> operator is used to combine two terms when both must match.
 The symbol <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> can be used in place of the word <code class="docutils literal notranslate"><span class="pre">AND</span></code>.</p>
 <p>To search for “foo bar” and “baz” use:</p>
@@ -239,7 +239,7 @@ The symbol <code class="docutils literal notranslate"><span class="pre">&amp;&am
 </div>
 </section>
 <section id="not">
-<h4><a class="toc-backref" href="#id11">NOT (<code class="docutils literal notranslate"><span class="pre">!</span></code>)</a><a class="headerlink" href="#not" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#toc-entry-10" role="doc-backlink">NOT (<code class="docutils literal notranslate"><span class="pre">!</span></code>)</a><a class="headerlink" href="#not" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">NOT</span></code> operator is used to exclude matches that contain the search
 term directly following <code class="docutils literal notranslate"><span class="pre">NOT</span></code>. The symbol <code class="docutils literal notranslate"><span class="pre">!</span></code> can be used in place
 of the word <code class="docutils literal notranslate"><span class="pre">NOT</span></code>.</p>
@@ -256,7 +256,7 @@ of the word <code class="docutils literal notranslate"><span class="pre">NOT</sp
 </section>
 </section>
 <section id="grouping">
-<h3><a class="toc-backref" href="#id12">Grouping</a><a class="headerlink" href="#grouping" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-11" role="doc-backlink">Grouping</a><a class="headerlink" href="#grouping" title="Permalink to this headline">¶</a></h3>
 <p>Multiple terms or clauses <strong>must</strong> be grouped together with parentheses,
 to form sub-queries:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">foo</span> <span class="n">OR</span> <span class="n">bar</span><span class="p">)</span> <span class="n">AND</span> <span class="n">baz</span>
@@ -264,7 +264,7 @@ to form sub-queries:</p>
 </div>
 </section>
 <section id="field-grouping">
-<h3><a class="toc-backref" href="#id13">Field Grouping</a><a class="headerlink" href="#field-grouping" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-12" role="doc-backlink">Field Grouping</a><a class="headerlink" href="#field-grouping" title="Permalink to this headline">¶</a></h3>
 <p>Parentheses can be used to group multiple clauses to a single field:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="p">:(</span><span class="nb">open</span> <span class="n">OR</span> <span class="n">ack</span><span class="p">)</span>
 <span class="n">text</span><span class="p">:(</span><span class="n">full</span> <span class="n">text</span> <span class="n">search</span><span class="p">)</span>
@@ -274,12 +274,12 @@ to form sub-queries:</p>
 <p class="admonition-title">Note</p>
 <p>The following are not currently supported: boolean operators (+,-), range
 queries by date, and range queries based on severity levels.</p>
-</div>
+</aside>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The following will not be supported: fuzziness, proximity searches, and
 boosting which are features specific to Lucene and/or Elasticsearch.</p>
-</div>
+</aside>
 </section>
 </section>
 </section>
@@ -351,7 +351,7 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="reference.html">API Reference</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Query Syntax</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#standard-url-query-parameters">Standard URL Query parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#query-string-syntax">Query String Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#query-string-syntax-1">Query String Syntax</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="alert.html">Alert Format</a></li>
