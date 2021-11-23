@@ -1,3 +1,4 @@
 alabaster==0.7.12
 sphinx==4.3.0
 sphinx-autobuild==2021.3.14
+sphinxcontrib-spelling==7.2.1
