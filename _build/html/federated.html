@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>Federated Alerta &#8212; alerta 8.2 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
@@ -33,7 +34,7 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="federated-alerta">
+  <section id="federated-alerta">
 <span id="federated"></span><h1>Federated Alerta<a class="headerlink" href="#federated-alerta" title="Permalink to this headline">¶</a></h1>
 <p>Alerta servers can forward alerts, actions and deletes to
 other Alerta servers or downstream systems using the <code class="docutils literal notranslate"><span class="pre">forwarder</span></code>
@@ -58,7 +59,7 @@ other server can take over.</p>
 <p>Forwarding heartbeats is not currently possible but may
 be supported in a future release.</p>
 </div>
-<div class="section" id="configuration">
+<section id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">BASE_URL</span></code></p>
 <p>Set the <code class="docutils literal notranslate"><span class="pre">BASE_URL</span></code> to the public endpoint that will be used by
@@ -88,8 +89,8 @@ to enable and load it when the API starts.</p>
 <span class="p">]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="forwarding-loops">
+</section>
+<section id="forwarding-loops">
 <h2>Forwarding Loops<a class="headerlink" href="#forwarding-loops" title="Permalink to this headline">¶</a></h2>
 <p>The configured remote <code class="docutils literal notranslate"><span class="pre">BASE_URL</span></code> must match the <code class="docutils literal notranslate"><span class="pre">BASE_URL</span></code> as set at
 the remote server otherwise forwarding loops are possible (see next).</p>
@@ -107,8 +108,8 @@ server should not process the request.</p>
 that is already in the “forwarding loop” header then that server should
 be skipped.</p>
 <p><a class="reference external" href="https://qmail.mivzakim.net/qmail-manual-html/misc/RFCLOOPS.html">https://qmail.mivzakim.net/qmail-manual-html/misc/RFCLOOPS.html</a></p>
-</div>
-<div class="section" id="authentication">
+</section>
+<section id="authentication">
 <h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h2>
 <p>Alerta supports multiple authentication methods for the remote
 systems when forwarding:</p>
@@ -135,8 +136,8 @@ $ date | md5 | base64                        &lt;= create HMAC &quot;secret&quot
 MzVlMzQ5NWYzYWE2YTgxYTUyYmIyNDY0ZWE2ZWJlYTMK
 </pre></div>
 </div>
-</div>
-<div class="section" id="forwarding-filters">
+</section>
+<section id="forwarding-filters">
 <h2>Forwarding Filters<a class="headerlink" href="#forwarding-filters" title="Permalink to this headline">¶</a></h2>
 <p>The types of entites to be forwarded are configurable:</p>
 <blockquote>
@@ -155,8 +156,8 @@ MzVlMzQ5NWYzYWE2YTgxYTUyYmIyNDY0ZWE2ZWJlYTMK
 <span class="p">[</span><span class="s1">&#39;alerts&#39;</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="non-alerta-forwarding">
+</section>
+<section id="non-alerta-forwarding">
 <h2>Non-Alerta Forwarding<a class="headerlink" href="#non-alerta-forwarding" title="Permalink to this headline">¶</a></h2>
 <p>It is possible to make use of Alerta forwarding to forward alerts to
 non-Alerta systems. However, any forwarding destination will need to
@@ -172,8 +173,8 @@ implement the following endpoints:</p>
 HTTP response bodies are not parsed so they will not effect the result.
 However, it is good practise to add meaningful messages to the
 payloads which will be useful when debugging.</p>
-</div>
-<div class="section" id="troubleshooting">
+</section>
+<section id="troubleshooting">
 <h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
@@ -181,8 +182,8 @@ payloads which will be useful when debugging.</p>
 <li><p>Use a dummy endpoint such as <code class="docutils literal notranslate"><span class="pre">https://httpbin.org/anything</span></code></p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="future-enhancements">
+</section>
+<section id="future-enhancements">
 <h2>Future Enhancements<a class="headerlink" href="#future-enhancements" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
@@ -191,8 +192,8 @@ payloads which will be useful when debugging.</p>
 <li><p>configurable endpoints</p></li>
 </ul>
 </div></blockquote>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -248,6 +249,8 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webhooks.html">Custom Webhooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Federated Alerta</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>

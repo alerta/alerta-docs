@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>Alert Format &#8212; alerta 8.2 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
@@ -33,12 +34,12 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="alert-format">
+  <section id="alert-format">
 <span id="id1"></span><h1>Alert Format<a class="headerlink" href="#alert-format" title="Permalink to this headline">¶</a></h1>
 <p>Alerts received and sent by Alerta conform to a common alert format.
 All components of alerta use this message format and any external
 systems must produce or consume messages in this format also.</p>
-<div class="section" id="attributes">
+<section id="attributes">
 <span id="alert-attributes"></span><h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
 <p>The following alert attributes are populated at source:</p>
 <table class="docutils align-default">
@@ -121,8 +122,8 @@ is one of either <code class="docutils literal notranslate"><span class="pre">Pr
 define a <code class="docutils literal notranslate"><span class="pre">service</span></code> attribute. For more information on configuring
 or disabling this plugin see <a class="reference internal" href="../configuration.html#plugin-config"><span class="std std-ref">Plugin Settings</span></a>.</p>
 </div>
-</div>
-<div class="section" id="attributes-added-when-processing-alerts">
+</section>
+<section id="attributes-added-when-processing-alerts">
 <h2>Attributes added when processing alerts<a class="headerlink" href="#attributes-added-when-processing-alerts" title="Permalink to this headline">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
@@ -185,8 +186,8 @@ the history log</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="alert-status">
+</section>
+<section id="alert-status">
 <span id="status-table"></span><h2>Alert Status<a class="headerlink" href="#alert-status" title="Permalink to this headline">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
@@ -225,8 +226,8 @@ the history log</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="alert-severities">
+</section>
+<section id="alert-severities">
 <span id="severity-table"></span><h2>Alert Severities<a class="headerlink" href="#alert-severities" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="http://tools.ietf.org/html/rfc5674#section-2">Alarms in Syslog</a> <span class="target" id="index-0"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc5674.html"><strong>RFC 5674</strong></a> was referenced when defining
 alert severities.</p>
@@ -297,8 +298,8 @@ alert severities.</p>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="history-entries">
+</section>
+<section id="history-entries">
 <span id="history"></span><h2>History Entries<a class="headerlink" href="#history-entries" title="Permalink to this headline">¶</a></h2>
 <p>History log entries can be for either severity or status changes.</p>
 <table class="docutils align-default">
@@ -347,8 +348,8 @@ the history log for alerts with <code class="docutils literal notranslate"><span
 And the <code class="docutils literal notranslate"><span class="pre">status</span></code> attribute is only added to the history log for
 alerts with <code class="docutils literal notranslate"><span class="pre">status</span></code> changes (See <code class="docutils literal notranslate"><span class="pre">+</span></code> above).</p>
 </div>
-</div>
-<div class="section" id="example">
+</section>
+<section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -406,8 +407,8 @@ alerts with <code class="docutils literal notranslate"><span class="pre">status<
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -463,6 +464,8 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="../authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../authorization.html">Authorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webhooks.html">Custom Webhooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../federated.html">Federated Alerta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>

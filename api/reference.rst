@@ -2150,8 +2150,13 @@ Example Request
     $ curl -XDELETE http://localhost:8080/customer/90f4e211-c815-4112-9e1a-6e53de5a59c6 \
     -H 'Authorization: Key demo-key'
 
+
+.. _management:
+
 Management
----------
+----------
+
+.. _mgmt_get_metrics:
 
 Get metrics
 ~~~~~~~~~~~
@@ -2170,6 +2175,7 @@ Example Request
     $ curl -XGET http://localhost:8080/management/metrics \
     -H 'Authorization: Key demo-key'
 
+.. _mgmt_hc_gng:
 
 Get good-to-go healthcheck
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2188,6 +2194,7 @@ Example Request
     $ curl -XGET http://localhost:8080/management/gtg \
     -H 'Authorization: Key demo-key'
 
+.. _mgmt_hc_full:
 
 Get full healthcheck
 ~~~~~~~~~~~~~~~~~~~~
@@ -2206,9 +2213,10 @@ Example Request
     $ curl -XGET http://localhost:8080/management/healthcheck \
     -H 'Authorization: Key demo-key'
 
+.. _mgmt_hc_light:
 
 Get light healthcheck
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
 
 The "underscore" healthcheck simply returns 200 OK. It does not hit the database. (this can be used for a LIVENESS check)
 

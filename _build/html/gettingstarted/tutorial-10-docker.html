@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>Using Docker to deploy Alerta &#8212; alerta 8.2 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
@@ -31,7 +32,7 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="using-docker-to-deploy-alerta">
+  <section id="using-docker-to-deploy-alerta">
 <span id="tutorial-10"></span><h1>Using Docker to deploy Alerta<a class="headerlink" href="#using-docker-to-deploy-alerta" title="Permalink to this headline">¶</a></h1>
 <p>In this tutorial, you will learn how to deploy Alerta using
 <a class="reference external" href="https://www.docker.com/why-docker">Docker</a>.</p>
@@ -49,7 +50,7 @@
 <li><p><a href="#id1"><span class="problematic" id="id2">`Debugging and Troubleshooting`_</span></a></p></li>
 </ul>
 </div></blockquote>
-<div class="section" id="overview">
+<section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="https://hub.docker.com/r/alerta/alerta-web/">“official” Docker image</a> for Alerta has been download more
 than <a class="reference external" href="https://hub.docker.com/v2/repositories/alerta/alerta-web/">2 million times</a> and contains everything needed
@@ -68,8 +69,8 @@ to deploy Alerta in most scenarios, such as:</p>
 extend it with additional plugins, webhooks or alternatively,
 the <a class="reference external" href="https://github.com/alerta/docker-alerta/blob/master/Dockerfile">Dockerfile</a> can be used as a starting point to build your
 own base image.</p>
-</div>
-<div class="section" id="prerequisites">
+</section>
+<section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
 <p>To follow this tutorial you will need access to a Docker
 environment where you can build Docker images and run containers.
@@ -85,8 +86,8 @@ always run a shell inside the container using
 <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-ti</span> <span class="pre">&lt;container&gt;</span> <span class="pre">sh</span></code> command. All important configuration
 files are in the <code class="docutils literal notranslate"><span class="pre">/app</span></code> and <code class="docutils literal notranslate"><span class="pre">/web</span></code> directories.</p>
 </div>
-</div>
-<div class="section" id="step-1-run-the-container">
+</section>
+<section id="step-1-run-the-container">
 <span id="step-1"></span><h2>Step 1: Run the container<a class="headerlink" href="#step-1-run-the-container" title="Permalink to this headline">¶</a></h2>
 <p>We will first start a Postgres database container which is
 required by Alerta:</p>
@@ -157,14 +158,14 @@ the following:</p>
 <p>Keep a copy of the returned alert id. You will need this in <a class="reference internal" href="#step-4">Step 4</a>.</p>
 </div>
 <p>And finally, try browsing to the web UI using <a class="reference external" href="http://localhost:8080/">http://localhost:8080/</a></p>
-</div>
-<div class="section" id="step-2-customise-configuration">
+</section>
+<section id="step-2-customise-configuration">
 <span id="step-2"></span><h2>Step 2: Customise configuration<a class="headerlink" href="#step-2-customise-configuration" title="Permalink to this headline">¶</a></h2>
 <p>In <a class="reference internal" href="#step-1">Step 1</a> you launched an Alerta container using the default configuration.</p>
 <p>To customise your Alerta server for your environment you can override
 the defaults using either environment variables (for common settings) or
 by mounting a configuration file into the container.</p>
-<div class="section" id="configuration-via-environment-variables">
+<section id="configuration-via-environment-variables">
 <h3>Configuration via Environment variables<a class="headerlink" href="#configuration-via-environment-variables" title="Permalink to this headline">¶</a></h3>
 <p>A full list of environment variables supported by the Alerta docker image
 can be found in the <a class="reference external" href="https://github.com/alerta/docker-alerta/blob/master/README.md#environment-variables">README</a> file. They include all of the most
@@ -224,8 +225,8 @@ like so:</p>
 <p>By now, you can see that the number of environment variables listed
 on the command line is growing and becoming unmanageable and we
 haven’t even looked at all the different authentication settings.</p>
-</div>
-<div class="section" id="configuration-via-external-alertad-conf-file">
+</section>
+<section id="configuration-via-external-alertad-conf-file">
 <h3>Configuration via external <code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code> file<a class="headerlink" href="#configuration-via-external-alertad-conf-file" title="Permalink to this headline">¶</a></h3>
 <p>So now we will use a configuration file that we can mount into the
 container at run time. The alternative is to continue using
@@ -272,9 +273,9 @@ and Alertmanager, for example.</p>
 <p>This is where container orchestration comes into play. And the first
 step towards Docker container configuration and deployment is to
 use the <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> tool which we will look at now.</p>
-</div>
-</div>
-<div class="section" id="step-3-run-using-docker-compose">
+</section>
+</section>
+<section id="step-3-run-using-docker-compose">
 <span id="step-3"></span><h2>Step 3: Run using docker-compose<a class="headerlink" href="#step-3-run-using-docker-compose" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> tool can be used to launch an entire Docker
 container stack with one command, namely <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span></code>.</p>
@@ -349,8 +350,8 @@ to mount a configuration file into the container, like so:</p>
   <span class="nt">net</span><span class="p">:</span> <span class="p p-Indicator">{}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="step-4-install-additional-plugins-or-webhooks">
+</section>
+<section id="step-4-install-additional-plugins-or-webhooks">
 <span id="step-4"></span><h2>Step 4: Install additional plugins or webhooks<a class="headerlink" href="#step-4-install-additional-plugins-or-webhooks" title="Permalink to this headline">¶</a></h2>
 <p>Docker containers should be treated as <a class="reference external" href="https://www.oreilly.com/radar/an-introduction-to-immutable-infrastructure/">“immutable”</a> infrastructure which means
 that once deployed they should not be modified. So if you need to use a custom
@@ -417,8 +418,8 @@ id from <a class="reference internal" href="#step-1">Step 1</a>):</p>
 }
 </pre></div>
 </div>
-</div>
-<div class="section" id="step-5-complex-setups">
+</section>
+<section id="step-5-complex-setups">
 <span id="step-5"></span><h2>Step 5: Complex setups<a class="headerlink" href="#step-5-complex-setups" title="Permalink to this headline">¶</a></h2>
 <p>Alerta, just like any web service, can be deployed in numerous different
 ways to suit your environment. Most commonly, it will be deployed behind
@@ -435,20 +436,20 @@ deployments that illustrate some of these scenarios:</p>
 <li><p><a class="reference external" href="https://github.com/alerta/docker-alerta/tree/master/examples/traefik">Traefik proxy</a></p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="production-deployments">
+</section>
+<section id="production-deployments">
 <h2>Production deployments<a class="headerlink" href="#production-deployments" title="Permalink to this headline">¶</a></h2>
 <p>Despite <a class="reference external" href="https://docs.docker.com/compose/production/">what Docker say</a>, it is not advisable to use <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code>
 for production deployments. Instead you should consider container
 runtime platforms such as <a class="reference external" href="https://kubernetes.io/">Kubernetes</a>, <a class="reference external" href="https://aws.amazon.com/ecs/">AWS Elastic Container Service</a>,
 or <a class="reference external" href="https://cloud.google.com/kubernetes-engine/">Google Cloud GKE</a>.</p>
-</div>
-<div class="section" id="next-steps">
+</section>
+<section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
 <p>In a future tutorial, you will learn how to deploy Alerta with Kubernetes
 using a tool called <code class="docutils literal notranslate"><span class="pre">mini-kube</span></code>. So stay tuned!</p>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -504,6 +505,8 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="../authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../authorization.html">Authorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webhooks.html">Custom Webhooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../federated.html">Federated Alerta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>

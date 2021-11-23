@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>Conventions &#8212; alerta 8.2 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
@@ -33,20 +34,20 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="conventions">
+  <section id="conventions">
 <span id="id1"></span><h1>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h1>
 <p>Always favour convention over configuration. And any configuration
 should have sensible defaults.</p>
-<div class="section" id="naming-conventions">
+<section id="naming-conventions">
 <h2>Naming Conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="resources">
+<section id="resources">
 <h3>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h3>
 <p>The key alert attribute name of <code class="docutils literal notranslate"><span class="pre">resource</span></code> was specifically chosen
 so as not to be host centric. A resource <em>can</em> be a hostname, but it
 might also be an EC2 instance ID, a Docker container ID or some other
 type of non-host unique identifier.</p>
-</div>
-<div class="section" id="environments-services">
+</section>
+<section id="environments-services">
 <h3>Environments &amp; Services<a class="headerlink" href="#environments-services" title="Permalink to this headline">¶</a></h3>
 <p>The environment attribute is used to <a class="reference external" href="https://en.wikipedia.org/wiki/Namespace">namespace</a> the alert resource.
 This allows you to have two resources with the same name (eg. <code class="docutils literal notranslate"><span class="pre">web01</span></code>)
@@ -61,8 +62,8 @@ or generate aggregate metrics for.</p>
 infrastructure (ie. some resource) to be used by more than one
 service. That is, if a component failure occurs that problem could
 cause an outage in multiple services.</p>
-</div>
-<div class="section" id="event-names">
+</section>
+<section id="event-names">
 <h3>Event Names<a class="headerlink" href="#event-names" title="Permalink to this headline">¶</a></h3>
 <p>It can be useful to define a convention when it comes to naming
 events. Possible options are:</p>
@@ -76,8 +77,8 @@ is then relatively straight-forward:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta query --filter event=~DiskUtil
 </pre></div>
 </div>
-</div>
-<div class="section" id="event-groups">
+</section>
+<section id="event-groups">
 <h3>Event Groups<a class="headerlink" href="#event-groups" title="Permalink to this headline">¶</a></h3>
 <p>Another consideration is to ensure you make use of the event group
 which gives you the ability to group related alerts.</p>
@@ -139,9 +140,9 @@ could then become:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta query --filter group=Performance
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="severity-levels">
+</section>
+</section>
+<section id="severity-levels">
 <h2>Severity Levels<a class="headerlink" href="#severity-levels" title="Permalink to this headline">¶</a></h2>
 <p>Agree on a subset of <a class="reference internal" href="api/alert.html#severity-table"><span class="std std-ref">severity levels</span></a> and be consistent
 with what they mean. For example, if severity levels are used consistently
@@ -177,8 +178,8 @@ then integrating with a paging or email system becomes easier.</p>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="enforcing-conventions">
+</section>
+<section id="enforcing-conventions">
 <h2>Enforcing Conventions<a class="headerlink" href="#enforcing-conventions" title="Permalink to this headline">¶</a></h2>
 <p>Once a set of naming conventions are agreed, they can be enforced by
 using a simple <a class="reference internal" href="server.html#prereceive"><span class="std std-ref">pre-receive</span></a> plugin.</p>
@@ -187,8 +188,8 @@ directory of the project code repository and is installed by default.
 The server configuration settings <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ORIGIN_BLACKLIST</span></code> and
 <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ALLOWED_ENVIRONMENTS</span></code> can be used to tailor it for your
 circumstances or it can be disabled completely.</p>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -244,6 +245,8 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webhooks.html">Custom Webhooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="federated.html">Federated Alerta</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Conventions</a><ul>

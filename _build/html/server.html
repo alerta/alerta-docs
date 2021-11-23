@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>Server &amp; API &#8212; alerta 8.2 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
@@ -33,7 +34,7 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="server-api">
+  <section id="server-api">
 <span id="server"></span><h1>Server &amp; API<a class="headerlink" href="#server-api" title="Permalink to this headline">¶</a></h1>
 <p>The Alerta API receives alerts from multiple sources, <a class="reference internal" href="#correlation"><span class="std std-ref">correlates</span></a>,
 <a class="reference internal" href="#deduplication"><span class="std std-ref">de-duplicates</span></a> or <a class="reference internal" href="#blackout-periods"><span class="std std-ref">suppresses</span></a>
@@ -45,9 +46,9 @@ processed using <a class="reference internal" href="#postreceive"><span class="s
 <a class="reference internal" href="#take-action"><span class="std std-ref">operator action</span></a> or alert
 <a class="reference internal" href="#status-change"><span class="std std-ref">status change</span></a> for bi-directional integration.</p>
 <p>There are several <a class="reference internal" href="integrations.html#integrations"><span class="std std-ref">integrations</span></a> with popular monitoring
-tools available and <a class="reference internal" href="integrations.html#webhooks"><span class="std std-ref">webhooks</span></a> can be used to trivially
+tools available and <a class="reference internal" href="webhooks.html#webhooks"><span class="std std-ref">webhooks</span></a> can be used to trivially
 integrate with AWS Prometheus, Grafana, PagerDuty and many more.</p>
-<div class="section" id="event-processing">
+<section id="event-processing">
 <span id="id1"></span><h2>Event Processing<a class="headerlink" href="#event-processing" title="Permalink to this headline">¶</a></h2>
 <p>Alerta comes <cite>out-of-the-box</cite> with key features designed to reduce the burden of
 alert management. When an event is received it it is processed in the following
@@ -66,15 +67,15 @@ repeat set to <cite>True</cite></p></li>
 <li><p>any tags or attributes changed in post-receive hooks are persisted</p></li>
 </ol>
 <p>Each of the above actions are explained in more detail in the following sections.</p>
-</div>
-<div class="section" id="plugins">
+</section>
+<section id="plugins">
 <h2>Plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Plug-in_(computing)">Plugins</a> are small python scripts that can run either before or after an alert is
 saved to the database, or before an operator action or status change update. This
 is achieved by registering <em>pre-receive hooks</em> for transformers, <em>post-receive
 hooks</em> for external notification and <em>status change hooks</em> for bi-directional
 integration.</p>
-<div class="section" id="transformers">
+<section id="transformers">
 <span id="prereceive"></span><h3>Transformers<a class="headerlink" href="#transformers" title="Permalink to this headline">¶</a></h3>
 <p>Using pre-receive hooks, plugins provide the ability to transform raw alert data
 from sources before alerts are created. For example, alerts can be <em>normalised</em>
@@ -85,22 +86,22 @@ that enforces an alert policy.</p>
 which adds location data to alerts based on the remote IP address of the client,
 or the generic <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/enhance">enhance plugin</a> which adds a <code class="docutils literal notranslate"><span class="pre">customer</span></code> attribute based on
 information contained in the alert.</p>
-</div>
-<div class="section" id="external-notification">
+</section>
+<section id="external-notification">
 <span id="postreceive"></span><h3>External Notification<a class="headerlink" href="#external-notification" title="Permalink to this headline">¶</a></h3>
 <p>Using post-receive hooks, plugin integrations can be used to provide downstream
 systems with alerts in realtime for external notification. For example, pushing
 alerts onto an <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/sns">AWS SNS topic</a>, <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp">AMQP queue</a>, logging to a <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/logstash">Logstash/Kibana</a>
 stack, or sending notifications to <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/hipchat">HipChat</a>, <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/slack">Slack</a> or <a class="reference external" href="https://github.com/alerta/alerta-contrib/blob/master/plugins/twilio">Twilio</a> and many
 more.</p>
-</div>
-<div class="section" id="operator-actions">
+</section>
+<section id="operator-actions">
 <span id="take-action"></span><h3>Operator Actions<a class="headerlink" href="#operator-actions" title="Permalink to this headline">¶</a></h3>
 <p>Actions taken against alerts can be used as triggers for further integrations
 with external systems.</p>
 <p>TBC</p>
-</div>
-<div class="section" id="bi-directional-integration">
+</section>
+<section id="bi-directional-integration">
 <span id="status-change"></span><h3>Bi-directional Integration<a class="headerlink" href="#bi-directional-integration" title="Permalink to this headline">¶</a></h3>
 <p>Using status change hooks, plugins can be used to complete a two way integration
 with an external system. That is, an external system like Prometheus Alertmanager
@@ -113,9 +114,9 @@ in Alerta for that alert to be uniquely identified at a later date.</p>
 <p>More information about bi-directional integration and real-world examples
 for Telegram, Zabbix, Prometheus and many others can be found on the
 <a class="reference internal" href="integrations.html#bidirection-integ"><span class="std std-ref">Integrations &amp; Plugins</span></a> page.</p>
-</div>
-</div>
-<div class="section" id="blackout-periods">
+</section>
+</section>
+<section id="blackout-periods">
 <span id="id3"></span><h2>Blackout Periods<a class="headerlink" href="#blackout-periods" title="Permalink to this headline">¶</a></h2>
 <p>An alert that is received during a <span class="target" id="index-0"></span>blackout period
 is suppressed. That is, it is received by Alerta and a <code class="docutils literal notranslate"><span class="pre">202</span> <span class="pre">Accepted</span></code> status
@@ -141,8 +142,8 @@ for the suppression to apply.</p>
 <li><p>all events that have a specific set of tags eg. <code class="docutils literal notranslate"><span class="pre">tags=[</span> <span class="pre">blackout,</span> <span class="pre">london</span> <span class="pre">]</span></code></p></li>
 </ul>
 <p>Note that an <code class="docutils literal notranslate"><span class="pre">environment</span></code> is always required to be defined for a blackout rule.</p>
-</div>
-<div class="section" id="de-duplication">
+</section>
+<section id="de-duplication">
 <span id="deduplication"></span><h2>De-Duplication<a class="headerlink" href="#de-duplication" title="Permalink to this headline">¶</a></h2>
 <p>When an alert with the same <code class="docutils literal notranslate"><span class="pre">environment</span></code>-<code class="docutils literal notranslate"><span class="pre">resource</span></code>-<code class="docutils literal notranslate"><span class="pre">event</span></code>
 combination is received with the <strong>same</strong> <code class="docutils literal notranslate"><span class="pre">severity</span></code>, the alert
@@ -154,8 +155,8 @@ new alert is not shown.</p>
 <p>Alerts are sorted in the Alerta web UI by <code class="docutils literal notranslate"><span class="pre">lastReceiveTime</span></code> by default
 so that the most recent alerts will be displayed at the top regardless
 of whether they were new alerts or de-duplicated alerts.</p>
-</div>
-<div class="section" id="simple-correlation">
+</section>
+<section id="simple-correlation">
 <span id="correlation"></span><h2>Simple Correlation<a class="headerlink" href="#simple-correlation" title="Permalink to this headline">¶</a></h2>
 <p>Alerta implements what we call “simple correlation” – as opposed to
 <a class="reference external" href="https://en.wikipedia.org/wiki/Complex_event_processing">complex correlation</a> which is <a class="reference external" href="http://www.espertech.com/">much</a> <a class="reference external" href="http://riemann.io/">more</a> <a class="reference external" href="http://www.drools.org/">involved</a>. Simple correlation,
@@ -174,8 +175,8 @@ events with <strong>any</strong> severity, then the alert is correlated.</p></li
 used to update key attributes of the existing alert (like <code class="docutils literal notranslate"><span class="pre">severity</span></code>,
 <code class="docutils literal notranslate"><span class="pre">event</span></code>, <code class="docutils literal notranslate"><span class="pre">value</span></code>, <code class="docutils literal notranslate"><span class="pre">text</span></code> and <code class="docutils literal notranslate"><span class="pre">lastReceiveTime</span></code>) and the new alert
 is not shown.</p>
-</div>
-<div class="section" id="state-based-browser">
+</section>
+<section id="state-based-browser">
 <span id="id4"></span><h2>State-based Browser<a class="headerlink" href="#state-based-browser" title="Permalink to this headline">¶</a></h2>
 <p>Alerta is called state-based because it will <strong>automatically</strong> <em>change
 the alert status</em> based on the current and previous severity of alerts
@@ -203,8 +204,8 @@ the priority they deserve.</p>
 implement the timeout of <code class="docutils literal notranslate"><span class="pre">expired</span></code> alerts using the <a class="reference internal" href="deployment.html#housekeeping"><span class="std std-ref">House Keeping</span></a>
 script.</p>
 </div>
-</div>
-<div class="section" id="alert-history">
+</section>
+<section id="alert-history">
 <h2>Alert History<a class="headerlink" href="#alert-history" title="Permalink to this headline">¶</a></h2>
 <p>Whenever an alert status or severity changes, that change is recorded in the
 alert <a class="reference internal" href="api/alert.html#history"><span class="std std-ref">history</span></a> log. This is to allow operations staff follow the
@@ -213,8 +214,8 @@ lifecycle of a particular alert, if necessary.</p>
 by using the <code class="docutils literal notranslate"><span class="pre">alerta</span></code> command-line tool <code class="docutils literal notranslate"><span class="pre">history</span></code> sub-command.</p>
 <p>For example, it will show whether an alert status change happened as a result of
 operator (external) action or an automatic <a class="reference internal" href="#correlation">correlation</a> (auto) action.</p>
-</div>
-<div class="section" id="heartbeats">
+</section>
+<section id="heartbeats">
 <h2>Heartbeats<a class="headerlink" href="#heartbeats" title="Permalink to this headline">¶</a></h2>
 <p>An Alerta <a class="reference internal" href="api/reference.html#heartbeats"><span class="std std-ref">heartbeat</span></a> is a periodic HTTP request sent to the
 Alerta API to indicate normal operation of the origin of the heartbeat.</p>
@@ -229,8 +230,8 @@ command-line tool using the <code class="docutils literal notranslate"><span cla
 using <code class="docutils literal notranslate"><span class="pre">alerta</span> <span class="pre">heartbeats</span> <span class="pre">--alert</span></code>. For more information about generating
 alerts from heartbeats see the <a class="reference internal" href="cli.html#cli-heartbeats"><span class="std std-ref">heartbeats command</span></a>
 reference.</p>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -296,6 +297,8 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webhooks.html">Custom Webhooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="federated.html">Federated Alerta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>

@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>Authentication &#8212; alerta 8.2 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
@@ -33,7 +34,7 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="authentication">
+  <section id="authentication">
 <span id="id1"></span><h1>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h1>
 <p>By default, authentication is not enabled, however there are some features
 that are <span class="xref std std-ref">not available</span> unless users login such as
@@ -82,9 +83,9 @@ random string on Linux:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="basic-auth">
+<section id="basic-auth">
 <span id="id2"></span><h2>Basic Auth<a class="headerlink" href="#basic-auth" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="basic-auth-built-in">
+<section id="basic-auth-built-in">
 <h3>Basic Auth (built-in)<a class="headerlink" href="#basic-auth-built-in" title="Permalink to this headline">¶</a></h3>
 <p>The most straight-forward authentication strategy to implement of the
 four is HTTP <a class="reference external" href="https://en.wikipedia.org/wiki/Basic_access_authentication">Basic Authentication</a> provided by the Alerta API
@@ -100,8 +101,8 @@ HTTPS.</p>
 <p class="admonition-title">Warning</p>
 <p>add example</p>
 </div>
-</div>
-<div class="section" id="basic-auth-using-ldap">
+</section>
+<section id="basic-auth-using-ldap">
 <span id="ldap-auth"></span><h3>Basic Auth using LDAP<a class="headerlink" href="#basic-auth-using-ldap" title="Permalink to this headline">¶</a></h3>
 <p>LDAP can be used as the Basic Auth provider to authenticate users
 if desired by setting the <code class="docutils literal notranslate"><span class="pre">AUTH_PROVIDER</span></code> to <code class="docutils literal notranslate"><span class="pre">ldap</span></code>.</p>
@@ -154,9 +155,9 @@ name by using <code class="docutils literal notranslate"><span class="pre">LDAP_
 Alerta web UI or CLI is not supported. Self-service user management
 needs to be handled by the LDAP authentication provider.</p>
 </div>
-</div>
-</div>
-<div class="section" id="openid-connect">
+</section>
+</section>
+<section id="openid-connect">
 <span id="oidc-auth"></span><h2>OpenID Connect<a class="headerlink" href="#openid-connect" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># OpenID Connect</span>
 <span class="n">OIDC_ISSUER_URL</span> <span class="o">=</span> <span class="kc">None</span>
@@ -168,8 +169,8 @@ needs to be handled by the LDAP authentication provider.</p>
 <span class="n">ALLOWED_OIDC_ROLES</span> <span class="o">=</span> <span class="n">ALLOWED_GITLAB_GROUPS</span> <span class="ow">or</span> <span class="n">ALLOWED_KEYCLOAK_ROLES</span> <span class="ow">or</span> <span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="saml-2-0">
+</section>
+<section id="saml-2-0">
 <span id="saml2-auth"></span><h2>SAML 2.0<a class="headerlink" href="#saml-2-0" title="Permalink to this headline">¶</a></h2>
 <p>To use SAML as the authentication provider for Alerta, install <a class="reference external" href="https://pysaml2.readthedocs.io">PySAML2</a> on the Alerta
 server and follow the configuration steps below.</p>
@@ -263,7 +264,7 @@ is properly configured in case default does not fit).</p>
 <span class="n">ALLOWED_SAML2_GROUPS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="section" id="github-oauth2">
+<section id="github-oauth2">
 <span id="id3"></span><h3>GitHub OAuth2<a class="headerlink" href="#github-oauth2" title="Permalink to this headline">¶</a></h3>
 <p>To use GitHub as the OAuth2 provider for Alerta, login to GitHub and go
 to <em>Settings -&gt; Applications -&gt; Register New Application</em>.</p>
@@ -304,9 +305,9 @@ user info at any time go to
 alerta in the list of applications and click the <strong>Revoke</strong>
 button.</p>
 </div>
-</div>
-</div>
-<div class="section" id="oidc-providers">
+</section>
+</section>
+<section id="oidc-providers">
 <span id="helper-auth"></span><h2>OIDC Providers<a class="headerlink" href="#oidc-providers" title="Permalink to this headline">¶</a></h2>
 <p>OpenID Connect authentication is provided by <a class="reference external" href="https://developers.google.com/accounts/docs/OpenIDConnect">Google</a> <a href="#id9"><span class="problematic" id="id10">`OAuth2`_</span></a>,
 <a class="reference external" href="https://docs.gitlab.com/ce/integration/oauth_provider.html">GitLab</a> <a class="reference external" href="http://tools.ietf.org/html/draft-ietf-oauth-v2-22">OAuth 2.0</a> or <a class="reference external" href="https://www.keycloak.org/documentation.html">Keycloak</a> <a class="reference external" href="http://tools.ietf.org/html/draft-ietf-oauth-v2-22">OAuth 2.0</a> and configuration is more
@@ -323,7 +324,7 @@ alerts.</p>
 <p>Then follow the steps below for the chosen OAuth provider to create an
 OAuth client ID and client secret. The client ID and client secret
 will need to be added to the <code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code> file for the Alerta server.</p>
-<div class="section" id="azure-active-directory">
+<section id="azure-active-directory">
 <span id="azure-ad-oidc"></span><h3>Azure Active Directory<a class="headerlink" href="#azure-active-directory" title="Permalink to this headline">¶</a></h3>
 <p>To use <a class="reference external" href="https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc">Azure Active Directory</a> (now known as <a class="reference external" href="https://docs.microsoft.com/en-us/azure/active-directory/develop/about-microsoft-identity-platform">Microsoft identity platform (v2.0)</a>) as
 the OpenID Connect authentication provider for Alerta follow the steps below.</p>
@@ -373,15 +374,15 @@ page and check the “OpenID Connect metadata document” URL.</p>
 <span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;jj2cw7~nc1.55l3.UAy8C3O9Ng-.~GYWYp&#39;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="amazon-cognito">
+</section>
+<section id="amazon-cognito">
 <h3>Amazon Cognito<a class="headerlink" href="#amazon-cognito" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>TBC</p>
 </div>
-</div>
-<div class="section" id="gitlab-oauth2">
+</section>
+<section id="gitlab-oauth2">
 <span id="id6"></span><h3>GitLab OAuth2<a class="headerlink" href="#gitlab-oauth2" title="Permalink to this headline">¶</a></h3>
 <p>To use GitLab as the OAuth2 provider for Alerta, login to GitLab and go
 to <em>Profile Settings -&gt; Applications -&gt; New Application</em>.</p>
@@ -423,8 +424,8 @@ GitLab user info at any time go to
 find alerta in the list of applications and click the <strong>Revoke</strong>
 button.</p>
 </div>
-</div>
-<div class="section" id="google-oauth2">
+</section>
+<section id="google-oauth2">
 <span id="id7"></span><h3>Google OAuth2<a class="headerlink" href="#google-oauth2" title="Permalink to this headline">¶</a></h3>
 <p>To use Google as the OAuth2 provider for Alerta, login to the
 <a class="reference external" href="https://console.developers.google.com">Google Developer Console</a> and create a new project for alerta.</p>
@@ -476,8 +477,8 @@ date.</p>
 <p><code class="docutils literal notranslate"><span class="pre">ALLOWED_EMAIL_DOMAINS</span></code> can be an asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>) to force
 login but <em>not</em> restrict who can login.</p>
 </div>
-</div>
-<div class="section" id="keycloak-oauth2">
+</section>
+<section id="keycloak-oauth2">
 <h3>Keycloak OAuth2<a class="headerlink" href="#keycloak-oauth2" title="Permalink to this headline">¶</a></h3>
 <p>To use Keycloak as the OAuth2 provider for Alerta, login to Keycloak admin interface, select the realm and go
 to <em>Clients -&gt; Create</em>.</p>
@@ -537,9 +538,9 @@ it may be necessary to set the <code class="docutils literal notranslate"><span 
 variable, supported by the Python <code class="docutils literal notranslate"><span class="pre">requests</span></code> package, to the self-issued
 CA bundle to avoid <a class="reference external" href="https://2.python-requests.org/en/master/user/advanced/#ssl-cert-verification">SSL verification issues</a>.</p>
 </div>
-</div>
-</div>
-<div class="section" id="api-keys">
+</section>
+</section>
+<section id="api-keys">
 <span id="id8"></span><h2>API Keys<a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h2>
 <p>If authentication is enforced, then an API key is needed to access
 the alerta API programatically. An API key can also be to used by the
@@ -572,15 +573,15 @@ files.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl &#39;http://api.alerta.io/alerts?api-key=demo-key&#39; -H &#39;Accept: application/json&#39;
 </pre></div>
 </div>
-</div>
-<div class="section" id="hmac-auth">
+</section>
+<section id="hmac-auth">
 <h2>HMAC Auth<a class="headerlink" href="#hmac-auth" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>TBC</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -644,6 +645,8 @@ Links
 </li>
 <li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webhooks.html">Custom Webhooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="federated.html">Federated Alerta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
