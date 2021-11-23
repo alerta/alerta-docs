@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>Authorization &#8212; alerta 8.2 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
@@ -33,7 +34,7 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="authorization">
+  <section id="authorization">
 <span id="id1"></span><h1>Authorization<a class="headerlink" href="#authorization" title="Permalink to this headline">¶</a></h1>
 <p>Authorization is used to limit access to Alerta API resources. The
 authorization model is based on <a class="reference external" href="http://csrc.nist.gov/groups/SNS/rbac/faq.html">Role-Based Access Control</a> (RBAC)
@@ -46,7 +47,7 @@ access is allowed – in a way that is scalable.</p>
 at least one role with <code class="docutils literal notranslate"><span class="pre">write:alerts</span></code> permissions. If the sender is not
 a member of a role with those permisssions then the request will be rejected
 with a <code class="docutils literal notranslate"><span class="pre">403</span> <span class="pre">Forbidden</span></code> response code.</p>
-<div class="section" id="flat-rbac">
+<section id="flat-rbac">
 <h2>Flat RBAC<a class="headerlink" href="#flat-rbac" title="Permalink to this headline">¶</a></h2>
 <p>Alerta implements the “flat” RBAC model as defined by NIST (aka.
 “Core RBAC”) and as such does not support any form of role hierarchy
@@ -67,12 +68,12 @@ where roles can inherit other roles.</p>
 to users. The only exception to this is the <code class="docutils literal notranslate"><span class="pre">ADMIN_USERS</span></code> setting
 which overrides all other roles a user might belong to.</p>
 </div>
-</div>
-<div class="section" id="configuration">
+</section>
+<section id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
 <p>There are two ways to configure role-based access; default and custom
 configuration.</p>
-<div class="section" id="default-authorization">
+<section id="default-authorization">
 <h3>Default Authorization<a class="headerlink" href="#default-authorization" title="Permalink to this headline">¶</a></h3>
 <p>If <a class="reference internal" href="authentication.html#authentication"><span class="std std-ref">authentication</span></a> is enabled then the default authorization
 is used which defines two roles:</p>
@@ -91,8 +92,8 @@ The scopes associated with the default <code class="docutils literal notranslate
 <code class="docutils literal notranslate"><span class="pre">USER_DEFAULT_SCOPES</span></code> setting in the API <a class="reference internal" href="configuration.html#auth-config"><span class="std std-ref">server settings</span></a>.
 All other roles are managed via the web console or <code class="docutils literal notranslate"><span class="pre">alerta</span></code> CLI.</p>
 </div>
-</div>
-<div class="section" id="custom-authorization">
+</section>
+<section id="custom-authorization">
 <h3>Custom Authorization<a class="headerlink" href="#custom-authorization" title="Permalink to this headline">¶</a></h3>
 <p>To use custom authorization simply define one or more permission-scope lookups.</p>
 <p>As an “admin” user go to <em>Configuration -&gt; Permissions</em> and add a new role
@@ -105,9 +106,9 @@ configured Authentication provider.</p>
 roles. That is, do not give to a user any more privilege than is necessary
 to perform their job function.</p>
 </div>
-</div>
-</div>
-<div class="section" id="scopes-and-permissions">
+</section>
+</section>
+<section id="scopes-and-permissions">
 <h2>Scopes and Permissions<a class="headerlink" href="#scopes-and-permissions" title="Permalink to this headline">¶</a></h2>
 <p>Use these scopes to request access to API resources.</p>
 <table class="docutils align-default">
@@ -210,8 +211,8 @@ to perform their job function.</p>
 includes <code class="docutils literal notranslate"><span class="pre">read</span></code> and <code class="docutils literal notranslate"><span class="pre">write</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">delete:alerts</span></code> only required to delete alerts if the <cite>DELETE_SCOPES</cite> setting is enabled.</p>
 </div>
-</div>
-<div class="section" id="audit-log">
+</section>
+<section id="audit-log">
 <h2>Audit Log<a class="headerlink" href="#audit-log" title="Permalink to this headline">¶</a></h2>
 <p>An audit trail can be enabled to keep track of changes to Alerta.</p>
 <p>Every audit event will have an audit <code class="docutils literal notranslate"><span class="pre">id</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;timestamp</span></code>, <code class="docutils literal notranslate"><span class="pre">event</span></code>,
@@ -264,8 +265,8 @@ replacing <code class="docutils literal notranslate"><span class="pre">TOKEN</sp
 </pre></div>
 </div>
 <img alt="_images/loggly-screen-shot-2.png" src="_images/loggly-screen-shot-2.png" />
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -327,6 +328,8 @@ Links
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webhooks.html">Custom Webhooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="federated.html">Federated Alerta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>

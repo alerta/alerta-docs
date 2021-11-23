@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>Deployment &#8212; alerta 8.2 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
@@ -15,7 +16,7 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Customer Views" href="customer-views.html" />
+    <link rel="next" title="Plug-ins" href="plugins.html" />
     <link rel="prev" title="Authorization" href="authorization.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -33,9 +34,9 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="deployment">
+  <section id="deployment">
 <span id="id1"></span><h1>Deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="wsgi-server">
+<section id="wsgi-server">
 <h2>WSGI Server<a class="headerlink" href="#wsgi-server" title="Permalink to this headline">¶</a></h2>
 <p>There are many ways to deploy Alerta. It can be run as <code class="docutils literal notranslate"><span class="pre">alertad</span></code>
 during development or testing but when run in a production environment,
@@ -50,8 +51,8 @@ receive “Missing authorization API Key or Bearer Token” errors.
 This can be fixed by setting <code class="docutils literal notranslate"><span class="pre">WSGIPassAuthorization</span> <span class="pre">On</span></code> in
 the configuration file for the site.</p>
 </div>
-</div>
-<div class="section" id="web-proxy">
+</section>
+<section id="web-proxy">
 <span id="reverse-proxy"></span><h2>Web Proxy<a class="headerlink" href="#web-proxy" title="Permalink to this headline">¶</a></h2>
 <p>Running the Alerta API behind a web proxy can greatly simplify the
 Web UI setup which means you can completely <a class="reference external" href="http://oskarhane.com/avoid-cors-with-nginx-proxy_pass/">avoid</a> the potential
@@ -102,8 +103,8 @@ the <code class="docutils literal notranslate"><span class="pre">endpoint</span>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;endpoint&quot;</span><span class="p">:</span> <span class="s2">&quot;/api&quot;</span><span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="static-website">
+</section>
+<section id="static-website">
 <span id="id2"></span><h2>Static Website<a class="headerlink" href="#static-website" title="Permalink to this headline">¶</a></h2>
 <p>The Alerta web UI is just a directory of static assets that can be
 served from any location. An easy and cheap way to serve the web UI
@@ -114,8 +115,8 @@ is from an <a class="reference external" href="http://docs.aws.amazon.com/Amazon
 <strong>will not work</strong> unless that domain is listed in the
 <code class="docutils literal notranslate"><span class="pre">CORS_ORIGINS</span></code> Alerta API server configuration settings.</p>
 </div>
-</div>
-<div class="section" id="authentication-ssl">
+</section>
+<section id="authentication-ssl">
 <span id="auth-ssl"></span><h2>Authentication &amp; SSL<a class="headerlink" href="#authentication-ssl" title="Permalink to this headline">¶</a></h2>
 <p>Alerta supports several authentication mechanisms for both the API
 and the web UI and some key features of the web UI, like
@@ -128,13 +129,13 @@ provider from either GitHub, GitLab, Google, Keycloak or SAML2.</p>
 strongly advised to <a class="reference internal" href="authentication.html#authentication"><span class="std std-ref">enforce authentication</span></a>
 and use HTTPS/SSL connections to the Alerta API to protect private
 alert data.</p>
-</div>
-<div class="section" id="authorisation-customer-views">
+</section>
+<section id="authorisation-customer-views">
 <span id="auth-cv"></span><h2>Authorisation &amp; Customer Views<a class="headerlink" href="#authorisation-customer-views" title="Permalink to this headline">¶</a></h2>
 <p>To restrict access to certain features use <span class="xref std std-ref">roles</span>
 and <a class="reference internal" href="customer-views.html#customer-views"><span class="std std-ref">customer views</span></a>.</p>
-</div>
-<div class="section" id="scalability">
+</section>
+<section id="scalability">
 <span id="id3"></span><h2>Scalability<a class="headerlink" href="#scalability" title="Permalink to this headline">¶</a></h2>
 <p>Alerta can scale horizontally, in the same way any other web
 application scales horizontally – a load balancer handles the
@@ -146,15 +147,15 @@ application servers.</p>
 is used across all servers otherwise there will be problems
 with web UI user logins.</p>
 </div>
-</div>
-<div class="section" id="high-availability">
+</section>
+<section id="high-availability">
 <span id="id4"></span><h2>High Availability<a class="headerlink" href="#high-availability" title="Permalink to this headline">¶</a></h2>
 <p>To achieve high system availability the Alerta API should be
 deployed to scale out <a class="reference internal" href="#scalability"><span class="std std-ref">horizontally</span></a> and
 the database should be deployed as a <a class="reference external" href="http://docs.mongodb.org/manual/core/replica-set-high-availability/">replica set</a>, if using
 mongoDB or as <a class="reference external" href="https://www.postgresql.org/docs/current/static/high-availability.html">master-slave</a>, if using Postgres.</p>
-</div>
-<div class="section" id="house-keeping">
+</section>
+<section id="house-keeping">
 <span id="housekeeping"></span><h2>House Keeping<a class="headerlink" href="#house-keeping" title="Permalink to this headline">¶</a></h2>
 <div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version 5.0: </span>The <code class="file docutils literal notranslate"><span class="pre">housekeepingAlerts.js</span></code> script that was used for
@@ -190,8 +191,8 @@ heartbeats the <code class="docutils literal notranslate"><span class="pre">aler
 </div>
 <p>Again, this should be run at regular intervals via <code class="docutils literal notranslate"><span class="pre">cron</span></code> or
 some other scheduler.</p>
-</div>
-<div class="section" id="management-metrics">
+</section>
+<section id="management-metrics">
 <span id="metrics"></span><h2>Management &amp; Metrics<a class="headerlink" href="#management-metrics" title="Permalink to this headline">¶</a></h2>
 <p>There are two management endpoints that provide internal application
 metrics.</p>
@@ -205,8 +206,8 @@ web UI or using the <code class="docutils literal notranslate"><span class="pre"
 the <a class="reference external" href="https://prometheus.io/docs/instrumenting/exposition_formats/">exposition format</a> required by Prometheus so that it can be monitored
 by Prometheus and other monitoring tools that implement the <a class="reference external" href="https://openmetrics.io/">OpenMetrics</a>
 standard.</p>
-</div>
-<div class="section" id="web-ui-analytics">
+</section>
+<section id="web-ui-analytics">
 <h2>Web UI Analytics<a class="headerlink" href="#web-ui-analytics" title="Permalink to this headline">¶</a></h2>
 <p>Google analytics can be used to track usage of the Alerta web UI
 console. Just create a new tracking code with the <a class="reference external" href="https://analytics.google.com/analytics/web/">Google analytics</a>
@@ -215,8 +216,8 @@ file:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GOOGLE_TRACKING_ID</span> <span class="o">=</span> <span class="s1">&#39;UA-NNNNNN-N&#39;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="real-world-examples">
+</section>
+<section id="real-world-examples">
 <span id="real-world"></span><h2>Real World Examples<a class="headerlink" href="#real-world-examples" title="Permalink to this headline">¶</a></h2>
 <p>Below are several different examples of how to run Alerta in production
 from a Debian <a class="reference external" href="https://docs.vagrantup.com/v2/boxes.html">vagrant box</a>, an <a class="reference external" href="https://aws.amazon.com/ec2/">AWS EC2 instance</a>,
@@ -233,8 +234,8 @@ from a Debian <a class="reference external" href="https://docs.vagrantup.com/v2/
 <li><p><a class="reference external" href="https://github.com/aka7/alerta-terraform">Terraform</a> - single instance of alerta for quick demo on AWS</p></li>
 <li><p><a class="reference external" href="https://github.com/codingfuture/puppet-cfwebapp">Puppet</a> - Alerta recipe on top of <a class="reference external" href="https://codingfuture.net/docs/cfweb">cfweb</a> module</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -303,6 +304,8 @@ Links
 <li class="toctree-l2"><a class="reference internal" href="#real-world-examples">Real World Examples</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webhooks.html">Custom Webhooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="federated.html">Federated Alerta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>

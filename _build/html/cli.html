@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>Alerta CLI &#8212; alerta 8.2 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
@@ -33,7 +34,7 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="alerta-cli">
+  <section id="alerta-cli">
 <span id="cli"></span><h1>Alerta CLI<a class="headerlink" href="#alerta-cli" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">alerta</span></code> is the unified command-line tool, terminal GUI and Python SDK
 for the alerta monitoring system.</p>
@@ -42,7 +43,7 @@ delete alerts, dump alert history or see the raw alert data. It can also be
 used to send heartbeats to the alerta server, and generate alerts based on
 missing or slow heartbeats.</p>
 <img alt="_images/alerta-top-80x25.png" src="_images/alerta-top-80x25.png" />
-<div class="section" id="installation">
+<section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">alerta</span></code> client tool can be installed using pip:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install alerta
@@ -54,8 +55,8 @@ $ cd python-alerta-client
 $ pip install .
 </pre></div>
 </div>
-</div>
-<div class="section" id="configuration">
+</section>
+<section id="configuration">
 <span id="cli-config"></span><h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
 <p>Options can be set in a configuration file, as environment variables or
 on the command line. Profiles can be used to easily switch between different
@@ -170,15 +171,15 @@ $ export ALERTA_DEFAULT_PROFILE=production
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta --profile development query
 </pre></div>
 </div>
-</div>
-<div class="section" id="precedence">
+</section>
+<section id="precedence">
 <h2>Precedence<a class="headerlink" href="#precedence" title="Permalink to this headline">¶</a></h2>
 <p>Command-line configuration options have precedence over environment
 variables, which have precedence over the configuration file. Within
 the configuration file, profile-specific sections have precedence over
 the <code class="docutils literal notranslate"><span class="pre">[DEFAULT]</span></code> section.</p>
-</div>
-<div class="section" id="authentication">
+</section>
+<section id="authentication">
 <h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h2>
 <p>If the Alerta API enforces authentication, then the <code class="docutils literal notranslate"><span class="pre">alerta</span></code> command-line
 tool can be configured to present an API key or login to the API before
@@ -200,8 +201,8 @@ required but before running any commands the user must login first:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta login
 </pre></div>
 </div>
-</div>
-<div class="section" id="commands">
+</section>
+<section id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">alerta</span></code> tool is invoked by specifying a command using the
 following format:</p>
@@ -292,11 +293,11 @@ following format:</p>
 </li>
 </ul>
 </div>
-<div class="section" id="alert-commands">
+<section id="alert-commands">
 <h3><a class="toc-backref" href="#id1">Alert Commands</a><a class="headerlink" href="#alert-commands" title="Permalink to this headline">¶</a></h3>
 <p>The following group of commands are related to sending, querying and managing
 the status of alerts.</p>
-<div class="section" id="send-send-an-alert">
+<section id="send-send-an-alert">
 <span id="cli-send"></span><h4><a class="toc-backref" href="#id2"><strong class="command">send</strong> - Send an alert</a><a class="headerlink" href="#send-send-an-alert" title="Permalink to this headline">¶</a></h4>
 <p>Send an alert.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta send [OPTIONS]
@@ -399,8 +400,8 @@ $ alerta send --resource web01 --event HttpOK --correlate HttpError --group Web 
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta send -r web01 -e HttpError -g Web -s major --attributes region=&quot;EU&quot;
 </pre></div>
 </div>
-</div>
-<div class="section" id="query-search-for-alerts">
+</section>
+<section id="query-search-for-alerts">
 <h4><a class="toc-backref" href="#id3"><strong class="command">query</strong> - Search for alerts</a><a class="headerlink" href="#query-search-for-alerts" title="Permalink to this headline">¶</a></h4>
 <p>Query for alerts based on search filter criteria.</p>
 <p><strong>Examples</strong></p>
@@ -412,84 +413,84 @@ $ alerta send --resource web01 --event HttpOK --correlate HttpError --group Web 
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta query --filter text=~disk
 </pre></div>
 </div>
-</div>
-<div class="section" id="ack-acknowledge-alerts">
+</section>
+<section id="ack-acknowledge-alerts">
 <h4><a class="toc-backref" href="#id4"><strong class="command">ack</strong> - Acknowledge alerts</a><a class="headerlink" href="#ack-acknowledge-alerts" title="Permalink to this headline">¶</a></h4>
 <p>Acknowlege alerts ie. change alert <code class="docutils literal notranslate"><span class="pre">status</span></code> to <code class="docutils literal notranslate"><span class="pre">ack</span></code></p>
-</div>
-<div class="section" id="close-close-alerts">
+</section>
+<section id="close-close-alerts">
 <h4><a class="toc-backref" href="#id5"><strong class="command">close</strong> - Close alerts</a><a class="headerlink" href="#close-close-alerts" title="Permalink to this headline">¶</a></h4>
 <p>Close alerts ie. change alert <code class="docutils literal notranslate"><span class="pre">status</span></code> to <code class="docutils literal notranslate"><span class="pre">closed</span></code>.</p>
-</div>
-<div class="section" id="unack-un-acknowledge-alerts">
+</section>
+<section id="unack-un-acknowledge-alerts">
 <h4><a class="toc-backref" href="#id6"><strong class="command">unack</strong> - Un-acknowledge alerts</a><a class="headerlink" href="#unack-un-acknowledge-alerts" title="Permalink to this headline">¶</a></h4>
 <p>Unacknowledge alerts ie. change alert <code class="docutils literal notranslate"><span class="pre">status</span></code> to <code class="docutils literal notranslate"><span class="pre">open</span></code>.</p>
-</div>
-<div class="section" id="shelve-shelve-alerts">
+</section>
+<section id="shelve-shelve-alerts">
 <h4><a class="toc-backref" href="#id7"><strong class="command">shelve</strong> - Shelve alerts</a><a class="headerlink" href="#shelve-shelve-alerts" title="Permalink to this headline">¶</a></h4>
 <p>Shelve alerts ie. change alert <code class="docutils literal notranslate"><span class="pre">status</span></code> to <code class="docutils literal notranslate"><span class="pre">shelved</span></code> which removes the
 alerts from the active console and prevents any further notifications.</p>
-</div>
-<div class="section" id="unshelve-un-shelve-alerts">
+</section>
+<section id="unshelve-un-shelve-alerts">
 <h4><a class="toc-backref" href="#id8"><strong class="command">unshelve</strong> - Un-shelve alerts</a><a class="headerlink" href="#unshelve-un-shelve-alerts" title="Permalink to this headline">¶</a></h4>
 <p>Unshelve alerts ie. change alert <code class="docutils literal notranslate"><span class="pre">status</span></code> to <code class="docutils literal notranslate"><span class="pre">open</span></code> which returns the
 alerts to the active console and does not prevent future notifications.</p>
-</div>
-<div class="section" id="tag-tag-alerts">
+</section>
+<section id="tag-tag-alerts">
 <h4><a class="toc-backref" href="#id9"><strong class="command">tag</strong> - Tag alerts</a><a class="headerlink" href="#tag-tag-alerts" title="Permalink to this headline">¶</a></h4>
 <p>Add tags to alerts.</p>
-</div>
-<div class="section" id="untag-untag-alerts">
+</section>
+<section id="untag-untag-alerts">
 <h4><a class="toc-backref" href="#id10"><strong class="command">untag</strong> - Untag alerts</a><a class="headerlink" href="#untag-untag-alerts" title="Permalink to this headline">¶</a></h4>
 <p>Remove tags from alerts.</p>
-</div>
-<div class="section" id="update-update-alert-attributes">
+</section>
+<section id="update-update-alert-attributes">
 <h4><a class="toc-backref" href="#id11"><strong class="command">update</strong> - Update alert attributes</a><a class="headerlink" href="#update-update-alert-attributes" title="Permalink to this headline">¶</a></h4>
 <p>Update alert attributes.</p>
-</div>
-<div class="section" id="delete-delete-alerts">
+</section>
+<section id="delete-delete-alerts">
 <h4><a class="toc-backref" href="#id12"><strong class="command">delete</strong> - Delete alerts</a><a class="headerlink" href="#delete-delete-alerts" title="Permalink to this headline">¶</a></h4>
 <p>Delete alerts.</p>
-</div>
-<div class="section" id="watch-watch-alerts">
+</section>
+<section id="watch-watch-alerts">
 <h4><a class="toc-backref" href="#id13"><strong class="command">watch</strong> - Watch alerts</a><a class="headerlink" href="#watch-watch-alerts" title="Permalink to this headline">¶</a></h4>
 <p>Watch for new alerts.</p>
-</div>
-<div class="section" id="top-show-top-offenders-and-stats">
+</section>
+<section id="top-show-top-offenders-and-stats">
 <h4><a class="toc-backref" href="#id14"><strong class="command">top</strong> - Show top offenders and stats</a><a class="headerlink" href="#top-show-top-offenders-and-stats" title="Permalink to this headline">¶</a></h4>
 <p>Display alerts like unix “top” command.</p>
-</div>
-<div class="section" id="raw-show-alert-raw-data">
+</section>
+<section id="raw-show-alert-raw-data">
 <h4><a class="toc-backref" href="#id15"><strong class="command">raw</strong> - Show alert raw data</a><a class="headerlink" href="#raw-show-alert-raw-data" title="Permalink to this headline">¶</a></h4>
 <p>Show raw data for alerts.</p>
-</div>
-<div class="section" id="history-show-alert-history">
+</section>
+<section id="history-show-alert-history">
 <h4><a class="toc-backref" href="#id16"><strong class="command">history</strong> - Show alert history</a><a class="headerlink" href="#history-show-alert-history" title="Permalink to this headline">¶</a></h4>
 <p>Show action, status, severity and value changes for alerts.</p>
-</div>
-</div>
-<div class="section" id="blackout-commands">
+</section>
+</section>
+<section id="blackout-commands">
 <h3><a class="toc-backref" href="#id17">Blackout Commands</a><a class="headerlink" href="#blackout-commands" title="Permalink to this headline">¶</a></h3>
 <p>The following group of commands are related to creating and
 managing alert suppressions using blackouts.</p>
-<div class="section" id="blackout-suppress-alerts">
+<section id="blackout-suppress-alerts">
 <h4><a class="toc-backref" href="#id18"><strong class="command">blackout</strong> - Suppress alerts</a><a class="headerlink" href="#blackout-suppress-alerts" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><p>blackout      Suppress alerts</p>
 </div></blockquote>
-</div>
-<div class="section" id="blackouts-list-alert-suppressions">
+</section>
+<section id="blackouts-list-alert-suppressions">
 <h4><a class="toc-backref" href="#id19"><strong class="command">blackouts</strong> - List alert suppressions</a><a class="headerlink" href="#blackouts-list-alert-suppressions" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><p>blackouts     List alert suppressions</p>
 </div></blockquote>
-</div>
-</div>
-<div class="section" id="heartbeat-commands">
+</section>
+</section>
+<section id="heartbeat-commands">
 <h3><a class="toc-backref" href="#id20">Heartbeat Commands</a><a class="headerlink" href="#heartbeat-commands" title="Permalink to this headline">¶</a></h3>
 <p>The following group of commands are related to creating and
 managing heartbeats.</p>
-<div class="section" id="heartbeat-send-a-heartbeat">
+<section id="heartbeat-send-a-heartbeat">
 <span id="cli-heartbeat"></span><h4><a class="toc-backref" href="#id21"><strong class="command">heartbeat</strong> - Send a heartbeat</a><a class="headerlink" href="#heartbeat-send-a-heartbeat" title="Permalink to this headline">¶</a></h4>
 <p>Send or delete a heartbeat.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta heartbeat [OPTIONS]
@@ -514,8 +515,8 @@ Options:
 <p>The “environment”, “severity”, “service” and “group” values are only
 used when heartbeat alerts are generated from slow or stale heartbeats.</p>
 </div>
-</div>
-<div class="section" id="heartbeats-list-heartbeats">
+</section>
+<section id="heartbeats-list-heartbeats">
 <span id="cli-heartbeats"></span><h4><a class="toc-backref" href="#id22"><strong class="command">heartbeats</strong> - List heartbeats</a><a class="headerlink" href="#heartbeats-list-heartbeats" title="Permalink to this headline">¶</a></h4>
 <p>List heartbeats and generate heartbeat alerts.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta heartbeats [OPTIONS]
@@ -542,13 +543,13 @@ group when a heartbeat is missed or slow for an origin called <code class="docut
 $ alerta heartbeats --alert --severity major
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="api-key-commands">
+</section>
+</section>
+<section id="api-key-commands">
 <h3><a class="toc-backref" href="#id23">API Key Commands</a><a class="headerlink" href="#api-key-commands" title="Permalink to this headline">¶</a></h3>
 <p>The following group of commands are related to creating and
 managing API keys.</p>
-<div class="section" id="key-create-api-key">
+<section id="key-create-api-key">
 <h4><a class="toc-backref" href="#id24"><strong class="command">key</strong> - Create API key</a><a class="headerlink" href="#key-create-api-key" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><p>key           Create API key</p>
@@ -559,115 +560,115 @@ managing API keys.</p>
 with associated roles that are greater than that with which that API key
 has.</p>
 </div>
-</div>
-<div class="section" id="keys-list-api-keys">
+</section>
+<section id="keys-list-api-keys">
 <h4><a class="toc-backref" href="#id25"><strong class="command">keys</strong> - List API keys</a><a class="headerlink" href="#keys-list-api-keys" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><p>keys          List API keys</p>
 </div></blockquote>
-</div>
-<div class="section" id="revoke-revoke-api-key">
+</section>
+<section id="revoke-revoke-api-key">
 <h4><a class="toc-backref" href="#id26"><strong class="command">revoke</strong> - Revoke API key</a><a class="headerlink" href="#revoke-revoke-api-key" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><p>revoke        Revoke API key</p>
 </div></blockquote>
-</div>
-</div>
-<div class="section" id="user-commands">
+</section>
+</section>
+<section id="user-commands">
 <h3><a class="toc-backref" href="#id27">User Commands</a><a class="headerlink" href="#user-commands" title="Permalink to this headline">¶</a></h3>
 <p>The following group of commands are related to creating and
 managing users.</p>
-<div class="section" id="user-update-user">
+<section id="user-update-user">
 <h4><a class="toc-backref" href="#id28"><strong class="command">user</strong> - Update user</a><a class="headerlink" href="#user-update-user" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><p>user          Update user</p>
 </div></blockquote>
-</div>
-<div class="section" id="users-list-users">
+</section>
+<section id="users-list-users">
 <h4><a class="toc-backref" href="#id29"><strong class="command">users</strong> - List users</a><a class="headerlink" href="#users-list-users" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><p>users         List users</p>
 </div></blockquote>
-</div>
-<div class="section" id="me-update-current-user">
+</section>
+<section id="me-update-current-user">
 <h4><a class="toc-backref" href="#id30"><strong class="command">me</strong> - Update current user</a><a class="headerlink" href="#me-update-current-user" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><p>me            Update current user</p>
 </div></blockquote>
-</div>
-</div>
-<div class="section" id="permissions-commands">
+</section>
+</section>
+<section id="permissions-commands">
 <h3><a class="toc-backref" href="#id31">Permissions Commands</a><a class="headerlink" href="#permissions-commands" title="Permalink to this headline">¶</a></h3>
 <p>The following group of commands are related to creating and
 managing roles, permissions and access control.</p>
-<div class="section" id="perm-add-role-permission-lookup">
+<section id="perm-add-role-permission-lookup">
 <h4><a class="toc-backref" href="#id32"><strong class="command">perm</strong> - Add role-permission lookup</a><a class="headerlink" href="#perm-add-role-permission-lookup" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><p>perm          Add role-permission lookup</p>
 </div></blockquote>
-</div>
-<div class="section" id="perms-list-role-permission-lookups">
+</section>
+<section id="perms-list-role-permission-lookups">
 <h4><a class="toc-backref" href="#id33"><strong class="command">perms</strong> - List role-permission lookups</a><a class="headerlink" href="#perms-list-role-permission-lookups" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><p>perms         List role-permission lookups</p>
 </div></blockquote>
-</div>
-</div>
-<div class="section" id="customer-commands">
+</section>
+</section>
+<section id="customer-commands">
 <h3><a class="toc-backref" href="#id34">Customer Commands</a><a class="headerlink" href="#customer-commands" title="Permalink to this headline">¶</a></h3>
 <p>The following group of commands are related to creating and
 managing customers.</p>
-<div class="section" id="customer-add-customer-lookup">
+<section id="customer-add-customer-lookup">
 <h4><a class="toc-backref" href="#id35"><strong class="command">customer</strong> - Add customer lookup</a><a class="headerlink" href="#customer-add-customer-lookup" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><p>customer      Add customer lookup</p>
 </div></blockquote>
-</div>
-<div class="section" id="customers-list-customer-lookups">
+</section>
+<section id="customers-list-customer-lookups">
 <h4><a class="toc-backref" href="#id36"><strong class="command">customers</strong> - List customer lookups</a><a class="headerlink" href="#customers-list-customer-lookups" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><p>customers     List customer lookups</p>
 </div></blockquote>
-</div>
-</div>
-<div class="section" id="auth-commands">
+</section>
+</section>
+<section id="auth-commands">
 <h3><a class="toc-backref" href="#id37">Auth Commands</a><a class="headerlink" href="#auth-commands" title="Permalink to this headline">¶</a></h3>
 <p>The following group of commands are related to authentication.</p>
-<div class="section" id="signup-sign-up-new-user">
+<section id="signup-sign-up-new-user">
 <h4><a class="toc-backref" href="#id38"><strong class="command">signup</strong> - Sign-up new user</a><a class="headerlink" href="#signup-sign-up-new-user" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><p>signup        Sign-up new user</p>
 </div></blockquote>
-</div>
-<div class="section" id="login-login-with-user-credentials">
+</section>
+<section id="login-login-with-user-credentials">
 <h4><a class="toc-backref" href="#id39"><strong class="command">login</strong> - Login with user credentials</a><a class="headerlink" href="#login-login-with-user-credentials" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><p>login         Login with user credentials</p>
 </div></blockquote>
-</div>
-<div class="section" id="logout-clear-login-credentials">
+</section>
+<section id="logout-clear-login-credentials">
 <h4><a class="toc-backref" href="#id40"><strong class="command">logout</strong> - Clear login credentials</a><a class="headerlink" href="#logout-clear-login-credentials" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><p>logout        Clear login credentials</p>
 </div></blockquote>
-</div>
-<div class="section" id="whoami-display-current-logged-in-user">
+</section>
+<section id="whoami-display-current-logged-in-user">
 <h4><a class="toc-backref" href="#id41"><strong class="command">whoami</strong> - Display current logged in user</a><a class="headerlink" href="#whoami-display-current-logged-in-user" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><p>whoami        Display current logged in user</p>
 </div></blockquote>
-</div>
-<div class="section" id="token-display-current-auth-token">
+</section>
+<section id="token-display-current-auth-token">
 <h4><a class="toc-backref" href="#id42"><strong class="command">token</strong> - Display current auth token</a><a class="headerlink" href="#token-display-current-auth-token" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><p>token         Display current auth token</p>
 </div></blockquote>
-</div>
-</div>
-<div class="section" id="admin-commands">
+</section>
+</section>
+<section id="admin-commands">
 <h3><a class="toc-backref" href="#id43">Admin Commands</a><a class="headerlink" href="#admin-commands" title="Permalink to this headline">¶</a></h3>
 <p>The following group of commands are related to administration.</p>
-<div class="section" id="status-display-status-and-metrics">
+<section id="status-display-status-and-metrics">
 <h4><a class="toc-backref" href="#id44"><strong class="command">status</strong> - Display status and metrics</a><a class="headerlink" href="#status-display-status-and-metrics" title="Permalink to this headline">¶</a></h4>
 <p>Display API server switch status and usage metrics.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta status
@@ -691,8 +692,8 @@ Alerta console auto-refresh  text     switch.auto-refresh-allow  ON
 API alert submission         text     switch.sender-api-allow    ON
 </pre></div>
 </div>
-</div>
-<div class="section" id="config-display-remote-client-config">
+</section>
+<section id="config-display-remote-client-config">
 <h4><a class="toc-backref" href="#id45"><strong class="command">config</strong> - Display remote client config</a><a class="headerlink" href="#config-display-remote-client-config" title="Permalink to this headline">¶</a></h4>
 <p>Display client config downloaded from API server.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta config
@@ -715,20 +716,20 @@ signup_enabled      : True
 tracking_id         : UA-44644195-5
 </pre></div>
 </div>
-</div>
-<div class="section" id="housekeeping-expired-and-clears-old-alerts">
+</section>
+<section id="housekeeping-expired-and-clears-old-alerts">
 <h4><a class="toc-backref" href="#id46"><strong class="command">housekeeping</strong> - Expired and clears old alerts</a><a class="headerlink" href="#housekeeping-expired-and-clears-old-alerts" title="Permalink to this headline">¶</a></h4>
 <p>Trigger the expiration and deletion of alerts.</p>
-</div>
-<div class="section" id="uptime-display-server-uptime">
+</section>
+<section id="uptime-display-server-uptime">
 <h4><a class="toc-backref" href="#id47"><strong class="command">uptime</strong> - Display server uptime</a><a class="headerlink" href="#uptime-display-server-uptime" title="Permalink to this headline">¶</a></h4>
 <p>Show how long the Alerta API has been running.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta uptime
 01:06 up 0 days 16:15
 </pre></div>
 </div>
-</div>
-<div class="section" id="version-display-version-info">
+</section>
+<section id="version-display-version-info">
 <h4><a class="toc-backref" href="#id48"><strong class="command">version</strong> - Display version info</a><a class="headerlink" href="#version-display-version-info" title="Permalink to this headline">¶</a></h4>
 <p>Show version information for <code class="docutils literal notranslate"><span class="pre">alerta</span></code> and dependencies.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta version
@@ -738,21 +739,21 @@ requests 2.19.1
 click 7.0
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="help-commands">
+</section>
+</section>
+<section id="help-commands">
 <h3><a class="toc-backref" href="#id49">Help Commands</a><a class="headerlink" href="#help-commands" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="help-show-this-help">
+<section id="help-show-this-help">
 <h4><a class="toc-backref" href="#id50"><strong class="command">help</strong> - Show this help</a><a class="headerlink" href="#help-show-this-help" title="Permalink to this headline">¶</a></h4>
 <p>Show all <code class="docutils literal notranslate"><span class="pre">OPTIONS</span></code>, <code class="docutils literal notranslate"><span class="pre">COMMANDS</span></code> and some example <code class="docutils literal notranslate"><span class="pre">FILTERS</span></code>.</p>
-</div>
-</div>
-</div>
-<div class="section" id="bugs">
+</section>
+</section>
+</section>
+<section id="bugs">
 <h2>Bugs<a class="headerlink" href="#bugs" title="Permalink to this headline">¶</a></h2>
 <p>Log any issues on <a class="reference external" href="https://github.com/alerta/python-alerta/issues">GitHub</a> or submit a <a class="reference external" href="https://github.com/alerta/python-alerta/pulls">pull request</a>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -816,6 +817,8 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webhooks.html">Custom Webhooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="federated.html">Federated Alerta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>

@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>Using Docker to deploy Alerta &#8212; alerta 8.2 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
@@ -31,7 +32,7 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="using-docker-to-deploy-alerta">
+  <section id="using-docker-to-deploy-alerta">
 <span id="tutorial-11"></span><h1>Using Docker to deploy Alerta<a class="headerlink" href="#using-docker-to-deploy-alerta" title="Permalink to this headline">¶</a></h1>
 <p>In this tutorial, you will learn how to deploy Alerta using
 <a class="reference internal" href="#kubernetes">Kubernetes</a>.</p>
@@ -49,7 +50,7 @@
 <li><p><a href="#id13"><span class="problematic" id="id14">`Debugging and Troubleshooting`_</span></a></p></li>
 </ul>
 </div></blockquote>
-<div class="section" id="overview">
+<section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="https://hub.docker.com/r/alerta/alerta-web/">“official” Docker image</a> for Alerta has been download more
 than <a class="reference external" href="https://hub.docker.com/v2/repositories/alerta/alerta-web/">2 million times</a> and contains everything needed
@@ -68,14 +69,14 @@ to deploy Alerta in most scenarios, such as:</p>
 extend it with additional plugins, webhooks or alternatively,
 the <a class="reference external" href="https://github.com/alerta/docker-alerta/blob/master/Dockerfile">Dockerfile</a> can be used as a starting point to build your
 own base image.</p>
-</div>
-<div class="section" id="prerequisites">
+</section>
+<section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
 <p>To follow this tutorial you will need to <a class="reference external" href="https://kubernetes.io/docs/tasks/tools/install-minikube/">install Minikube</a>, the “single-node Kubernetes
 cluster in a virtual machine on your personal computer” which you
 will need to complete <a href="#id15"><span class="problematic" id="id16">`Step 6`_</span></a> where you mimic deploying to production.</p>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -131,6 +132,8 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="../authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../authorization.html">Authorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webhooks.html">Custom Webhooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../federated.html">Federated Alerta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>

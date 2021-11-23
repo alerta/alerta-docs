@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>Frequently Asked Questions &#8212; alerta 8.2 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
@@ -33,11 +34,11 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="frequently-asked-questions">
+  <section id="frequently-asked-questions">
 <span id="faq"></span><h1>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="alerta">
+<section id="alerta">
 <h2>Alerta<a class="headerlink" href="#alerta" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="why-can-t-i-see-any-alerts-in-the-web-browser">
+<section id="why-can-t-i-see-any-alerts-in-the-web-browser">
 <h3>Why can’t I see any alerts in the web browser?<a class="headerlink" href="#why-can-t-i-see-any-alerts-in-the-web-browser" title="Permalink to this headline">¶</a></h3>
 <p>If you can send and query for alerts using the <code class="docutils literal notranslate"><span class="pre">alerta</span></code> CLI tool this
 problem is almost certainly related to cross-origin browser errors. Open
@@ -53,8 +54,8 @@ the API using a web server to <a class="reference internal" href="deployment.htm
 web UI or ensure that the API server <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin">allows the origin</a> where the
 web UI is hosted by adding it to the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CORS_ORIGINS</span></code> <a class="reference internal" href="configuration.html#cors-config"><span class="std std-ref">server
 configuration</span></a> setting.</p>
-</div>
-<div class="section" id="why-do-i-need-to-set-an-environment-and-service-when-they-are-not-mandatory">
+</section>
+<section id="why-do-i-need-to-set-an-environment-and-service-when-they-are-not-mandatory">
 <h3>Why do I need to set an <code class="docutils literal notranslate"><span class="pre">environment</span></code> and <code class="docutils literal notranslate"><span class="pre">service</span></code> when they are not mandatory?<a class="headerlink" href="#why-do-i-need-to-set-an-environment-and-service-when-they-are-not-mandatory" title="Permalink to this headline">¶</a></h3>
 <p>Only <code class="docutils literal notranslate"><span class="pre">resource</span></code> and <code class="docutils literal notranslate"><span class="pre">event</span></code> are technically required to ensure that
 Alerta can process alerts correctly. However, the “out-of-the-box” default
@@ -68,13 +69,13 @@ and filter alerts by <code class="docutils literal notranslate"><span class="pre
 <p>However, one of the principles of Alerta is not to enforce its view of the
 world on users so the plugin can be <a class="reference internal" href="configuration.html#plugin-config"><span class="std std-ref">easily configured</span></a>,
 <a class="reference internal" href="gettingstarted/tutorial-3-plugins.html#tutorial-3"><span class="std std-ref">modified</span></a> or completely disabled. It’s up to you.</p>
-</div>
-<div class="section" id="can-i-define-custom-severity-codes-and-levels">
+</section>
+<section id="can-i-define-custom-severity-codes-and-levels">
 <h3>Can I define custom severity codes and levels?<a class="headerlink" href="#can-i-define-custom-severity-codes-and-levels" title="Permalink to this headline">¶</a></h3>
 <p>Yes, you can now completely change the severity names, severity levels
 and colours. See <a class="reference internal" href="webui.html#webui"><span class="std std-ref">Alerta Web UI</span></a> for more information.</p>
-</div>
-<div class="section" id="how-can-i-add-a-priority-to-an-alert-eg-high-medium-low">
+</section>
+<section id="how-can-i-add-a-priority-to-an-alert-eg-high-medium-low">
 <h3>How can I add a priority to an alert eg. High, Medium, Low?<a class="headerlink" href="#how-can-i-add-a-priority-to-an-alert-eg-high-medium-low" title="Permalink to this headline">¶</a></h3>
 <p>Use a custom attribute called <code class="docutils literal notranslate"><span class="pre">priority</span></code> when sending alerts to
 Alerta:</p>
@@ -88,8 +89,8 @@ command-line tool using:</p>
 </div>
 <p>Using the web console to sort alerts by priority as well as severity
 would require some development effort.</p>
-</div>
-<div class="section" id="what-s-the-difference-between-ack-close-and-delete">
+</section>
+<section id="what-s-the-difference-between-ack-close-and-delete">
 <h3>What’s the difference between <cite>ack</cite>, <cite>close</cite> and <cite>delete</cite>?<a class="headerlink" href="#what-s-the-difference-between-ack-close-and-delete" title="Permalink to this headline">¶</a></h3>
 <p>Alerts are meant to auto-close when a corresponding <cite>normal</cite> or
 <cite>cleared</cite> alert is received for that event-resource combination. If
@@ -103,8 +104,8 @@ can either <cite>ack</cite> the alert or DELETE it. If the alert is DELETED a
 new alert with the same event-resource combination will trigger a
 new notification email (if configured) whereas an <cite>ack</cite>’ed alert will
 not.</p>
-</div>
-<div class="section" id="why-don-t-you-have-a-plugin-or-integration-for-x-where-x-is-whatever-you-use-in-your-job">
+</section>
+<section id="why-don-t-you-have-a-plugin-or-integration-for-x-where-x-is-whatever-you-use-in-your-job">
 <h3>Why don’t you have a plugin or integration for X, where X is whatever you use in your job?<a class="headerlink" href="#why-don-t-you-have-a-plugin-or-integration-for-x-where-x-is-whatever-you-use-in-your-job" title="Permalink to this headline">¶</a></h3>
 <p>We could spend countless hours writing plugins for everything and
 never finish or we could focus on building an easily extensible
@@ -112,8 +113,8 @@ system with great documentation and let the end-user build the plugins
 they need. Having said that, we have still <a class="reference external" href="https://github.com/alerta/nagios3-alerta">created</a> <a class="reference external" href="https://github.com/alerta/alerta/tree/master/alerta/plugins">many</a> <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins">plugins</a>
 and <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/integrations">integrations</a> as working examples and we are not against writing
 more if there is <a class="reference external" href="https://github.com/alerta/alerta/issues/74">popular</a> <a class="reference external" href="https://github.com/alerta/alerta/issues/75">demand</a>. We are also happy to accept submissions.</p>
-</div>
-<div class="section" id="what-s-this-mongodb-serverselectiontimeouterror">
+</section>
+<section id="what-s-this-mongodb-serverselectiontimeouterror">
 <h3>What’s this MongoDB “ServerSelectionTimeoutError”?<a class="headerlink" href="#what-s-this-mongodb-serverselectiontimeouterror" title="Permalink to this headline">¶</a></h3>
 <p>With the update to PyMongo 3.x <a class="reference external" href="https://api.mongodb.com/python/current/faq.html#multiprocessing">multiprocessing</a> applications “parent process
 and each child process must create their own instances of MongoClient”.</p>
@@ -135,8 +136,8 @@ the Alerta API would look like this:</p>
 <p>Full examples are available on <a class="reference external" href="https://github.com/search?q=org%3Aalerta+WSGIApplicationGroup&amp;type=Code">GitHub</a> and more information on why
 this is necessary is available on <a class="reference external" href="http://stackoverflow.com/questions/31030307/why-is-pymongo-3-giving-serverselectiontimeouterror">stackoverflow</a> and the PyMongo where
 they discussion PyMongo in relation to <a class="reference external" href="https://api.mongodb.com/python/current/faq.html#is-pymongo-fork-safe">forking</a> and <a class="reference external" href="http://api.mongodb.com/python/current/examples/mod_wsgi.html">mod_wsgi</a> site.</p>
-</div>
-<div class="section" id="does-alerta-support-python-2-7-or-python-3">
+</section>
+<section id="does-alerta-support-python-2-7-or-python-3">
 <h3>Does Alerta support Python 2.7 or Python 3?<a class="headerlink" href="#does-alerta-support-python-2-7-or-python-3" title="Permalink to this headline">¶</a></h3>
 <p>Alerta <a class="reference internal" href="release-notes.html#release-5-2"><span class="std std-ref">Release 5.2</span></a> is the <a class="reference external" href="https://github.com/alerta/alerta/issues/480">last version</a> to support
 Python 2.7 and from 31 August, 2018 it will only receive crtical bug fixes
@@ -144,9 +145,9 @@ and security patches.</p>
 <p>Alerta <a class="reference internal" href="release-notes.html#release-6-0"><span class="std std-ref">Release 6</span></a> supports Python 3.5+ and is recommended
 for new production environments and existing installations should be switched
 to Python 3 well before 1 January, 2020 when Python 2.7 becomes <a class="reference external" href="https://pythonclock.org/">End-of-Life</a>.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
           </div>
@@ -202,6 +203,8 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webhooks.html">Custom Webhooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="federated.html">Federated Alerta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>

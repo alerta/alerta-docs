@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>Deploying an Alerta Server &#8212; alerta 8.2 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
@@ -31,7 +32,7 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="deploying-an-alerta-server">
+  <section id="deploying-an-alerta-server">
 <span id="tutorial-1"></span><h1>Deploying an Alerta Server<a class="headerlink" href="#deploying-an-alerta-server" title="Permalink to this headline">¶</a></h1>
 <p>Let’s get started by installing the Alerta server, the web console
 and doing some basic configuration and customisation.</p>
@@ -46,7 +47,7 @@ and doing some basic configuration and customisation.</p>
 <li><p><a class="reference internal" href="#next-steps">Next Steps</a></p></li>
 </ul>
 </div></blockquote>
-<div class="section" id="overview">
+<section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>The server is based on the most recent stable Ubuntu cloud image, <a class="reference external" href="https://wiki.ubuntu.com/BionicBeaver/ReleaseNotes">Ubuntu 18.04
 LTS (Bionic Beaver)</a>. The Alerta server will be installed to run as a <a class="reference external" href="https://uwsgi-docs.readthedocs.io">uWsgi</a>
@@ -56,14 +57,14 @@ logins.</p>
 <p>Customisation will involve defining a new alert severity called
 “fatal” that will be blue in colour, and allowing an additional alert
 environment called “Code” in addition to “Production” and “Development”.</p>
-</div>
-<div class="section" id="prerequisites">
+</section>
+<section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
 <p>Before you begin, ensure you are familiar with the Ubuntu/Debian operating
 system, that you have “super user” privileges (ie. a <code class="docutils literal notranslate"><span class="pre">root</span></code> user login)
 and remote <code class="docutils literal notranslate"><span class="pre">ssh</span></code> access to the server you are deploying to.</p>
-</div>
-<div class="section" id="step-1-install-packages">
+</section>
+<section id="step-1-install-packages">
 <h2>Step 1: Install Packages<a class="headerlink" href="#step-1-install-packages" title="Permalink to this headline">¶</a></h2>
 <p>To install MongoDB 4.0 run the following commands:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
@@ -96,8 +97,8 @@ $ tar zxvf alerta-webui.tar.gz
 $ cp dist /var/www/html
 </pre></div>
 </div>
-</div>
-<div class="section" id="step-2-configuration">
+</section>
+<section id="step-2-configuration">
 <h2>Step 2: Configuration<a class="headerlink" href="#step-2-configuration" title="Permalink to this headline">¶</a></h2>
 <p>Create a wsgi python file, uWsgi configuration file and <code class="docutils literal notranslate"><span class="pre">systemd</span></code> script:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo vi /var/www/wsgi.py
@@ -197,8 +198,8 @@ set the <code class="docutils literal notranslate"><span class="pre">endpoint</s
 </div>
 <p>At this point you should be able to view the web console on port 80 in
 your web browser.</p>
-</div>
-<div class="section" id="step-3-customisation">
+</section>
+<section id="step-3-customisation">
 <h2>Step 3: Customisation<a class="headerlink" href="#step-3-customisation" title="Permalink to this headline">¶</a></h2>
 <p>Firstly, generate a random string:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat /dev/urandom | tr -dc A-Za-z0-9_\!\@\#\$\%\^\&amp;\*\(\)-+= | head -c 32 &amp;&amp; echo
@@ -285,8 +286,8 @@ full argument names:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$  /opt/alerta/bin/alerta query
 </pre></div>
 </div>
-</div>
-<div class="section" id="next-steps">
+</section>
+<section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
 <p>After you deploy your Alerta server, you might want to try some of
 the following tutorials:</p>
@@ -298,8 +299,8 @@ the following tutorials:</p>
 <li><p>Create filtered alert views for different customers</p></li>
 </ul>
 </div></blockquote>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -355,6 +356,8 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="../authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../authorization.html">Authorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webhooks.html">Custom Webhooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../federated.html">Federated Alerta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>

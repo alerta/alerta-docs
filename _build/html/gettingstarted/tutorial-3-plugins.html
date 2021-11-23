@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
     <title>Use plugins to enhance Alerta &#8212; alerta 8.2 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
@@ -31,7 +32,7 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="use-plugins-to-enhance-alerta">
+  <section id="use-plugins-to-enhance-alerta">
 <span id="tutorial-3"></span><h1>Use plugins to enhance Alerta<a class="headerlink" href="#use-plugins-to-enhance-alerta" title="Permalink to this headline">¶</a></h1>
 <p>In this tutorial you will learn how to use simple plugins to add
 powerful new features to Alerta to suit your environment.</p>
@@ -46,7 +47,7 @@ powerful new features to Alerta to suit your environment.</p>
 <li><p><a class="reference internal" href="#next-steps">Next Steps</a></p></li>
 </ul>
 </div></blockquote>
-<div class="section" id="overview">
+<section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>Plugins are a simple but effective way of extending the functionality
 of Alerta without having to modify the core source code. They are written
@@ -56,14 +57,14 @@ having to read local disk for performance reasons, though this is not
 enforced. Any dependent network services should be aggressively timed-out
 so as not to cause latency issues in the Alerta API if the downstream
 service is unavailable or slow.</p>
-</div>
-<div class="section" id="prerequisites">
+</section>
+<section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
 <p>It is assumed that you have completed <a class="reference internal" href="tutorial-1-deploy-alerta.html#tutorial-1"><span class="std std-ref">Tutorial 1</span></a>
 where you installed Alerta as a uWsgi application served by nginx
 on an Ubuntu Xenial server.</p>
-</div>
-<div class="section" id="step-1-install-a-plugin">
+</section>
+<section id="step-1-install-a-plugin">
 <h2>Step 1: Install a plugin<a class="headerlink" href="#step-1-install-a-plugin" title="Permalink to this headline">¶</a></h2>
 <p>To install a plugin you can either clone the git repository and
 run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></code> from the plugin directory or you
@@ -118,8 +119,8 @@ origin of the alert:</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">geoip</span></code> plugin looks up the IP address that is passed to the
 Alerta API via the <code class="docutils literal notranslate"><span class="pre">X-Forwarded-For</span></code> HTTP header.</p>
 </div>
-</div>
-<div class="section" id="step-2-write-a-plugin">
+</section>
+<section id="step-2-write-a-plugin">
 <h2>Step 2: Write a plugin<a class="headerlink" href="#step-2-write-a-plugin" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="http://docs.openstack.org/developer/stevedore/tutorial/creating_plugins.html#a-plugin-base-class">base class for plugins</a> has three methods that <strong>must</strong> be implemented
 and the <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> method can optionally be implemented as well as long
@@ -240,8 +241,8 @@ uwsgi so that the Alerta server picks up the changes:</p>
 succession. Depending on your implementation the Alerta server may
 respond with a <code class="docutils literal notranslate"><span class="pre">429</span> <span class="pre">Rate</span> <span class="pre">Limited</span></code> or update the alert with a
 <code class="docutils literal notranslate"><span class="pre">flapping=True</span></code> attribute.</p>
-</div>
-<div class="section" id="step-3-route-alerts-to-plugins">
+</section>
+<section id="step-3-route-alerts-to-plugins">
 <h2>Step 3: Route alerts to plugins<a class="headerlink" href="#step-3-route-alerts-to-plugins" title="Permalink to this headline">¶</a></h2>
 <p>By default, plugins are executed in the order in which they are
 listed in the <code class="docutils literal notranslate"><span class="pre">PLUGINS</span></code> setting and all plugins are executed for
@@ -341,8 +342,8 @@ sends <code class="docutils literal notranslate"><span class="pre">critical</spa
 your own plugins. There are plenty of <a class="reference external" href="https://github.com/alerta/alerta-contrib">contributed plugins</a> to refer to
 and you are welcome to submit your plugins to the contrib repo for use
 by the wider community.</p>
-</div>
-<div class="section" id="next-steps">
+</section>
+<section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
 <p>After you deploy your Alerta server, you might want to try some of
 the following tutorials:</p>
@@ -354,8 +355,8 @@ the following tutorials:</p>
 <li><p>Create filtered alert views for different customers</p></li>
 </ul>
 </div></blockquote>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -411,6 +412,8 @@ Links
 <li class="toctree-l1"><a class="reference internal" href="../authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../authorization.html">Authorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webhooks.html">Custom Webhooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../federated.html">Federated Alerta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>
