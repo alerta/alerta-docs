@@ -1,0 +1,26 @@
+name: Build
+
+on:
+  push:
+    # tags:
+    # - 'v*'
+
+env:
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: install
+        run:
+          pip install -r requirements.txt
+      - name: nitpick
+        id: nitpick
+        run:
+          sphinx-build -n . _build/html
+      - name: linkcheck
+        id: linkcheck
+        run:
+          make linkcheck
