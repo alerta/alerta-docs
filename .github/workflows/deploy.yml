@@ -20,3 +20,8 @@ jobs:
         id: build
         run:
           make html
+
+      - uses: EndBug/add-and-commit@v7
+        with:
+          committer_name: GitHub Actions
+          committer_email: actions@github.com
