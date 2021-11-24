@@ -1,5 +1,25 @@
 .. _integrations_plugins:
 
+.. spelling::
+
+    Alertmanager
+    Kibana
+    Solarwinds
+    Logstash
+    Cloudwatch
+    Chronograf
+    Grafana
+    Graylog
+    Hipchat
+    Kapacitor
+    Nagios
+    Oembed
+    Opsweekly
+    Sensu
+    Stackdriver
+    Telegraf
+    Zabbix
+
 Integrations & Plugins
 ======================
 
@@ -47,7 +67,7 @@ it is to get alerts or events from other tools into Alerta. They are:
 * `Nagios Event Broker`_ - forward host/service check results with suppression during downtime
 * `InfluxData Kapacitor`_ - forward alerts for metric anomalies and dynamic thresholds
 * `Zabbix Alert Script`_ - forward problems, acknowledged and OK events
-* `Sensu Plugin`_ - forward sensu events
+* `Sensu Plugin`_ - forward Sensu events
 * `Riemann Plugin`_ - generate alerts from thresholds defined against metric streams
 * `Kibana Logging`_ - log alerts to Elasticsearch for historical visualisation of alert trends
 
