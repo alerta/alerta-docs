@@ -1,0 +1,2735 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>API Reference &#8212; alerta 8.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API Query Syntax" href="query-syntax.html" />
+    <link rel="prev" title="Resources" href="../resources.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="api-reference">
+<span id="api"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="resource-types">
+<p class="topic-title">Resource Types</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#alerts" id="id95">Alerts</a></p>
+<ul>
+<li><p><a class="reference internal" href="#create-an-alert" id="id96">Create an alert</a></p></li>
+<li><p><a class="reference internal" href="#retrieve-an-alert" id="id97">Retrieve an alert</a></p></li>
+<li><p><a class="reference internal" href="#set-alert-status" id="id98">Set alert status</a></p></li>
+<li><p><a class="reference internal" href="#action-alert" id="id99">Action alert</a></p></li>
+<li><p><a class="reference internal" href="#tag-and-untag-alerts" id="id100">Tag and untag alerts</a></p></li>
+<li><p><a class="reference internal" href="#update-alert-attributes" id="id101">Update alert attributes</a></p></li>
+<li><p><a class="reference internal" href="#add-an-alert-note" id="id102">Add an alert note</a></p></li>
+<li><p><a class="reference internal" href="#delete-an-alert" id="id103">Delete an alert</a></p></li>
+<li><p><a class="reference internal" href="#search-alerts" id="id104">Search alerts</a></p></li>
+<li><p><a class="reference internal" href="#list-all-alert-history" id="id105">List all alert history</a></p></li>
+<li><p><a class="reference internal" href="#get-severity-and-status-counts-for-alerts" id="id106">Get severity and status counts for alerts</a></p></li>
+<li><p><a class="reference internal" href="#top-10-alerts-by-resource" id="id107">Top 10 alerts by resource</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#environments" id="id108">Environments</a></p>
+<ul>
+<li><p><a class="reference internal" href="#list-all-environments" id="id109">List all environments</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#services" id="id110">Services</a></p>
+<ul>
+<li><p><a class="reference internal" href="#list-all-services" id="id111">List all services</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#tags" id="id112">Tags</a></p>
+<ul>
+<li><p><a class="reference internal" href="#list-all-tags" id="id113">List all tags</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#blackout-periods" id="id114">Blackout Periods</a></p>
+<ul>
+<li><p><a class="reference internal" href="#create-a-blackout" id="id115">Create a blackout</a></p></li>
+<li><p><a class="reference internal" href="#list-all-blackouts" id="id116">List all blackouts</a></p></li>
+<li><p><a class="reference internal" href="#delete-a-blackout" id="id117">Delete a blackout</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#heartbeats" id="id118">Heartbeats</a></p>
+<ul>
+<li><p><a class="reference internal" href="#send-a-heartbeat" id="id119">Send a heartbeat</a></p></li>
+<li><p><a class="reference internal" href="#get-a-heartbeat" id="id120">Get a heartbeat</a></p></li>
+<li><p><a class="reference internal" href="#list-all-heartbeats" id="id121">List all heartbeats</a></p></li>
+<li><p><a class="reference internal" href="#delete-a-heartbeat" id="id122">Delete a heartbeat</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#api-keys" id="id123">API Keys</a></p>
+<ul>
+<li><p><a class="reference internal" href="#create-an-api-key" id="id124">Create an API key</a></p></li>
+<li><p><a class="reference internal" href="#list-all-api-keys" id="id125">List all API keys</a></p></li>
+<li><p><a class="reference internal" href="#delete-an-api-key" id="id126">Delete an API key</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#users" id="id127">Users</a></p>
+<ul>
+<li><p><a class="reference internal" href="#create-a-user" id="id128">Create a user</a></p></li>
+<li><p><a class="reference internal" href="#update-a-user" id="id129">Update a user</a></p></li>
+<li><p><a class="reference internal" href="#update-me" id="id130">Update me</a></p></li>
+<li><p><a class="reference internal" href="#update-user-attributes" id="id131">Update user attributes</a></p></li>
+<li><p><a class="reference internal" href="#update-user-me-attributes" id="id132">Update user me attributes</a></p></li>
+<li><p><a class="reference internal" href="#list-all-users" id="id133">List all users</a></p></li>
+<li><p><a class="reference internal" href="#delete-a-user" id="id134">Delete a user</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#permissions" id="id135">Permissions</a></p>
+<ul>
+<li><p><a class="reference internal" href="#create-permission" id="id136">Create permission</a></p></li>
+<li><p><a class="reference internal" href="#list-all-permissions" id="id137">List all permissions</a></p></li>
+<li><p><a class="reference internal" href="#delete-a-permission" id="id138">Delete a permission</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#customers" id="id139">Customers</a></p>
+<ul>
+<li><p><a class="reference internal" href="#create-a-customer" id="id140">Create a customer</a></p></li>
+<li><p><a class="reference internal" href="#list-all-customers" id="id141">List all customers</a></p></li>
+<li><p><a class="reference internal" href="#delete-a-customer" id="id142">Delete a customer</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#management" id="id143">Management</a></p>
+<ul>
+<li><p><a class="reference internal" href="#manifest" id="id144">Manifest</a></p></li>
+<li><p><a class="reference internal" href="#get-metrics" id="id145">Get metrics</a></p></li>
+<li><p><a class="reference internal" href="#get-good-to-go-healthcheck" id="id146">Get good-to-go healthcheck</a></p></li>
+<li><p><a class="reference internal" href="#get-full-healthcheck" id="id147">Get full healthcheck</a></p></li>
+<li><p><a class="reference internal" href="#get-light-healthcheck" id="id148">Get light healthcheck</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All <code class="docutils literal notranslate"><span class="pre">datetime</span></code> parameters must be in ISO 8601 format in UTC time
+(using time zone designator “Z”) and expressed to millisecond precision as
+recommended by the <a class="reference external" href="https://www.w3.org/TR/NOTE-datetime">W3C Date and Time Formats Note</a> eg. <code class="docutils literal notranslate"><span class="pre">2017-06-19T11:16:19.744Z</span></code></p>
+</div>
+<section id="alerts">
+<span id="id1"></span><h2><a class="toc-backref" href="#id95">Alerts</a><a class="headerlink" href="#alerts" title="Permalink to this headline">¶</a></h2>
+<section id="create-an-alert">
+<span id="post-alert"></span><h3><a class="toc-backref" href="#id96">Create an alert</a><a class="headerlink" href="#create-an-alert" title="Permalink to this headline">¶</a></h3>
+<p>Creates a new alert, or updates an existing alert if the <code class="docutils literal notranslate"><span class="pre">environment</span></code>-
+<code class="docutils literal notranslate"><span class="pre">resource</span></code>-<code class="docutils literal notranslate"><span class="pre">event</span></code> combination already exists.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">alert</span>
+</pre></div>
+</div>
+<section id="input">
+<h4>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 14%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">resource</span></code></p></td>
+<td><p>string</p></td>
+<td><p><strong>Required</strong> resource under alarm</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">event</span></code></p></td>
+<td><p>string</p></td>
+<td><p><strong>Required</strong> event name</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">environment</span></code></p></td>
+<td><p>string</p></td>
+<td><p>environment, used to namespace the resource</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">severity</span></code></p></td>
+<td><p>string</p></td>
+<td><p>see <span class="xref std std-ref">severity_table</span> table</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">correlate</span></code></p></td>
+<td><p>list</p></td>
+<td><p>list of related event names</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">status</span></code></p></td>
+<td><p>string</p></td>
+<td><p>see <span class="xref std std-ref">status_table</span> table</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">service</span></code></p></td>
+<td><p>list</p></td>
+<td><p>list of effected services</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">group</span></code></p></td>
+<td><p>string</p></td>
+<td><p>used to group events of similar type</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">value</span></code></p></td>
+<td><p>string</p></td>
+<td><p>event value</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">text</span></code></p></td>
+<td><p>string</p></td>
+<td><p>freeform text description</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tags</span></code></p></td>
+<td><p>set</p></td>
+<td><p>set of tags</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">attributes</span></code></p></td>
+<td><p>dict</p></td>
+<td><p>dictionary of key-value pairs</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">origin</span></code></p></td>
+<td><p>string</p></td>
+<td><p>monitoring component that generated the alert</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p>string</p></td>
+<td><p>event type</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">createTime</span></code></p></td>
+<td><p>datetime</p></td>
+<td><p>time alert was generated at the origin</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">timeout</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>seconds before alert is considered stale</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rawData</span></code></p></td>
+<td><p>string</p></td>
+<td><p>unprocessed raw data</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only <code class="docutils literal notranslate"><span class="pre">resource</span></code> and <code class="docutils literal notranslate"><span class="pre">event</span></code> are mandatory. The <code class="docutils literal notranslate"><span class="pre">status</span></code> can be
+dynamically assigned by the Alerta API based on the <code class="docutils literal notranslate"><span class="pre">severity</span></code>.</p>
+</div>
+</section>
+<section id="example-request">
+<h4>Example Request<a class="headerlink" href="#example-request" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/alert <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
+-H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
+-d <span class="s1">&#39;{</span>
+<span class="s1">      &quot;attributes&quot;: {</span>
+<span class="s1">        &quot;region&quot;: &quot;EU&quot;</span>
+<span class="s1">      },</span>
+<span class="s1">      &quot;correlate&quot;: [</span>
+<span class="s1">        &quot;HttpServerError&quot;,</span>
+<span class="s1">        &quot;HttpServerOK&quot;</span>
+<span class="s1">      ],</span>
+<span class="s1">      &quot;environment&quot;: &quot;Production&quot;,</span>
+<span class="s1">      &quot;event&quot;: &quot;HttpServerError&quot;,</span>
+<span class="s1">      &quot;group&quot;: &quot;Web&quot;,</span>
+<span class="s1">      &quot;origin&quot;: &quot;curl&quot;,</span>
+<span class="s1">      &quot;resource&quot;: &quot;web01&quot;,</span>
+<span class="s1">      &quot;service&quot;: [</span>
+<span class="s1">        &quot;example.com&quot;</span>
+<span class="s1">      ],</span>
+<span class="s1">      &quot;severity&quot;: &quot;major&quot;,</span>
+<span class="s1">      &quot;tags&quot;: [</span>
+<span class="s1">        &quot;dc1&quot;</span>
+<span class="s1">      ],</span>
+<span class="s1">      &quot;text&quot;: &quot;Site is down.&quot;,</span>
+<span class="s1">      &quot;type&quot;: &quot;exceptionAlert&quot;,</span>
+<span class="s1">      &quot;value&quot;: &quot;Bad Gateway (501)&quot;</span>
+<span class="s1">    }&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="example-response">
+<h4>Example Response<a class="headerlink" href="#example-response" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;alert&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;flapping&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;notify&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nt">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;EU&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;HttpServerOK&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:00:12.999Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;severity&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:00:12.999Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s2">&quot;17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:00:13.070Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s2">&quot;indeterminate&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;rawData&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:00:13.070Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;repeat&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;example.com&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;dc1&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
+    <span class="nt">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s2">&quot;moreSevere&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;exceptionAlert&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="example-response-during-blackout-period">
+<h4>Example Response (during blackout period)<a class="headerlink" href="#example-response-during-blackout-period" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">202</span> <span class="n">ACCEPTED</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Suppressed alert during blackout period&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1711c57e-5c6a-4c39-881b-9d8d174feafe&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="retrieve-an-alert">
+<span id="get-alert-id"></span><h3><a class="toc-backref" href="#id97">Retrieve an alert</a><a class="headerlink" href="#retrieve-an-alert" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves an alert with the given alert ID.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
+</pre></div>
+</div>
+<section id="id2">
+<h4>Example Request<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258 <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h4>Example Response<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;alert&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;flapping&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;notify&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nt">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;EU&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;HttpServerOK&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:00:12.999Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;severity&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:00:12.999Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s2">&quot;17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:00:13.070Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s2">&quot;indeterminate&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;rawData&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:00:13.070Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;repeat&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;example.com&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;dc1&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
+    <span class="nt">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s2">&quot;moreSevere&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;exceptionAlert&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="set-alert-status">
+<h3><a class="toc-backref" href="#id98">Set alert status</a><a class="headerlink" href="#set-alert-status" title="Permalink to this headline">¶</a></h3>
+<p>Sets the status of an alert, and logs the status change to the alert history.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">status</span>
+</pre></div>
+</div>
+<section id="id4">
+<h4>Input<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 14%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">status</span></code></p></td>
+<td><p>string</p></td>
+<td><p><strong>Required</strong> New status from <code class="docutils literal notranslate"><span class="pre">open</span></code>,
+<code class="docutils literal notranslate"><span class="pre">assign</span></code>, <code class="docutils literal notranslate"><span class="pre">ack</span></code>, <code class="docutils literal notranslate"><span class="pre">closed</span></code>, <code class="docutils literal notranslate"><span class="pre">expired</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">text</span></code></p></td>
+<td><p>string</p></td>
+<td><p>reason for status change</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">timeout</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>Seconds.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id5">
+<h4>Example Request<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPUT http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258/status <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
+-H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
+-d <span class="s1">&#39;{</span>
+<span class="s1">      &quot;status&quot;: &quot;ack&quot;,</span>
+<span class="s1">      &quot;text&quot;: &quot;disk needs replacing.&quot;,</span>
+<span class="s1">      &quot;timeout&quot;: 7200</span>
+<span class="s1">    }&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="action-alert">
+<h3><a class="toc-backref" href="#id99">Action alert</a><a class="headerlink" href="#action-alert" title="Permalink to this headline">¶</a></h3>
+<p>Takes an action against an alert which can change the status or severity
+of the alert and logs the action to the alert history.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">action</span>
+</pre></div>
+</div>
+<section id="id6">
+<h4>Input<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 14%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">action</span></code></p></td>
+<td><p>string</p></td>
+<td><p><strong>Required</strong> Action from <code class="docutils literal notranslate"><span class="pre">ack</span></code>, <code class="docutils literal notranslate"><span class="pre">unack`</span></code>
+<code class="docutils literal notranslate"><span class="pre">shelve</span></code>, <code class="docutils literal notranslate"><span class="pre">unshelve</span></code>, <code class="docutils literal notranslate"><span class="pre">close</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">text</span></code></p></td>
+<td><p>string</p></td>
+<td><p>reason for action</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">timeout</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>Seconds.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id7">
+<h4>Example Request<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPUT http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258/action <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
+-H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
+-d <span class="s1">&#39;{</span>
+<span class="s1">      &quot;action&quot;: &quot;shelve&quot;,</span>
+<span class="s1">      &quot;text&quot;: &quot;swap out servers.&quot;,</span>
+<span class="s1">      &quot;timeout&quot;: 7200</span>
+<span class="s1">    }&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="tag-and-untag-alerts">
+<h3><a class="toc-backref" href="#id100">Tag and untag alerts</a><a class="headerlink" href="#tag-and-untag-alerts" title="Permalink to this headline">¶</a></h3>
+<p>Adds or removes tag values from the set of tags for an alert.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">tag</span>
+<span class="n">PUT</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">untag</span>
+</pre></div>
+</div>
+<section id="id8">
+<h4>Input<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 14%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tags</span></code></p></td>
+<td><p>set</p></td>
+<td><p>tags to add or remove</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id9">
+<h4>Example Request<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPUT http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258/tag <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
+-H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
+-d <span class="s1">&#39;{</span>
+<span class="s1">      &quot;tags&quot;: [</span>
+<span class="s1">        &quot;linux&quot;,</span>
+<span class="s1">        &quot;linux2.6&quot;,</span>
+<span class="s1">        &quot;dell&quot;</span>
+<span class="s1">      ]</span>
+<span class="s1">    }&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="update-alert-attributes">
+<h3><a class="toc-backref" href="#id101">Update alert attributes</a><a class="headerlink" href="#update-alert-attributes" title="Permalink to this headline">¶</a></h3>
+<p>Adds, deletes or modifies alert attributes. To delete an attribute assign
+“null” to the attribute.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">attributes</span>
+</pre></div>
+</div>
+<section id="id10">
+<h4>Input<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 14%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">attributes</span></code></p></td>
+<td><p>dict</p></td>
+<td><p>dictionary of key-value attributes</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id11">
+<h4>Example Request<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPUT http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258/attributes <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
+-H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
+-d <span class="s1">&#39;{</span>
+<span class="s1">      &quot;attributes&quot;: {</span>
+<span class="s1">        &quot;incidentKey&quot;: &quot;1234abcd&quot;,</span>
+<span class="s1">        &quot;ip&quot;: &quot;10.1.1.1&quot;,</span>
+<span class="s1">        &quot;region&quot;: null</span>
+<span class="s1">      }</span>
+<span class="s1">    }&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="add-an-alert-note">
+<h3><a class="toc-backref" href="#id102">Add an alert note</a><a class="headerlink" href="#add-an-alert-note" title="Permalink to this headline">¶</a></h3>
+<p>Adds a note to an alert.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">note</span>
+</pre></div>
+</div>
+<section id="id12">
+<h4>Input<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 14%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">note</span></code></p></td>
+<td><p>string</p></td>
+<td><p>note text</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id13">
+<h4>Example Request<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPUT http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258/note <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
+-H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
+-d <span class="s1">&#39;{ &quot;note&quot;: &quot;This is the sample note&quot; }&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="delete-an-alert">
+<h3><a class="toc-backref" href="#id103">Delete an alert</a><a class="headerlink" href="#delete-an-alert" title="Permalink to this headline">¶</a></h3>
+<p>Permanently deletes an alert. It cannot be undone.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">alert</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
+</pre></div>
+</div>
+<section id="id14">
+<h4>Example Request<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258 <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="search-alerts">
+<span id="get-alerts"></span><h3><a class="toc-backref" href="#id104">Search alerts</a><a class="headerlink" href="#search-alerts" title="Permalink to this headline">¶</a></h3>
+<p>Find alerts using various alert attributes or a mongo-type query parameter to
+filter results.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span>
+</pre></div>
+</div>
+<section id="parameters">
+<h4>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 14%" />
+<col style="width: 62%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;attr&gt;</span></code></p></td>
+<td><p>string</p></td>
+<td><p>any alert attribute. eg. <code class="docutils literal notranslate"><span class="pre">status=open</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">q</span></code> (*)</p></td>
+<td><p>string</p></td>
+<td><p>query string <a class="reference internal" href="query-syntax.html#api-query"><span class="std std-ref">query syntax</span></a>
+eg. <code class="docutils literal notranslate"><span class="pre">service:Web</span> <span class="pre">OR</span> <span class="pre">resource:web</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">from-date</span></code></p></td>
+<td><p>datetime</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lastReceiveTime</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">from-date</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">to-date</span></code></p></td>
+<td><p>datetime</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lastReceiveTime</span></code> &lt;= <code class="docutils literal notranslate"><span class="pre">to-date</span></code> (now)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sort-by</span></code></p></td>
+<td><p>string</p></td>
+<td><p>attr to sort by (default:<code class="docutils literal notranslate"><span class="pre">lastReceiveTime</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">reverse</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>change direction of default sort order</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">page</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>number between 1 and total pages (default: 1)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">page-size</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>default: 1000 (set <code class="docutils literal notranslate"><span class="pre">DEFAULT_PAGE_SIZE</span></code> )</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">show-raw-data</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>show raw data</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">show-history</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>show alert history</p></td>
+</tr>
+</tbody>
+</table>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 6.3: </span>The <code class="docutils literal notranslate"><span class="pre">q</span></code> parameter using <a class="reference external" href="http://docs.mongodb.org/manual/reference/operator/query/">Mongo-style query</a> format has been replaced with
+a query format based on <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax">Lucene query syntax</a> supported by both MongoDB and
+Postgres backends.
+For more information see <a class="reference internal" href="query-syntax.html#query-string-syntax"><span class="std std-ref">API Query String Syntax</span></a>.</p>
+</div>
+</section>
+<section id="id15">
+<h4>Example Request<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alerts?group<span class="o">=</span>Web <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id16">
+<h4>Example Response<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;alerts&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;flapping&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nt">&quot;incidentKey&quot;</span><span class="p">:</span> <span class="s2">&quot;1234abcd&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;10.1.1.1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;notify&quot;</span><span class="p">:</span> <span class="kc">true</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;HttpServerOK&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:00:12.999Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+          <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;severity&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:00:12.999Z&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+          <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ack&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;disk needs replacing.&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:04:42.412Z&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="kc">null</span>
+        <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;lastReceiveId&quot;</span><span class="p">:</span> <span class="s2">&quot;17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;lastReceiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:00:13.070Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;previousSeverity&quot;</span><span class="p">:</span> <span class="s2">&quot;indeterminate&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;rawData&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:00:13.070Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;repeat&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;example.com&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ack&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;dc1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;linux&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;linux2.6&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dell&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">,</span>
+      <span class="nt">&quot;trendIndication&quot;</span><span class="p">:</span> <span class="s2">&quot;moreSevere&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;exceptionAlert&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;autoRefresh&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;lastTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:00:13.070Z&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;more&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nt">&quot;pageSize&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+  <span class="nt">&quot;pages&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nt">&quot;severityCounts&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;major&quot;</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;statusCounts&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;ack&quot;</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="list-all-alert-history">
+<span id="get-alerts-history"></span><h3><a class="toc-backref" href="#id105">List all alert history</a><a class="headerlink" href="#list-all-alert-history" title="Permalink to this headline">¶</a></h3>
+<p>Returns a list of alert severity and status changes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">history</span>
+</pre></div>
+</div>
+<section id="id17">
+<h4>Parameters<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 14%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;attr&gt;</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id18">
+<h4>Example Request<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alerts/history?service<span class="o">=</span>example.com <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id19">
+<h4>Example Response<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;history&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;flapping&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nt">&quot;incidentKey&quot;</span><span class="p">:</span> <span class="s2">&quot;1234abcd&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;10.1.1.1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;notify&quot;</span><span class="p">:</span> <span class="kc">true</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;example.com&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;dc1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;linux&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;linux2.6&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dell&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Site is down.&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;severity&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:00:12.999Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad Gateway (501)&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;flapping&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nt">&quot;incidentKey&quot;</span><span class="p">:</span> <span class="s2">&quot;1234abcd&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;10.1.1.1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;notify&quot;</span><span class="p">:</span> <span class="kc">true</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="s2">&quot;HttpServerError&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;17d8e7ea-b3ba-4bb1-9c5a-29e60865f258&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;curl&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;example.com&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ack&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;dc1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;linux&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;linux2.6&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dell&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;disk needs replacing.&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;updateTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:04:42.412Z&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="get-severity-and-status-counts-for-alerts">
+<h3><a class="toc-backref" href="#id106">Get severity and status counts for alerts</a><a class="headerlink" href="#get-severity-and-status-counts-for-alerts" title="Permalink to this headline">¶</a></h3>
+<p>Returns a count of alerts grouped by severity and status.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">count</span>
+</pre></div>
+</div>
+<section id="id20">
+<h4>Parameters<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 14%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;attr&gt;</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id21">
+<h4>Example Request<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alerts/count?environment<span class="o">=</span>Production <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id22">
+<h4>Example Response<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;severityCounts&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;critical&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;major&quot;</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;statusCounts&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;ack&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;open&quot;</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="top-10-alerts-by-resource">
+<h3><a class="toc-backref" href="#id107">Top 10 alerts by resource</a><a class="headerlink" href="#top-10-alerts-by-resource" title="Permalink to this headline">¶</a></h3>
+<p>Returns a list of the top 10 resources grouped by an alert attribute. By
+default it is grouped by <code class="docutils literal notranslate"><span class="pre">event</span></code> but this can be any valid attribute.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">top10</span><span class="o">/</span><span class="n">count</span>
+<span class="n">GET</span> <span class="o">/</span><span class="n">alerts</span><span class="o">/</span><span class="n">top10</span><span class="o">/</span><span class="n">flapping</span>
+</pre></div>
+</div>
+<section id="id23">
+<h4>Parameters<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 14%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;attr&gt;</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">q</span></code></p></td>
+<td><p>dict</p></td>
+<td><p>mongo query see <a href="#id149"><span class="problematic" id="id150">`Mongo Query Operators`_</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">group-by</span></code></p></td>
+<td><p>string</p></td>
+<td><p>any valid alert attribute. Default:<code class="docutils literal notranslate"><span class="pre">event</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id24">
+<h4>Example Request<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/alerts/top10?group-by<span class="o">=</span>group <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id25">
+<h4>Example Response<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;top10&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="nt">&quot;duplicateCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="nt">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Production&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;resources&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/0099bae5-9683-48a1-a49d-f566fe143770&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;0099bae5-9683-48a1-a49d-f566fe143770&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web02&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/alert/e9fb05a0-b65c-4faa-8868-6f06a74a2b5b&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;e9fb05a0-b65c-4faa-8868-6f06a74a2b5b&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;web01&quot;</span>
+        <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;example.com&quot;</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="environments">
+<span id="id26"></span><h2><a class="toc-backref" href="#id108">Environments</a><a class="headerlink" href="#environments" title="Permalink to this headline">¶</a></h2>
+<p>An environment cannot be created – it is a dynamically derived resource based
+on existing alerts.</p>
+<section id="list-all-environments">
+<h3><a class="toc-backref" href="#id109">List all environments</a><a class="headerlink" href="#list-all-environments" title="Permalink to this headline">¶</a></h3>
+<p>Returns a list of environments and an alert count for each.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">environments</span>
+</pre></div>
+</div>
+<section id="id27">
+<h4>Parameters<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 14%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;attr&gt;</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id28">
+<h4>Example Request<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/environments <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id29">
+<h4>Example Response<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;environments&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="services">
+<span id="id30"></span><h2><a class="toc-backref" href="#id110">Services</a><a class="headerlink" href="#services" title="Permalink to this headline">¶</a></h2>
+<p>A service cannot be created – it is a dynamically derived resource based on existing alerts.</p>
+<section id="list-all-services">
+<h3><a class="toc-backref" href="#id111">List all services</a><a class="headerlink" href="#list-all-services" title="Permalink to this headline">¶</a></h3>
+<p>Returns a list of services grouped by environment and an alert count for each.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">services</span>
+</pre></div>
+</div>
+<section id="id31">
+<h4>Parameters<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 14%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;attr&gt;</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id32">
+<h4>Example Request<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/services?environment<span class="o">=</span>Production <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id33">
+<h4>Example Response<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;services&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="s2">&quot;example.com&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="tags">
+<span id="id34"></span><h2><a class="toc-backref" href="#id112">Tags</a><a class="headerlink" href="#tags" title="Permalink to this headline">¶</a></h2>
+<p>A tag cannot be created – it is a dynamically derived resource based on existing alerts.</p>
+<section id="list-all-tags">
+<h3><a class="toc-backref" href="#id113">List all tags</a><a class="headerlink" href="#list-all-tags" title="Permalink to this headline">¶</a></h3>
+<p>Returns a list of tags grouped by environment and an alert count for each.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">tags</span>
+</pre></div>
+</div>
+<section id="id35">
+<h4>Parameters<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 14%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;attr&gt;</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id36">
+<h4>Example Request<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/tags?environment<span class="o">=</span>Production <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id37">
+<h4>Example Response<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;tag&quot;</span><span class="p">:</span> <span class="s2">&quot;linux&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;tag&quot;</span><span class="p">:</span> <span class="s2">&quot;dc2&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;tag&quot;</span><span class="p">:</span> <span class="s2">&quot;hp&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;tag&quot;</span><span class="p">:</span> <span class="s2">&quot;dell&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;tag&quot;</span><span class="p">:</span> <span class="s2">&quot;dc1&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;tag&quot;</span><span class="p">:</span> <span class="s2">&quot;linux2.6&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">6</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="blackout-periods">
+<span id="blackouts"></span><h2><a class="toc-backref" href="#id114">Blackout Periods</a><a class="headerlink" href="#blackout-periods" title="Permalink to this headline">¶</a></h2>
+<section id="create-a-blackout">
+<h3><a class="toc-backref" href="#id115">Create a blackout</a><a class="headerlink" href="#create-a-blackout" title="Permalink to this headline">¶</a></h3>
+<p>Create a new blackout period for alert suppression.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">blackout</span>
+</pre></div>
+</div>
+<section id="id38">
+<h4>Input<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 14%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">environment</span></code></p></td>
+<td><p>string</p></td>
+<td><p><strong>Required</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">resource</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">service</span></code></p></td>
+<td><p>list</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">event</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">group</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tags</span></code></p></td>
+<td><p>list</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">startTime</span></code></p></td>
+<td><p>datetime</p></td>
+<td><p>start time of blackout. Default: now</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">endTime</span></code></p></td>
+<td><p>datetime</p></td>
+<td><p>end time. Default: now +
+<code class="docutils literal notranslate"><span class="pre">BLACKOUT_DURATION</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">duration</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>seconds. Default: <code class="docutils literal notranslate"><span class="pre">BLACKOUT_DURATION</span></code>
+Only used if <code class="docutils literal notranslate"><span class="pre">endTime</span></code> not defined</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id39">
+<h4>Example Request<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/blackout <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
+-H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
+-d <span class="s1">&#39;{</span>
+<span class="s1">      &quot;environment&quot;: &quot;Production&quot;,</span>
+<span class="s1">      &quot;service&quot;: [&quot;example.com&quot;],</span>
+<span class="s1">      &quot;group&quot;: &quot;Web&quot;</span>
+<span class="s1">    }&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id40">
+<h4>Example Response<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;blackout&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;duration&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+    <span class="nt">&quot;endTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T22:10:31.705Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/blackout/79d12b79-45b9-4419-80e4-1f6c17478eb6&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;79d12b79-45b9-4419-80e4-1f6c17478eb6&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;priority&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="nt">&quot;remaining&quot;</span><span class="p">:</span> <span class="mi">3599</span><span class="p">,</span>
+    <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;example.com&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;startTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:10:31.705Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;active&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[]</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;79d12b79-45b9-4419-80e4-1f6c17478eb6&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="list-all-blackouts">
+<span id="get-blackouts"></span><h3><a class="toc-backref" href="#id116">List all blackouts</a><a class="headerlink" href="#list-all-blackouts" title="Permalink to this headline">¶</a></h3>
+<p>Returns a list of blackout periods, including expired blackouts.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">blackouts</span>
+</pre></div>
+</div>
+<section id="id41">
+<h4>Example Request<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/blackouts <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id42">
+<h4>Example Response<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;blackouts&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;duration&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+      <span class="nt">&quot;endTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T22:10:31.705Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Web&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/blackout/79d12b79-45b9-4419-80e4-1f6c17478eb6&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;79d12b79-45b9-4419-80e4-1f6c17478eb6&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;priority&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+      <span class="nt">&quot;remaining&quot;</span><span class="p">:</span> <span class="mi">3345</span><span class="p">,</span>
+      <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;example.com&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;startTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:10:31.705Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;active&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;duration&quot;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>
+      <span class="nt">&quot;endTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T22:14:32.377Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Development&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Performance&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/blackout/c17832d4-c477-4eb1-b2d5-662e7a3600be&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;c17832d4-c477-4eb1-b2d5-662e7a3600be&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;priority&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+      <span class="nt">&quot;remaining&quot;</span><span class="p">:</span> <span class="mi">3586</span><span class="p">,</span>
+      <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[],</span>
+      <span class="nt">&quot;startTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T21:14:32.377Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;active&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="delete-a-blackout">
+<h3><a class="toc-backref" href="#id117">Delete a blackout</a><a class="headerlink" href="#delete-a-blackout" title="Permalink to this headline">¶</a></h3>
+<p>Permanently deletes a blackout period. It cannot be undone.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">blackout</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
+</pre></div>
+</div>
+<section id="id43">
+<h4>Example Request<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/blackout/c17832d4-c477-4eb1-b2d5-662e7a3600be <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="heartbeats">
+<span id="id44"></span><h2><a class="toc-backref" href="#id118">Heartbeats</a><a class="headerlink" href="#heartbeats" title="Permalink to this headline">¶</a></h2>
+<section id="send-a-heartbeat">
+<h3><a class="toc-backref" href="#id119">Send a heartbeat</a><a class="headerlink" href="#send-a-heartbeat" title="Permalink to this headline">¶</a></h3>
+<p>Creates a new heartbeat, or updates an existing heartbeat if a heartbeat
+from the <code class="docutils literal notranslate"><span class="pre">origin</span></code> already exists.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">heartbeat</span>
+</pre></div>
+</div>
+<section id="id45">
+<h4>Input<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 14%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">origin</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tags</span></code></p></td>
+<td><p>list</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">attributes</span></code></p></td>
+<td><p>dict</p></td>
+<td><p>dictionary of key-value pairs</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">createTime</span></code></p></td>
+<td><p>datetime</p></td>
+<td><p>time alert was generated at the origin</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">timeout</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>Seconds.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id46">
+<h4>Example Request<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/heartbeat <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
+-H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
+-d <span class="s1">&#39;{</span>
+<span class="s1">      &quot;origin&quot;: &quot;cluster05&quot;,</span>
+<span class="s1">      &quot;timeout&quot;: 120,</span>
+<span class="s1">      &quot;tags&quot;: [&quot;db05&quot;, &quot;dc2&quot;],</span>
+<span class="s1">      &quot;attributes&quot;: {</span>
+<span class="s1">        &quot;environment&quot;: &quot;Production&quot;,</span>
+<span class="s1">        &quot;service&quot;: [</span>
+<span class="s1">          &quot;Core&quot;,</span>
+<span class="s1">          &quot;HA&quot;</span>
+<span class="s1">        ],</span>
+<span class="s1">        &quot;group&quot;: &quot;Network&quot;,</span>
+<span class="s1">        &quot;severity&quot;: &quot;major&quot;</span>
+<span class="s1">      }</span>
+<span class="s1">    }&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id47">
+<h4>Example Response<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;heartbeat&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Network&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Core&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;HA&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-06-07T20:31:58.244Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/heartbeat/ea2f41e3-16c4-412f-aaf2-874e3c4c771b&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;ea2f41e3-16c4-412f-aaf2-874e3c4c771b&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;latency&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;maxLatency&quot;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>
+    <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;cluster05&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-06-07T20:31:58.244Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;since&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;db05&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;dc2&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Heartbeat&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;ea2f41e3-16c4-412f-aaf2-874e3c4c771b&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="get-a-heartbeat">
+<h3><a class="toc-backref" href="#id120">Get a heartbeat</a><a class="headerlink" href="#get-a-heartbeat" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves a heartbeat based on the heartbeat ID.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">heartbeat</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
+</pre></div>
+</div>
+<section id="id48">
+<h4>Example Request<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/heartbeat/ea2f41e3-16c4-412f-aaf2-874e3c4c771b <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id49">
+<h4>Example Response<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;heartbeat&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Network&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Core&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;HA&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-06-07T20:31:58.244Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/heartbeat/ea2f41e3-16c4-412f-aaf2-874e3c4c771b&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;ea2f41e3-16c4-412f-aaf2-874e3c4c771b&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;latency&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;maxLatency&quot;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>
+    <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;cluster05&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-06-07T20:31:58.244Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;since&quot;</span><span class="p">:</span> <span class="mi">91</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;db05&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;dc2&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Heartbeat&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="list-all-heartbeats">
+<span id="get-heartbeats"></span><h3><a class="toc-backref" href="#id121">List all heartbeats</a><a class="headerlink" href="#list-all-heartbeats" title="Permalink to this headline">¶</a></h3>
+<p>Returns a list of all heartbeats.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">heartbeats</span>
+</pre></div>
+</div>
+<section id="id50">
+<h4>Example Request<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/heartbeats <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id51">
+<h4>Example Response<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;heartbeats&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;Production&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Network&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;service&quot;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="s2">&quot;Core&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;HA&quot;</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="s2">&quot;major&quot;</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-06-07T20:31:58.244Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/heartbeat/ea2f41e3-16c4-412f-aaf2-874e3c4c771b&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;ea2f41e3-16c4-412f-aaf2-874e3c4c771b&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;latency&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="nt">&quot;maxLatency&quot;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>
+      <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;cluster05&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;receiveTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-06-07T20:31:58.244Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;since&quot;</span><span class="p">:</span> <span class="mi">136</span><span class="p">,</span>
+      <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;expired&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;db05&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dc2&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Heartbeat&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="delete-a-heartbeat">
+<h3><a class="toc-backref" href="#id122">Delete a heartbeat</a><a class="headerlink" href="#delete-a-heartbeat" title="Permalink to this headline">¶</a></h3>
+<p>Permanently deletes a heartbeat. It cannot be undone.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">heartbeat</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
+</pre></div>
+</div>
+<section id="id52">
+<h4>Example Request<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/heartbeat/e0582765-ee64-4944-8a94-1869a079d81f <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="api-keys">
+<span id="id53"></span><h2><a class="toc-backref" href="#id123">API Keys</a><a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h2>
+<section id="create-an-api-key">
+<h3><a class="toc-backref" href="#id124">Create an API key</a><a class="headerlink" href="#create-an-api-key" title="Permalink to this headline">¶</a></h3>
+<p>Creates a new API key.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">key</span>
+</pre></div>
+</div>
+<section id="id54">
+<h4>Input<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 14%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">user</span></code></p></td>
+<td><p>string</p></td>
+<td><p>username</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">scopes</span></code></p></td>
+<td><p>string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">admin</span></code>, <code class="docutils literal notranslate"><span class="pre">write</span></code>, or <code class="docutils literal notranslate"><span class="pre">read</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">text</span></code></p></td>
+<td><p>string</p></td>
+<td><p>freeform description text</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">expireTime</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">customer</span></code></p></td>
+<td><p>string</p></td>
+<td><p><strong>Admin use only</strong></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id55">
+<h4>Example Request<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/key <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
+-H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
+-d <span class="s1">&#39;{</span>
+<span class="s1">      &quot;user&quot;: &quot;admin@alerta.io&quot;,</span>
+<span class="s1">      &quot;scopes&quot;: [&quot;write&quot;],</span>
+<span class="s1">      &quot;text&quot;: &quot;API key for external system&quot;</span>
+<span class="s1">    }&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id56">
+<h4>Example Response<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;expireTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2019-01-27T22:18:42.245Z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/key/_Jwm-qaGa0kBM9R1CyyQn-0qxLtBtij4ToQf6beL&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;ca931aec-4e56-496f-a8d6-be11d93ddaed&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;_Jwm-qaGa0kBM9R1CyyQn-0qxLtBtij4ToQf6beL&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;lastUsedTime&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;scopes&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;write&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;API key for external system&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;read-write&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;admin@alerta.io&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;_Jwm-qaGa0kBM9R1CyyQn-0qxLtBtij4ToQf6beL&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="list-all-api-keys">
+<h3><a class="toc-backref" href="#id125">List all API keys</a><a class="headerlink" href="#list-all-api-keys" title="Permalink to this headline">¶</a></h3>
+<p>Returns a list of API keys.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">keys</span>
+</pre></div>
+</div>
+<section id="id57">
+<h4>Example Request<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/keys <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id58">
+<h4>Example Response<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;keys&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;expireTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2019-01-27T22:18:42.245Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/key/_Jwm-qaGa0kBM9R1CyyQn-0qxLtBtij4ToQf6beL&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;ca931aec-4e56-496f-a8d6-be11d93ddaed&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;_Jwm-qaGa0kBM9R1CyyQn-0qxLtBtij4ToQf6beL&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;lastUsedTime&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;scopes&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;write&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;API key for external system&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;read-write&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;admin@alerta.io&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">21</span><span class="p">,</span>
+      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;expireTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2019-01-27T19:22:27.120Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/key/demo-key&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;532c9b59-9e90-40d4-8a3b-887362a79e9c&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;demo-key&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;lastUsedTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-27T22:19:04.113Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;scopes&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;admin&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;write&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;read&quot;</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Admin key created by alertad script&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;read-write&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;foo@foobar.com&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="delete-an-api-key">
+<h3><a class="toc-backref" href="#id126">Delete an API key</a><a class="headerlink" href="#delete-an-api-key" title="Permalink to this headline">¶</a></h3>
+<p>Permanently deletes an API key. It cannot be undone.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">key</span><span class="o">/</span><span class="p">:</span><span class="n">key</span>
+</pre></div>
+</div>
+<section id="id59">
+<h4>Example Request<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/key/532c9b59-9e90-40d4-8a3b-887362a79e9cO8rhJSKrdfQWXqRhvSwJQJRZg9yU0s2Z4VLP4855 <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="users">
+<span id="id60"></span><h2><a class="toc-backref" href="#id127">Users</a><a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
+<section id="create-a-user">
+<h3><a class="toc-backref" href="#id128">Create a user</a><a class="headerlink" href="#create-a-user" title="Permalink to this headline">¶</a></h3>
+<p>Creates a new Basic Auth user.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">auth</span><span class="o">/</span><span class="n">signup</span>
+</pre></div>
+</div>
+<section id="id61">
+<h4>Input<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 14%" />
+<col style="width: 59%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">email</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">password</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">text</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id62">
+<h4>Example Request<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/auth/signup <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
+-H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
+-d <span class="s1">&#39;{</span>
+<span class="s1">      &quot;name&quot;: &quot;Joe Bloggs&quot;,</span>
+<span class="s1">      &quot;email&quot;: &quot;joe.bloggs@example.com&quot;,</span>
+<span class="s1">      &quot;password&quot;: &quot;secret&quot;,</span>
+<span class="s1">      &quot;text&quot;: &quot;demo user&quot;</span>
+<span class="s1">    }&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id63">
+<h4>Example Response<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;token&quot;</span><span class="p">:</span> <span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4Y2IwYjYyNC0zY2Q3LTQ1YjktOThhNS01ZGZhYzVmMDE2NmMiLCJyb2xlcyI6WyJ1c2VyIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC8iLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJqb2UuYmxvZ2dzQGV4YW1wbGUuY29tIiwibmFtZSI6IkpvZSBCbG9nZ3MiLCJlbWFpbCI6ImpvZS5ibG9nZ3NAZXhhbXBsZS5jb20iLCJzY29wZSI6InJlYWQgd3JpdGUiLCJqdGkiOiI2ODlhMmY3Yy0zNTJlLTQ5M2ItYWZjYi1iOWUwOTE3ODAyMDgiLCJleHAiOjE1MTMxODIxNDcsInByb3ZpZGVyIjoiYmFzaWMiLCJpYXQiOjE1MTE5NzI1NDcsIm5iZiI6MTUxMTk3MjU0NywiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwLyJ9.c5jpr8YksoJmoZ6KUwsYP5fgwZr-jdA4W3JUCbv1vXU&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="update-a-user">
+<h3><a class="toc-backref" href="#id129">Update a user</a><a class="headerlink" href="#update-a-user" title="Permalink to this headline">¶</a></h3>
+<p>Updates the specified user by setting the values of the parameters passed.
+Any parameters not provided will be left unchanged.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="p">:</span><span class="n">user</span>
+</pre></div>
+</div>
+<section id="id64">
+<h4>Input<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 14%" />
+<col style="width: 59%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">email</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">password</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">status</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">roles</span></code></p></td>
+<td><p>set</p></td>
+<td><p>set of roles</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">attributes</span></code></p></td>
+<td><p>dict</p></td>
+<td><p>dictionary of key-value pairs</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">text</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">email_verified</span></code></p></td>
+<td><p>boolean</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id65">
+<h4>Example Request<a class="headerlink" href="#id65" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPUT http://localhost:8080/user/0a35bfd8-1175-4cd2-96f6-eda9861fd15d <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
+-H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
+-d <span class="s1">&#39;{</span>
+<span class="s1">      &quot;password&quot;: &quot;p8ssw0rd&quot;,</span>
+<span class="s1">      &quot;text&quot;: &quot;test user&quot;,</span>
+<span class="s1">      &quot;email_verified&quot;: false</span>
+<span class="s1">    }&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="update-me">
+<h3><a class="toc-backref" href="#id130">Update me</a><a class="headerlink" href="#update-me" title="Permalink to this headline">¶</a></h3>
+<p>Updates the logged in user by setting the values of the parameters passed.
+Any parameters not provided will be left unchanged.</p>
+<p>It is not allowed to update <code class="docutils literal notranslate"><span class="pre">roles</span></code>, <code class="docutils literal notranslate"><span class="pre">email_verified</span></code> status or change
+the <code class="docutils literal notranslate"><span class="pre">email</span></code> to one that is already associated with another user.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">me</span>
+</pre></div>
+</div>
+<section id="id66">
+<h4>Input<a class="headerlink" href="#id66" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 14%" />
+<col style="width: 59%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">email</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">password</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">status</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">attributes</span></code></p></td>
+<td><p>dict</p></td>
+<td><p>dictionary of key-value pairs</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">text</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id67">
+<h4>Example Request<a class="headerlink" href="#id67" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPUT http://localhost:8080/user/me <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
+-H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
+-d <span class="s1">&#39;{</span>
+<span class="s1">      &quot;password&quot;: &quot;p8ssw0rd&quot;,</span>
+<span class="s1">      &quot;text&quot;: &quot;test user me&quot;</span>
+<span class="s1">    }&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="update-user-attributes">
+<h3><a class="toc-backref" href="#id131">Update user attributes</a><a class="headerlink" href="#update-user-attributes" title="Permalink to this headline">¶</a></h3>
+<p>Updates the specified user attributes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span><span class="o">/</span><span class="n">attributes</span>
+</pre></div>
+</div>
+<section id="id68">
+<h4>Input<a class="headerlink" href="#id68" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 14%" />
+<col style="width: 59%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">attributes</span></code></p></td>
+<td><p>dict</p></td>
+<td><p>dictionary of key-value pairs</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id69">
+<h4>Example Request<a class="headerlink" href="#id69" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPUT http://localhost:8080/user/0a35bfd8-1175-4cd2-96f6-eda9861fd15d/attributes <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
+-H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
+-d <span class="s1">&#39;{</span>
+<span class="s1">      &quot;attributes&quot;: {</span>
+<span class="s1">        &quot;team&quot;: &quot;developers&quot;</span>
+<span class="s1">      }</span>
+<span class="s1">  }&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="update-user-me-attributes">
+<h3><a class="toc-backref" href="#id132">Update user me attributes</a><a class="headerlink" href="#update-user-me-attributes" title="Permalink to this headline">¶</a></h3>
+<p>Updates the logged in user attributes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">me</span><span class="o">/</span><span class="n">attributes</span>
+</pre></div>
+</div>
+<section id="id70">
+<h4>Input<a class="headerlink" href="#id70" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 14%" />
+<col style="width: 59%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">attributes</span></code></p></td>
+<td><p>dict</p></td>
+<td><p>dictionary of key-value pairs</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id71">
+<h4>Example Request<a class="headerlink" href="#id71" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPUT http://localhost:8080/user/me/attributes <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
+-H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
+-d <span class="s1">&#39;{</span>
+<span class="s1">      &quot;attributes&quot;: {</span>
+<span class="s1">        &quot;teams&quot;: [&quot;developers&quot;, &quot;operations&quot;]</span>
+<span class="s1">      }</span>
+<span class="s1">  }&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="list-all-users">
+<span id="get-users"></span><h3><a class="toc-backref" href="#id133">List all users</a><a class="headerlink" href="#list-all-users" title="Permalink to this headline">¶</a></h3>
+<p>Returns a list of users.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">users</span>
+</pre></div>
+</div>
+<section id="id72">
+<h4>Example Request<a class="headerlink" href="#id72" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/users <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id73">
+<h4>Example Response<a class="headerlink" href="#id73" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;domains&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;*&quot;</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;groups&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;*&quot;</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;orgs&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;*&quot;</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-02T00:24:00.393Z&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="nt">&quot;users&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-01T23:49:38.486Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;email_verified&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;b91811e7-52dd-4a8f-adae-b4d5c628d6f8&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;login&quot;</span><span class="p">:</span> <span class="s2">&quot;jane.doe@example.org&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Jane Doe&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;provider&quot;</span><span class="p">:</span> <span class="s2">&quot;basic&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;demo user&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;createTime&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-02T00:23:24.487Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;email_verified&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;166b41d6-849f-440d-ba30-1a5345d86fb6&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;login&quot;</span><span class="p">:</span> <span class="s2">&quot;joe.bloggs@example.com&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Joe Bloggs&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;provider&quot;</span><span class="p">:</span> <span class="s2">&quot;basic&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;demo user&quot;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="delete-a-user">
+<h3><a class="toc-backref" href="#id134">Delete a user</a><a class="headerlink" href="#delete-a-user" title="Permalink to this headline">¶</a></h3>
+<p>Permanently deletes a user. It cannot be undone.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="p">:</span><span class="n">user</span>
+</pre></div>
+</div>
+<section id="id74">
+<h4>Example Request<a class="headerlink" href="#id74" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/user/166b41d6-849f-440d-ba30-1a5345d86fb6 <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="permissions">
+<span id="perms"></span><h2><a class="toc-backref" href="#id135">Permissions</a><a class="headerlink" href="#permissions" title="Permalink to this headline">¶</a></h2>
+<section id="create-permission">
+<h3><a class="toc-backref" href="#id136">Create permission</a><a class="headerlink" href="#create-permission" title="Permalink to this headline">¶</a></h3>
+<p>Creates a new permission lookup. Used to match user groups/roles to scopes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">perm</span>
+</pre></div>
+</div>
+<section id="id75">
+<h4>Input<a class="headerlink" href="#id75" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 14%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">scopes</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">match</span></code></p></td>
+<td><p>regex</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id76">
+<h4>Example Request<a class="headerlink" href="#id76" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/perm <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
+-H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
+-d <span class="s1">&#39;{</span>
+<span class="s1">      &quot;scopes&quot;: [&quot;read&quot;, &quot;write&quot;, &quot;admin:alerts&quot;],</span>
+<span class="s1">      &quot;match&quot;: &quot;alerta_ops&quot;</span>
+<span class="s1">    }&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id77">
+<h4>Example Response<a class="headerlink" href="#id77" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;40c2daee-1d77-44d5-b62d-e3e446396cef&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;permission&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;40c2daee-1d77-44d5-b62d-e3e446396cef&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="s2">&quot;alerta_ops&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;scopes&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;read&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;write&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;admin:keys&quot;</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="list-all-permissions">
+<h3><a class="toc-backref" href="#id137">List all permissions</a><a class="headerlink" href="#list-all-permissions" title="Permalink to this headline">¶</a></h3>
+<p>Returns a list of permissions.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">perms</span>
+</pre></div>
+</div>
+<section id="id78">
+<h4>Example Request<a class="headerlink" href="#id78" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/perms <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id79">
+<h4>Example Response<a class="headerlink" href="#id79" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;permissions&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;5b726183-019f-4add-b6dc-caba87e873f7&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="s2">&quot;alerta_ro&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;scopes&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;read&quot;</span>
+      <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;f4c91af3-5222-4201-9da0-02c40122f4c4&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="s2">&quot;alerta_rw&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;scopes&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;read&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;write&quot;</span>
+      <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;1f84f919-c07a-4bd1-93b0-26e28871257f&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="s2">&quot;alerta_ops&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;scopes&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;read&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;write&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;admin:keys&quot;</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-07-29T21:42:30.500Z&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">3</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="delete-a-permission">
+<h3><a class="toc-backref" href="#id138">Delete a permission</a><a class="headerlink" href="#delete-a-permission" title="Permalink to this headline">¶</a></h3>
+<p>Permanently delete a permission. It cannot be undone.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">perm</span><span class="o">/</span><span class="p">:</span><span class="n">perm</span>
+</pre></div>
+</div>
+<section id="id80">
+<h4>Example Request<a class="headerlink" href="#id80" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/perm/1f84f919-c07a-4bd1-93b0-26e28871257f <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="customers">
+<span id="id81"></span><h2><a class="toc-backref" href="#id139">Customers</a><a class="headerlink" href="#customers" title="Permalink to this headline">¶</a></h2>
+<section id="create-a-customer">
+<h3><a class="toc-backref" href="#id140">Create a customer</a><a class="headerlink" href="#create-a-customer" title="Permalink to this headline">¶</a></h3>
+<p>Creates a new customer lookup. Used to match user logins to customers.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">customer</span>
+</pre></div>
+</div>
+<section id="id82">
+<h4>Input<a class="headerlink" href="#id82" title="Permalink to this headline">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 14%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">customer</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">match</span></code></p></td>
+<td><p>regex</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id83">
+<h4>Example Request<a class="headerlink" href="#id83" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/customer <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span> <span class="se">\</span>
+-H <span class="s1">&#39;Content-type: application/json&#39;</span> <span class="se">\</span>
+-d <span class="s1">&#39;{</span>
+<span class="s1">      &quot;customer&quot;: &quot;Example Corp.&quot;,</span>
+<span class="s1">      &quot;match&quot;: &quot;example.com&quot;</span>
+<span class="s1">    }&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id84">
+<h4>Example Response<a class="headerlink" href="#id84" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">201</span> <span class="n">CREATED</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="s2">&quot;Example Corp.&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;289ca657-ea2c-4775-9e07-cc96844cc717&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="s2">&quot;example.com&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;289ca657-ea2c-4775-9e07-cc96844cc717&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="list-all-customers">
+<span id="get-customers"></span><h3><a class="toc-backref" href="#id141">List all customers</a><a class="headerlink" href="#list-all-customers" title="Permalink to this headline">¶</a></h3>
+<p>Returns a list of customers.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">customers</span>
+</pre></div>
+</div>
+<section id="id85">
+<h4>Example Request<a class="headerlink" href="#id85" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/customers <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id86">
+<h4>Example Response<a class="headerlink" href="#id86" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;customers&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="s2">&quot;Example Corp.&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;289ca657-ea2c-4775-9e07-cc96844cc717&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="s2">&quot;example.com&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;customer&quot;</span><span class="p">:</span> <span class="s2">&quot;Example Org.&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;90f4e211-c815-4112-9e1a-6e53de5a59c6&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;match&quot;</span><span class="p">:</span> <span class="s2">&quot;example.org&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-01-02T01:21:38.958Z&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="delete-a-customer">
+<h3><a class="toc-backref" href="#id142">Delete a customer</a><a class="headerlink" href="#delete-a-customer" title="Permalink to this headline">¶</a></h3>
+<p>Permanently delete a customer. It cannot be undone.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">customer</span><span class="o">/</span><span class="p">:</span><span class="n">customer</span>
+</pre></div>
+</div>
+<section id="id87">
+<h4>Example Request<a class="headerlink" href="#id87" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XDELETE http://localhost:8080/customer/90f4e211-c815-4112-9e1a-6e53de5a59c6 <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="management">
+<span id="id88"></span><h2><a class="toc-backref" href="#id143">Management</a><a class="headerlink" href="#management" title="Permalink to this headline">¶</a></h2>
+<section id="manifest">
+<h3><a class="toc-backref" href="#id144">Manifest</a><a class="headerlink" href="#manifest" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">management</span><span class="o">/</span><span class="n">manifest</span>
+</pre></div>
+</div>
+<section id="id89">
+<h4>Example Request<a class="headerlink" href="#id89" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/management/manifest
+</pre></div>
+</div>
+</section>
+<section id="id90">
+<h4>Example Response<a class="headerlink" href="#id90" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">200</span> <span class="n">OK</span>
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;build&quot;</span><span class="p">:</span> <span class="s2">&quot;PROD&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;date&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-11-22T23:46:52Z&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;release&quot;</span><span class="p">:</span> <span class="s2">&quot;8.6.2&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;revision&quot;</span><span class="p">:</span> <span class="s2">&quot;ecfe6ff2295ddc1a01be5aaeeef7dd9159fdfcf9&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="get-metrics">
+<span id="mgmt-get-metrics"></span><h3><a class="toc-backref" href="#id145">Get metrics</a><a class="headerlink" href="#get-metrics" title="Permalink to this headline">¶</a></h3>
+<p>Get metrics in prometheus format</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">management</span><span class="o">/</span><span class="n">metrics</span>
+</pre></div>
+</div>
+<section id="id91">
+<h4>Example Request<a class="headerlink" href="#id91" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XGET http://localhost:8080/management/metrics <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="get-good-to-go-healthcheck">
+<span id="mgmt-hc-gng"></span><h3><a class="toc-backref" href="#id146">Get good-to-go healthcheck</a><a class="headerlink" href="#get-good-to-go-healthcheck" title="Permalink to this headline">¶</a></h3>
+<p>The “good-to-go” healthcheck checks the database is alive and returns 200 or 503 (this can be used for a READINESS check)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">management</span><span class="o">/</span><span class="n">gtg</span>
+</pre></div>
+</div>
+<section id="id92">
+<h4>Example Request<a class="headerlink" href="#id92" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XGET http://localhost:8080/management/gtg <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="get-full-healthcheck">
+<span id="mgmt-hc-full"></span><h3><a class="toc-backref" href="#id147">Get full healthcheck</a><a class="headerlink" href="#get-full-healthcheck" title="Permalink to this headline">¶</a></h3>
+<p>This healthcheck checks that all reported heartbeats are not more than 4 times their timeout value and reports 200 or 503. it implicitly checks the database is up also.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">management</span><span class="o">/</span><span class="n">healthcheck</span>
+</pre></div>
+</div>
+<section id="id93">
+<h4>Example Request<a class="headerlink" href="#id93" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XGET http://localhost:8080/management/healthcheck <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="get-light-healthcheck">
+<span id="mgmt-hc-light"></span><h3><a class="toc-backref" href="#id148">Get light healthcheck</a><a class="headerlink" href="#get-light-healthcheck" title="Permalink to this headline">¶</a></h3>
+<p>The “underscore” healthcheck simply returns 200 OK. It does not hit the database. (this can be used for a LIVENESS check)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">_</span>
+</pre></div>
+</div>
+<section id="id94">
+<h4>Example Request<a class="headerlink" href="#id94" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -XGET http://localhost:8080/_ <span class="se">\</span>
+-H <span class="s1">&#39;Authorization: Key demo-key&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">alerta</a></h1>
+
+
+
+<p class="blurb">monitoring system</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=alerta&repo=alerta&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+
+
+<h3>
+Links
+</h3>
+<ul>
+  <li>
+    <a href="http://alerta.io" rel="me">Web</a>
+  </li>
+  <li>
+    <a href="https://twitter.com/alertaio" rel="me">Twitter</a>
+  </li>
+  <li>
+    <a href="https://slack.alerta.dev" rel="me">Slack</a>
+  </li>
+</ul>
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick-start.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server.html">Server &amp; API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui.html">Alerta Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">Alerta CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../integrations.html">Integrations &amp; Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authorization.html">Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webhooks.html">Custom Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../customer-views.html">Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../federated.html">Federated Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">Resources</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#alerts">Alerts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#environments">Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#services">Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tags">Tags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#blackout-periods">Blackout Periods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#heartbeats">Heartbeats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api-keys">API Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#users">Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#permissions">Permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#customers">Customers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#management">Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="query-syntax.html">API Query Syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alert.html">Alert Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heartbeat.html">Heartbeat Format</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+<h3 class="donation">Donate/support</h3>
+
+
+
+<p>
+<a class="badge" href="https://github.com/sponsors/satterly">
+<img src="https://img.shields.io/badge/donate-%E2%9D%A4%C2%A0-ff69b4.svg?style=flat" alt="Donate">
+</a>
+</p>
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015-2021, Nick Satterly. Creative Commons Attribution-ShareAlike 3.0 License.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api/reference.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-44644195-3']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>
