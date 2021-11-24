@@ -2156,8 +2156,12 @@ Example Request
 Management
 ----------
 
+.. _mgmt_manifest:
+
 Manifest
 ~~~~~~~~
+
+Get build info, including build date, release number and ``git`` commit ``sha``.
 
 ::
 
@@ -2168,7 +2172,8 @@ Example Request
 
 .. code-block:: bash
 
-    $ curl http://localhost:8080/management/manifest
+    $ curl http://localhost:8080/management/manifest \
+    -H 'Authorization: Key demo-key'
 
 Example Response
 ++++++++++++++++
@@ -2186,12 +2191,199 @@ Example Response
     "revision": "ecfe6ff2295ddc1a01be5aaeeef7dd9159fdfcf9"
   }
 
-.. _mgmt_get_metrics:
+.. _mgmt_properties:
 
-Get metrics
-~~~~~~~~~~~
+Properties
+~~~~~~~~~~
 
-Get metrics in prometheus format
+Get HTTP request variables, environment variables, and application configuration settings for debug purposes.
+
+::
+
+    GET /management/properties
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/management/properties \
+    -H 'Authorization: Key demo-key'
+
+Example Response
+++++++++++++++++
+
+::
+
+    200 OK
+
+.. code-block::
+
+  wsgi.version: (1, 0)
+  wsgi.url_scheme: http
+  wsgi.input: <_io.BufferedReader name=10>
+  wsgi.errors: <_io.TextIOWrapper name='<stderr>' mode='w' encoding='utf-8'>
+  wsgi.multithread: True
+  wsgi.multiprocess: False
+  wsgi.run_once: False
+  werkzeug.server.shutdown: <function WSGIRequestHandler.make_environ.<locals>.shutdown_server at 0x11232a430>
+  werkzeug.socket: <socket.socket fd=10, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 8080), raddr=('127.0.0.1', 51203)>
+  SERVER_SOFTWARE: Werkzeug/2.0.2
+  REQUEST_METHOD: GET
+  SCRIPT_NAME: 
+  PATH_INFO: /management/properties
+
+.. _mgmt_gtg:
+
+"Good-to-go" Healthcheck
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The "good-to-go" healthcheck checks the database is alive and returns HTTP status codes 200 or 503.
+
+::
+
+    GET /management/gtg
+
+.. note:: This healthcheck can be used as a `READINESS` check because it shows the container is ready to start accepting traffic.
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/management/gtg
+
+Example Response
+++++++++++++++++
+
+::
+
+    200 OK
+
+.. code-block::
+
+  OK
+
+.. _mgmt_underscore:
+
+"Light" Healthcheck
+~~~~~~~~~~~~~~~~~~~
+
+The "underscore" healthcheck simply returns HTTP status code 200 OK if the application is up. It *does not* query the database.
+
+::
+
+    GET /_
+
+.. note:: This healthcheck can be used as a `LIVENESS` check because it simply shows the container is running.
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XGET http://localhost:8080/_
+
+Example Response
+++++++++++++++++
+
+::
+
+    200 OK
+
+.. code-block::
+
+  OK
+
+.. _mgmt_healthcheck:
+
+"Deep" Healthcheck
+~~~~~~~~~~~~~~~~~~
+
+This healthcheck checks that all reported heartbeats are not more than 4 times their timeout value and reports HTTP status codes 200 or 503. It implicitly checks the database is up also.
+
+::
+
+    GET /management/healthcheck
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XGET http://localhost:8080/management/healthcheck
+
+Example Response
+++++++++++++++++
+
+::
+
+    200 OK
+
+.. code-block::
+
+  OK
+
+.. _mgmt_status:
+
+JSON Metrics 
+~~~~~~~~~~~~
+
+Get application metrics in JSON format.
+
+::
+
+    GET /management/status
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XGET http://localhost:8080/management/status \
+    -H 'Authorization: Key demo-key'
+
+Example Response
+++++++++++++++++
+
+::
+
+    200 OK
+
+.. code-block:: json
+
+    {
+        "application": "alerta",
+        "metrics": [
+            {
+                "description": "Total number of alerts in the database",
+                "group": "alerts",
+                "name": "total",
+                "title": "Total alerts",
+                "type": "gauge",
+                "value": 0
+            },
+            {
+                "count": 12,
+                "description": "Total time and number of alert queries",
+                "group": "alerts",
+                "name": "queries",
+                "title": "Alert queries",
+                "totalTime": 1210,
+                "type": "timer"
+            }
+        ],
+        "time": 1637794336233,
+        "uptime": 1321373,
+        "version": "8.6.2"
+    }
+
+.. _mgmt_metrics:
+
+Prometheus Metrics
+~~~~~~~~~~~~~~~~~~
+
+Get application metrics in prometheus format.
 
 ::
 
@@ -2205,60 +2397,26 @@ Example Request
     $ curl -XGET http://localhost:8080/management/metrics \
     -H 'Authorization: Key demo-key'
 
-.. _mgmt_hc_gng:
-
-Get good-to-go healthcheck
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The "good-to-go" healthcheck checks the database is alive and returns 200 or 503 (this can be used for a READINESS check)
+Example Response
+++++++++++++++++
 
 ::
 
-    GET /management/gtg
+    200 OK
 
-Example Request
-+++++++++++++++
+.. code-block::
 
-.. code-block:: bash
-
-    $ curl -XGET http://localhost:8080/management/gtg \
-    -H 'Authorization: Key demo-key'
-
-.. _mgmt_hc_full:
-
-Get full healthcheck
-~~~~~~~~~~~~~~~~~~~~
-
-This healthcheck checks that all reported heartbeats are not more than 4 times their timeout value and reports 200 or 503. it implicitly checks the database is up also.
-
-::
-
-    GET /management/healthcheck
-
-Example Request
-+++++++++++++++
-
-.. code-block:: bash
-
-    $ curl -XGET http://localhost:8080/management/healthcheck \
-    -H 'Authorization: Key demo-key'
-
-.. _mgmt_hc_light:
-
-Get light healthcheck
-~~~~~~~~~~~~~~~~~~~~~
-
-The "underscore" healthcheck simply returns 200 OK. It does not hit the database. (this can be used for a LIVENESS check)
-
-::
-
-    GET /_
-
-Example Request
-+++++++++++++++
-
-.. code-block:: bash
-
-    $ curl -XGET http://localhost:8080/_ \
-    -H 'Authorization: Key demo-key'
-
+    # HELP alerta_alerts_total Total number of alerts in the database
+    # TYPE alerta_alerts_total gauge
+    alerta_alerts_total 0
+    # HELP alerta_alerts_queries Total time and number of alert queries
+    # TYPE alerta_alerts_queries summary
+    alerta_alerts_queries_count 12
+    alerta_alerts_queries_sum 1210
+    # HELP alerta_alerts_counts Total time and number of count queries
+    # TYPE alerta_alerts_counts summary
+    alerta_alerts_counts_count 2
+    alerta_alerts_counts_sum 73
+    # HELP alerta_uptime_msecs milliseconds since app has started
+    # TYPE alerta_uptime_msecs counter
+    alerta_uptime_msecs 1422377
