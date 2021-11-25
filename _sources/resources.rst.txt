@@ -21,7 +21,7 @@ Articles
 
 `Grafana, Telegraf, Alerta – Prometheus besser nutzen (in German) [$] <http://www.linux-magazin.de/ausgaben/2018/05/prometheus-add-ons/>`_ by `Martin Loschwitz, Linux Magazin [DE] <http://www.linux-magazin.de/author/mloschwitz/>`_
 
-`Riemann Learnings <https://the-arm.com/riemann-learnings-29466513eb5f>`_ by `Antonio Terreno, CTO The Labrador, <https://the-arm.com/@javame>`_
+`Riemann Learnings <https://web.archive.org/web/20161104061116/https://the-arm.com/>`_ by Antonio Terreno, CTO The Labrador
 
 Papers
 ------
@@ -29,9 +29,9 @@ Papers
 `Frankenstack: Toward Real-time Red Team Feedback <https://ccdcoe.org/sites/default/files/multimedia/pdf/Frankenstack_MILCOM_IEEE_2017_CCDCOE.pdf>`_ by
 `Markus Kont, Mauno Pihelgas, Bernhards Blumbergs of NATO Cooperative Cyber
 Defence Centre of Excellence <https://ccdcoe.org/>`_ and `Kaie Maennel and Toomas Lepik of the Tallinn University of
-Technology <https://www.ttu.ee/>`_ at `2017 IEEE Military Communications Conference <https://ieeexplore.ieee.org/xpl/mostRecentIssue.jsp?punumber=8125230>`_
+Technology <https://taltech.ee/>`_ at `2017 IEEE Military Communications Conference <https://ieeexplore.ieee.org/xpl/mostRecentIssue.jsp?punumber=8125230>`_
 
-`EVE and ADAM: Situation Awareness Tools for NATO CCDCOE Cyber Exercises <https://www.sto.nato.int/publications/STO%20Meeting%20Proceedings/STO-MP-SCI-300/MP-SCI-300-10.pdf>`_ by `Francisco Jesús Rubio Melón of Ingeniería de Sistemas para la Defensa de España <https://www.isdefe.es/>`_, `Teemu Uolevi Väisänen of VTT Technical Research Centre of Finland <https://www.vttresearch.com/>`_ and `Mauno Pihelgas of NATO Cooperative Cyber
+`EVE and ADAM: Situation Awareness Tools for NATO CCDCOE Cyber Exercises <https://www.sto.nato.int/publications/STO%20Meeting%20Proceedings/STO-MP-SCI-300/MP-SCI-300-10.pdf>`_ by `Francisco Jesús Rubio Melón of Ingeniería de Sistemas para la Defensa de España <https://www.isdefe.es/>`_, `Teemu Uolevi Väisänen of VTT Technical Research Centre of Finland <https://www.vttresearch.com/en>`_ and `Mauno Pihelgas of NATO Cooperative Cyber
 Defence Centre of Excellence <https://ccdcoe.org/>`_
 
 References

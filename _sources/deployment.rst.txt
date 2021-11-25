@@ -149,10 +149,10 @@ High Availability
 To achieve high system availability the Alerta API should be
 deployed to scale out :ref:`horizontally <scalability>` and
 the database should be deployed as a `replica set`_, if using
-mongoDB or as `master-slave`_, if using Postgres.
+mongoDB, or configure `replication`_, if using Postgres.
 
 .. _replica set: http://docs.mongodb.org/manual/core/replica-set-high-availability/
-.. _master-slave: https://www.postgresql.org/docs/current/static/high-availability.html
+.. _replication: https://www.postgresql.org/docs/current/high-availability.html
 
 .. _housekeeping:
 
