@@ -51,7 +51,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'alerta'
+project = u'Alerta'
 copyright = u'2015-2021, Nick Satterly. Creative Commons Attribution-ShareAlike 3.0 License'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -139,7 +139,7 @@ html_static_path = ['_static']
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
 # directly to the root of the documentation.
-#html_extra_path = []
+html_extra_path = ['CNAME', '.nojekyll']
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
