@@ -44,6 +44,8 @@ way:
 
 Each of the above actions are explained in more detail in the following sections.
 
+.. _plugins:
+
 Plugins
 -------
 
@@ -53,7 +55,7 @@ is achieved by registering *pre-receive hooks* for transformers, *post-receive
 hooks* for external notification and *status change hooks* for bi-directional
 integration.
 
-.. _Plugins: https://en.wikipedia.org/wiki/Plug-in_(computing)
+.. _plug-in: https://en.wikipedia.org/wiki/Plug-in_(computing)
 
 .. _prereceive:
 
@@ -176,6 +178,16 @@ new alert is not shown.
 Alerts are sorted in the Alerta web UI by ``lastReceiveTime`` by default
 so that the most recent alerts will be displayed at the top regardless
 of whether they were new alerts or de-duplicated alerts.
+
+.. _filters:
+
+Filters
+-------
+
+An receieved alert is checked against a set of rules. If a alert matches it
+will be filtered for futher use by :ref:`plugins`.
+Matching for filters is done in the same fashion :ref:`blackout periods` do.
+Filter type are specified with optional parameters for plugins to use.
 
 .. _correlation:
 

@@ -42,11 +42,11 @@ Input
 +-----------------+----------+----------------------------------------------+
 | ``environment`` | string   | environment, used to namespace the resource  |
 +-----------------+----------+----------------------------------------------+
-| ``severity``    | string   | see :ref:`severity_table` table              |
+| ``severity``    | string   | see :ref:`severity table` table              |
 +-----------------+----------+----------------------------------------------+
 | ``correlate``   | list     | list of related event names                  |
 +-----------------+----------+----------------------------------------------+
-| ``status``      | string   | see :ref:`status_table` table                |
+| ``status``      | string   | see :ref:`status table` table                |
 +-----------------+----------+----------------------------------------------+
 | ``service``     | list     | list of effected services                    |
 +-----------------+----------+----------------------------------------------+
@@ -331,7 +331,7 @@ Input
 +-----------------+----------+----------------------------------------------+
 | Name            | Type     | Description                                  |
 +=================+==========+==============================================+
-| ``action``      | string   | **Required** Action from ``ack``, ``unack``` |
+| ``action``      | string   | **Required** Action from ``ack``, ``unack``  |
 |                 |          | ``shelve``, ``unshelve``, ``close``          |
 +-----------------+----------+----------------------------------------------+
 | ``text``        | string   | reason for action                            |
@@ -485,30 +485,30 @@ filter results.
 Parameters
 ++++++++++
 
-+------------------+----------+----------------------------------------------+
-| Name             | Type     | Description                                  |
-+==================+==========+==============================================+
-| ``<attr>``       | string   | any alert attribute. eg. ``status=open``     |
-+------------------+----------+----------------------------------------------+
-| ``q`` (*)        | string   | query string :ref:`query syntax <api query>` |
-|                  |          | eg. ``service:Web OR resource:web``          |
-+------------------+----------+----------------------------------------------+
-| ``from-date``    | datetime | ``lastReceiveTime`` > ``from-date``          |
-+------------------+----------+----------------------------------------------+
-| ``to-date``      | datetime | ``lastReceiveTime`` <= ``to-date`` (now)     |
-+------------------+----------+----------------------------------------------+
-| ``sort-by``      | string   | attr to sort by (default:``lastReceiveTime``)|
-+------------------+----------+----------------------------------------------+
-| ``reverse``      | boolean  | change direction of default sort order       |
-+------------------+----------+----------------------------------------------+
-| ``page``         | integer  | number between 1 and total pages (default: 1)|
-+------------------+----------+----------------------------------------------+
-| ``page-size``    | integer  | default: 1000 (set ``DEFAULT_PAGE_SIZE`` )   |
-+------------------+----------+----------------------------------------------+
-| ``show-raw-data``| boolean  | show raw data                                |
-+------------------+----------+----------------------------------------------+
-| ``show-history`` | boolean  | show alert history                           |
-+------------------+----------+----------------------------------------------+
++-------------------+----------+----------------------------------------------+
+| Name              | Type     | Description                                  |
++===================+==========+==============================================+
+| ``<attr>``        | string   | any alert attribute. eg. ``status=open``     |
++-------------------+----------+----------------------------------------------+
+| ``q`` (*)         | string   | query string :ref:`query syntax <api query>` |
+|                   |          | eg. ``service:Web OR resource:web``          |
++-------------------+----------+----------------------------------------------+
+| ``from-date``     | datetime | ``lastReceiveTime`` > ``from-date``          |
++-------------------+----------+----------------------------------------------+
+| ``to-date``       | datetime | ``lastReceiveTime`` <= ``to-date`` (now)     |
++-------------------+----------+----------------------------------------------+
+| ``sort-by``       | string   | attr to sort by (default:``lastReceiveTime``)|
++-------------------+----------+----------------------------------------------+
+| ``reverse``       | boolean  | change direction of default sort order       |
++-------------------+----------+----------------------------------------------+
+| ``page``          | integer  | number between 1 and total pages (default: 1)|
++-------------------+----------+----------------------------------------------+
+| ``page-size``     | integer  | default: 1000 (set ``DEFAULT_PAGE_SIZE`` )   |
++-------------------+----------+----------------------------------------------+
+| ``show-raw-data`` | boolean  | show raw data                                |
++-------------------+----------+----------------------------------------------+
+| ``show-history``  | boolean  | show alert history                           |
++-------------------+----------+----------------------------------------------+
 
 .. deprecated:: 6.3
 
@@ -794,10 +794,20 @@ Parameters
 +=================+==========+==============================================+
 | ``<attr>``      | string   |                                              |
 +-----------------+----------+----------------------------------------------+
-| ``q``           | dict     | mongo query see `Mongo Query Operators`_     |
+| ``q`` (*)       | dict     |                                              |
 +-----------------+----------+----------------------------------------------+
 | ``group-by``    | string   | any valid alert attribute. Default:``event`` |
 +-----------------+----------+----------------------------------------------+
+
+.. deprecated:: 6.3
+
+    The ``q`` parameter using `Mongo-style query`_ format has been replaced with
+    a query format based on `Lucene query syntax`_ supported by both MongoDB and
+    Postgres backends.
+    For more information see :ref:`API Query String Syntax <query_string_syntax>`.
+
+.. _Mongo-style query: http://docs.mongodb.org/manual/reference/operator/query/
+.. _Lucene query syntax: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax
 
 Example Request
 +++++++++++++++
@@ -1209,6 +1219,282 @@ Example Request
     $ curl -XDELETE http://localhost:8080/blackout/c17832d4-c477-4eb1-b2d5-662e7a3600be \
     -H 'Authorization: Key demo-key'
 
+
+.. _filters:
+
+Filters
+-------
+
+Create a filter
+~~~~~~~~~~~~~~~
+
+Creates a filter
+
+::
+
+    POST /filter
+
+Input
++++++
+
+
++-----------------+----------+----------------------------------------------+
+| Name            | Type     | Description                                  |
++=================+==========+==============================================+
+| ``environment`` | string   | **Required**                                 |
++-----------------+----------+----------------------------------------------+
+| ``resource``    | string   |                                              |
++-----------------+----------+----------------------------------------------+
+| ``service``     | list     |                                              |
++-----------------+----------+----------------------------------------------+
+| ``event``       | string   |                                              |
++-----------------+----------+----------------------------------------------+
+| ``group``       | string   |                                              |
++-----------------+----------+----------------------------------------------+
+| ``tags``        | list     |                                              |
++-----------------+----------+----------------------------------------------+
+| ``filter_type`` | string   | **Required**  name of the filter             |
++-----------------+----------+----------------------------------------------+
+| ``filter_data`` | dict     | **Required** parameters used by filter       |
++-----------------+----------+----------------------------------------------+
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    curl -XPOST http://localhost:8080/filter \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+          "environment": "Production",
+          "service": ["example.com"],
+          "filter_type": "delay",
+          "filter_data": {
+            "timeout": 60
+          }
+        }'
+
+Example Request
++++++++++++++++
+
+::
+
+    201 CREATED
+
+.. code-block:: json
+
+    {
+      "filter": {
+        "createTime": "2021-11-26T07:53:03.946Z",
+        "customer": null,
+        "environment": "Production",
+        "event": null,
+        "filter_data": {
+          "timeout": "300"
+        },
+        "filter_type": "delay",
+        "group": null,
+        "href": "http://localhost:8080/filter/03b5b392-7faf-44a3-a239-741ae2107b6f",
+        "id": "03b5b392-7faf-44a3-a239-741ae2107b6f",
+        "priority": 3,
+        "resource": null,
+        "service": [
+          "example.com"
+        ],
+        "tags": [],
+        "text": null,
+        "user": "admin@alerta.io"
+      },
+      "id": "03b5b392-7faf-44a3-a239-741ae2107b6f",
+      "status": "ok"
+    }
+
+.. _get_filters:
+
+List all filters
+~~~~~~~~~~~~~~~~~
+
+Returns a list of filters
+
+::
+
+    GET /filters
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/filters \
+    -H 'Authorization: Key demo-key'
+
+Example Response
+++++++++++++++++
+
+::
+
+    200 OK
+
+.. code-block:: json
+
+    {
+      "filters": [
+        {
+          "createTime": "2021-11-26T07:53:03.946Z",
+          "customer": null,
+          "environment": "Production",
+          "event": null,
+          "filter_data": {
+            "timeout": "300"
+          },
+          "filter_type": "delay",
+          "group": null,
+          "href": "http://localhost:8080/filter/03b5b392-7faf-44a3-a239-741ae2107b6f",
+          "id": "03b5b392-7faf-44a3-a239-741ae2107b6f",
+          "priority": 3,
+          "resource": null,
+          "service": [
+            "example.com"
+          ],
+          "tags": [],
+          "text": null,
+          "user": "admin@alerta.io"
+        }
+      ],
+      "more": false,
+      "page": 1,
+      "pageSize": 10000,
+      "pages": 1,
+      "status": "ok",
+      "total": 2
+    }
+
+.. _update_filters:
+
+Update a filter
+~~~~~~~~~~~~~~~
+
+Update a filter
+
+::
+
+    PUT /alert/:id
+
+Input
++++++
+
++-----------------+----------+----------------------------------------------+
+| Name            | Type     | Description                                  |
++=================+==========+==============================================+
+| ``environment`` | string   | **Required**                                 |
++-----------------+----------+----------------------------------------------+
+| ``resource``    | string   |                                              |
++-----------------+----------+----------------------------------------------+
+| ``service``     | list     |                                              |
++-----------------+----------+----------------------------------------------+
+| ``event``       | string   |                                              |
++-----------------+----------+----------------------------------------------+
+| ``group``       | string   |                                              |
++-----------------+----------+----------------------------------------------+
+| ``tags``        | list     |                                              |
++-----------------+----------+----------------------------------------------+
+| ``filter_type`` | string   | **Required**  name of the filter             |
++-----------------+----------+----------------------------------------------+
+| ``filter_data`` | dict     |                                              |
++-----------------+----------+----------------------------------------------+
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPUT http://localhost:8080/filter/03b5b392-7faf-44a3-a239-741ae2107b6f \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+          "environment": "Production",
+          "service": ["example.com"],
+          "tags": ["dc1", "dc2"],
+          "filter_type": "delay",
+          "filter_data": {
+            "timeout": 30
+          }
+        }'
+
+Example Response
+++++++++++++++++
+
+::
+
+    200 OK
+
+.. code-block:: json
+
+   {
+      "filter": {
+        "createTime": "2021-11-26T07:53:03.946Z",
+        "customer": null,
+        "environment": "Production",
+        "event": null,
+        "filter_data": {
+          "timeout": 30
+        },
+        "filter_type": "delay",
+        "group": null,
+        "href": "http://localhost:8080/filter/03b5b392-7faf-44a3-a239-741ae2107b6f",
+        "id": "03b5b392-7faf-44a3-a239-741ae2107b6f",
+        "priority": 3,
+        "resource": null,
+        "service": [
+          "example.com"
+        ],
+        "tags": [
+          "dc1",
+          "dc2"
+        ],
+        "text": null,
+        "user": "admin@alerta.io"
+      },
+      "status": "ok"
+    }
+
+
+
+
+
+.. _delete_filters:
+
+Delete a filter
+~~~~~~~~~~~~~~
+
+Deletes a filter
+
+::
+
+    DELETE /filter/:id
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XDELETE http://localhost:8080/filter/4f8f477a-a51e-4a1f-a033-fea0cd500812 \
+    -H 'Authorization: Key demo-key'
+
+Example Response
++++++++++++++++
+
+::
+
+    200 OK
+
+.. code-block:: json
+
+    {
+      "status": "ok"
+    }
+
 .. _heartbeats:
 
 Heartbeats
@@ -1276,32 +1562,32 @@ Example Response
     {
       "heartbeat": {
         "attributes": {
-          "environment": "Production", 
-          "group": "Network", 
+          "environment": "Production",
+          "group": "Network",
           "service": [
-            "Core", 
+            "Core",
             "HA"
-          ], 
+          ],
           "severity": "major"
-        }, 
-        "createTime": "2020-06-07T20:31:58.244Z", 
-        "customer": null, 
-        "href": "http://localhost:8080/heartbeat/ea2f41e3-16c4-412f-aaf2-874e3c4c771b", 
-        "id": "ea2f41e3-16c4-412f-aaf2-874e3c4c771b", 
-        "latency": 0, 
-        "maxLatency": 2000, 
-        "origin": "cluster05", 
-        "receiveTime": "2020-06-07T20:31:58.244Z", 
-        "since": 0, 
-        "status": "ok", 
+        },
+        "createTime": "2020-06-07T20:31:58.244Z",
+        "customer": null,
+        "href": "http://localhost:8080/heartbeat/ea2f41e3-16c4-412f-aaf2-874e3c4c771b",
+        "id": "ea2f41e3-16c4-412f-aaf2-874e3c4c771b",
+        "latency": 0,
+        "maxLatency": 2000,
+        "origin": "cluster05",
+        "receiveTime": "2020-06-07T20:31:58.244Z",
+        "since": 0,
+        "status": "ok",
         "tags": [
-          "db05", 
+          "db05",
           "dc2"
-        ], 
-        "timeout": 120, 
+        ],
+        "timeout": 120,
         "type": "Heartbeat"
-      }, 
-      "id": "ea2f41e3-16c4-412f-aaf2-874e3c4c771b", 
+      },
+      "id": "ea2f41e3-16c4-412f-aaf2-874e3c4c771b",
       "status": "ok"
     }
 
@@ -1334,32 +1620,32 @@ Example Response
     {
       "heartbeat": {
         "attributes": {
-          "environment": "Production", 
-          "group": "Network", 
+          "environment": "Production",
+          "group": "Network",
           "service": [
-            "Core", 
+            "Core",
             "HA"
-          ], 
+          ],
           "severity": "major"
-        }, 
-        "createTime": "2020-06-07T20:31:58.244Z", 
-        "customer": null, 
-        "href": "http://localhost:8080/heartbeat/ea2f41e3-16c4-412f-aaf2-874e3c4c771b", 
-        "id": "ea2f41e3-16c4-412f-aaf2-874e3c4c771b", 
-        "latency": 0, 
-        "maxLatency": 2000, 
-        "origin": "cluster05", 
-        "receiveTime": "2020-06-07T20:31:58.244Z", 
-        "since": 91, 
-        "status": "ok", 
+        },
+        "createTime": "2020-06-07T20:31:58.244Z",
+        "customer": null,
+        "href": "http://localhost:8080/heartbeat/ea2f41e3-16c4-412f-aaf2-874e3c4c771b",
+        "id": "ea2f41e3-16c4-412f-aaf2-874e3c4c771b",
+        "latency": 0,
+        "maxLatency": 2000,
+        "origin": "cluster05",
+        "receiveTime": "2020-06-07T20:31:58.244Z",
+        "since": 91,
+        "status": "ok",
         "tags": [
-          "db05", 
+          "db05",
           "dc2"
-        ], 
-        "timeout": 120, 
+        ],
+        "timeout": 120,
         "type": "Heartbeat"
-      }, 
-      "status": "ok", 
+      },
+      "status": "ok",
       "total": 1
     }
 
@@ -1395,33 +1681,33 @@ Example Response
       "heartbeats": [
         {
           "attributes": {
-            "environment": "Production", 
-            "group": "Network", 
+            "environment": "Production",
+            "group": "Network",
             "service": [
-              "Core", 
+              "Core",
               "HA"
-            ], 
+            ],
             "severity": "major"
-          }, 
-          "createTime": "2020-06-07T20:31:58.244Z", 
-          "customer": null, 
-          "href": "http://localhost:8080/heartbeat/ea2f41e3-16c4-412f-aaf2-874e3c4c771b", 
-          "id": "ea2f41e3-16c4-412f-aaf2-874e3c4c771b", 
-          "latency": 0, 
-          "maxLatency": 2000, 
-          "origin": "cluster05", 
-          "receiveTime": "2020-06-07T20:31:58.244Z", 
-          "since": 136, 
-          "status": "expired", 
+          },
+          "createTime": "2020-06-07T20:31:58.244Z",
+          "customer": null,
+          "href": "http://localhost:8080/heartbeat/ea2f41e3-16c4-412f-aaf2-874e3c4c771b",
+          "id": "ea2f41e3-16c4-412f-aaf2-874e3c4c771b",
+          "latency": 0,
+          "maxLatency": 2000,
+          "origin": "cluster05",
+          "receiveTime": "2020-06-07T20:31:58.244Z",
+          "since": 136,
+          "status": "expired",
           "tags": [
-            "db05", 
+            "db05",
             "dc2"
-          ], 
-          "timeout": 120, 
+          ],
+          "timeout": 120,
           "type": "Heartbeat"
         }
-      ], 
-      "status": "ok", 
+      ],
+      "status": "ok",
       "total": 1
     }
 
