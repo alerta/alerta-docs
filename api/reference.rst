@@ -1253,9 +1253,9 @@ Input
 +-----------------+----------+----------------------------------------------+
 | ``tags``        | list     |                                              |
 +-----------------+----------+----------------------------------------------+
-| ``filter_type`` | string   | **Required**  name of the filter             |
+| ``type``        | string   | **Required**  name of the filter             |
 +-----------------+----------+----------------------------------------------+
-| ``filter_data`` | dict     | **Required** parameters used by filter       |
+| ``attributes``  | dict     | **Required** parameters used by filter       |
 +-----------------+----------+----------------------------------------------+
 
 Example Request
@@ -1269,8 +1269,8 @@ Example Request
     -d '{
           "environment": "Production",
           "service": ["example.com"],
-          "filter_type": "delay",
-          "filter_data": {
+          "type": "delay",
+          "attributes": {
             "timeout": 60
           }
         }'
@@ -1290,10 +1290,10 @@ Example Request
         "customer": null,
         "environment": "Production",
         "event": null,
-        "filter_data": {
+        "attributes": {
           "timeout": "300"
         },
-        "filter_type": "delay",
+        "type": "delay",
         "group": null,
         "href": "http://localhost:8080/filter/03b5b392-7faf-44a3-a239-741ae2107b6f",
         "id": "03b5b392-7faf-44a3-a239-741ae2107b6f",
@@ -1345,10 +1345,10 @@ Example Response
           "customer": null,
           "environment": "Production",
           "event": null,
-          "filter_data": {
+          "attributes": {
             "timeout": "300"
           },
-          "filter_type": "delay",
+          "type": "delay",
           "group": null,
           "href": "http://localhost:8080/filter/03b5b392-7faf-44a3-a239-741ae2107b6f",
           "id": "03b5b392-7faf-44a3-a239-741ae2107b6f",
@@ -1399,9 +1399,9 @@ Input
 +-----------------+----------+----------------------------------------------+
 | ``tags``        | list     |                                              |
 +-----------------+----------+----------------------------------------------+
-| ``filter_type`` | string   | **Required**  name of the filter             |
+| ``type``        | string   | **Required**  name of the filter             |
 +-----------------+----------+----------------------------------------------+
-| ``filter_data`` | dict     |                                              |
+| ``attributes``  | dict     |                                              |
 +-----------------+----------+----------------------------------------------+
 
 Example Request
@@ -1416,8 +1416,8 @@ Example Request
           "environment": "Production",
           "service": ["example.com"],
           "tags": ["dc1", "dc2"],
-          "filter_type": "delay",
-          "filter_data": {
+          "type": "delay",
+          "attributes": {
             "timeout": 30
           }
         }'
@@ -1437,10 +1437,10 @@ Example Response
         "customer": null,
         "environment": "Production",
         "event": null,
-        "filter_data": {
+        "attributes": {
           "timeout": 30
         },
-        "filter_type": "delay",
+        "type": "delay",
         "group": null,
         "href": "http://localhost:8080/filter/03b5b392-7faf-44a3-a239-741ae2107b6f",
         "id": "03b5b392-7faf-44a3-a239-741ae2107b6f",
