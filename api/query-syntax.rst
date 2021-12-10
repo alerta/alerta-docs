@@ -17,7 +17,7 @@ Queries are supported by the following resource endpoints:
  * :ref:`heartbeats <get_heartbeats>`
  * :ref:`users <get_users>`
  * :ref:`customers <get_customers>`
- * :ref:`oembed <oembed>`
+ * `oEmbed <http://oembed.com/>`_
 
 .. _url_query_params:
 

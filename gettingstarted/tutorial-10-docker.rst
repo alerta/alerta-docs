@@ -18,7 +18,6 @@ Docker_.
   * `Step 4: Install additional plugins or webhooks`_ 
   * `Step 5: Complex setups`_ 
   * `Production deployments`_ 
-  * `Debugging and Troubleshooting`_ 
 
 Overview
 --------

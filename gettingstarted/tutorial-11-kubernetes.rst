@@ -12,13 +12,13 @@ Kubernetes_.
 
   * Overview_
   * Prerequisites_
-  * `Step 1: Run the container`_
-  * `Step 2: Customise configuration`_
-  * `Step 3: Run using docker-compose`_
-  * `Step 4: Install additional plugins or webhooks`_ 
-  * `Step 5: Complex setups`_ 
-  * `Step 6: Production deployments (Bonus)`_ 
-  * `Debugging and Troubleshooting`_ 
+  * Step 1: Run the container
+  * Step 2: Customise configuration
+  * Step 3: Run using docker-compose
+  * Step 4: Install additional plugins or webhooks 
+  * Step 5: Complex setups 
+  * Step 6: Production deployments (Bonus) 
+  * Debugging and Troubleshooting 
 
 Overview
 --------
@@ -49,7 +49,7 @@ Prerequisites
 
 To follow this tutorial you will need to `install Minikube`_, the "single-node Kubernetes
 cluster in a virtual machine on your personal computer" which you
-will need to complete `Step 6`_ where you mimic deploying to production.
+will need to complete Step 6 where you mimic deploying to production.
 
 .. _install Minikube: https://kubernetes.io/docs/tasks/tools/install-minikube/
 

@@ -152,6 +152,7 @@ Database Settings
 There is a choice of either Postgres or MongoDB as the backend database.
 
 .. note::
+
     Development first began using MongoDB and then Postgres support was
     added later. At present, new features are tested against Postgres
     first and then ported to MongoDB. Both backends have extensive tests
@@ -160,6 +161,9 @@ There is a choice of either Postgres or MongoDB as the backend database.
 
 The database is defined using the standard database connection URL formats. Many
 database configuration options are supported as connection URL parameters.
+
+
+.. _postgres config example:
 
 **Postgres Example**
 
@@ -171,6 +175,8 @@ database configuration options are supported as connection URL parameters.
 See `Postgres connection strings`_ for more information.
 
 .. _Postgres connection strings: https://www.postgresql.org/docs/9.6/static/libpq-connect.html
+
+.. _mongodb config example:
 
 **MongoDB Example**
 
@@ -273,7 +279,9 @@ Auth Provider Settings
     valid authentication providers are ``basic``, ``ldap``, ``openid``, ``saml2``,
     ``azure``, ``cognito``, ``github``, ``gitlab``, ``google``, ``keycloak``,
     and ``pingfederate``  (default is ``basic``)
+
 .. note::
+
     Any authentication provider that is `OpenID Connect compliant`_ is supported. Set the
     ``AUTH_PROVIDER`` to ``openid`` and configure the required ``OIDC`` settings
     :ref:`below <oidc_auth_config>`.
@@ -369,13 +377,13 @@ SAML 2.0 Auth Settings
     (no default)
 ``SAML2_USER_NAME_FORMAT``
     Python format string which will be rendered to user's name using SAML
-    attributes. See :ref:`saml2` (default is ``'{givenName} {surname}'``)
+    attributes. See :ref:`saml2_auth` (default is ``'{givenName} {surname}'``)
 ``SAML2_EMAIL_ATTRIBUTE``
     (default is ``'emailAddress'``)
 ``SAML2_CONFIG``
-    ``pysaml2`` configuration ``dict``. See :ref:`saml2` (no default)
+    ``pysaml2`` configuration ``dict``. See :ref:`saml2_auth` (no default)
 ``ALLOWED_SAML2_GROUPS``
-    list of authorised groups a user must belong to. See :ref:`saml2` for
+    list of authorised groups a user must belong to. See :ref:`saml2_auth` for
     details (default is ``*``)
 ``ALLOWED_EMAIL_DOMAINS``
     authorised email domains when using email as login (default is ``*``)
@@ -918,13 +926,13 @@ General Settings
 ~~~~~~~~~~~~~~~~
 
 :envvar:`DEBUG`
-    :ref:`see above <general config>`
+    :ref:`see above <general_config>`
 :envvar:`BASE_URL`
-    :ref:`see above <general config>`
+    :ref:`see above <general_config>`
 :envvar:`USE_PROXYFIX`
-    :ref:`see above <general config>`
+    :ref:`see above <general_config>`
 :envvar:`SECRET_KEY`
-    :ref:`see above <general config>`
+    :ref:`see above <general_config>`
 
 Database Settings
 ~~~~~~~~~~~~~~~~~
@@ -932,6 +940,46 @@ Database Settings
 :envvar:`DATABASE_URL`
     used by both :ref:`Postgres <Postgres connection strings>` and
     :ref:`MongoDB <MongoDB connection strings>` for database connection strings
+:envvar:`DATABASE_NAME`
+    database name can be used to override default database defined in ``DATABASE_URL``
+
+    :ref:`see above <auth config>`
+:envvar:`PINGFEDERATE_OPENID_ACCESS_TOKEN_URL`
+    :ref:`see above <auth config>`
+:envvar:`PINGFEDERATE_OPENID_PAYLOAD_USERNAME`
+    :ref:`see above <auth config>`
+:envvar:`PINGFEDERATE_OPENID_PAYLOAD_EMAIL`
+    :ref:`see above <auth config>`
+:envvar:`PINGFEDERATE_OPENID_PAYLOAD_GROUP`
+    :ref:`see above <auth config>`
+:envvar:`PINGFEDERATE_PUBKEY_LOCATION`
+    :ref:`see above <auth config>`
+:envvar:`PINGFEDERATE_TOKEN_ALGORITHM`
+    :ref:`see above <auth_config>`
+:envvar:`PINGFEDERATE_OPENID_ACCESS_TOKEN_URL`
+    :ref:`see above <auth_config>`
+:envvar:`PINGFEDERATE_OPENID_PAYLOAD_USERNAME`
+    :ref:`see above <auth_config>`
+:envvar:`PINGFEDERATE_OPENID_PAYLOAD_EMAIL`
+    :ref:`see above <auth_config>`
+:envvar:`PINGFEDERATE_OPENID_PAYLOAD_GROUP`
+    :ref:`see above <auth_config>`
+:envvar:`PINGFEDERATE_PUBKEY_LOCATION`
+    :ref:`see above <auth_config>`
+:envvar:`PINGFEDERATE_TOKEN_ALGORITHM`
+    :ref:`see above <auth_config>`
+
+:envvar:`PLUGINS`
+    :ref:`see above <plugin config>`
+:envvar:`PLUGINS`
+    :ref:`see above <plugin config>`
+
+Database Settings
+~~~~~~~~~~~~~~~~~
+
+:envvar:`DATABASE_URL`
+    used by both :ref:`Postgres <postgres config example>` and
+    :ref:`MongoDB <mongodb config example>` for database connection strings
 :envvar:`DATABASE_NAME`
     database name can be used to override default database defined in ``DATABASE_URL``
 
@@ -960,43 +1008,41 @@ Authentication Settings
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 :envvar:`AUTH_REQUIRED`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`AUTH_PROVIDER`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`ADMIN_USERS`
-    :ref:`see above <auth config>`
-:envvar:`SIGNUP_ENABLED`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`CUSTOMER_VIEWS`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`OAUTH2_CLIENT_ID`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`OAUTH2_CLIENT_SECRET`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`ALLOWED_EMAIL_DOMAINS`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`AZURE_TENANT`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`GITHUB_URL`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`ALLOWED_GITHUB_ORGS`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`GITLAB_URL`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`ALLOWED_GITLAB_GROUPS`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`KEYCLOAK_URL`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`KEYCLOAK_REALM`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`ALLOWED_KEYCLOAK_ROLES`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`LDAP_BIND_PASSWORD`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`OIDC_ISSUER_URL`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`ALLOWED_OIDC_ROLES`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 
 Sundry Settings
 ~~~~~~~~~~~~~~~

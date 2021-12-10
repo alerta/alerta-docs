@@ -1466,7 +1466,7 @@ Example Response
 .. _delete_filters:
 
 Delete a filter
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
 
 Deletes a filter
 
@@ -1475,7 +1475,7 @@ Deletes a filter
     DELETE /filter/:id
 
 Example Request
-+++++++++++++++
+++++++++++++++++
 
 .. code-block:: bash
 
@@ -1483,7 +1483,7 @@ Example Request
     -H 'Authorization: Key demo-key'
 
 Example Response
-+++++++++++++++
++++++++++++++++++
 
 ::
 

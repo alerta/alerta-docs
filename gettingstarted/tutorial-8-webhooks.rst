@@ -7,7 +7,8 @@ Webhooks
 
   * Overview_
   * Prerequisites_
-  * `Step 1: `
+  * `Step 1: Install Packages`_
+  * `Next Steps`_
 
 
 Overview
@@ -15,11 +16,14 @@ Overview
 
 Integrate Prometheus using webhook.
 
+
 Prerequisites
 -------------
 
-Step 1:
-----------------------
+
+Step 1: Install Packages
+------------------------
+
 
 Next Steps
 ----------

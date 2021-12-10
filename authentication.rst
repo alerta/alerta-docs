@@ -4,8 +4,7 @@ Authentication
 ==============
 
 By default, authentication is not enabled, however there are some features
-that are :ref:`not available <watched_alerts>` unless users login such as
-watching alerts.
+that are not available unless users login such as watching alerts.
 
 Alerta supports five main authentication strategies:
 
@@ -199,7 +198,7 @@ Refer to pysaml2 documentation and source code if you need additional options:
 - https://pysaml2.readthedocs.io/en/latest/howto/config.html
 - https://github.com/rohe/pysaml2/blob/master/src/saml2/config.py
 
-Note: entityid and service provider endpoints are configured by default based on your BASE_URL value which is mandatory if you use SAML (see :ref:`general config`)
+Note: entityid and service provider endpoints are configured by default based on your BASE_URL value which is mandatory if you use SAML (see :ref:`general_config`)
 
 ``ALLOWED_SAML2_GROUPS``
 
@@ -322,7 +321,7 @@ To restrict access to users who are members of particular
 OIDC Providers
 --------------
 
-OpenID Connect authentication is provided by Google_ `OAuth2`_,
+OpenID Connect authentication is provided by Google_ `OAuth 2.0`_,
 GitLab_ `OAuth 2.0`_ or Keycloak_ `OAuth 2.0`_ and configuration is more
 involved than the Basic Auth setup.
 
@@ -519,6 +518,8 @@ To restrict access to users with particular `Google apps domains`_ use::
 .. note:: ``ALLOWED_EMAIL_DOMAINS`` can be an asterisk (``*``) to force
           login but *not* restrict who can login.
 
+.. _keycloak oauth2:
+
 Keycloak OAuth2
 ~~~~~~~~~~~~~~~
 
@@ -596,7 +597,7 @@ the command-line tool.
 Keys can be easily generated from the Alerta web UI and can have any scopes
 associated with them. They are valid for 1 year by default but this period
 is configurable using ``API_KEY_EXPIRE_DAYS`` in the
-:ref:`server configuration <api config>`.
+:ref:`server configuration <api_config>`.
 
 To use an API key in an API query you must put the key in either an
 HTTP header or a query parameter.

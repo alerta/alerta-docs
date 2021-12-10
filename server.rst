@@ -44,7 +44,7 @@ way:
 
 Each of the above actions are explained in more detail in the following sections.
 
-.. _plugins:
+.. _about_plugins:
 
 Plugins
 -------
@@ -179,7 +179,7 @@ Alerts are sorted in the Alerta web UI by ``lastReceiveTime`` by default
 so that the most recent alerts will be displayed at the top regardless
 of whether they were new alerts or de-duplicated alerts.
 
-.. _filters:
+.. _about_filters:
 
 Filters
 -------

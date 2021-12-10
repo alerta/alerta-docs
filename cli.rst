@@ -317,12 +317,12 @@ The following group of commands are related to creating and
 managing alert suppressions using blackouts.
 
 :command:`blackout` - Suppress alerts
-+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++
 
   blackout      Suppress alerts
 
 :command:`blackouts` - List alert suppressions
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++
 
   blackouts     List alert suppressions
 
@@ -414,12 +414,12 @@ managing API keys.
     has.
 
 :command:`keys` - List API keys
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++
 
   keys          List API keys
 
 :command:`revoke` - Revoke API key
-+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++
 
   revoke        Revoke API key  
 
@@ -430,12 +430,12 @@ The following group of commands are related to creating and
 managing users.
 
 :command:`user` - Update user
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++
 
   user          Update user
 
 :command:`users` - List users
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++
 
   users         List users
 
@@ -451,12 +451,12 @@ The following group of commands are related to creating and
 managing roles, permissions and access control.
 
 :command:`perm` - Add role-permission lookup
-+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++
 
   perm          Add role-permission lookup
 
 :command:`perms` - List role-permission lookups
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++
 
   perms         List role-permission lookups
 
@@ -467,12 +467,12 @@ The following group of commands are related to creating and
 managing customers.
 
 :command:`customer` - Add customer lookup
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++
 
   customer      Add customer lookup
 
 :command:`customers` - List customer lookups
-+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++
 
   customers     List customer lookups
 
@@ -482,27 +482,27 @@ Auth Commands
 The following group of commands are related to authentication.
 
 :command:`signup` - Sign-up new user
-+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++
 
   signup        Sign-up new user
 
 :command:`login` - Login with user credentials
-+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++
 
   login         Login with user credentials
 
 :command:`logout` - Clear login credentials
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++
 
   logout        Clear login credentials
 
 :command:`whoami` - Display current logged in user
-+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++
 
   whoami        Display current logged in user
 
 :command:`token` - Display current auth token
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++
 
   token         Display current auth token
 
@@ -510,6 +510,8 @@ Admin Commands
 ~~~~~~~~~~~~~~
 
 The following group of commands are related to administration.
+
+.. _cli_status:
 
 :command:`status` - Display status and metrics
 ++++++++++++++++++++++++++++++++++++++++++++++

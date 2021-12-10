@@ -105,12 +105,14 @@ Authentication & SSL
 
 Alerta supports several authentication mechanisms for both the API
 and the web UI and some key features of the web UI, like
-:ref:`watching alerts <watched alerts>`, are only available if
+watching alerts, are only available if
 authentication is enabled.
 
 The API can be secured using :ref:`API keys` and the web UI can
-be secured using :ref:`Basic Auth <basic auth>` or an :ref:`OAuth <oauth2>`
-provider from either GitHub, GitLab, Google, Keycloak or SAML2.
+be secured using :ref:`basic_auth` or an provider from either 
+:ref:`GitHub <github_oauth2>`, :ref:`GitLab <gitlab_oauth2>`, 
+:ref:`Google <google oauth2>`, :ref:`Keycloak <keycloak oauth2>` 
+or :ref:`SAML 2.0 <saml2_auth>`.
 
 If you plan to make the web UI accessible from a public URL it is
 strongly advised to :ref:`enforce authentication <Authentication>`
@@ -122,7 +124,7 @@ alert data.
 Authorisation & Customer Views
 ------------------------------
 
-To restrict access to certain features use :ref:`roles <user roles>`
+To restrict access to certain features use roles
 and :ref:`customer views <customer views>`.
 
 .. _scalability:

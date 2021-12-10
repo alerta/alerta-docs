@@ -19,9 +19,9 @@ This tutorial will ...
   * Overview_
   * Prerequisites_
   * `Step 1: Enable Authentication`_
-  * `Step 2: Configure Administrators`_
-  * `Step 3: Customisation`_
-  * `Next Steps`_
+  * `Step 2: Basic Auth Configuration`_
+  * `Step 3: GitHub Configuration`_
+  * `Step 4: API Keys`_
 
 Overview
 --------
@@ -48,16 +48,14 @@ define roles
 map users to roles
 
 
-
-Step 4: API Keys
-----------------
-
-
-
 Step 3: GitHub Configuration
 ----------------------------
 
 define admin users
 define allowed github orgs
 define roles for orgs
+
+
+Step 4: API Keys
+----------------
 

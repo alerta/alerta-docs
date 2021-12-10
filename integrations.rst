@@ -46,7 +46,7 @@ on any web page using oEmbed_ for easy integration with existing dashboards.
 
 .. _oEmbed: http://oembed.com/
 
-Lastly, :ref:`plugins <plugins>` can be used to quickly and easily forward alerts
+Lastly, :ref:`plug-ins` can be used to quickly and easily forward alerts
 to or notify other systems like Slack or Hipchat.
 
 .. contents:: Contents
@@ -95,6 +95,7 @@ be useful. They are:
 
 .. _contrib: https://github.com/alerta/alerta-contrib
 .. _Amazon SQS: https://github.com/alerta/alerta-contrib/tree/master/integrations/sqs
+.. _AMQP: https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp
 .. _E-mail: https://github.com/alerta/alerta-contrib/tree/master/integrations/mailer
 .. _Opsweekly: https://github.com/alerta/alerta-contrib/tree/master/integrations/opsweekly
 .. _Pinger: https://github.com/alerta/alerta-contrib/tree/master/integrations/pinger
@@ -361,6 +362,7 @@ Alerta can be configured to receive `Telegram callback queries`_ from the inline
 buttons in the `Telegram Bot`_ plugin.
 
 .. _Telegram callback queries: https://core.telegram.org/bots/api#callbackquery
+.. _Telegram Bot: https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram
 
 For details on how to set this up see `Telegram Bot`_ page and for the
 ``TELEGRAM_WEBHOOK_URL`` setting append :file:`/webhooks/telegram` to the Alerta API URL.

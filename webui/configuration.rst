@@ -1,4 +1,4 @@
-.. _webui config:
+.. _webui configuration:
 
 Configuration
 -------------
@@ -117,6 +117,7 @@ Full list of API server settings that can be used to configure clients can be fo
 at :ref:`webui settings`.
 
 .. raw:: html
+
     <style> .red { background-color: red } </style>
 
 Severity Colors

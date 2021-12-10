@@ -5,6 +5,8 @@ Getting Started
 The following tutorials are designed to get you started deploying and using
 Alerta in common scenarios.
 
+.. _tutorials:
+
 Tutorials
 ---------
 
