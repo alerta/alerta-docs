@@ -22,7 +22,7 @@ To fix this you can either serve the web UI from the `same origin`_ as
 the API using a web server to :ref:`reverse proxy <reverse proxy>` the
 web UI or ensure that the API server `allows the origin`_ where the
 web UI is hosted by adding it to the :envvar:`CORS_ORIGINS` :ref:`server
-configuration <CORS config>` setting.
+configuration <CORS settings>` setting.
 
 .. _CORS: https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
 .. _same origin: https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy

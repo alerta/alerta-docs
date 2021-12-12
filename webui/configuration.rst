@@ -113,37 +113,8 @@ shown below that.
 
 Client Settings
 ~~~~~~~~~~~~~~~
-Full list of API server settings that can be used to configure clients.
-
-``AUTH_REQUIRED``
-
-``CUSTOMER_VIEWS``
-
-``AUTH_PROVIDER``
-
-``SIGNUP_ENABLED``
-
-``OAUTH2_CLIENT_ID``
-
-``GITHUB_URL``
-
-``GITLAB_URL``
-
-``KEYCLOAK_URL``
-
-``KEYCLOAK_REALM``
-
-``PINGFEDERATE_URL``
-
-``COLOR_MAP``
-
-``SEVERITY_MAP``
-
-``GOOGLE_TRACKING_ID``
-
-``AUTO_REFRESH_INTERVAL``
-
-.. note:: It is not currently possible to configure dates or audio.
+Full list of API server settings that can be used to configure clients can be found
+at :ref:`webui settings`.
 
 .. raw:: html
     <style> .red { background-color: red } </style>
