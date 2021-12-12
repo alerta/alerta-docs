@@ -846,6 +846,47 @@ rejected, by default.
     used with ``NOTIFICATION_BLACKOUT`` if alerts with ``status`` of ``blackout``
     should still be closed by "ok" alerts (no default)
 
+**Forwarder Plugin Settings**
+
+Alerts and actions can be forwarded to other Alerta servers to create a
+"federated" Alerta environment or forwarded to other systems.
+
+**Example**
+
+.. code:: python
+
+    BASE_URL='https://primary.alerta.io'   # must match actual server name and port
+    PLUGINS=['forwarder']
+    FWD_DESTINATIONS = [
+        ('https://secondary.alerta.io', {'username': 'user', 'password': 'pa55w0rd', 'timeout': 10}, ['alerts', 'actions']),  # BasicAuth
+        # ('https://httpbin.org/anything', dict(username='foo', password='bar', ssl_verify=False), ['*']),
+        ('https://tertiary.alerta.io', {
+            'key': 'e3b8afc0-db18-4c51-865d-b95322742c5e',
+            'secret': 'MDhjZGMyYTRkY2YyNjk1MTEyMWFlNmM3Y2UxZDU1ZjIK'
+        }, ['actions']),  # Hawk HMAC
+        ('https://backup.alerta.io', {'key': 'demo-key'}, ['delete']),  # API key
+        ('https://failover.alerta.io', {'token': 'bearer-token'}, ['*']),  # Bearer token
+    ]
+
+.. index:: FWD_DESTINATIONS
+
+``FWD_DESTINATIONS``
+    list of remote hosts, authentication methods (BasicAuth, API key, HMAC or Bearer Token),
+    and actions (see below) to forward (no default)
+
+.. note:: Valid actions are ``*`` (all), ``alerts``, ``actions``, ``open``, ``assign``, ``ack``,
+    ``unack``, ``shelve``, ``unshelve``, ``close``, and ``delete``
+
+.. tip::
+    
+    To generate HMAC key and secret, it is useful to use UUID for key
+    and base64 encoded string for secret so that they are visibly different::
+
+        $ uuidgen | tr '[:upper:]' '[:lower:]'         <= create HMAC "key"
+        58e7c66f-b990-4610-9496-60eb3c63339b
+        $ date | md5 | base64                        <= create HMAC "secret"
+        MzVlMzQ5NWYzYWE2YTgxYTUyYmIyNDY0ZWE2ZWJlYTMK
+
 .. _webhook config:
 
 Webhook Settings
