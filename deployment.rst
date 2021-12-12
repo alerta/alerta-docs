@@ -264,13 +264,13 @@ from a Debian `vagrant box`_, an `AWS EC2 instance`_,
 * Puppet_ - Alerta recipe on top of `cfweb <https://codingfuture.net/docs/cfweb>`_ module
 
 .. _Vagrant: https://github.com/alerta/vagrant-try-alerta
-.. _Heroku: https://github.com/alerta/alerta#deploy-to-the-cloud
+.. _Heroku: https://github.com/alerta/alerta#cloud-deployment
 .. _web UI to Heroku: https://github.com/alerta/angular-alerta-webui#deploy-to-the-cloud
 .. _AWS EC2: https://github.com/alerta/alerta-cloudformation
 .. _Docker: https://github.com/alerta/docker-alerta
 .. _Docker Alpine: https://github.com/bl1nk/docker-alpine-alerta
 .. _Packer: https://github.com/alerta/packer-templates
-.. _Flask deploy: http://flask.pocoo.org/docs/0.10/quickstart/#deploying-to-a-web-server
+.. _Flask deploy: https://flask.palletsprojects.com/en/2.0.x/quickstart/#deploying-to-a-web-server
 .. _Ansible: https://github.com/ramshankarjaiswal/ansible/tree/master/roles/alerta
 .. _Terraform: https://github.com/aka7/alerta-terraform
 .. _Puppet: https://github.com/codingfuture/puppet-cfwebapp

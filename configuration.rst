@@ -126,7 +126,7 @@ API Settings
 ``HISTORY_ON_VALUE_CHANGE``
     create history entry for duplicate alerts if value changes (default is ``True``)
 
-.. _`ANSI/ISA 18.2 alarm model`: https://www.isa.org/standards-and-publications/isa-publications/intech-magazine/white-papers/pas-understanding-and-applying-ansi-isa-18-2-alarm-management-standard/
+.. _`ANSI/ISA 18.2 alarm model`: https://www.isa.org/getmedia/55b4210e-6cb2-4de4-89f8-2b5b6b46d954/PAS-Understanding-ISA-18-2.pdf
 
 .. _search_config:
 

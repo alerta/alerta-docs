@@ -184,7 +184,7 @@ Release 4.9 (16-03-2017)
 * Pingdom webhook changed to use new "State change" webhook
 
 .. _Keycloak: https://www.keycloak.org/
-.. _MongoDB SSL: http://api.mongodb.com/python/current/examples/tls.html
+.. _MongoDB SSL: https://pymongo.readthedocs.io/en/stable/examples/tls.html
 
 .. _release_4_8:
 
@@ -223,7 +223,7 @@ Release 4.7 (24-01-2016)
 * Removed support for Twitter OAuth1
 
 .. _Prometheus: https://prometheus.io/docs/alerting/latest/alertmanager/
-.. _Google Stackdriver: https://cloud.google.com/stackdriver/
+.. _Google Stackdriver: https://cloud.google.com/products/operations
 
 .. _release_4_6:
 

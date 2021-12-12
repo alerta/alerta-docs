@@ -73,13 +73,6 @@ For more details, visit the `Alerta Python SDK page`_.
 
 .. _Alerta Python SDK page: https://github.com/alerta/python-alerta-client
 
-Ruby SDK
---------
-
-The Ruby SDK is a work-in-progress. For more details, visit the `Alerta Ruby SDK page`_.
-
-.. _Alerta Ruby SDK page: https://github.com/alerta/alerta-ruby
-
 Haskell SDK
 -----------
 

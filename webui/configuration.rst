@@ -10,7 +10,7 @@ that is supplied with the web application. It uses simple JSON syntax.
     The Alerta web UI previously used an `AngularJS configuration block`_
     for configuration settings which has now been deprecated.
 
-.. _AngularJS configuration block: https://docs.angularjs.org/guide/module#configuration-blocks
+.. _AngularJS configuration block: https://docs.angularjs.org/guide/module#registration-in-the-config-block
 
 The three main areas for configuration are:
 

@@ -207,7 +207,7 @@ The following example configuration can be used to log all ``admin``,
 forward the events to the Loggly_ "logging-as-a-service" endpoint,
 replacing ``TOKEN`` in the Loggly URL with your customer token.
 
-.. _Loggly: https://documentation.solarwinds.com/en/success_center/loggly/default.htm#cshid=loggly_http-endpoint
+.. _Loggly: https://documentation.solarwinds.com/en/success_center/loggly/content/admin/http-endpoint.htm?cshid=loggly_http-endpoint
 
 .. code:: python
 

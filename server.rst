@@ -86,13 +86,12 @@ External Notification
 Using post-receive hooks, plugin integrations can be used to provide downstream
 systems with alerts in realtime for external notification. For example, pushing
 alerts onto an `AWS SNS topic`_, `AMQP queue`_, logging to a `Logstash/Kibana`_
-stack, or sending notifications to `HipChat`_, `Slack`_ or `Twilio`_ and many
+stack, or sending notifications to `Slack`_ or `Twilio`_ and many
 more.
 
 .. _AWS SNS topic: https://github.com/alerta/alerta-contrib/tree/master/plugins/sns
 .. _AMQP queue: https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp
 .. _Logstash/Kibana: https://github.com/alerta/alerta-contrib/tree/master/plugins/logstash
-.. _HipChat: https://github.com/alerta/alerta-contrib/blob/master/plugins/hipchat
 .. _Slack: https://github.com/alerta/alerta-contrib/tree/master/plugins/slack
 .. _Twilio: https://github.com/alerta/alerta-contrib/tree/master/plugins/twilio
 

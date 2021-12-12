@@ -101,7 +101,7 @@ The `base class for plugins`_ has three methods that **must** be implemented
 and the ``__init__()`` method can optionally be implemented as well as long
 as the Super class is also called.
 
-.. _base class for plugins: http://docs.openstack.org/developer/stevedore/tutorial/creating_plugins.html#a-plugin-base-class
+.. _base class for plugins: https://docs.openstack.org/stevedore/latest/user/tutorial/creating_plugins.html#example-plugin-set
 
 .. code-block:: python
 

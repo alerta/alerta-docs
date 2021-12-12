@@ -10,7 +10,6 @@
     Chronograf
     Grafana
     Graylog
-    Hipchat
     Kapacitor
     Nagios
     Oembed
@@ -47,7 +46,7 @@ on any web page using oEmbed_ for easy integration with existing dashboards.
 .. _oEmbed: https://oembed.com/
 
 Lastly, :ref:`plug-ins` can be used to quickly and easily forward alerts
-to or notify other systems like Slack or Hipchat.
+to or notify other systems like Slack.
 
 .. contents:: Contents
    :local:
@@ -90,7 +89,7 @@ be useful. They are:
 * Pinger_ - generate ping alerts from list of network resources being pinged
 * `SNMP Trap`_ - generate alerts from SNMPv1 and SNMPv2 sources
 * Supervisor_ - trigger alerts and heartbeats based on process deamon events
-* `Syslog Forwarder`_ - receive :RFC:`5424`, :RFC:`3164` syslog and Cisco_ syslog messages
+* `Syslog Forwarder`_ - receive `5424 <https://datatracker.ietf.org/doc/html/rfc5424.html>`_, `3164 <https://datatracker.ietf.org/doc/html/rfc3164.html>`_ syslog and Cisco_ syslog messages
 * `URL monitor`_ - trigger alerts from web service query responses
 
 .. _contrib: https://github.com/alerta/alerta-contrib
@@ -180,7 +179,7 @@ to the Alerta server API when an event occurs.
 .. Note::
     If authentication is enforced, then an API key is needed to access the alerta API programatically and use the webhooks. 
     
-    Please follow this page for more information on how to pass your api-key : https://docs.alerta.io/en/latest/authentication.html#api-keys
+    Please follow this page for more information on how to pass your :ref:`API Keys`
 
 AWS CloudWatch
 ~~~~~~~~~~~~~~
@@ -211,7 +210,7 @@ endpoint to the Notification Channels.
 For details on how to set this up see `Grafana webhook`_ page and in the
 `Endpoint URL` input box append :file:`/webhooks/grafana` to the Alerta API URL.
 
-.. _Grafana webhook: http://docs.grafana.org/alerting/notifications/#webhook
+.. _Grafana webhook: https://grafana.com/docs/grafana/next/alerting/old-alerting/notifications/#webhook
 
 **Example Grafana Webhook URL**
 
@@ -256,15 +255,15 @@ change to the ``status`` or ``assigned_to_user`` of an incident will cause an
 outgoing message to be sent.
 
 For details on how to set this up see the `PagerDuty webhook`_ page and where it
-requires the webhook URL append :file:`/webhooks/pagerduty` to the Alerta API URL.
+requires the webhook URL append ``/webhooks/pagerduty`` to the Alerta API URL.
 
 **Example PagerDuty Webhook URL**
 
-:file:`https://alerta.example.com/api/webhooks/pagerduty`
+``https://alerta.example.com/api/webhooks/pagerduty``
 
 **Example PagerDuty Webhook URL with authentication**
 
-:file:`https://alerta.example.com/api/webhooks/pagerduty?api-key=xxxxx`
+``https://alerta.example.com/api/webhooks/pagerduty?api-key=xxxxx``
 
 .. _PagerDuty webhook: https://developer.pagerduty.com/documentation/rest/webhooks
 
@@ -275,15 +274,15 @@ Alerta can be configured to receive Pingdom URL check alerts by adding a webhook
 alerting endpoint that calls the Alerta API.
 
 For details on how to set this up see the `Pingdom webhook`_ page and in the
-`webhook URL` input box append :file:`/webhooks/pingdom` to the Alerta API URL.
+`webhook URL` input box append ``/webhooks/pingdom`` to the Alerta API URL.
 
 **Example Pingdom Webhook URL**
 
-:file:`https://alerta.example.com/api/webhooks/pingdom`
+``https://alerta.example.com/api/webhooks/pingdom``
 
 **Example Pingdom Webhook URL with authentication**
 
-:file:`https://alerta.example.com/api/webhooks/pingdom?api-key=xxxx`
+``https://alerta.example.com/api/webhooks/pingdom?api-key=xxxx``
 
 .. _Pingdom webhook: https://documentation.solarwinds.com/en/success_center/pingdom/default.htm#cshid=pd-rd_gen
 
@@ -321,7 +320,7 @@ endpoint to the Notification Preferences.
 For details on how to set this up see `SeverDensity webhook`_ page and in the
 `Endpoint URL` input box append :file:`/webhooks/serverdensity` to the Alerta API URL.
 
-.. _SeverDensity webhook: https://support.serverdensity.com/hc/en-us/articles/201017737-Setting-up-webhooks
+.. _SeverDensity webhook: https://support.serverdensity.com/hc/en-us/articles/360001067183
 
 **Example SeverDensity Webhook URL**
 

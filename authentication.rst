@@ -189,13 +189,13 @@ Bare-minimum config example::
 ..
 
 ``metadata``
-    IdP metadata (refer to `saml2 documentation <https://pysaml2.readthedocs.io/en/latest//en/latest/howto/config.html#metadata>`_ for possible ways of specifying it)
+    IdP metadata (refer to `saml2 documentation <https://pysaml2.readthedocs.io/en/latest/howto/config.html#metadata>`_ for possible ways of specifying it)
 ``key_file``, ``cert_file``
     path to aforementioned keys
 
 Refer to pysaml2 documentation and source code if you need additional options:
 
-- https://pysaml2.readthedocs.io/en/latest//en/latest/howto/config.html
+- https://pysaml2.readthedocs.io/en/latest/howto/config.html
 - https://github.com/IdentityPython/pysaml2/blob/master/src/saml2/config.py
 
 Note: entityid and service provider endpoints are configured by default based on your BASE_URL value which is mandatory if you use SAML (see :ref:`general_config`)
@@ -230,14 +230,14 @@ Example::
 
 ..
 
-See `pysaml2 attribute-map-dir documentation <https://pysaml2.readthedocs.io/en/latest//en/latest/howto/config.html#attribute-map-dir>`_.
+See `pysaml2 attribute-map-dir documentation <https://pysaml2.readthedocs.io/en/latest/howto/config.html#attribute-map-dir>`_.
 The ``attribute-map-dir`` can be specified in the ``SAML2_CONFIG``.
 
 ``SAML2_USER_NAME_FORMAT``
 
 The username format can be customized using the ``SAML2_USER_NAME_FORMAT``
 setting. It is a python string template which is used to generate user's name
-based on attributes (make sure that `attribute-map-dir <https://pysaml2.readthedocs.io/en/latest//en/latest/howto/config.html#attribute-map-dir>`_
+based on attributes (make sure that `attribute-map-dir <https://pysaml2.readthedocs.io/en/latest/howto/config.html#attribute-map-dir>`_
 is properly configured in case default does not fit).
 
 Default is ``'{givenName} {surname}'``.
@@ -334,7 +334,7 @@ involved than the Basic Auth setup.
 .. _Google: https://developers.google.com/identity/protocols/oauth2/openid-connect
 .. _GitLab: https://docs.gitlab.com/ee/integration/oauth_provider.html
 .. _Keycloak: https://www.keycloak.org/documentation.html
-.. _OAuth 2.0: http://tools.ietf.org/html/draft-ietf-oauth-v2-22
+.. _OAuth 2.0: https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-22
 .. _OpenID Connect: http://openid.net/connect/
 
 Ensure ``AUTH_REQUIRED`` and ``SECRET_KEY`` are set and that the
@@ -528,7 +528,7 @@ to *Clients -> Create*.
 
 - Client ID: alerta-ui
 - Client protocol: openid-connect
-- Root URL: http://alerta.example.org
+- Root URL: http://alerta.example.com
 
 After the client is created, edit it and change the following properties:
 
@@ -571,7 +571,7 @@ To restrict access to users who are associated with a particular `Keycloak role`
 
     ALLOWED_KEYCLOAK_ROLES = ['role1', 'role2']
 
-.. _`Keycloak role`: https://keycloak.gitbooks.io/documentation/server_admin/topics/roles.html
+.. _`Keycloak role`: https://www.keycloak.org/docs/latest/server_admin/#assigning-permissions-and-access-using-roles-and-groups
 
 .. note:: ``ALLOWED_KEYCLOAK_ROLES`` can be an asterisk (``*``) to force
           login but *not* restrict who can login.
