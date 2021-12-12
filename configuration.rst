@@ -62,20 +62,28 @@ Logging Settings
 
 .. code:: python
 
-    LOG_HANDLERS = ['console', 'file']
+    LOG_HANDLERS = ['file']
     LOG_FILE = '/var/log/alertad.log'
     LOG_MAX_BYTES = 5*1024*1024  # 5 MB
     LOG_BACKUP_COUNT = 2
     LOG_FORMAT = 'verbose'
 
-.. index:: LOG_CONFIG_FILE, LOG_HANDLERS, LOG_FILE, LOG_MAX_BYTES, LOG_BACKUP_COUNT, LOG_FORMAT, LOG_METHODS
+or
+
+.. code:: python
+
+    LOG_HANDLERS = ['console']
+    LOG_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+
+.. index:: LOG_CONFIG_FILE, LOG_HANDLERS, LOG_FILE, LOG_LEVEL, LOG_MAX_BYTES, LOG_BACKUP_COUNT
+.. index:: LOG_FORMAT, LOG_FACILITY, LOG_METHODS
 
 ``LOG_CONFIG_FILE``
     full path to logging configuration file in `dictConfig format`_ (`default logging config`_)
 ``LOG_HANDLERS``
-    list of log handlers eg. 'console', 'file', 'wsgi' (default is 'console')
+    list of log handlers eg. ``console``, ``file``, ``wsgi`` (default is ``console``)
 ``LOG_FILE``
-    full path to write rotating server log file (default is :file:`alertad.log`)
+    full path to write rotating server log file if ``LOG_HANDLERS`` set to ``file`` (default is :file:`alertad.log`)
 ``LOG_LEVEL``
     only log messages with log severity level or higher (default is ``WARNING``)
 ``LOG_MAX_BYTES``
@@ -83,12 +91,16 @@ Logging Settings
 ``LOG_BACKUP_COUNT``
     number of rollover files before older files are deleted (default is 2)
 ``LOG_FORMAT``
-    log file formatter name eg. 'default', 'simple', 'verbose', 'json'
+    log file formatter name (ie. ``default``, ``simple``, ``verbose``, ``json``, ``syslog``) or any valid Python `log format string`_
+``LOG_FACILITY``
+    syslog logging facility if ``LOG_FORMAT`` is set to ``syslog``  (default is ``local7``)
 ``LOG_METHODS``
     only log listed HTTP methods eg. 'GET', 'POST', 'PUT', 'DELETE' (default is all HTTP methods)
 
 .. _dictConfig format: https://docs.python.org/2/library/logging.config.html#logging.config.dictConfig
 .. _default logging config: https://github.com/alerta/alerta/blob/master/alerta/utils/logging.py#L46
+.. _log format string: https://docs.python.org/3/library/logging.html
+
 .. _api_config:
 
 API Settings
@@ -99,8 +111,8 @@ API Settings
 .. code:: python
 
     ALARM_MODEL='ALERTA'
-    DEFAULT_PAGE_SIZE = 1000
-    HISTORY_LIMIT = 100
+    DEFAULT_PAGE_SIZE = 200
+    HISTORY_LIMIT = 10
     HISTORY_ON_VALUE_CHANGE = False  # do not log if only value changes
 
 .. index:: ALARM_MODEL, DEFAULT_PAGE_SIZE, HISTORY_LIMIT, HISTORY_ON_VALUE_CHANGE
@@ -108,9 +120,9 @@ API Settings
 ``ALARM_MODEL``
     set to ``ISA_18_2`` to use experimental `ANSI/ISA 18.2 alarm model`_ (default is ``ALERTA``)
 ``DEFAULT_PAGE_SIZE``
-    maximum number of alerts returned in a single query (default is 1000)
+    maximum number of alerts returned in a single query (default is ``50`` items)
 ``HISTORY_LIMIT``
-    number of history entries for each alert before old entries are deleted (default is 100)
+    number of history entries for each alert before old entries are deleted (default is ``100`` entries)
 ``HISTORY_ON_VALUE_CHANGE``
     create history entry for duplicate alerts if value changes (default is ``True``)
 
@@ -462,9 +474,9 @@ API Key & Bearer Token Settings
 .. index:: TOKEN_EXPIRE_DAYS, API_KEY_EXPIRE_DAYS
 
 ``TOKEN_EXPIRE_DAYS``
-    number of days a web UI bearer token is valid (default is ``14``)
+    number of days a web UI bearer token is valid (default is ``14`` days)
 ``API_KEY_EXPIRE_DAYS``
-    number of days an API key is valid (default is ``365``)
+    number of days an API key is valid (default is ``365`` days)
 
 .. _hmac_auth_config:
 
@@ -570,16 +582,17 @@ in which Alerta is deployed.
             'ok': '#00CC00',
             'unknown': 'silver'
         },
-        'text': 'black',
-        'highlight': 'skyblue '
+        'text': 'black'
     }
 
-.. index:: SEVERITY_MAP, DEFAULT_NORMAL_SEVERITY, DEFAULT_PREVIOUS_SEVERITY, COLOR_MAP
+.. index:: SEVERITY_MAP, DEFAULT_NORMAL_SEVERITY, DEFAULT_INFORM_SEVERITY, DEFAULT_PREVIOUS_SEVERITY, COLOR_MAP
 
 ``SEVERITY_MAP``
     dictionary of severity names and levels
 ``DEFAULT_NORMAL_SEVERITY``
     severity to be assigned to new alerts (default is ``normal``)
+``DEFAULT_INFORM_SEVERITY``
+    severity that are auto-deleted during housekeeping (default is ``informational``)
 ``DEFAULT_PREVIOUS_SEVERITY``
     previous severity to be assigned to new alerts (default is ``indeterminate``)
 ``COLOR_MAP``
@@ -601,16 +614,20 @@ are important for generating alerts from stale heartbeats.
     HEARTBEAT_TIMEOUT = 7200  # 2 hours
     HEARTBEAT_MAX_LATENCY
 
-.. index:: ALERT_TIMEOUT, HEARTBEAT_TIMEOUT, HEARTBEAT_MAX_LATENCY
+.. index:: ALERT_TIMEOUT, HEARTBEAT_TIMEOUT, HEARTBEAT_MAX_LATENCY, ACK_TIMEOUT, SHELVE_TIMEOUT
 
 ``ALERT_TIMEOUT``
-    default timeout period in seconds for alerts (default is 86400)
+    timeout period for alerts (default is ``86400`` seconds, ``0`` = do not timeout)
 ``HEARTBEAT_TIMEOUT``
-    default timeout period in seconds for heartbeats (default is 86400)
+    timeout period for heartbeats (default is ``86400`` seconds)
 ``HEARTBEAT_MAX_LATENCY``
-    stale heartbeat threshold in milliseconds (default is 2000)
+    stale heartbeat threshold in milliseconds (default is ``2000`` seconds)
+``ACK_TIMEOUT``
+    timeout period for unacknowledging alerts in ack'ed status (default is ``7200`` seconds, ``0`` = do not auto-unack)
+``SHELVE_TIMEOUT``
+    timeout period for unshelving alerts in shelved status (default is ``7200`` seconds, ``0`` = do not auto-unshelve)
 
-.. _housekeeping_config:
+.. _housekeeping config:
 
 Housekeeping Settings
 ~~~~~~~~~~~~~~~~~~~~~
@@ -619,15 +636,17 @@ Housekeeping Settings
 
 .. code:: python
 
-    DEFAULT_EXPIRED_DELETE_HRS = 12  # hours
-    DEFAULT_INFO_DELETE_HRS = 0  # do not delete info alerts
+    DELETE_EXPIRED_AFTER = 12  # hours
+    DELETE_INFO_AFTER = 0  # do not delete informational alerts
 
-.. index:: DEFAULT_EXPIRED_DELETE_HRS, DEFAULT_INFO_DELETE_HRS
+.. index:: DELETE_EXPIRED_AFTER, DELETE_INFO_AFTER
 
-``DEFAULT_EXPIRED_DELETE_HRS``
-    delete expired alerts after defined hours (0=do not delete, default is 2)
-``DEFAULT_INFO_DELETE_HRS``
-    delete informational alerts after defined hours (0=do not delete, default is 12)
+``DELETE_EXPIRED_AFTER``
+    time period before deleting expired alerts (default is ``7200`` seconds ie. 2 hours, ``0`` = do not delete)
+``DELETE_INFO_AFTER``
+    time period before deleting informational alerts (default is ``43,200`` seconds ie. 12 hours, ``0`` = do not delete)
+
+.. note:: Ensure to set ``DEFAULT_INFORM_SEVERITY`` to the "informational" severity that should be deleted.
 
 .. _email config:
 
@@ -693,11 +712,17 @@ The following settings are specific to the web UI and are not used by the server
             'customer', 'environment', 'service', 'resource', 'event', 'value', 'text']
     SORT_LIST_BY = 'lastReceiveTime'
     ACTIONS = ['createIssue', 'updateIssue']
+    DEFAULT_FONT = {
+        'font-family': '"B612", "Fira Code", sans-serif',
+        'font-size': '22px',
+        'font-weight': 600  # 400=normal, 700=bold
+    }
     GOOGLE_TRACKING_ID = 'UA-44644195-5'
     AUTO_REFRESH_INTERVAL = 30000  # 30s
 
 .. index:: SITE_LOGO_URL, DATE_FORMAT_SHORT_TIME, DATE_FORMAT_MEDIUM_DATE, DATE_FORMAT_LONG_DATE
-.. index:: DEFAULT_AUDIO_FILE, COLUMNS, SORT_LIST_BY, ACTIONS, GOOGLE_TRACKING_ID, AUTO_REFRESH_INTERVAL
+.. index:: DEFAULT_AUDIO_FILE, COLUMNS, SORT_LIST_BY, DEFAULT_FILTER, DEFAULT_FONT, ACTIONS
+.. index:: GOOGLE_TRACKING_ID, AUTO_REFRESH_INTERVAL
 
 ``SITE_LOGO_URL``
     URL of company logo to replace "alerta" in navigation bar (no default)
@@ -715,12 +740,14 @@ The following settings are specific to the web UI and are not used by the server
     to sort by newest use ``lastReceiveTime`` or oldest use ``-createTime``. minus means reverse (default is ``lastReceiveTime``)
 ``DEFAULT_FILTER``
     default alert list filter as query filter (default is ``{'status':['open','ack']}``)
+``DEFAULT_FONT``
+    default ``font-family``, ``font-size`` and ``font-weight`` (default is ``Sintony``, ``13px``, ``500``)
 ``ACTIONS``
     adds buttons to web console for operators to trigger custom actions against alert (no default)
 ``GOOGLE_TRACKING_ID``
     used by the web UI to send tracking data to Google Analytics (no default)
 ``AUTO_REFRESH_INTERVAL``
-    interval in milliseconds at which the web UI refreshes alert list (default is ``5000``)
+    interval at which the web UI refreshes alert list (default is ``5000`` milliseconds)
 
 .. asi_config:
 
@@ -819,6 +846,22 @@ rejected, by default.
     used with ``NOTIFICATION_BLACKOUT`` if alerts with ``status`` of ``blackout``
     should still be closed by "ok" alerts (no default)
 
+.. _webhook config:
+
+Webhook Settings
+~~~~~~~~~~~~~~~~
+
+**Example**
+
+.. code:: python
+
+    DEFAULT_ENVIRONMENT = 'Production'
+
+.. index:: DEFAULT_ENVIRONMENT
+
+``DEFAULT_ENVIRONMENT``
+    default alert environment for webhooks, must be a member of ``ALLOWED_ENVIRONMENTS``
+
 Environment Variables
 ---------------------
 
@@ -841,56 +884,6 @@ General Settings
     :ref:`see above <general config>`
 :envvar:`SECRET_KEY`
     :ref:`see above <general config>`
-:envvar:`AUTH_REQUIRED`
-    :ref:`see above <auth config>`
-:envvar:`AUTH_PROVIDER`
-    :ref:`see above <auth config>`
-:envvar:`ADMIN_USERS`
-    :ref:`see above <auth config>`
-:envvar:`CUSTOMER_VIEWS`
-    :ref:`see above <auth config>`
-:envvar:`OAUTH2_CLIENT_ID`
-    :ref:`see above <auth config>`
-:envvar:`OAUTH2_CLIENT_SECRET`
-    :ref:`see above <auth config>`
-:envvar:`ALLOWED_EMAIL_DOMAINS`
-    :ref:`see above <auth config>`
-:envvar:`GITHUB_URL`
-    :ref:`see above <auth config>`
-:envvar:`ALLOWED_GITHUB_ORGS`
-    :ref:`see above <auth config>`
-:envvar:`GITLAB_URL`
-    :ref:`see above <auth config>`
-:envvar:`ALLOWED_GITLAB_GROUPS`
-    :ref:`see above <auth config>`
-:envvar:`KEYCLOAK_URL`
-    :ref:`see above <auth config>`
-:envvar:`KEYCLOAK_REALM`
-    :ref:`see above <auth config>`
-:envvar:`ALLOWED_KEYCLOAK_ROLES`
-    :ref:`see above <auth config>`
-:envvar:`PINGFEDERATE_OPENID_ACCESS_TOKEN_URL`
-    :ref:`see above <auth config>`
-:envvar:`PINGFEDERATE_OPENID_PAYLOAD_USERNAME`
-    :ref:`see above <auth config>`
-:envvar:`PINGFEDERATE_OPENID_PAYLOAD_EMAIL`
-    :ref:`see above <auth config>`
-:envvar:`PINGFEDERATE_OPENID_PAYLOAD_GROUP`
-    :ref:`see above <auth config>`
-:envvar:`PINGFEDERATE_PUBKEY_LOCATION`
-    :ref:`see above <auth config>`
-:envvar:`PINGFEDERATE_TOKEN_ALGORITHM`
-    :ref:`see above <auth config>`
-:envvar:`CORS_ORIGINS`
-    :ref:`see above <cors config>`
-:envvar:`MAIL_FROM`
-    :ref:`see above <email config>`
-:envvar:`SMTP_PASSWORD`
-    :ref:`see above <email config>`
-:envvar:`GOOGLE_TRACKING_ID`
-    :ref:`see above <webui config>`
-:envvar:`PLUGINS`
-    :ref:`see above <plugin config>`
 
 Database Settings
 ~~~~~~~~~~~~~~~~~
@@ -921,6 +914,86 @@ MongoDB Settings
 .. _Heroku MongoHQ: https://devcenter.heroku.com/articles/mongohq
 .. _Heroku MongoLab: https://devcenter.heroku.com/articles/mongolab
 .. _Alerta to a Docker: https://github.com/alerta/docker-alerta
+
+Authentication Settings
+~~~~~~~~~~~~~~~~~~~~~~~
+
+:envvar:`AUTH_REQUIRED`
+    :ref:`see above <auth config>`
+:envvar:`AUTH_PROVIDER`
+    :ref:`see above <auth config>`
+:envvar:`ADMIN_USERS`
+    :ref:`see above <auth config>`
+:envvar:`SIGNUP_ENABLED`
+    :ref:`see above <auth config>`
+:envvar:`CUSTOMER_VIEWS`
+    :ref:`see above <auth config>`
+:envvar:`OAUTH2_CLIENT_ID`
+    :ref:`see above <auth config>`
+:envvar:`OAUTH2_CLIENT_SECRET`
+    :ref:`see above <auth config>`
+:envvar:`ALLOWED_EMAIL_DOMAINS`
+    :ref:`see above <auth config>`
+:envvar:`AZURE_TENANT`
+    :ref:`see above <auth config>`
+:envvar:`GITHUB_URL`
+    :ref:`see above <auth config>`
+:envvar:`ALLOWED_GITHUB_ORGS`
+    :ref:`see above <auth config>`
+:envvar:`GITLAB_URL`
+    :ref:`see above <auth config>`
+:envvar:`ALLOWED_GITLAB_GROUPS`
+    :ref:`see above <auth config>`
+:envvar:`KEYCLOAK_URL`
+    :ref:`see above <auth config>`
+:envvar:`KEYCLOAK_REALM`
+    :ref:`see above <auth config>`
+:envvar:`ALLOWED_KEYCLOAK_ROLES`
+    :ref:`see above <auth config>`
+:envvar:`LDAP_BIND_PASSWORD`
+    :ref:`see above <auth config>`
+:envvar:`OIDC_ISSUER_URL`
+    :ref:`see above <auth config>`
+:envvar:`ALLOWED_OIDC_ROLES`
+    :ref:`see above <auth config>`
+
+Sundry Settings
+~~~~~~~~~~~~~~~
+
+:envvar:`CORS_ORIGINS`
+    :ref:`see above <cors config>`
+:envvar:`MAIL_FROM`
+    :ref:`see above <email config>`
+:envvar:`SMTP_PASSWORD`
+    :ref:`see above <email config>`
+:envvar:`GOOGLE_TRACKING_ID`
+    :ref:`see above <webui config>`
+
+Housekeeping Settings
+~~~~~~~~~~~~~~~~~~~~~
+
+:envvar:`DELETE_EXPIRED_AFTER`
+    :ref:`see above <housekeeping config>`
+:envvar:`DELETE_INFO_AFTER`
+    :ref:`see above <housekeeping config>`
+
+Plugin & Webhook Settings
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:envvar:`PLUGINS`
+    :ref:`see above <plugin config>`
+:envvar:`BLACKOUT_DURATION`
+    :ref:`see above <plugin config>`
+:envvar:`NOTIFICATION_BLACKOUT`
+    :ref:`see above <plugin config>`
+:envvar:`BLACKOUT_ACCEPT`
+    :ref:`see above <plugin config>`
+:envvar:`ORIGIN_BLACKLIST`
+    :ref:`see above <plugin config>`
+:envvar:`ALLOWED_ENVIRONMENTS`
+    :ref:`see above <plugin config>`
+:envvar:`DEFAULT_ENVIRONMENT`
+    :ref:`see above <webhook config>`
 
 Dynamic Settings
 ----------------
