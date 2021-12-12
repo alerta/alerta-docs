@@ -283,3 +283,16 @@ html_theme_options = {
     'travis_button': False,
     'donate_url': 'https://github.com/sponsors/satterly'
 }
+
+# -- Options for linkchecker --------------------------------------------------------
+
+linkcheck_ignore = [
+    r'https?://localhost:\d+/?',
+    r'https?://alerta.example.com/?',
+    r'https://github.com/.*#L',
+    'https://github.com/alerta/alerta#cloud-deployment',
+    'https://github.com/alerta/angular-alerta-webui#deploy-to-the-cloud',
+    'https://docs.angularjs.org/guide/module#registration-in-the-config-block',
+    'https://github.com/alerta/docker-alerta/blob/master/README.md#environment-variables',
+    'https://documentation.solarwinds.com/en/success_center/pingdom/default.htm#cshid=pd-rd_gen'
+]
