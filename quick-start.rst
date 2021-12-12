@@ -64,7 +64,7 @@ To send an alert to the server::
 The alert should appear almost immediately in the console. If it doesn't it's
 either a CORS issues or a bug_.
 
-.. _bug: https://github.com/alerta/alerta-docs/issues/new
+.. _bug: https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Falerta%2Falerta-docs%2Fissues%2Fnew
 
 What's next?
 ------------

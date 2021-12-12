@@ -89,7 +89,7 @@ Contribute
 Support
 -------
 
-* Slack: https://slack.alerta.dev
+* Slack: https://alerta.slack.com/join/shared_invite/zt-o2p396lz-VYc5zCOdS4pTwIy3hAW0KQ
 * :ref:`Frequently Asked Questions <faq>`
 * Issue Tracker: https://github.com/alerta/alerta/issues
 

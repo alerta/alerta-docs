@@ -51,6 +51,6 @@ To follow this tutorial you will need to `install Minikube`_, the "single-node K
 cluster in a virtual machine on your personal computer" which you
 will need to complete Step 6 where you mimic deploying to production.
 
-.. _install Minikube: https://kubernetes.io/docs/tasks/tools/install-minikube/
+.. _install Minikube: https://minikube.sigs.k8s.io/docs/start/
 
 

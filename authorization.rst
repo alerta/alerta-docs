@@ -8,7 +8,7 @@ authorization model is based on `Role-Based Access Control`_ (RBAC)
 which assigns permissions to functional roles and then users are
 assigned to one or more of those roles.
 
-.. _`Role-Based Access Control`: http://csrc.nist.gov/groups/SNS/rbac/faq.html
+.. _`Role-Based Access Control`: https://csrc.nist.gov/projects/role-based-access-control/faqs
 
 This "role-based access" allows for fine-grained control over exactly
 what resources are accessible to which users and exactly what type of
@@ -207,7 +207,7 @@ The following example configuration can be used to log all ``admin``,
 forward the events to the Loggly_ "logging-as-a-service" endpoint,
 replacing ``TOKEN`` in the Loggly URL with your customer token.
 
-.. _Loggly: https://www.loggly.com/docs/http-endpoint/
+.. _Loggly: https://documentation.solarwinds.com/en/success_center/loggly/default.htm#cshid=loggly_http-endpoint
 
 .. code:: python
 

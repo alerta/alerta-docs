@@ -29,7 +29,7 @@ Customisation will involve defining a new alert severity called
 environment called "Code" in addition to "Production" and "Development".
 
 .. _`Ubuntu 18.04 LTS (Bionic Beaver)`: https://wiki.ubuntu.com/BionicBeaver/ReleaseNotes
-.. _uWsgi: https://uwsgi-docs.readthedocs.io
+.. _uWsgi: https://uwsgi-docs.readthedocs.io/en/latest/
 .. _nginx: https://www.nginx.com
 
 Prerequisites

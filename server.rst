@@ -7,8 +7,8 @@ The Alerta API receives alerts from multiple sources, :ref:`correlates <correlat
 :ref:`de-duplicates  <deduplication>` or :ref:`suppresses <blackout periods>`
 them, and makes the alerts available via a RESTful_ JSON_ API.
 
-.. _RESTful: http://apigee.com/about/resources/webcasts/restful-api-design-second-edition
-.. _JSON: http://developers.squarespace.com/what-is-json/
+.. _RESTful: https://cloud.google.com/apigee
+.. _JSON: https://developers.squarespace.com/what-is-json/
 
 Alerts can be intercepted as they are received to modify, enhance or
 reject them using :ref:`pre-receive hooks <prereceive>`. Alerts can also be
@@ -93,8 +93,8 @@ more.
 .. _AMQP queue: https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp
 .. _Logstash/Kibana: https://github.com/alerta/alerta-contrib/tree/master/plugins/logstash
 .. _HipChat: https://github.com/alerta/alerta-contrib/blob/master/plugins/hipchat
-.. _Slack: https://github.com/alerta/alerta-contrib/blob/master/plugins/slack
-.. _Twilio: https://github.com/alerta/alerta-contrib/blob/master/plugins/twilio
+.. _Slack: https://github.com/alerta/alerta-contrib/tree/master/plugins/slack
+.. _Twilio: https://github.com/alerta/alerta-contrib/tree/master/plugins/twilio
 
 .. _take_action:
 
@@ -121,7 +121,7 @@ UI then a status change hook could silence_ the `corresponding alert in Alertman
 This requires that external systems provide enough information in the alert created
 in Alerta for that alert to be uniquely identified at a later date.
 
-.. _silence: https://prometheus.io/docs/alerting/alertmanager/#silences
+.. _silence: https://prometheus.io/docs/alerting/latest/alertmanager/#silences
 .. _corresponding alert in Alertmanager: https://github.com/alerta/alerta-contrib/tree/master/plugins/prometheus
 
 More information about bi-directional integration and real-world examples
@@ -209,9 +209,9 @@ With Alerta, there are two ways alerts can be correlated, namely:
    events with **any** severity, then the alert is correlated.
 
 .. _complex correlation: https://en.wikipedia.org/wiki/Complex_event_processing
-.. _much: http://www.espertech.com/
+.. _much: https://www.espertech.com/
 .. _more: http://riemann.io/
-.. _involved: http://www.drools.org/
+.. _involved: https://www.drools.org/
 
 In both cases, this means that information from the correlated alert is
 used to update key attributes of the existing alert (like ``severity``,

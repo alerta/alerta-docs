@@ -19,7 +19,7 @@ a WSGI application.
     This can be fixed by setting ``WSGIPassAuthorization On`` in
     the configuration file for the site.
 
-.. _always be deployed: http://flask.pocoo.org/docs/1.0/deploying/
+.. _always be deployed: https://flask.palletsprojects.com/en/1.0.x/deploying/
 .. _WSGI: http://www.fullstackpython.com/wsgi-servers.html
 
 .. _reverse proxy:
@@ -38,7 +38,7 @@ reduce the possibility of `mixed content`_ errors when a web
 application hosted on a HTTP endpoint tries to access resources
 on an HTTPS endpoint.
 
-.. _mixed content: https://developer.mozilla.org/en-US/docs/Security/MixedContent/How_to_fix_website_with_mixed_content
+.. _mixed content: https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content/How_to_fix_website_with_mixed_content
 
 **Example API configuration (extract)**
 
@@ -96,7 +96,7 @@ is from an `Amazon S3 bucket`_ as a static website.
           **will not work** unless that domain is listed in the
           ``CORS_ORIGINS`` Alerta API server configuration settings.
 
-.. _Amazon S3 bucket: http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html
+.. _Amazon S3 bucket: https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-custom-domain-walkthrough.html
 
 .. _auth_ssl:
 
@@ -153,7 +153,7 @@ deployed to scale out :ref:`horizontally <scalability>` and
 the database should be deployed as a `replica set`_, if using
 mongoDB, or configure `replication`_, if using Postgres.
 
-.. _replica set: http://docs.mongodb.org/manual/core/replica-set-high-availability/
+.. _replica set: https://docs.mongodb.com/manual/core/replica-set-high-availability/
 .. _replication: https://www.postgresql.org/docs/current/high-availability.html
 
 .. _housekeeping:
@@ -247,10 +247,10 @@ Below are several different examples of how to run Alerta in production
 from a Debian `vagrant box`_, an `AWS EC2 instance`_,
 `Heroku PaaS`_ to a `Docker container`_.
 
-.. _vagrant box: https://docs.vagrantup.com/v2/boxes.html
+.. _vagrant box: https://www.vagrantup.com/docs/boxes
 .. _AWS EC2 instance: https://aws.amazon.com/ec2/
 .. _Heroku PaaS: https://www.heroku.com/platform
-.. _Docker container: https://www.docker.com/whatisdocker
+.. _Docker container: https://www.docker.com/why-docker
 
 * Vagrant_ - deploy Alerta stand-alone or with Nagios, Zabbix, Riemann, Sensu or Kibana
 * Heroku_ - deploy the Alerta API and the `web ui to Heroku`_ PaaS

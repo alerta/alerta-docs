@@ -157,7 +157,7 @@ SAML 2.0
 To use SAML as the authentication provider for Alerta, install `PySAML2`_ on the Alerta
 server and follow the configuration steps below.
 
-.. _PySAML2: https://pysaml2.readthedocs.io
+.. _PySAML2: https://pysaml2.readthedocs.io/en/latest/
 
 ::
 
@@ -189,14 +189,14 @@ Bare-minimum config example::
 ..
 
 ``metadata``
-    IdP metadata (refer to `saml2 documentation <https://pysaml2.readthedocs.io/en/latest/howto/config.html#metadata>`_ for possible ways of specifying it)
+    IdP metadata (refer to `saml2 documentation <https://pysaml2.readthedocs.io/en/latest//en/latest/howto/config.html#metadata>`_ for possible ways of specifying it)
 ``key_file``, ``cert_file``
     path to aforementioned keys
 
 Refer to pysaml2 documentation and source code if you need additional options:
 
-- https://pysaml2.readthedocs.io/en/latest/howto/config.html
-- https://github.com/rohe/pysaml2/blob/master/src/saml2/config.py
+- https://pysaml2.readthedocs.io/en/latest//en/latest/howto/config.html
+- https://github.com/IdentityPython/pysaml2/blob/master/src/saml2/config.py
 
 Note: entityid and service provider endpoints are configured by default based on your BASE_URL value which is mandatory if you use SAML (see :ref:`general_config`)
 
@@ -230,14 +230,14 @@ Example::
 
 ..
 
-See `pysaml2 attribute-map-dir documentation <https://pysaml2.readthedocs.io/en/latest/howto/config.html#attribute-map-dir>`_.
+See `pysaml2 attribute-map-dir documentation <https://pysaml2.readthedocs.io/en/latest//en/latest/howto/config.html#attribute-map-dir>`_.
 The ``attribute-map-dir`` can be specified in the ``SAML2_CONFIG``.
 
 ``SAML2_USER_NAME_FORMAT``
 
 The username format can be customized using the ``SAML2_USER_NAME_FORMAT``
 setting. It is a python string template which is used to generate user's name
-based on attributes (make sure that `attribute-map-dir <https://pysaml2.readthedocs.io/en/latest/howto/config.html#attribute-map-dir>`_
+based on attributes (make sure that `attribute-map-dir <https://pysaml2.readthedocs.io/en/latest//en/latest/howto/config.html#attribute-map-dir>`_
 is properly configured in case default does not fit).
 
 Default is ``'{givenName} {surname}'``.
@@ -280,7 +280,7 @@ To use GitHub as the OAuth2 provider for Alerta, login to GitHub and go
 to *Settings -> Applications -> Register New Application*.
 
 - Application Name: Alerta
-- Homepage URL: http://alerta.io
+- Homepage URL: https://alerta.io/
 - Application description (optional): Guardian Alerta monitoring system
 - Authorization callback URL: http://alerta.example.com
 
@@ -302,7 +302,7 @@ To restrict access to users who are members of particular
 
     ALLOWED_GITHUB_ORGS = ['example', 'mycompany']
 
-.. _`GitHub organisations`: https://github.com/blog/674-introducing-organizations
+.. _`GitHub organisations`: https://github.blog/2010-06-29-introducing-organizations/
 
 .. note:: ``ALLOWED_GITHUB_ORGS`` can be an asterisk (``*``) to force login
           but *not* restrict who can login.
@@ -331,8 +331,8 @@ involved than the Basic Auth setup.
     ensure that only authorised users can access and modify your
     alerts.
 
-.. _Google: https://developers.google.com/accounts/docs/OpenIDConnect
-.. _GitLab: https://docs.gitlab.com/ce/integration/oauth_provider.html
+.. _Google: https://developers.google.com/identity/protocols/oauth2/openid-connect
+.. _GitLab: https://docs.gitlab.com/ee/integration/oauth_provider.html
 .. _Keycloak: https://www.keycloak.org/documentation.html
 .. _OAuth 2.0: http://tools.ietf.org/html/draft-ietf-oauth-v2-22
 .. _OpenID Connect: http://openid.net/connect/
@@ -353,7 +353,7 @@ To use `Azure Active Directory`_ (now known as `Microsoft identity platform (v2.
 the OpenID Connect authentication provider for Alerta follow the steps below.
 
 #. Login to Azure portal
-    https://portal.azure.com/
+    https://portal.azure.com/Error/UE_404?aspxerrorpath=/
 
 #. Navigate to "Azure Active Directory" service page
 
@@ -403,7 +403,7 @@ the OpenID Connect authentication provider for Alerta follow the steps below.
     OAUTH2_CLIENT_SECRET = 'jj2cw7~nc1.55l3.UAy8C3O9Ng-.~GYWYp'
 
 .. _Azure Active Directory: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc
-.. _Microsoft identity platform (v2.0): https://docs.microsoft.com/en-us/azure/active-directory/develop/about-microsoft-identity-platform
+.. _Microsoft identity platform (v2.0): https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-overview
 
 Amazon Cognito
 ~~~~~~~~~~~~~~
@@ -463,7 +463,7 @@ Google OAuth2
 To use Google as the OAuth2 provider for Alerta, login to the
 `Google Developer Console`_ and create a new project for alerta.
 
-.. _Google Developer Console: https://console.developers.google.com
+.. _Google Developer Console: https://accounts.google.com/ServiceLogin?service=cloudconsole&passive=1209600&osid=1&continue=https://console.developers.google.com/&followup=https://console.developers.google.com/
 
 - Project Name: alerta
 - Project ID: (automatically assigned)
@@ -513,7 +513,7 @@ To restrict access to users with particular `Google apps domains`_ use::
 
     ALLOWED_EMAIL_DOMAINS = ['example.org', 'mycompany.com']
 
-.. _`Google apps domains`: https://www.google.co.uk/intx/en_au/work/apps/business/
+.. _`Google apps domains`: https://workspace.google.com/index.html
 
 .. note:: ``ALLOWED_EMAIL_DOMAINS`` can be an asterisk (``*``) to force
           login but *not* restrict who can login.

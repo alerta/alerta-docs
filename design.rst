@@ -25,7 +25,7 @@ for a telco you might want to use the six `ISO perceived severity levels`_
 or alternatively, if you are pushing application alerts you might
 want to consider using the ``debug`` and ``trace`` severity levels.
 
-.. _`ISO perceived severity levels`: http://www.itu.int/rec/T-REC-X.733/en
+.. _`ISO perceived severity levels`: https://www.itu.int/rec/T-REC-X.733/en
 
 Robust alert reception
 ----------------------
@@ -38,7 +38,7 @@ however the benefits of following a standard :ref:`convention <conventions>`
 for such attributes as ``environment``, ``service``, ``event`` and
 ``resource`` (as internally defined by and useful to you) are many.
 
-.. _`robustness principle`: http://en.wikipedia.org/wiki/Robustness_principle
+.. _`robustness principle`: https://en.wikipedia.org/wiki/Robustness_principle
 
 Self-clearing alerts
 --------------------

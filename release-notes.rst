@@ -155,7 +155,7 @@ Release 5.0.0 (07-10-2017)
 * WSGI import has changed from `from alerta.app import app` to simply `from alerta import app`
 * Plugins import has changed from `from alerta.app import app` to `from alerta.plugins import app`
 * Blackout is now a plugin so it can be disabled and replaced with a custom blackout handler
-* Switched to using wheels for distribution via PyPI See http://pythonwheels.com/
+* Switched to using wheels for distribution via PyPI See https://pythonwheels.com/
 * Alerta API now supports multiple roles for BasicAuth (though not supported in the web UI yet)
 * Alert format: `value` is now always cast to a string.
 * Added `/management/housekeeping` URL to replace `housekeepingAlerts.js` cron job script
@@ -171,8 +171,8 @@ Release 4.10 (27-07-2017)
 * Prometheus webhook updated to support version 4
 * Plugin result chaining for tags and attributes
 
-.. _RBAC: http://csrc.nist.gov/groups/SNS/rbac/
-.. _SAML2: https://tools.ietf.org/html/rfc7522
+.. _RBAC: https://csrc.nist.gov/projects/role-based-access-control
+.. _SAML2: https://datatracker.ietf.org/doc/html/rfc7522
 
 .. _release_4_9:
 
@@ -205,7 +205,7 @@ Release 4.8 (05-09-2016)
 .. _Riemann: http://riemann.io/
 .. _Telegram: https://telegram.org/
 .. _related plugin: https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram
-.. _Grafana: http://grafana.org/
+.. _Grafana: https://grafana.com/
 
 .. _release_4_7:
 
@@ -222,7 +222,7 @@ Release 4.7 (24-01-2016)
 * Send email confirmation for Basic Auth sign-ups
 * Removed support for Twitter OAuth1
 
-.. _Prometheus: http://prometheus.io/docs/alerting/alertmanager/
+.. _Prometheus: https://prometheus.io/docs/alerting/latest/alertmanager/
 .. _Google Stackdriver: https://cloud.google.com/stackdriver/
 
 .. _release_4_6:

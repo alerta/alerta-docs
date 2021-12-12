@@ -30,21 +30,21 @@ tools like Nagios_, Zabbix_ and Sensu_ make use of the Alerta API and demonstrat
 how to build integrations with other monitoring tools.
 
 .. _Nagios: https://www.nagios.com
-.. _Zabbix: http://www.zabbix.com
+.. _Zabbix: https://www.zabbix.com/
 .. _Sensu: https://sensuapp.org
 
 Secondly, there are built-in :ref:`webhooks <webhooks>` for
 `AWS Cloudwatch <https://aws.amazon.com/cloudwatch/>`_,
 `Pingdom <https://www.pingdom.com>`_, `PagerDuty <https://www.pagerduty.com/>`_,
-`Google Stackdriver <https://cloud.google.com/stackdriver/>`_,
-`Prometheus Alertmanager <https://prometheus.io/docs/alerting/alertmanager/>`_
+`Google Stackdriver <https://cloud.google.com/products/operations>`_,
+`Prometheus Alertmanager <https://prometheus.io/docs/alerting/latest/alertmanager/>`_
 and more which provide 'out-of-the-box' integrations for some of the most popular
 monitoring systems available.
 
 Thirdly, :ref:`alert severity indicators <widgets>` or widgets can be placed
 on any web page using oEmbed_ for easy integration with existing dashboards.
 
-.. _oEmbed: http://oembed.com/
+.. _oEmbed: https://oembed.com/
 
 Lastly, :ref:`plug-ins` can be used to quickly and easily forward alerts
 to or notify other systems like Slack or Hipchat.
@@ -72,9 +72,9 @@ it is to get alerts or events from other tools into Alerta. They are:
 * `Kibana Logging`_ - log alerts to Elasticsearch for historical visualisation of alert trends
 
 .. _Nagios Event Broker: https://github.com/alerta/nagios-alerta
-.. _InfluxData Kapacitor: https://docs.influxdata.com/kapacitor/latest/nodes/alert_node/#alerta
+.. _InfluxData Kapacitor: https://docs.influxdata.com/kapacitor/v1.6/nodes/alert_node/#alerta
 .. _Zabbix Alert Script: https://github.com/alerta/zabbix-alerta
-.. _Sensu Plugin: https://github.com/alerta/sensu-alerta
+.. _Sensu Plugin: https://github.com/alerta/sensu-alerta-handler
 .. _Riemann Plugin: https://github.com/alerta/riemann-alerta
 .. _Kibana Logging: https://github.com/alerta/kibana-alerta
 
@@ -102,7 +102,7 @@ be useful. They are:
 .. _SNMP Trap: https://github.com/alerta/alerta-contrib/tree/master/integrations/snmptrap
 .. _Supervisor: https://github.com/alerta/alerta-contrib/tree/master/integrations/supervisor
 .. _Syslog Forwarder: https://github.com/alerta/alerta-contrib/tree/master/integrations/syslog
-.. _Cisco: http://www.cisco.com/c/en/us/td/docs/routers/access/wireless/software/guide/SysMsgLogging.html
+.. _Cisco: https://www.cisco.com/c/en/us/td/docs/routers/access/wireless/software/guide/SysMsgLogging.html
 .. _URL monitor: https://github.com/alerta/alerta-contrib/tree/master/integrations/urlmon
 
 External
@@ -115,7 +115,7 @@ Some third-party monitoring tools have built-in support for Alerta. They are:
 * `Tick Stack`_ - designed to handle metrics and events using Telegraf, InfluxDB, Chronograf, and Kapacitor
 
 .. _elastalert: https://elastalert.readthedocs.io/en/latest/ruletypes.html#alerta
-.. _netdata: https://github.com/firehol/netdata/wiki/Alerta-monitoring-system
+.. _netdata: https://github.com/netdata/netdata/wiki/
 .. _Tick Stack: https://docs.influxdata.com/kapacitor/v1.5/event_handlers/alerta/
 
 .. _bidirection integ:
@@ -200,7 +200,7 @@ HTTP/HTTPS Endpoints`_ page and in the `Endpoint` input box append
 
 :file:`https://alerta.example.com/api/webhooks/cloudwatch?api-key=xxxxx`
 
-.. _Sending Amazon SNS Messages to HTTP/HTTPS Endpoints: http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html
+.. _Sending Amazon SNS Messages to HTTP/HTTPS Endpoints: https://docs.aws.amazon.com/sns/latest/dg/sns-http-https-endpoint-as-subscriber.html
 
 Grafana
 ~~~~~~~
@@ -285,7 +285,7 @@ For details on how to set this up see the `Pingdom webhook`_ page and in the
 
 :file:`https://alerta.example.com/api/webhooks/pingdom?api-key=xxxx`
 
-.. _Pingdom webhook: https://support.pingdom.com/Knowledgebase/Article/View/94/0/users-and-alerting-end-points
+.. _Pingdom webhook: https://documentation.solarwinds.com/en/success_center/pingdom/default.htm#cshid=pd-rd_gen
 
 Prometheus Alertmanager
 ~~~~~~~~~~~~~~~~~~~~~~~

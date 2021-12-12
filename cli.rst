@@ -606,5 +606,5 @@ Bugs
 
 Log any issues on `GitHub`_ or submit a `pull request`_.
 
-.. _`github`: https://github.com/alerta/python-alerta/issues
-.. _`pull request`: https://github.com/alerta/python-alerta/pulls
+.. _`github`: https://github.com/alerta/python-alerta-client/issues
+.. _`pull request`: https://github.com/alerta/python-alerta-client/pulls

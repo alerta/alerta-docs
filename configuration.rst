@@ -174,7 +174,7 @@ database configuration options are supported as connection URL parameters.
 
 See `Postgres connection strings`_ for more information.
 
-.. _Postgres connection strings: https://www.postgresql.org/docs/9.6/static/libpq-connect.html
+.. _Postgres connection strings: https://www.postgresql.org/docs/9.6/libpq-connect.html
 
 .. _mongodb config example:
 
@@ -188,7 +188,7 @@ See `Postgres connection strings`_ for more information.
 
 See `MongoDB connection strings`_ for more information.
 
-.. _MongoDB connection strings: https://docs.mongodb.org/v3.0/reference/connection-string/#standard-connection-string-format
+.. _MongoDB connection strings: https://docs.mongodb.com/v3.0/reference/connection-string/#standard-connection-string-format
 
 .. index:: DATABASE_URL, DATABASE_NAME, DATABASE_RAISE_ON_ERROR
 
@@ -1000,7 +1000,7 @@ MongoDB Settings
 :envvar:`MONGO_PORT`
     automatically set when deploying `Alerta to a Docker`_ linked mongo container
 
-.. _Heroku MongoHQ: https://devcenter.heroku.com/articles/mongohq
+.. _Heroku MongoHQ: https://devcenter.heroku.com/articles/ormongo
 .. _Heroku MongoLab: https://devcenter.heroku.com/articles/mongolab
 .. _Alerta to a Docker: https://github.com/alerta/docker-alerta
 

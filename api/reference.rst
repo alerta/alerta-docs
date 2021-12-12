@@ -517,7 +517,7 @@ Parameters
     Postgres backends.
     For more information see :ref:`API Query String Syntax <query_string_syntax>`.
 
-.. _Mongo-style query: http://docs.mongodb.org/manual/reference/operator/query/
+.. _Mongo-style query: https://docs.mongodb.com/manual/reference/operator/query/
 .. _Lucene query syntax: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax
 
 Example Request
@@ -806,7 +806,7 @@ Parameters
     Postgres backends.
     For more information see :ref:`API Query String Syntax <query_string_syntax>`.
 
-.. _Mongo-style query: http://docs.mongodb.org/manual/reference/operator/query/
+.. _Mongo-style query: https://docs.mongodb.com/manual/reference/operator/query/
 .. _Lucene query syntax: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax
 
 Example Request
