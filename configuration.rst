@@ -500,7 +500,7 @@ HMAC Auth Settings
 ``HMAC_AUTH_CREDENTIALS``
     HMAC credentials
 
-.. _Audit Log config:
+.. _Audit Log settings:
 
 Audit Log Settings
 ~~~~~~~~~~~~~~~~~~
@@ -532,7 +532,7 @@ using a POST.
 ``AUDIT_URL``
     forward audit logs to HTTP POST URL (no default)
 
-.. _CORS config:
+.. _CORS settings:
 
 CORS Settings
 ~~~~~~~~~~~~~
@@ -552,7 +552,7 @@ CORS Settings
 ``CORS_ORIGINS``
     URL origins that can access the API for Cross-Origin Resource Sharing (CORS)
 
-.. _severity config:
+.. _severity settings:
 
 Severity Settings
 ~~~~~~~~~~~~~~~~~
@@ -598,7 +598,7 @@ in which Alerta is deployed.
 ``COLOR_MAP``
     dictionary of severity colors, text and highlight color
 
-.. _timeout config:
+.. _timeout settings:
 
 Timeout Settings
 ~~~~~~~~~~~~~~~~
@@ -627,7 +627,7 @@ are important for generating alerts from stale heartbeats.
 ``SHELVE_TIMEOUT``
     timeout period for unshelving alerts in shelved status (default is ``7200`` seconds, ``0`` = do not auto-unshelve)
 
-.. _housekeeping config:
+.. _housekeeping settings:
 
 Housekeeping Settings
 ~~~~~~~~~~~~~~~~~~~~~
@@ -648,7 +648,7 @@ Housekeeping Settings
 
 .. note:: Ensure to set ``DEFAULT_INFORM_SEVERITY`` to the "informational" severity that should be deleted.
 
-.. _email config:
+.. _email settings:
 
 Email Settings
 ~~~~~~~~~~~~~~
@@ -692,7 +692,7 @@ email address before they can login.
 ``SMTP_PASSWORD``
     application-specific password for ``MAIL_FROM`` or ``SMTP_USERNAME`` (no default)
 
-.. _webui config:
+.. _webui settings:
 
 Web UI Settings
 ~~~~~~~~~~~~~~~
@@ -773,7 +773,7 @@ Alert Status Indicator Settings
 ``ASI_QUERIES``
     list of alert queries applied to filter status indicators (see example for default)
 
-.. _plugin config:
+.. _plugin settings:
 
 Plugin Settings
 ~~~~~~~~~~~~~~~~
@@ -887,7 +887,7 @@ Alerts and actions can be forwarded to other Alerta servers to create a
         $ date | md5 | base64                        <= create HMAC "secret"
         MzVlMzQ5NWYzYWE2YTgxYTUyYmIyNDY0ZWE2ZWJlYTMK
 
-.. _webhook config:
+.. _webhook settings:
 
 Webhook Settings
 ~~~~~~~~~~~~~~~~
