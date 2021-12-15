@@ -62,7 +62,7 @@ The following alert attributes are populated at source:
     default) then alerts must have an ``environment`` attribute that
     is one of either ``Production`` or ``Development`` and it must
     define a ``service`` attribute. For more information on configuring
-    or disabling this plugin see :ref:`plugin config`.
+    or disabling this plugin see :ref:`plugin settings`.
 
 Attributes added when processing alerts
 ---------------------------------------

@@ -938,46 +938,6 @@ Database Settings
 ~~~~~~~~~~~~~~~~~
 
 :envvar:`DATABASE_URL`
-    used by both :ref:`Postgres <Postgres connection strings>` and
-    :ref:`MongoDB <MongoDB connection strings>` for database connection strings
-:envvar:`DATABASE_NAME`
-    database name can be used to override default database defined in ``DATABASE_URL``
-
-    :ref:`see above <auth config>`
-:envvar:`PINGFEDERATE_OPENID_ACCESS_TOKEN_URL`
-    :ref:`see above <auth config>`
-:envvar:`PINGFEDERATE_OPENID_PAYLOAD_USERNAME`
-    :ref:`see above <auth config>`
-:envvar:`PINGFEDERATE_OPENID_PAYLOAD_EMAIL`
-    :ref:`see above <auth config>`
-:envvar:`PINGFEDERATE_OPENID_PAYLOAD_GROUP`
-    :ref:`see above <auth config>`
-:envvar:`PINGFEDERATE_PUBKEY_LOCATION`
-    :ref:`see above <auth config>`
-:envvar:`PINGFEDERATE_TOKEN_ALGORITHM`
-    :ref:`see above <auth_config>`
-:envvar:`PINGFEDERATE_OPENID_ACCESS_TOKEN_URL`
-    :ref:`see above <auth_config>`
-:envvar:`PINGFEDERATE_OPENID_PAYLOAD_USERNAME`
-    :ref:`see above <auth_config>`
-:envvar:`PINGFEDERATE_OPENID_PAYLOAD_EMAIL`
-    :ref:`see above <auth_config>`
-:envvar:`PINGFEDERATE_OPENID_PAYLOAD_GROUP`
-    :ref:`see above <auth_config>`
-:envvar:`PINGFEDERATE_PUBKEY_LOCATION`
-    :ref:`see above <auth_config>`
-:envvar:`PINGFEDERATE_TOKEN_ALGORITHM`
-    :ref:`see above <auth_config>`
-
-:envvar:`PLUGINS`
-    :ref:`see above <plugin config>`
-:envvar:`PLUGINS`
-    :ref:`see above <plugin config>`
-
-Database Settings
-~~~~~~~~~~~~~~~~~
-
-:envvar:`DATABASE_URL`
     used by both :ref:`Postgres <postgres config example>` and
     :ref:`MongoDB <mongodb config example>` for database connection strings
 :envvar:`DATABASE_NAME`
@@ -1012,6 +972,8 @@ Authentication Settings
 :envvar:`AUTH_PROVIDER`
     :ref:`see above <auth_config>`
 :envvar:`ADMIN_USERS`
+    :ref:`see above <auth_config>`
+:envvar:`SIGNUP_ENABLED`
     :ref:`see above <auth_config>`
 :envvar:`CUSTOMER_VIEWS`
     :ref:`see above <auth_config>`
@@ -1048,39 +1010,39 @@ Sundry Settings
 ~~~~~~~~~~~~~~~
 
 :envvar:`CORS_ORIGINS`
-    :ref:`see above <cors config>`
+    :ref:`see above <CORS settings>`
 :envvar:`MAIL_FROM`
-    :ref:`see above <email config>`
+    :ref:`see above <email settings>`
 :envvar:`SMTP_PASSWORD`
-    :ref:`see above <email config>`
+    :ref:`see above <email settings>`
 :envvar:`GOOGLE_TRACKING_ID`
-    :ref:`see above <webui config>`
+    :ref:`see above <webui settings>`
 
 Housekeeping Settings
 ~~~~~~~~~~~~~~~~~~~~~
 
 :envvar:`DELETE_EXPIRED_AFTER`
-    :ref:`see above <housekeeping config>`
+    :ref:`see above <housekeeping settings>`
 :envvar:`DELETE_INFO_AFTER`
-    :ref:`see above <housekeeping config>`
+    :ref:`see above <housekeeping settings>`
 
 Plugin & Webhook Settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 :envvar:`PLUGINS`
-    :ref:`see above <plugin config>`
+    :ref:`see above <plugin settings>`
 :envvar:`BLACKOUT_DURATION`
-    :ref:`see above <plugin config>`
+    :ref:`see above <plugin settings>`
 :envvar:`NOTIFICATION_BLACKOUT`
-    :ref:`see above <plugin config>`
+    :ref:`see above <plugin settings>`
 :envvar:`BLACKOUT_ACCEPT`
-    :ref:`see above <plugin config>`
+    :ref:`see above <plugin settings>`
 :envvar:`ORIGIN_BLACKLIST`
-    :ref:`see above <plugin config>`
+    :ref:`see above <plugin settings>`
 :envvar:`ALLOWED_ENVIRONMENTS`
-    :ref:`see above <plugin config>`
+    :ref:`see above <plugin settings>`
 :envvar:`DEFAULT_ENVIRONMENT`
-    :ref:`see above <webhook config>`
+    :ref:`see above <webhook settings>`
 
 Dynamic Settings
 ----------------
