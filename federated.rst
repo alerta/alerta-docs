@@ -25,7 +25,7 @@ Alerta can be configured to send some or all of the following:
 .. note:: Forwarding heartbeats is not currently possible but may
     be supported in a future release.
 
-.. _forwarding_configuration
+.. _forwarding configuration:
 
 Configuration
 -------------
@@ -65,7 +65,7 @@ Example
     ]
 
 
-.. _forwarding_loops
+.. _forwarding loops:
 
 Forwarding Loops
 ----------------
@@ -92,7 +92,7 @@ be skipped.
 
 https://qmail.mivzakim.net/qmail-manual-html/misc/RFCLOOPS.html
 
-.. _forwarding_auth
+.. _forwarding auth:
 
 Authentication
 --------------
@@ -123,7 +123,7 @@ On macOs, run::
     $ date | md5 | base64                        <= create HMAC "secret"
     MzVlMzQ5NWYzYWE2YTgxYTUyYmIyNDY0ZWE2ZWJlYTMK
 
-.. _forwarding_filters
+.. _forwarding filters:
 
 Forwarding Filters
 ------------------
@@ -145,7 +145,7 @@ Examples
     ['alerts', 'ack', 'unack', 'close', 'delete']
     ['alerts', 'delete']
 
-.. _non_alerta_forwarding
+.. _non alerta forwarding:
 
 Non-Alerta Forwarding
 ---------------------

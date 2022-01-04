@@ -10,7 +10,7 @@ attention of operators.
 The following sections explain how to get the most of out
 the Alerta web UI.
 
-* :ref:`Local and remote configuration <webui config>`
+* :ref:`Local and remote configuration <webui configuration>`
 * :ref:`Authentication methods <webui auth>`
 * :ref:`Alert Summary List, Details & History <webui alerts>`
 * :ref:`Getting the most out of Heartbeats <webui heartbeats>`
@@ -23,4 +23,4 @@ the Alerta web UI.
 
 .. note:: If you require help with any of the above information post a question on Slack_.
 
-.. _Slack: https://slack.alerta.dev
+.. _Slack: https://alerta.slack.com/join/shared_invite/zt-o2p396lz-VYc5zCOdS4pTwIy3hAW0KQ

@@ -18,7 +18,6 @@ Docker_.
   * `Step 4: Install additional plugins or webhooks`_ 
   * `Step 5: Complex setups`_ 
   * `Production deployments`_ 
-  * `Debugging and Troubleshooting`_ 
 
 Overview
 --------
@@ -320,7 +319,7 @@ Now launch both Alerta and Postgres at the same time using::
 
   $ docker-compose up
 
-And verify by browsing to http://localhost:8080 as before.
+And verify by browsing to http://localhost:8080/ as before.
 
 You can replace ``environment:`` with ``volumes:`` if you want or need
 to mount a configuration file into the container, like so:
@@ -418,7 +417,7 @@ Now build the new image and run it using::
 
   $ docker-compose up --build
 
-Once again you should be able to browse to http://localhost:8080 and log
+Once again you should be able to browse to http://localhost:8080/ and log
 in to the web console.
 
 To verify that the MS Teams webhook is now available, use curl to send a
@@ -442,7 +441,7 @@ Step 5: Complex setups
 Alerta, just like any web service, can be deployed in numerous different
 ways to suit your environment. Most commonly, it will be deployed behind
 a reverse proxy (which would be responsible for SSL termination) and perhaps
-on a sub-path such as ``/alerta`` (eg. https://monitoring.example.com/alerta/ui)
+on a sub-path such as ``/alerta`` (eg. https://alerta.example.com/alerta/ui)
 
 It is beyond the scope of this introductory tutorial to step you through
 every possible scenario however, below is a list of example ``docker-compose``

@@ -26,7 +26,7 @@ configuration <CORS settings>` setting.
 
 .. _CORS: https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
 .. _same origin: https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy
-.. _allows the origin: https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Origin
+.. _allows the origin: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#access-control-allow-origin
 
 Why do I need to set an ``environment`` and ``service`` when they are not mandatory?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -43,7 +43,7 @@ attribute is for) and so that the web console can organise by ``environemnt``
 and filter alerts by ``service``.
 
 However, one of the principles of Alerta is not to enforce its view of the
-world on users so the plugin can be :ref:`easily configured <plugin config>`,
+world on users so the plugin can be :ref:`easily configured <plugin settings>`,
 :ref:`modified <tutorial 3>` or completely disabled. It's up to you.
 
 Can I define custom severity codes and levels?
@@ -101,7 +101,7 @@ What's this MongoDB "ServerSelectionTimeoutError"?
 With the update to PyMongo 3.x multiprocessing_ applications "parent process
 and each child process must create their own instances of MongoClient".
 
-.. _multiprocessing: https://api.mongodb.com/python/current/faq.html#multiprocessing
+.. _multiprocessing: https://pymongo.readthedocs.io/en/stable/faq.html?highlight=multiprocessing#using-pymongo-with-multiprocessing
 
 For Apache WSGI applications, an example Apache "vhost" configuration for
 the Alerta API would look like this::
@@ -122,10 +122,10 @@ Full examples are available on GitHub_ and more information on why
 this is necessary is available on stackoverflow_ and the PyMongo where
 they discussion PyMongo in relation to forking_ and mod_wsgi_ site.
 
-.. _GitHub: https://github.com/search?q=org%3Aalerta+WSGIApplicationGroup&type=Code
-.. _stackoverflow: http://stackoverflow.com/questions/31030307/why-is-pymongo-3-giving-serverselectiontimeouterror
-.. _forking: https://api.mongodb.com/python/current/faq.html#is-pymongo-fork-safe
-.. _mod_wsgi: http://api.mongodb.com/python/current/examples/mod_wsgi.html
+.. _GitHub: https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dorg%253Aalerta%2BWSGIApplicationGroup%26type%3DCode
+.. _stackoverflow: https://stackoverflow.com/questions/31030307/why-is-pymongo-3-giving-serverselectiontimeouterror
+.. _forking: https://pymongo.readthedocs.io/en/stable/faq.html?highlight=fork#is-pymongo-fork-safe
+.. _mod_wsgi: https://pymongo.readthedocs.io/en/stable/examples/mod_wsgi.html#pymongo-and-mod-wsgi
 
 Does Alerta support Python 2.7 or Python 3?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -139,7 +139,7 @@ for new production environments and existing installations should be switched
 to Python 3 well before 1 January, 2020 when Python 2.7 becomes End-of-Life_.
 
 .. _last version: https://github.com/alerta/alerta/issues/480
-.. _created: https://github.com/alerta/nagios3-alerta
+.. _created: https://github.com/alerta/nagios-alerta
 .. _many: https://github.com/alerta/alerta/tree/master/alerta/plugins
 .. _plugins: https://github.com/alerta/alerta-contrib/tree/master/plugins
 .. _integrations: https://github.com/alerta/alerta-contrib/tree/master/integrations

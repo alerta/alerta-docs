@@ -1,4 +1,4 @@
-.. _webui config:
+.. _webui configuration:
 
 Configuration
 -------------
@@ -10,7 +10,7 @@ that is supplied with the web application. It uses simple JSON syntax.
     The Alerta web UI previously used an `AngularJS configuration block`_
     for configuration settings which has now been deprecated.
 
-.. _AngularJS configuration block: https://docs.angularjs.org/guide/module#configuration-blocks
+.. _AngularJS configuration block: https://docs.angularjs.org/guide/module#registration-in-the-config-block
 
 The three main areas for configuration are:
 
@@ -117,6 +117,7 @@ Full list of API server settings that can be used to configure clients can be fo
 at :ref:`webui settings`.
 
 .. raw:: html
+
     <style> .red { background-color: red } </style>
 
 Severity Colors

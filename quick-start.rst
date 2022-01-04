@@ -17,11 +17,11 @@ If ``apt-get`` can't locate the "mongodb-org" metapackage package then
 follow `these steps`_ to add MongoDB package repository to apt sources
 list.
 
-.. _these steps: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/#using-deb-packages-recommended
+.. _these steps: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 
 For other operating systems, see the installation_ steps on the MongoDB web site.
 
-.. _installation: https://docs.mongodb.com/master/installation/#tutorials
+.. _installation: https://docs.mongodb.com/upcoming/installation/
 
 Install the Alerta Server
 -------------------------
@@ -62,9 +62,9 @@ To send an alert to the server::
     $ alerta send -r web01 -e NodeDown -E Production -S Website -s major -t "Web server is down." -v ERROR
 
 The alert should appear almost immediately in the console. If it doesn't it's
-either a :ref:`CORS issues <cross_origin>` or a bug_.
+either a CORS issues or a bug_.
 
-.. _bug: https://github.com/alerta/alerta-docs/issues/new
+.. _bug: https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Falerta%2Falerta-docs%2Fissues%2Fnew
 
 What's next?
 ------------

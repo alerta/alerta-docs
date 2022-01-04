@@ -1,4 +1,4 @@
-.. _webhooks:
+.. _custom webhooks:
 
 
 Custom Webhooks

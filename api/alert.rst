@@ -62,7 +62,7 @@ The following alert attributes are populated at source:
     default) then alerts must have an ``environment`` attribute that
     is one of either ``Production`` or ``Development`` and it must
     define a ``service`` attribute. For more information on configuring
-    or disabling this plugin see :ref:`plugin config`.
+    or disabling this plugin see :ref:`plugin settings`.
 
 Attributes added when processing alerts
 ---------------------------------------
@@ -138,7 +138,7 @@ Alert Status
 Alert Severities
 ----------------
 
-The `Alarms in Syslog`_ :RFC:`5674` was referenced when defining
+The `Alarms in Syslog`_ `5674 <https://datatracker.ietf.org/doc/html/rfc5674.html>`_ was referenced when defining
 alert severities.
 
 +-------------------+---------------+--------+
@@ -171,7 +171,7 @@ alert severities.
 | ``unknown``       | 10            | Grey   |
 +-------------------+---------------+--------+
 
-.. _Alarms in Syslog: http://tools.ietf.org/html/rfc5674#section-2
+.. _Alarms in Syslog: https://datatracker.ietf.org/doc/html/rfc5674#section-2
 
 .. _history:
 

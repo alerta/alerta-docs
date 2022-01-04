@@ -4,8 +4,7 @@ Authentication
 ==============
 
 By default, authentication is not enabled, however there are some features
-that are :ref:`not available <watched_alerts>` unless users login such as
-watching alerts.
+that are not available unless users login such as watching alerts.
 
 Alerta supports five main authentication strategies:
 
@@ -158,7 +157,7 @@ SAML 2.0
 To use SAML as the authentication provider for Alerta, install `PySAML2`_ on the Alerta
 server and follow the configuration steps below.
 
-.. _PySAML2: https://pysaml2.readthedocs.io
+.. _PySAML2: https://pysaml2.readthedocs.io/en/latest/
 
 ::
 
@@ -197,9 +196,9 @@ Bare-minimum config example::
 Refer to pysaml2 documentation and source code if you need additional options:
 
 - https://pysaml2.readthedocs.io/en/latest/howto/config.html
-- https://github.com/rohe/pysaml2/blob/master/src/saml2/config.py
+- https://github.com/IdentityPython/pysaml2/blob/master/src/saml2/config.py
 
-Note: entityid and service provider endpoints are configured by default based on your BASE_URL value which is mandatory if you use SAML (see :ref:`general config`)
+Note: entityid and service provider endpoints are configured by default based on your BASE_URL value which is mandatory if you use SAML (see :ref:`general_config`)
 
 ``ALLOWED_SAML2_GROUPS``
 
@@ -281,7 +280,7 @@ To use GitHub as the OAuth2 provider for Alerta, login to GitHub and go
 to *Settings -> Applications -> Register New Application*.
 
 - Application Name: Alerta
-- Homepage URL: http://alerta.io
+- Homepage URL: https://alerta.io/
 - Application description (optional): Guardian Alerta monitoring system
 - Authorization callback URL: http://alerta.example.com
 
@@ -303,7 +302,7 @@ To restrict access to users who are members of particular
 
     ALLOWED_GITHUB_ORGS = ['example', 'mycompany']
 
-.. _`GitHub organisations`: https://github.com/blog/674-introducing-organizations
+.. _`GitHub organisations`: https://github.blog/2010-06-29-introducing-organizations/
 
 .. note:: ``ALLOWED_GITHUB_ORGS`` can be an asterisk (``*``) to force login
           but *not* restrict who can login.
@@ -322,7 +321,7 @@ To restrict access to users who are members of particular
 OIDC Providers
 --------------
 
-OpenID Connect authentication is provided by Google_ `OAuth2`_,
+OpenID Connect authentication is provided by Google_ `OAuth 2.0`_,
 GitLab_ `OAuth 2.0`_ or Keycloak_ `OAuth 2.0`_ and configuration is more
 involved than the Basic Auth setup.
 
@@ -332,10 +331,10 @@ involved than the Basic Auth setup.
     ensure that only authorised users can access and modify your
     alerts.
 
-.. _Google: https://developers.google.com/accounts/docs/OpenIDConnect
-.. _GitLab: https://docs.gitlab.com/ce/integration/oauth_provider.html
+.. _Google: https://developers.google.com/identity/protocols/oauth2/openid-connect
+.. _GitLab: https://docs.gitlab.com/ee/integration/oauth_provider.html
 .. _Keycloak: https://www.keycloak.org/documentation.html
-.. _OAuth 2.0: http://tools.ietf.org/html/draft-ietf-oauth-v2-22
+.. _OAuth 2.0: https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-22
 .. _OpenID Connect: http://openid.net/connect/
 
 Ensure ``AUTH_REQUIRED`` and ``SECRET_KEY`` are set and that the
@@ -354,7 +353,7 @@ To use `Azure Active Directory`_ (now known as `Microsoft identity platform (v2.
 the OpenID Connect authentication provider for Alerta follow the steps below.
 
 #. Login to Azure portal
-    https://portal.azure.com/
+    https://portal.azure.com/Error/UE_404?aspxerrorpath=/
 
 #. Navigate to "Azure Active Directory" service page
 
@@ -404,7 +403,7 @@ the OpenID Connect authentication provider for Alerta follow the steps below.
     OAUTH2_CLIENT_SECRET = 'jj2cw7~nc1.55l3.UAy8C3O9Ng-.~GYWYp'
 
 .. _Azure Active Directory: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc
-.. _Microsoft identity platform (v2.0): https://docs.microsoft.com/en-us/azure/active-directory/develop/about-microsoft-identity-platform
+.. _Microsoft identity platform (v2.0): https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-overview
 
 Amazon Cognito
 ~~~~~~~~~~~~~~
@@ -464,7 +463,7 @@ Google OAuth2
 To use Google as the OAuth2 provider for Alerta, login to the
 `Google Developer Console`_ and create a new project for alerta.
 
-.. _Google Developer Console: https://console.developers.google.com
+.. _Google Developer Console: https://accounts.google.com/ServiceLogin?service=cloudconsole&passive=1209600&osid=1&continue=https://console.developers.google.com/&followup=https://console.developers.google.com/
 
 - Project Name: alerta
 - Project ID: (automatically assigned)
@@ -514,10 +513,12 @@ To restrict access to users with particular `Google apps domains`_ use::
 
     ALLOWED_EMAIL_DOMAINS = ['example.org', 'mycompany.com']
 
-.. _`Google apps domains`: https://www.google.co.uk/intx/en_au/work/apps/business/
+.. _`Google apps domains`: https://workspace.google.com/index.html
 
 .. note:: ``ALLOWED_EMAIL_DOMAINS`` can be an asterisk (``*``) to force
           login but *not* restrict who can login.
+
+.. _keycloak oauth2:
 
 Keycloak OAuth2
 ~~~~~~~~~~~~~~~
@@ -527,7 +528,7 @@ to *Clients -> Create*.
 
 - Client ID: alerta-ui
 - Client protocol: openid-connect
-- Root URL: http://alerta.example.org
+- Root URL: http://alerta.example.com
 
 After the client is created, edit it and change the following properties:
 
@@ -570,7 +571,7 @@ To restrict access to users who are associated with a particular `Keycloak role`
 
     ALLOWED_KEYCLOAK_ROLES = ['role1', 'role2']
 
-.. _`Keycloak role`: https://keycloak.gitbooks.io/documentation/server_admin/topics/roles.html
+.. _`Keycloak role`: https://www.keycloak.org/docs/latest/server_admin/#assigning-permissions-and-access-using-roles-and-groups
 
 .. note:: ``ALLOWED_KEYCLOAK_ROLES`` can be an asterisk (``*``) to force
           login but *not* restrict who can login.
@@ -596,7 +597,7 @@ the command-line tool.
 Keys can be easily generated from the Alerta web UI and can have any scopes
 associated with them. They are valid for 1 year by default but this period
 is configurable using ``API_KEY_EXPIRE_DAYS`` in the
-:ref:`server configuration <api config>`.
+:ref:`server configuration <api_config>`.
 
 To use an API key in an API query you must put the key in either an
 HTTP header or a query parameter.

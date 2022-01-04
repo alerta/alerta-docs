@@ -19,7 +19,7 @@ a WSGI application.
     This can be fixed by setting ``WSGIPassAuthorization On`` in
     the configuration file for the site.
 
-.. _always be deployed: http://flask.pocoo.org/docs/1.0/deploying/
+.. _always be deployed: https://flask.palletsprojects.com/en/1.0.x/deploying/
 .. _WSGI: http://www.fullstackpython.com/wsgi-servers.html
 
 .. _reverse proxy:
@@ -38,7 +38,7 @@ reduce the possibility of `mixed content`_ errors when a web
 application hosted on a HTTP endpoint tries to access resources
 on an HTTPS endpoint.
 
-.. _mixed content: https://developer.mozilla.org/en-US/docs/Security/MixedContent/How_to_fix_website_with_mixed_content
+.. _mixed content: https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content/How_to_fix_website_with_mixed_content
 
 **Example API configuration (extract)**
 
@@ -96,7 +96,7 @@ is from an `Amazon S3 bucket`_ as a static website.
           **will not work** unless that domain is listed in the
           ``CORS_ORIGINS`` Alerta API server configuration settings.
 
-.. _Amazon S3 bucket: http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html
+.. _Amazon S3 bucket: https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-custom-domain-walkthrough.html
 
 .. _auth_ssl:
 
@@ -105,12 +105,14 @@ Authentication & SSL
 
 Alerta supports several authentication mechanisms for both the API
 and the web UI and some key features of the web UI, like
-:ref:`watching alerts <watched alerts>`, are only available if
+watching alerts, are only available if
 authentication is enabled.
 
 The API can be secured using :ref:`API keys` and the web UI can
-be secured using :ref:`Basic Auth <basic auth>` or an :ref:`OAuth <oauth2>`
-provider from either GitHub, GitLab, Google, Keycloak or SAML2.
+be secured using :ref:`basic_auth` or an provider from either 
+:ref:`GitHub <github_oauth2>`, :ref:`GitLab <gitlab_oauth2>`, 
+:ref:`Google <google oauth2>`, :ref:`Keycloak <keycloak oauth2>` 
+or :ref:`SAML 2.0 <saml2_auth>`.
 
 If you plan to make the web UI accessible from a public URL it is
 strongly advised to :ref:`enforce authentication <Authentication>`
@@ -122,7 +124,7 @@ alert data.
 Authorisation & Customer Views
 ------------------------------
 
-To restrict access to certain features use :ref:`roles <user roles>`
+To restrict access to certain features use roles
 and :ref:`customer views <customer views>`.
 
 .. _scalability:
@@ -151,7 +153,7 @@ deployed to scale out :ref:`horizontally <scalability>` and
 the database should be deployed as a `replica set`_, if using
 mongoDB, or configure `replication`_, if using Postgres.
 
-.. _replica set: http://docs.mongodb.org/manual/core/replica-set-high-availability/
+.. _replica set: https://docs.mongodb.com/manual/core/replica-set-high-availability/
 .. _replication: https://www.postgresql.org/docs/current/high-availability.html
 
 .. _housekeeping:
@@ -245,10 +247,10 @@ Below are several different examples of how to run Alerta in production
 from a Debian `vagrant box`_, an `AWS EC2 instance`_,
 `Heroku PaaS`_ to a `Docker container`_.
 
-.. _vagrant box: https://docs.vagrantup.com/v2/boxes.html
+.. _vagrant box: https://www.vagrantup.com/docs/boxes
 .. _AWS EC2 instance: https://aws.amazon.com/ec2/
 .. _Heroku PaaS: https://www.heroku.com/platform
-.. _Docker container: https://www.docker.com/whatisdocker
+.. _Docker container: https://www.docker.com/why-docker
 
 * Vagrant_ - deploy Alerta stand-alone or with Nagios, Zabbix, Riemann, Sensu or Kibana
 * Heroku_ - deploy the Alerta API and the `web ui to Heroku`_ PaaS
@@ -262,13 +264,13 @@ from a Debian `vagrant box`_, an `AWS EC2 instance`_,
 * Puppet_ - Alerta recipe on top of `cfweb <https://codingfuture.net/docs/cfweb>`_ module
 
 .. _Vagrant: https://github.com/alerta/vagrant-try-alerta
-.. _Heroku: https://github.com/alerta/alerta#deploy-to-the-cloud
+.. _Heroku: https://github.com/alerta/alerta#cloud-deployment
 .. _web UI to Heroku: https://github.com/alerta/angular-alerta-webui#deploy-to-the-cloud
 .. _AWS EC2: https://github.com/alerta/alerta-cloudformation
 .. _Docker: https://github.com/alerta/docker-alerta
 .. _Docker Alpine: https://github.com/bl1nk/docker-alpine-alerta
 .. _Packer: https://github.com/alerta/packer-templates
-.. _Flask deploy: http://flask.pocoo.org/docs/0.10/quickstart/#deploying-to-a-web-server
+.. _Flask deploy: https://flask.palletsprojects.com/en/2.0.x/quickstart/#deploying-to-a-web-server
 .. _Ansible: https://github.com/ramshankarjaiswal/ansible/tree/master/roles/alerta
 .. _Terraform: https://github.com/aka7/alerta-terraform
 .. _Puppet: https://github.com/codingfuture/puppet-cfwebapp

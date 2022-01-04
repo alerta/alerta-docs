@@ -97,7 +97,7 @@ The most important part of the above commands were the
 option is short for "--correlate" and informs the Alerta server
 that alerts with these events should be correlated together.
 
-Interestingly the de-duplication logic demonstrated in :ref:`Step 1 <>`
+Interestingly the de-duplication logic demonstrated in :ref:`Step 1 <Step 1>`
 above can be used to produce similar results as this simple
 correlation.
 

@@ -15,8 +15,7 @@ monitoring_ tools_ and it is easy to add your own using the :ref:`API <api>`
 directly, the :ref:`Python SDK <development>` or the same command-line tool to
 :ref:`send alerts <cli_send>`. Access to the API and command-line tool can be
 restricted using :ref:`API keys <api_keys>` and to the web console using
-:ref:`Basic Auth <basic auth>` or :ref:`OAuth2 <oauth2>` providers Google,
-GitHub and GitLab.
+:ref:`basic_auth` or OAuth2 providers :ref:`Google <google oauth2>`, GitHub and :ref:`GitLab <gitlab_oauth2>`.
 
 .. _popular: https://www.pingdom.com
 .. _monitoring: https://www.nagios.com
@@ -90,7 +89,7 @@ Contribute
 Support
 -------
 
-* Slack: https://slack.alerta.dev
+* Slack: https://alerta.slack.com/join/shared_invite/zt-o2p396lz-VYc5zCOdS4pTwIy3hAW0KQ
 * :ref:`Frequently Asked Questions <faq>`
 * Issue Tracker: https://github.com/alerta/alerta/issues
 

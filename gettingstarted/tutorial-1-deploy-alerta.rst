@@ -29,7 +29,7 @@ Customisation will involve defining a new alert severity called
 environment called "Code" in addition to "Production" and "Development".
 
 .. _`Ubuntu 18.04 LTS (Bionic Beaver)`: https://wiki.ubuntu.com/BionicBeaver/ReleaseNotes
-.. _uWsgi: https://uwsgi-docs.readthedocs.io
+.. _uWsgi: https://uwsgi-docs.readthedocs.io/en/latest/
 .. _nginx: https://www.nginx.com
 
 Prerequisites
@@ -127,13 +127,14 @@ Create a ``systemd`` configuration file for the uwsgi server::
     WantedBy=multi-user.target
 
 Start the uwsgi server, check the current status and enable it to start
-on reboot::
+on reboot
+
+::
 
     $ sudo service start uwsgi
     $ sudo service status uwsgi
     $ sudo service enable uwsgi
 
-::
 
 Configure nginx to serve Alerta as a uWsgi application on ``/api`` and
 the web console as static assets.

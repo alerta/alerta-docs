@@ -5,6 +5,8 @@ Getting Started
 The following tutorials are designed to get you started deploying and using
 Alerta in common scenarios.
 
+.. _tutorials:
+
 Tutorials
 ---------
 
@@ -18,7 +20,7 @@ Tutorials
 
 .. note:: If you require help with any of the above tutorials post a question on Slack_.
 
-.. _Slack: https://slack.alerta.dev
+.. _Slack: https://alerta.slack.com/join/shared_invite/zt-o2p396lz-VYc5zCOdS4pTwIy3hAW0KQ
 
 How-to Guides
 -------------

@@ -20,5 +20,4 @@ Overview
   * :ref:`Customer Views <tutorial 5>`
   * :ref:`Site-specific bespoke monitoring <tutorial 6>`
   * :ref:`Suppress alerts using Blackouts <tutorial 7>`
-  * :ref:`Web console and command-line tool <tutorial 8>`
   * :ref:`Troubleshooting <tutorial 9>`

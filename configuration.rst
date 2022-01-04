@@ -126,7 +126,7 @@ API Settings
 ``HISTORY_ON_VALUE_CHANGE``
     create history entry for duplicate alerts if value changes (default is ``True``)
 
-.. _`ANSI/ISA 18.2 alarm model`: https://www.isa.org/standards-and-publications/isa-publications/intech-magazine/white-papers/pas-understanding-and-applying-ansi-isa-18-2-alarm-management-standard/
+.. _`ANSI/ISA 18.2 alarm model`: https://www.isa.org/getmedia/55b4210e-6cb2-4de4-89f8-2b5b6b46d954/PAS-Understanding-ISA-18-2.pdf
 
 .. _search_config:
 
@@ -152,6 +152,7 @@ Database Settings
 There is a choice of either Postgres or MongoDB as the backend database.
 
 .. note::
+
     Development first began using MongoDB and then Postgres support was
     added later. At present, new features are tested against Postgres
     first and then ported to MongoDB. Both backends have extensive tests
@@ -160,6 +161,9 @@ There is a choice of either Postgres or MongoDB as the backend database.
 
 The database is defined using the standard database connection URL formats. Many
 database configuration options are supported as connection URL parameters.
+
+
+.. _postgres config example:
 
 **Postgres Example**
 
@@ -170,7 +174,9 @@ database configuration options are supported as connection URL parameters.
 
 See `Postgres connection strings`_ for more information.
 
-.. _Postgres connection strings: https://www.postgresql.org/docs/9.6/static/libpq-connect.html
+.. _Postgres connection strings: https://www.postgresql.org/docs/9.6/libpq-connect.html
+
+.. _mongodb config example:
 
 **MongoDB Example**
 
@@ -182,7 +188,7 @@ See `Postgres connection strings`_ for more information.
 
 See `MongoDB connection strings`_ for more information.
 
-.. _MongoDB connection strings: https://docs.mongodb.org/v3.0/reference/connection-string/#standard-connection-string-format
+.. _MongoDB connection strings: https://docs.mongodb.com/v3.0/reference/connection-string/#standard-connection-string-format
 
 .. index:: DATABASE_URL, DATABASE_NAME, DATABASE_RAISE_ON_ERROR
 
@@ -273,7 +279,9 @@ Auth Provider Settings
     valid authentication providers are ``basic``, ``ldap``, ``openid``, ``saml2``,
     ``azure``, ``cognito``, ``github``, ``gitlab``, ``google``, ``keycloak``,
     and ``pingfederate``  (default is ``basic``)
+
 .. note::
+
     Any authentication provider that is `OpenID Connect compliant`_ is supported. Set the
     ``AUTH_PROVIDER`` to ``openid`` and configure the required ``OIDC`` settings
     :ref:`below <oidc_auth_config>`.
@@ -369,13 +377,13 @@ SAML 2.0 Auth Settings
     (no default)
 ``SAML2_USER_NAME_FORMAT``
     Python format string which will be rendered to user's name using SAML
-    attributes. See :ref:`saml2` (default is ``'{givenName} {surname}'``)
+    attributes. See :ref:`saml2_auth` (default is ``'{givenName} {surname}'``)
 ``SAML2_EMAIL_ATTRIBUTE``
     (default is ``'emailAddress'``)
 ``SAML2_CONFIG``
-    ``pysaml2`` configuration ``dict``. See :ref:`saml2` (no default)
+    ``pysaml2`` configuration ``dict``. See :ref:`saml2_auth` (no default)
 ``ALLOWED_SAML2_GROUPS``
-    list of authorised groups a user must belong to. See :ref:`saml2` for
+    list of authorised groups a user must belong to. See :ref:`saml2_auth` for
     details (default is ``*``)
 ``ALLOWED_EMAIL_DOMAINS``
     authorised email domains when using email as login (default is ``*``)
@@ -918,20 +926,20 @@ General Settings
 ~~~~~~~~~~~~~~~~
 
 :envvar:`DEBUG`
-    :ref:`see above <general config>`
+    :ref:`see above <general_config>`
 :envvar:`BASE_URL`
-    :ref:`see above <general config>`
+    :ref:`see above <general_config>`
 :envvar:`USE_PROXYFIX`
-    :ref:`see above <general config>`
+    :ref:`see above <general_config>`
 :envvar:`SECRET_KEY`
-    :ref:`see above <general config>`
+    :ref:`see above <general_config>`
 
 Database Settings
 ~~~~~~~~~~~~~~~~~
 
 :envvar:`DATABASE_URL`
-    used by both :ref:`Postgres <Postgres connection strings>` and
-    :ref:`MongoDB <MongoDB connection strings>` for database connection strings
+    used by both :ref:`Postgres <postgres config example>` and
+    :ref:`MongoDB <mongodb config example>` for database connection strings
 :envvar:`DATABASE_NAME`
     database name can be used to override default database defined in ``DATABASE_URL``
 
@@ -952,7 +960,7 @@ MongoDB Settings
 :envvar:`MONGO_PORT`
     automatically set when deploying `Alerta to a Docker`_ linked mongo container
 
-.. _Heroku MongoHQ: https://devcenter.heroku.com/articles/mongohq
+.. _Heroku MongoHQ: https://devcenter.heroku.com/articles/ormongo
 .. _Heroku MongoLab: https://devcenter.heroku.com/articles/mongolab
 .. _Alerta to a Docker: https://github.com/alerta/docker-alerta
 
@@ -960,81 +968,81 @@ Authentication Settings
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 :envvar:`AUTH_REQUIRED`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`AUTH_PROVIDER`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`ADMIN_USERS`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`SIGNUP_ENABLED`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`CUSTOMER_VIEWS`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`OAUTH2_CLIENT_ID`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`OAUTH2_CLIENT_SECRET`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`ALLOWED_EMAIL_DOMAINS`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`AZURE_TENANT`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`GITHUB_URL`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`ALLOWED_GITHUB_ORGS`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`GITLAB_URL`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`ALLOWED_GITLAB_GROUPS`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`KEYCLOAK_URL`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`KEYCLOAK_REALM`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`ALLOWED_KEYCLOAK_ROLES`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`LDAP_BIND_PASSWORD`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`OIDC_ISSUER_URL`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 :envvar:`ALLOWED_OIDC_ROLES`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth_config>`
 
 Sundry Settings
 ~~~~~~~~~~~~~~~
 
 :envvar:`CORS_ORIGINS`
-    :ref:`see above <cors config>`
+    :ref:`see above <CORS settings>`
 :envvar:`MAIL_FROM`
-    :ref:`see above <email config>`
+    :ref:`see above <email settings>`
 :envvar:`SMTP_PASSWORD`
-    :ref:`see above <email config>`
+    :ref:`see above <email settings>`
 :envvar:`GOOGLE_TRACKING_ID`
-    :ref:`see above <webui config>`
+    :ref:`see above <webui settings>`
 
 Housekeeping Settings
 ~~~~~~~~~~~~~~~~~~~~~
 
 :envvar:`DELETE_EXPIRED_AFTER`
-    :ref:`see above <housekeeping config>`
+    :ref:`see above <housekeeping settings>`
 :envvar:`DELETE_INFO_AFTER`
-    :ref:`see above <housekeeping config>`
+    :ref:`see above <housekeeping settings>`
 
 Plugin & Webhook Settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 :envvar:`PLUGINS`
-    :ref:`see above <plugin config>`
+    :ref:`see above <plugin settings>`
 :envvar:`BLACKOUT_DURATION`
-    :ref:`see above <plugin config>`
+    :ref:`see above <plugin settings>`
 :envvar:`NOTIFICATION_BLACKOUT`
-    :ref:`see above <plugin config>`
+    :ref:`see above <plugin settings>`
 :envvar:`BLACKOUT_ACCEPT`
-    :ref:`see above <plugin config>`
+    :ref:`see above <plugin settings>`
 :envvar:`ORIGIN_BLACKLIST`
-    :ref:`see above <plugin config>`
+    :ref:`see above <plugin settings>`
 :envvar:`ALLOWED_ENVIRONMENTS`
-    :ref:`see above <plugin config>`
+    :ref:`see above <plugin settings>`
 :envvar:`DEFAULT_ENVIRONMENT`
-    :ref:`see above <webhook config>`
+    :ref:`see above <webhook settings>`
 
 Dynamic Settings
 ----------------

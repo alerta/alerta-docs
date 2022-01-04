@@ -7,8 +7,8 @@ The Alerta API receives alerts from multiple sources, :ref:`correlates <correlat
 :ref:`de-duplicates  <deduplication>` or :ref:`suppresses <blackout periods>`
 them, and makes the alerts available via a RESTful_ JSON_ API.
 
-.. _RESTful: http://apigee.com/about/resources/webcasts/restful-api-design-second-edition
-.. _JSON: http://developers.squarespace.com/what-is-json/
+.. _RESTful: https://cloud.google.com/apigee
+.. _JSON: https://developers.squarespace.com/what-is-json/
 
 Alerts can be intercepted as they are received to modify, enhance or
 reject them using :ref:`pre-receive hooks <prereceive>`. Alerts can also be
@@ -44,6 +44,8 @@ way:
 
 Each of the above actions are explained in more detail in the following sections.
 
+.. _about_plugins:
+
 Plugins
 -------
 
@@ -53,7 +55,7 @@ is achieved by registering *pre-receive hooks* for transformers, *post-receive
 hooks* for external notification and *status change hooks* for bi-directional
 integration.
 
-.. _Plugins: https://en.wikipedia.org/wiki/Plug-in_(computing)
+.. _plug-in: https://en.wikipedia.org/wiki/Plug-in_(computing)
 
 .. _prereceive:
 
@@ -84,15 +86,14 @@ External Notification
 Using post-receive hooks, plugin integrations can be used to provide downstream
 systems with alerts in realtime for external notification. For example, pushing
 alerts onto an `AWS SNS topic`_, `AMQP queue`_, logging to a `Logstash/Kibana`_
-stack, or sending notifications to `HipChat`_, `Slack`_ or `Twilio`_ and many
+stack, or sending notifications to `Slack`_ or `Twilio`_ and many
 more.
 
 .. _AWS SNS topic: https://github.com/alerta/alerta-contrib/tree/master/plugins/sns
 .. _AMQP queue: https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp
 .. _Logstash/Kibana: https://github.com/alerta/alerta-contrib/tree/master/plugins/logstash
-.. _HipChat: https://github.com/alerta/alerta-contrib/blob/master/plugins/hipchat
-.. _Slack: https://github.com/alerta/alerta-contrib/blob/master/plugins/slack
-.. _Twilio: https://github.com/alerta/alerta-contrib/blob/master/plugins/twilio
+.. _Slack: https://github.com/alerta/alerta-contrib/tree/master/plugins/slack
+.. _Twilio: https://github.com/alerta/alerta-contrib/tree/master/plugins/twilio
 
 .. _take_action:
 
@@ -119,7 +120,7 @@ UI then a status change hook could silence_ the `corresponding alert in Alertman
 This requires that external systems provide enough information in the alert created
 in Alerta for that alert to be uniquely identified at a later date.
 
-.. _silence: https://prometheus.io/docs/alerting/alertmanager/#silences
+.. _silence: https://prometheus.io/docs/alerting/latest/alertmanager/#silences
 .. _corresponding alert in Alertmanager: https://github.com/alerta/alerta-contrib/tree/master/plugins/prometheus
 
 More information about bi-directional integration and real-world examples
@@ -177,6 +178,16 @@ Alerts are sorted in the Alerta web UI by ``lastReceiveTime`` by default
 so that the most recent alerts will be displayed at the top regardless
 of whether they were new alerts or de-duplicated alerts.
 
+.. _about_filters:
+
+Filters
+-------
+
+An receieved alert is checked against a set of rules. If a alert matches it
+will be filtered for futher use by :ref:`plugins`.
+Matching for filters is done in the same fashion :ref:`blackout periods` do.
+Filter type are specified with optional parameters for plugins to use.
+
 .. _correlation:
 
 Simple Correlation
@@ -197,9 +208,9 @@ With Alerta, there are two ways alerts can be correlated, namely:
    events with **any** severity, then the alert is correlated.
 
 .. _complex correlation: https://en.wikipedia.org/wiki/Complex_event_processing
-.. _much: http://www.espertech.com/
+.. _much: https://www.espertech.com/
 .. _more: http://riemann.io/
-.. _involved: http://www.drools.org/
+.. _involved: https://www.drools.org/
 
 In both cases, this means that information from the correlated alert is
 used to update key attributes of the existing alert (like ``severity``,

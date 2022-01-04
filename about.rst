@@ -37,9 +37,9 @@ environment.
 .. _legacy monitoring tool: https://www.quest.com/foglight/
 .. _credible: https://www.nagios.org/
 .. _alternatives: https://www.zabbix.com/
-.. _`The Guardian`: http://www.theguardian.com/
+.. _`The Guardian`: https://www.theguardian.com/international
 .. _Ganglia metrics: https://github.com/ganglia/monitor-core/wiki
 .. _`metrics and monitoring system`: https://www.theguardian.com/info/developer-blog/2012/oct/04/winning-the-metrics-battle
 .. _Guardian developer teams: https://developers.theguardian.com/
-.. _`swimlaned`: http://akfpartners.com/growth-blog/fault-isolative-architectures-or-swimlaning
+.. _`swimlaned`: https://akfpartners.com/growth-blog/fault-isolative-architectures-or-swimlaning
 .. _`riemann-config`: https://github.com/guardian/riemann-config

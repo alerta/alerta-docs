@@ -10,7 +10,6 @@
     Chronograf
     Grafana
     Graylog
-    Hipchat
     Kapacitor
     Nagios
     Oembed
@@ -30,24 +29,24 @@ tools like Nagios_, Zabbix_ and Sensu_ make use of the Alerta API and demonstrat
 how to build integrations with other monitoring tools.
 
 .. _Nagios: https://www.nagios.com
-.. _Zabbix: http://www.zabbix.com
+.. _Zabbix: https://www.zabbix.com/
 .. _Sensu: https://sensuapp.org
 
 Secondly, there are built-in :ref:`webhooks <webhooks>` for
 `AWS Cloudwatch <https://aws.amazon.com/cloudwatch/>`_,
 `Pingdom <https://www.pingdom.com>`_, `PagerDuty <https://www.pagerduty.com/>`_,
-`Google Stackdriver <https://cloud.google.com/stackdriver/>`_,
-`Prometheus Alertmanager <https://prometheus.io/docs/alerting/alertmanager/>`_
+`Google Stackdriver <https://cloud.google.com/products/operations>`_,
+`Prometheus Alertmanager <https://prometheus.io/docs/alerting/latest/alertmanager/>`_
 and more which provide 'out-of-the-box' integrations for some of the most popular
 monitoring systems available.
 
 Thirdly, :ref:`alert severity indicators <widgets>` or widgets can be placed
 on any web page using oEmbed_ for easy integration with existing dashboards.
 
-.. _oEmbed: http://oembed.com/
+.. _oEmbed: https://oembed.com/
 
-Lastly, :ref:`plugins <plugins>` can be used to quickly and easily forward alerts
-to or notify other systems like Slack or Hipchat.
+Lastly, :ref:`plug-ins` can be used to quickly and easily forward alerts
+to or notify other systems like Slack.
 
 .. contents:: Contents
    :local:
@@ -72,9 +71,9 @@ it is to get alerts or events from other tools into Alerta. They are:
 * `Kibana Logging`_ - log alerts to Elasticsearch for historical visualisation of alert trends
 
 .. _Nagios Event Broker: https://github.com/alerta/nagios-alerta
-.. _InfluxData Kapacitor: https://docs.influxdata.com/kapacitor/latest/nodes/alert_node/#alerta
+.. _InfluxData Kapacitor: https://docs.influxdata.com/kapacitor/v1.6/nodes/alert_node/#alerta
 .. _Zabbix Alert Script: https://github.com/alerta/zabbix-alerta
-.. _Sensu Plugin: https://github.com/alerta/sensu-alerta
+.. _Sensu Plugin: https://github.com/alerta/sensu-alerta-handler
 .. _Riemann Plugin: https://github.com/alerta/riemann-alerta
 .. _Kibana Logging: https://github.com/alerta/kibana-alerta
 
@@ -90,18 +89,19 @@ be useful. They are:
 * Pinger_ - generate ping alerts from list of network resources being pinged
 * `SNMP Trap`_ - generate alerts from SNMPv1 and SNMPv2 sources
 * Supervisor_ - trigger alerts and heartbeats based on process deamon events
-* `Syslog Forwarder`_ - receive :RFC:`5424`, :RFC:`3164` syslog and Cisco_ syslog messages
+* `Syslog Forwarder`_ - receive `5424 <https://datatracker.ietf.org/doc/html/rfc5424.html>`_, `3164 <https://datatracker.ietf.org/doc/html/rfc3164.html>`_ syslog and Cisco_ syslog messages
 * `URL monitor`_ - trigger alerts from web service query responses
 
 .. _contrib: https://github.com/alerta/alerta-contrib
 .. _Amazon SQS: https://github.com/alerta/alerta-contrib/tree/master/integrations/sqs
+.. _AMQP: https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp
 .. _E-mail: https://github.com/alerta/alerta-contrib/tree/master/integrations/mailer
 .. _Opsweekly: https://github.com/alerta/alerta-contrib/tree/master/integrations/opsweekly
 .. _Pinger: https://github.com/alerta/alerta-contrib/tree/master/integrations/pinger
 .. _SNMP Trap: https://github.com/alerta/alerta-contrib/tree/master/integrations/snmptrap
 .. _Supervisor: https://github.com/alerta/alerta-contrib/tree/master/integrations/supervisor
 .. _Syslog Forwarder: https://github.com/alerta/alerta-contrib/tree/master/integrations/syslog
-.. _Cisco: http://www.cisco.com/c/en/us/td/docs/routers/access/wireless/software/guide/SysMsgLogging.html
+.. _Cisco: https://www.cisco.com/c/en/us/td/docs/routers/access/wireless/software/guide/SysMsgLogging.html
 .. _URL monitor: https://github.com/alerta/alerta-contrib/tree/master/integrations/urlmon
 
 External
@@ -114,7 +114,7 @@ Some third-party monitoring tools have built-in support for Alerta. They are:
 * `Tick Stack`_ - designed to handle metrics and events using Telegraf, InfluxDB, Chronograf, and Kapacitor
 
 .. _elastalert: https://elastalert.readthedocs.io/en/latest/ruletypes.html#alerta
-.. _netdata: https://github.com/firehol/netdata/wiki/Alerta-monitoring-system
+.. _netdata: https://github.com/netdata/netdata/wiki/
 .. _Tick Stack: https://docs.influxdata.com/kapacitor/v1.5/event_handlers/alerta/
 
 .. _bidirection integ:
@@ -179,7 +179,7 @@ to the Alerta server API when an event occurs.
 .. Note::
     If authentication is enforced, then an API key is needed to access the alerta API programatically and use the webhooks. 
     
-    Please follow this page for more information on how to pass your api-key : https://docs.alerta.io/en/latest/authentication.html#api-keys
+    Please follow this page for more information on how to pass your :ref:`API Keys`
 
 AWS CloudWatch
 ~~~~~~~~~~~~~~
@@ -199,7 +199,7 @@ HTTP/HTTPS Endpoints`_ page and in the `Endpoint` input box append
 
 :file:`https://alerta.example.com/api/webhooks/cloudwatch?api-key=xxxxx`
 
-.. _Sending Amazon SNS Messages to HTTP/HTTPS Endpoints: http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html
+.. _Sending Amazon SNS Messages to HTTP/HTTPS Endpoints: https://docs.aws.amazon.com/sns/latest/dg/sns-http-https-endpoint-as-subscriber.html
 
 Grafana
 ~~~~~~~
@@ -210,7 +210,7 @@ endpoint to the Notification Channels.
 For details on how to set this up see `Grafana webhook`_ page and in the
 `Endpoint URL` input box append :file:`/webhooks/grafana` to the Alerta API URL.
 
-.. _Grafana webhook: http://docs.grafana.org/alerting/notifications/#webhook
+.. _Grafana webhook: https://grafana.com/docs/grafana/next/alerting/old-alerting/notifications/#webhook
 
 **Example Grafana Webhook URL**
 
@@ -255,15 +255,15 @@ change to the ``status`` or ``assigned_to_user`` of an incident will cause an
 outgoing message to be sent.
 
 For details on how to set this up see the `PagerDuty webhook`_ page and where it
-requires the webhook URL append :file:`/webhooks/pagerduty` to the Alerta API URL.
+requires the webhook URL append ``/webhooks/pagerduty`` to the Alerta API URL.
 
 **Example PagerDuty Webhook URL**
 
-:file:`https://alerta.example.com/api/webhooks/pagerduty`
+``https://alerta.example.com/api/webhooks/pagerduty``
 
 **Example PagerDuty Webhook URL with authentication**
 
-:file:`https://alerta.example.com/api/webhooks/pagerduty?api-key=xxxxx`
+``https://alerta.example.com/api/webhooks/pagerduty?api-key=xxxxx``
 
 .. _PagerDuty webhook: https://developer.pagerduty.com/documentation/rest/webhooks
 
@@ -274,17 +274,17 @@ Alerta can be configured to receive Pingdom URL check alerts by adding a webhook
 alerting endpoint that calls the Alerta API.
 
 For details on how to set this up see the `Pingdom webhook`_ page and in the
-`webhook URL` input box append :file:`/webhooks/pingdom` to the Alerta API URL.
+`webhook URL` input box append ``/webhooks/pingdom`` to the Alerta API URL.
 
 **Example Pingdom Webhook URL**
 
-:file:`https://alerta.example.com/api/webhooks/pingdom`
+``https://alerta.example.com/api/webhooks/pingdom``
 
 **Example Pingdom Webhook URL with authentication**
 
-:file:`https://alerta.example.com/api/webhooks/pingdom?api-key=xxxx`
+``https://alerta.example.com/api/webhooks/pingdom?api-key=xxxx``
 
-.. _Pingdom webhook: https://support.pingdom.com/Knowledgebase/Article/View/94/0/users-and-alerting-end-points
+.. _Pingdom webhook: https://documentation.solarwinds.com/en/success_center/pingdom/default.htm#cshid=pd-rd_gen
 
 Prometheus Alertmanager
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -320,7 +320,7 @@ endpoint to the Notification Preferences.
 For details on how to set this up see `SeverDensity webhook`_ page and in the
 `Endpoint URL` input box append :file:`/webhooks/serverdensity` to the Alerta API URL.
 
-.. _SeverDensity webhook: https://support.serverdensity.com/hc/en-us/articles/201017737-Setting-up-webhooks
+.. _SeverDensity webhook: https://support.serverdensity.com/hc/en-us/articles/360001067183
 
 **Example SeverDensity Webhook URL**
 
@@ -361,6 +361,7 @@ Alerta can be configured to receive `Telegram callback queries`_ from the inline
 buttons in the `Telegram Bot`_ plugin.
 
 .. _Telegram callback queries: https://core.telegram.org/bots/api#callbackquery
+.. _Telegram Bot: https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram
 
 For details on how to set this up see `Telegram Bot`_ page and for the
 ``TELEGRAM_WEBHOOK_URL`` setting append :file:`/webhooks/telegram` to the Alerta API URL.
