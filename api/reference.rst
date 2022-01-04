@@ -1367,7 +1367,67 @@ Example Response
       "pageSize": 10000,
       "pages": 1,
       "status": "ok",
-      "total": 2
+      "total": 1
+    }
+
+.. _search_filters:
+
+Search filters
+~~~~~~~~~~~~~~
+
+Returns a filtered list of filters. See :ref:`query syntax <api query>` 
+
+::
+
+    GET /filters
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/filters?q=type:delay \
+    -H 'Authorization: Key demo-key'
+
+Example Response
+++++++++++++++++
+
+::
+
+    200 OK
+
+.. code-block:: json
+
+    {
+      "filters": [
+        {
+          "createTime": "2021-11-26T07:53:03.946Z",
+          "customer": null,
+          "environment": "Production",
+          "event": null,
+          "attributes": {
+            "timeout": "300"
+          },
+          "type": "delay",
+          "group": null,
+          "href": "http://localhost:8080/filter/03b5b392-7faf-44a3-a239-741ae2107b6f",
+          "id": "03b5b392-7faf-44a3-a239-741ae2107b6f",
+          "priority": 3,
+          "resource": null,
+          "service": [
+            "example.com"
+          ],
+          "tags": [],
+          "text": null,
+          "user": "admin@alerta.io"
+        }
+      ],
+      "more": false,
+      "page": 1,
+      "pageSize": 10000,
+      "pages": 1,
+      "status": "ok",
+      "total": 1
     }
 
 .. _update_filters:
