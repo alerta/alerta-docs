@@ -39,7 +39,7 @@ enforces an alert "policy" of requiring an ``environment`` attribute of either
 
 This is to encourage good habits early in defining useful alert attributes
 that can be used to "namespace" alerts (this is what the ``environment``
-attribute is for) and so that the web console can organise by ``environemnt``
+attribute is for) and so that the web console can organise by ``environment``
 and filter alerts by ``service``.
 
 However, one of the principles of Alerta is not to enforce its view of the
