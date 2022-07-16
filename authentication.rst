@@ -570,7 +570,7 @@ To restrict access to users who are associated with a particular `Keycloak role`
 
     ALLOWED_KEYCLOAK_ROLES = ['role1', 'role2']
 
-.. _`Keycloak role`: https://keycloak.gitbooks.io/documentation/server_admin/topics/roles.html
+.. _`Keycloak role`: https://www.keycloak.org/docs/latest/server_admin/#con-client-roles_server_administration_guide
 
 .. note:: ``ALLOWED_KEYCLOAK_ROLES`` can be an asterisk (``*``) to force
           login but *not* restrict who can login.
