@@ -719,6 +719,9 @@ The following settings are specific to the web UI and are not used by the server
     }
     GOOGLE_TRACKING_ID = 'UA-44644195-5'
     AUTO_REFRESH_INTERVAL = 30000  # 30s
+    CLIPBOARD_TEMPLATE = """
+    [{{environment}} - {{severity}}] {{text}}
+    """
 
 .. index:: SITE_LOGO_URL, DATE_FORMAT_SHORT_TIME, DATE_FORMAT_MEDIUM_DATE, DATE_FORMAT_LONG_DATE
 .. index:: DEFAULT_AUDIO_FILE, COLUMNS, SORT_LIST_BY, DEFAULT_FILTER, DEFAULT_FONT, ACTIONS
@@ -748,6 +751,10 @@ The following settings are specific to the web UI and are not used by the server
     used by the web UI to send tracking data to Google Analytics (no default)
 ``AUTO_REFRESH_INTERVAL``
     interval at which the web UI refreshes alert list (default is ``5000`` milliseconds)
+``CLIPBOARD_TEMPLATE``
+    `Nunjucks-template`_ used to format alert data for clipboard copy. For the copy button in the alert-details. Refer to :ref:`the alert format documentation <alert format>` to get details of the fields you can use (no default).
+
+.. _Nunjucks-template: https://mozilla.github.io/nunjucks/templating.html
 
 .. asi_config:
 
