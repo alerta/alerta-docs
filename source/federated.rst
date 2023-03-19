@@ -115,7 +115,10 @@ non-Alerta systems.
 To generate HMAC key and secret, it is useful to use a UUID for the key
 and base64 encoded string for the secret so that they are visibly different.
 
-On macOs, run::
+On macOs, run
+
+.. code-block:: console
+    :linenos:
 
     $ uuidgen | tr '[:upper:]' '[:lower:]'         <= create HMAC "key"
     58e7c66f-b990-4610-9496-60eb3c63339b

@@ -17,11 +17,14 @@ To update the docs website:
     $ git push
 
 
-Requirements
-------------
+References
+----------
 
-  * ReadTheDocs: https://readthedocs.org/
-  * Alabaster: https://github.com/bitprophet/alabaster
+  * ReadTheDocs https://readthedocs.org/
+  * RTD Theme https://sphinx-rtd-theme.readthedocs.io/en/stable/
+  * Alabaster https://github.com/bitprophet/alabaster
+  * Pygments syntax highlighter https://pygments.org/languages/
+  * MyST Parser https://myst-parser.readthedocs.io/en/latest/intro.html
 
 License
 -------

@@ -115,7 +115,7 @@ Create a ``systemd`` configuration file for the uwsgi server::
 
     $ sudo vi /etc/systemd/system/uwsgi.service
 
-::
+.. code-block:: ini
 
     [Unit]
     Description=uWSGI service
@@ -127,7 +127,9 @@ Create a ``systemd`` configuration file for the uwsgi server::
     WantedBy=multi-user.target
 
 Start the uwsgi server, check the current status and enable it to start
-on reboot::
+on reboot:
+
+.. code-block:: console
 
     $ sudo service start uwsgi
     $ sudo service status uwsgi
@@ -144,11 +146,11 @@ the web console as static assets.
     assets from the same domain avoids any problems with CORS or HTTPS
     mixed content errors.
 
-::
+.. code-block:: console
 
     $ sudo vi /etc/nginx/sites-enabled/default
 
-::
+.. code-block:: nginx
 
     server {
             listen 80 default_server;

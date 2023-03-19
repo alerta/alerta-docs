@@ -22,18 +22,6 @@ jobs:
         run:
           python3 -m pip install --upgrade pip
           pip install -r requirements.txt
-      # - name: nitpick
-      #   id: nitpick
-      #   run:
-      #     sphinx-build -b html -n . _build/html
-      # - name: linkcheck
-      #   id: linkcheck
-      #   run:
-      #     sphinx-build -b linkcheck . _build/linkcheck
-      # - name: spelling
-      #   id: spelling
-      #   run:
-      #     sphinx-build -b spelling . _build/spelling
 
   release:
     name: Publish
@@ -54,14 +42,14 @@ jobs:
       - name: Build HTML
         id: build
         run:
-          sphinx-build -b html -d _build/doctrees . _build/html
+          sphinx-build -b html source build
 
       - name: Publish to GitHub Pages
         id: publish
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: _build/html
+          publish_dir: build/html
 
       - uses: act10ns/slack@v1
         with:

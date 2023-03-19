@@ -20,15 +20,15 @@ jobs:
       - name: nitpick
         id: nitpick
         run:
-          sphinx-build -b html -n . _build/html
+          sphinx-build -n source build
       - name: linkcheck
         id: linkcheck
         run:
-          sphinx-build -b linkcheck . _build/linkcheck
+          sphinx-build -M linkcheck source build
       - name: spelling
         id: spelling
         run:
-          sphinx-build -b spelling . _build/spelling
+          sphinx-build -b spelling source build/spelling
 
   build:
     runs-on: ubuntu-latest
@@ -41,4 +41,4 @@ jobs:
       - name: build
         id: build
         run:
-          sphinx-build -b html -d _build/doctrees . _build/html
+          sphinx-build -M html source build
