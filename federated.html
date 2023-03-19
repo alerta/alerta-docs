@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Federated Alerta &mdash; Alerta 9.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Conventions" href="conventions.html" />
+    <link rel="prev" title="Customer Views" href="customer-views.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Alerta
+          </a>
+              <div class="version">
+                9.0.0rc1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui.html">Alerta Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webhooks.html">Custom Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Federated Alerta</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#forwarding-loops">Forwarding Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authentication">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#forwarding-filters">Forwarding Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#non-alerta-forwarding">Non-Alerta Forwarding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#future-enhancements">Future Enhancements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/query-syntax.html">API Query Syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/alert.html">Alert Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/heartbeat.html">Heartbeat Format</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release-notes.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Alerta</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Federated Alerta</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/federated.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="federated-alerta">
+<span id="federated"></span><h1>Federated Alerta<a class="headerlink" href="#federated-alerta" title="Permalink to this heading"></a></h1>
+<p>Alerta servers can forward alerts, actions and deletes to
+other Alerta servers or downstream systems using the <code class="docutils literal notranslate"><span class="pre">forwarder</span></code>
+built-in plugin.</p>
+<p>In this way, Alerta servers can be organised in a hierarchy of
+sub-ordinate servers forwarding to servers above them to create a hierarchy of Alerta servers.</p>
+<p>Also individual Alerta servers can be kept in sync with others
+each other to create a “active-active” architectures where any
+server can be used as the “primary” and if a failure occurs any
+other server can take over.</p>
+<p>Alerta can be configured to send some or all of the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>received alerts</p></li>
+<li><p>all alert actions or just specific actions. eg. <code class="docutils literal notranslate"><span class="pre">ack</span></code>, <code class="docutils literal notranslate"><span class="pre">shelve</span></code>, <code class="docutils literal notranslate"><span class="pre">open</span></code>, <code class="docutils literal notranslate"><span class="pre">close</span></code></p></li>
+<li><p>custom alert actions eg. <code class="docutils literal notranslate"><span class="pre">createIssue</span></code> or <code class="docutils literal notranslate"><span class="pre">ringBell</span></code></p></li>
+<li><p>alert deletions</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Forwarding heartbeats is not currently possible but may
+be supported in a future release.</p>
+</div>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">BASE_URL</span></code></p>
+<p>Set the <code class="docutils literal notranslate"><span class="pre">BASE_URL</span></code> to the public endpoint that will be used by
+the web UI, alert generating systems, and forwarding Alerta servers</p>
+<p><code class="docutils literal notranslate"><span class="pre">PLUGINS</span></code></p>
+<p>Simply add the <code class="docutils literal notranslate"><span class="pre">fowarder</span></code> plugin to this list of configured plugins
+to enable and load it when the API starts.</p>
+<p><code class="docutils literal notranslate"><span class="pre">FWD_DESTINATIONS</span></code></p>
+<p>Forwarder destinations have three parts:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>remote <code class="docutils literal notranslate"><span class="pre">BASE_URL</span></code></p></li>
+<li><p>authentication credentials</p></li>
+<li><p>forwarding filter</p></li>
+</ul>
+</div></blockquote>
+<p>Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FWD_DESTINATIONS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;http://localhost:9000&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="s1">&#39;pa55w0rd&#39;</span><span class="p">,</span> <span class="s1">&#39;timeout&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span> <span class="p">[</span><span class="s1">&#39;alerts&#39;</span><span class="p">,</span> <span class="s1">&#39;actions&#39;</span><span class="p">]),</span>  <span class="c1"># BasicAuth</span>
+    <span class="c1"># (&#39;https://httpbin.org/anything&#39;, dict(username=&#39;foo&#39;, password=&#39;bar&#39;, ssl_verify=False), [&#39;*&#39;]),</span>
+    <span class="p">(</span><span class="s1">&#39;http://localhost:9001&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="s1">&#39;e3b8afc0-db18-4c51-865d-b95322742c5e&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;secret&#39;</span><span class="p">:</span> <span class="s1">&#39;MDhjZGMyYTRkY2YyNjk1MTEyMWFlNmM3Y2UxZDU1ZjIK&#39;</span>
+    <span class="p">},</span> <span class="p">[</span><span class="s1">&#39;actions&#39;</span><span class="p">]),</span>  <span class="c1"># Hawk HMAC</span>
+    <span class="p">(</span><span class="s1">&#39;http://localhost:9002&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="s1">&#39;demo-key&#39;</span><span class="p">},</span> <span class="p">[</span><span class="s1">&#39;delete&#39;</span><span class="p">]),</span>  <span class="c1"># API key</span>
+    <span class="p">(</span><span class="s1">&#39;http://localhost:9003&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;token&#39;</span><span class="p">:</span> <span class="s1">&#39;bearer-token&#39;</span><span class="p">},</span> <span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">]),</span>  <span class="c1"># Bearer token</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="forwarding-loops">
+<h2>Forwarding Loops<a class="headerlink" href="#forwarding-loops" title="Permalink to this heading"></a></h2>
+<p>The configured remote <code class="docutils literal notranslate"><span class="pre">BASE_URL</span></code> must match the <code class="docutils literal notranslate"><span class="pre">BASE_URL</span></code> as set at
+the remote server otherwise forwarding loops are possible (see next).</p>
+<p>There is no problem with Alerta servers forwarding alerts and actions
+to each other. This is the basis of an “active-active” failover
+configuration.</p>
+<p>However, if misconfigured, servers can endlessly forward to each other
+and back again which would eventually lead to resource exhaustion and
+failure.</p>
+<p>The solution is to borrow the concept of a “forwarding loop” header
+from mail servers. If the <code class="docutils literal notranslate"><span class="pre">X-Alerta-Loop</span></code> header contains the Alerta
+server name (ie <code class="docutils literal notranslate"><span class="pre">BASE_URL</span></code>) of the receiving server then the receiving
+server should not process the request.</p>
+<p>And if an alert or action is to be forwarded to a remote Alerta server
+that is already in the “forwarding loop” header then that server should
+be skipped.</p>
+<p><a class="reference external" href="https://qmail.mivzakim.net/qmail-manual-html/misc/RFCLOOPS.html">https://qmail.mivzakim.net/qmail-manual-html/misc/RFCLOOPS.html</a></p>
+</section>
+<section id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this heading"></a></h2>
+<p>Alerta supports multiple authentication methods for the remote
+systems when forwarding:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>HMAC</p></li>
+<li><p>API Key</p></li>
+<li><p>BasicAuth</p></li>
+<li><p>Bearer token</p></li>
+</ul>
+</div></blockquote>
+<p>The recommended authentication method for Alerta-to-Alerta forwarding is
+HMAC because it is the most secure, it does not require a user to be
+associated with the credentials and the credentials do not expire.</p>
+<p>The other authentication methods are available for use when forwarding to
+non-Alerta systems.</p>
+<p>To generate HMAC key and secret, it is useful to use a UUID for the key
+and base64 encoded string for the secret so that they are visibly different.</p>
+<p>On macOs, run</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="gp">$ </span>uuidgen<span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">&#39;[:upper:]&#39;</span><span class="w"> </span><span class="s1">&#39;[:lower:]&#39;</span><span class="w">         </span>&lt;<span class="o">=</span><span class="w"> </span>create<span class="w"> </span>HMAC<span class="w"> </span><span class="s2">&quot;key&quot;</span>
+<span class="linenos">2</span><span class="go">58e7c66f-b990-4610-9496-60eb3c63339b</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="gp">$ </span>date<span class="w"> </span><span class="p">|</span><span class="w"> </span>md5<span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w">                        </span>&lt;<span class="o">=</span><span class="w"> </span>create<span class="w"> </span>HMAC<span class="w"> </span><span class="s2">&quot;secret&quot;</span>
+<span class="linenos">5</span><span class="go">MzVlMzQ5NWYzYWE2YTgxYTUyYmIyNDY0ZWE2ZWJlYTMK</span>
+</pre></div>
+</div>
+</section>
+<section id="forwarding-filters">
+<h2>Forwarding Filters<a class="headerlink" href="#forwarding-filters" title="Permalink to this heading"></a></h2>
+<p>The types of entites to be forwarded are configurable:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">*</span></code> - everything ie. alerts, all actions (incl. custom), deletes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alerts</span></code> - alerts</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">actions</span></code> - all actions</p></li>
+<li><p>individual actions - eg. <code class="docutils literal notranslate"><span class="pre">ack</span></code></p></li>
+<li><p>custom actions eg. <code class="docutils literal notranslate"><span class="pre">createIssue</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">delete</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;*&#39;</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;alerts&#39;</span><span class="p">,</span> <span class="s1">&#39;ack&#39;</span><span class="p">,</span> <span class="s1">&#39;unack&#39;</span><span class="p">,</span> <span class="s1">&#39;close&#39;</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">]</span>
+<span class="p">[</span><span class="s1">&#39;alerts&#39;</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="non-alerta-forwarding">
+<h2>Non-Alerta Forwarding<a class="headerlink" href="#non-alerta-forwarding" title="Permalink to this heading"></a></h2>
+<p>It is possible to make use of Alerta forwarding to forward alerts to
+non-Alerta systems. However, any forwarding destination will need to
+implement the following endpoints:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">POST</span></code> <code class="docutils literal notranslate"><span class="pre">/alert</span></code> - alert receiver</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PUT</span></code> <code class="docutils literal notranslate"><span class="pre">/alert/{alertId}/action</span></code> - action alerts</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DELETE</span></code> <code class="docutils literal notranslate"><span class="pre">/alert/{alertId}</span></code> - delete alerts</p></li>
+</ul>
+</div></blockquote>
+<p>Responses should have HTTP <code class="docutils literal notranslate"><span class="pre">200</span> <span class="pre">OK</span></code> status code on success.
+HTTP response bodies are not parsed so they will not effect the result.
+However, it is good practise to add meaningful messages to the
+payloads which will be useful when debugging.</p>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>Enable detailed logging with <code class="docutils literal notranslate"><span class="pre">DEBUG=True</span></code>.</p></li>
+<li><p>Use a dummy endpoint such as <code class="docutils literal notranslate"><span class="pre">https://httpbin.org/anything</span></code></p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="future-enhancements">
+<h2>Future Enhancements<a class="headerlink" href="#future-enhancements" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>heartbeat forwarding</p></li>
+<li><p>circuit-breaker retry logic</p></li>
+<li><p>configurable endpoints</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="customer-views.html" class="btn btn-neutral float-left" title="Customer Views" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="conventions.html" class="btn btn-neutral float-right" title="Conventions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015-2023, Nick Satterly. Creative Commons Attribution-ShareAlike 3.0 License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

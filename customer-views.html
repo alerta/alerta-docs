@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Views &mdash; Alerta 9.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Federated Alerta" href="federated.html" />
+    <link rel="prev" title="Custom Webhooks" href="webhooks.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Alerta
+          </a>
+              <div class="version">
+                9.0.0rc1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui.html">Alerta Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webhooks.html">Custom Webhooks</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Customer Views</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#roles">Roles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-it-works">How it works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#web-console-for-users">Web Console for Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#web-console-for-administrators">Web Console for Administrators</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="federated.html">Federated Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/query-syntax.html">API Query Syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/alert.html">Alert Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/heartbeat.html">Heartbeat Format</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release-notes.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Alerta</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Customer Views</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/customer-views.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="customer-views">
+<span id="id1"></span><h1>Customer Views<a class="headerlink" href="#customer-views" title="Permalink to this heading"></a></h1>
+<p>Multitenancy is acheived using Customer views that are a way of ensuring logged in users only see alerts that relate to their organisation.</p>
+<p>This is for Alerta deployments that are used to manage multiple customer sites.</p>
+<section id="roles">
+<h2>Roles<a class="headerlink" href="#roles" title="Permalink to this heading"></a></h2>
+<p>The role of an API key is assumed to be “user” if it is a customer generated key. The role of admin</p>
+<p>You can have a customer/user API key and an admin API key, but not a customer/admin API key – this makes no sense.</p>
+</section>
+<section id="how-it-works">
+<h2>How it works<a class="headerlink" href="#how-it-works" title="Permalink to this heading"></a></h2>
+<p>A new top-level alert attribute called <code class="docutils literal notranslate"><span class="pre">customer</span></code> is used to partition alerts for particular customers within the same alert database.</p>
+<p>When a user logs in to the Alert console, a customer lookup is done to determine what customer value should be assigned to that user.</p>
+<p>The customer value is then used as an implicit additional filter for all alert and heartbeat queries.</p>
+<p>It is also assigned to any API keys generated by that user and the <code class="docutils literal notranslate"><span class="pre">customer</span></code> field is automatically used whenever that API key is used to generate or query for alerts.</p>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading"></a></h2>
+<p>To configure customer views follow these three easy steps:</p>
+<ol class="arabic">
+<li><p>Authentication must be enforced and customer views enabled so in <code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_REQUIRED</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">CUSTOMER_VIEWS</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</li>
+<li><p>Define administrators that will have a global view of all customers and will have no restrictions on generating API keys or blackout periods, so in <code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ADMIN_USERS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;foo@bar.com&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Populate the Customer Lookup table in the web console to map Google email domains or Github/Gitlab orgs and groups to customers</p></li>
+</ol>
+</section>
+<section id="web-console-for-users">
+<h2>Web Console for Users<a class="headerlink" href="#web-console-for-users" title="Permalink to this heading"></a></h2>
+<p>Users that have a <cite>customer view</cite> are limited to what they can do in the web console (and via the API). They cannot create other users, configure blackout periods or modify the customer lookup table.</p>
+</section>
+<section id="web-console-for-administrators">
+<h2>Web Console for Administrators<a class="headerlink" href="#web-console-for-administrators" title="Permalink to this heading"></a></h2>
+<p>Administrators are not limited in what they can do in the web console (or via the API). Importantly, they can configure the customer lookup table.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="webhooks.html" class="btn btn-neutral float-left" title="Custom Webhooks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="federated.html" class="btn btn-neutral float-right" title="Federated Alerta" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015-2023, Nick Satterly. Creative Commons Attribution-ShareAlike 3.0 License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

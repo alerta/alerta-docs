@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deployment &mdash; Alerta 9.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Plug-ins" href="plugins.html" />
+    <link rel="prev" title="Authorization" href="authorization.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Alerta
+          </a>
+              <div class="version">
+                9.0.0rc1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui.html">Alerta Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#wsgi-server">WSGI Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#web-proxy">Web Proxy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#static-website">Static Website</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authentication-ssl">Authentication &amp; SSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authorisation-customer-views">Authorisation &amp; Customer Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scalability">Scalability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#high-availability">High Availability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#house-keeping">House Keeping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#management-metrics">Management &amp; Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#web-ui-analytics">Web UI Analytics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#real-world-examples">Real World Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webhooks.html">Custom Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="federated.html">Federated Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/query-syntax.html">API Query Syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/alert.html">Alert Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/heartbeat.html">Heartbeat Format</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release-notes.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Alerta</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Deployment</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/deployment.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="deployment">
+<span id="id1"></span><h1>Deployment<a class="headerlink" href="#deployment" title="Permalink to this heading"></a></h1>
+<section id="wsgi-server">
+<h2>WSGI Server<a class="headerlink" href="#wsgi-server" title="Permalink to this heading"></a></h2>
+<p>There are many ways to deploy Alerta. It can be run as <code class="docutils literal notranslate"><span class="pre">alertad</span></code>
+during development or testing but when run in a production environment,
+it should <a class="reference external" href="http://flask.pocoo.org/docs/1.0/deploying/">always be deployed</a> as a WSGI application. See the list
+of <a class="reference internal" href="#real-world">real world</a> examples below for different ways to run Alerta as
+a WSGI application.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When deploying with Apache mod_wsgi, be aware that by default
+Apache strips the Authentication header. This will cause you to
+receive “Missing authorization API Key or Bearer Token” errors.
+This can be fixed by setting <code class="docutils literal notranslate"><span class="pre">WSGIPassAuthorization</span> <span class="pre">On</span></code> in
+the configuration file for the site.</p>
+</div>
+</section>
+<section id="web-proxy">
+<span id="reverse-proxy"></span><h2>Web Proxy<a class="headerlink" href="#web-proxy" title="Permalink to this heading"></a></h2>
+<p>Running the Alerta API behind a web proxy can greatly simplify the
+Web UI setup which means you can completely <a class="reference external" href="http://oskarhane.com/avoid-cors-with-nginx-proxy_pass/">avoid</a> the potential
+for any cross-origin issues.</p>
+<p>Also, if you run the API on an HTTPS/SSL endpoint then it can
+reduce the possibility of <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Security/MixedContent/How_to_fix_website_with_mixed_content">mixed content</a> errors when a web
+application hosted on a HTTP endpoint tries to access resources
+on an HTTPS endpoint.</p>
+<p><strong>Example API configuration (extract)</strong></p>
+<p>This example nginx server is configured to serve the web UI from
+the root <code class="docutils literal notranslate"><span class="pre">/</span></code> path and reverse-proxy API requests to <code class="docutils literal notranslate"><span class="pre">/api</span></code> to
+the WSGI application running on port 8080:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>server {
+
+        listen 80 default_server deferred;
+
+        access_log /dev/stdout main;
+
+        location /api/ {
+                proxy_pass http://backend/;
+                proxy_set_header Host $host:$server_port;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+
+        location / {
+                root /app;
+        }
+}
+
+upstream backend {
+        server localhost:8080 fail_timeout=0;
+}
+</pre></div>
+</div>
+<p>The server configuration file <code class="file docutils literal notranslate"><span class="pre">alertad.conf</span></code> for this setup
+would need to set <code class="docutils literal notranslate"><span class="pre">BASE_URL</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;/api&#39;</span>
+</pre></div>
+</div>
+<p>Additionally add the <code class="docutils literal notranslate"><span class="pre">USE_PROXYFIX</span></code> setting to fix relative links in HTTP
+responses if the web proxy is used for SSL termination:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">USE_PROXYFIX</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># use if proxy is terminating HTTPS traffic</span>
+</pre></div>
+</div>
+<p>And the web UI configuration file <code class="file docutils literal notranslate"><span class="pre">config.json</span></code> would need
+the <code class="docutils literal notranslate"><span class="pre">endpoint</span></code> setting to match that:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;endpoint&quot;</span><span class="p">:</span> <span class="s2">&quot;/api&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="static-website">
+<span id="id2"></span><h2>Static Website<a class="headerlink" href="#static-website" title="Permalink to this heading"></a></h2>
+<p>The Alerta web UI is just a directory of static assets that can be
+served from any location. An easy and cheap way to serve the web UI
+is from an <a class="reference external" href="http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html">Amazon S3 bucket</a> as a static website.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Serving the Alerta web UI from a static web hosting site
+<strong>will not work</strong> unless that domain is listed in the
+<code class="docutils literal notranslate"><span class="pre">CORS_ORIGINS</span></code> Alerta API server configuration settings.</p>
+</div>
+</section>
+<section id="authentication-ssl">
+<span id="auth-ssl"></span><h2>Authentication &amp; SSL<a class="headerlink" href="#authentication-ssl" title="Permalink to this heading"></a></h2>
+<p>Alerta supports several authentication mechanisms for both the API
+and the web UI and some key features of the web UI, like
+<span class="xref std std-ref">watching alerts</span>, are only available if
+authentication is enabled.</p>
+<p>The API can be secured using <a class="reference internal" href="authentication.html#api-keys"><span class="std std-ref">API Keys</span></a> and the web UI can
+be secured using <span class="xref std std-ref">Basic Auth</span> or an <span class="xref std std-ref">OAuth</span>
+provider from either GitHub, GitLab, Google, Keycloak or SAML2.</p>
+<p>If you plan to make the web UI accessible from a public URL it is
+strongly advised to <a class="reference internal" href="authentication.html#authentication"><span class="std std-ref">enforce authentication</span></a>
+and use HTTPS/SSL connections to the Alerta API to protect private
+alert data.</p>
+</section>
+<section id="authorisation-customer-views">
+<span id="auth-cv"></span><h2>Authorisation &amp; Customer Views<a class="headerlink" href="#authorisation-customer-views" title="Permalink to this heading"></a></h2>
+<p>To restrict access to certain features use <span class="xref std std-ref">roles</span>
+and <a class="reference internal" href="customer-views.html#customer-views"><span class="std std-ref">customer views</span></a>.</p>
+</section>
+<section id="scalability">
+<span id="id3"></span><h2>Scalability<a class="headerlink" href="#scalability" title="Permalink to this heading"></a></h2>
+<p>Alerta can scale horizontally, in the same way any other web
+application scales horizontally – a load balancer handles the
+HTTP requests and distributes those requests between all available
+application servers.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If using multiple API servers ensure the same <code class="docutils literal notranslate"><span class="pre">SECRET_KEY</span></code>
+is used across all servers otherwise there will be problems
+with web UI user logins.</p>
+</div>
+</section>
+<section id="high-availability">
+<span id="id4"></span><h2>High Availability<a class="headerlink" href="#high-availability" title="Permalink to this heading"></a></h2>
+<p>To achieve high system availability the Alerta API should be
+deployed to scale out <a class="reference internal" href="#scalability"><span class="std std-ref">horizontally</span></a> and
+the database should be deployed as a <a class="reference external" href="http://docs.mongodb.org/manual/core/replica-set-high-availability/">replica set</a>, if using
+mongoDB, or configure <a class="reference external" href="https://www.postgresql.org/docs/current/high-availability.html">replication</a>, if using Postgres.</p>
+</section>
+<section id="house-keeping">
+<span id="housekeeping"></span><h2>House Keeping<a class="headerlink" href="#house-keeping" title="Permalink to this heading"></a></h2>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 5.0: </span>The <code class="file docutils literal notranslate"><span class="pre">housekeepingAlerts.js</span></code> script that was used for
+housekeeping is deprecated. Use the following instead.</p>
+</div>
+<p>There are some jobs that should be run periodically to keep the
+Alerta console clutter free. To timeout <em>expired</em> alerts and
+delete old <em>closed</em> alerts you need to trigger housekeeping.</p>
+<p>This can be done with the <code class="docutils literal notranslate"><span class="pre">alerta</span></code> command-line tool:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta housekeeping
+</pre></div>
+</div>
+<p>This was not supported by earlier versions of the command-line tool
+and cURL has to be used to access <code class="docutils literal notranslate"><span class="pre">/management/housekeeping</span></code>.</p>
+<p>The API key needs an admin scope if AUTH_REQUIRED is set to True.</p>
+<p>It is suggested that you run housekeeping at regular intervals via
+<code class="docutils literal notranslate"><span class="pre">cron</span></code>. Every minute or two is a suitable interval.</p>
+<p>By default, the housekeeping job will remove any alerts that have been
+expired or closed for 2 hours and any info messages that
+are 12 hours old. In some cases, these retention periods may be too
+long or too short for your needs.</p>
+<p>Bear in mind that Alerta is intended to reflect the here and now, so
+long deletion thresholds should be avoided. Where you do need to depart
+from the defaults, you can specify like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta housekeeping --expired 2 --info 12
+</pre></div>
+</div>
+<p id="stale-heartbeats"><a class="reference internal" href="api/reference.html#heartbeats"><span class="std std-ref">Heartbeats</span></a> can be sent from any source to
+ensure that a system is ‘alive’. To generate alerts for stale
+heartbeats the <code class="docutils literal notranslate"><span class="pre">alerta</span></code> command-line tool can be used:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta heartbeats --alert
+</pre></div>
+</div>
+<p>Again, this should be run at regular intervals via <code class="docutils literal notranslate"><span class="pre">cron</span></code> or
+some other scheduler.</p>
+</section>
+<section id="management-metrics">
+<span id="metrics"></span><h2>Management &amp; Metrics<a class="headerlink" href="#management-metrics" title="Permalink to this heading"></a></h2>
+<p>There are two management endpoints that provide internal application
+metrics.</p>
+<p>The management endpoint <code class="file docutils literal notranslate"><span class="pre">/management/status</span></code> can be used to keep
+track of realtime statistics on the performance of the Alerta API
+like alert counts and average processing time. For convenience,
+these statistics can be viewed in the <em>About</em> page of the Alerta
+web UI or using the <code class="docutils literal notranslate"><span class="pre">alerta</span></code> command-line tool
+<span class="xref std std-ref">status</span> command.</p>
+<p>The same metrics are also exposed at <code class="file docutils literal notranslate"><span class="pre">/management/metrics</span></code> in
+the <a class="reference external" href="https://prometheus.io/docs/instrumenting/exposition_formats/">exposition format</a> required by Prometheus so that it can be monitored
+by Prometheus and other monitoring tools that implement the <a class="reference external" href="https://openmetrics.io/">OpenMetrics</a>
+standard.</p>
+</section>
+<section id="web-ui-analytics">
+<h2>Web UI Analytics<a class="headerlink" href="#web-ui-analytics" title="Permalink to this heading"></a></h2>
+<p>Google analytics can be used to track usage of the Alerta web UI
+console. Just create a new tracking code with the <a class="reference external" href="https://analytics.google.com/analytics/web/">Google analytics</a>
+console and add it to the <code class="file docutils literal notranslate"><span class="pre">alertad.conf</span></code> API configuration
+file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GOOGLE_TRACKING_ID</span> <span class="o">=</span> <span class="s1">&#39;UA-NNNNNN-N&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="real-world-examples">
+<span id="real-world"></span><h2>Real World Examples<a class="headerlink" href="#real-world-examples" title="Permalink to this heading"></a></h2>
+<p>Below are several different examples of how to run Alerta in production
+from a Debian <a class="reference external" href="https://docs.vagrantup.com/v2/boxes.html">vagrant box</a>, an <a class="reference external" href="https://aws.amazon.com/ec2/">AWS EC2 instance</a>,
+<a class="reference external" href="https://www.heroku.com/platform">Heroku PaaS</a> to a <a class="reference external" href="https://www.docker.com/whatisdocker">Docker container</a>.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/alerta/vagrant-try-alerta">Vagrant</a> - deploy Alerta stand-alone or with Nagios, Zabbix, Riemann, Sensu or Kibana</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta#deploy-to-the-cloud">Heroku</a> - deploy the Alerta API and the <a class="reference external" href="https://github.com/alerta/angular-alerta-webui#deploy-to-the-cloud">web ui to Heroku</a> PaaS</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-cloudformation">AWS EC2</a> - deploy Alerta to EC2 using AWS Cloudformation</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/docker-alerta">Docker</a> - deploy Alerta to a docker container</p></li>
+<li><p><a class="reference external" href="https://github.com/bl1nk/docker-alpine-alerta">Docker Alpine</a> - full Alerta installation (including Mongo) based on Alpine Linux</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/packer-templates">Packer</a> - deploy Alerta to EC2 using Amazon AMIs</p></li>
+<li><p><a class="reference external" href="http://flask.pocoo.org/docs/0.10/quickstart/#deploying-to-a-web-server">Flask deploy</a> - deploy Alerta as a generic Flask app</p></li>
+<li><p><a class="reference external" href="https://github.com/ramshankarjaiswal/ansible/tree/master/roles/alerta">Ansible</a> - deploy Alerta using ansible on Centos 7</p></li>
+<li><p><a class="reference external" href="https://github.com/aka7/alerta-terraform">Terraform</a> - single instance of alerta for quick demo on AWS</p></li>
+<li><p><a class="reference external" href="https://github.com/codingfuture/puppet-cfwebapp">Puppet</a> - Alerta recipe on top of <a class="reference external" href="https://codingfuture.net/docs/cfweb">cfweb</a> module</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="authorization.html" class="btn btn-neutral float-left" title="Authorization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plugins.html" class="btn btn-neutral float-right" title="Plug-ins" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015-2023, Nick Satterly. Creative Commons Attribution-ShareAlike 3.0 License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

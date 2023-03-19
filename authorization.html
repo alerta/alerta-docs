@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Authorization &mdash; Alerta 9.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Deployment" href="deployment.html" />
+    <link rel="prev" title="Authentication" href="authentication.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Alerta
+          </a>
+              <div class="version">
+                9.0.0rc1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui.html">Alerta Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Authorization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#flat-rbac">Flat RBAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#default-authorization">Default Authorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-authorization">Custom Authorization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#scopes-and-permissions">Scopes and Permissions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webhooks.html">Custom Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="federated.html">Federated Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/query-syntax.html">API Query Syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/alert.html">Alert Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/heartbeat.html">Heartbeat Format</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release-notes.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Alerta</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Authorization</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/authorization.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="authorization">
+<span id="id1"></span><h1>Authorization<a class="headerlink" href="#authorization" title="Permalink to this heading"></a></h1>
+<p>Authorization is used to limit access to Alerta API resources. The
+authorization model is based on <a class="reference external" href="http://csrc.nist.gov/groups/SNS/rbac/faq.html">Role-Based Access Control</a> (RBAC)
+which assigns permissions to functional roles and then users are
+assigned to one or more of those roles.</p>
+<p>This “role-based access” allows for fine-grained control over exactly
+what resources are accessible to which users and exactly what type of
+access is allowed – in a way that is scalable.</p>
+<p>For example, to create a new alert the sender will need to be assigned to
+at least one role with <code class="docutils literal notranslate"><span class="pre">write:alerts</span></code> permissions. If the sender is not
+a member of a role with those permisssions then the request will be rejected
+with a <code class="docutils literal notranslate"><span class="pre">403</span> <span class="pre">Forbidden</span></code> response code.</p>
+<section id="flat-rbac">
+<h2>Flat RBAC<a class="headerlink" href="#flat-rbac" title="Permalink to this heading"></a></h2>
+<p>Alerta implements the “flat” RBAC model as defined by NIST (aka.
+“Core RBAC”) and as such does not support any form of role hierarchy
+where roles can inherit other roles.</p>
+<p>Flat RBAC has the following features:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>users acquire permissions through roles</p></li>
+<li><p>must support many-to-many user-role assignment</p></li>
+<li><p>must support many-to-many permission-role assignment</p></li>
+<li><p>must support user-role assignment review</p></li>
+<li><p>users can use permissions of multiple roles simultaneously</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All access is through roles. Permissions can not be assigned directly
+to users. The only exception to this is the <code class="docutils literal notranslate"><span class="pre">ADMIN_USERS</span></code> setting
+which overrides all other roles a user might belong to.</p>
+</div>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading"></a></h2>
+<p>There are two ways to configure role-based access; default and custom
+configuration.</p>
+<section id="default-authorization">
+<h3>Default Authorization<a class="headerlink" href="#default-authorization" title="Permalink to this heading"></a></h3>
+<p>If <a class="reference internal" href="authentication.html#authentication"><span class="std std-ref">authentication</span></a> is enabled then the default authorization
+is used which defines two roles:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">user</span></code> role - everyone is a “user” unless listed in the <code class="docutils literal notranslate"><span class="pre">ADMIN_USERS</span></code> setting.
+(default scopes are <code class="docutils literal notranslate"><span class="pre">read</span></code> and <code class="docutils literal notranslate"><span class="pre">write</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">admin</span></code> role - only admins can delete alerts and heartbeats, create users etc.
+(default scope is simply <code class="docutils literal notranslate"><span class="pre">admin</span></code>, however that implicitly includes <code class="docutils literal notranslate"><span class="pre">read</span></code>
+and <code class="docutils literal notranslate"><span class="pre">write</span></code>)</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">user</span></code> and <code class="docutils literal notranslate"><span class="pre">admin</span></code> roles are protected preventing them from being
+deleted and preventing new roles from being created with the same names.
+The scopes associated with the default <code class="docutils literal notranslate"><span class="pre">user</span></code> role are managed using the
+<code class="docutils literal notranslate"><span class="pre">USER_DEFAULT_SCOPES</span></code> setting in the API <span class="xref std std-ref">server settings</span>.
+All other roles are managed via the web console or <code class="docutils literal notranslate"><span class="pre">alerta</span></code> CLI.</p>
+</div>
+</section>
+<section id="custom-authorization">
+<h3>Custom Authorization<a class="headerlink" href="#custom-authorization" title="Permalink to this heading"></a></h3>
+<p>To use custom authorization simply define one or more permission-scope lookups.</p>
+<p>As an “admin” user go to <em>Configuration -&gt; Permissions</em> and add a new role
+with the required scopes (see below for list of valid scopes). Those roles
+should match the roles, groups or organisations associated with users for the
+configured Authentication provider.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>It is encouraged to employ the principle of least privilege when creating
+roles. That is, do not give to a user any more privilege than is necessary
+to perform their job function.</p>
+</div>
+</section>
+</section>
+<section id="scopes-and-permissions">
+<h2>Scopes and Permissions<a class="headerlink" href="#scopes-and-permissions" title="Permalink to this heading"></a></h2>
+<p>Use these scopes to request access to API resources.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Scope</p></th>
+<th class="head"><p>Permissions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">read</span></code></p></td>
+<td><p>Grants read-only access to all scopes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">write</span></code></p></td>
+<td><p>Grants read/write access to all scopes.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">admin</span></code></p></td>
+<td><p>Grants admin, read, write and delete access to all scopes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">read:alerts</span></code></p></td>
+<td><p>Read-only access to alerts.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">write:alerts</span></code></p></td>
+<td><p>Grants read/write access to alerts.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">delete:alerts</span></code> (*)</p></td>
+<td><p>Required to delete alerts, unless have admin access.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">admin:alerts</span></code></p></td>
+<td><p>Grants read/write to alerts for any customer.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">read:blackouts</span></code></p></td>
+<td><p>Grants read-only access to blackouts.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">write:blackouts</span></code></p></td>
+<td><p>Grants read/write access to blackouts.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">admin:blackouts</span></code></p></td>
+<td><p>Grants read/write access to blackouts for any customer.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">read:heartbeats</span></code></p></td>
+<td><p>Read-only access to heartbeats.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">write:heartbeats</span></code></p></td>
+<td><p>Grants read/write access to heartbeats.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">admin:heartbeats</span></code></p></td>
+<td><p>Grants read/write access to heartbeats for any customer.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">write:users</span></code></p></td>
+<td><p>Grant write access to users.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">admin:users</span></code></p></td>
+<td><p>Fully manage users.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">read:perms</span></code></p></td>
+<td><p>Grants read-only access to permissions and scopes.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">admin:perms</span></code></p></td>
+<td><p>Grants read, write and delete access to permissions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">read:customers</span></code></p></td>
+<td><p>Grants read-only access to customers.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">admin:customers</span></code></p></td>
+<td><p>Fully manage customers.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">read:keys</span></code></p></td>
+<td><p>List and view API keys.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">write:keys</span></code></p></td>
+<td><p>Create, list and view API keys.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">admin:keys</span></code></p></td>
+<td><p>Fully manage API keys for any customer.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">write:webhooks</span></code></p></td>
+<td><p>Grants write access to webhooks.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">read:oembed</span></code></p></td>
+<td><p>Grants read-only to oembed endpoints.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">read:management</span></code></p></td>
+<td><p>Grants read-only access to management endpoints.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">admin:management</span></code></p></td>
+<td><p>Fully manage management endpoints.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">read:userinfo</span></code></p></td>
+<td><p>Grants read-only access to userinfo.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">write</span></code> implicitly includes <code class="docutils literal notranslate"><span class="pre">read</span></code>, and <code class="docutils literal notranslate"><span class="pre">admin</span></code> implicitly
+includes <code class="docutils literal notranslate"><span class="pre">read</span></code> and <code class="docutils literal notranslate"><span class="pre">write</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">delete:alerts</span></code> only required to delete alerts if the <cite>DELETE_SCOPES</cite> setting is enabled.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="authentication.html" class="btn btn-neutral float-left" title="Authentication" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="deployment.html" class="btn btn-neutral float-right" title="Deployment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015-2023, Nick Satterly. Creative Commons Attribution-ShareAlike 3.0 License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

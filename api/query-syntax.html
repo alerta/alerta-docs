@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Query Syntax &mdash; Alerta 9.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Alert Format" href="alert.html" />
+    <link rel="prev" title="API Reference" href="reference.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Alerta
+          </a>
+              <div class="version">
+                9.0.0rc1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick-start.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server.html">Server &amp; API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui.html">Alerta Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">Alerta CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../integrations.html">Integrations &amp; Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authorization.html">Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webhooks.html">Custom Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../customer-views.html">Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../federated.html">Federated Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">Resources</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="reference.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Query Syntax</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#standard-url-query-parameters">Standard URL Query parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#query-string-syntax">Query String Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#search-terms">Search terms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#field-names">Field names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nested-field-names">Nested Field names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wildcards">Wildcards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#regular-expressions">Regular expressions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ranges">Ranges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#boolean-operators">Boolean Operators</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#or">OR (<code class="docutils literal notranslate"><span class="pre">||</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#and">AND (<code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#not">NOT (<code class="docutils literal notranslate"><span class="pre">!</span></code>)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#grouping">Grouping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#field-grouping">Field Grouping</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="alert.html">Alert Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heartbeat.html">Heartbeat Format</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Alerta</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API Query Syntax</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/query-syntax.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-query-syntax">
+<span id="api-query"></span><h1>API Query Syntax<a class="headerlink" href="#api-query-syntax" title="Permalink to this heading"></a></h1>
+<p>Alerta API supports two types of query syntax.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>standard URL query parameters</p></li>
+<li><p>queries based on Lucene query syntax</p></li>
+</ul>
+</div></blockquote>
+<p>Queries are supported by the following resource endpoints:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="reference.html#get-alerts"><span class="std std-ref">alerts</span></a></p></li>
+<li><p><a class="reference internal" href="reference.html#environments"><span class="std std-ref">environments</span></a></p></li>
+<li><p><a class="reference internal" href="reference.html#services"><span class="std std-ref">services</span></a></p></li>
+<li><p><a class="reference internal" href="reference.html#get-blackouts"><span class="std std-ref">blackouts</span></a></p></li>
+<li><p><a class="reference internal" href="reference.html#get-heartbeats"><span class="std std-ref">heartbeats</span></a></p></li>
+<li><p><a class="reference internal" href="reference.html#get-users"><span class="std std-ref">users</span></a></p></li>
+<li><p><a class="reference internal" href="reference.html#get-customers"><span class="std std-ref">customers</span></a></p></li>
+<li><p><span class="xref std std-ref">oembed</span></p></li>
+</ul>
+</div></blockquote>
+<section id="standard-url-query-parameters">
+<span id="url-query-params"></span><h2>Standard URL Query parameters<a class="headerlink" href="#standard-url-query-parameters" title="Permalink to this heading"></a></h2>
+<p>Alert attributes can be used as search parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Any combination of valid alert attributes can be used to narrow down results.</p></li>
+<li><p>Search syntax is <code class="docutils literal notranslate"><span class="pre">=</span></code> (equals), <code class="docutils literal notranslate"><span class="pre">!=</span></code> (not equals), <code class="docutils literal notranslate"><span class="pre">=~</span></code> (regex match)
+and <code class="docutils literal notranslate"><span class="pre">!=~</span></code> (regex exclude).</p></li>
+<li><p>When searching for alert <code class="docutils literal notranslate"><span class="pre">id</span></code> the query will attempt to match against <code class="docutils literal notranslate"><span class="pre">id</span></code>
+and <code class="docutils literal notranslate"><span class="pre">lastReceiveId</span></code>. The “short id” (ie. first 8-characters) can
+be used. eg. <code class="docutils literal notranslate"><span class="pre">id=ba358336</span></code> instead of <code class="docutils literal notranslate"><span class="pre">id=ba358336-802d-40ee-8ace-bf5fa8529280</span></code>.</p></li>
+<li><p>Use <a class="reference external" href="https://docs.mongodb.com/v3.2/core/document/#document-dot-notation">“dot notation”</a> to query custom attributes. eg. <code class="docutils literal notranslate"><span class="pre">attributes.city=Berlin</span></code></p></li>
+<li><p>Alert <code class="docutils literal notranslate"><span class="pre">history</span></code> is limited to the 100 most recent status or severity changes.
+(set using <code class="docutils literal notranslate"><span class="pre">HISTORY_LIMIT</span></code>)</p></li>
+<li><p>If “customer views” is enabled then the appropriate <code class="docutils literal notranslate"><span class="pre">customer</span></code> filter for
+that user will be automatically applied.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="query-string-syntax">
+<span id="id1"></span><h2>Query String Syntax<a class="headerlink" href="#query-string-syntax" title="Permalink to this heading"></a></h2>
+<p>The query string syntax is used by the <code class="docutils literal notranslate"><span class="pre">q</span></code> query string parameter. It is based
+on the Lucene query string syntax and is described below.</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#search-terms" id="id2">Search terms</a></p></li>
+<li><p><a class="reference internal" href="#field-names" id="id3">Field names</a></p></li>
+<li><p><a class="reference internal" href="#nested-field-names" id="id4">Nested Field names</a></p></li>
+<li><p><a class="reference internal" href="#wildcards" id="id5">Wildcards</a></p></li>
+<li><p><a class="reference internal" href="#regular-expressions" id="id6">Regular expressions</a></p></li>
+<li><p><a class="reference internal" href="#ranges" id="id7">Ranges</a></p></li>
+<li><p><a class="reference internal" href="#boolean-operators" id="id8">Boolean Operators</a></p>
+<ul>
+<li><p><a class="reference internal" href="#or" id="id9">OR (<code class="docutils literal notranslate"><span class="pre">||</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#and" id="id10">AND (<code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#not" id="id11">NOT (<code class="docutils literal notranslate"><span class="pre">!</span></code>)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#grouping" id="id12">Grouping</a></p></li>
+<li><p><a class="reference internal" href="#field-grouping" id="id13">Field Grouping</a></p></li>
+</ul>
+</nav>
+<section id="search-terms">
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">Search terms</a><a class="headerlink" href="#search-terms" title="Permalink to this heading"></a></h3>
+<p>A search term can be a single word:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">foo</span>
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bar</span>
+</pre></div>
+</div>
+<p>A search term can also be a phrase, surrounded by double quotes, which searches
+for all the words in the phrase, in the same order:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;foo bar&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="field-names">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Field names</a><a class="headerlink" href="#field-names" title="Permalink to this heading"></a></h3>
+<p>When no explicit field name is specified to search on in the query string
+the default field <code class="docutils literal notranslate"><span class="pre">text</span></code> will be used unless a prefix is specified.</p>
+<p>For example, where <code class="docutils literal notranslate"><span class="pre">status</span></code> field contains “ack”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="p">:</span><span class="n">ack</span>
+</pre></div>
+</div>
+<p>Where the <code class="docutils literal notranslate"><span class="pre">group</span></code> field contains “Network” or “Performance”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">group</span><span class="p">:(</span><span class="n">Network</span> <span class="n">OR</span> <span class="n">Performance</span><span class="p">)</span>
+<span class="n">group</span><span class="p">:(</span><span class="n">Network</span> <span class="n">Performance</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Where the <code class="docutils literal notranslate"><span class="pre">text</span></code> field contains the exact phrase “kernel panic”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">text</span><span class="p">:</span><span class="s2">&quot;kernel panic&quot;</span>
+</pre></div>
+</div>
+<p>Where the custom attribute <code class="docutils literal notranslate"><span class="pre">region</span></code> has any non-null value:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_exists_</span><span class="p">:</span><span class="n">region</span>
+</pre></div>
+</div>
+</section>
+<section id="nested-field-names">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Nested Field names</a><a class="headerlink" href="#nested-field-names" title="Permalink to this heading"></a></h3>
+<p><em>New in version 7.5.</em></p>
+<p>Nested fields can be queried using dot notation (<code class="docutils literal notranslate"><span class="pre">.</span></code>) that
+includes the complete path of the field.</p>
+<p>For example, where the <code class="docutils literal notranslate"><span class="pre">region</span></code> custom attribute is “EU”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">attributes</span><span class="o">.</span><span class="n">region</span><span class="p">:</span><span class="n">EU</span>
+</pre></div>
+</div>
+<p>Where the <code class="docutils literal notranslate"><span class="pre">vendor</span></code> custom attribute  is “cisco” or “juniper”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">attributes</span><span class="o">.</span><span class="n">vendor</span><span class="p">:(</span><span class="n">cisco</span> <span class="n">OR</span> <span class="n">juniper</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For custom attributes the underscore (<code class="docutils literal notranslate"><span class="pre">_</span></code>) shortcut can be
+used to replace the <code class="docutils literal notranslate"><span class="pre">attributes</span></code> parent field name.</p>
+<p>So the above can be more simply expressed as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="o">.</span><span class="n">region</span><span class="p">:</span><span class="n">EU</span>
+<span class="n">_</span><span class="o">.</span><span class="n">vendor</span><span class="p">:(</span><span class="n">cisco</span> <span class="n">OR</span> <span class="n">juniper</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="wildcards">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Wildcards</a><a class="headerlink" href="#wildcards" title="Permalink to this heading"></a></h3>
+<p>Wildcard searches can be used on individual terms using <code class="docutils literal notranslate"><span class="pre">?</span></code> to replace
+single characters and <code class="docutils literal notranslate"><span class="pre">*</span></code> to replace one or more characters:</p>
+<p>To search for “foo”, “fu”, “bar” or “baz” use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>f* ba?
+</pre></div>
+</div>
+<p>To search for “test” or “text” use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>te?t
+</pre></div>
+</div>
+</section>
+<section id="regular-expressions">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Regular expressions</a><a class="headerlink" href="#regular-expressions" title="Permalink to this heading"></a></h3>
+<p>Regular expression patterns can be embedded in the query string by wrapping
+them in forward-slashes (<code class="docutils literal notranslate"><span class="pre">/</span></code>). Typical examples include:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="p">[</span><span class="n">mb</span><span class="p">]</span><span class="n">oat</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>and:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>name:/joh?n(ath[oa]n)/
+</pre></div>
+</div>
+<p>To search for numbered devices beginning with “net”, “netwrk” or “network” use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>resource:/net(wo?rk)?[0-9]/
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Regular expressions are implemented by the database backends so
+there may be subtle differences between <a class="reference external" href="https://www.postgresql.org/docs/9.6/static/functions-matching.html#FUNCTIONS-POSIX-REGEXP">Postgres POSIX regular expressions</a>
+and <a class="reference external" href="https://docs.mongodb.com/manual/reference/operator/query/regex/">MongoDB PCRE $regex pattern matching</a> in practice.</p>
+</div>
+</section>
+<section id="ranges">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Ranges</a><a class="headerlink" href="#ranges" title="Permalink to this heading"></a></h3>
+<p>Ranges can be specified for numeric or string fields. Inclusive
+ranges are specified with square brackets <code class="docutils literal notranslate"><span class="pre">[min</span> <span class="pre">TO</span> <span class="pre">max]</span></code> and exclusive
+ranges with curly brackets <code class="docutils literal notranslate"><span class="pre">{min</span> <span class="pre">TO</span> <span class="pre">max}</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">timeout</span><span class="p">:[</span><span class="mi">1</span> <span class="n">TO</span> <span class="mi">86400</span><span class="p">]</span>
+<span class="n">group</span><span class="p">:{</span><span class="n">alpha</span> <span class="n">TO</span> <span class="n">zulu</span><span class="p">}</span>
+<span class="n">value</span><span class="p">:{</span><span class="o">*</span> <span class="n">TO</span> <span class="mi">300</span><span class="p">}</span>
+<span class="n">value</span><span class="p">:[</span><span class="mi">500</span> <span class="n">TO</span> <span class="o">*</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Ranges with one side unbounded (using <code class="docutils literal notranslate"><span class="pre">*</span></code>) can use a simplified syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">value</span><span class="p">:</span><span class="o">&gt;</span><span class="mi">500</span>
+<span class="n">value</span><span class="p">:</span><span class="o">&gt;=</span><span class="mi">500</span>
+<span class="n">value</span><span class="p">:</span><span class="o">&lt;</span><span class="mi">500</span>
+<span class="n">value</span><span class="p">:</span><span class="o">&lt;=</span><span class="mi">500</span>
+</pre></div>
+</div>
+</section>
+<section id="boolean-operators">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Boolean Operators</a><a class="headerlink" href="#boolean-operators" title="Permalink to this heading"></a></h3>
+<p><em>New in version 7.5.</em></p>
+<p>Boolean logic operators can be used to combine search terms. They
+are always in uppercase letters or can be replaced with a symbol.</p>
+<section id="or">
+<h4><a class="toc-backref" href="#id9" role="doc-backlink">OR (<code class="docutils literal notranslate"><span class="pre">||</span></code>)</a><a class="headerlink" href="#or" title="Permalink to this heading"></a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">OR</span></code> operator is the default when no operator is specified. A
+search succeeds if either of the terms are found. The <code class="docutils literal notranslate"><span class="pre">||</span></code> can be
+used in place of the word <code class="docutils literal notranslate"><span class="pre">OR</span></code>.</p>
+<p>To search for “foo bar” or “baz” use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;foo bar&quot;</span> <span class="n">baz</span>
+<span class="s2">&quot;foo bar&quot;</span> <span class="n">OR</span> <span class="n">baz</span>
+<span class="s2">&quot;foo bar&quot;</span> <span class="o">||</span> <span class="n">baz</span>
+</pre></div>
+</div>
+</section>
+<section id="and">
+<h4><a class="toc-backref" href="#id10" role="doc-backlink">AND (<code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>)</a><a class="headerlink" href="#and" title="Permalink to this heading"></a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">AND</span></code> operator is used to combine two terms when both must match.
+The symbol <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> can be used in place of the word <code class="docutils literal notranslate"><span class="pre">AND</span></code>.</p>
+<p>To search for “foo bar” and “baz” use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;foo bar&quot;</span> <span class="n">AND</span> <span class="n">baz</span>
+<span class="s2">&quot;foo bar&quot;</span> <span class="o">&amp;&amp;</span> <span class="n">baz</span>
+</pre></div>
+</div>
+</section>
+<section id="not">
+<h4><a class="toc-backref" href="#id11" role="doc-backlink">NOT (<code class="docutils literal notranslate"><span class="pre">!</span></code>)</a><a class="headerlink" href="#not" title="Permalink to this heading"></a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">NOT</span></code> operator is used to exclude matches that contain the search
+term directly following <code class="docutils literal notranslate"><span class="pre">NOT</span></code>. The symbol <code class="docutils literal notranslate"><span class="pre">!</span></code> can be used in place
+of the word <code class="docutils literal notranslate"><span class="pre">NOT</span></code>.</p>
+<p>To search for “foo bar” but not “baz” use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&quot;foo bar&quot; NOT baz
+&quot;foo bar&quot; AND NOT baz
+&quot;foo bar&quot; !baz
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">NOT</span></code> operator can be used with a single term:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NOT</span> <span class="s2">&quot;foo bar&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="grouping">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Grouping</a><a class="headerlink" href="#grouping" title="Permalink to this heading"></a></h3>
+<p>Multiple terms or clauses <strong>must</strong> be grouped together with parentheses,
+to form sub-queries:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">foo</span> <span class="n">OR</span> <span class="n">bar</span><span class="p">)</span> <span class="n">AND</span> <span class="n">baz</span>
+</pre></div>
+</div>
+</section>
+<section id="field-grouping">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Field Grouping</a><a class="headerlink" href="#field-grouping" title="Permalink to this heading"></a></h3>
+<p>Parentheses can be used to group multiple clauses to a single field:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="p">:(</span><span class="nb">open</span> <span class="n">OR</span> <span class="n">ack</span><span class="p">)</span>
+<span class="n">text</span><span class="p">:(</span><span class="n">full</span> <span class="n">text</span> <span class="n">search</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following are not currently supported: boolean operators (+,-), range
+queries by date, and range queries based on severity levels.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following will not be supported: fuzziness, proximity searches, and
+boosting which are features specific to Lucene and/or Elasticsearch.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="reference.html" class="btn btn-neutral float-left" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="alert.html" class="btn btn-neutral float-right" title="Alert Format" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015-2023, Nick Satterly. Creative Commons Attribution-ShareAlike 3.0 License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

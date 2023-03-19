@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alerts explored in-depth &mdash; Alerta 9.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Alerta
+          </a>
+              <div class="version">
+                9.0.0rc1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick-start.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Design Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server.html">Server &amp; API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui.html">Alerta Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">Alerta CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../integrations.html">Integrations &amp; Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authorization.html">Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webhooks.html">Custom Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../customer-views.html">Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../federated.html">Federated Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">Resources</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/query-syntax.html">API Query Syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/alert.html">Alert Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/heartbeat.html">Heartbeat Format</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release-notes.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Alerta</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Alerts explored in-depth</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/gettingstarted/tutorial-4-alerts.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="alerts-explored-in-depth">
+<span id="tutorial-4"></span><h1>Alerts explored in-depth<a class="headerlink" href="#alerts-explored-in-depth" title="Permalink to this heading"></a></h1>
+<p>In this tutorial you will learn about alert de-duplication and
+simple correlation techniques as well as alert tags, custom
+attributes, environments, services and more.</p>
+<p><strong>Contents</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#overview">Overview</a></p></li>
+<li><p><a class="reference internal" href="#prerequisites">Prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#step-1-de-duplication">Step 1: De-duplication</a></p></li>
+<li><p><a class="reference internal" href="#step-2-simple-correlation">Step 2: Simple Correlation</a></p></li>
+<li><p><a class="reference internal" href="#step-3-automatic-status-changes">Step 3: Automatic status changes</a></p></li>
+<li><p><a class="reference internal" href="#step-4-environments-and-services">Step 4: Environments and Services</a></p></li>
+<li><p><a class="reference internal" href="#step-5-groups-types-and-origins">Step 5: Groups, types and origins</a></p></li>
+<li><p><a class="reference internal" href="#step-6-tags-and-custom-attributes">Step 6: Tags and Custom attributes</a></p></li>
+<li><p><a class="reference internal" href="#step-7-saving-raw-data">Step 7: Saving raw data</a></p></li>
+<li><p><a class="reference internal" href="#next-steps">Next Steps</a></p></li>
+</ul>
+</div></blockquote>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>Even though event and resource are the only mandatory
+attributes the standard alert format is extensive with more
+than <a class="reference internal" href="../api/alert.html#alert-format"><span class="std std-ref">two dozen fields</span></a>.</p>
+<p>This tutorial will explain what the different attributes are
+and what they are for. And once you understand what the different
+attributes are for you will be able to chose more useful values to
+assign to them to get the most out of Alerta.</p>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
+<p>It is assumed that you have completed <a class="reference internal" href="tutorial-1-deploy-alerta.html#tutorial-1"><span class="std std-ref">Tutorial 1</span></a>
+or you have access to an Alerta server that you can send alerts to
+using the <code class="docutils literal notranslate"><span class="pre">alerta</span></code> command-line tool.</p>
+<p>It would also help to have access to the Alerta web console as
+it can be very helpful to see the alerts update in the console
+in realtime rather than having to continually run the <code class="docutils literal notranslate"><span class="pre">alerta</span> <span class="pre">query</span></code>
+command to see the results.</p>
+</section>
+<section id="step-1-de-duplication">
+<h2>Step 1: De-duplication<a class="headerlink" href="#step-1-de-duplication" title="Permalink to this heading"></a></h2>
+<p>Alert de-duplication is used to reduce the number of alerts in the
+console by only displaying the duplicate alerts once but updating
+key alert attributes and incrementing a duplicate counter.</p>
+<p>To demonstrate de-duplication, run the following command to generate
+the same alert, multiple times:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span>-S<span class="w"> </span>Security<span class="w"> </span><span class="se">\</span>
+-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span>
+<span class="go">57eb528a-84bf-4080-b54a-37e2888207f3 (indeterminate -&gt; major)</span>
+
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span>-S<span class="w"> </span>Security<span class="w"> </span><span class="se">\</span>
+-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span>
+<span class="go">57eb528a-84bf-4080-b54a-37e2888207f3 (1 duplicates)</span>
+</pre></div>
+</div>
+<p>Note that this is the default behaviour. No special configuration or alert
+format is required. As long as the alert resource and event are the same
+then alerts will be de-duplicated.</p>
+</section>
+<section id="step-2-simple-correlation">
+<h2>Step 2: Simple Correlation<a class="headerlink" href="#step-2-simple-correlation" title="Permalink to this heading"></a></h2>
+<p>Alerta has support for simple correlation which means that it can
+be configured to update one alert with another related alert.</p>
+<p>To demonstrate <strong>simple correlation</strong>, run the following commands to
+generate alerts that replace each other and only show the most
+recent:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span>-S<span class="w"> </span>Security<span class="w"> </span><span class="se">\</span>
+-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span><span class="w"> </span>-C<span class="w"> </span>loginError<span class="w"> </span>-C<span class="w"> </span>loginWarn<span class="w"> </span>-C<span class="w"> </span>loginOk
+<span class="go">572cb438-5d09-4cdc-babd-410020e3bc15 (indeterminate -&gt; major)</span>
+
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginWarn<span class="w"> </span>-s<span class="w"> </span>warning<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span>-S<span class="w"> </span>Security<span class="w"> </span><span class="se">\</span>
+-t<span class="w"> </span><span class="s1">&#39;user01 password reset.&#39;</span><span class="w"> </span>-C<span class="w"> </span>loginError<span class="w"> </span>-C<span class="w"> </span>loginWarn<span class="w"> </span>-C<span class="w"> </span>loginOk
+<span class="go">572cb438-5d09-4cdc-babd-410020e3bc15 (major -&gt; warning)</span>
+
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginOk<span class="w"> </span>-s<span class="w"> </span>normal<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span>-S<span class="w"> </span>Security<span class="w"> </span><span class="se">\</span>
+-t<span class="w"> </span><span class="s1">&#39;user01 login success.&#39;</span><span class="w"> </span>-C<span class="w"> </span>loginError<span class="w"> </span>-C<span class="w"> </span>loginWarn<span class="w"> </span>-C<span class="w"> </span>loginOk
+<span class="go">572cb438-5d09-4cdc-babd-410020e3bc15 (warning -&gt; normal)</span>
+</pre></div>
+</div>
+<p>The most important part of the above commands were the
+<code class="docutils literal notranslate"><span class="pre">-C</span> <span class="pre">loginError</span> <span class="pre">-C</span> <span class="pre">loginWarn</span> <span class="pre">-C</span> <span class="pre">loginOk</span></code> arguments. The “-C”
+option is short for “–correlate” and informs the Alerta server
+that alerts with these events should be correlated together.</p>
+<p>Interestingly the de-duplication logic demonstrated in <span class="xref std std-ref">Step 1</span>
+above can be used to produce similar results as this simple
+correlation.</p>
+<p>To demonstrate <strong>correlation by de-duplication</strong> replace the different
+login event names with the more generic “loginStatus” and move the
+actual event name to “value”.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span>
+<span class="go">1acab7c8-e08e-4fef-98ad-3b07ba238120 (indeterminate -&gt; major)</span>
+
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginWarn<span class="w"> </span>-s<span class="w"> </span>warning<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 password reset.&#39;</span>
+<span class="go">1acab7c8-e08e-4fef-98ad-3b07ba238120 (major -&gt; warning)</span>
+
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginOk<span class="w"> </span>-s<span class="w"> </span>normal<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login success.&#39;</span>
+<span class="go">1acab7c8-e08e-4fef-98ad-3b07ba238120 (warning -&gt; normal)</span>
+</pre></div>
+</div>
+<p>This method gives you the benefits of correlation without the overhead
+of having to define all the correlated event names in advance.</p>
+</section>
+<section id="step-3-automatic-status-changes">
+<h2>Step 3: Automatic status changes<a class="headerlink" href="#step-3-automatic-status-changes" title="Permalink to this heading"></a></h2>
+<p>In the examples above you sent alerts with different severities
+and they caused the same alert to transition from severity to
+severity.</p>
+<p>What you might not have noticed is that the alert status also
+changed. For example, when a new alert is received the status
+was automatically set to <code class="docutils literal notranslate"><span class="pre">open</span></code>. And when the alert severity
+was changed to <code class="docutils literal notranslate"><span class="pre">normal</span></code> the status automatically changed to
+<code class="docutils literal notranslate"><span class="pre">closed</span></code>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span>
+<span class="go">12c4d5f4-1be9-436d-a90a-1adc1a473815 (indeterminate -&gt; major)</span>
+<span class="go">=&gt; open</span>
+
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginOk<span class="w"> </span>-s<span class="w"> </span>normal<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login success.&#39;</span>
+<span class="go">12c4d5f4-1be9-436d-a90a-1adc1a473815 (major -&gt; normal)</span>
+<span class="go">=&gt; closed</span>
+</pre></div>
+</div>
+<p>In addition to <code class="docutils literal notranslate"><span class="pre">open</span></code> and <code class="docutils literal notranslate"><span class="pre">closed</span></code> you can set the status
+of alerts to <code class="docutils literal notranslate"><span class="pre">ack</span></code> or <code class="docutils literal notranslate"><span class="pre">assign</span></code> based on your alert handling
+procedures.</p>
+<p>An important feature of Alerta is that it will automatically
+<code class="docutils literal notranslate"><span class="pre">re-open</span></code> an alert that was <code class="docutils literal notranslate"><span class="pre">acked</span></code> if the severity for the
+new alert is higher than that already received.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span>
+<span class="go">9df79583-397b-4d6b-8c6e-3f446bd0c7b3 (indeterminate -&gt; major)</span>
+<span class="go">=&gt; open</span>
+
+<span class="gp">$ </span>alerta<span class="w"> </span>ack<span class="w"> </span>--id<span class="w"> </span>9df79583
+<span class="go">=&gt; ack</span>
+
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>critical<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span>
+<span class="go">9df79583-397b-4d6b-8c6e-3f446bd0c7b3 (major -&gt; critical)</span>
+<span class="go">=&gt; open</span>
+</pre></div>
+</div>
+<p>Alerts are also <code class="docutils literal notranslate"><span class="pre">re-opened</span></code> if they are <code class="docutils literal notranslate"><span class="pre">closed</span></code> or <code class="docutils literal notranslate"><span class="pre">expired</span></code>
+when any severity except <code class="docutils literal notranslate"><span class="pre">normal</span></code> is received for that alert.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span>
+<span class="go">9564d012-1d37-45c2-94c6-ba5e26af8389 (indeterminate -&gt; major)</span>
+<span class="go">=&gt; open</span>
+
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginOk<span class="w"> </span>-s<span class="w"> </span>normal<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login success.&#39;</span>
+<span class="go">9564d012-1d37-45c2-94c6-ba5e26af8389 (major -&gt; normal)</span>
+<span class="go">=&gt; closed</span>
+
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span>
+<span class="go">9564d012-1d37-45c2-94c6-ba5e26af8389 (normal -&gt; major)</span>
+<span class="go">=&gt; open</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4-environments-and-services">
+<h2>Step 4: Environments and Services<a class="headerlink" href="#step-4-environments-and-services" title="Permalink to this heading"></a></h2>
+<p>The alert <code class="docutils literal notranslate"><span class="pre">environment</span></code> plays an important role in de-duplication
+and correlation because it is used to “namespace” the alert <code class="docutils literal notranslate"><span class="pre">resource</span></code>.
+Alert <code class="docutils literal notranslate"><span class="pre">environments</span></code> provide a scope for <code class="docutils literal notranslate"><span class="pre">resources</span></code>. Alert
+<code class="docutils literal notranslate"><span class="pre">resources</span></code> need to be unique within an <code class="docutils literal notranslate"><span class="pre">environment</span></code> namespace.</p>
+<p>This means that if two alerts are received for the same <code class="docutils literal notranslate"><span class="pre">resource</span></code>
+but <strong>different</strong> environments they are considered different alerts
+and are <strong>not</strong> de-duplicated or correlated.</p>
+<p>This is so that you can have hosts, applications, devices or anything
+with the same resource name but in different environments and they
+will be treated independently.</p>
+<p>Run the following commands to generate two “loginError” alerts, one
+for the “Production” environment and the other for “Development”:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span>
+<span class="go">f0948bf7-d351-47f8-8670-0eb84127816b (indeterminate -&gt; major)</span>
+
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Development<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span>
+<span class="go">4cd197b8-eb19-49f5-9afe-841390c03ff9 (indeterminate -&gt; major)</span>
+</pre></div>
+</div>
+<p>The alert <code class="docutils literal notranslate"><span class="pre">service</span></code> is used to detail the list of effected services.</p>
+</section>
+<section id="step-5-groups-types-and-origins">
+<h2>Step 5: Groups, types and origins<a class="headerlink" href="#step-5-groups-types-and-origins" title="Permalink to this heading"></a></h2>
+<p>TBC</p>
+</section>
+<section id="step-6-tags-and-custom-attributes">
+<h2>Step 6: Tags and Custom attributes<a class="headerlink" href="#step-6-tags-and-custom-attributes" title="Permalink to this heading"></a></h2>
+<p>TBC</p>
+</section>
+<section id="step-7-saving-raw-data">
+<h2>Step 7: Saving raw data<a class="headerlink" href="#step-7-saving-raw-data" title="Permalink to this heading"></a></h2>
+<p>TBC</p>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading"></a></h2>
+<p>After you deploy your Alerta server, you might want to try some of
+the following tutorials:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="tutorial-2-housekeeping.html#tutorial-2"><span class="std std-ref">Use alert timeouts to expire stale alerts</span></a></p></li>
+<li><p>Configure a plugin to notify a Slack Channel</p></li>
+<li><p>Send alerts to the Alerta API using the command-line tool</p></li>
+<li><p>Create filtered alert views for different customers</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015-2023, Nick Satterly. Creative Commons Attribution-ShareAlike 3.0 License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

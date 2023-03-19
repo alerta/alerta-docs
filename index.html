@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alerta monitoring system &mdash; Alerta 9.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Quickstart" href="quick-start.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Alerta
+          </a>
+              <div class="version">
+                9.0.0rc1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui.html">Alerta Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webhooks.html">Custom Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="federated.html">Federated Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/query-syntax.html">API Query Syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/alert.html">Alert Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/heartbeat.html">Heartbeat Format</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release-notes.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Alerta</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Alerta monitoring system</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="alerta-monitoring-system">
+<h1>Alerta monitoring system<a class="headerlink" href="#alerta-monitoring-system" title="Permalink to this heading"></a></h1>
+<p>The alerta monitoring system is a tool used to consolidate and de-duplicate
+alerts from multiple sources for quick ‘at-a-glance’ visualisation. With
+just one system you can monitor alerts from many other monitoring tools
+on a single screen.</p>
+<img alt="_images/alerta-screen-shot-3.png" src="_images/alerta-screen-shot-3.png" />
+<p>Alerta combines a JSON API <a class="reference internal" href="server.html#server"><span class="std std-ref">server</span></a> for receiving, processing and
+rendering alerts with a simple, yet effective <a class="reference internal" href="webui.html#webui"><span class="std std-ref">Alerta Web UI</span></a> and <a class="reference internal" href="cli.html#cli"><span class="std std-ref">command-line
+tool</span></a>. There are numerous <a class="reference internal" href="integrations.html#integrations"><span class="std std-ref">integrations</span></a> with <a class="reference external" href="https://www.pingdom.com">popular</a>
+<a class="reference external" href="https://www.nagios.com">monitoring</a> <a class="reference external" href="https://www.pagerduty.com">tools</a> and it is easy to add your own using the <a class="reference internal" href="api/reference.html#api"><span class="std std-ref">API</span></a>
+directly, the <a class="reference internal" href="development.html#development"><span class="std std-ref">Python SDK</span></a> or the same command-line tool to
+<a class="reference internal" href="cli.html#cli-send"><span class="std std-ref">send alerts</span></a>. Access to the API and command-line tool can be
+restricted using <a class="reference internal" href="api/reference.html#api-keys"><span class="std std-ref">API keys</span></a> and to the web console using
+<span class="xref std std-ref">Basic Auth</span> or <span class="xref std std-ref">OAuth2</span> providers Google,
+GitHub and GitLab.</p>
+<p><a class="reference internal" href="quick-start.html#quick-start"><span class="std std-ref">Get started</span></a> today!</p>
+<section id="demo-sites">
+<h2>Demo Sites<a class="headerlink" href="#demo-sites" title="Permalink to this heading"></a></h2>
+<p>There are two public web consoles available for demonstration and testing:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://try.alerta.io">https://try.alerta.io</a> (Google OAuth)</p></li>
+<li><p><a class="reference external" href="https://alerta.herokuapp.com">https://alerta.herokuapp.com</a> (BasicAuth)</p></li>
+</ul>
+<p>The web consoles are powered by a single public API which can be used
+as a sandbox for integration testing:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://alerta-api.herokuapp.com">https://alerta-api.herokuapp.com</a></p></li>
+</ul>
+<p>The “API Explorer” can be used to query for and send alerts to the
+public API server:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://explorer.alerta.io">https://explorer.alerta.io</a></p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">alerta</span></code> command-line tool can also be used to generate alerts.
+The required API key is <code class="docutils literal notranslate"><span class="pre">demo-key</span></code>.</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="contribute">
+<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Core project: <a class="reference external" href="https://github.com/alerta/alerta">https://github.com/alerta/alerta</a></p></li>
+<li><p>Web UI: <a class="reference external" href="https://github.com/alerta/alerta-webui">https://github.com/alerta/alerta-webui</a></p></li>
+<li><p>Python SDK: <a class="reference external" href="https://github.com/alerta/python-alerta-client">https://github.com/alerta/python-alerta-client</a></p></li>
+<li><p>Contributions and integrations: <a class="reference external" href="https://github.com/alerta/alerta-contrib">https://github.com/alerta/alerta-contrib</a></p></li>
+<li><p>Docker container: <a class="reference external" href="https://github.com/alerta/docker-alerta">https://github.com/alerta/docker-alerta</a></p></li>
+</ul>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Slack: <a class="reference external" href="https://slack.alerta.dev">https://slack.alerta.dev</a></p></li>
+<li><p><a class="reference internal" href="faq.html#faq"><span class="std std-ref">Frequently Asked Questions</span></a></p></li>
+<li><p>Issue Tracker: <a class="reference external" href="https://github.com/alerta/alerta/issues">https://github.com/alerta/alerta/issues</a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading"></a></h2>
+<p>This project is licensed under the Apache license, Version 2.0 .</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quick-start.html" class="btn btn-neutral float-right" title="Quickstart" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2015-2023, Nick Satterly. Creative Commons Attribution-ShareAlike 3.0 License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
