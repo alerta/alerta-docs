@@ -79,15 +79,15 @@ active blackout periods. At a minimum, a blackout period must define
 an alert <code class="docutils literal notranslate"><span class="pre">environment</span></code> to suppress.</p>
 <p>To demonstrate how to suppress all alerts for the <code class="docutils literal notranslate"><span class="pre">Production</span></code>
 environment run the following commands:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta send -r host05:/dev/disk1 -e FsInodeUtil -s major -E Production -S System <span class="se">\</span>
--g OS -t <span class="s1">&#39;/dev/disk1 inode utilisation high.&#39;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>host05:/dev/disk1<span class="w"> </span>-e<span class="w"> </span>FsInodeUtil<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span>-S<span class="w"> </span>System<span class="w"> </span><span class="se">\</span>
+-g<span class="w"> </span>OS<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;/dev/disk1 inode utilisation high.&#39;</span>
 <span class="go">ed8dd6b3-37a5-4687-8a98-99d318eb6c37 (indeterminate -&gt; major)</span>
 
-<span class="gp">$</span> alerta blackout --environment Production
+<span class="gp">$ </span>alerta<span class="w"> </span>blackout<span class="w"> </span>--environment<span class="w"> </span>Production
 <span class="go">26997703-6705-457a-b603-0c151762129c</span>
 
-<span class="gp">$</span> alerta send -r host05:/dev/disk1 -e FsInodeUtil -s major -E Production -S System <span class="se">\</span>
--g OS -t <span class="s1">&#39;/dev/disk1 inode utilisation high.&#39;</span>
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>host05:/dev/disk1<span class="w"> </span>-e<span class="w"> </span>FsInodeUtil<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span>-S<span class="w"> </span>System<span class="w"> </span><span class="se">\</span>
+-g<span class="w"> </span>OS<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;/dev/disk1 inode utilisation high.&#39;</span>
 <span class="go">217ebb7e-b51a-4f15-b8b6-852c5e965894 (Suppressed alert during blackout period)</span>
 </pre></div>
 </div>
@@ -95,7 +95,7 @@ environment run the following commands:</p>
 the response was instead to indicate that the alert matched a blackout
 period and would be suppressed.</p>
 <p>To confirm that the blackout period is active run:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta blackouts
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>blackouts
 <span class="go">ID       CUSTOMER         ENVIRONMENT      SERVICE          RESOURCE         EVENT            GROUP            TAGS                     STATUS   START               DURATION</span>
 <span class="go">26997703 *                Production       *                *                *                *                *                        active   2017/08/01 08:27:03 3600s</span>
 </pre></div>
@@ -107,13 +107,13 @@ above matches the id returned from the <code class="docutils literal notranslate
 <h2>Step 2: Blackout by Service or Group<a class="headerlink" href="#step-2-blackout-by-service-or-group" title="Permalink to this headline">¶</a></h2>
 <p>Blanket alert suppression can be acheived by defining a blackout period
 based on <code class="docutils literal notranslate"><span class="pre">service</span></code> or <code class="docutils literal notranslate"><span class="pre">group</span></code>:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta blackout -E Development -S Network --duration <span class="m">86400</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>blackout<span class="w"> </span>-E<span class="w"> </span>Development<span class="w"> </span>-S<span class="w"> </span>Network<span class="w"> </span>--duration<span class="w"> </span><span class="m">86400</span>
 <span class="go">51ca8a3b-39fd-4315-a748-9150c63632aa</span>
 
-<span class="gp">$</span> alerta blackout -E Development -g Performance
+<span class="gp">$ </span>alerta<span class="w"> </span>blackout<span class="w"> </span>-E<span class="w"> </span>Development<span class="w"> </span>-g<span class="w"> </span>Performance
 <span class="go">06beb220-26ac-4c8a-9e23-bd05911a13b2</span>
 
-<span class="gp">$</span> alerta blackouts
+<span class="gp">$ </span>alerta<span class="w"> </span>blackouts
 <span class="go">ID       CUSTOMER         ENVIRONMENT      SERVICE          RESOURCE         EVENT            GROUP            TAGS                     STATUS   START               DURATION</span>
 <span class="go">51ca8a3b *                Development      Network          *                *                *                *                        active   2017/08/01 21:02:14 86400s</span>
 <span class="go">06beb220 *                Development      *                *                *                Performance      *                        active   2017/08/01 21:03:36 3600s</span>
@@ -140,11 +140,11 @@ ID       CUSTOMER         ENVIRONMENT      SERVICE          RESOURCE         EVE
 blackouts based on <code class="docutils literal notranslate"><span class="pre">resource</span></code> or <code class="docutils literal notranslate"><span class="pre">event</span></code> don’t meet the requirements
 it is possible to define a blackout rule based on <code class="docutils literal notranslate"><span class="pre">tags</span></code> for maximum
 flexibility.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta blackout --environment Production --tag blackout
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>blackout<span class="w"> </span>--environment<span class="w"> </span>Production<span class="w"> </span>--tag<span class="w"> </span>blackout
 <span class="go">f4fc4ba5-a36f-4508-bd01-5550124ce26f</span>
 
-<span class="gp">$</span> alerta send -r host05:/dev/disk1 -e FsInodeUtil -s major -E Production -S System <span class="se">\</span>
--g OS -t <span class="s1">&#39;/dev/disk1 inode utilisation high.&#39;</span> --tag blackout
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>host05:/dev/disk1<span class="w"> </span>-e<span class="w"> </span>FsInodeUtil<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span>-S<span class="w"> </span>System<span class="w"> </span><span class="se">\</span>
+-g<span class="w"> </span>OS<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;/dev/disk1 inode utilisation high.&#39;</span><span class="w"> </span>--tag<span class="w"> </span>blackout
 <span class="go">488ea442-73b6-4b28-bd3e-dd0ae281d094 (Suppressed alert during blackout period)</span>
 </pre></div>
 </div>

@@ -130,11 +130,11 @@ that multiple LDAP domains can be supported.</p>
     <span class="s1">&#39;my-domain.com&#39;</span><span class="p">:</span> <span class="s1">&#39;dc=my-domain,dc=com&#39;</span>
 <span class="p">}</span>
 <span class="n">LDAP_DOMAINS_GROUP</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;my-domain.com&#39;</span><span class="p">:</span> <span class="s1">&#39;(&amp;(memberUid={username})(objectClass=groupOfUniqueNames))&#39;</span>
+    <span class="s1">&#39;my-domain.com&#39;</span><span class="p">:</span> <span class="s1">&#39;(&amp;(memberUid=</span><span class="si">{username}</span><span class="s1">)(objectClass=groupOfUniqueNames))&#39;</span>
     <span class="c1">#OR</span>
-    <span class="s1">&#39;my-domain.com&#39;</span><span class="p">:</span> <span class="s1">&#39;(&amp;(member={userdn})(objectClass=groupOfUniqueNames))&#39;</span>
+    <span class="s1">&#39;my-domain.com&#39;</span><span class="p">:</span> <span class="s1">&#39;(&amp;(member=</span><span class="si">{userdn}</span><span class="s1">)(objectClass=groupOfUniqueNames))&#39;</span>
     <span class="c1">#OR</span>
-    <span class="s1">&#39;my-domain.com&#39;</span><span class="p">:</span> <span class="s1">&#39;(&amp;(member={email})(objectClass=groupOfUniqueNames))&#39;</span>
+    <span class="s1">&#39;my-domain.com&#39;</span><span class="p">:</span> <span class="s1">&#39;(&amp;(member=</span><span class="si">{email}</span><span class="s1">)(objectClass=groupOfUniqueNames))&#39;</span>
 <span class="p">}</span>
 </pre></div>
 </div>

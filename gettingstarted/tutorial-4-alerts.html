@@ -79,12 +79,12 @@ console by only displaying the duplicate alerts once but updating
 key alert attributes and incrementing a duplicate counter.</p>
 <p>To demonstrate de-duplication, run the following command to generate
 the same alert, multiple times:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta send -r user01 -e loginError -s major -E Production -S Security <span class="se">\</span>
--t <span class="s1">&#39;user01 login failed.&#39;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span>-S<span class="w"> </span>Security<span class="w"> </span><span class="se">\</span>
+-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span>
 <span class="go">57eb528a-84bf-4080-b54a-37e2888207f3 (indeterminate -&gt; major)</span>
 
-<span class="gp">$</span> alerta send -r user01 -e loginError -s major -E Production -S Security <span class="se">\</span>
--t <span class="s1">&#39;user01 login failed.&#39;</span>
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span>-S<span class="w"> </span>Security<span class="w"> </span><span class="se">\</span>
+-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span>
 <span class="go">57eb528a-84bf-4080-b54a-37e2888207f3 (1 duplicates)</span>
 </pre></div>
 </div>
@@ -99,16 +99,16 @@ be configured to update one alert with another related alert.</p>
 <p>To demonstrate <strong>simple correlation</strong>, run the following commands to
 generate alerts that replace each other and only show the most
 recent:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta send -r user01 -e loginError -s major -E Production -S Security <span class="se">\</span>
--t <span class="s1">&#39;user01 login failed.&#39;</span> -C loginError -C loginWarn -C loginOk
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span>-S<span class="w"> </span>Security<span class="w"> </span><span class="se">\</span>
+-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span><span class="w"> </span>-C<span class="w"> </span>loginError<span class="w"> </span>-C<span class="w"> </span>loginWarn<span class="w"> </span>-C<span class="w"> </span>loginOk
 <span class="go">572cb438-5d09-4cdc-babd-410020e3bc15 (indeterminate -&gt; major)</span>
 
-<span class="gp">$</span> alerta send -r user01 -e loginWarn -s warning -E Production -S Security <span class="se">\</span>
--t <span class="s1">&#39;user01 password reset.&#39;</span> -C loginError -C loginWarn -C loginOk
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginWarn<span class="w"> </span>-s<span class="w"> </span>warning<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span>-S<span class="w"> </span>Security<span class="w"> </span><span class="se">\</span>
+-t<span class="w"> </span><span class="s1">&#39;user01 password reset.&#39;</span><span class="w"> </span>-C<span class="w"> </span>loginError<span class="w"> </span>-C<span class="w"> </span>loginWarn<span class="w"> </span>-C<span class="w"> </span>loginOk
 <span class="go">572cb438-5d09-4cdc-babd-410020e3bc15 (major -&gt; warning)</span>
 
-<span class="gp">$</span> alerta send -r user01 -e loginOk -s normal -E Production -S Security <span class="se">\</span>
--t <span class="s1">&#39;user01 login success.&#39;</span> -C loginError -C loginWarn -C loginOk
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginOk<span class="w"> </span>-s<span class="w"> </span>normal<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span>-S<span class="w"> </span>Security<span class="w"> </span><span class="se">\</span>
+-t<span class="w"> </span><span class="s1">&#39;user01 login success.&#39;</span><span class="w"> </span>-C<span class="w"> </span>loginError<span class="w"> </span>-C<span class="w"> </span>loginWarn<span class="w"> </span>-C<span class="w"> </span>loginOk
 <span class="go">572cb438-5d09-4cdc-babd-410020e3bc15 (warning -&gt; normal)</span>
 </pre></div>
 </div>
@@ -122,16 +122,16 @@ correlation.</p>
 <p>To demonstrate <strong>correlation by de-duplication</strong> replace the different
 login event names with the more generic “loginStatus” and move the
 actual event name to “value”.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginError -s major -E Production <span class="se">\</span>
--S Security -t <span class="s1">&#39;user01 login failed.&#39;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span>
 <span class="go">1acab7c8-e08e-4fef-98ad-3b07ba238120 (indeterminate -&gt; major)</span>
 
-<span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginWarn -s warning -E Production <span class="se">\</span>
--S Security -t <span class="s1">&#39;user01 password reset.&#39;</span>
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginWarn<span class="w"> </span>-s<span class="w"> </span>warning<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 password reset.&#39;</span>
 <span class="go">1acab7c8-e08e-4fef-98ad-3b07ba238120 (major -&gt; warning)</span>
 
-<span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginOk -s normal -E Production <span class="se">\</span>
--S Security -t <span class="s1">&#39;user01 login success.&#39;</span>
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginOk<span class="w"> </span>-s<span class="w"> </span>normal<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login success.&#39;</span>
 <span class="go">1acab7c8-e08e-4fef-98ad-3b07ba238120 (warning -&gt; normal)</span>
 </pre></div>
 </div>
@@ -148,13 +148,13 @@ changed. For example, when a new alert is received the status
 was automatically set to <code class="docutils literal notranslate"><span class="pre">open</span></code>. And when the alert severity
 was changed to <code class="docutils literal notranslate"><span class="pre">normal</span></code> the status automatically changed to
 <code class="docutils literal notranslate"><span class="pre">closed</span></code>.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginError -s major -E Production <span class="se">\</span>
--S Security -t <span class="s1">&#39;user01 login failed.&#39;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span>
 <span class="go">12c4d5f4-1be9-436d-a90a-1adc1a473815 (indeterminate -&gt; major)</span>
 <span class="go">=&gt; open</span>
 
-<span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginOk -s normal -E Production <span class="se">\</span>
--S Security -t <span class="s1">&#39;user01 login success.&#39;</span>
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginOk<span class="w"> </span>-s<span class="w"> </span>normal<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login success.&#39;</span>
 <span class="go">12c4d5f4-1be9-436d-a90a-1adc1a473815 (major -&gt; normal)</span>
 <span class="go">=&gt; closed</span>
 </pre></div>
@@ -165,34 +165,34 @@ procedures.</p>
 <p>An important feature of Alerta is that it will automatically
 <code class="docutils literal notranslate"><span class="pre">re-open</span></code> an alert that was <code class="docutils literal notranslate"><span class="pre">acked</span></code> if the severity for the
 new alert is higher than that already received.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginError -s major -E Production <span class="se">\</span>
--S Security -t <span class="s1">&#39;user01 login failed.&#39;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span>
 <span class="go">9df79583-397b-4d6b-8c6e-3f446bd0c7b3 (indeterminate -&gt; major)</span>
 <span class="go">=&gt; open</span>
 
-<span class="gp">$</span> alerta ack --id 9df79583
+<span class="gp">$ </span>alerta<span class="w"> </span>ack<span class="w"> </span>--id<span class="w"> </span>9df79583
 <span class="go">=&gt; ack</span>
 
-<span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginError -s critical -E Production <span class="se">\</span>
--S Security -t <span class="s1">&#39;user01 login failed.&#39;</span>
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>critical<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span>
 <span class="go">9df79583-397b-4d6b-8c6e-3f446bd0c7b3 (major -&gt; critical)</span>
 <span class="go">=&gt; open</span>
 </pre></div>
 </div>
 <p>Alerts are also <code class="docutils literal notranslate"><span class="pre">re-opened</span></code> if they are <code class="docutils literal notranslate"><span class="pre">closed</span></code> or <code class="docutils literal notranslate"><span class="pre">expired</span></code>
 when any severity except <code class="docutils literal notranslate"><span class="pre">normal</span></code> is received for that alert.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginError -s major -E Production <span class="se">\</span>
--S Security -t <span class="s1">&#39;user01 login failed.&#39;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span>
 <span class="go">9564d012-1d37-45c2-94c6-ba5e26af8389 (indeterminate -&gt; major)</span>
 <span class="go">=&gt; open</span>
 
-<span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginOk -s normal -E Production <span class="se">\</span>
--S Security -t <span class="s1">&#39;user01 login success.&#39;</span>
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginOk<span class="w"> </span>-s<span class="w"> </span>normal<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login success.&#39;</span>
 <span class="go">9564d012-1d37-45c2-94c6-ba5e26af8389 (major -&gt; normal)</span>
 <span class="go">=&gt; closed</span>
 
-<span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginError -s major -E Production <span class="se">\</span>
--S Security -t <span class="s1">&#39;user01 login failed.&#39;</span>
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span>
 <span class="go">9564d012-1d37-45c2-94c6-ba5e26af8389 (normal -&gt; major)</span>
 <span class="go">=&gt; open</span>
 </pre></div>
@@ -212,12 +212,12 @@ with the same resource name but in different environments and they
 will be treated independently.</p>
 <p>Run the following commands to generate two “loginError” alerts, one
 for the “Production” environment and the other for “Development”:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginError -s major -E Production <span class="se">\</span>
--S Security -t <span class="s1">&#39;user01 login failed.&#39;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span>
 <span class="go">f0948bf7-d351-47f8-8670-0eb84127816b (indeterminate -&gt; major)</span>
 
-<span class="gp">$</span> alerta send -r user01 -e loginStatus -v loginError -s major -E Development <span class="se">\</span>
--S Security -t <span class="s1">&#39;user01 login failed.&#39;</span>
+<span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Development<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span>
 <span class="go">4cd197b8-eb19-49f5-9afe-841390c03ff9 (indeterminate -&gt; major)</span>
 </pre></div>
 </div>

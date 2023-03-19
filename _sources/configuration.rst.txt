@@ -28,7 +28,7 @@ Config File Settings
 .. contents::
    :local:
 
-.. _general_config:
+.. _general settings:
 
 General Settings
 ~~~~~~~~~~~~~~~~
@@ -53,7 +53,7 @@ General Settings
 ``USE_PROXYFIX``
     if API served behind SSL terminating proxy (default is ``False``)
 
-.. _logging_config:
+.. _logging settings:
 
 Logging Settings
 ~~~~~~~~~~~~~~~~
@@ -101,7 +101,7 @@ or
 .. _default logging config: https://github.com/alerta/alerta/blob/master/alerta/utils/logging.py#L46
 .. _log format string: https://docs.python.org/3/library/logging.html
 
-.. _api_config:
+.. _api settings:
 
 API Settings
 ~~~~~~~~~~~~
@@ -128,7 +128,7 @@ API Settings
 
 .. _`ANSI/ISA 18.2 alarm model`: https://www.isa.org/standards-and-publications/isa-publications/intech-magazine/white-papers/pas-understanding-and-applying-ansi-isa-18-2-alarm-management-standard/
 
-.. _search_config:
+.. _search settings:
 
 Search Settings
 ~~~~~~~~~~~~~~~
@@ -144,7 +144,7 @@ Search Settings
 ``DEFAULT_FIELD``
     search default field when no field given when using :ref:`query string syntax <query_string_syntax>` (default is ``text``)
 
-.. _database_config:
+.. _database settings:
 
 Database Settings
 ~~~~~~~~~~~~~~~~~
@@ -193,7 +193,7 @@ See `MongoDB connection strings`_ for more information.
 ``DATABASE_RAISE_ON_ERROR``
     terminate startup if database configuration fails (default is ``True``)
 
-.. _bulk_api_config:
+.. _bulk api settings:
 
 Bulk API Settings
 ~~~~~~~~~~~~~~~~~
@@ -218,7 +218,7 @@ long-running tasks. (experimental)
 ``CELERY_RESULT_BACKEND``
     URL of Celery-supported result backend (no default)
 
-.. _auth_config:
+.. _auth settings:
 
 Authentication Settings
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -237,7 +237,10 @@ such as auditing, and features like the ability to assign and watch alerts.
     USER_DEFAULT_SCOPES = ['read', 'write:alerts']
     CUSTOMER_VIEWS = True
 
-.. index:: AUTH_REQUIRED, ADMIN_USERS, DEFAULT_ADMIN_ROLE, ADMIN_ROLES, USER_DEFAULT_SCOPES, GUEST_DEFAULT_SCOPES, CUSTOMER_VIEWS
+.. index:: AUTH_REQUIRED, ADMIN_USERS, DEFAULT_ADMIN_ROLE, ADMIN_ROLES
+.. index:: DEFAULT_USER_ROLE, USER_ROLES, USER_DEFAULT_SCOPES
+.. index:: DEFAULT_GUEST_ROLE, GUEST_ROLES, GUEST_DEFAULT_SCOPES
+.. index:: CUSTOM_SCOPES, DELETE_SCOPES, CUSTOMER_VIEWS, ALLOW_READONLY, READONLY_SCOPES
 
 ``AUTH_REQUIRED``
     users must authenticate when using web UI or command-line tool (default ``False``)
@@ -247,16 +250,31 @@ such as auditing, and features like the ability to assign and watch alerts.
     default role name used by ``ADMIN_ROLES`` (default is ``admin``)
 ``ADMIN_ROLES``
     list of "roles" or "groups" that are assigned the "admin" role (default is a list containing the ``DEFAULT_ADMIN_ROLE``)
+
+``DEFAULT_USER_ROLE``
+``USER_ROLES``
+
 ``USER_DEFAULT_SCOPES``
     default permissions assigned to logged in users (default is ``['read', 'write']``)
+
+``DEFAULT_GUEST_ROLE``
+``GUEST_ROLES``
+
 ``GUEST_DEFAULT_SCOPES``
     default permissions assigned to guest users (default is ``['read:alerts']``)
+
+``CUSTOM_SCOPES``
+``DELETE_SCOPES``
+
 ``CUSTOMER_VIEWS``
     enable `multi-tenacy`_ based on ``customer`` attribute (default is ``False``)
 
+``ALLOW_READONLY``
+``READONLY_SCOPES``
+
 .. _multi-tenacy: https://en.wikipedia.org/wiki/Multitenancy
 
-.. _auth_provider_config:
+.. _auth provider settings:
 
 Auth Provider Settings
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -270,15 +288,15 @@ Auth Provider Settings
 .. index:: AUTH_PROVIDER
 
 ``AUTH_PROVIDER``
-    valid authentication providers are ``basic``, ``ldap``, ``openid``, ``saml2``,
-    ``azure``, ``cognito``, ``github``, ``gitlab``, ``google``, ``keycloak``,
+    valid authentication providers are ``basic``, ``ldap``, ``github``, ``openid``, ``saml2``,
+    ``azure``, ``cognito``, ``gitlab``, ``google``, ``keycloak``,
     and ``pingfederate``  (default is ``basic``)
 .. note::
     Any authentication provider that is `OpenID Connect compliant`_ is supported. Set the
     ``AUTH_PROVIDER`` to ``openid`` and configure the required ``OIDC`` settings
-    :ref:`below <oidc_auth_config>`.
+    :ref:`below <oidc settings>`.
 
-.. _basic_auth_config:
+.. _basicauth settings:
 
 Basic Auth Settings
 ~~~~~~~~~~~~~~~~~~~
@@ -301,7 +319,7 @@ Basic Auth Settings
 ``ALLOWED_EMAIL_DOMAINS``
     authorised email domains when using email as login (default is ``*``)
 
-.. _ldap_auth_config:
+.. _ldap settings:
 
 LDAP Auth Settings
 ~~~~~~~~~~~~~~~~~~
@@ -316,52 +334,95 @@ LDAP Auth Settings
         'my-domain.com': 'cn=%s,dc=my-domain,dc=com'
     }
 
-.. index:: LDAP_URL, LDAP_DOMAINS
+.. index:: LDAP_URL, LDAP_TIMEOUT, LDAP_BASEDN, LDAP_CACERT, LDAP_ALLOW_SELF_SIGNED_CERT
+.. index:: LDAP_DOMAINS, LDAP_BIND_USERNAME, LDAP_BIND_PASSWORD, LDAP_USER_BASEDN
+.. index:: LDAP_USER_FILTER, LDAP_USER_NAME_ATTR, LDAP_USER_EMAIL_ATTR
+.. index:: LDAP_GROUP_BASEDN, LDAP_GROUP_FILTER, LDAP_GROUP_NAME_ATTR
+.. index:: LDAP_DEFAULT_DOMAIN, LDAP_CONFIG, ALLOWED_LDAP_GROUPS
 
 ``LDAP_URL``
     URL of the LDAP server (no default)
-``LDAP_DOMAINS``
-    dictionary of LDAP domains and LDAP search filters (no default)
-``LDAP_DOMAINS_GROUP``
-    (default is empty dict ``{}``)
-``LDAP_DOMAINS_BASEDN``
-    (default is empty dict ``{}``)
+
+    LDAP_TIMEOUT = -1  # seconds (-1=infinity)
+    LDAP_BASEDN = ''
+    LDAP_CACERT = ''  # Path to CA certificate to verify LDAPS connection against
+
 ``LDAP_ALLOW_SELF_SIGNED_CERT``
     (default is ``False``)
 
-.. _oidc_auth_config:
+``LDAP_DOMAINS``
+    dictionary of LDAP domains and LDAP search filters (no default)
+
+    LDAP_BIND_USERNAME = ''  # required if using LDAP_SEARCH_QUERY eg. uid=admin,ou=users,dc=domain,dc=com
+    LDAP_BIND_PASSWORD = ''  # required if using LDAP_BIND_USERNAME
+    LDAP_USER_BASEDN = ''  # BASEDN for user search (default: LDAP_BASEDN)
+    LDAP_USER_FILTER = ''  # eg. (cn={username})
+    LDAP_USER_NAME_ATTR = 'cn'  # eg. cn or displayName
+    LDAP_USER_EMAIL_ATTR = 'mail'  # eg. mail or email
+    LDAP_GROUP_BASEDN = ''  # BASEDN for group search (default: LDAP_BASEDN)
+    LDAP_GROUP_FILTER = ''  # eg. (&(member={userdn})(objectClass=group))
+    LDAP_GROUP_NAME_ATTR = 'dn'  # eg. dn, memberOf, or cn
+    LDAP_DEFAULT_DOMAIN = ''  # if set allows users to login with bare username
+    LDAP_CONFIG = {}  # type: Dict[str, Any]
+    ALLOWED_LDAP_GROUPS = ['*']
+
+.. _oidc settings:
 
 OpenID Connect Auth Settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+**Example**
+
+.. code:: python
+
+    FIXME
+
+.. index:: OAUTH2_CLIENT_ID, OAUTH2_CLIENT_SECRET, OIDC_ISSUER_URL, OIDC_AUTH_URL
+.. index:: OIDC_TOKEN_AUTH_METHODS, OIDC_LOGOUT_URL, OIDC_VERIFY_TOKEN
+.. index:: OIDC_ROLE_CLAIM, OIDC_GROUP_CLAIM, ALLOWED_OIDC_ROLES, ALLOWED_EMAIL_DOMAINS
+.. index:: OIDC_LINK_USER_EMAIL
+
 ``OAUTH2_CLIENT_ID``
-    client ID required by OAuth2 providers (no default)
+    client ID used by OpenID and OAuth2 providers (required)
 ``OAUTH2_CLIENT_SECRET``
-    client secret required by OAuth2 providers (no default)
+    client secret used by OpenID and OAuth2 providers (required)
 ``OIDC_ISSUER_URL``
     issuer URL also known as Discovery Document is used to auto-discover
-    all necessary auth endpoints for an OIDC client (no default)
+    all necessary auth endpoints for an OIDC client (required)
+``OIDC_AUTH_URL``
+    FIXME check
+``OIDC_TOKEN_AUTH_METHODS``
+    list of token auth methods in order of preference (``client_secret_basic``, ``client_secret_post``, ``client_secret_jwt``)
 ``OIDC_LOGOUT_URL``
-    (no default)
+    FIXME (no default)
 ``OIDC_VERIFY_TOKEN``
     (default is ``False``)
 ``OIDC_ROLE_CLAIM``
-    (default is ``roles``)
+    JWT claim name whose value is used in role mapping (default is ``roles``)
 ``OIDC_GROUP_CLAIM``
-    (default is ``groups``)
+    JWT claim name whose value is used in customer mapping (default is ``groups``)
 ``ALLOWED_OIDC_ROLES``
-    (default is ``*``)
+    allow list of acceptable roles (default is ``*``)
 ``ALLOWED_EMAIL_DOMAINS``
     authorised email domains when using email as login (default is ``*``)
+``OIDC_LINK_USER_EMAIL``
+    if using federated IdP link user accounts by verified email addresses (default is ``True``)
 
 .. _OpenID Connect compliant: https://openid.net/developers/certified/#OPServices
 
-.. _saml_auth_config:
+.. _saml settings:
 
 SAML 2.0 Auth Settings
 ~~~~~~~~~~~~~~~~~~~~~~
 
-.. index:: SAML2_CONFIG, ALLOWED_SAML2_GROUPS, SAML2_USER_NAME_FORMAT
+**Example**
+
+.. code:: python
+
+    FIXME 
+
+.. index:: SAML2_ENTITY_ID, SAML2_METADATA_URL, SAML2_USER_NAME_FORMAT, SAML2_EMAIL_ATTRIBUTE
+.. index:: SAML2_CONFIG, ALLOWED_SAML2_GROUPS
 
 ``SAML2_ENTITY_ID``
     (no default)
@@ -380,7 +441,7 @@ SAML 2.0 Auth Settings
 ``ALLOWED_EMAIL_DOMAINS``
     authorised email domains when using email as login (default is ``*``)
 
-.. _azure_auth_config:
+.. _azure settings:
 
 Azure Active Directory Auth Settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -400,36 +461,58 @@ Azure Active Directory Auth Settings
 ``AZURE_TENANT``
     "common", "organizations", "consumers" or tenant ID (defalt is ``common``)
 
-.. _cognito_auth_config:
+.. _cognito settings:
 
 Amazon Cognito Auth Settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Example**
+
+.. code:: python
+
+    FIXME
 
 .. index:: AWS_REGION, COGNITO_USER_POOL_ID, COGNITO_DOMAIN
 
 ``AWS_REGION``
     AWS region (default is ``us-east-1``)
 ``COGNITO_USER_POOL_ID``
-    (no default)
+    (required)
 ``COGNITO_DOMAIN``
-    (no default)
+    (required)
 
-.. _github_auth_config:
+.. _github settings:
 
 GitHub Auth Settings
 ~~~~~~~~~~~~~~~~~~~~
+
+**Example**
+
+.. code:: python
+
+    FIXME
 
 .. index:: GITHUB_URL, ALLOWED_GITHUB_ORGS
 
 ``GITHUB_URL``
     API URL for public or privately run GitHub Enterprise server (default is ``https://github.com``)
+
+    GITHUB_ROLE_CLAIM = 'teams'  # used in role mapping
+    GITHUB_GROUP_CLAIM = 'organizations'  # used in customer mapping
+
 ``ALLOWED_GITHUB_ORGS``
     authorised GitHub organisations a user must belong to (default is ``*``)
 
-.. _gitlab_auth_config:
+.. _gitlab settings:
 
 GitLab Auth Settings
 ~~~~~~~~~~~~~~~~~~~~
+
+**Example**
+
+.. code:: python
+
+    FIXME
 
 .. index:: GITLAB_URL, ALLOWED_GITLAB_GROUPS
 
@@ -438,10 +521,16 @@ GitLab Auth Settings
 ``ALLOWED_GITLAB_GROUPS``
     authorised GitLab groups a user must belong to (default is ``*``)
 
-.. _google_auth_config:
+.. _google settings:
 
 Google Auth Settings
 ~~~~~~~~~~~~~~~~~~~~
+
+**Example**
+
+.. code:: python
+
+    FIXME
 
 .. index:: OAUTH2_CLIENT_ID, OAUTH2_CLIENT_SECRET, ALLOWED_EMAIL_DOMAINS
 
@@ -452,10 +541,16 @@ Google Auth Settings
 ``ALLOWED_EMAIL_DOMAINS``
     authorised email domains when using email as login (default is ``*``)
 
-.. _keycloak_auth_config:
+.. _keycloak settings:
 
 Keycloack Auth Settings
 ~~~~~~~~~~~~~~~~~~~~~~~
+
+**Example**
+
+.. code:: python
+
+    FIXME
 
 .. index:: KEYCLOAK_URL, KEYCLOAK_REALM, ALLOWED_KEYCLOAK_ROLES
 
@@ -466,7 +561,7 @@ Keycloack Auth Settings
 ``ALLOWED_KEYCLOAK_ROLES``
     list of authorised roles a user must belong to (no default)
 
-.. _api_key_config:
+.. _apikey settings:
 
 API Key & Bearer Token Settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -478,7 +573,7 @@ API Key & Bearer Token Settings
 ``API_KEY_EXPIRE_DAYS``
     number of days an API key is valid (default is ``365`` days)
 
-.. _hmac_auth_config:
+.. _hmacauth settings:
 
 HMAC Auth Settings
 ~~~~~~~~~~~~~~~~~~
@@ -498,9 +593,9 @@ HMAC Auth Settings
 .. index:: HMAC_AUTH_CREDENTIALS
 
 ``HMAC_AUTH_CREDENTIALS``
-    HMAC credentials
+    FIXME HMAC credentials
 
-.. _Audit Log config:
+.. _audit settings:
 
 Audit Log Settings
 ~~~~~~~~~~~~~~~~~~
@@ -532,7 +627,7 @@ using a POST.
 ``AUDIT_URL``
     forward audit logs to HTTP POST URL (no default)
 
-.. _CORS config:
+.. _CORS settings:
 
 CORS Settings
 ~~~~~~~~~~~~~
@@ -552,7 +647,7 @@ CORS Settings
 ``CORS_ORIGINS``
     URL origins that can access the API for Cross-Origin Resource Sharing (CORS)
 
-.. _severity config:
+.. _severity settings:
 
 Severity Settings
 ~~~~~~~~~~~~~~~~~
@@ -598,7 +693,7 @@ in which Alerta is deployed.
 ``COLOR_MAP``
     dictionary of severity colors, text and highlight color
 
-.. _timeout config:
+.. _timeout settings:
 
 Timeout Settings
 ~~~~~~~~~~~~~~~~
@@ -627,7 +722,7 @@ are important for generating alerts from stale heartbeats.
 ``SHELVE_TIMEOUT``
     timeout period for unshelving alerts in shelved status (default is ``7200`` seconds, ``0`` = do not auto-unshelve)
 
-.. _housekeeping config:
+.. _housekeeping settings:
 
 Housekeeping Settings
 ~~~~~~~~~~~~~~~~~~~~~
@@ -648,7 +743,7 @@ Housekeeping Settings
 
 .. note:: Ensure to set ``DEFAULT_INFORM_SEVERITY`` to the "informational" severity that should be deleted.
 
-.. _email config:
+.. _email settings:
 
 Email Settings
 ~~~~~~~~~~~~~~
@@ -692,7 +787,7 @@ email address before they can login.
 ``SMTP_PASSWORD``
     application-specific password for ``MAIL_FROM`` or ``SMTP_USERNAME`` (no default)
 
-.. _webui config:
+.. _webui settings:
 
 Web UI Settings
 ~~~~~~~~~~~~~~~
@@ -749,7 +844,7 @@ The following settings are specific to the web UI and are not used by the server
 ``AUTO_REFRESH_INTERVAL``
     interval at which the web UI refreshes alert list (default is ``5000`` milliseconds)
 
-.. asi_config:
+.. _asi settings:
 
 Alert Status Indicator Settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -773,7 +868,7 @@ Alert Status Indicator Settings
 ``ASI_QUERIES``
     list of alert queries applied to filter status indicators (see example for default)
 
-.. _plugin config:
+.. _plugin settings:
 
 Plugin Settings
 ~~~~~~~~~~~~~~~~
@@ -887,7 +982,7 @@ Alerts and actions can be forwarded to other Alerta servers to create a
         $ date | md5 | base64                        <= create HMAC "secret"
         MzVlMzQ5NWYzYWE2YTgxYTUyYmIyNDY0ZWE2ZWJlYTMK
 
-.. _webhook config:
+.. _webhook settings:
 
 Webhook Settings
 ~~~~~~~~~~~~~~~~

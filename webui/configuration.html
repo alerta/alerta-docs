@@ -51,9 +51,9 @@ for configuration settings which has now been deprecated.</p>
 <p>The default web UI <code class="file docutils literal notranslate"><span class="pre">config.json</span></code> configuration file is included below.
 It assumes that the Alerta API is running on the same host (but different
 port) that the web UI static html files are being served from (line 2):</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="p">{</span>
-<span class="lineno">2 </span>  <span class="nt">&quot;endpoint&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080&quot;</span>
-<span class="lineno">3 </span><span class="p">}</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="p">{</span>
+<span class="linenos">2</span><span class="w">  </span><span class="nt">&quot;endpoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:8080&quot;</span>
+<span class="linenos">3</span><span class="p">}</span>
 </pre></div>
 </div>
 <p><strong>config.js Javascript Configuration</strong></p>
@@ -74,51 +74,51 @@ clients.</p>
 <p><strong>Example</strong></p>
 <p>The following API server settings generate the JSON client configuration
 shown below that.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;google&#39;</span>
-<span class="lineno">2 </span><span class="n">AUTH_REQUIRED</span> <span class="o">=</span> <span class="bp">True</span>
-<span class="lineno">3 </span><span class="n">CUSTOMER_VIEWS</span> <span class="o">=</span> <span class="bp">True</span>
-<span class="lineno">4 </span><span class="n">GOOGLE_TRACKING_ID</span> <span class="o">=</span> <span class="s1">&#39;UA-44644195-5&#39;</span>
-<span class="lineno">5 </span><span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s1">&#39;736147134702-glkb1pesv716j1utg4llg7c3rr7nnhli.apps.googleusercontent.com&#39;</span>
-<span class="lineno">6 </span><span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;secret&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;google&#39;</span>
+<span class="linenos">2</span><span class="n">AUTH_REQUIRED</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos">3</span><span class="n">CUSTOMER_VIEWS</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos">4</span><span class="n">GOOGLE_TRACKING_ID</span> <span class="o">=</span> <span class="s1">&#39;UA-44644195-5&#39;</span>
+<span class="linenos">5</span><span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s1">&#39;736147134702-glkb1pesv716j1utg4llg7c3rr7nnhli.apps.googleusercontent.com&#39;</span>
+<span class="linenos">6</span><span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;secret&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="p">{</span>
-<span class="lineno"> 2 </span>  <span class="nt">&quot;audio&quot;</span><span class="p">:</span> <span class="p">{},</span>
-<span class="lineno"> 3 </span>  <span class="nt">&quot;auth_required&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-<span class="lineno"> 4 </span>  <span class="nt">&quot;client_id&quot;</span><span class="p">:</span> <span class="s2">&quot;736147134702-glkb1pesv716j1utg4llg7c3rr7nnhli.apps.googleusercontent.com&quot;</span><span class="p">,</span>
-<span class="lineno"> 5 </span>  <span class="nt">&quot;colors&quot;</span><span class="p">:</span> <span class="p">{},</span>
-<span class="lineno"> 6 </span>  <span class="nt">&quot;customer_views&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-<span class="lineno"> 7 </span>  <span class="nt">&quot;dates&quot;</span><span class="p">:</span> <span class="p">{</span>
-<span class="lineno"> 8 </span>    <span class="nt">&quot;longDate&quot;</span><span class="p">:</span> <span class="s2">&quot;EEEE, MMMM d, yyyy h:mm:ss.sss a (Z)&quot;</span><span class="p">,</span>
-<span class="lineno"> 9 </span>    <span class="nt">&quot;mediumDate&quot;</span><span class="p">:</span> <span class="s2">&quot;medium&quot;</span><span class="p">,</span>
-<span class="lineno">10 </span>    <span class="nt">&quot;shortTime&quot;</span><span class="p">:</span> <span class="s2">&quot;shortTime&quot;</span>
-<span class="lineno">11 </span>  <span class="p">},</span>
-<span class="lineno">12 </span>  <span class="nt">&quot;endpoint&quot;</span><span class="p">:</span> <span class="s2">&quot;https://alerta-api.herokuapp.com&quot;</span><span class="p">,</span>
-<span class="lineno">13 </span>  <span class="nt">&quot;github_url&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-<span class="lineno">14 </span>  <span class="nt">&quot;gitlab_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://gitlab.com&quot;</span><span class="p">,</span>
-<span class="lineno">15 </span>  <span class="nt">&quot;keycloak_realm&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-<span class="lineno">16 </span>  <span class="nt">&quot;keycloak_url&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-<span class="lineno">17 </span>  <span class="nt">&quot;pingfederate_url&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-<span class="lineno">18 </span>  <span class="nt">&quot;provider&quot;</span><span class="p">:</span> <span class="s2">&quot;google&quot;</span><span class="p">,</span>
-<span class="lineno">19 </span>  <span class="nt">&quot;refresh_interval&quot;</span><span class="p">:</span> <span class="mi">5000</span><span class="p">,</span>
-<span class="lineno">20 </span>  <span class="nt">&quot;severity&quot;</span><span class="p">:</span> <span class="p">{</span>
-<span class="lineno">21 </span>    <span class="nt">&quot;cleared&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-<span class="lineno">22 </span>    <span class="nt">&quot;critical&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-<span class="lineno">23 </span>    <span class="nt">&quot;debug&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
-<span class="lineno">24 </span>    <span class="nt">&quot;indeterminate&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-<span class="lineno">25 </span>    <span class="nt">&quot;informational&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
-<span class="lineno">26 </span>    <span class="nt">&quot;major&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-<span class="lineno">27 </span>    <span class="nt">&quot;minor&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-<span class="lineno">28 </span>    <span class="nt">&quot;normal&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-<span class="lineno">29 </span>    <span class="nt">&quot;ok&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-<span class="lineno">30 </span>    <span class="nt">&quot;security&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-<span class="lineno">31 </span>    <span class="nt">&quot;trace&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
-<span class="lineno">32 </span>    <span class="nt">&quot;unknown&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
-<span class="lineno">33 </span>    <span class="nt">&quot;warning&quot;</span><span class="p">:</span> <span class="mi">4</span>
-<span class="lineno">34 </span>  <span class="p">},</span>
-<span class="lineno">35 </span>  <span class="nt">&quot;signup_enabled&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-<span class="lineno">36 </span>  <span class="nt">&quot;tracking_id&quot;</span><span class="p">:</span> <span class="s2">&quot;UA-44644195-5&quot;</span>
-<span class="lineno">37 </span><span class="p">}</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="p">{</span>
+<span class="linenos"> 2</span><span class="w">  </span><span class="nt">&quot;audio&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="linenos"> 3</span><span class="w">  </span><span class="nt">&quot;auth_required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="nt">&quot;client_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;736147134702-glkb1pesv716j1utg4llg7c3rr7nnhli.apps.googleusercontent.com&quot;</span><span class="p">,</span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="nt">&quot;colors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="nt">&quot;customer_views&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="nt">&quot;dates&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="nt">&quot;longDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EEEE, MMMM d, yyyy h:mm:ss.sss a (Z)&quot;</span><span class="p">,</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="nt">&quot;mediumDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;medium&quot;</span><span class="p">,</span>
+<span class="linenos">10</span><span class="w">    </span><span class="nt">&quot;shortTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;shortTime&quot;</span>
+<span class="linenos">11</span><span class="w">  </span><span class="p">},</span>
+<span class="linenos">12</span><span class="w">  </span><span class="nt">&quot;endpoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://alerta-api.herokuapp.com&quot;</span><span class="p">,</span>
+<span class="linenos">13</span><span class="w">  </span><span class="nt">&quot;github_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="linenos">14</span><span class="w">  </span><span class="nt">&quot;gitlab_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://gitlab.com&quot;</span><span class="p">,</span>
+<span class="linenos">15</span><span class="w">  </span><span class="nt">&quot;keycloak_realm&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="linenos">16</span><span class="w">  </span><span class="nt">&quot;keycloak_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="linenos">17</span><span class="w">  </span><span class="nt">&quot;pingfederate_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="linenos">18</span><span class="w">  </span><span class="nt">&quot;provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;google&quot;</span><span class="p">,</span>
+<span class="linenos">19</span><span class="w">  </span><span class="nt">&quot;refresh_interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span>
+<span class="linenos">20</span><span class="w">  </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">21</span><span class="w">    </span><span class="nt">&quot;cleared&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="linenos">22</span><span class="w">    </span><span class="nt">&quot;critical&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="linenos">23</span><span class="w">    </span><span class="nt">&quot;debug&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span>
+<span class="linenos">24</span><span class="w">    </span><span class="nt">&quot;indeterminate&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="linenos">25</span><span class="w">    </span><span class="nt">&quot;informational&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span>
+<span class="linenos">26</span><span class="w">    </span><span class="nt">&quot;major&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="linenos">27</span><span class="w">    </span><span class="nt">&quot;minor&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="linenos">28</span><span class="w">    </span><span class="nt">&quot;normal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="linenos">29</span><span class="w">    </span><span class="nt">&quot;ok&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="linenos">30</span><span class="w">    </span><span class="nt">&quot;security&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="linenos">31</span><span class="w">    </span><span class="nt">&quot;trace&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="linenos">32</span><span class="w">    </span><span class="nt">&quot;unknown&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span>
+<span class="linenos">33</span><span class="w">    </span><span class="nt">&quot;warning&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span>
+<span class="linenos">34</span><span class="w">  </span><span class="p">},</span>
+<span class="linenos">35</span><span class="w">  </span><span class="nt">&quot;signup_enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="linenos">36</span><span class="w">  </span><span class="nt">&quot;tracking_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;UA-44644195-5&quot;</span>
+<span class="linenos">37</span><span class="p">}</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -130,25 +130,8 @@ as sending the client secret is not necessary and would compromise security.</p>
 </div>
 <section id="client-settings">
 <h2>Client Settings<a class="headerlink" href="#client-settings" title="Permalink to this headline">¶</a></h2>
-<p>Full list of API server settings that can be used to configure clients.</p>
-<p><code class="docutils literal notranslate"><span class="pre">AUTH_REQUIRED</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">CUSTOMER_VIEWS</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">AUTH_PROVIDER</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">SIGNUP_ENABLED</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">OAUTH2_CLIENT_ID</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">GITHUB_URL</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">GITLAB_URL</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">KEYCLOAK_URL</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">KEYCLOAK_REALM</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">PINGFEDERATE_URL</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">COLOR_MAP</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">SEVERITY_MAP</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">GOOGLE_TRACKING_ID</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">AUTO_REFRESH_INTERVAL</span></code></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>It is not currently possible to configure dates or audio.</p>
-</div>
+<p>Full list of API server settings that can be used to configure clients can be found
+at <a class="reference internal" href="../configuration.html#webui-settings"><span class="std std-ref">Web UI Settings</span></a>.</p>
 </section>
 </section>
 <section id="severity-colors">

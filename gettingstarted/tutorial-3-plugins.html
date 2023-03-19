@@ -94,24 +94,24 @@ origin of the alert:</p>
 </pre></div>
 </div>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;alert&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;attributes&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;geoip&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;Riga&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;country_code&quot;</span><span class="p">:</span> <span class="s2">&quot;LV&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;country_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Latvia&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;62.85.64.34&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;latitude&quot;</span><span class="p">:</span> <span class="mf">56.95</span><span class="p">,</span>
-        <span class="nt">&quot;longitude&quot;</span><span class="p">:</span> <span class="mf">24.1</span><span class="p">,</span>
-        <span class="nt">&quot;metro_code&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="nt">&quot;region_code&quot;</span><span class="p">:</span> <span class="s2">&quot;RIX&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;region_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Riga&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;time_zone&quot;</span><span class="p">:</span> <span class="s2">&quot;Europe/Riga&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;zip_code&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
-      <span class="p">},</span>
-      <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;62.85.64.34&quot;</span>
-    <span class="p">},</span>
-    <span class="nt">&quot;correlate&quot;</span><span class="p">:</span> <span class="p">[],</span>
+<span class="w">  </span><span class="nt">&quot;alert&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;attributes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;geoip&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;city&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Riga&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;country_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LV&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;country_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Latvia&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;62.85.64.34&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;latitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">56.95</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;longitude&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">24.1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;metro_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;region_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RIX&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;region_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Riga&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;time_zone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Europe/Riga&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;zip_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;62.85.64.34&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;correlate&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -127,7 +127,7 @@ and the <code class="docutils literal notranslate"><span class="pre">__init__()<
 as the Super class is also called.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExamplePlugin</span><span class="p">(</span><span class="n">PluginBase</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
         <span class="c1"># plugin-specific init goes here</span>
         <span class="c1"># if not required, leave &quot;__init__()&quot; out completely</span>
@@ -176,11 +176,11 @@ has exceeded the threshold.</p>
         <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Detecting transient alerts...&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">alert</span><span class="o">.</span><span class="n">is_flapping</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="n">FLAPPING_WINDOW</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="n">FLAPPING_COUNT</span><span class="p">):</span>
             <span class="n">alert</span><span class="o">.</span><span class="n">severity</span> <span class="o">=</span> <span class="s1">&#39;indeterminate&#39;</span>
-            <span class="n">alert</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;flapping&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">alert</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;flapping&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="c1"># uncomment following line to stop alerts from being processed</span>
             <span class="c1"># raise RateLimit(&quot;Flapping alert received more than %s times in %s seconds&quot; % (FLAPPING_COUNT, FLAPPING_WINDOW))</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">alert</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;flapping&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="n">alert</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;flapping&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="k">return</span> <span class="n">alert</span>
 
@@ -215,8 +215,8 @@ file called <code class="docutils literal notranslate"><span class="pre">setup.p
     <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(),</span>
     <span class="n">py_modules</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;alerta_transient&#39;</span><span class="p">],</span>
     <span class="n">install_requires</span><span class="o">=</span><span class="p">[],</span>
-    <span class="n">include_package_data</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-    <span class="n">zip_safe</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">include_package_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">zip_safe</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
         <span class="s1">&#39;alerta.plugins&#39;</span><span class="p">:</span> <span class="p">[</span>
             <span class="s1">&#39;transient = alerta_transient:TransientAlert&#39;</span>
@@ -256,7 +256,7 @@ and loaded plugin entry points (not plugin names) of all the configured
 plugins in the order they are listed.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
 
-    <span class="k">print</span><span class="p">(</span><span class="n">plugins</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">plugins</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">plugins</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -277,8 +277,8 @@ and copy the following into a file called <code class="docutils literal notransl
     <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(),</span>
     <span class="n">py_modules</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;routing&#39;</span><span class="p">],</span>
     <span class="n">install_requires</span><span class="o">=</span><span class="p">[],</span>
-    <span class="n">include_package_data</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-    <span class="n">zip_safe</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">include_package_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">zip_safe</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
         <span class="s1">&#39;alerta.routing&#39;</span><span class="p">:</span> <span class="p">[</span>
           <span class="s1">&#39;rules = routing:rules&#39;</span>
