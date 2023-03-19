@@ -1,0 +1,69 @@
+name: Release
+
+on:
+  push:
+    tags: [ 'v*' ]
+
+env:
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - name: Install dependencies
+        id: install-deps
+        run:
+          python3 -m pip install --upgrade pip
+          pip install -r requirements.txt
+      # - name: nitpick
+      #   id: nitpick
+      #   run:
+      #     sphinx-build -b html -n . _build/html
+      # - name: linkcheck
+      #   id: linkcheck
+      #   run:
+      #     sphinx-build -b linkcheck . _build/linkcheck
+      # - name: spelling
+      #   id: spelling
+      #   run:
+      #     sphinx-build -b spelling . _build/spelling
+
+  release:
+    name: Publish
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - name: Install dependencies
+        id: install-deps
+        run:
+          python3 -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Build HTML
+        id: build
+        run:
+          sphinx-build -b html -d _build/doctrees . _build/html
+
+      - name: Publish to GitHub Pages
+        id: publish
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: _build/html
+
+      - uses: act10ns/slack@v1
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}

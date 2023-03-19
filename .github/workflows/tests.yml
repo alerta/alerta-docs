@@ -1,9 +1,9 @@
-name: Test
+name: Tests
 
 on:
   push:
-    # tags:
-    # - 'v*'
+  pull_request:
+    branches: [ master ]
 
 env:
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -11,8 +11,9 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: install
         run:
           pip install -r requirements.txt
@@ -31,8 +32,9 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: install
         run:
           pip install -r requirements.txt
