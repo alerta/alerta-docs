@@ -53,3 +53,7 @@ html_theme = 'sphinx_rtd_theme'
 # html_theme = 'piccolo_theme'
 html_static_path = ['_static']
 html_extra_path = []
+
+linkcheck_ignore = [
+    'https://www.sto.nato.int/publications/STO%20Meeting%20Proceedings/STO-MP-SCI-300/MP-SCI-300-10.pdf',
+]

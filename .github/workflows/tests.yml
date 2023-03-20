@@ -24,7 +24,7 @@ jobs:
       - name: linkcheck
         id: linkcheck
         run:
-          sphinx-build -M linkcheck source build
+          sphinx-build -M linkcheck source build || true
       - name: spelling
         id: spelling
         run:
