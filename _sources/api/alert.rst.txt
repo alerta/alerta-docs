@@ -7,7 +7,7 @@ Alerts received and sent by Alerta conform to a common alert format.
 All components of alerta use this message format and any external
 systems must produce or consume messages in this format also.
 
-.. _alert attributes:
+.. _alert_attributes:
 
 Attributes
 ----------

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Design Principles &mdash; Alerta 9.0 documentation</title>
+  <title>Design Principles 2 &mdash; Alerta 9.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
@@ -47,9 +47,10 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Design Principles</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Design Principles 2</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#resource-under-alarm">Resource under alarm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#many-severity-levels">Many severity levels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#robust-alert-reception">Robust alert reception</a></li>
@@ -61,26 +62,31 @@
 <li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webui.html">Alerta Web UI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extensions</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="plugins.html">Plug-ins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="webhooks.html">Custom Webhooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="federated.html">Federated Alerta</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
-</ul>
-<ul>
 <li class="toctree-l1"><a class="reference internal" href="api/reference.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/query-syntax.html">API Query Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/alert.html">Alert Format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/heartbeat.html">Heartbeat Format</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
 </ul>
@@ -103,9 +109,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Design Principles</li>
+      <li class="breadcrumb-item active">Design Principles 2</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/design.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/design.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -113,13 +119,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="design-principles">
-<span id="design"></span><h1>Design Principles<a class="headerlink" href="#design-principles" title="Permalink to this heading"></a></h1>
-<p>The following principles guided the design and development of the
-Alerta monitoring system.</p>
+  <section id="design-principles-2">
+<h1>Design Principles 2<a class="headerlink" href="#design-principles-2" title="Permalink to this heading"></a></h1>
+<p>The following principles guided the design and development of
+the Alerta monitoring system.</p>
 <section id="resource-under-alarm">
 <h2>Resource under alarm<a class="headerlink" href="#resource-under-alarm" title="Permalink to this heading"></a></h2>
-<p>A <a class="reference internal" href="api/alert.html#alert-attributes"><span class="std std-ref">resource</span></a> is any entity that it makes
+<p>A <a class="reference internal" href="api/alert.html#attributes"><span class="std std-ref">resource</span></a> is any entity that it makes
 sense for you to receive alerts for. You shouldn’t be forced to
 accept a certain “world view” when using a monitoring tool or to
 repurpose a “host” field for a service or application, or a even
@@ -140,7 +146,7 @@ want to consider using the <code class="docutils literal notranslate"><span clas
 liberal in what you accept from others”, alerta will accept any
 alert as long as it meets the alert format specification. ie. no
 field values need to be defined in advance for it to be accepted,
-however the benefits of following a standard <a class="reference internal" href="conventions.html#conventions"><span class="std std-ref">convention</span></a>
+however the benefits of following a standard <a class="reference internal" href="conventions.html"><span class="doc std std-doc">convention</span></a>
 for such attributes as <code class="docutils literal notranslate"><span class="pre">environment</span></code>, <code class="docutils literal notranslate"><span class="pre">service</span></code>, <code class="docutils literal notranslate"><span class="pre">event</span></code> and
 <code class="docutils literal notranslate"><span class="pre">resource</span></code> (as internally defined by and useful to you) are many.</p>
 </section>
