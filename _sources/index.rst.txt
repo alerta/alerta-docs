@@ -27,15 +27,14 @@ GitHub and GitLab.
 Demo Sites
 ----------
 
-There are two public web consoles available for demonstration and testing:
+There is a public web console available for demonstration and testing:
 
 - https://try.alerta.io (Google OAuth)
-- https://alerta.herokuapp.com (BasicAuth)
 
-The web consoles are powered by a single public API which can be used
-as a sandbox for integration testing:
+The web console is powered by a public API which can be used as a sandbox
+for integration testing:
 
-- https://alerta-api.herokuapp.com
+- https://alerta-api.fly.dev
 
 The "API Explorer" can be used to query for and send alerts to the
 public API server:

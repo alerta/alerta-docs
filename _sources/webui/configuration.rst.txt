@@ -78,7 +78,7 @@ shown below that.
         "mediumDate": "medium", 
         "shortTime": "shortTime"
       }, 
-      "endpoint": "https://alerta-api.herokuapp.com", 
+      "endpoint": "https://api.alerta.dev", 
       "github_url": null, 
       "gitlab_url": "https://gitlab.com", 
       "keycloak_realm": null, 

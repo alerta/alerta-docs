@@ -31,7 +31,7 @@ Initialise the alerta API client:
 .. code-block:: python
 
     >>> from alertaclient.api import Client
-    >>> client = Client(endpoint='https://alerta-api.herokuapp.com/', key='demo-key')
+    >>> client = Client(endpoint='https://api.alerta.dev/', key='demo-key')
 
 Send an alert:
 
