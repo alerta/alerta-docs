@@ -32,6 +32,7 @@ References
   * Alabaster https://github.com/bitprophet/alabaster
   * Pygments syntax highlighter https://pygments.org/languages/
   * MyST Parser https://myst-parser.readthedocs.io/en/latest/intro.html
+  * https://raw.githubusercontent.com/executablebooks/MyST-Parser/602470ebdaf81fbea999fcc0f0cf1b8e7784ec15/tests/test_renderers/fixtures/sphinx_roles.md
 
 License
 -------
