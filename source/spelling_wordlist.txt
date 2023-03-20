@@ -31,3 +31,17 @@ ack
 freeform
 eg
 ie
+zabbix
+Alertmanager
+Grafana
+Syslog
+Cloudwatch
+Logstash
+Solarwinds
+de
+pre
+alerta
+nginx
+wsgi
+uwsgi
+customise

@@ -16,6 +16,13 @@ To update the docs website:
     $ git commit -m '...'
     $ git push
 
+Dependencies
+------------
+
+The spelling extension uses `enchant`.
+
+    $ brew install enchant
+
 
 References
 ----------

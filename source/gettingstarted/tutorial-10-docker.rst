@@ -227,7 +227,7 @@ we use ``docker-compose`` and its YAML configuration file.
 
 We look at using ``docker-compose`` next, however, for now let's see
 how we can set :ref:`any configuration setting <configuration>` using
-an exernal ``alertad.conf`` file.
+an external ``alertad.conf`` file.
 
 Create a file called ``alertad.conf`` in your current working directory
 and we will include all of the environment variable settings from above
