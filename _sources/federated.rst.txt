@@ -131,7 +131,7 @@ On macOs, run
 Forwarding Filters
 ------------------
 
-The types of entites to be forwarded are configurable:
+The types of entities to be forwarded are configurable:
 
   * ``*`` - everything ie. alerts, all actions (incl. custom), deletes
   * ``alerts`` - alerts
