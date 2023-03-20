@@ -552,7 +552,7 @@ Display client config downloaded from API server.
     colors              : {}
     customer_views      : True
     dates               : {'longDate': 'EEEE, MMMM d, yyyy h:mm:ss.sss a (Z)', 'mediumDate': 'medium', 'shortTime': 'shortTime'}
-    endpoint            : https://alerta-api.herokuapp.com
+    endpoint            : https://api.alerta.dev
     github_url          : None
     gitlab_url          : https://gitlab.com
     keycloak_realm      : None
