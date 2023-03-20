@@ -45,15 +45,14 @@ The ``alerta`` command-line tool can also be used to generate alerts.
 The required API key is ``demo-key``.
 
 .. toctree::
-   :caption: Introduction
+   :caption: Basics
    :maxdepth: 2
    :hidden:
 
    quick-start
-   design
    server
-   webui
    cli
+   webui
    configuration
    authentication
    authorization
@@ -76,15 +75,31 @@ The required API key is ``demo-key``.
    :maxdepth: 2
    :hidden:
 
+   design
    conventions
    development
    Tutorials <tutorials>
    resources
+   faq
+   release-notes
+
+.. toctree::
+   :caption: API
+   :glob:
+   :maxdepth: 2
+   :hidden:
 
    api/reference
    api/query-syntax
    api/alert
    api/heartbeat
+
+.. toctree::
+   :caption: More
+   :maxdepth: 2
+   :hidden:
+
+   about
 
 Contribute
 ----------
@@ -102,24 +117,10 @@ Support
 * :ref:`Frequently Asked Questions <faq>`
 * Issue Tracker: https://github.com/alerta/alerta/issues
 
-.. toctree::
-   :caption: More
-   :maxdepth: 1
-   :hidden:
-
-   faq
-
 License
 -------
 
 This project is licensed under the Apache license, Version 2.0 .
-
-.. toctree::
-   :maxdepth: 2
-   :hidden:
-
-   release-notes
-   about
 
 Indices and tables
 ==================

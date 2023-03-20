@@ -21,7 +21,7 @@
     <link rel="author" title="About these documents" href="#" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Releases" href="release-notes.html" /> 
+    <link rel="prev" title="Heartbeat Format" href="api/heartbeat.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,13 +46,12 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Basics</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="server.html">Server &amp; API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webui.html">Alerta Web UI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Alerta CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui.html">Alerta Web UI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
@@ -68,21 +67,23 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release-notes.html">Releases</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="api/reference.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/query-syntax.html">API Query Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/alert.html">Alert Format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/heartbeat.html">Heartbeat Format</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
-</ul>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="release-notes.html">Releases</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">About</a></li>
 </ul>
 
@@ -102,7 +103,7 @@
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">About</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/about.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/about.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -111,21 +112,26 @@
            <div itemprop="articleBody">
              
   <section id="about">
-<span id="id1"></span><h1>About<a class="headerlink" href="#about" title="Permalink to this heading"></a></h1>
-<p>Alerta started at <a class="reference external" href="http://www.theguardian.com/">The Guardian</a> out of necessity as a replacement for a <a class="reference external" href="https://www.quest.com/foglight/">legacy
-monitoring tool</a> but only after exhaustively evaluating all <a class="reference external" href="https://www.nagios.org/">credible</a> <a class="reference external" href="https://www.zabbix.com/">alternatives</a>
+<h1>About<a class="headerlink" href="#about" title="Permalink to this heading"></a></h1>
+<p>Alerta started at <a class="reference external" href="https://www.theguardian.com/media/2011/jan/28/wikileaks-julian-assange-alan-rusbridger">The Guardian</a>
+out of necessity as a replacement for a <a class="reference external" href="https://www.quest.com/foglight/">legacy monitoring tool</a>
+but only after exhaustively evaluating <a class="reference external" href="https://www.solarwinds.com/">all</a>
+<a class="reference external" href="https://www.nagios.org/">credible</a> <a class="reference external" href="https://www.zabbix.com/">alternatives</a>
 first.</p>
 <p>Initially all we wanted was to be able to create alert thresholds against the
-hundreds of thousands of <a class="reference external" href="https://github.com/ganglia/monitor-core/wiki">Ganglia metrics</a> collected for the website and view the
-alerts in a web console ie. a Ganglia “alerter”. Not having a proper name for
-this <a class="reference external" href="https://www.theguardian.com/info/developer-blog/2012/oct/04/winning-the-metrics-battle">metrics and monitoring system</a> the working name of “an alerter” stuck and
-a simple homophone was chosen to aid future Google searches.</p>
+hundreds of thousands of <a class="reference external" href="https://github.com/ganglia/monitor-core/wiki">Ganglia metrics</a>
+collected for the website and view the alerts in a web console ie. a Ganglia
+“alerter”. Not having a proper name for this
+<a class="reference external" href="https://www.theguardian.com/info/developer-blog/2012/oct/04/winning-the-metrics-battle">metrics and monitoring system</a>
+the working name of “an alerter” stuck and a simple homophone was chosen
+to aid future Google searches.</p>
 <p>In the end, the thresholding of metrics proved very difficult to scale so we
 eventually split the project in two and metric thresholding was given to Riemann
-(see <a class="reference external" href="https://github.com/guardian/riemann-config">riemann-config</a>) and the alert correlation, de-duplication and visualisation
-became the “Alerta” project.</p>
+(see <a class="reference external" href="https://github.com/guardian/riemann-config">riemann-config</a>) and the
+alert correlation, de-duplication and visualisation became the “Alerta” project.</p>
 <p>Over the years the project has evolved to meet the constantly changing needs of
-the <a class="reference external" href="https://developers.theguardian.com/">Guardian developer teams</a> as they moved to a more agile, dynamic, “<a class="reference external" href="http://akfpartners.com/growth-blog/fault-isolative-architectures-or-swimlaning">swimlaned</a>”
+the <a class="reference external" href="https://www.theguardian.com/info/2021/oct/29/running-a-post-decade-innovation-retrospective">Guardian developer teams</a>
+as they moved to a more agile, dynamic, “<a class="reference external" href="http://akfpartners.com/growth-blog/fault-isolative-architectures-or-swimlaning">swimlaned</a>”
 architecture which has meant, for the operations team, a shift from static,
 self-hosted infrastructure to an internal OpenStack cloud to then finally an external
 cloud service.</p>
@@ -143,7 +149,7 @@ environment.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="release-notes.html" class="btn btn-neutral float-left" title="Releases" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api/heartbeat.html" class="btn btn-neutral float-left" title="Heartbeat Format" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
