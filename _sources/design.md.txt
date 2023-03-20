@@ -1,4 +1,4 @@
-# Design Principles 2
+# Design Principles
 
 The following principles guided the design and development of
 the Alerta monitoring system.

@@ -51,7 +51,6 @@ The required API key is ``demo-key``.
 
    quick-start
    design
-   design2
    server
    webui
    cli
