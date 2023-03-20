@@ -1,5 +1,5 @@
-Alerta monitoring system
-========================
+Alerta Release |release| documentation
+================================================
 
 The alerta monitoring system is a tool used to consolidate and de-duplicate
 alerts from multiple sources for quick 'at-a-glance' visualisation. With
@@ -45,6 +45,7 @@ The ``alerta`` command-line tool can also be used to generate alerts.
 The required API key is ``demo-key``.
 
 .. toctree::
+   :caption: Introduction
    :maxdepth: 2
    :hidden:
 
@@ -53,29 +54,37 @@ The required API key is ``demo-key``.
    server
    webui
    cli
-   integrations
    configuration
    authentication
    authorization
    deployment
+
+.. toctree::
+   :caption: Extensions
+   :maxdepth: 2
+   :hidden:
+
    plugins
+   integrations
    webhooks
    customer-views
    federated
+
+.. toctree::
+   :caption: References
+   :glob:
+   :maxdepth: 2
+   :hidden:
+
    conventions
    development
    Tutorials <tutorials>
    resources
 
-.. toctree::
-  :glob:
-  :maxdepth: 2
-  :hidden:
-
-  api/reference
-  api/query-syntax
-  api/alert
-  api/heartbeat
+   api/reference
+   api/query-syntax
+   api/alert
+   api/heartbeat
 
 Contribute
 ----------
@@ -94,6 +103,7 @@ Support
 * Issue Tracker: https://github.com/alerta/alerta/issues
 
 .. toctree::
+   :caption: More
    :maxdepth: 1
    :hidden:
 
