@@ -65,13 +65,13 @@ Python 3 virtual environment run::
 
     $ cd /opt
     $ python3 -m venv alerta
-    $ alerta/bin/pip install --upgrade pip wheel alerta-server alerta uwsgi
+    $ alerta/bin/pip install --upgrade pip wheel alerta-server alerta uwsgi pymongo
 
 To install the web console run::
 
     $ wget https://github.com/alerta/alerta-webui/releases/latest/download/alerta-webui.tar.gz
     $ tar zxvf alerta-webui.tar.gz
-    $ cp dist /var/www/html
+    $ cp -a dist /var/www/html
 
 Step 2: Configuration
 ---------------------
@@ -131,9 +131,9 @@ on reboot:
 
 .. code-block:: console
 
-    $ sudo service start uwsgi
-    $ sudo service status uwsgi
-    $ sudo service enable uwsgi
+    $ sudo systemctl start uwsgi
+    $ sudo systemctl status uwsgi
+    $ sudo systemctl enable uwsgi
 
 ::
 
@@ -167,6 +167,7 @@ the web console as static assets.
 
             location / {
                     root /var/www/html;
+                    try_files $uri $uri/ /index.html;
             }
     }
 
