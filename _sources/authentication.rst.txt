@@ -409,7 +409,36 @@ the OpenID Connect authentication provider for Alerta follow the steps below.
 Amazon Cognito
 ~~~~~~~~~~~~~~
 
-.. note:: TBC
+To use `Amazon Cognito`_ as the OAuth2 provider for Alerta, set up
+a User Pool and App Client in the AWS Console:
+
+#. Create a Cognito User Pool (or use an existing one) and note the
+   **User Pool ID** (e.g. ``us-east-1_aBcDeFgHi``).
+
+#. Under "App integration", create an App Client for Alerta:
+
+   - App client name: ``Alerta``
+   - Callback URL: ``http://alerta.example.com``
+   - Allowed OAuth Flows: Authorization code grant
+   - Allowed OAuth Scopes: openid, email, profile
+
+#. Configure a Cognito Domain (either a custom domain or the default
+   Amazon Cognito domain prefix), for example: ``alerta-auth``.
+
+#. Copy the generated **Client ID** and **Client Secret**.
+
+#. Add the configuration to the ``alertad.conf`` server configuration:
+
+.. code:: python
+
+    AUTH_PROVIDER = 'cognito'
+    AWS_REGION = 'us-east-1'
+    COGNITO_USER_POOL_ID = 'us-east-1_aBcDeFgHi'
+    COGNITO_DOMAIN = 'alerta-auth'
+    OAUTH2_CLIENT_ID = '1abc2def3ghi4jkl5mno6pqr7s'
+    OAUTH2_CLIENT_SECRET = 'us1-abc123-def456-ghi789'
+
+.. _Amazon Cognito: https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools.html
 
 
 .. _gitlab_oauth2:
@@ -655,4 +684,25 @@ Use the ``api-key`` URL parameter::
 HMAC Auth
 ---------
 
-.. note:: TBC
+HMAC authentication provides a secure method for machine-to-machine
+communication with the Alerta API. Instead of using static API keys,
+HMAC uses a shared secret to sign each request, ensuring both
+authenticity and integrity.
+
+To configure HMAC authentication, add one or more credentials to the
+``alertad.conf`` server configuration:
+
+.. code:: python
+
+    HMAC_AUTH_CREDENTIALS = [
+        {
+            'key': 'a1b2c3d4-e5f6-7890-abcd-ef1234567890',  # access key ID
+            'secret': 'MWYyZDdjMzg3ZjRjNTExZWM4NjNkYzYw',  # secret key (base64)
+            'algorithm': 'sha256'  # valid: sha256, sha384, sha512
+        }
+    ]
+
+The ``key`` is sent as a header to identify the caller, while the
+``secret`` is used to compute the HMAC signature of the request. The
+server verifies the signature against the stored secret for the given
+key, rejecting requests with invalid or missing signatures.

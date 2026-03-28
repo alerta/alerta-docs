@@ -279,7 +279,7 @@ in the web UI:</p>
 the use of bi-directional integration in different ways.</p>
 <ul class="simple">
 <li><p>AWS Cloudwatch webhook - includes the <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/webhooks/cloudwatch.py#L39-L40">SNS subscription confirmation</a> link in the text of the alert</p></li>
-<li><p>Zabbix integration &amp; plugin - TBC</p></li>
+<li><p>Zabbix integration &amp; plugin - uses the <a class="reference external" href="https://github.com/alerta/zabbix-alerta">zabbix-alerta</a> gateway to forward Zabbix triggers to Alerta and includes a link back to the Zabbix trigger page via the <code class="docutils literal notranslate"><span class="pre">moreInfo</span></code> alert attribute</p></li>
 <li><p>Grafana webhook - includes <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/webhooks/grafana.py#L39-L43">rule and image links</a> in Grafana alert attributes if available</p></li>
 <li><p>NewRelic webhook - includes <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/webhooks/newrelic.py#L33-L37">incident and runbook links</a> in NewRelic alerts</p></li>
 <li><p>PagerDuty webhook - includes the <a class="reference external" href="https://github.com/alerta/alerta/blob/master/alerta/webhooks/pagerduty.py#L18">incident URL</a> in alert history text when status changes</p></li>
@@ -343,7 +343,18 @@ endpoint to the Notification Channels.</p>
 </section>
 <section id="graylog">
 <h3><a class="toc-backref" href="#id32" role="doc-backlink">Graylog</a><a class="headerlink" href="#graylog" title="Permalink to this heading"></a></h3>
-<p>TBC</p>
+<p>Alerta can be configured to receive Graylog alerts by adding a webhook
+endpoint as an HTTP alert notification.</p>
+<p>For details on how to set this up see the <a class="reference external" href="https://go2docs.graylog.org/current/interacting_with_your_log_data/notifications.html">Graylog HTTP alert notification</a>
+page and in the URL input box append <code class="file docutils literal notranslate"><span class="pre">/webhooks/graylog</span></code> to the Alerta API URL.</p>
+<p><strong>Example Graylog Webhook URL</strong></p>
+<p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/graylog</span></code></p>
+<p><strong>Example Graylog Webhook URL with authentication</strong></p>
+<p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/graylog?api-key=xxxxx</span></code></p>
+<dl class="simple">
+<dt><strong>The following parameters can be set in the URL</strong></dt><dd><p>environment, event, event_type, service, severity</p>
+</dd>
+</dl>
 </section>
 <section id="new-relic">
 <h3><a class="toc-backref" href="#id33" role="doc-backlink">New Relic</a><a class="headerlink" href="#new-relic" title="Permalink to this heading"></a></h3>
@@ -408,7 +419,15 @@ endpoint to the Notification Preferences.</p>
 </section>
 <section id="slack">
 <h3><a class="toc-backref" href="#id39" role="doc-backlink">Slack</a><a class="headerlink" href="#slack" title="Permalink to this heading"></a></h3>
-<p>TBC</p>
+<p>Alerta can be configured to receive interactive messages from Slack using the
+Slack webhook. This enables operators to take actions on alerts (such as
+acknowledge, close, or watch) directly from Slack message buttons.</p>
+<p>To set up the integration, create a <a class="reference external" href="https://api.slack.com/slack-apps">Slack app</a> with interactive components
+and configure the Request URL to point to the Alerta API webhook endpoint.</p>
+<p><strong>Example Slack Webhook URL</strong></p>
+<p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/slack</span></code></p>
+<p><strong>Example Slack Webhook URL with authentication</strong></p>
+<p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/slack?api-key=xxxxx</span></code></p>
 </section>
 <section id="id9">
 <h3><a class="toc-backref" href="#id40" role="doc-backlink">Google Stackdriver</a><a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>

@@ -349,15 +349,52 @@ for the “Production” environment and the other for “Development”:</p>
 </section>
 <section id="step-5-groups-types-and-origins">
 <h2>Step 5: Groups, types and origins<a class="headerlink" href="#step-5-groups-types-and-origins" title="Permalink to this heading"></a></h2>
-<p>TBC</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">group</span></code>, <code class="docutils literal notranslate"><span class="pre">event_type</span></code>, and <code class="docutils literal notranslate"><span class="pre">origin</span></code> attributes provide additional
+context for alerts and can be used to organise and filter them.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">group</span></code> attribute is used to group related alerts together. For example,
+all network-related alerts might be assigned to a “Network” group, while
+performance alerts could use “Performance”.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">event_type</span></code> defines the kind of alert, such as <code class="docutils literal notranslate"><span class="pre">exceptionAlert</span></code>,
+<code class="docutils literal notranslate"><span class="pre">performanceAlert</span></code>, or <code class="docutils literal notranslate"><span class="pre">availabilityAlert</span></code>. This can be useful for
+routing alerts to different handlers.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">origin</span></code> identifies the source of the alert, such as a monitoring
+tool name or a specific host. It helps trace where the alert came from.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span><span class="w"> </span>--group<span class="w"> </span>Security<span class="w"> </span>--origin<span class="w"> </span>auth-monitor<span class="w"> </span><span class="se">\</span>
+--type<span class="w"> </span>exceptionAlert
+<span class="go">9c11a5a8-2d8c-4e2f-bc6b-75e0e4c941fd (indeterminate -&gt; major)</span>
+</pre></div>
+</div>
 </section>
 <section id="step-6-tags-and-custom-attributes">
 <h2>Step 6: Tags and Custom attributes<a class="headerlink" href="#step-6-tags-and-custom-attributes" title="Permalink to this heading"></a></h2>
-<p>TBC</p>
+<p>Tags and custom attributes allow you to add arbitrary metadata to alerts.
+Tags are simple labels that can be used to categorise alerts, while custom
+attributes are key-value pairs for more structured data.</p>
+<p>Tags are useful for filtering alerts in the web console and can be added
+using the <code class="docutils literal notranslate"><span class="pre">-T</span></code> option:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span><span class="w"> </span>-T<span class="w"> </span>login<span class="w"> </span>-T<span class="w"> </span>security
+<span class="go">a3b5c7d9-1e2f-4a6b-8c0d-2e4f6a8b0c2d (indeterminate -&gt; major)</span>
+</pre></div>
+</div>
+<p>Custom attributes are added using the <code class="docutils literal notranslate"><span class="pre">-A</span></code> option and take the form
+<code class="docutils literal notranslate"><span class="pre">key=value</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>send<span class="w"> </span>-r<span class="w"> </span>user01<span class="w"> </span>-e<span class="w"> </span>loginStatus<span class="w"> </span>-v<span class="w"> </span>loginError<span class="w"> </span>-s<span class="w"> </span>major<span class="w"> </span>-E<span class="w"> </span>Production<span class="w"> </span><span class="se">\</span>
+-S<span class="w"> </span>Security<span class="w"> </span>-t<span class="w"> </span><span class="s1">&#39;user01 login failed.&#39;</span><span class="w"> </span>-A<span class="w"> </span><span class="nv">ip</span><span class="o">=</span><span class="m">10</span>.0.1.23<span class="w"> </span>-A<span class="w"> </span><span class="nv">region</span><span class="o">=</span>us-east-1
+<span class="go">a3b5c7d9-1e2f-4a6b-8c0d-2e4f6a8b0c2d (duplicate)</span>
+</pre></div>
+</div>
 </section>
 <section id="step-7-saving-raw-data">
 <h2>Step 7: Saving raw data<a class="headerlink" href="#step-7-saving-raw-data" title="Permalink to this heading"></a></h2>
-<p>TBC</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">rawData</span></code> attribute can be used to store the original, unprocessed
+data that generated the alert. This is useful for debugging or auditing
+purposes as it preserves the complete source event.</p>
+<p>When using the <code class="docutils literal notranslate"><span class="pre">alerta</span></code> command-line tool, raw data can be provided
+via standard input or the <code class="docutils literal notranslate"><span class="pre">--raw-data</span></code> option. When using webhooks,
+the raw data from the incoming request payload is automatically saved
+to the alert.</p>
 </section>
 <section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading"></a></h2>

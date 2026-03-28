@@ -185,8 +185,8 @@ any <a class="reference external" href="https://openid.net/developers/certified/
 implementations for some auth providers to simplify the integration:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#azure-ad-oidc"><span class="std std-ref">Azure Active Directory</span></a></p></li>
-<li><p><a class="reference internal" href="#amazon-cognito">Amazon Cognito</a></p></li>
-<li><p><a class="reference internal" href="#id6">GitLab OAuth2</a></p></li>
+<li><p><a class="reference external" href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools.html">Amazon Cognito</a></p></li>
+<li><p><a class="reference internal" href="#id7">GitLab OAuth2</a></p></li>
 <li><p><a class="reference internal" href="#google-oauth2">Google OAuth2</a></p></li>
 <li><p><a class="reference internal" href="#keycloak-oauth2">Keycloak OAuth2</a></p></li>
 </ul>
@@ -442,7 +442,7 @@ button.</p>
 </section>
 <section id="oidc-providers">
 <span id="helper-auth"></span><h2>OIDC Providers<a class="headerlink" href="#oidc-providers" title="Permalink to this heading"></a></h2>
-<p>OpenID Connect authentication is provided by <a class="reference external" href="https://developers.google.com/accounts/docs/OpenIDConnect">Google</a> <a href="#id9"><span class="problematic" id="id10">`OAuth2`_</span></a>,
+<p>OpenID Connect authentication is provided by <a class="reference external" href="https://developers.google.com/accounts/docs/OpenIDConnect">Google</a> <a href="#id10"><span class="problematic" id="id11">`OAuth2`_</span></a>,
 <a class="reference external" href="https://docs.gitlab.com/ce/integration/oauth_provider.html">GitLab</a> <a class="reference external" href="http://tools.ietf.org/html/draft-ietf-oauth-v2-22">OAuth 2.0</a> or <a class="reference external" href="https://www.keycloak.org/documentation.html">Keycloak</a> <a class="reference external" href="http://tools.ietf.org/html/draft-ietf-oauth-v2-22">OAuth 2.0</a> and configuration is more
 involved than the Basic Auth setup.</p>
 <div class="admonition note">
@@ -510,13 +510,35 @@ page and check the “OpenID Connect metadata document” URL.</p>
 </section>
 <section id="amazon-cognito">
 <h3>Amazon Cognito<a class="headerlink" href="#amazon-cognito" title="Permalink to this heading"></a></h3>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>TBC</p>
+<p>To use <a class="reference external" href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools.html">Amazon Cognito</a> as the OAuth2 provider for Alerta, set up
+a User Pool and App Client in the AWS Console:</p>
+<ol class="arabic simple">
+<li><p>Create a Cognito User Pool (or use an existing one) and note the
+<strong>User Pool ID</strong> (e.g. <code class="docutils literal notranslate"><span class="pre">us-east-1_aBcDeFgHi</span></code>).</p></li>
+<li><p>Under “App integration”, create an App Client for Alerta:</p>
+<ul class="simple">
+<li><p>App client name: <code class="docutils literal notranslate"><span class="pre">Alerta</span></code></p></li>
+<li><p>Callback URL: <code class="docutils literal notranslate"><span class="pre">http://alerta.example.com</span></code></p></li>
+<li><p>Allowed OAuth Flows: Authorization code grant</p></li>
+<li><p>Allowed OAuth Scopes: openid, email, profile</p></li>
+</ul>
+</li>
+<li><p>Configure a Cognito Domain (either a custom domain or the default
+Amazon Cognito domain prefix), for example: <code class="docutils literal notranslate"><span class="pre">alerta-auth</span></code>.</p></li>
+<li><p>Copy the generated <strong>Client ID</strong> and <strong>Client Secret</strong>.</p></li>
+<li><p>Add the configuration to the <code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code> server configuration:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;cognito&#39;</span>
+<span class="n">AWS_REGION</span> <span class="o">=</span> <span class="s1">&#39;us-east-1&#39;</span>
+<span class="n">COGNITO_USER_POOL_ID</span> <span class="o">=</span> <span class="s1">&#39;us-east-1_aBcDeFgHi&#39;</span>
+<span class="n">COGNITO_DOMAIN</span> <span class="o">=</span> <span class="s1">&#39;alerta-auth&#39;</span>
+<span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s1">&#39;1abc2def3ghi4jkl5mno6pqr7s&#39;</span>
+<span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;us1-abc123-def456-ghi789&#39;</span>
+</pre></div>
 </div>
 </section>
 <section id="gitlab-oauth2">
-<span id="id6"></span><h3>GitLab OAuth2<a class="headerlink" href="#gitlab-oauth2" title="Permalink to this heading"></a></h3>
+<span id="id7"></span><h3>GitLab OAuth2<a class="headerlink" href="#gitlab-oauth2" title="Permalink to this heading"></a></h3>
 <p>To use GitLab as the OAuth2 provider for Alerta, login to GitLab and go
 to <em>Profile Settings -&gt; Applications -&gt; New Application</em>.</p>
 <ul class="simple">
@@ -559,7 +581,7 @@ button.</p>
 </div>
 </section>
 <section id="google-oauth2">
-<span id="id7"></span><h3>Google OAuth2<a class="headerlink" href="#google-oauth2" title="Permalink to this heading"></a></h3>
+<span id="id8"></span><h3>Google OAuth2<a class="headerlink" href="#google-oauth2" title="Permalink to this heading"></a></h3>
 <p>To use Google as the OAuth2 provider for Alerta, login to the
 <a class="reference external" href="https://console.developers.google.com">Google Developer Console</a> and create a new project for alerta.</p>
 <ul class="simple">
@@ -694,7 +716,7 @@ will try JSON first and fall back to XML (<code class="docutils literal notransl
 </div>
 </section>
 <section id="api-keys">
-<span id="id8"></span><h2>API Keys<a class="headerlink" href="#api-keys" title="Permalink to this heading"></a></h2>
+<span id="id9"></span><h2>API Keys<a class="headerlink" href="#api-keys" title="Permalink to this heading"></a></h2>
 <p>If authentication is enforced, then an API key is needed to access
 the alerta API programatically. An API key can also be to used by the
 <a class="reference internal" href="cli.html#cli"><span class="std std-ref">alerta CLI</span></a> for when the CLI is used in scripts. See the
@@ -729,10 +751,25 @@ files.</p>
 </section>
 <section id="hmac-auth">
 <h2>HMAC Auth<a class="headerlink" href="#hmac-auth" title="Permalink to this heading"></a></h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>TBC</p>
+<p>HMAC authentication provides a secure method for machine-to-machine
+communication with the Alerta API. Instead of using static API keys,
+HMAC uses a shared secret to sign each request, ensuring both
+authenticity and integrity.</p>
+<p>To configure HMAC authentication, add one or more credentials to the
+<code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code> server configuration:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">HMAC_AUTH_CREDENTIALS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="s1">&#39;a1b2c3d4-e5f6-7890-abcd-ef1234567890&#39;</span><span class="p">,</span>  <span class="c1"># access key ID</span>
+        <span class="s1">&#39;secret&#39;</span><span class="p">:</span> <span class="s1">&#39;MWYyZDdjMzg3ZjRjNTExZWM4NjNkYzYw&#39;</span><span class="p">,</span>  <span class="c1"># secret key (base64)</span>
+        <span class="s1">&#39;algorithm&#39;</span><span class="p">:</span> <span class="s1">&#39;sha256&#39;</span>  <span class="c1"># valid: sha256, sha384, sha512</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
 </div>
+<p>The <code class="docutils literal notranslate"><span class="pre">key</span></code> is sent as a header to identify the caller, while the
+<code class="docutils literal notranslate"><span class="pre">secret</span></code> is used to compute the HMAC signature of the request. The
+server verifies the signature against the stored secret for the given
+key, rejecting requests with invalid or missing signatures.</p>
 </section>
 </section>
 

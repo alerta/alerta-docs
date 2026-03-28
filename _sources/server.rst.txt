@@ -102,7 +102,16 @@ Operator Actions
 Actions taken against alerts can be used as triggers for further integrations
 with external systems.
 
-TBC
+Operators can perform actions such as ``ack``, ``close``, ``open``, or
+custom-defined actions on alerts via the web UI or API. Each action triggers
+the ``take_action()`` method on all configured plugins, allowing them to
+respond to the action. For example, a plugin could send a notification to
+a Slack channel when an alert is acknowledged, or update an external
+incident management system when an alert is closed.
+
+Custom actions can be defined to extend the default set, enabling
+workflows specific to your organisation such as "escalate", "assign",
+or "create ticket".
 
 .. _status_change:
 

@@ -378,7 +378,13 @@ OpenID Connect Auth Settings
 
 .. code:: python
 
-    FIXME
+    AUTH_PROVIDER = 'openid'
+    OIDC_ISSUER_URL = 'https://accounts.example.com/.well-known/openid-configuration'
+    OAUTH2_CLIENT_ID = '1234567890.apps.example.com'
+    OAUTH2_CLIENT_SECRET = 'ABCDefgh1234'
+    OIDC_VERIFY_TOKEN = False
+    ALLOWED_OIDC_ROLES = ['admin', 'operator']
+    ALLOWED_EMAIL_DOMAINS = ['example.com']
 
 .. index:: OAUTH2_CLIENT_ID, OAUTH2_CLIENT_SECRET, OIDC_ISSUER_URL, OIDC_AUTH_URL
 .. index:: OIDC_TOKEN_AUTH_METHODS, OIDC_LOGOUT_URL, OIDC_VERIFY_TOKEN
@@ -393,11 +399,11 @@ OpenID Connect Auth Settings
     issuer URL also known as Discovery Document is used to auto-discover
     all necessary auth endpoints for an OIDC client (required)
 ``OIDC_AUTH_URL``
-    FIXME check
+    authorization endpoint URL, auto-discovered from OIDC issuer URL if not explicitly set (default is ``None``)
 ``OIDC_TOKEN_AUTH_METHODS``
     list of token auth methods in order of preference (``client_secret_basic``, ``client_secret_post``, ``client_secret_jwt``)
 ``OIDC_LOGOUT_URL``
-    FIXME (no default)
+    end session endpoint URL, auto-discovered from OIDC issuer URL if not explicitly set (default is ``None``)
 ``OIDC_VERIFY_TOKEN``
     (default is ``False``)
 ``OIDC_ROLE_CLAIM``
@@ -422,7 +428,13 @@ SAML 2.0 Auth Settings
 
 .. code:: python
 
-    FIXME 
+    AUTH_PROVIDER = 'saml2'
+    SAML2_ENTITY_ID = 'https://alerta.example.com'
+    SAML2_METADATA_URL = 'https://idp.example.com/saml2/metadata'
+    SAML2_USER_NAME_FORMAT = '{givenName} {surname}'
+    SAML2_EMAIL_ATTRIBUTE = 'emailAddress'
+    ALLOWED_SAML2_GROUPS = ['alerta-admins', 'alerta-operators']
+    ALLOWED_EMAIL_DOMAINS = ['example.com']
 
 .. index:: SAML2_ENTITY_ID, SAML2_METADATA_URL, SAML2_USER_NAME_FORMAT, SAML2_EMAIL_ATTRIBUTE
 .. index:: SAML2_CONFIG, ALLOWED_SAML2_GROUPS
@@ -473,7 +485,13 @@ Amazon Cognito Auth Settings
 
 .. code:: python
 
-    FIXME
+    AUTH_PROVIDER = 'cognito'
+    AWS_REGION = 'us-east-1'
+    COGNITO_USER_POOL_ID = 'us-east-1_AbCdEfGhI'
+    COGNITO_DOMAIN = 'my-alerta-app'
+    OAUTH2_CLIENT_ID = '1a2b3c4d5e6f7g8h9i0j'
+    OAUTH2_CLIENT_SECRET = 'ABCDefgh1234'
+    ALLOWED_EMAIL_DOMAINS = ['example.com']
 
 .. index:: AWS_REGION, COGNITO_USER_POOL_ID, COGNITO_DOMAIN
 
@@ -493,7 +511,12 @@ GitHub Auth Settings
 
 .. code:: python
 
-    FIXME
+    AUTH_PROVIDER = 'github'
+    GITHUB_URL = 'https://github.com'
+    OAUTH2_CLIENT_ID = 'f7b68efc0e8e0dde0e0a'
+    OAUTH2_CLIENT_SECRET = 'ABCDefgh1234'
+    ALLOWED_GITHUB_ORGS = ['my-org']
+    ALLOWED_EMAIL_DOMAINS = ['example.com']
 
 .. index:: GITHUB_URL, ALLOWED_GITHUB_ORGS
 
@@ -515,7 +538,12 @@ GitLab Auth Settings
 
 .. code:: python
 
-    FIXME
+    AUTH_PROVIDER = 'gitlab'
+    GITLAB_URL = 'https://gitlab.com'
+    OAUTH2_CLIENT_ID = 'e52ef0a1abcdef1234567890'
+    OAUTH2_CLIENT_SECRET = 'ABCDefgh1234'
+    ALLOWED_GITLAB_GROUPS = ['my-group']
+    ALLOWED_EMAIL_DOMAINS = ['example.com']
 
 .. index:: GITLAB_URL, ALLOWED_GITLAB_GROUPS
 
@@ -533,7 +561,10 @@ Google Auth Settings
 
 .. code:: python
 
-    FIXME
+    AUTH_PROVIDER = 'google'
+    OAUTH2_CLIENT_ID = '123456789012-abc123def456ghi789.apps.googleusercontent.com'
+    OAUTH2_CLIENT_SECRET = 'ABCDefgh1234'
+    ALLOWED_EMAIL_DOMAINS = ['example.com']
 
 .. index:: OAUTH2_CLIENT_ID, OAUTH2_CLIENT_SECRET, ALLOWED_EMAIL_DOMAINS
 
@@ -553,7 +584,12 @@ Keycloack Auth Settings
 
 .. code:: python
 
-    FIXME
+    AUTH_PROVIDER = 'keycloak'
+    KEYCLOAK_URL = 'https://keycloak.example.com'
+    KEYCLOAK_REALM = 'master'
+    OAUTH2_CLIENT_ID = 'alerta-ui'
+    OAUTH2_CLIENT_SECRET = 'ABCDefgh1234'
+    ALLOWED_KEYCLOAK_ROLES = ['alerta-admin', 'alerta-operator']
 
 .. index:: KEYCLOAK_URL, KEYCLOAK_REALM, ALLOWED_KEYCLOAK_ROLES
 

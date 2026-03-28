@@ -148,7 +148,7 @@ The following is a list of integrations, webbhooks and plugins that highlight
 the use of bi-directional integration in different ways.
 
 * AWS Cloudwatch webhook - includes the `SNS subscription confirmation`_ link in the text of the alert
-* Zabbix integration & plugin - TBC
+* Zabbix integration & plugin - uses the `zabbix-alerta`_ gateway to forward Zabbix triggers to Alerta and includes a link back to the Zabbix trigger page via the ``moreInfo`` alert attribute
 * Grafana webhook - includes `rule and image links`_ in Grafana alert attributes if available
 * NewRelic webhook - includes `incident and runbook links`_ in NewRelic alerts
 * PagerDuty webhook - includes the `incident URL`_ in alert history text when status changes
@@ -160,6 +160,7 @@ the use of bi-directional integration in different ways.
 .. _incident and runbook links: https://github.com/alerta/alerta/blob/master/alerta/webhooks/newrelic.py#L33-L37
 .. _incident URL: https://github.com/alerta/alerta/blob/master/alerta/webhooks/pagerduty.py#L18
 .. _external and generator URLs: https://github.com/alerta/alerta/blob/master/alerta/webhooks/prometheus.py#L62-L65
+.. _zabbix-alerta: https://github.com/alerta/zabbix-alerta
 .. _moreInfo: https://github.com/alerta/zabbix-alerta/blob/master/zabbix_alerta.py#L67
 
 .. _webhooks:
@@ -226,7 +227,24 @@ For details on how to set this up see `Grafana webhook`_ page and in the
 Graylog
 ~~~~~~~
 
-TBC
+Alerta can be configured to receive Graylog alerts by adding a webhook
+endpoint as an HTTP alert notification.
+
+For details on how to set this up see the `Graylog HTTP alert notification`_
+page and in the URL input box append :file:`/webhooks/graylog` to the Alerta API URL.
+
+.. _Graylog HTTP alert notification: https://go2docs.graylog.org/current/interacting_with_your_log_data/notifications.html
+
+**Example Graylog Webhook URL**
+
+:file:`https://alerta.example.com/api/webhooks/graylog`
+
+**Example Graylog Webhook URL with authentication**
+
+:file:`https://alerta.example.com/api/webhooks/graylog?api-key=xxxxx`
+
+**The following parameters can be set in the URL**
+     environment, event, event_type, service, severity
 
 New Relic
 ~~~~~~~~~
@@ -333,7 +351,22 @@ For details on how to set this up see `SeverDensity webhook`_ page and in the
 Slack
 ~~~~~
 
-TBC
+Alerta can be configured to receive interactive messages from Slack using the
+Slack webhook. This enables operators to take actions on alerts (such as
+acknowledge, close, or watch) directly from Slack message buttons.
+
+To set up the integration, create a `Slack app`_ with interactive components
+and configure the Request URL to point to the Alerta API webhook endpoint.
+
+.. _Slack app: https://api.slack.com/slack-apps
+
+**Example Slack Webhook URL**
+
+:file:`https://alerta.example.com/api/webhooks/slack`
+
+**Example Slack Webhook URL with authentication**
+
+:file:`https://alerta.example.com/api/webhooks/slack?api-key=xxxxx`
 
 Google Stackdriver
 ~~~~~~~~~~~~~~~~~~

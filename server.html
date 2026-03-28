@@ -225,7 +225,15 @@ more.</p>
 <span id="take-action"></span><h3>Operator Actions<a class="headerlink" href="#operator-actions" title="Permalink to this heading"></a></h3>
 <p>Actions taken against alerts can be used as triggers for further integrations
 with external systems.</p>
-<p>TBC</p>
+<p>Operators can perform actions such as <code class="docutils literal notranslate"><span class="pre">ack</span></code>, <code class="docutils literal notranslate"><span class="pre">close</span></code>, <code class="docutils literal notranslate"><span class="pre">open</span></code>, or
+custom-defined actions on alerts via the web UI or API. Each action triggers
+the <code class="docutils literal notranslate"><span class="pre">take_action()</span></code> method on all configured plugins, allowing them to
+respond to the action. For example, a plugin could send a notification to
+a Slack channel when an alert is acknowledged, or update an external
+incident management system when an alert is closed.</p>
+<p>Custom actions can be defined to extend the default set, enabling
+workflows specific to your organisation such as “escalate”, “assign”,
+or “create ticket”.</p>
 </section>
 <section id="bi-directional-integration">
 <span id="status-change"></span><h3>Bi-directional Integration<a class="headerlink" href="#bi-directional-integration" title="Permalink to this heading"></a></h3>

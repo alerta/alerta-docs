@@ -512,7 +512,13 @@ ALLOWED_LDAP_GROUPS = [‘*’]</p>
 <section id="openid-connect-auth-settings">
 <span id="oidc-settings"></span><h3><a class="toc-backref" href="#id31" role="doc-backlink">OpenID Connect Auth Settings</a><a class="headerlink" href="#openid-connect-auth-settings" title="Permalink to this heading"></a></h3>
 <p><strong>Example</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FIXME</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;openid&#39;</span>
+<span class="n">OIDC_ISSUER_URL</span> <span class="o">=</span> <span class="s1">&#39;https://accounts.example.com/.well-known/openid-configuration&#39;</span>
+<span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s1">&#39;1234567890.apps.example.com&#39;</span>
+<span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;ABCDefgh1234&#39;</span>
+<span class="n">OIDC_VERIFY_TOKEN</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">ALLOWED_OIDC_ROLES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;operator&#39;</span><span class="p">]</span>
+<span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;example.com&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <span class="target" id="index-19"></span><span class="target" id="index-20"></span><span class="target" id="index-21"></span><dl class="simple" id="index-22">
@@ -523,11 +529,11 @@ ALLOWED_LDAP_GROUPS = [‘*’]</p>
 <dt><code class="docutils literal notranslate"><span class="pre">OIDC_ISSUER_URL</span></code></dt><dd><p>issuer URL also known as Discovery Document is used to auto-discover
 all necessary auth endpoints for an OIDC client (required)</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">OIDC_AUTH_URL</span></code></dt><dd><p>FIXME check</p>
+<dt><code class="docutils literal notranslate"><span class="pre">OIDC_AUTH_URL</span></code></dt><dd><p>authorization endpoint URL, auto-discovered from OIDC issuer URL if not explicitly set (default is <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">OIDC_TOKEN_AUTH_METHODS</span></code></dt><dd><p>list of token auth methods in order of preference (<code class="docutils literal notranslate"><span class="pre">client_secret_basic</span></code>, <code class="docutils literal notranslate"><span class="pre">client_secret_post</span></code>, <code class="docutils literal notranslate"><span class="pre">client_secret_jwt</span></code>)</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">OIDC_LOGOUT_URL</span></code></dt><dd><p>FIXME (no default)</p>
+<dt><code class="docutils literal notranslate"><span class="pre">OIDC_LOGOUT_URL</span></code></dt><dd><p>end session endpoint URL, auto-discovered from OIDC issuer URL if not explicitly set (default is <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">OIDC_VERIFY_TOKEN</span></code></dt><dd><p>(default is <code class="docutils literal notranslate"><span class="pre">False</span></code>)</p>
 </dd>
@@ -546,7 +552,13 @@ all necessary auth endpoints for an OIDC client (required)</p>
 <section id="saml-2-0-auth-settings">
 <span id="saml-settings"></span><h3><a class="toc-backref" href="#id32" role="doc-backlink">SAML 2.0 Auth Settings</a><a class="headerlink" href="#saml-2-0-auth-settings" title="Permalink to this heading"></a></h3>
 <p><strong>Example</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FIXME</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;saml2&#39;</span>
+<span class="n">SAML2_ENTITY_ID</span> <span class="o">=</span> <span class="s1">&#39;https://alerta.example.com&#39;</span>
+<span class="n">SAML2_METADATA_URL</span> <span class="o">=</span> <span class="s1">&#39;https://idp.example.com/saml2/metadata&#39;</span>
+<span class="n">SAML2_USER_NAME_FORMAT</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{givenName}</span><span class="s1"> </span><span class="si">{surname}</span><span class="s1">&#39;</span>
+<span class="n">SAML2_EMAIL_ATTRIBUTE</span> <span class="o">=</span> <span class="s1">&#39;emailAddress&#39;</span>
+<span class="n">ALLOWED_SAML2_GROUPS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;alerta-admins&#39;</span><span class="p">,</span> <span class="s1">&#39;alerta-operators&#39;</span><span class="p">]</span>
+<span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;example.com&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <span class="target" id="index-23"></span><dl class="simple" id="index-24">
@@ -586,7 +598,13 @@ details (default is <code class="docutils literal notranslate"><span class="pre"
 <section id="amazon-cognito-auth-settings">
 <span id="cognito-settings"></span><h3><a class="toc-backref" href="#id34" role="doc-backlink">Amazon Cognito Auth Settings</a><a class="headerlink" href="#amazon-cognito-auth-settings" title="Permalink to this heading"></a></h3>
 <p><strong>Example</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FIXME</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;cognito&#39;</span>
+<span class="n">AWS_REGION</span> <span class="o">=</span> <span class="s1">&#39;us-east-1&#39;</span>
+<span class="n">COGNITO_USER_POOL_ID</span> <span class="o">=</span> <span class="s1">&#39;us-east-1_AbCdEfGhI&#39;</span>
+<span class="n">COGNITO_DOMAIN</span> <span class="o">=</span> <span class="s1">&#39;my-alerta-app&#39;</span>
+<span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s1">&#39;1a2b3c4d5e6f7g8h9i0j&#39;</span>
+<span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;ABCDefgh1234&#39;</span>
+<span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;example.com&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <dl class="simple" id="index-26">
@@ -601,7 +619,12 @@ details (default is <code class="docutils literal notranslate"><span class="pre"
 <section id="github-auth-settings">
 <span id="github-settings"></span><h3><a class="toc-backref" href="#id35" role="doc-backlink">GitHub Auth Settings</a><a class="headerlink" href="#github-auth-settings" title="Permalink to this heading"></a></h3>
 <p><strong>Example</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FIXME</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;github&#39;</span>
+<span class="n">GITHUB_URL</span> <span class="o">=</span> <span class="s1">&#39;https://github.com&#39;</span>
+<span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s1">&#39;f7b68efc0e8e0dde0e0a&#39;</span>
+<span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;ABCDefgh1234&#39;</span>
+<span class="n">ALLOWED_GITHUB_ORGS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;my-org&#39;</span><span class="p">]</span>
+<span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;example.com&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <dl class="simple" id="index-27">
@@ -618,7 +641,12 @@ details (default is <code class="docutils literal notranslate"><span class="pre"
 <section id="gitlab-auth-settings">
 <span id="gitlab-settings"></span><h3><a class="toc-backref" href="#id36" role="doc-backlink">GitLab Auth Settings</a><a class="headerlink" href="#gitlab-auth-settings" title="Permalink to this heading"></a></h3>
 <p><strong>Example</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FIXME</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;gitlab&#39;</span>
+<span class="n">GITLAB_URL</span> <span class="o">=</span> <span class="s1">&#39;https://gitlab.com&#39;</span>
+<span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s1">&#39;e52ef0a1abcdef1234567890&#39;</span>
+<span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;ABCDefgh1234&#39;</span>
+<span class="n">ALLOWED_GITLAB_GROUPS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;my-group&#39;</span><span class="p">]</span>
+<span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;example.com&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <dl class="simple" id="index-28">
@@ -631,7 +659,10 @@ details (default is <code class="docutils literal notranslate"><span class="pre"
 <section id="google-auth-settings">
 <span id="google-settings"></span><h3><a class="toc-backref" href="#id37" role="doc-backlink">Google Auth Settings</a><a class="headerlink" href="#google-auth-settings" title="Permalink to this heading"></a></h3>
 <p><strong>Example</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FIXME</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;google&#39;</span>
+<span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s1">&#39;123456789012-abc123def456ghi789.apps.googleusercontent.com&#39;</span>
+<span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;ABCDefgh1234&#39;</span>
+<span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;example.com&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <dl class="simple" id="index-29">
@@ -646,7 +677,12 @@ details (default is <code class="docutils literal notranslate"><span class="pre"
 <section id="keycloack-auth-settings">
 <span id="keycloak-settings"></span><h3><a class="toc-backref" href="#id38" role="doc-backlink">Keycloack Auth Settings</a><a class="headerlink" href="#keycloack-auth-settings" title="Permalink to this heading"></a></h3>
 <p><strong>Example</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FIXME</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;keycloak&#39;</span>
+<span class="n">KEYCLOAK_URL</span> <span class="o">=</span> <span class="s1">&#39;https://keycloak.example.com&#39;</span>
+<span class="n">KEYCLOAK_REALM</span> <span class="o">=</span> <span class="s1">&#39;master&#39;</span>
+<span class="n">OAUTH2_CLIENT_ID</span> <span class="o">=</span> <span class="s1">&#39;alerta-ui&#39;</span>
+<span class="n">OAUTH2_CLIENT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;ABCDefgh1234&#39;</span>
+<span class="n">ALLOWED_KEYCLOAK_ROLES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;alerta-admin&#39;</span><span class="p">,</span> <span class="s1">&#39;alerta-operator&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <dl class="simple" id="index-30">
