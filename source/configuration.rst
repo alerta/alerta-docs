@@ -184,7 +184,7 @@ See `MongoDB connection strings`_ for more information.
 
 .. _MongoDB connection strings: https://docs.mongodb.org/v3.0/reference/connection-string/#standard-connection-string-format
 
-.. index:: DATABASE_URL, DATABASE_NAME, DATABASE_RAISE_ON_ERROR
+.. index:: DATABASE_URL, DATABASE_NAME, DATABASE_RAISE_ON_ERROR, DATABASE_SCHEMA
 
 ``DATABASE_URL``
     database connection string (default is ``mongodb://localhost:27017/monitoring``)
@@ -192,6 +192,8 @@ See `MongoDB connection strings`_ for more information.
     database name can be used to override database in connection string (no default)
 ``DATABASE_RAISE_ON_ERROR``
     terminate startup if database configuration fails (default is ``True``)
+``DATABASE_SCHEMA``
+    database schema for PostgreSQL (default is ``public``)
 
 .. _bulk api settings:
 
@@ -290,7 +292,7 @@ Auth Provider Settings
 ``AUTH_PROVIDER``
     valid authentication providers are ``basic``, ``ldap``, ``github``, ``openid``, ``saml2``,
     ``azure``, ``cognito``, ``gitlab``, ``google``, ``keycloak``,
-    and ``pingfederate``  (default is ``basic``)
+    and ``cas``  (default is ``basic``)
 .. note::
     Any authentication provider that is `OpenID Connect compliant`_ is supported. Set the
     ``AUTH_PROVIDER`` to ``openid`` and configure the required ``OIDC`` settings
@@ -496,10 +498,10 @@ GitHub Auth Settings
 
 ``GITHUB_URL``
     API URL for public or privately run GitHub Enterprise server (default is ``https://github.com``)
-
-    GITHUB_ROLE_CLAIM = 'teams'  # used in role mapping
-    GITHUB_GROUP_CLAIM = 'organizations'  # used in customer mapping
-
+``GITHUB_ROLE_CLAIM``
+    GitHub attribute used in role mapping (default is ``teams``)
+``GITHUB_GROUP_CLAIM``
+    GitHub attribute used in customer mapping (default is ``organizations``)
 ``ALLOWED_GITHUB_ORGS``
     authorised GitHub organisations a user must belong to (default is ``*``)
 
@@ -561,6 +563,33 @@ Keycloack Auth Settings
 ``ALLOWED_KEYCLOAK_ROLES``
     list of authorised roles a user must belong to (no default)
 
+.. _cas settings:
+
+CAS Auth Settings
+~~~~~~~~~~~~~~~~~
+
+**Example**
+
+.. code:: python
+
+    AUTH_PROVIDER = 'cas'
+    CAS_SERVER = 'https://cas.example.com'
+    CAS_VALIDATE_ROUTE = '/serviceValidate'
+
+.. index:: CAS_SERVER, CAS_VALIDATE_ROUTE, CAS_ROLE_CLAIM, CAS_GROUP_CLAIM, CAS_RESPONSE_TYPE
+
+``CAS_SERVER``
+    CAS server URL (no default)
+``CAS_VALIDATE_ROUTE``
+    CAS ticket validation route (default is ``/serviceValidate``)
+``CAS_ROLE_CLAIM``
+    CAS attribute name to use for role mapping (default is ``roles``)
+``CAS_GROUP_CLAIM``
+    CAS attribute name to use for customer mapping (default is ``groups``)
+``CAS_RESPONSE_TYPE``
+    CAS response format. ``AUTO`` tries JSON first then XML. Valid values are
+    ``AUTO``, ``JSON``, ``XML`` (default is ``AUTO``)
+
 .. _apikey settings:
 
 API Key & Bearer Token Settings
@@ -593,7 +622,33 @@ HMAC Auth Settings
 .. index:: HMAC_AUTH_CREDENTIALS
 
 ``HMAC_AUTH_CREDENTIALS``
-    FIXME HMAC credentials
+    list of HMAC credential dicts with ``id``, ``key`` and ``algorithm`` keys for machine-to-machine auth (no default)
+
+.. _proxy auth settings:
+
+Proxy Auth Settings
+~~~~~~~~~~~~~~~~~~~
+
+**Example**
+
+.. code:: python
+
+    AUTH_PROXY = True
+    AUTH_PROXY_USER_HEADER = 'X-Proxy-User'
+    AUTH_PROXY_ROLES_HEADER = 'X-Proxy-Roles'
+
+.. index:: AUTH_PROXY, AUTH_PROXY_USER_HEADER, AUTH_PROXY_ROLES_HEADER, AUTH_PROXY_ROLES_SEPARATOR, AUTH_PROXY_AUTO_SIGNUP
+
+``AUTH_PROXY``
+    enable authentication via reverse proxy headers (default is ``False``)
+``AUTH_PROXY_USER_HEADER``
+    HTTP header that contains the authenticated username (default is ``X-Proxy-User``)
+``AUTH_PROXY_ROLES_HEADER``
+    HTTP header that contains the user's roles (default is ``X-Proxy-Roles``)
+``AUTH_PROXY_ROLES_SEPARATOR``
+    separator character for roles in the proxy header (default is ``,``)
+``AUTH_PROXY_AUTO_SIGNUP``
+    automatically create users from proxy headers on first login (default is ``True``)
 
 .. _audit settings:
 
@@ -716,9 +771,9 @@ are important for generating alerts from stale heartbeats.
 ``HEARTBEAT_TIMEOUT``
     timeout period for heartbeats (default is ``86400`` seconds)
 ``HEARTBEAT_MAX_LATENCY``
-    stale heartbeat threshold in milliseconds (default is ``2000`` seconds)
+    stale heartbeat threshold in milliseconds (default is ``2000`` ms)
 ``ACK_TIMEOUT``
-    timeout period for unacknowledging alerts in ack'ed status (default is ``7200`` seconds, ``0`` = do not auto-unack)
+    timeout period for unacknowledging alerts in ack'ed status (default is ``0`` ie. do not auto-unack)
 ``SHELVE_TIMEOUT``
     timeout period for unshelving alerts in shelved status (default is ``7200`` seconds, ``0`` = do not auto-unshelve)
 
@@ -772,10 +827,12 @@ email address before they can login.
     mail server to use in HELO/EHLO command (default is ``localhost``)
 ``SMTP_STARTTLS``
     SMTP connection in TLS (Transport Layer Security) mode. All SMTP commands
-    that follow will be encrypted (default is ``False``)
+    that follow will be encrypted (default is ``True``)
 ``SMTP_USE_SSL``
     used for situations where SSL is required from the beginning of the
     connection and using ``SMTP_STARTTLS`` is not appropriate (default is ``False``)
+``SMTP_SKIP_SSL_VERIFY``
+    skip SSL certificate verification for SMTP connections (default is ``False``)
 ``SSL_KEY_FILE``
     a PEM formatted private key file for the SSL connection(no default)
 ``SSL_CERT_FILE``
@@ -874,8 +931,9 @@ Plugin Settings
 ~~~~~~~~~~~~~~~~
 
 Plugins are used to extend the behaviour of the Alerta server without
-having to modify the core application. The only plugins that are installed
-and enabled by default are the ``reject`` and ``blackout`` plugins. Other
+having to modify the core application. The default plugins are ``remote_ip``,
+``reject``, ``heartbeat``, ``blackout`` and ``forwarder``. Additional built-in
+plugins include ``escalate``, ``timeout`` and ``acked_by``. Other
 plugins are available in the `contrib repo`_.
 
 .. _contrib repo: https://github.com/alerta/alerta-contrib/tree/master/plugins
@@ -890,7 +948,7 @@ plugins are available in the `contrib repo`_.
 .. index:: PLUGINS, PLUGINS_RAISE_ON_ERROR
 
 ``PLUGINS``
-    list of enabled plugins (default ``['reject', 'blackout']``)
+    list of enabled plugins (default ``['remote_ip', 'reject', 'heartbeat', 'blackout', 'forwarder']``)
 ``PLUGINS_RAISE_ON_ERROR``
     stop processing plugins if there is an exception (default is ``True``)
 
