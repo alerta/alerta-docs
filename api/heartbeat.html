@@ -206,6 +206,24 @@
 <td><p>assigned based on the owner of the API key used when submitting the heartbeat,
 if “Customer Views” are enabled</p></td>
 </tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">latency</span></code></p></td>
+<td><p>round-trip latency in milliseconds (computed from <code class="docutils literal notranslate"><span class="pre">createTime</span></code> and
+<code class="docutils literal notranslate"><span class="pre">receiveTime</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">maxLatency</span></code></p></td>
+<td><p>maximum acceptable latency threshold from <code class="docutils literal notranslate"><span class="pre">HEARTBEAT_MAX_LATENCY</span></code> config
+(default 2000ms)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">since</span></code></p></td>
+<td><p>seconds since last heartbeat was received</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">status</span></code></p></td>
+<td><p>computed status: <code class="docutils literal notranslate"><span class="pre">ok</span></code> if within timeout and latency threshold, <code class="docutils literal notranslate"><span class="pre">slow</span></code> if
+latency exceeds <code class="docutils literal notranslate"><span class="pre">maxLatency</span></code>, <code class="docutils literal notranslate"><span class="pre">expired</span></code> if timeout exceeded</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">href</span></code></p></td>
+<td><p>URL reference to the heartbeat resource</p></td>
+</tr>
 </tbody>
 </table>
 </section>

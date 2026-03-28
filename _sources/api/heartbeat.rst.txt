@@ -43,6 +43,19 @@ Attributes added when processing heartbeats
 | ``customer``         | assigned based on the owner of the API key used when submitting the heartbeat,  |
 |                      | if "Customer Views" are enabled                                                 |
 +----------------------+---------------------------------------------------------------------------------+
+| ``latency``          | round-trip latency in milliseconds (computed from ``createTime`` and            |
+|                      | ``receiveTime``)                                                                |
++----------------------+---------------------------------------------------------------------------------+
+| ``maxLatency``       | maximum acceptable latency threshold from ``HEARTBEAT_MAX_LATENCY`` config      |
+|                      | (default 2000ms)                                                                |
++----------------------+---------------------------------------------------------------------------------+
+| ``since``            | seconds since last heartbeat was received                                       |
++----------------------+---------------------------------------------------------------------------------+
+| ``status``           | computed status: ``ok`` if within timeout and latency threshold, ``slow`` if    |
+|                      | latency exceeds ``maxLatency``, ``expired`` if timeout exceeded                 |
++----------------------+---------------------------------------------------------------------------------+
+| ``href``             | URL reference to the heartbeat resource                                         |
++----------------------+---------------------------------------------------------------------------------+
 
 Example
 -------
