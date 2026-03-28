@@ -44,9 +44,30 @@ automatically creates an API endpoint at :file:`/webhooks/<name>`:
 | Custom                | ``/webhooks/custom``          | Generic JSON-to-alert webhook receiver    |
 +-----------------------+-------------------------------+-------------------------------------------+
 
-Additional webhook receivers are available in the `contrib webhooks`_ repository.
+Contrib Webhooks
+-----------------
+
+Additional webhook receivers are available in the `contrib webhooks`_ repository:
 
 .. _contrib webhooks: https://github.com/alerta/alerta-contrib/tree/master/webhooks
+
++-----------------------+-------------------------------+-------------------------------------------+
+| Webhook               | Endpoint                      | Description                               |
++=======================+===============================+===========================================+
+| Azure Monitor         | ``/webhooks/azuremonitor``    | Receives Azure Monitor alert              |
+|                       |                               | notifications                             |
++-----------------------+-------------------------------+-------------------------------------------+
+| Fail2Ban              | ``/webhooks/fail2ban``        | Receives Fail2Ban ban/unban events        |
++-----------------------+-------------------------------+-------------------------------------------+
+| Mailgun               | ``/webhooks/mailgun``         | Receives Mailgun email event webhooks     |
++-----------------------+-------------------------------+-------------------------------------------+
+| MS Teams              | ``/webhooks/msteams``         | Receives Microsoft Teams webhook events   |
++-----------------------+-------------------------------+-------------------------------------------+
+| Sentry                | ``/webhooks/sentry``          | Receives Sentry error tracking events     |
++-----------------------+-------------------------------+-------------------------------------------+
+| StatusCake            | ``/webhooks/statuscake``      | Receives StatusCake uptime monitoring     |
+|                       |                               | alerts                                    |
++-----------------------+-------------------------------+-------------------------------------------+
 
 Custom Webhooks
 ---------------

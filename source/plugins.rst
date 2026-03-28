@@ -40,44 +40,87 @@ Core
 Contrib
 ~~~~~~~
 
-More than two dozen `contributed plugins`_ are made available for popular tools. Some
-of the most popular are:
+`Contributed plugins`_ are available for popular tools and services:
 
 .. _Contributed plugins: https://github.com/alerta/alerta-contrib/tree/master/plugins
 
-* AMQP_ - publish alerts to an AMQP fanout topic after processing
-* Cachet_ - create incidents for display on Cachet status page
-* Enhance_ - add new information to an alert based on existing information
-* `GeoIP Location`_ - use remote IP address to submitted alert to add location data
+**Messaging & Chat**
+
+* DingTalk_ - send alerts to DingTalk groups
 * HipChat_ - send alerts to HipChat room
-* InfluxDB_ - send alerts to InfluxDB for graphing with Grafana
-* `Logstash/Kibana`_ - send alerts to logstash agent after processing
-* `Normalise`_ - ensure alerts a formatted in a consistent manner
+* Matrix_ - send alerts to Matrix rooms
+* Mattermost_ - send alerts to Mattermost channels
+* `MS Teams`_ - send alerts to Microsoft Teams channels
+* Rocketchat_ - send alerts to Rocket.Chat channels
+* Slack_ - send alerts to Slack channels
+* `Telegram Bot`_ - send alerts to Telegram channels
+
+**Incident Management**
+
+* AlertOps_ - send alerts to AlertOps
+* GoAlert_ - send alerts to GoAlert
+* `Jira Plugin`_ - create Jira tickets from alerts
+* OpsGenie_ - send alerts to OpsGenie
 * `PagerDuty Plugin`_ - send alerts to PagerDuty (webhooks used to receive callbacks)
+
+**Monitoring & Metrics**
+
+* InfluxDB_ - send alerts to InfluxDB for graphing with Grafana
 * `Prometheus Silencer`_ - silence alerts in Prometheus Alertmanager if ack'ed in Alerta
+* OP5_ - send alerts to OP5 Monitor
+* Zabbix_ - send alerts to Zabbix
+
+**Notifications**
+
 * `Pushover.net`_ - send alerts to Pushover.net
-* Slack_ - send alerts to Slack room
-* `AWS SNS`_ - publish alerts to SNS topic after processing
-* `Syslog Logger`_ - send alerts via syslog
-* `Telegram Bot`_ - send alerts to Telegram channel
 * `Twilio SMS`_ - send alerts via SMS using Twilio
 
+**Queues & Pub/Sub**
+
+* AMQP_ - publish alerts to an AMQP fanout topic after processing
+* `Google Pub/Sub`_ - publish alerts to Google Cloud Pub/Sub
+* `AWS SNS`_ - publish alerts to SNS topic after processing
+
+**Logging & Status**
+
+* Cachet_ - create incidents for display on Cachet status page
+* `Logstash/Kibana`_ - send alerts to logstash agent after processing
+* `Syslog Logger`_ - send alerts via syslog
+
+**Alert Processing**
+
+* Enhance_ - add new information to an alert based on existing information
+* `GeoIP Location`_ - use remote IP address to add location data
+* `Normalise`_ - ensure alerts are formatted in a consistent manner
+
+.. _AlertOps: https://github.com/alerta/alerta-contrib/tree/master/plugins/alertops
 .. _AMQP: https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp
 .. _Cachet: https://github.com/alerta/alerta-contrib/tree/master/plugins/cachet
+.. _DingTalk: https://github.com/alerta/alerta-contrib/tree/master/plugins/dingtalk
 .. _Enhance: https://github.com/alerta/alerta-contrib/tree/master/plugins/enhance
 .. _`GeoIP Location`: https://github.com/alerta/alerta-contrib/tree/master/plugins/geoip
+.. _GoAlert: https://github.com/alerta/alerta-contrib/tree/master/plugins/goalert
 .. _HipChat: https://github.com/alerta/alerta-contrib/tree/master/plugins/hipchat
 .. _InfluxDB: https://github.com/alerta/alerta-contrib/tree/master/plugins/influxdb
+.. _`Jira Plugin`: https://github.com/alerta/alerta-contrib/tree/master/plugins/jira
 .. _Logstash/Kibana: https://github.com/alerta/alerta-contrib/tree/master/plugins/logstash
+.. _Matrix: https://github.com/alerta/alerta-contrib/tree/master/plugins/matrix
+.. _Mattermost: https://github.com/alerta/alerta-contrib/tree/master/plugins/mattermost
+.. _`MS Teams`: https://github.com/alerta/alerta-contrib/tree/master/plugins/msteams
 .. _Normalise: https://github.com/alerta/alerta-contrib/tree/master/plugins/normalise
+.. _OP5: https://github.com/alerta/alerta-contrib/tree/master/plugins/op5
+.. _OpsGenie: https://github.com/alerta/alerta-contrib/tree/master/plugins/opsgenie
 .. _PagerDuty Plugin: https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty
-.. _Prometheus Silencer: https://github.com/alerta/alerta-contrib/tree/master/plugins/prometheus
+.. _`Prometheus Silencer`: https://github.com/alerta/alerta-contrib/tree/master/plugins/prometheus
 .. _`Pushover.net`: https://github.com/alerta/alerta-contrib/tree/master/plugins/pushover
+.. _`Google Pub/Sub`: https://github.com/alerta/alerta-contrib/tree/master/plugins/pubsub
+.. _Rocketchat: https://github.com/alerta/alerta-contrib/tree/master/plugins/rocketchat
 .. _Slack: https://github.com/alerta/alerta-contrib/tree/master/plugins/slack
-.. _AWS SNS: https://github.com/alerta/alerta-contrib/tree/master/plugins/sns
-.. _Syslog Logger: https://github.com/alerta/alerta-contrib/tree/master/plugins/syslog
-.. _Telegram Bot: https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram
+.. _`AWS SNS`: https://github.com/alerta/alerta-contrib/tree/master/plugins/sns
+.. _`Syslog Logger`: https://github.com/alerta/alerta-contrib/tree/master/plugins/syslog
+.. _`Telegram Bot`: https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram
 .. _`Twilio SMS`: https://github.com/alerta/alerta-contrib/tree/master/plugins/twilio
+.. _Zabbix: https://github.com/alerta/alerta-contrib/tree/master/plugins/zabbix
 
 Plugin Lifecycle Hooks
 ~~~~~~~~~~~~~~~~~~~~~~
