@@ -143,6 +143,26 @@ Alert Commands
 The following group of commands are related to sending, querying and managing
 the status of alerts.
 
+.. _common_alert_options:
+
+**Common Alert Selection Options**
+
+Many alert commands accept the same options for selecting which alerts to
+act on. These common options are:
+
+::
+
+    -i, --ids ID           List of alert IDs (can be specified multiple times)
+    -q, --query QUERY      query eg. severity:major AND resource:web01
+    -f, --filter FILTER    KEY=VALUE eg. serverity=major (can be specified multiple
+                           times)
+
+Alerts can be selected by one or more alert IDs using ``--ids``, by a query
+string using ``--query``, or by key-value filters using ``--filter``. These
+options are shared by ``query``, ``ack``, ``close``, ``unack``, ``shelve``,
+``unshelve``, ``tag``, ``untag``, ``update``, ``delete``, ``action``,
+``note``, ``watch`` and ``raw``.
+
 .. _cli_send:
 
 :command:`send` - Send an alert
@@ -183,7 +203,7 @@ be set to sensible defaults.
     default) then alerts must have an ``environment`` attribute that
     is one of either ``Production`` or ``Development`` and it must
     define a ``service`` attribute. For more information on configuring
-    or disabling this plugin see :ref:`plugin config`.
+    or disabling this plugin see :ref:`plugin settings`.
 
 +------------------+-----------------------+
 | Attribute        | Default               |
@@ -228,10 +248,26 @@ To send an alert with custom attribute called ``region``::
 
     $ alerta send -r web01 -e HttpError -g Web -s major --attributes region="EU"
 
+.. _cli_query:
+
 :command:`query` - Search for alerts
 ++++++++++++++++++++++++++++++++++++
 
 Query for alerts based on search filter criteria.
+
+::
+
+    $ alerta query [OPTIONS]
+
+    Options:
+      -i, --ids ID           List of alert IDs (can be specified multiple times)
+      -q, --query QUERY      query eg. severity:major AND resource:web01
+      -f, --filter FILTER    KEY=VALUE eg. severity=major (can be specified multiple
+                             times)
+      --oneline              Format output as a single line per alert (default)
+      --medium               Format output as medium detail
+      --full                 Format output as full detail
+      -h, --help             Show this message and exit.
 
 **Examples**
 
@@ -243,20 +279,65 @@ To query for all alerts with "disk" in the alert text::
 
     $ alerta query --filter text=~disk
 
+To query for a specific alert by ID with full detail::
+
+    $ alerta query --ids 5eb851eb --full
+
+.. _cli_ack:
+
 :command:`ack` - Acknowledge alerts
 +++++++++++++++++++++++++++++++++++
 
-Acknowlege alerts ie. change alert ``status`` to ``ack``
+Acknowledge alerts ie. change alert ``status`` to ``ack``.
+
+::
+
+    $ alerta ack [OPTIONS]
+
+    Options:
+      -i, --ids ID           List of alert IDs
+      -q, --query QUERY      query eg. severity:major AND resource:web01
+      -f, --filter FILTER    KEY=VALUE eg. severity=major
+      --text TEXT             Reason for acknowledgement
+      -h, --help             Show this message and exit.
+
+.. _cli_close:
 
 :command:`close` - Close alerts
 +++++++++++++++++++++++++++++++
 
 Close alerts ie. change alert ``status`` to ``closed``.
 
+::
+
+    $ alerta close [OPTIONS]
+
+    Options:
+      -i, --ids ID           List of alert IDs
+      -q, --query QUERY      query eg. severity:major AND resource:web01
+      -f, --filter FILTER    KEY=VALUE eg. severity=major
+      --text TEXT             Reason for closing
+      -h, --help             Show this message and exit.
+
+.. _cli_unack:
+
 :command:`unack` - Un-acknowledge alerts
 ++++++++++++++++++++++++++++++++++++++++
 
 Unacknowledge alerts ie. change alert ``status`` to ``open``.
+
+::
+
+    $ alerta unack [OPTIONS]
+
+    Options:
+      -i, --ids ID           List of alert IDs
+      -q, --query QUERY      query eg. severity:major AND resource:web01
+      -f, --filter FILTER    KEY=VALUE eg. severity=major
+      --text TEXT             Reason for un-acknowledgement
+      -h, --help             Show this message and exit.
+
+.. _cli_shelve:
 
 :command:`shelve` - Shelve alerts
 +++++++++++++++++++++++++++++++++
@@ -264,51 +345,256 @@ Unacknowledge alerts ie. change alert ``status`` to ``open``.
 Shelve alerts ie. change alert ``status`` to ``shelved`` which removes the
 alerts from the active console and prevents any further notifications.
 
+::
+
+    $ alerta shelve [OPTIONS]
+
+    Options:
+      -i, --ids ID           List of alert IDs
+      -q, --query QUERY      query eg. severity:major AND resource:web01
+      -f, --filter FILTER    KEY=VALUE eg. severity=major
+      --timeout SECONDS      Seconds before shelve expires (default: 7200)
+      --text TEXT             Reason for shelving
+      -h, --help             Show this message and exit.
+
+.. _cli_unshelve:
+
 :command:`unshelve` - Un-shelve alerts
 ++++++++++++++++++++++++++++++++++++++
 
 Unshelve alerts ie. change alert ``status`` to ``open`` which returns the
 alerts to the active console and does not prevent future notifications.
 
+::
+
+    $ alerta unshelve [OPTIONS]
+
+    Options:
+      -i, --ids ID           List of alert IDs
+      -q, --query QUERY      query eg. severity:major AND resource:web01
+      -f, --filter FILTER    KEY=VALUE eg. severity=major
+      --text TEXT             Reason for unshelving
+      -h, --help             Show this message and exit.
+
+.. _cli_tag:
+
 :command:`tag` - Tag alerts
 +++++++++++++++++++++++++++
 
 Add tags to alerts.
+
+::
+
+    $ alerta tag [OPTIONS]
+
+    Options:
+      -i, --ids ID           List of alert IDs
+      -q, --query QUERY      query eg. severity:major AND resource:web01
+      -f, --filter FILTER    KEY=VALUE eg. severity=major
+      -T, --tag TAG          Tag to add (required, can be specified multiple times)
+      -h, --help             Show this message and exit.
+
+**Example**
+
+::
+
+    $ alerta tag --ids 5eb851eb --tag London --tag os:linux
+
+.. _cli_untag:
 
 :command:`untag` - Untag alerts
 +++++++++++++++++++++++++++++++
 
 Remove tags from alerts.
 
+::
+
+    $ alerta untag [OPTIONS]
+
+    Options:
+      -i, --ids ID           List of alert IDs
+      -q, --query QUERY      query eg. severity:major AND resource:web01
+      -f, --filter FILTER    KEY=VALUE eg. severity=major
+      -T, --tag TAG          Tag to remove (required, can be specified multiple times)
+      -h, --help             Show this message and exit.
+
+.. _cli_update:
+
 :command:`update` - Update alert attributes
 +++++++++++++++++++++++++++++++++++++++++++
 
 Update alert attributes.
 
+::
+
+    $ alerta update [OPTIONS]
+
+    Options:
+      -i, --ids ID               List of alert IDs
+      -q, --query QUERY          query eg. severity:major AND resource:web01
+      -f, --filter FILTER        KEY=VALUE eg. severity=major
+      -A, --attributes KEY=VALUE Attribute to update (required, can be specified
+                                 multiple times)
+      -h, --help                 Show this message and exit.
+
+**Example**
+
+::
+
+    $ alerta update --ids 5eb851eb --attributes priority=high --attributes owner=jsmith
+
+.. _cli_delete:
+
 :command:`delete` - Delete alerts
 +++++++++++++++++++++++++++++++++
 
-Delete alerts.
+Delete alerts. If no ``--ids``, ``--query`` or ``--filter`` is specified,
+the command will prompt for confirmation before deleting all alerts.
+
+::
+
+    $ alerta delete [OPTIONS]
+
+    Options:
+      -i, --ids ID           List of alert IDs
+      -q, --query QUERY      query eg. severity:major AND resource:web01
+      -f, --filter FILTER    KEY=VALUE eg. severity=major
+      -h, --help             Show this message and exit.
+
+.. _cli_action:
+
+:command:`action` - Take action on alerts
++++++++++++++++++++++++++++++++++++++++++
+
+Take a custom action on alerts.
+
+::
+
+    $ alerta action [OPTIONS]
+
+    Options:
+      -a, --action ACTION    Action to perform on alerts
+      -i, --ids ID           List of alert IDs
+      -q, --query QUERY      query eg. severity:major AND resource:web01
+      -f, --filter FILTER    KEY=VALUE eg. severity=major
+      --text TEXT             Reason for action
+      -h, --help             Show this message and exit.
+
+**Example**
+
+::
+
+    $ alerta action --action escalate --ids 5eb851eb --text "Escalating to L2 support"
+
+.. _cli_note:
+
+:command:`note` - Add or delete alert notes
++++++++++++++++++++++++++++++++++++++++++++
+
+Add or delete notes on alerts.
+
+::
+
+    $ alerta note [OPTIONS]
+
+    Options:
+      -i, --alert-ids ID     List of alert IDs
+      -q, --query QUERY      query eg. severity:major AND resource:web01
+      -f, --filter FILTER    KEY=VALUE eg. severity=major
+      --text TEXT             Note text to add
+      -D, --delete ALERT_ID NOTE_ID
+                             Delete a note by alert ID and note ID
+      -h, --help             Show this message and exit.
+
+**Example**
+
+::
+
+    $ alerta note --alert-ids 5eb851eb --text "Investigating root cause"
+
+.. _cli_notes:
+
+:command:`notes` - List alert notes
++++++++++++++++++++++++++++++++++++
+
+List notes for an alert.
+
+::
+
+    $ alerta notes [OPTIONS]
+
+    Options:
+      -i, --alert-id ID      Alert ID to list notes for
+      -h, --help             Show this message and exit.
+
+.. _cli_watch:
 
 :command:`watch` - Watch alerts
 +++++++++++++++++++++++++++++++
 
-Watch for new alerts.
+Watch for new alerts, continuously updating the display.
+
+::
+
+    $ alerta watch [OPTIONS]
+
+    Options:
+      -i, --ids ID           List of alert IDs
+      -q, --query QUERY      query eg. severity:major AND resource:web01
+      -f, --filter FILTER    KEY=VALUE eg. severity=major
+      --details              Show alert details
+      -n, --interval SECONDS Refresh interval in seconds (default: 2)
+      -h, --help             Show this message and exit.
+
+.. _cli_top:
 
 :command:`top` - Show top offenders and stats
 +++++++++++++++++++++++++++++++++++++++++++++
 
-Display alerts like unix "top" command.
+Display alerts like the unix ``top`` command. Shows a continuously updating
+summary of the top alert offenders by resource, event and other criteria.
+
+.. _cli_raw:
 
 :command:`raw` - Show alert raw data
 ++++++++++++++++++++++++++++++++++++
 
 Show raw data for alerts.
 
+::
+
+    $ alerta raw [OPTIONS]
+
+    Options:
+      -i, --ids ID           List of alert IDs
+      -q, --query QUERY      query eg. severity:major AND resource:web01
+      -f, --filter FILTER    KEY=VALUE eg. severity=major
+      -h, --help             Show this message and exit.
+
+.. _cli_history:
+
 :command:`history` - Show alert history
 +++++++++++++++++++++++++++++++++++++++
 
 Show action, status, severity and value changes for alerts.
+
+.. _cli_alerts:
+
+:command:`alerts` - List alert metadata
++++++++++++++++++++++++++++++++++++++++
+
+List environments, services, groups and tags for alerts.
+
+::
+
+    $ alerta alerts [OPTIONS]
+
+    Options:
+      -E, --environments     List alert environments
+      -S, --services         List alert services
+      -g, --groups           List alert groups
+      -T, --tags             List alert tags
+      -h, --help             Show this message and exit.
 
 Blackout Commands
 ~~~~~~~~~~~~~~~~~
@@ -316,15 +602,46 @@ Blackout Commands
 The following group of commands are related to creating and
 managing alert suppressions using blackouts.
 
-:command:`blackout` - Suppress alerts
-+++++++++++++++++++++++++++++++++++
+.. _cli_blackout:
 
-  blackout      Suppress alerts
+:command:`blackout` - Suppress alerts
++++++++++++++++++++++++++++++++++++++
+
+Create or delete a blackout period to suppress alerts.
+
+::
+
+    $ alerta blackout [OPTIONS]
+
+    Options:
+      -E, --environment ENVIRONMENT  Environment eg. Production, Development
+      -S, --service SERVICE          List of affected services
+      -r, --resource RESOURCE        Resource under alarm
+      -e, --event EVENT              Event name
+      -g, --group GROUP              Group event by type
+      -T, --tag TAG                  List of tags (can be specified multiple times)
+      -O, --origin ORIGIN            Origin of alert
+      --customer STRING              Customer
+      --start DATETIME               Start time of blackout
+      --duration SECONDS             Duration of blackout in seconds
+      --text TEXT                     Reason for blackout
+      -D, --delete ID                Delete blackout using ID
+      -h, --help                     Show this message and exit.
+
+.. _cli_blackouts:
 
 :command:`blackouts` - List alert suppressions
-+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++
 
-  blackouts     List alert suppressions
+List blackout periods.
+
+::
+
+    $ alerta blackouts [OPTIONS]
+
+    Options:
+      --purge                Delete expired blackouts
+      -h, --help             Show this message and exit.
 
 Heartbeat Commands
 ~~~~~~~~~~~~~~~~~~
@@ -401,11 +718,26 @@ API Key Commands
 The following group of commands are related to creating and
 managing API keys.
 
+.. _cli_key:
+
 :command:`key` - Create API key
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++
 
-  key           Create API key
+Create or delete an API key.
 
+::
+
+    $ alerta key [OPTIONS]
+
+    Options:
+      -K, --api-key KEY      API key string
+      -u, --username USER    Username associated with the key
+      --scope SCOPE          Permission scope (can be specified multiple times)
+      --duration SECONDS     Duration of key validity in seconds
+      --text TEXT             Description of key
+      --customer STRING      Customer
+      -D, --delete ID        Delete API key using ID
+      -h, --help             Show this message and exit.
 
 .. important::
 
@@ -413,15 +745,19 @@ managing API keys.
     with associated roles that are greater than that with which that API key
     has.
 
-:command:`keys` - List API keys
-+++++++++++++++++++++++++++++++++++
+.. _cli_keys:
 
-  keys          List API keys
+:command:`keys` - List API keys
++++++++++++++++++++++++++++++++
+
+List API keys.
+
+.. _cli_revoke:
 
 :command:`revoke` - Revoke API key
-+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++
 
-  revoke        Revoke API key  
+Revoke an API key.
 
 User Commands
 ~~~~~~~~~~~~~
@@ -429,20 +765,71 @@ User Commands
 The following group of commands are related to creating and
 managing users.
 
-:command:`user` - Update user
-+++++++++++++++++++++++++++++++++++
+.. _cli_user:
 
-  user          Update user
+:command:`user` - Update user
++++++++++++++++++++++++++++++
+
+Create, update or delete a user.
+
+::
+
+    $ alerta user [OPTIONS]
+
+    Options:
+      -i, --id ID                    User ID
+      --name NAME                    User name
+      --email EMAIL                  User email
+      --password PASSWORD            User password
+      --status STATUS                User status
+      --role ROLE                    User role (can be specified multiple times)
+      --text TEXT                    Description
+      --email-verified               Mark email as verified
+      --email-not-verified           Mark email as not verified
+      --groups                       List user groups
+      -D, --delete ID                Delete user using ID
+      -h, --help                     Show this message and exit.
+
+.. _cli_users:
 
 :command:`users` - List users
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++
 
-  users         List users
+List users.
+
+.. _cli_me:
 
 :command:`me` - Update current user
 +++++++++++++++++++++++++++++++++++
 
-  me            Update current user
+Update the currently logged in user.
+
+.. _cli_group:
+
+:command:`group` - Manage groups
+++++++++++++++++++++++++++++++++
+
+Create or delete groups, and add or remove users from groups.
+
+::
+
+    $ alerta group [OPTIONS]
+
+    Options:
+      -i, --id ID            Group ID
+      --name NAME            Group name
+      --text TEXT             Description
+      -U, --user USER        Add or remove a user from the group
+      --users                List users in the group
+      -D, --delete ID        Delete group using ID
+      -h, --help             Show this message and exit.
+
+.. _cli_groups:
+
+:command:`groups` - List groups
++++++++++++++++++++++++++++++++
+
+List user groups.
 
 Permissions Commands
 ~~~~~~~~~~~~~~~~~~~~
@@ -450,15 +837,36 @@ Permissions Commands
 The following group of commands are related to creating and
 managing roles, permissions and access control.
 
-:command:`perm` - Add role-permission lookup
-+++++++++++++++++++++++++++++++++++
+.. _cli_perm:
 
-  perm          Add role-permission lookup
+:command:`perm` - Add role-permission lookup
+++++++++++++++++++++++++++++++++++++++++++++
+
+Create or delete a role-permission lookup.
+
+::
+
+    $ alerta perm [OPTIONS]
+
+    Options:
+      --role ROLE            Role name
+      --scope SCOPE          Permission scope (can be specified multiple times)
+      -D, --delete ID        Delete permission using ID
+      -h, --help             Show this message and exit.
+
+.. _cli_perms:
 
 :command:`perms` - List role-permission lookups
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++
 
-  perms         List role-permission lookups
+List role-permission lookups.
+
+.. _cli_scopes:
+
+:command:`scopes` - List permission scopes
+++++++++++++++++++++++++++++++++++++++++++
+
+List available permission scopes.
 
 Customer Commands
 ~~~~~~~~~~~~~~~~~
@@ -466,15 +874,33 @@ Customer Commands
 The following group of commands are related to creating and
 managing customers.
 
-:command:`customer` - Add customer lookup
-+++++++++++++++++++++++++++++++++++
+.. _cli_customer:
 
-  customer      Add customer lookup
+:command:`customer` - Add customer lookup
++++++++++++++++++++++++++++++++++++++++++
+
+Create or delete a customer lookup. The match can be against an
+organization, group, domain or role.
+
+::
+
+    $ alerta customer [OPTIONS]
+
+    Options:
+      --customer CUSTOMER    Customer name
+      --org MATCH            Match against organization
+      --group MATCH          Match against group
+      --domain MATCH         Match against domain
+      --role MATCH           Match against role
+      -D, --delete ID        Delete customer using ID
+      -h, --help             Show this message and exit.
+
+.. _cli_customers:
 
 :command:`customers` - List customer lookups
-+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++
 
-  customers     List customer lookups
+List customer lookups.
 
 Auth Commands
 ~~~~~~~~~~~~~
@@ -482,27 +908,27 @@ Auth Commands
 The following group of commands are related to authentication.
 
 :command:`signup` - Sign-up new user
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++
 
   signup        Sign-up new user
 
 :command:`login` - Login with user credentials
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++
 
   login         Login with user credentials
 
 :command:`logout` - Clear login credentials
-+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++
 
   logout        Clear login credentials
 
 :command:`whoami` - Display current logged in user
-+++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++
 
   whoami        Display current logged in user
 
 :command:`token` - Display current auth token
-+++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++
 
   token         Display current auth token
 
@@ -557,7 +983,7 @@ Display client config downloaded from API server.
     gitlab_url          : https://gitlab.com
     keycloak_realm      : None
     keycloak_url        : None
-    pingfederate_url    : None
+    cas_server          : None
     provider            : google
     refresh_interval    : 5000
     severity            : {'cleared': 5, 'critical': 1, 'debug': 7, 'indeterminate': 5, 'informational': 6, 'major': 2, 'minor': 3, 'normal': 5, 'ok': 5, 'security': 0, 'trace': 8, 'unknown': 9, 'warning': 4}
@@ -577,7 +1003,7 @@ Show how long the Alerta API has been running.
 
     $ alerta uptime
     01:06 up 0 days 16:15
-  
+
 :command:`version` - Display version info
 +++++++++++++++++++++++++++++++++++++++++
 
@@ -586,8 +1012,8 @@ Show version information for ``alerta`` and dependencies.
 ::
 
     $ alerta version
-    alerta 6.0.0
-    alerta client 6.0.0
+    alerta 8.5.3
+    alerta client 8.5.3
     requests 2.19.1
     click 7.0
 
@@ -604,5 +1030,5 @@ Bugs
 
 Log any issues on `GitHub`_ or submit a `pull request`_.
 
-.. _`github`: https://github.com/alerta/python-alerta/issues
-.. _`pull request`: https://github.com/alerta/python-alerta/pulls
+.. _`github`: https://github.com/alerta/python-alerta-client/issues
+.. _`pull request`: https://github.com/alerta/python-alerta-client/pulls
