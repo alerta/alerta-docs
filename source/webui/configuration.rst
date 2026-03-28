@@ -83,7 +83,7 @@ shown below that.
       "gitlab_url": "https://gitlab.com", 
       "keycloak_realm": null, 
       "keycloak_url": null, 
-      "pingfederate_url": null, 
+      "cas_server": null,
       "provider": "google", 
       "refresh_interval": 5000, 
       "severity": {
@@ -116,49 +116,30 @@ Client Settings
 Full list of API server settings that can be used to configure clients can be found
 at :ref:`webui settings`.
 
-.. raw:: html
-    <style> .red { background-color: red } </style>
-
 Severity Colors
 ---------------
 
-.. |blu| image:: https://via.placeholder.com/16x16/0000ff/0000ff
-.. |red| image:: https://via.placeholder.com/16x16/ff0000/ff0000
-.. |org| image:: https://via.placeholder.com/16x16/ffa500/ffa500
-.. |ylw| image:: https://via.placeholder.com/16x16/ffff00/ffff00
-.. |dbl| image:: https://via.placeholder.com/16x16/1e90ff/1e90ff
-.. |lbl| image:: https://via.placeholder.com/16x16/add8e6/add8e6
-.. |grn| image:: https://via.placeholder.com/16x16/00cc00/00cc00
-.. |prp| image:: https://via.placeholder.com/16x16/9d006d/9d006d
-.. |vlt| image:: https://via.placeholder.com/16x16/7554bf/7554bf
-.. |slv| image:: https://via.placeholder.com/16x16/c0c0c0/c0c0c0
+.. raw:: html
 
-+-------------------+---------------+---------------------------------+
-| Severity          | Severity Code | Colour                          |
-+===================+===============+=================================+
-| ``security``      | 0             | |blu| ``#0000FF``  (Blue)       |
-+-------------------+---------------+---------------------------------+
-| ``critical``      | 1             | |red| ``#FF0000``  (Red)        |
-+-------------------+---------------+---------------------------------+
-| ``major``         | 2             | |org| ``#FFA500``  (Orange)     |
-+-------------------+---------------+---------------------------------+
-| ``minor``         | 3             | |ylw| ``#FFFF00``  (Yellow)     |
-+-------------------+---------------+---------------------------------+
-| ``warning``       | 4             | |dbl| ``#1E90FF``  (DodgerBlue) |
-+-------------------+---------------+---------------------------------+
-| ``indeterminate`` | 5             | |lbl| ``#00CC00`` (LightBlue)   |
-+-------------------+---------------+---------------------------------+
-| ``cleared``       | 5             | |grn| ``#00CC00`` (Green*)      |
-+-------------------+---------------+---------------------------------+
-| ``normal``        | 5             | |grn| ``#00CC00`` (Green*)      |
-+-------------------+---------------+---------------------------------+
-| ``ok``            | 5             | |grn| ``#00CC00`` (Green*)      |
-+-------------------+---------------+---------------------------------+
-| ``informational`` | 6             | |grn| ``#00CC00`` (Green*)      |
-+-------------------+---------------+---------------------------------+
-| ``debug``         | 7             | |prp| ``#9D006D`` (Purple*)     |
-+-------------------+---------------+---------------------------------+
-| ``trace``         | 8             | |vlt| ``#7554BF`` (Violet*)     |
-+-------------------+---------------+---------------------------------+
-| ``unknown``       | 9             | |slv| ``#C0C0C0`` (Silver)      |
-+-------------------+---------------+---------------------------------+
+    <table class="docutils align-default">
+    <thead><tr><th>Severity</th><th>Code</th><th>Colour</th></tr></thead>
+    <tbody>
+    <tr><td><code>security</code></td><td>0</td><td><span style="display:inline-block;width:14px;height:14px;background:#0000FF;border:1px solid #ccc;vertical-align:middle"></span> <code>#0000FF</code> Blue</td></tr>
+    <tr><td><code>critical</code></td><td>1</td><td><span style="display:inline-block;width:14px;height:14px;background:#FF0000;border:1px solid #ccc;vertical-align:middle"></span> <code>#FF0000</code> Red</td></tr>
+    <tr><td><code>major</code></td><td>2</td><td><span style="display:inline-block;width:14px;height:14px;background:#FFA500;border:1px solid #ccc;vertical-align:middle"></span> <code>#FFA500</code> Orange</td></tr>
+    <tr><td><code>minor</code></td><td>3</td><td><span style="display:inline-block;width:14px;height:14px;background:#FFFF00;border:1px solid #ccc;vertical-align:middle"></span> <code>#FFFF00</code> Yellow</td></tr>
+    <tr><td><code>warning</code></td><td>4</td><td><span style="display:inline-block;width:14px;height:14px;background:#1E90FF;border:1px solid #ccc;vertical-align:middle"></span> <code>#1E90FF</code> DodgerBlue</td></tr>
+    <tr><td><code>indeterminate</code></td><td>5</td><td><span style="display:inline-block;width:14px;height:14px;background:#ADD8E6;border:1px solid #ccc;vertical-align:middle"></span> <code>#ADD8E6</code> LightBlue</td></tr>
+    <tr><td><code>cleared</code></td><td>5</td><td><span style="display:inline-block;width:14px;height:14px;background:#00CC00;border:1px solid #ccc;vertical-align:middle"></span> <code>#00CC00</code> Green</td></tr>
+    <tr><td><code>normal</code></td><td>5</td><td><span style="display:inline-block;width:14px;height:14px;background:#00CC00;border:1px solid #ccc;vertical-align:middle"></span> <code>#00CC00</code> Green</td></tr>
+    <tr><td><code>ok</code></td><td>5</td><td><span style="display:inline-block;width:14px;height:14px;background:#00CC00;border:1px solid #ccc;vertical-align:middle"></span> <code>#00CC00</code> Green</td></tr>
+    <tr><td><code>informational</code></td><td>6</td><td><span style="display:inline-block;width:14px;height:14px;background:#00CC00;border:1px solid #ccc;vertical-align:middle"></span> <code>#00CC00</code> Green</td></tr>
+    <tr><td><code>debug</code></td><td>7</td><td><span style="display:inline-block;width:14px;height:14px;background:#9D006D;border:1px solid #ccc;vertical-align:middle"></span> <code>#9D006D</code> Purple</td></tr>
+    <tr><td><code>trace</code></td><td>8</td><td><span style="display:inline-block;width:14px;height:14px;background:#7554BF;border:1px solid #ccc;vertical-align:middle"></span> <code>#7554BF</code> Violet</td></tr>
+    <tr><td><code>unknown</code></td><td>9</td><td><span style="display:inline-block;width:14px;height:14px;background:#C0C0C0;border:1px solid #ccc;vertical-align:middle"></span> <code>#C0C0C0</code> Silver</td></tr>
+    </tbody>
+    </table>
+
+.. note:: The ``indeterminate`` color was incorrectly shown as green in
+    previous versions of this documentation. It is ``#ADD8E6`` (LightBlue)
+    in the source code.
