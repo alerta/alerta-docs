@@ -71,7 +71,23 @@ server to use it other than setting ``AUTH_REQUIRED`` to ``True``.
     or password so it is strongly advised to only use Basic Auth over
     HTTPS.
 
-.. warning:: add example
+**Example**
+
+.. code:: python
+
+    AUTH_REQUIRED = True
+    SECRET_KEY = 'something-secret'
+    AUTH_PROVIDER = 'basic'
+    SIGNUP_ENABLED = True
+    ALLOWED_EMAIL_DOMAINS = ['example.com']
+
+Users sign up via the web UI or using the CLI::
+
+    $ alerta signup --name "Joe Bloggs" --email joe@example.com --password secret
+
+Then login to receive a JWT token::
+
+    $ alerta login --username joe@example.com --password secret
 
 .. _ldap_auth:
 
@@ -99,25 +115,34 @@ that multiple LDAP domains can be supported.
 
 **Example**
 
+**Example using LDAP_DOMAINS (simple bind)**
+
 .. code:: python
 
     AUTH_PROVIDER = 'ldap'
-    LDAP_URL = 'ldap://localhost:389'  # replace with your LDAP server
+    LDAP_URL = 'ldap://ldap.example.com:389'
     LDAP_DOMAINS = {
-        'my-domain.com': 'uid=%s,ou=users,dc=my-domain,dc=com'
-    }
-    LDAP_DOMAINS_BASEDN = {
-        'my-domain.com': 'dc=my-domain,dc=com'
-    }
-    LDAP_DOMAINS_GROUP = {
-        'my-domain.com': '(&(memberUid={username})(objectClass=groupOfUniqueNames))'
-        #OR
-        'my-domain.com': '(&(member={userdn})(objectClass=groupOfUniqueNames))'
-        #OR
-        'my-domain.com': '(&(member={email})(objectClass=groupOfUniqueNames))'
+        'example.com': 'uid=%s,ou=users,dc=example,dc=com'
     }
 
-.. warning:: improve example
+**Example using LDAP search (bind + search)**
+
+.. code:: python
+
+    AUTH_PROVIDER = 'ldap'
+    LDAP_URL = 'ldaps://ldap.example.com:636'
+    LDAP_BIND_USERNAME = 'cn=readonly,dc=example,dc=com'
+    LDAP_BIND_PASSWORD = 'readonly-password'
+    LDAP_USER_BASEDN = 'ou=users,dc=example,dc=com'
+    LDAP_USER_FILTER = '(uid={username})'
+    LDAP_GROUP_BASEDN = 'ou=groups,dc=example,dc=com'
+    LDAP_GROUP_FILTER = '(&(member={userdn})(objectClass=groupOfNames))'
+    LDAP_GROUP_NAME_ATTR = 'cn'
+    LDAP_DEFAULT_DOMAIN = 'example.com'
+    ALLOWED_LDAP_GROUPS = ['alerta-users', 'alerta-admins']
+
+.. note:: The ``LDAP_GROUP_FILTER`` supports ``{username}``, ``{userdn}``
+    and ``{email}`` placeholders for group membership lookups.
 
 A typical user called ``user1``, for the example above, would login
 using an email address of ``user1@my-domain.com`` even if that

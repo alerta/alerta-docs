@@ -80,6 +80,7 @@
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Webhooks</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#built-in-webhooks">Built-in Webhooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contrib-webhooks">Contrib Webhooks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#custom-webhooks">Custom Webhooks</a></li>
 </ul>
 </li>
@@ -154,7 +155,46 @@
 <h2>Built-in Webhooks<a class="headerlink" href="#built-in-webhooks" title="Permalink to this heading"></a></h2>
 <p>Alerta ships with webhook receivers for the following services. Each webhook
 automatically creates an API endpoint at <code class="file docutils literal notranslate"><span class="pre">/webhooks/&lt;name&gt;</span></code>:</p>
-<p>Additional webhook receivers are available in the <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/webhooks">contrib webhooks</a> repository.</p>
+</section>
+<section id="contrib-webhooks">
+<h2>Contrib Webhooks<a class="headerlink" href="#contrib-webhooks" title="Permalink to this heading"></a></h2>
+<p>Additional webhook receivers are available in the <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/webhooks">contrib webhooks</a> repository:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Webhook</p></th>
+<th class="head"><p>Endpoint</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Azure Monitor</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/webhooks/azuremonitor</span></code></p></td>
+<td><p>Receives Azure Monitor alert
+notifications</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fail2Ban</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/webhooks/fail2ban</span></code></p></td>
+<td><p>Receives Fail2Ban ban/unban events</p></td>
+</tr>
+<tr class="row-even"><td><p>Mailgun</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/webhooks/mailgun</span></code></p></td>
+<td><p>Receives Mailgun email event webhooks</p></td>
+</tr>
+<tr class="row-odd"><td><p>MS Teams</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/webhooks/msteams</span></code></p></td>
+<td><p>Receives Microsoft Teams webhook events</p></td>
+</tr>
+<tr class="row-even"><td><p>Sentry</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/webhooks/sentry</span></code></p></td>
+<td><p>Receives Sentry error tracking events</p></td>
+</tr>
+<tr class="row-odd"><td><p>StatusCake</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/webhooks/statuscake</span></code></p></td>
+<td><p>Receives StatusCake uptime monitoring
+alerts</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="custom-webhooks">
 <h2>Custom Webhooks<a class="headerlink" href="#custom-webhooks" title="Permalink to this heading"></a></h2>

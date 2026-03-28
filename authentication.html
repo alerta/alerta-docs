@@ -230,9 +230,21 @@ server to use it other than setting <code class="docutils literal notranslate"><
 or password so it is strongly advised to only use Basic Auth over
 HTTPS.</p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>add example</p>
+<p><strong>Example</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_REQUIRED</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;something-secret&#39;</span>
+<span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;basic&#39;</span>
+<span class="n">SIGNUP_ENABLED</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;example.com&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Users sign up via the web UI or using the CLI:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta signup --name &quot;Joe Bloggs&quot; --email joe@example.com --password secret
+</pre></div>
+</div>
+<p>Then login to receive a JWT token:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta login --username joe@example.com --password secret
+</pre></div>
 </div>
 </section>
 <section id="basic-auth-using-ldap">
@@ -254,26 +266,32 @@ into the same environment otherwise it won’t be auto-detected.</p>
 server URL and a map of LDAP domains to search filters which means
 that multiple LDAP domains can be supported.</p>
 <p><strong>Example</strong></p>
+<p><strong>Example using LDAP_DOMAINS (simple bind)</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;ldap&#39;</span>
-<span class="n">LDAP_URL</span> <span class="o">=</span> <span class="s1">&#39;ldap://localhost:389&#39;</span>  <span class="c1"># replace with your LDAP server</span>
+<span class="n">LDAP_URL</span> <span class="o">=</span> <span class="s1">&#39;ldap://ldap.example.com:389&#39;</span>
 <span class="n">LDAP_DOMAINS</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;my-domain.com&#39;</span><span class="p">:</span> <span class="s1">&#39;uid=</span><span class="si">%s</span><span class="s1">,ou=users,dc=my-domain,dc=com&#39;</span>
-<span class="p">}</span>
-<span class="n">LDAP_DOMAINS_BASEDN</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;my-domain.com&#39;</span><span class="p">:</span> <span class="s1">&#39;dc=my-domain,dc=com&#39;</span>
-<span class="p">}</span>
-<span class="n">LDAP_DOMAINS_GROUP</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;my-domain.com&#39;</span><span class="p">:</span> <span class="s1">&#39;(&amp;(memberUid=</span><span class="si">{username}</span><span class="s1">)(objectClass=groupOfUniqueNames))&#39;</span>
-    <span class="c1">#OR</span>
-    <span class="s1">&#39;my-domain.com&#39;</span><span class="p">:</span> <span class="s1">&#39;(&amp;(member=</span><span class="si">{userdn}</span><span class="s1">)(objectClass=groupOfUniqueNames))&#39;</span>
-    <span class="c1">#OR</span>
-    <span class="s1">&#39;my-domain.com&#39;</span><span class="p">:</span> <span class="s1">&#39;(&amp;(member=</span><span class="si">{email}</span><span class="s1">)(objectClass=groupOfUniqueNames))&#39;</span>
+    <span class="s1">&#39;example.com&#39;</span><span class="p">:</span> <span class="s1">&#39;uid=</span><span class="si">%s</span><span class="s1">,ou=users,dc=example,dc=com&#39;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>improve example</p>
+<p><strong>Example using LDAP search (bind + search)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;ldap&#39;</span>
+<span class="n">LDAP_URL</span> <span class="o">=</span> <span class="s1">&#39;ldaps://ldap.example.com:636&#39;</span>
+<span class="n">LDAP_BIND_USERNAME</span> <span class="o">=</span> <span class="s1">&#39;cn=readonly,dc=example,dc=com&#39;</span>
+<span class="n">LDAP_BIND_PASSWORD</span> <span class="o">=</span> <span class="s1">&#39;readonly-password&#39;</span>
+<span class="n">LDAP_USER_BASEDN</span> <span class="o">=</span> <span class="s1">&#39;ou=users,dc=example,dc=com&#39;</span>
+<span class="n">LDAP_USER_FILTER</span> <span class="o">=</span> <span class="s1">&#39;(uid=</span><span class="si">{username}</span><span class="s1">)&#39;</span>
+<span class="n">LDAP_GROUP_BASEDN</span> <span class="o">=</span> <span class="s1">&#39;ou=groups,dc=example,dc=com&#39;</span>
+<span class="n">LDAP_GROUP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;(&amp;(member=</span><span class="si">{userdn}</span><span class="s1">)(objectClass=groupOfNames))&#39;</span>
+<span class="n">LDAP_GROUP_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;cn&#39;</span>
+<span class="n">LDAP_DEFAULT_DOMAIN</span> <span class="o">=</span> <span class="s1">&#39;example.com&#39;</span>
+<span class="n">ALLOWED_LDAP_GROUPS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;alerta-users&#39;</span><span class="p">,</span> <span class="s1">&#39;alerta-admins&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">LDAP_GROUP_FILTER</span></code> supports <code class="docutils literal notranslate"><span class="pre">{username}</span></code>, <code class="docutils literal notranslate"><span class="pre">{userdn}</span></code>
+and <code class="docutils literal notranslate"><span class="pre">{email}</span></code> placeholders for group membership lookups.</p>
 </div>
 <p>A typical user called <code class="docutils literal notranslate"><span class="pre">user1</span></code>, for the example above, would login
 using an email address of <code class="docutils literal notranslate"><span class="pre">user1&#64;my-domain.com</span></code> even if that

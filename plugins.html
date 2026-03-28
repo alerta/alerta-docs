@@ -175,25 +175,55 @@ a specific end-user requirement.</p>
 </section>
 <section id="contrib">
 <h3>Contrib<a class="headerlink" href="#contrib" title="Permalink to this heading"></a></h3>
-<p>More than two dozen <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins">contributed plugins</a> are made available for popular tools. Some
-of the most popular are:</p>
+<p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins">Contributed plugins</a> are available for popular tools and services:</p>
+<p><strong>Messaging &amp; Chat</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/dingtalk">DingTalk</a> - send alerts to DingTalk groups</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/hipchat">HipChat</a> - send alerts to HipChat room</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/matrix">Matrix</a> - send alerts to Matrix rooms</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/mattermost">Mattermost</a> - send alerts to Mattermost channels</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/msteams">MS Teams</a> - send alerts to Microsoft Teams channels</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/rocketchat">Rocketchat</a> - send alerts to Rocket.Chat channels</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/slack">Slack</a> - send alerts to Slack channels</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram">Telegram Bot</a> - send alerts to Telegram channels</p></li>
+</ul>
+<p><strong>Incident Management</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/alertops">AlertOps</a> - send alerts to AlertOps</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/goalert">GoAlert</a> - send alerts to GoAlert</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/jira">Jira Plugin</a> - create Jira tickets from alerts</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/opsgenie">OpsGenie</a> - send alerts to OpsGenie</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty">PagerDuty Plugin</a> - send alerts to PagerDuty (webhooks used to receive callbacks)</p></li>
+</ul>
+<p><strong>Monitoring &amp; Metrics</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/influxdb">InfluxDB</a> - send alerts to InfluxDB for graphing with Grafana</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/prometheus">Prometheus Silencer</a> - silence alerts in Prometheus Alertmanager if ack’ed in Alerta</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/op5">OP5</a> - send alerts to OP5 Monitor</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/zabbix">Zabbix</a> - send alerts to Zabbix</p></li>
+</ul>
+<p><strong>Notifications</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pushover">Pushover.net</a> - send alerts to Pushover.net</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/twilio">Twilio SMS</a> - send alerts via SMS using Twilio</p></li>
+</ul>
+<p><strong>Queues &amp; Pub/Sub</strong></p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/amqp">AMQP</a> - publish alerts to an AMQP fanout topic after processing</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/cachet">Cachet</a> - create incidents for display on Cachet status page</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/enhance">Enhance</a> - add new information to an alert based on existing information</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/geoip">GeoIP Location</a> - use remote IP address to submitted alert to add location data</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/hipchat">HipChat</a> - send alerts to HipChat room</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/influxdb">InfluxDB</a> - send alerts to InfluxDB for graphing with Grafana</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/logstash">Logstash/Kibana</a> - send alerts to logstash agent after processing</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/normalise">Normalise</a> - ensure alerts a formatted in a consistent manner</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty">PagerDuty Plugin</a> - send alerts to PagerDuty (webhooks used to receive callbacks)</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/prometheus">Prometheus Silencer</a> - silence alerts in Prometheus Alertmanager if ack’ed in Alerta</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pushover">Pushover.net</a> - send alerts to Pushover.net</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/slack">Slack</a> - send alerts to Slack room</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pubsub">Google Pub/Sub</a> - publish alerts to Google Cloud Pub/Sub</p></li>
 <li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/sns">AWS SNS</a> - publish alerts to SNS topic after processing</p></li>
+</ul>
+<p><strong>Logging &amp; Status</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/cachet">Cachet</a> - create incidents for display on Cachet status page</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/logstash">Logstash/Kibana</a> - send alerts to logstash agent after processing</p></li>
 <li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/syslog">Syslog Logger</a> - send alerts via syslog</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram">Telegram Bot</a> - send alerts to Telegram channel</p></li>
-<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/twilio">Twilio SMS</a> - send alerts via SMS using Twilio</p></li>
+</ul>
+<p><strong>Alert Processing</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/enhance">Enhance</a> - add new information to an alert based on existing information</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/geoip">GeoIP Location</a> - use remote IP address to add location data</p></li>
+<li><p><a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/normalise">Normalise</a> - ensure alerts are formatted in a consistent manner</p></li>
 </ul>
 </section>
 <section id="plugin-lifecycle-hooks">
