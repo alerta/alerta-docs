@@ -3,8 +3,6 @@
 Plug-ins
 ========
 
-.. _plugins:
-
 Plugins
 -------
 

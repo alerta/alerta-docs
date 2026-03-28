@@ -4,8 +4,7 @@ Authentication
 ==============
 
 By default, authentication is not enabled, however there are some features
-that are :ref:`not available <watched_alerts>` unless users login such as
-watching alerts.
+that are not available unless users login such as watching alerts.
 
 Alerta supports six main authentication strategies:
 
@@ -200,7 +199,7 @@ Refer to pysaml2 documentation and source code if you need additional options:
 - https://pysaml2.readthedocs.io/en/latest/howto/config.html
 - https://github.com/rohe/pysaml2/blob/master/src/saml2/config.py
 
-Note: entityid and service provider endpoints are configured by default based on your BASE_URL value which is mandatory if you use SAML (see :ref:`general config`)
+Note: entityid and service provider endpoints are configured by default based on your BASE_URL value which is mandatory if you use SAML (see :ref:`general settings`)
 
 ``ALLOWED_SAML2_GROUPS``
 
@@ -625,7 +624,7 @@ the command-line tool.
 Keys can be easily generated from the Alerta web UI and can have any scopes
 associated with them. They are valid for 1 year by default but this period
 is configurable using ``API_KEY_EXPIRE_DAYS`` in the
-:ref:`server configuration <api config>`.
+:ref:`server configuration <apikey settings>`.
 
 To use an API key in an API query you must put the key in either an
 HTTP header or a query parameter.

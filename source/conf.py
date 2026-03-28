@@ -43,7 +43,7 @@ myst_enable_extensions = [
 myst_heading_anchors = 3
 
 templates_path = ['_templates']
-exclude_patterns = ['Thumbs.db', '.DS_Store']
+exclude_patterns = ['Thumbs.db', '.DS_Store', 'auth/*', 'examples/*', 'thrift/*', 'spelling_wordlist.txt']
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
