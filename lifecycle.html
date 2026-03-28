@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>State Transition Table &mdash; Alerta 9.1 documentation</title>
+  <title>Alert Lifecycle &mdash; Alerta 9.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
@@ -87,7 +87,12 @@
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">State Transition Table</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Alert Lifecycle</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#statuses">Statuses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#actions">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#state-transition-table">State Transition Table</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
@@ -134,7 +139,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">State Transition Table</li>
+      <li class="breadcrumb-item active">Alert Lifecycle</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/lifecycle.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -144,62 +149,189 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="state-transition-table">
-<h1>State Transition Table<a class="headerlink" href="#state-transition-table" title="Permalink to this heading"></a></h1>
+  <section id="alert-lifecycle">
+<span id="lifecycle"></span><h1>Alert Lifecycle<a class="headerlink" href="#alert-lifecycle" title="Permalink to this heading"></a></h1>
+<p>Alerta uses a state machine to manage alert status transitions. The status
+of an alert changes automatically based on incoming severity changes or
+explicitly via operator actions.</p>
+<section id="statuses">
+<h2>Statuses<a class="headerlink" href="#statuses" title="Permalink to this heading"></a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Status</p></th>
-<th class="head"><p>non-<code class="docutils literal notranslate"><span class="pre">normal</span></code></p></th>
-<th class="head"><p>user <code class="docutils literal notranslate"><span class="pre">ack</span></code></p></th>
-<th class="head"><p>new &gt; old</p></th>
-<th class="head"><p>new &lt;= old</p></th>
-<th class="head"><p><code class="docutils literal notranslate"><span class="pre">normal</span></code></p></th>
-<th class="head"><p>timeout</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">open</span></code></p></td>
+<td><p>Alert is new or has been re-opened</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">assign</span></code></p></td>
+<td><p>Alert has been assigned (placeholder, no transitions)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ack</span></code></p></td>
+<td><p>Alert has been acknowledged by an operator</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">shelved</span></code></p></td>
+<td><p>Alert has been shelved (temporarily hidden)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">blackout</span></code></p></td>
+<td><p>Alert was received during a blackout period</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">closed</span></code></p></td>
+<td><p>Alert has been closed (normal severity or by operator)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">expired</span></code></p></td>
+<td><p>Alert was not updated within its timeout period</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="actions">
+<h2>Actions<a class="headerlink" href="#actions" title="Permalink to this heading"></a></h2>
+</section>
+<section id="state-transition-table">
+<h2>State Transition Table<a class="headerlink" href="#state-transition-table" title="Permalink to this heading"></a></h2>
+<p>The table below shows the resulting status for each combination of current
+status and trigger (operator action or severity change). Empty cells mean
+the transition is not valid or the status remains unchanged.</p>
+<p><strong>Operator Actions</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Current Status</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">open</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">ack</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">unack</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">shelve</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">close</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">open</span></code></p></td>
+<td><p><em>invalid</em></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ack</span></code></p></td>
+<td><p><em>invalid</em></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">shelved</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">closed</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ack</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">open</span></code></p></td>
+<td><p><em>invalid</em></p></td>
+<td><p><em>previous</em></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">shelved</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">closed</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">shelved</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">open</span></code></p></td>
+<td><p><em>invalid</em></p></td>
+<td><p><em>invalid</em></p></td>
+<td><p><em>invalid</em></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">closed</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">blackout</span></code></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">closed</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">closed</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">open</span></code></p></td>
+<td><p><em>invalid</em></p></td>
+<td></td>
+<td><p><em>invalid</em></p></td>
+<td><p><em>invalid</em></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">expired</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">open</span></code></p></td>
+<td><p><em>invalid</em></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">unack</span></code> returns to the status the alert had before it was acknowledged.
+<code class="docutils literal notranslate"><span class="pre">unshelve</span></code> returns to the status the alert had before it was shelved.</p>
+</div>
+<p><strong>Severity Changes</strong> (automatic, no operator action)</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Current Status</p></th>
+<th class="head"><p>More severe</p></th>
+<th class="head"><p>Less severe</p></th>
+<th class="head"><p>Normal severity</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">open</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">open</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">ack</span></code></p></td>
-<td></td>
-<td></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">open</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">closed</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">expired</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ack</span></code></p></td>
-<td></td>
-<td></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">open</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">open</span></code> †</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ack</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">closed</span></code></p></td>
-<td></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">assign</span></code></p></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">closed</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">open</span></code></p></td>
-<td></td>
-<td></td>
-<td></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">shelved</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">shelved</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">shelved</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">closed</span></code></p></td>
-<td></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">expired</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">open</span></code></p></td>
-<td></td>
-<td></td>
-<td></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">blackout</span></code></p></td>
+<td><p><em>previous</em></p></td>
+<td><p><em>previous</em></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">closed</span></code></p></td>
-<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">closed</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">open</span></code> ‡</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">closed</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">closed</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">expired</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">open</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">open</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">closed</span></code></p></td>
 </tr>
 </tbody>
 </table>
+<p>† An ack’d alert is re-opened only if the severity genuinely increases
+(ie. the previous severity was not the default <code class="docutils literal notranslate"><span class="pre">indeterminate</span></code>).</p>
+<p>‡ A closed alert re-opens to <code class="docutils literal notranslate"><span class="pre">shelved</span></code> if it was previously shelved
+before being closed.</p>
+<p><strong>System Actions</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Action</p></th>
+<th class="head"><p>Result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">expired</span></code></p></td>
+<td><p>Any status -&gt; <code class="docutils literal notranslate"><span class="pre">expired</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">timeout</span></code></p></td>
+<td><p>If previously <code class="docutils literal notranslate"><span class="pre">ack</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">ack</span></code>, otherwise <code class="docutils literal notranslate"><span class="pre">open</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Blackout Transitions</strong></p>
+<p>When a blackout period ends, the alert returns to the status it had before
+the blackout began. If the alert was created during a blackout (no previous
+status), it transitions based on the current severity.</p>
+<p><strong>Custom Actions</strong></p>
+<p>Unrecognised actions (ie. custom actions defined by plugins via the
+<code class="docutils literal notranslate"><span class="pre">take_action</span></code> hook) do not trigger any state transition. The severity
+and status are returned unchanged.</p>
+<p><strong>Plugin Overrides</strong></p>
+<p>If a <code class="docutils literal notranslate"><span class="pre">pre_receive()</span></code> plugin sets a non-default status on the alert, the
+state machine respects that status and skips the normal transition logic.
+The only exception is normal-severity alerts, which are always auto-closed
+regardless of the plugin-set status.</p>
+</section>
 </section>
 
 
