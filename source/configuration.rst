@@ -293,6 +293,7 @@ Auth Provider Settings
     valid authentication providers are ``basic``, ``ldap``, ``github``, ``openid``, ``saml2``,
     ``azure``, ``cognito``, ``gitlab``, ``google``, ``keycloak``,
     and ``cas``  (default is ``basic``)
+
 .. note::
     Any authentication provider that is `OpenID Connect compliant`_ is supported. Set the
     ``AUTH_PROVIDER`` to ``openid`` and configure the required ``OIDC`` settings
@@ -432,13 +433,13 @@ SAML 2.0 Auth Settings
     (no default)
 ``SAML2_USER_NAME_FORMAT``
     Python format string which will be rendered to user's name using SAML
-    attributes. See :ref:`saml2` (default is ``'{givenName} {surname}'``)
+    attributes. See :ref:`saml2_auth` (default is ``'{givenName} {surname}'``)
 ``SAML2_EMAIL_ATTRIBUTE``
     (default is ``'emailAddress'``)
 ``SAML2_CONFIG``
-    ``pysaml2`` configuration ``dict``. See :ref:`saml2` (no default)
+    ``pysaml2`` configuration ``dict``. See :ref:`saml2_auth` (no default)
 ``ALLOWED_SAML2_GROUPS``
-    list of authorised groups a user must belong to. See :ref:`saml2` for
+    list of authorised groups a user must belong to. See :ref:`saml2_auth` for
     details (default is ``*``)
 ``ALLOWED_EMAIL_DOMAINS``
     authorised email domains when using email as login (default is ``*``)
@@ -892,6 +893,9 @@ The following settings are specific to the web UI and are not used by the server
     to sort by newest use ``lastReceiveTime`` or oldest use ``-createTime``. minus means reverse (default is ``lastReceiveTime``)
 ``DEFAULT_FILTER``
     default alert list filter as query filter (default is ``{'status':['open','ack']}``)
+``CLIPBOARD_TEMPLATE``
+    Jinja2-style template for the copy-to-clipboard button on alerts. Alert attributes
+    are available as template variables eg. ``{{ resource }}: {{ event }}`` (default is empty string)
 ``DEFAULT_FONT``
     default ``font-family``, ``font-size`` and ``font-weight`` (default is ``Sintony``, ``13px``, ``500``)
 ``ACTIONS``
@@ -1071,20 +1075,20 @@ General Settings
 ~~~~~~~~~~~~~~~~
 
 :envvar:`DEBUG`
-    :ref:`see above <general config>`
+    :ref:`see above <general settings>`
 :envvar:`BASE_URL`
-    :ref:`see above <general config>`
+    :ref:`see above <general settings>`
 :envvar:`USE_PROXYFIX`
-    :ref:`see above <general config>`
+    :ref:`see above <general settings>`
 :envvar:`SECRET_KEY`
-    :ref:`see above <general config>`
+    :ref:`see above <general settings>`
 
 Database Settings
 ~~~~~~~~~~~~~~~~~
 
 :envvar:`DATABASE_URL`
-    used by both :ref:`Postgres <Postgres connection strings>` and
-    :ref:`MongoDB <MongoDB connection strings>` for database connection strings
+    used by both Postgres and MongoDB for database connection strings.
+    See :ref:`database settings`
 :envvar:`DATABASE_NAME`
     database name can be used to override default database defined in ``DATABASE_URL``
 
@@ -1113,53 +1117,53 @@ Authentication Settings
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 :envvar:`AUTH_REQUIRED`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth settings>`
 :envvar:`AUTH_PROVIDER`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth settings>`
 :envvar:`ADMIN_USERS`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth settings>`
 :envvar:`SIGNUP_ENABLED`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth settings>`
 :envvar:`CUSTOMER_VIEWS`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth settings>`
 :envvar:`OAUTH2_CLIENT_ID`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth settings>`
 :envvar:`OAUTH2_CLIENT_SECRET`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth settings>`
 :envvar:`ALLOWED_EMAIL_DOMAINS`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth settings>`
 :envvar:`AZURE_TENANT`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth settings>`
 :envvar:`GITHUB_URL`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth settings>`
 :envvar:`ALLOWED_GITHUB_ORGS`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth settings>`
 :envvar:`GITLAB_URL`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth settings>`
 :envvar:`ALLOWED_GITLAB_GROUPS`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth settings>`
 :envvar:`KEYCLOAK_URL`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth settings>`
 :envvar:`KEYCLOAK_REALM`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth settings>`
 :envvar:`ALLOWED_KEYCLOAK_ROLES`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth settings>`
 :envvar:`LDAP_BIND_PASSWORD`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth settings>`
 :envvar:`OIDC_ISSUER_URL`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth settings>`
 :envvar:`ALLOWED_OIDC_ROLES`
-    :ref:`see above <auth config>`
+    :ref:`see above <auth settings>`
 
 Sundry Settings
 ~~~~~~~~~~~~~~~
 
 :envvar:`CORS_ORIGINS`
-    :ref:`see above <cors config>`
+    :ref:`see above <CORS settings>`
 :envvar:`MAIL_FROM`
-    :ref:`see above <email config>`
+    :ref:`see above <email settings>`
 :envvar:`SMTP_PASSWORD`
-    :ref:`see above <email config>`
+    :ref:`see above <email settings>`
 :envvar:`GOOGLE_TRACKING_ID`
     :ref:`see above <webui config>`
 
@@ -1167,27 +1171,27 @@ Housekeeping Settings
 ~~~~~~~~~~~~~~~~~~~~~
 
 :envvar:`DELETE_EXPIRED_AFTER`
-    :ref:`see above <housekeeping config>`
+    :ref:`see above <housekeeping settings>`
 :envvar:`DELETE_INFO_AFTER`
-    :ref:`see above <housekeeping config>`
+    :ref:`see above <housekeeping settings>`
 
 Plugin & Webhook Settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 :envvar:`PLUGINS`
-    :ref:`see above <plugin config>`
+    :ref:`see above <plugin settings>`
 :envvar:`BLACKOUT_DURATION`
-    :ref:`see above <plugin config>`
+    :ref:`see above <plugin settings>`
 :envvar:`NOTIFICATION_BLACKOUT`
-    :ref:`see above <plugin config>`
+    :ref:`see above <plugin settings>`
 :envvar:`BLACKOUT_ACCEPT`
-    :ref:`see above <plugin config>`
+    :ref:`see above <plugin settings>`
 :envvar:`ORIGIN_BLACKLIST`
-    :ref:`see above <plugin config>`
+    :ref:`see above <plugin settings>`
 :envvar:`ALLOWED_ENVIRONMENTS`
-    :ref:`see above <plugin config>`
+    :ref:`see above <plugin settings>`
 :envvar:`DEFAULT_ENVIRONMENT`
-    :ref:`see above <webhook config>`
+    :ref:`see above <webhook settings>`
 
 Dynamic Settings
 ----------------

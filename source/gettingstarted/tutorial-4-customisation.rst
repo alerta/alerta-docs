@@ -1,4 +1,7 @@
+.. _tutorial 4 customisation:
 
+Customising Alerts
+==================
 
 use two custom attributes that are more meaningful to our business...
 1. priority

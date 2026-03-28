@@ -74,7 +74,7 @@ could then become::
 
 ### Severity Levels
 
-Agree on a subset of [severity levels](api/alert.rst#alert-severities) and
+Agree on a subset of {ref}`severity levels <severity table>` and
 be consistent with what they mean. For example, if severity levels are used
 consistently then integrating with a paging or email system becomes easier.
 

@@ -43,7 +43,7 @@ attribute is for) and so that the web console can organise by ``environemnt``
 and filter alerts by ``service``.
 
 However, one of the principles of Alerta is not to enforce its view of the
-world on users so the plugin can be :ref:`easily configured <plugin config>`,
+world on users so the plugin can be :ref:`easily configured <plugin settings>`,
 :ref:`modified <tutorial 3>` or completely disabled. It's up to you.
 
 Can I define custom severity codes and levels?

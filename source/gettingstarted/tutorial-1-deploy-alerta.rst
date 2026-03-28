@@ -135,8 +135,6 @@ on reboot:
     $ sudo systemctl status uwsgi
     $ sudo systemctl enable uwsgi
 
-::
-
 Configure nginx to serve Alerta as a uWsgi application on ``/api`` and
 the web console as static assets.
 

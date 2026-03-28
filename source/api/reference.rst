@@ -42,11 +42,11 @@ Input
 +-----------------+----------+----------------------------------------------+
 | ``environment`` | string   | environment, used to namespace the resource  |
 +-----------------+----------+----------------------------------------------+
-| ``severity``    | string   | see :ref:`severity_table` table              |
+| ``severity``    | string   | see :ref:`severity table` table              |
 +-----------------+----------+----------------------------------------------+
 | ``correlate``   | list     | list of related event names                  |
 +-----------------+----------+----------------------------------------------+
-| ``status``      | string   | see :ref:`status_table` table                |
+| ``status``      | string   | see :ref:`status table` table                |
 +-----------------+----------+----------------------------------------------+
 | ``service``     | list     | list of effected services                    |
 +-----------------+----------+----------------------------------------------+
