@@ -7,10 +7,10 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'Alerta'
-copyright = '2015-2023, Nick Satterly. Creative Commons Attribution-ShareAlike 3.0 License'
+copyright = '2015-2026, Nick Satterly. Creative Commons Attribution-ShareAlike 3.0 License'
 author = 'Nick Satterly'
-version = '9.0.0rc1'
-release = '9.0'
+version = '9.1.0'
+release = '9.1'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

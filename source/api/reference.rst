@@ -846,6 +846,43 @@ Example Response
       "total": 1
     }
 
+Top N alerts
+~~~~~~~~~~~~
+
+Returns a list of the top N resources grouped by an alert attribute, where
+N is configurable via the ``topn`` query parameter. Also includes standing
+alerts (ie. alerts that have been open for a long time).
+
+::
+
+    GET /alerts/topn/count
+    GET /alerts/topn/flapping
+    GET /alerts/top10/standing
+    GET /alerts/topn/standing
+
+Parameters
+++++++++++
+
++-----------------+----------+----------------------------------------------+
+| Name            | Type     | Description                                  |
++=================+==========+==============================================+
+| ``<attr>``      | string   |                                              |
++-----------------+----------+----------------------------------------------+
+| ``q``           | dict     | mongo query see `Mongo Query Operators`_     |
++-----------------+----------+----------------------------------------------+
+| ``group-by``    | string   | any valid alert attribute. Default:``event`` |
++-----------------+----------+----------------------------------------------+
+| ``topn``        | integer  | number of results to return. Default: 10     |
++-----------------+----------+----------------------------------------------+
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/alerts/topn/count?group-by=group&topn=20 \
+    -H 'Authorization: Key demo-key'
+
 .. _environments:
 
 Environments
@@ -1208,6 +1245,72 @@ Example Request
 
     $ curl -XDELETE http://localhost:8080/blackout/c17832d4-c477-4eb1-b2d5-662e7a3600be \
     -H 'Authorization: Key demo-key'
+
+Retrieve a blackout
+~~~~~~~~~~~~~~~~~~~
+
+Retrieves a blackout with the given blackout ID.
+
+::
+
+    GET /blackout/:id
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/blackout/79d12b79-45b9-4419-80e4-1f6c17478eb6 \
+    -H 'Authorization: Key demo-key'
+
+Update a blackout
+~~~~~~~~~~~~~~~~~
+
+Updates the specified blackout period by setting the values of the parameters
+passed. Any parameters not provided will be left unchanged. Uses the same
+input fields as creating a blackout.
+
+::
+
+    PUT /blackout/:id
+
+Input
++++++
+
++-----------------+----------+----------------------------------------------+
+| Name            | Type     | Description                                  |
++=================+==========+==============================================+
+| ``environment`` | string   |                                              |
++-----------------+----------+----------------------------------------------+
+| ``resource``    | string   |                                              |
++-----------------+----------+----------------------------------------------+
+| ``service``     | list     |                                              |
++-----------------+----------+----------------------------------------------+
+| ``event``       | string   |                                              |
++-----------------+----------+----------------------------------------------+
+| ``group``       | string   |                                              |
++-----------------+----------+----------------------------------------------+
+| ``tags``        | list     |                                              |
++-----------------+----------+----------------------------------------------+
+| ``startTime``   | datetime | start time of blackout                       |
++-----------------+----------+----------------------------------------------+
+| ``endTime``     | datetime | end time of blackout                         |
++-----------------+----------+----------------------------------------------+
+| ``duration``    | integer  | seconds. Only used if ``endTime`` not defined|
++-----------------+----------+----------------------------------------------+
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPUT http://localhost:8080/blackout/79d12b79-45b9-4419-80e4-1f6c17478eb6 \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+          "environment": "Production",
+          "duration": 7200
+        }'
 
 .. _heartbeats:
 
@@ -1599,6 +1702,61 @@ Example Request
     $ curl -XDELETE http://localhost:8080/key/532c9b59-9e90-40d4-8a3b-887362a79e9cO8rhJSKrdfQWXqRhvSwJQJRZg9yU0s2Z4VLP4855 \
     -H 'Authorization: Key demo-key'
 
+Retrieve an API key
+~~~~~~~~~~~~~~~~~~~
+
+Retrieves an API key with the given key.
+
+::
+
+    GET /key/:key
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/key/_Jwm-qaGa0kBM9R1CyyQn-0qxLtBtij4ToQf6beL \
+    -H 'Authorization: Key demo-key'
+
+Update an API key
+~~~~~~~~~~~~~~~~~
+
+Updates the specified API key by setting the values of the parameters
+passed. Any parameters not provided will be left unchanged.
+
+::
+
+    PUT /key/:key
+
+Input
++++++
+
++-----------------+----------+----------------------------------------------+
+| Name            | Type     | Description                                  |
++=================+==========+==============================================+
+| ``scopes``      | string   | ``admin``, ``write``, or ``read``            |
++-----------------+----------+----------------------------------------------+
+| ``text``        | string   | freeform description text                    |
++-----------------+----------+----------------------------------------------+
+| ``expireTime``  | string   |                                              |
++-----------------+----------+----------------------------------------------+
+| ``customer``    | string   | **Admin use only**                           |
++-----------------+----------+----------------------------------------------+
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPUT http://localhost:8080/key/_Jwm-qaGa0kBM9R1CyyQn-0qxLtBtij4ToQf6beL \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+          "scopes": ["read"],
+          "text": "Read-only API key"
+        }'
+
 .. _users:
 
 Users
@@ -1811,6 +1969,74 @@ Example Request
             "teams": ["developers", "operations"]
           }
       }'
+
+Retrieve a user
+~~~~~~~~~~~~~~~~
+
+Retrieves a user with the given user ID.
+
+::
+
+    GET /user/:id
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/user/0a35bfd8-1175-4cd2-96f6-eda9861fd15d \
+    -H 'Authorization: Key demo-key'
+
+Get current user
+~~~~~~~~~~~~~~~~
+
+Returns the currently authenticated user.
+
+::
+
+    GET /user/me
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/user/me \
+    -H 'Authorization: Key demo-key'
+
+Get current user attributes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Returns attributes for the currently authenticated user.
+
+::
+
+    GET /user/me/attributes
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/user/me/attributes \
+    -H 'Authorization: Key demo-key'
+
+List user groups
+~~~~~~~~~~~~~~~~
+
+Returns a list of groups that the specified user belongs to.
+
+::
+
+    GET /user/:id/groups
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/user/0a35bfd8-1175-4cd2-96f6-eda9861fd15d/groups \
+    -H 'Authorization: Key demo-key'
 
 .. _get_users:
 
@@ -2030,6 +2256,57 @@ Example Request
     $ curl -XDELETE http://localhost:8080/perm/1f84f919-c07a-4bd1-93b0-26e28871257f \
     -H 'Authorization: Key demo-key'
 
+Retrieve a permission
+~~~~~~~~~~~~~~~~~~~~~
+
+Retrieves a permission with the given permission ID.
+
+::
+
+    GET /perm/:perm
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/perm/40c2daee-1d77-44d5-b62d-e3e446396cef \
+    -H 'Authorization: Key demo-key'
+
+Update a permission
+~~~~~~~~~~~~~~~~~~~
+
+Updates the specified permission by setting the values of the parameters
+passed. Any parameters not provided will be left unchanged.
+
+::
+
+    PUT /perm/:perm
+
+Input
++++++
+
++-----------------+----------+----------------------------------------------+
+| Name            | Type     | Description                                  |
++=================+==========+==============================================+
+| ``scopes``      | string   |                                              |
++-----------------+----------+----------------------------------------------+
+| ``match``       | regex    |                                              |
++-----------------+----------+----------------------------------------------+
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPUT http://localhost:8080/perm/40c2daee-1d77-44d5-b62d-e3e446396cef \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+          "scopes": ["read", "write"],
+          "match": "alerta_rw"
+        }'
+
 .. _customers:
 
 Customers
@@ -2150,6 +2427,213 @@ Example Request
     $ curl -XDELETE http://localhost:8080/customer/90f4e211-c815-4112-9e1a-6e53de5a59c6 \
     -H 'Authorization: Key demo-key'
 
+
+.. _bulk_operations:
+
+Bulk Operations
+---------------
+
+Bulk operations allow performing actions on multiple alerts at once. Alerts
+are selected using the same query parameters as the search alerts endpoint.
+Long-running bulk operations return a task ID that can be polled for status.
+
+Get task status
+~~~~~~~~~~~~~~~
+
+Retrieves the status of an asynchronous bulk operation task.
+
+::
+
+    GET /_bulk/task/:task_id
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/_bulk/task/7d8e7ea-b3ba-4bb1-9c5a-29e60865f258 \
+    -H 'Authorization: Key demo-key'
+
+Bulk update alert status
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Updates the status of multiple alerts selected by query parameters.
+
+::
+
+    PUT /_bulk/alerts/status
+
+Input
++++++
+
++-----------------+----------+----------------------------------------------+
+| Name            | Type     | Description                                  |
++=================+==========+==============================================+
+| ``status``      | string   | **Required** new status                      |
++-----------------+----------+----------------------------------------------+
+| ``text``        | string   | reason for status change                     |
++-----------------+----------+----------------------------------------------+
+| ``timeout``     | integer  | seconds                                      |
++-----------------+----------+----------------------------------------------+
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPUT http://localhost:8080/_bulk/alerts/status?environment=Production \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+          "status": "ack",
+          "text": "Bulk acknowledged"
+        }'
+
+Bulk action on alerts
+~~~~~~~~~~~~~~~~~~~~~
+
+Performs an action on multiple alerts selected by query parameters.
+
+::
+
+    PUT /_bulk/alerts/action
+
+Input
++++++
+
++-----------------+----------+----------------------------------------------+
+| Name            | Type     | Description                                  |
++=================+==========+==============================================+
+| ``action``      | string   | **Required** action to perform               |
++-----------------+----------+----------------------------------------------+
+| ``text``        | string   | reason for action                            |
++-----------------+----------+----------------------------------------------+
+| ``timeout``     | integer  | seconds                                      |
++-----------------+----------+----------------------------------------------+
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPUT http://localhost:8080/_bulk/alerts/action?environment=Production \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+          "action": "shelve",
+          "text": "Bulk shelved for maintenance"
+        }'
+
+Bulk tag alerts
+~~~~~~~~~~~~~~~
+
+Adds tags to multiple alerts selected by query parameters.
+
+::
+
+    PUT /_bulk/alerts/tag
+
+Input
++++++
+
++-----------------+----------+----------------------------------------------+
+| Name            | Type     | Description                                  |
++=================+==========+==============================================+
+| ``tags``        | list     | **Required** list of tags to add             |
++-----------------+----------+----------------------------------------------+
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPUT http://localhost:8080/_bulk/alerts/tag?environment=Production \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+          "tags": ["bulk-tagged", "maintenance"]
+        }'
+
+Bulk untag alerts
+~~~~~~~~~~~~~~~~~
+
+Removes tags from multiple alerts selected by query parameters.
+
+::
+
+    PUT /_bulk/alerts/untag
+
+Input
++++++
+
++-----------------+----------+----------------------------------------------+
+| Name            | Type     | Description                                  |
++=================+==========+==============================================+
+| ``tags``        | list     | **Required** list of tags to remove          |
++-----------------+----------+----------------------------------------------+
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPUT http://localhost:8080/_bulk/alerts/untag?environment=Production \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+          "tags": ["maintenance"]
+        }'
+
+Bulk update alert attributes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Updates attributes on multiple alerts selected by query parameters.
+
+::
+
+    PUT /_bulk/alerts/attributes
+
+Input
++++++
+
++-----------------+----------+----------------------------------------------+
+| Name            | Type     | Description                                  |
++=================+==========+==============================================+
+| ``attributes``  | dict     | **Required** dictionary of key-value pairs   |
++-----------------+----------+----------------------------------------------+
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPUT http://localhost:8080/_bulk/alerts/attributes?environment=Production \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+          "attributes": {
+            "reviewed": true,
+            "owner": "ops-team"
+          }
+        }'
+
+Bulk delete alerts
+~~~~~~~~~~~~~~~~~~
+
+Permanently deletes multiple alerts selected by query parameters. It cannot
+be undone.
+
+::
+
+    DELETE /_bulk/alerts
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XDELETE http://localhost:8080/_bulk/alerts?environment=Production&status=closed \
+    -H 'Authorization: Key demo-key'
 
 .. _management:
 

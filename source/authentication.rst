@@ -7,13 +7,14 @@ By default, authentication is not enabled, however there are some features
 that are :ref:`not available <watched_alerts>` unless users login such as
 watching alerts.
 
-Alerta supports five main authentication strategies:
+Alerta supports six main authentication strategies:
 
 * `Basic Auth`_
 * :ref:`LDAP <ldap_auth>`
 * :ref:`OpenID Connect <oidc_auth>`
 * :ref:`SAML 2.0 <saml2_auth>`
 * :ref:`OAuth2 <github_oauth2>` (*Note: only used by GitHub*)
+* :ref:`CAS <cas_auth>`
 
 The OpenID Connect authentication strategy can be used to integrate with
 any `OIDC compliant`_ auth provider however Alerta has specific
@@ -581,6 +582,34 @@ To restrict access to users who are associated with a particular `Keycloak role`
         CA bundle to avoid `SSL verification issues`_.
 
 .. _`SSL verification issues`: https://2.python-requests.org/en/master/user/advanced/#ssl-cert-verification
+
+.. _cas_auth:
+
+CAS
+---
+
+`Central Authentication Service`_ (CAS) is a single sign-on protocol for the web.
+To use CAS as the authentication provider for Alerta, set the ``AUTH_PROVIDER``
+to ``cas`` and configure the CAS server URL.
+
+.. _Central Authentication Service: https://apereo.github.io/cas/
+
+**Example**
+
+.. code:: python
+
+    AUTH_PROVIDER = 'cas'
+    CAS_SERVER = 'https://cas.example.com'
+    CAS_VALIDATE_ROUTE = '/serviceValidate'
+
+The CAS provider supports both JSON and XML response formats. By default, it
+will try JSON first and fall back to XML (``CAS_RESPONSE_TYPE = 'AUTO'``).
+
+Role and group information can be extracted from CAS attributes using the
+``CAS_ROLE_CLAIM`` and ``CAS_GROUP_CLAIM`` settings::
+
+    CAS_ROLE_CLAIM = 'roles'
+    CAS_GROUP_CLAIM = 'groups'
 
 .. _api keys:
 

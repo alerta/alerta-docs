@@ -8,7 +8,6 @@ Roadmap
 * Improve documentation esp. tutorials and web UI guides
 * Custom alert filters and dashboard views
 * Use OpenAPI (Swagger_) to generate client libraries
-* Use Celery tasks for bulk API requests (productionalize)
 
 .. _Swagger: https://swagger.io/specification/
 
@@ -16,6 +15,97 @@ Roadmap
 
 Release History
 +++++++++++++++
+
+.. _release_9_1:
+
+Release 9.1.0 (28-03-2026)
+--------------------------
+
+* CAS (Central Authentication Service) authentication provider
+* Pagination support for environments endpoint
+* Alert counters for rejected, rate-limited and blackout alerts
+* SQL injection prevention in Postgres query parser
+* Self-update endpoint restricted to allowlisted fields
+* Allow LDAP users with no email set to log in
+* Python 3.12 support
+
+.. _release_9_0:
+
+Release 9.0.0 (17-03-2023)
+--------------------------
+
+* Major version bump with breaking changes
+* Bulk API tag, untag and attributes endpoints
+* Proxy authentication support (``AUTH_PROXY``)
+* Forwarder, heartbeat, remote_ip, escalate, timeout and acked_by added as built-in plugins
+* ``StrEnum`` dependency for enums
+* Replaced ``pkg_resources`` with ``importlib.metadata``
+* Support custom backends defined as entry points
+* Show or hide API server version info
+* Add ``CLIPBOARD_TEMPLATE`` setting
+* Security fix for auth bypass via registration when ``AUTH_PROVIDER != basic``
+* Do not expose exception errors to end users
+* End support for Python 3.6 and Python 3.7
+
+.. _release_8_7:
+
+Release 8.7.0 (06-12-2021)
+--------------------------
+
+* Support all OpenID Connect ``client_secret_*`` token endpoint auth methods
+* Use GitHub teams for role lookup
+* Optionally print warnings if database create fails
+* Prometheus metrics uptime stat
+* Dependency updates for security (cryptography, PyJWT, pyparsing)
+
+.. _release_8_6:
+
+Release 8.6.0 (20-05-2021)
+--------------------------
+
+* Escalate severity custom action plugin
+* Support for user-defined API keys
+* Support read-only users
+* Add alert origin to blackout options
+* Support custom auth scopes
+* Support custom top10 report sizes
+* Log dismissing notes to alert history
+* Add default blackout duration to config endpoint
+
+.. _release_8_4:
+
+Release 8.4.0 (27-02-2021)
+--------------------------
+
+* Timeout policy plugin to enforce ack and shelve timeouts
+* Support for custom error responses in plugins and webhooks
+* Add pagination support to collection responses
+* Syslog logging output format
+* Add colors for Ack and Shelved statuses
+* Add allowed environments to config endpoint
+* Add ``X-Request-ID`` as CORS header
+* Performance improvement: do not query for ``rawData`` or ``history`` if not required
+
+.. _release_8_1:
+
+Release 8.1.0 (05-11-2020)
+--------------------------
+
+* Refactor LDAP auth to simplify configuration
+* Configurable default user and guest roles
+* Do not allow LDAP login with empty password
+* Hide fields with large data from default alerts response (eg. ``rawData`` and alert history)
+* Switch from Travis CI to GitHub Actions for CI testing
+
+.. _release_8_0:
+
+Release 8.0.0 (22-06-2020)
+--------------------------
+
+* Major version bump
+* End support for Python 3.5
+* Fix sort-by severity and status, and reverse sort
+* Update Grafana webhook for rule tags
 
 .. _release_7_0:
 

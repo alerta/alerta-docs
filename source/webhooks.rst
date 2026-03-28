@@ -1,8 +1,55 @@
 .. _webhooks:
 
 
+Webhooks
+========
+
+Built-in Webhooks
+-----------------
+
+Alerta ships with webhook receivers for the following services. Each webhook
+automatically creates an API endpoint at :file:`/webhooks/<name>`:
+
++-----------------------+-------------------------------+-------------------------------------------+
+| Webhook               | Endpoint                      | Description                               |
++=======================+===============================+===========================================+
+| AWS CloudWatch        | ``/webhooks/cloudwatch``      | Receives SNS notifications from           |
+|                       |                               | CloudWatch alarms                         |
++-----------------------+-------------------------------+-------------------------------------------+
+| Grafana               | ``/webhooks/grafana``         | Receives Grafana alert notifications      |
++-----------------------+-------------------------------+-------------------------------------------+
+| Graylog               | ``/webhooks/graylog``         | Receives Graylog alert notifications      |
++-----------------------+-------------------------------+-------------------------------------------+
+| New Relic             | ``/webhooks/newrelic``        | Receives New Relic incident notifications |
++-----------------------+-------------------------------+-------------------------------------------+
+| PagerDuty             | ``/webhooks/pagerduty``       | Bi-directional PagerDuty integration      |
++-----------------------+-------------------------------+-------------------------------------------+
+| Pingdom               | ``/webhooks/pingdom``         | Receives Pingdom state change webhooks    |
++-----------------------+-------------------------------+-------------------------------------------+
+| Prometheus            | ``/webhooks/prometheus``      | Receives Prometheus Alertmanager          |
+|                       |                               | notifications                             |
++-----------------------+-------------------------------+-------------------------------------------+
+| Riemann               | ``/webhooks/riemann``         | Receives Riemann event notifications      |
++-----------------------+-------------------------------+-------------------------------------------+
+| Server Density        | ``/webhooks/serverdensity``   | Receives Server Density alert             |
+|                       |                               | notifications                             |
++-----------------------+-------------------------------+-------------------------------------------+
+| Slack                 | ``/webhooks/slack``           | Receives Slack slash commands and events   |
++-----------------------+-------------------------------+-------------------------------------------+
+| Google Stackdriver    | ``/webhooks/stackdriver``     | Receives Google Cloud Monitoring           |
+|                       |                               | (Stackdriver) notifications               |
++-----------------------+-------------------------------+-------------------------------------------+
+| Telegram              | ``/webhooks/telegram``        | Receives Telegram bot messages            |
++-----------------------+-------------------------------+-------------------------------------------+
+| Custom                | ``/webhooks/custom``          | Generic JSON-to-alert webhook receiver    |
++-----------------------+-------------------------------+-------------------------------------------+
+
+Additional webhook receivers are available in the `contrib webhooks`_ repository.
+
+.. _contrib webhooks: https://github.com/alerta/alerta-contrib/tree/master/webhooks
+
 Custom Webhooks
-===============
+---------------
 
 Custom webhooks are a simple but effective way of adding support for direct integration
 to any system via a webhook without having to modify the core source code.  They are
@@ -21,7 +68,7 @@ They are loaded into memory when the Alerta API starts up and dynamically add an
 API endpoint path to the list of available webhooks at :file:`/webhooks/<webhook_name>`
 and trigger for that and all subpaths of that URL. eg. :file:`/webhooks/<webhook_name>/<alert_id>`
 
-To set this up follow the instructions for triggering a webhook in the system to be 
+To set this up follow the instructions for triggering a webhook in the system to be
 integrated with and for the webhook URL append :file:`/webhooks/<webhook_name>` to
 to the Alerta API URL but replace ``<webhook_name>`` with the name of the of the system.
 
@@ -36,6 +83,4 @@ Code for the webhook can be found in the contrib repo `Sentry webhook`_ director
 
 .. _webhook examples: https://github.com/alerta/alerta-contrib/tree/master/webhooks
 .. _Sentry webhook: https://github.com/alerta/alerta-contrib/tree/master/webhooks/sentry
-
-
 
