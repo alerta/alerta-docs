@@ -243,8 +243,5 @@ Parentheses can be used to group multiple clauses to a single field::
     status:(open OR ack)
     text:(full text search)
 
-.. note:: The following are not currently supported: boolean operators (+,-), range
-    queries by date, and range queries based on severity levels.
-
 .. note:: The following will not be supported: fuzziness, proximity searches, and
     boosting which are features specific to Lucene and/or Elasticsearch.

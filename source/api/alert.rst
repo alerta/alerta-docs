@@ -34,6 +34,7 @@ The following alert attributes are populated at source:
 | ``service``     | list of effected services                               |
 +-----------------+---------------------------------------------------------+
 | ``group``       | event group used to group events of similar type        |
+|                 | (default ``Misc``)                                      |
 +-----------------+---------------------------------------------------------+
 | ``value``       | event value eg. ``100%``, ``Down``, ``PingFail``,       |
 |                 | ``55ms``, ``ORA-1664``                                  |

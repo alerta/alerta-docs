@@ -453,6 +453,68 @@ Example Request
     -H 'Content-type: application/json' \
     -d '{ "note": "This is the sample note" }'
 
+List alert notes
+~~~~~~~~~~~~~~~~~
+
+Lists all notes for an alert.
+
+::
+
+    GET /alert/:id/notes
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258/notes \
+    -H 'Authorization: Key demo-key'
+
+Update an alert note
+~~~~~~~~~~~~~~~~~~~~
+
+Updates an existing note on an alert.
+
+::
+
+    PUT /alert/:id/note/:note_id
+
+Input
++++++
+
++-----------------+----------+----------------------------------------------+
+| Name            | Type     | Description                                  |
++=================+==========+==============================================+
+| ``note``        | string   | **Required** updated note text               |
++-----------------+----------+----------------------------------------------+
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPUT http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258/note/ab01c02d-1234-5678-abcd-ef0123456789 \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{ "note": "Updated note text" }'
+
+Delete an alert note
+~~~~~~~~~~~~~~~~~~~~
+
+Permanently deletes a note from an alert.
+
+::
+
+    DELETE /alert/:id/note/:note_id
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XDELETE http://localhost:8080/alert/17d8e7ea-b3ba-4bb1-9c5a-29e60865f258/note/ab01c02d-1234-5678-abcd-ef0123456789 \
+    -H 'Authorization: Key demo-key'
+
 Delete an alert
 ~~~~~~~~~~~~~~~
 
@@ -2120,6 +2182,196 @@ Example Request
     $ curl -XDELETE http://localhost:8080/user/166b41d6-849f-440d-ba30-1a5345d86fb6 \
     -H 'Authorization: Key demo-key'
 
+.. _groups:
+
+Groups
+------
+
+.. _create_group:
+
+Create a group
+~~~~~~~~~~~~~~
+
+Creates a new group.
+
+::
+
+    POST /group
+
+Input
++++++
+
++-----------------+----------+----------------------------------------------+
+| Name            | Type     | Description                                  |
++=================+==========+==============================================+
+| ``name``        | string   | **Required** group name                      |
++-----------------+----------+----------------------------------------------+
+| ``text``        | string   | description of the group                     |
++-----------------+----------+----------------------------------------------+
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPOST http://localhost:8080/group \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+          "name": "alerta_ops",
+          "text": "Operations team"
+        }'
+
+.. _get_group:
+
+Get a group
+~~~~~~~~~~~
+
+Retrieves a group with the given group ID.
+
+::
+
+    GET /group/:id
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/group/5c0c5c8e-1b2a-3c4d-5e6f-7a8b9c0d1e2f \
+    -H 'Authorization: Key demo-key'
+
+.. _get_groups:
+
+List all groups
+~~~~~~~~~~~~~~~
+
+Returns a list of groups.
+
+::
+
+    GET /groups
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/groups \
+    -H 'Authorization: Key demo-key'
+
+.. _put_group:
+
+Update a group
+~~~~~~~~~~~~~~
+
+Updates the specified group by setting the values of the parameters
+passed. Any parameters not provided will be left unchanged.
+
+::
+
+    PUT /group/:id
+
+Input
++++++
+
++-----------------+----------+----------------------------------------------+
+| Name            | Type     | Description                                  |
++=================+==========+==============================================+
+| ``name``        | string   | group name                                   |
++-----------------+----------+----------------------------------------------+
+| ``text``        | string   | description of the group                     |
++-----------------+----------+----------------------------------------------+
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPUT http://localhost:8080/group/5c0c5c8e-1b2a-3c4d-5e6f-7a8b9c0d1e2f \
+    -H 'Authorization: Key demo-key' \
+    -H 'Content-type: application/json' \
+    -d '{
+          "name": "alerta_ops",
+          "text": "Updated description"
+        }'
+
+.. _delete_group:
+
+Delete a group
+~~~~~~~~~~~~~~
+
+Permanently deletes a group.
+
+::
+
+    DELETE /group/:id
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XDELETE http://localhost:8080/group/5c0c5c8e-1b2a-3c4d-5e6f-7a8b9c0d1e2f \
+    -H 'Authorization: Key demo-key'
+
+.. _get_group_users:
+
+List group members
+~~~~~~~~~~~~~~~~~~
+
+Returns a list of users that are members of the specified group.
+
+::
+
+    GET /group/:id/users
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/group/5c0c5c8e-1b2a-3c4d-5e6f-7a8b9c0d1e2f/users \
+    -H 'Authorization: Key demo-key'
+
+.. _add_group_user:
+
+Add user to group
+~~~~~~~~~~~~~~~~~
+
+Adds a user to the specified group.
+
+::
+
+    PUT /group/:id/user/:user_id
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XPUT http://localhost:8080/group/5c0c5c8e-1b2a-3c4d-5e6f-7a8b9c0d1e2f/user/166b41d6-849f-440d-ba30-1a5345d86fb6 \
+    -H 'Authorization: Key demo-key'
+
+.. _remove_group_user:
+
+Remove user from group
+~~~~~~~~~~~~~~~~~~~~~~
+
+Removes a user from the specified group.
+
+::
+
+    DELETE /group/:id/user/:user_id
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl -XDELETE http://localhost:8080/group/5c0c5c8e-1b2a-3c4d-5e6f-7a8b9c0d1e2f/user/166b41d6-849f-440d-ba30-1a5345d86fb6 \
+    -H 'Authorization: Key demo-key'
+
 .. _perms:
 
 Permissions
@@ -2306,6 +2558,30 @@ Example Request
           "scopes": ["read", "write"],
           "match": "alerta_rw"
         }'
+
+.. _scopes:
+
+Scopes
+------
+
+.. _get_scopes:
+
+List all scopes
+~~~~~~~~~~~~~~~
+
+Returns a list of all available permission scopes.
+
+::
+
+    GET /scopes
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/scopes \
+    -H 'Authorization: Key demo-key'
 
 .. _customers:
 
@@ -2904,3 +3180,59 @@ Example Response
     # HELP alerta_uptime_msecs milliseconds since app has started
     # TYPE alerta_uptime_msecs counter
     alerta_uptime_msecs 1422377
+
+.. _mgmt_housekeeping:
+
+Housekeeping
+~~~~~~~~~~~~
+
+Triggers housekeeping to expire timed-out alerts and delete old closed/expired alerts.
+
+::
+
+    GET /management/housekeeping
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/management/housekeeping \
+    -H 'Authorization: Key demo-key'
+
+.. _mgmt_switchboard:
+
+Switchboard
+~~~~~~~~~~~
+
+Get or set feature switches used to toggle runtime features.
+
+::
+
+    GET /management/switchboard
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/management/switchboard \
+    -H 'Authorization: Key demo-key'
+
+.. _client_config:
+
+Client Configuration
+~~~~~~~~~~~~~~~~~~~~
+
+Get client configuration settings used by the web UI.
+
+::
+
+    GET /config
+
+Example Request
++++++++++++++++
+
+.. code-block:: bash
+
+    $ curl http://localhost:8080/config
