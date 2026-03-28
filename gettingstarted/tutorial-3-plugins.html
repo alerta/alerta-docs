@@ -1,26 +1,30 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Use plugins to enhance Alerta &mdash; Alerta 9.0 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Use plugins to enhance Alerta &mdash; Alerta 9.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
+      <script src="../_static/jquery.js"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+      <script src="../_static/doctools.js"></script>
+      <script src="../_static/sphinx_highlight.js"></script>
+      <script src="../_static/clipboard.min.js"></script>
+      <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Alerts explored in-depth" href="tutorial-4-alerts.html" />
+    <link rel="prev" title="Alert timeouts, heartbeats and Housekeeping" href="tutorial-2-housekeeping.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -34,9 +38,6 @@
           <a href="../index.html" class="icon icon-home">
             Alerta
           </a>
-              <div class="version">
-                9.0.0rc1
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -56,11 +57,36 @@
 <li class="toctree-l1"><a class="reference internal" href="../authorization.html">Authorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tutorial-1-deploy-alerta.html">Deploying an Alerta Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-2-housekeeping.html">Alert timeouts, heartbeats and Housekeeping</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Use plugins to enhance Alerta</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-install-a-plugin">Step 1: Install a plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-write-a-plugin">Step 2: Write a plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-route-alerts-to-plugins">Step 3: Route alerts to plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-4-alerts.html">Alerts explored in-depth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-4-customisation.html">Customising Alerts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-5-blackouts.html">Suppressing Alerts using Blackouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-6-auth.html">Authentication &amp; Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-7-cusomter-views.html">Partition Alerts using Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-8-integration-nagios.html">Nagios Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-8-integration-zabbix.html">Integration with Zabbix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-8-webhooks.html">Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-9-troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-10-docker.html">Using Docker to deploy Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-11-kubernetes.html">Using Docker to deploy Alerta</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Extensions</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plug-ins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../integrations.html">Integrations &amp; Plugins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webhooks.html">Custom Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webhooks.html">Webhooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../federated.html">Federated Alerta</a></li>
 </ul>
@@ -69,6 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lifecycle.html">State Transition Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../resources.html">Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
@@ -80,6 +107,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../api/query-syntax.html">API Query Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/alert.html">Alert Format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/heartbeat.html">Heartbeat Format</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Web UI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../webui/alerts.html">Alerts View</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/apikeys.html">Managing API Keys in the Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/authentication.html">Web UI Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/blackouts.html">Alert Blackout Periods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/configuration.html#configuration-from-api-server">Configuration from API Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/configuration.html#severity-colors">Severity Colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/heartbeats.html">Heartbeats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/permissions.html">Alert Roles, Scopes and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/reports.html">Alert reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/settings.html">User Preferences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/users.html">Managing Users &amp; Groups using the web UI</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul>
@@ -203,28 +245,28 @@ Alerta API via the <code class="docutils literal notranslate"><span class="pre">
 <p>The <a class="reference external" href="http://docs.openstack.org/developer/stevedore/tutorial/creating_plugins.html#a-plugin-base-class">base class for plugins</a> has three methods that <strong>must</strong> be implemented
 and the <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> method can optionally be implemented as well as long
 as the Super class is also called.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExamplePlugin</span><span class="p">(</span><span class="n">PluginBase</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ExamplePlugin</span><span class="p">(</span><span class="n">PluginBase</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
         <span class="c1"># plugin-specific init goes here</span>
         <span class="c1"># if not required, leave &quot;__init__()&quot; out completely</span>
 
         <span class="nb">super</span><span class="p">(</span><span class="n">ExamplePlugin</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">pre_receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pre_receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">):</span>
 
         <span class="c1"># reject or modify an alert before it hits the database</span>
 
         <span class="k">return</span> <span class="n">alert</span>
 
-    <span class="k">def</span> <span class="nf">post_receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">post_receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">):</span>
 
         <span class="c1"># after alert saved in database, forward alert to external systems</span>
 
         <span class="k">return</span>
 
-    <span class="k">def</span> <span class="nf">status_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">status_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
 
         <span class="c1"># triggered by external status changes, used by integrations</span>
 
@@ -237,19 +279,19 @@ to write one of your own to detect “<a class="reference external" href="https:
 method that takes an alert, a time window (in seconds) and a threshold
 count and returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the number of alert severity changes
 has exceeded the threshold.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 
-<span class="kn">from</span> <span class="nn">alerta.exceptions</span> <span class="kn">import</span> <span class="n">RateLimit</span>
-<span class="kn">from</span> <span class="nn">alerta.plugins</span> <span class="kn">import</span> <span class="n">PluginBase</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">alerta.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">RateLimit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">alerta.plugins</span><span class="w"> </span><span class="kn">import</span> <span class="n">PluginBase</span>
 
 <span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;alerta.plugins.transient&#39;</span><span class="p">)</span>
 
 <span class="n">FLAPPING_COUNT</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">FLAPPING_WINDOW</span> <span class="o">=</span> <span class="mi">120</span>  <span class="c1"># seconds</span>
 
-<span class="k">class</span> <span class="nc">TransientAlert</span><span class="p">(</span><span class="n">PluginBase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TransientAlert</span><span class="p">(</span><span class="n">PluginBase</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">pre_receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pre_receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">):</span>
 
         <span class="n">LOG</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Detecting transient alerts...&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">alert</span><span class="o">.</span><span class="n">is_flapping</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="n">FLAPPING_WINDOW</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="n">FLAPPING_COUNT</span><span class="p">):</span>
@@ -262,10 +304,10 @@ has exceeded the threshold.</p>
 
         <span class="k">return</span> <span class="n">alert</span>
 
-    <span class="k">def</span> <span class="nf">post_receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">post_receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">):</span>
         <span class="k">return</span>
 
-    <span class="k">def</span> <span class="nf">status_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">status_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alert</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
         <span class="k">return</span>
 </pre></div>
 </div>
@@ -278,7 +320,7 @@ your environment.</p>
 <p>Copy the plugin code above, modifying it to suit your requirements, into
 a file called <code class="docutils literal notranslate"><span class="pre">alerta_transient.py</span></code> and copy the following into another
 file called <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">setuptools</span><span class="w"> </span><span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
 
 <span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;0.0.1&#39;</span>
 
@@ -332,7 +374,7 @@ are run for an alert and in which order.</p>
 the current behaviour. That is, it returns a list of the enabled
 and loaded plugin entry points (not plugin names) of all the configured
 plugins in the order they are listed.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="n">plugins</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">plugins</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
@@ -340,7 +382,7 @@ plugins in the order they are listed.</p>
 </div>
 <p>Copy the routing plugin code above into a file called <code class="docutils literal notranslate"><span class="pre">routing.py</span></code>
 and copy the following into a file called <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">setuptools</span><span class="w"> </span><span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
 
 <span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;0.0.1&#39;</span>
 
@@ -383,7 +425,7 @@ which plugins should be executed for an alert at runtime. The
 code below shows what to return if no plugins are wanted to be
 executed, a subset of plugins should be executed, or all
 configured plugins should be executed.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
 
     <span class="k">if</span> <span class="n">alert</span><span class="o">.</span><span class="n">text</span><span class="o">==</span><span class="s1">&#39;no plugins&#39;</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[]</span>
@@ -396,7 +438,7 @@ configured plugins should be executed.</p>
 <p>A more useful plugin would be one that doesn’t call an external
 notification like <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/slack">Slack</a> unless an alert has been received at least
 three times.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
 
     <span class="k">if</span> <span class="n">alert</span><span class="o">.</span><span class="n">duplicate_count</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">plugins</span><span class="p">[</span><span class="s1">&#39;slack&#39;</span><span class="p">]]</span>
@@ -406,7 +448,7 @@ three times.</p>
 </div>
 <p>The following routing plugin expands on the above but this time it
 sends <code class="docutils literal notranslate"><span class="pre">critical</span></code> and <code class="docutils literal notranslate"><span class="pre">major</span></code> alerts to <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/plugins/pagerduty">PagerDuty</a> as well.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rules</span><span class="p">(</span><span class="n">alert</span><span class="p">,</span> <span class="n">plugins</span><span class="p">):</span>
 
     <span class="k">if</span> <span class="n">alert</span><span class="o">.</span><span class="n">duplicate_count</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[]</span>
@@ -439,12 +481,15 @@ the following tutorials:</p>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tutorial-2-housekeeping.html" class="btn btn-neutral float-left" title="Alert timeouts, heartbeats and Housekeeping" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tutorial-4-alerts.html" class="btn btn-neutral float-right" title="Alerts explored in-depth" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2023, Nick Satterly. Creative Commons Attribution-ShareAlike 3.0 License.</p>
+    <p>&#169; Copyright 2015-2026, Nick Satterly. Creative Commons Attribution-ShareAlike 3.0 License.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

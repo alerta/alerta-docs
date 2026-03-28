@@ -15,7 +15,7 @@ monitoring_ tools_ and it is easy to add your own using the :ref:`API <api>`
 directly, the :ref:`Python SDK <development>` or the same command-line tool to
 :ref:`send alerts <cli_send>`. Access to the API and command-line tool can be
 restricted using :ref:`API keys <api_keys>` and to the web console using
-:ref:`Basic Auth <basic auth>` or :ref:`OAuth2 <oauth2>` providers Google,
+:ref:`Basic Auth <basic_auth>` or :ref:`OAuth2 <github_oauth2>` providers Google,
 GitHub and GitLab.
 
 .. _popular: https://www.pingdom.com
@@ -59,6 +59,26 @@ The required API key is ``demo-key``.
    deployment
 
 .. toctree::
+   :caption: Getting Started
+   :maxdepth: 2
+   :hidden:
+
+   gettingstarted/tutorial-1-deploy-alerta
+   gettingstarted/tutorial-2-housekeeping
+   gettingstarted/tutorial-3-plugins
+   gettingstarted/tutorial-4-alerts
+   gettingstarted/tutorial-4-customisation
+   gettingstarted/tutorial-5-blackouts
+   gettingstarted/tutorial-6-auth
+   gettingstarted/tutorial-7-cusomter-views
+   gettingstarted/tutorial-8-integration-nagios
+   gettingstarted/tutorial-8-integration-zabbix
+   gettingstarted/tutorial-8-webhooks
+   gettingstarted/tutorial-9-troubleshooting
+   gettingstarted/tutorial-10-docker
+   gettingstarted/tutorial-11-kubernetes
+
+.. toctree::
    :caption: Extensions
    :maxdepth: 2
    :hidden:
@@ -78,6 +98,7 @@ The required API key is ``demo-key``.
    design
    conventions
    development
+   lifecycle
    Tutorials <tutorials>
    resources
    faq
@@ -93,6 +114,22 @@ The required API key is ``demo-key``.
    api/query-syntax
    api/alert
    api/heartbeat
+
+.. toctree::
+   :caption: Web UI
+   :maxdepth: 2
+   :hidden:
+
+   webui/alerts
+   webui/apikeys
+   webui/authentication
+   webui/blackouts
+   webui/configuration
+   webui/heartbeats
+   webui/permissions
+   webui/reports
+   webui/settings
+   webui/users
 
 .. toctree::
    :caption: More

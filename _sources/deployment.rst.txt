@@ -105,11 +105,11 @@ Authentication & SSL
 
 Alerta supports several authentication mechanisms for both the API
 and the web UI and some key features of the web UI, like
-:ref:`watching alerts <watched alerts>`, are only available if
+watching alerts, are only available if
 authentication is enabled.
 
 The API can be secured using :ref:`API keys` and the web UI can
-be secured using :ref:`Basic Auth <basic auth>` or an :ref:`OAuth <oauth2>`
+be secured using :ref:`Basic Auth <basic_auth>` or an :ref:`OAuth <github_oauth2>`
 provider from either GitHub, GitLab, Google, Keycloak or SAML2.
 
 If you plan to make the web UI accessible from a public URL it is
@@ -122,7 +122,7 @@ alert data.
 Authorisation & Customer Views
 ------------------------------
 
-To restrict access to certain features use :ref:`roles <user roles>`
+To restrict access to certain features use :ref:`roles <authorization>`
 and :ref:`customer views <customer views>`.
 
 .. _scalability:
@@ -214,7 +214,7 @@ track of realtime statistics on the performance of the Alerta API
 like alert counts and average processing time. For convenience,
 these statistics can be viewed in the *About* page of the Alerta
 web UI or using the ``alerta`` command-line tool
-:ref:`status <cli_status>` command.
+``status`` command.
 
 The same metrics are also exposed at :file:`/management/metrics` in
 the `exposition format`_ required by Prometheus so that it can be monitored

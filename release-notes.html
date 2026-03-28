@@ -1,22 +1,24 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Releases &mdash; Alerta 9.0 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Releases &mdash; Alerta 9.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
-        <script src="_static/clipboard.min.js"></script>
-        <script src="_static/copybutton.js"></script>
+      <script src="_static/jquery.js"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+      <script src="_static/doctools.js"></script>
+      <script src="_static/sphinx_highlight.js"></script>
+      <script src="_static/clipboard.min.js"></script>
+      <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
@@ -36,9 +38,6 @@
           <a href="index.html" class="icon icon-home">
             Alerta
           </a>
-              <div class="version">
-                9.0.0rc1
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -58,11 +57,28 @@
 <li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-1-deploy-alerta.html">Deploying an Alerta Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-2-housekeeping.html">Alert timeouts, heartbeats and Housekeeping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-3-plugins.html">Use plugins to enhance Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-4-alerts.html">Alerts explored in-depth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-4-customisation.html">Customising Alerts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-5-blackouts.html">Suppressing Alerts using Blackouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-6-auth.html">Authentication &amp; Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-7-cusomter-views.html">Partition Alerts using Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-8-integration-nagios.html">Nagios Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-8-integration-zabbix.html">Integration with Zabbix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-8-webhooks.html">Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-9-troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-10-docker.html">Using Docker to deploy Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-11-kubernetes.html">Using Docker to deploy Alerta</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Extensions</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="plugins.html">Plug-ins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="webhooks.html">Custom Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webhooks.html">Webhooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="federated.html">Federated Alerta</a></li>
 </ul>
@@ -71,12 +87,20 @@
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lifecycle.html">State Transition Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Releases</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#roadmap">Roadmap</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#release-history">Release History</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#release-9-1-0-28-03-2026">Release 9.1.0 (28-03-2026)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#release-9-0-0-17-03-2023">Release 9.0.0 (17-03-2023)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#release-8-7-0-06-12-2021">Release 8.7.0 (06-12-2021)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#release-8-6-0-20-05-2021">Release 8.6.0 (20-05-2021)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#release-8-4-0-27-02-2021">Release 8.4.0 (27-02-2021)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#release-8-1-0-05-11-2020">Release 8.1.0 (05-11-2020)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#release-8-0-0-22-06-2020">Release 8.0.0 (22-06-2020)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#release-7-0-0-14-04-2019">Release 7.0.0 (14-04-2019)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#release-6-8-0-2-3-2019">Release 6.8.0 (2-3-2019)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#release-6-7-0-17-1-2019">Release 6.7.0 (17-1-2019)</a></li>
@@ -119,6 +143,21 @@
 <li class="toctree-l1"><a class="reference internal" href="api/alert.html">Alert Format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/heartbeat.html">Heartbeat Format</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Web UI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="webui/alerts.html">Alerts View</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/apikeys.html">Managing API Keys in the Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/authentication.html">Web UI Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/blackouts.html">Alert Blackout Periods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/configuration.html#configuration-from-api-server">Configuration from API Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/configuration.html#severity-colors">Severity Colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/heartbeats.html">Heartbeats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/permissions.html">Alert Roles, Scopes and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/reports.html">Alert reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/settings.html">User Preferences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/users.html">Managing Users &amp; Groups using the web UI</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
@@ -156,11 +195,94 @@
 <li><p>Improve documentation esp. tutorials and web UI guides</p></li>
 <li><p>Custom alert filters and dashboard views</p></li>
 <li><p>Use OpenAPI (<a class="reference external" href="https://swagger.io/specification/">Swagger</a>) to generate client libraries</p></li>
-<li><p>Use Celery tasks for bulk API requests (productionalize)</p></li>
 </ul>
 </section>
 <section id="release-history">
 <span id="id1"></span><h2>Release History<a class="headerlink" href="#release-history" title="Permalink to this heading"></a></h2>
+<section id="release-9-1-0-28-03-2026">
+<span id="release-9-1"></span><h3>Release 9.1.0 (28-03-2026)<a class="headerlink" href="#release-9-1-0-28-03-2026" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>CAS (Central Authentication Service) authentication provider</p></li>
+<li><p>Pagination support for environments endpoint</p></li>
+<li><p>Alert counters for rejected, rate-limited and blackout alerts</p></li>
+<li><p>SQL injection prevention in Postgres query parser</p></li>
+<li><p>Self-update endpoint restricted to allowlisted fields</p></li>
+<li><p>Allow LDAP users with no email set to log in</p></li>
+<li><p>Python 3.12 support</p></li>
+</ul>
+</section>
+<section id="release-9-0-0-17-03-2023">
+<span id="release-9-0"></span><h3>Release 9.0.0 (17-03-2023)<a class="headerlink" href="#release-9-0-0-17-03-2023" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Major version bump with breaking changes</p></li>
+<li><p>Bulk API tag, untag and attributes endpoints</p></li>
+<li><p>Proxy authentication support (<code class="docutils literal notranslate"><span class="pre">AUTH_PROXY</span></code>)</p></li>
+<li><p>Forwarder, heartbeat, remote_ip, escalate, timeout and acked_by added as built-in plugins</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">StrEnum</span></code> dependency for enums</p></li>
+<li><p>Replaced <code class="docutils literal notranslate"><span class="pre">pkg_resources</span></code> with <code class="docutils literal notranslate"><span class="pre">importlib.metadata</span></code></p></li>
+<li><p>Support custom backends defined as entry points</p></li>
+<li><p>Show or hide API server version info</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">CLIPBOARD_TEMPLATE</span></code> setting</p></li>
+<li><p>Security fix for auth bypass via registration when <code class="docutils literal notranslate"><span class="pre">AUTH_PROVIDER</span> <span class="pre">!=</span> <span class="pre">basic</span></code></p></li>
+<li><p>Do not expose exception errors to end users</p></li>
+<li><p>End support for Python 3.6 and Python 3.7</p></li>
+</ul>
+</section>
+<section id="release-8-7-0-06-12-2021">
+<span id="release-8-7"></span><h3>Release 8.7.0 (06-12-2021)<a class="headerlink" href="#release-8-7-0-06-12-2021" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Support all OpenID Connect <code class="docutils literal notranslate"><span class="pre">client_secret_*</span></code> token endpoint auth methods</p></li>
+<li><p>Use GitHub teams for role lookup</p></li>
+<li><p>Optionally print warnings if database create fails</p></li>
+<li><p>Prometheus metrics uptime stat</p></li>
+<li><p>Dependency updates for security (cryptography, PyJWT, pyparsing)</p></li>
+</ul>
+</section>
+<section id="release-8-6-0-20-05-2021">
+<span id="release-8-6"></span><h3>Release 8.6.0 (20-05-2021)<a class="headerlink" href="#release-8-6-0-20-05-2021" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Escalate severity custom action plugin</p></li>
+<li><p>Support for user-defined API keys</p></li>
+<li><p>Support read-only users</p></li>
+<li><p>Add alert origin to blackout options</p></li>
+<li><p>Support custom auth scopes</p></li>
+<li><p>Support custom top10 report sizes</p></li>
+<li><p>Log dismissing notes to alert history</p></li>
+<li><p>Add default blackout duration to config endpoint</p></li>
+</ul>
+</section>
+<section id="release-8-4-0-27-02-2021">
+<span id="release-8-4"></span><h3>Release 8.4.0 (27-02-2021)<a class="headerlink" href="#release-8-4-0-27-02-2021" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Timeout policy plugin to enforce ack and shelve timeouts</p></li>
+<li><p>Support for custom error responses in plugins and webhooks</p></li>
+<li><p>Add pagination support to collection responses</p></li>
+<li><p>Syslog logging output format</p></li>
+<li><p>Add colors for Ack and Shelved statuses</p></li>
+<li><p>Add allowed environments to config endpoint</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">X-Request-ID</span></code> as CORS header</p></li>
+<li><p>Performance improvement: do not query for <code class="docutils literal notranslate"><span class="pre">rawData</span></code> or <code class="docutils literal notranslate"><span class="pre">history</span></code> if not required</p></li>
+</ul>
+</section>
+<section id="release-8-1-0-05-11-2020">
+<span id="release-8-1"></span><h3>Release 8.1.0 (05-11-2020)<a class="headerlink" href="#release-8-1-0-05-11-2020" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Refactor LDAP auth to simplify configuration</p></li>
+<li><p>Configurable default user and guest roles</p></li>
+<li><p>Do not allow LDAP login with empty password</p></li>
+<li><p>Hide fields with large data from default alerts response (eg. <code class="docutils literal notranslate"><span class="pre">rawData</span></code> and alert history)</p></li>
+<li><p>Switch from Travis CI to GitHub Actions for CI testing</p></li>
+</ul>
+</section>
+<section id="release-8-0-0-22-06-2020">
+<span id="release-8-0"></span><h3>Release 8.0.0 (22-06-2020)<a class="headerlink" href="#release-8-0-0-22-06-2020" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Major version bump</p></li>
+<li><p>End support for Python 3.5</p></li>
+<li><p>Fix sort-by severity and status, and reverse sort</p></li>
+<li><p>Update Grafana webhook for rule tags</p></li>
+</ul>
+</section>
 <section id="release-7-0-0-14-04-2019">
 <span id="release-7-0"></span><h3>Release 7.0.0 (14-04-2019)<a class="headerlink" href="#release-7-0-0-14-04-2019" title="Permalink to this heading"></a></h3>
 <ul class="simple">
@@ -446,7 +568,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2023, Nick Satterly. Creative Commons Attribution-ShareAlike 3.0 License.</p>
+    <p>&#169; Copyright 2015-2026, Nick Satterly. Creative Commons Attribution-ShareAlike 3.0 License.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

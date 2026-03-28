@@ -1,26 +1,30 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Deploying an Alerta Server &mdash; Alerta 9.0 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Deploying an Alerta Server &mdash; Alerta 9.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
+      <script src="../_static/jquery.js"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+      <script src="../_static/doctools.js"></script>
+      <script src="../_static/sphinx_highlight.js"></script>
+      <script src="../_static/clipboard.min.js"></script>
+      <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Alert timeouts, heartbeats and Housekeeping" href="tutorial-2-housekeeping.html" />
+    <link rel="prev" title="Deployment" href="../deployment.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -34,9 +38,6 @@
           <a href="../index.html" class="icon icon-home">
             Alerta
           </a>
-              <div class="version">
-                9.0.0rc1
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -56,11 +57,36 @@
 <li class="toctree-l1"><a class="reference internal" href="../authorization.html">Authorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Deploying an Alerta Server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-install-packages">Step 1: Install Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-configuration">Step 2: Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-customisation">Step 3: Customisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-2-housekeeping.html">Alert timeouts, heartbeats and Housekeeping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-3-plugins.html">Use plugins to enhance Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-4-alerts.html">Alerts explored in-depth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-4-customisation.html">Customising Alerts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-5-blackouts.html">Suppressing Alerts using Blackouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-6-auth.html">Authentication &amp; Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-7-cusomter-views.html">Partition Alerts using Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-8-integration-nagios.html">Nagios Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-8-integration-zabbix.html">Integration with Zabbix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-8-webhooks.html">Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-9-troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-10-docker.html">Using Docker to deploy Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-11-kubernetes.html">Using Docker to deploy Alerta</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Extensions</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../plugins.html">Plug-ins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../integrations.html">Integrations &amp; Plugins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webhooks.html">Custom Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webhooks.html">Webhooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../federated.html">Federated Alerta</a></li>
 </ul>
@@ -69,6 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lifecycle.html">State Transition Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../resources.html">Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
@@ -80,6 +107,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../api/query-syntax.html">API Query Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/alert.html">Alert Format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/heartbeat.html">Heartbeat Format</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Web UI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../webui/alerts.html">Alerts View</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/apikeys.html">Managing API Keys in the Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/authentication.html">Web UI Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/blackouts.html">Alert Blackout Periods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/configuration.html#configuration-from-api-server">Configuration from API Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/configuration.html#severity-colors">Severity Colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/heartbeats.html">Heartbeats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/permissions.html">Alert Roles, Scopes and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/reports.html">Alert reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/settings.html">User Preferences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/users.html">Managing Users &amp; Groups using the web UI</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul>
@@ -166,13 +208,13 @@ $ sudo apt-get install -y nginx uwsgi-plugin-python3
 Python 3 virtual environment run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd /opt
 $ python3 -m venv alerta
-$ alerta/bin/pip install --upgrade pip wheel alerta-server alerta uwsgi
+$ alerta/bin/pip install --upgrade pip wheel alerta-server alerta uwsgi pymongo
 </pre></div>
 </div>
 <p>To install the web console run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget https://github.com/alerta/alerta-webui/releases/latest/download/alerta-webui.tar.gz
 $ tar zxvf alerta-webui.tar.gz
-$ cp dist /var/www/html
+$ cp -a dist /var/www/html
 </pre></div>
 </div>
 </section>
@@ -182,7 +224,7 @@ $ cp dist /var/www/html
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo vi /var/www/wsgi.py
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">alerta</span> <span class="kn">import</span> <span class="n">create_app</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">alerta</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_app</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">create_app</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -194,7 +236,7 @@ uses a unix socket to communicate with the nginx web server:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">uwsgi</span><span class="p">]</span>
 <span class="n">chdir</span> <span class="o">=</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span>
 <span class="n">mount</span> <span class="o">=</span> <span class="o">/</span><span class="n">api</span><span class="o">=</span><span class="n">wsgi</span><span class="o">.</span><span class="n">py</span>
-<span class="n">callable</span> <span class="o">=</span> <span class="n">app</span>
+<span class="nb">callable</span> <span class="o">=</span> <span class="n">app</span>
 <span class="n">manage</span><span class="o">-</span><span class="n">script</span><span class="o">-</span><span class="n">name</span> <span class="o">=</span> <span class="n">true</span>
 <span class="n">env</span> <span class="o">=</span> <span class="n">BASE_URL</span><span class="o">=/</span><span class="n">api</span>
 
@@ -227,9 +269,9 @@ uses a unix socket to communicate with the nginx web server:</p>
 </div>
 <p>Start the uwsgi server, check the current status and enable it to start
 on reboot:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>service<span class="w"> </span>start<span class="w"> </span>uwsgi
-<span class="gp">$ </span>sudo<span class="w"> </span>service<span class="w"> </span>status<span class="w"> </span>uwsgi
-<span class="gp">$ </span>sudo<span class="w"> </span>service<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>uwsgi
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>uwsgi
+<span class="gp">$ </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>uwsgi
+<span class="gp">$ </span>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>uwsgi
 </pre></div>
 </div>
 <p>Configure nginx to serve Alerta as a uWsgi application on <code class="docutils literal notranslate"><span class="pre">/api</span></code> and
@@ -258,6 +300,7 @@ mixed content errors.</p>
 
 <span class="w">        </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="kn">root</span><span class="w"> </span><span class="s">/var/www/html</span><span class="p">;</span>
+<span class="w">                </span><span class="kn">try_files</span><span class="w"> </span><span class="nv">$uri</span><span class="w"> </span><span class="nv">$uri/</span><span class="w"> </span><span class="s">/index.html</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -383,12 +426,15 @@ the following tutorials:</p>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../deployment.html" class="btn btn-neutral float-left" title="Deployment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tutorial-2-housekeeping.html" class="btn btn-neutral float-right" title="Alert timeouts, heartbeats and Housekeeping" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2023, Nick Satterly. Creative Commons Attribution-ShareAlike 3.0 License.</p>
+    <p>&#169; Copyright 2015-2026, Nick Satterly. Creative Commons Attribution-ShareAlike 3.0 License.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -1,22 +1,24 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Custom Webhooks &mdash; Alerta 9.0 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Webhooks &mdash; Alerta 9.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
-        <script src="_static/clipboard.min.js"></script>
-        <script src="_static/copybutton.js"></script>
+      <script src="_static/jquery.js"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+      <script src="_static/doctools.js"></script>
+      <script src="_static/sphinx_highlight.js"></script>
+      <script src="_static/clipboard.min.js"></script>
+      <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
@@ -36,9 +38,6 @@
           <a href="index.html" class="icon icon-home">
             Alerta
           </a>
-              <div class="version">
-                9.0.0rc1
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -58,11 +57,32 @@
 <li class="toctree-l1"><a class="reference internal" href="authorization.html">Authorization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-1-deploy-alerta.html">Deploying an Alerta Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-2-housekeeping.html">Alert timeouts, heartbeats and Housekeeping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-3-plugins.html">Use plugins to enhance Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-4-alerts.html">Alerts explored in-depth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-4-customisation.html">Customising Alerts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-5-blackouts.html">Suppressing Alerts using Blackouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-6-auth.html">Authentication &amp; Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-7-cusomter-views.html">Partition Alerts using Customer Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-8-integration-nagios.html">Nagios Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-8-integration-zabbix.html">Integration with Zabbix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-8-webhooks.html">Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-9-troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-10-docker.html">Using Docker to deploy Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/tutorial-11-kubernetes.html">Using Docker to deploy Alerta</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Extensions</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="plugins.html">Plug-ins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations &amp; Plugins</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Custom Webhooks</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Webhooks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#built-in-webhooks">Built-in Webhooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-webhooks">Custom Webhooks</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="customer-views.html">Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="federated.html">Federated Alerta</a></li>
 </ul>
@@ -71,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lifecycle.html">State Transition Table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
@@ -82,6 +103,21 @@
 <li class="toctree-l1"><a class="reference internal" href="api/query-syntax.html">API Query Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/alert.html">Alert Format</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/heartbeat.html">Heartbeat Format</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Web UI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="webui/alerts.html">Alerts View</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/apikeys.html">Managing API Keys in the Web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/authentication.html">Web UI Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/blackouts.html">Alert Blackout Periods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/configuration.html#configuration-from-api-server">Configuration from API Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/configuration.html#severity-colors">Severity Colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/heartbeats.html">Heartbeats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/permissions.html">Alert Roles, Scopes and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/reports.html">Alert reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/settings.html">User Preferences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webui/users.html">Managing Users &amp; Groups using the web UI</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul>
@@ -102,7 +138,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Custom Webhooks</li>
+      <li class="breadcrumb-item active">Webhooks</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/webhooks.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -112,12 +148,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="custom-webhooks">
-<span id="webhooks"></span><h1>Custom Webhooks<a class="headerlink" href="#custom-webhooks" title="Permalink to this heading"></a></h1>
+  <section id="webhooks">
+<span id="id1"></span><h1>Webhooks<a class="headerlink" href="#webhooks" title="Permalink to this heading"></a></h1>
+<section id="built-in-webhooks">
+<h2>Built-in Webhooks<a class="headerlink" href="#built-in-webhooks" title="Permalink to this heading"></a></h2>
+<p>Alerta ships with webhook receivers for the following services. Each webhook
+automatically creates an API endpoint at <code class="file docutils literal notranslate"><span class="pre">/webhooks/&lt;name&gt;</span></code>:</p>
+<p>Additional webhook receivers are available in the <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/webhooks">contrib webhooks</a> repository.</p>
+</section>
+<section id="custom-webhooks">
+<h2>Custom Webhooks<a class="headerlink" href="#custom-webhooks" title="Permalink to this heading"></a></h2>
 <p>Custom webhooks are a simple but effective way of adding support for direct integration
 to any system via a webhook without having to modify the core source code.  They are
 written in python and are required to implement all methods of a base class.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">incoming</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">query_string</span><span class="p">:</span> <span class="n">ImmutableMultiDict</span><span class="p">,</span> <span class="n">payload</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Alert</span><span class="p">,</span> <span class="n">JSON</span><span class="p">]:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">incoming</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">query_string</span><span class="p">:</span> <span class="n">ImmutableMultiDict</span><span class="p">,</span> <span class="n">payload</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Alert</span><span class="p">,</span> <span class="n">JSON</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parse webhook path, query string and/or payload in JSON or plain text and</span>
 <span class="sd">    return an alert or a custom JSON response.</span>
@@ -137,6 +181,7 @@ code see the <a class="reference external" href="https://github.com/alerta/alert
 <p><code class="file docutils literal notranslate"><span class="pre">https://alerta.example.com/api/webhooks/sentry</span></code></p>
 <p>Code for the webhook can be found in the contrib repo <a class="reference external" href="https://github.com/alerta/alerta-contrib/tree/master/webhooks/sentry">Sentry webhook</a> directory.</p>
 </section>
+</section>
 
 
            </div>
@@ -149,7 +194,7 @@ code see the <a class="reference external" href="https://github.com/alerta/alert
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2015-2023, Nick Satterly. Creative Commons Attribution-ShareAlike 3.0 License.</p>
+    <p>&#169; Copyright 2015-2026, Nick Satterly. Creative Commons Attribution-ShareAlike 3.0 License.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

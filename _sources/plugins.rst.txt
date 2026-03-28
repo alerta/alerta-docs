@@ -3,8 +3,6 @@
 Plug-ins
 ========
 
-.. _plugins:
-
 Plugins
 -------
 
@@ -16,15 +14,28 @@ a specific end-user requirement.
 Core
 ~~~~
 
-`Core plugins`_ have been developed as examples of common use-cases.
+`Core plugins`_ ship with the Alerta server. The default enabled plugins are
+``remote_ip``, ``reject``, ``heartbeat``, ``blackout`` and ``forwarder``.
 
 .. _Core plugins: https://github.com/alerta/alerta/tree/master/alerta/plugins
 
+* `Remote IP`_ - extract remote IP address from request headers and add to alert attributes
 * `Reject`_ - reject alerts before processing. used to enforce custom alert format policies
+* `Heartbeat`_ - convert missed heartbeats into alerts
 * `Blackout`_ - suppression handler that will drop alerts that match a blackout period
+* `Forwarder`_ - forward alerts to other Alerta servers or external systems
+* `Escalate`_ - escalate alert severity based on how long the alert has been open
+* `Timeout`_ - auto-expire stale alerts
+* `Acked By`_ - track which user acknowledged an alert
 
+.. _Remote IP: https://github.com/alerta/alerta/blob/master/alerta/plugins/remote_ip.py
 .. _Reject: https://github.com/alerta/alerta/blob/master/alerta/plugins/reject.py
+.. _Heartbeat: https://github.com/alerta/alerta/blob/master/alerta/plugins/heartbeat.py
 .. _Blackout: https://github.com/alerta/alerta/blob/master/alerta/plugins/blackout.py
+.. _Forwarder: https://github.com/alerta/alerta/blob/master/alerta/plugins/forwarder.py
+.. _Escalate: https://github.com/alerta/alerta/blob/master/alerta/plugins/escalate.py
+.. _Timeout: https://github.com/alerta/alerta/blob/master/alerta/plugins/timeout.py
+.. _Acked By: https://github.com/alerta/alerta/blob/master/alerta/plugins/acked_by.py
 
 Contrib
 ~~~~~~~
@@ -68,8 +79,38 @@ of the most popular are:
 .. _Telegram Bot: https://github.com/alerta/alerta-contrib/tree/master/plugins/telegram
 .. _`Twilio SMS`: https://github.com/alerta/alerta-contrib/tree/master/plugins/twilio
 
+Plugin Lifecycle Hooks
+~~~~~~~~~~~~~~~~~~~~~~
 
+Plugins must implement the ``PluginBase`` abstract class. The following
+lifecycle hooks are available:
 
-custom error responses
+**Required methods:**
 
+``pre_receive(alert, **kwargs)``
+    Called before an alert is saved to the database. Can modify and return the
+    alert, or raise ``RejectException`` or ``BlackoutPeriod`` to reject it.
 
+``post_receive(alert, **kwargs)``
+    Called after an alert is saved. Used for sending notifications to external
+    services. Should not modify the alert.
+
+``status_change(alert, status, text, **kwargs)``
+    Called when an alert status changes. Used to trigger actions on status
+    transitions.
+
+**Optional methods (raise ``NotImplementedError`` if not used):**
+
+``take_action(alert, action, text, **kwargs)``
+    Called before an action is taken on an alert. Can be used to trigger
+    external actions or modify the alert before the action is applied.
+
+``post_action(alert, action, text, **kwargs)``
+    Called after an action has been applied to an alert and the status has been
+    updated.
+
+``take_note(alert, text, **kwargs)``
+    Called when a note is added to an alert.
+
+``delete(alert, **kwargs)``
+    Called when an alert is deleted.
