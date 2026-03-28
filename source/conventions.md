@@ -35,9 +35,9 @@ outage in multiple services.
 It can be useful to define a convention when it comes to naming
 events. Possible options are:
 
-* Camel case - `DiskUtilHigh`
+* Pascal case - `DiskUtilHigh`
 * Hierarchy - `NW:INTERFACE:DOWN`
-* SNMP - `cpuAlarmHigh`
+* Camel case - `cpuAlarmHigh`
 
 Querying for all Disk utilisation alerts using the `alerta` CLI
 is then relatively straight-forward::
