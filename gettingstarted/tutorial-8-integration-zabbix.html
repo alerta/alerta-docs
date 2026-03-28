@@ -23,7 +23,7 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Webhooks" href="tutorial-8-webhooks.html" />
+    <link rel="next" title="Webhook Integrations" href="tutorial-8-webhooks.html" />
     <link rel="prev" title="Nagios Integration" href="tutorial-8-integration-nagios.html" /> 
 </head>
 
@@ -65,22 +65,24 @@
 <li class="toctree-l1"><a class="reference internal" href="tutorial-4-alerts.html">Alerts explored in-depth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-4-customisation.html">Customising Alerts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-5-blackouts.html">Suppressing Alerts using Blackouts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial-6-auth.html">Authentication &amp; Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-6-auth.html">Authentication Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-7-cusomter-views.html">Partition Alerts using Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-8-integration-nagios.html">Nagios Integration</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Integration with Zabbix</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#step-1-zabbix">Step 1: Zabbix</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#step-2-prometheus">Step 2: Prometheus</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#step-3-influx">Step 3: Influx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-install-zabbix-alerta">Step 1: Install zabbix-alerta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-configure-the-alert-script">Step 2: Configure the alert script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-create-a-zabbix-media-type">Step 3: Create a Zabbix media type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-4-create-an-action">Step 4: Create an action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-5-test-the-integration">Step 5: Test the integration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial-8-webhooks.html">Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-8-webhooks.html">Webhook Integrations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-9-troubleshooting.html">Troubleshooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-10-docker.html">Using Docker to deploy Alerta</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial-11-kubernetes.html">Using Docker to deploy Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-11-kubernetes.html">Kubernetes Deployment</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Extensions</span></p>
 <ul>
@@ -111,17 +113,17 @@
 <p class="caption" role="heading"><span class="caption-text">Web UI</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../webui/alerts.html">Alerts View</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/apikeys.html">Managing API Keys in the Web UI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/authentication.html">Web UI Authentication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/blackouts.html">Alert Blackout Periods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/apikeys.html">API Keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/blackouts.html">Blackouts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui/configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui/configuration.html#configuration-from-api-server">Configuration from API Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui/configuration.html#severity-colors">Severity Colors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui/heartbeats.html">Heartbeats</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/permissions.html">Alert Roles, Scopes and Permissions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/reports.html">Alert reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/permissions.html">Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/reports.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui/settings.html">User Preferences</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/users.html">Managing Users &amp; Groups using the web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/users.html">Users and Groups</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul>
@@ -154,53 +156,177 @@
              
   <section id="integration-with-zabbix">
 <span id="tutorial-8-zabbix"></span><h1>Integration with Zabbix<a class="headerlink" href="#integration-with-zabbix" title="Permalink to this heading"></a></h1>
+<p>In this tutorial, you will learn how to configure <a class="reference external" href="https://www.zabbix.com/">Zabbix</a> to
+forward alerts to Alerta using the <code class="docutils literal notranslate"><span class="pre">zabbix-alerta</span></code> integration
+package.</p>
 <p><strong>Contents</strong></p>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference internal" href="#overview">Overview</a></p></li>
 <li><p><a class="reference internal" href="#prerequisites">Prerequisites</a></p></li>
-<li><p><cite>Step 1: Zabbix Integration</cite></p></li>
-<li><p><cite>Step 2: Prometheus Integration</cite></p></li>
-<li><p><cite>Step 3: Influx Integration</cite></p></li>
+<li><p><a class="reference internal" href="#step-1-install-zabbix-alerta">Step 1: Install zabbix-alerta</a></p></li>
+<li><p><a class="reference internal" href="#step-2-configure-the-alert-script">Step 2: Configure the alert script</a></p></li>
+<li><p><a class="reference internal" href="#step-3-create-a-zabbix-media-type">Step 3: Create a Zabbix media type</a></p></li>
+<li><p><a class="reference internal" href="#step-4-create-an-action">Step 4: Create an action</a></p></li>
+<li><p><a class="reference internal" href="#step-5-test-the-integration">Step 5: Test the integration</a></p></li>
 <li><p><a class="reference internal" href="#next-steps">Next Steps</a></p></li>
 </ul>
 </div></blockquote>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
-<p>Configure Alerta to receive notifications from multiple Zabbix servers. Zabbix
-severity levels and colours will be used.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">zabbix-alerta</span></code> package provides an alert script that Zabbix
+calls when a trigger fires. Zabbix severities are mapped to Alerta
+severities as follows:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Zabbix Severity</p></th>
+<th class="head"><p>Alerta Severity</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Disaster</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">critical</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>High</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">major</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Average</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">minor</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Warning</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">warning</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Information</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">informational</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Not classified</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">indeterminate</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>OK (resolved)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">normal</span></code></p></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
-<p>You have already installed Zabbix and Alerta.</p>
-</section>
-<section id="step-1-zabbix">
-<h2>Step 1: Zabbix<a class="headerlink" href="#step-1-zabbix" title="Permalink to this heading"></a></h2>
+<p>Before you begin, you should have:</p>
 <blockquote>
-<div><p>$ pip install zabbix-alerta
-$ grep AlertScripts
-$ ln -s <cite>which zabbix-alerta</cite> /usr/local/zabbix/alertscripts</p>
+<div><ul class="simple">
+<li><p>Zabbix Server 4.0 or later</p></li>
+<li><p>A running Alerta server (see <a class="reference internal" href="tutorial-10-docker.html#tutorial-10"><span class="std std-ref">Using Docker to deploy Alerta</span></a>)</p></li>
+<li><p>An Alerta API key with <code class="docutils literal notranslate"><span class="pre">write:alerts</span></code> scope</p></li>
+<li><p>Python 3.6+ on the Zabbix server</p></li>
+</ul>
 </div></blockquote>
 </section>
-<section id="step-2-prometheus">
-<h2>Step 2: Prometheus<a class="headerlink" href="#step-2-prometheus" title="Permalink to this heading"></a></h2>
-<p>To enable you to distinguish between different prometheus servers in each country I would either use the customer attribute (eg. customer=italy) or overload the environment attribute (eg. environment=italy:Production). In both cases the individual alerts will be correctly name spaced and considered as separate alerts for the same prometheus rule.</p>
-<p>The customer would be defined by using API keys assigned to that customer. To set an environment for each country use the global config in the prometheus alertmanager, for example:</p>
-<dl class="simple">
-<dt>global:</dt><dd><dl class="simple">
-<dt>external_labels:</dt><dd><p>environment: “italy:Production”
-service: “Prometheus”
-region: “eu-west-1”</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<section id="step-1-install-zabbix-alerta">
+<span id="step-1"></span><h2>Step 1: Install zabbix-alerta<a class="headerlink" href="#step-1-install-zabbix-alerta" title="Permalink to this heading"></a></h2>
+<p>Install the integration package on your Zabbix server:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install zabbix-alerta
+</pre></div>
+</div>
+<p>Find the Zabbix <code class="docutils literal notranslate"><span class="pre">AlertScriptsPath</span></code> by checking the Zabbix server
+configuration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep AlertScriptsPath /etc/zabbix/zabbix_server.conf
+AlertScriptsPath=/usr/lib/zabbix/alertscripts
+</pre></div>
+</div>
+<p>Create a symlink so Zabbix can find the script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ln -s $(which zabbix-alerta) /usr/lib/zabbix/alertscripts/
+</pre></div>
+</div>
 </section>
-<section id="step-3-influx">
-<h2>Step 3: Influx<a class="headerlink" href="#step-3-influx" title="Permalink to this heading"></a></h2>
+<section id="step-2-configure-the-alert-script">
+<span id="step-2"></span><h2>Step 2: Configure the alert script<a class="headerlink" href="#step-2-configure-the-alert-script" title="Permalink to this heading"></a></h2>
+<p>Create a configuration file at <code class="docutils literal notranslate"><span class="pre">/etc/alerta/zabbix-alerta.conf</span></code>:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[alerta]</span>
+<span class="na">endpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">http://alerta.example.com:8080/api</span>
+<span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-api-key-here</span>
+<span class="na">environment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Production</span>
+</pre></div>
+</div>
+<p>Test the script from the command line to verify connectivity:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ zabbix-alerta --endpoint http://alerta.example.com:8080/api \
+    --key your-api-key-here \
+    --environment Development \
+    --severity warning \
+    --resource zabbix-test \
+    --event &quot;Test Trigger&quot; \
+    --text &quot;Testing zabbix-alerta integration&quot;
+</pre></div>
+</div>
+</section>
+<section id="step-3-create-a-zabbix-media-type">
+<span id="step-3"></span><h2>Step 3: Create a Zabbix media type<a class="headerlink" href="#step-3-create-a-zabbix-media-type" title="Permalink to this heading"></a></h2>
+<p>In the Zabbix web UI, navigate to <strong>Administration &gt; Media types</strong>
+and create a new media type:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Name:</strong> Alerta</p></li>
+<li><p><strong>Type:</strong> Script</p></li>
+<li><p><strong>Script name:</strong> zabbix-alerta</p></li>
+<li><p><strong>Script parameters:</strong></p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{ALERT.SENDTO}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{ALERT.SUBJECT}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{ALERT.MESSAGE}</span></code></p></li>
+</ol>
+</li>
+</ul>
+</div></blockquote>
+<p>Then assign the <code class="docutils literal notranslate"><span class="pre">Alerta</span></code> media type to a Zabbix user under
+<strong>Administration &gt; Users</strong>. Set the <strong>Send to</strong> field to the
+Alerta API endpoint URL.</p>
+</section>
+<section id="step-4-create-an-action">
+<span id="step-4"></span><h2>Step 4: Create an action<a class="headerlink" href="#step-4-create-an-action" title="Permalink to this heading"></a></h2>
+<p>Navigate to <strong>Configuration &gt; Actions</strong> and create a new trigger
+action:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Name:</strong> Send to Alerta</p></li>
+<li><p><strong>Conditions:</strong> Select the trigger severities you want to forward</p></li>
+<li><p><strong>Operations:</strong> Add an operation that sends a message to
+the user configured in Step 3</p></li>
+</ul>
+</div></blockquote>
+<p>For the <strong>Default message</strong>, use the following template so the
+integration script can parse trigger details:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>resource={HOST.NAME}
+event={TRIGGER.NAME}
+environment=Production
+severity={TRIGGER.SEVERITY}
+status={TRIGGER.STATUS}
+value={TRIGGER.VALUE}
+text={ITEM.LASTVALUE}
+tags=zabbix,{TRIGGER.TAGS}
+</pre></div>
+</div>
+<p>Set the <strong>Recovery message</strong> similarly, but with <code class="docutils literal notranslate"><span class="pre">status=OK</span></code>.</p>
+</section>
+<section id="step-5-test-the-integration">
+<span id="step-5"></span><h2>Step 5: Test the integration<a class="headerlink" href="#step-5-test-the-integration" title="Permalink to this heading"></a></h2>
+<p>Create a simple test trigger in Zabbix on a monitored host, or
+use the Zabbix <code class="docutils literal notranslate"><span class="pre">zabbix_sender</span></code> utility to push a test value
+that triggers an existing threshold:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ zabbix_sender -z zabbix-server -s &quot;test-host&quot; -k test.key -o 100
+</pre></div>
+</div>
+<p>Check the Alerta web UI or CLI to verify the alert was received:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta query --filter resource=test-host
+</pre></div>
+</div>
+<p>Once confirmed, you can disable or remove the test trigger.</p>
 </section>
 <section id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="tutorial-8-webhooks.html#tutorial-8-webhooks"><span class="std std-ref">Webhook Integrations</span></a></p></li>
+<li><p><a class="reference internal" href="tutorial-9-troubleshooting.html#tutorial-9"><span class="std std-ref">Troubleshooting</span></a></p></li>
+</ul>
+</div></blockquote>
 </section>
 </section>
 
@@ -209,7 +335,7 @@ region: “eu-west-1”</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="tutorial-8-integration-nagios.html" class="btn btn-neutral float-left" title="Nagios Integration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="tutorial-8-webhooks.html" class="btn btn-neutral float-right" title="Webhooks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tutorial-8-webhooks.html" class="btn btn-neutral float-right" title="Webhook Integrations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

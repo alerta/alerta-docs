@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alert Blackout Periods &mdash; Alerta 9.1 documentation</title>
+  <title>Blackouts &mdash; Alerta 9.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -24,7 +24,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Configuration" href="configuration.html" />
-    <link rel="prev" title="Web UI Authentication" href="authentication.html" /> 
+    <link rel="prev" title="Authentication" href="authentication.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -65,14 +65,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-4-alerts.html">Alerts explored in-depth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-4-customisation.html">Customising Alerts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-5-blackouts.html">Suppressing Alerts using Blackouts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-6-auth.html">Authentication &amp; Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-6-auth.html">Authentication Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-7-cusomter-views.html">Partition Alerts using Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-integration-nagios.html">Nagios Integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-integration-zabbix.html">Integration with Zabbix</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-webhooks.html">Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-webhooks.html">Webhook Integrations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-9-troubleshooting.html">Troubleshooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-10-docker.html">Using Docker to deploy Alerta</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-11-kubernetes.html">Using Docker to deploy Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-11-kubernetes.html">Kubernetes Deployment</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Extensions</span></p>
 <ul>
@@ -103,17 +103,22 @@
 <p class="caption" role="heading"><span class="caption-text">Web UI</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="alerts.html">Alerts View</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apikeys.html">Managing API Keys in the Web UI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="authentication.html">Web UI Authentication</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Alert Blackout Periods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apikeys.html">API Keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Blackouts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-blackout">Creating a Blackout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#listing-blackouts">Listing Blackouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#editing-and-deleting">Editing and Deleting</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html#configuration-from-api-server">Configuration from API Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html#severity-colors">Severity Colors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="heartbeats.html">Heartbeats</a></li>
-<li class="toctree-l1"><a class="reference internal" href="permissions.html">Alert Roles, Scopes and Permissions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reports.html">Alert reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="permissions.html">Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="settings.html">User Preferences</a></li>
-<li class="toctree-l1"><a class="reference internal" href="users.html">Managing Users &amp; Groups using the web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users.html">Users and Groups</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul>
@@ -134,7 +139,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Alert Blackout Periods</li>
+      <li class="breadcrumb-item active">Blackouts</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/webui/blackouts.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -144,15 +149,60 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="alert-blackout-periods">
-<span id="webui-blackouts"></span><h1>Alert Blackout Periods<a class="headerlink" href="#alert-blackout-periods" title="Permalink to this heading"></a></h1>
+  <section id="blackouts">
+<span id="webui-blackouts"></span><h1>Blackouts<a class="headerlink" href="#blackouts" title="Permalink to this heading"></a></h1>
+<p>Blackout periods suppress alert notifications and actions for matching alerts
+during a defined time window. This is useful for planned maintenance windows
+or known-noisy periods. Navigate to the blackouts page from the main menu
+under <em>Configuration &gt; Blackouts</em>.</p>
+<section id="creating-a-blackout">
+<h2>Creating a Blackout<a class="headerlink" href="#creating-a-blackout" title="Permalink to this heading"></a></h2>
+<p>Click the <strong>+</strong> button to create a new blackout. The following fields are
+available:</p>
+<ul class="simple">
+<li><p><strong>Environment</strong> (required) – the environment to apply the blackout to</p></li>
+<li><p><strong>Resource</strong> – match a specific resource</p></li>
+<li><p><strong>Service</strong> – match one or more services</p></li>
+<li><p><strong>Event</strong> – match a specific event name</p></li>
+<li><p><strong>Group</strong> – match an alert group</p></li>
+<li><p><strong>Tags</strong> – match alerts with specific tags</p></li>
+<li><p><strong>Start time</strong> – when the blackout begins (defaults to now)</p></li>
+<li><p><strong>Duration</strong> – how long the blackout lasts, or set an explicit end time</p></li>
+</ul>
+<p>The more fields you specify, the narrower the blackout scope. A blackout
+with only an environment set will suppress all alerts in that environment.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Alerts that match an active blackout are set to <code class="docutils literal notranslate"><span class="pre">blackout</span></code> status
+and will not trigger any notification plugins. When the blackout
+expires, suppressed alerts revert to their previous status.</p>
+</div>
+</section>
+<section id="listing-blackouts">
+<h2>Listing Blackouts<a class="headerlink" href="#listing-blackouts" title="Permalink to this heading"></a></h2>
+<p>The blackout list shows all blackouts with the following information:</p>
+<ul class="simple">
+<li><p><strong>Environment</strong> and matching criteria (resource, service, event, etc.)</p></li>
+<li><p><strong>Start</strong> and <strong>End</strong> times</p></li>
+<li><p><strong>Status</strong> – <code class="docutils literal notranslate"><span class="pre">pending</span></code> (not yet started), <code class="docutils literal notranslate"><span class="pre">active</span></code> (currently in
+effect), or <code class="docutils literal notranslate"><span class="pre">expired</span></code> (past the end time)</p></li>
+<li><p><strong>Duration</strong> – the total blackout duration</p></li>
+</ul>
+<p>Active blackouts are highlighted to make them easy to identify.</p>
+</section>
+<section id="editing-and-deleting">
+<h2>Editing and Deleting<a class="headerlink" href="#editing-and-deleting" title="Permalink to this heading"></a></h2>
+<p>Click on a blackout to edit its details, including the matching criteria and
+time window. Click the delete icon to remove a blackout. Deleting an active
+blackout immediately stops suppression of matching alerts.</p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="authentication.html" class="btn btn-neutral float-left" title="Web UI Authentication" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="authentication.html" class="btn btn-neutral float-left" title="Authentication" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="configuration.html" class="btn btn-neutral float-right" title="Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

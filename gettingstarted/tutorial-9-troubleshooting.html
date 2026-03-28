@@ -24,7 +24,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Using Docker to deploy Alerta" href="tutorial-10-docker.html" />
-    <link rel="prev" title="Webhooks" href="tutorial-8-webhooks.html" /> 
+    <link rel="prev" title="Webhook Integrations" href="tutorial-8-webhooks.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -65,17 +65,25 @@
 <li class="toctree-l1"><a class="reference internal" href="tutorial-4-alerts.html">Alerts explored in-depth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-4-customisation.html">Customising Alerts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-5-blackouts.html">Suppressing Alerts using Blackouts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial-6-auth.html">Authentication &amp; Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-6-auth.html">Authentication Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-7-cusomter-views.html">Partition Alerts using Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-8-integration-nagios.html">Nagios Integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-8-integration-zabbix.html">Integration with Zabbix</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial-8-webhooks.html">Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-8-webhooks.html">Webhook Integrations</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Troubleshooting</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-enable-debug-logging">Step 1: Enable debug logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-check-server-health">Step 2: Check server health</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-common-web-ui-errors">Step 3: Common web UI errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-4-authentication-failures">Step 4: Authentication failures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-5-database-connection-errors">Step 5: Database connection errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-6-plugin-errors">Step 6: Plugin errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-7-common-cli-errors">Step 7: Common CLI errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-10-docker.html">Using Docker to deploy Alerta</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial-11-kubernetes.html">Using Docker to deploy Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-11-kubernetes.html">Kubernetes Deployment</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Extensions</span></p>
 <ul>
@@ -106,17 +114,17 @@
 <p class="caption" role="heading"><span class="caption-text">Web UI</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../webui/alerts.html">Alerts View</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/apikeys.html">Managing API Keys in the Web UI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/authentication.html">Web UI Authentication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/blackouts.html">Alert Blackout Periods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/apikeys.html">API Keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/blackouts.html">Blackouts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui/configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui/configuration.html#configuration-from-api-server">Configuration from API Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui/configuration.html#severity-colors">Severity Colors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui/heartbeats.html">Heartbeats</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/permissions.html">Alert Roles, Scopes and Permissions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/reports.html">Alert reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/permissions.html">Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/reports.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui/settings.html">User Preferences</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/users.html">Managing Users &amp; Groups using the web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/users.html">Users and Groups</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul>
@@ -149,24 +157,209 @@
              
   <section id="troubleshooting">
 <span id="tutorial-9"></span><h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading"></a></h1>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>This guide covers common problems you may encounter when running
+Alerta and how to diagnose them.</p>
+<p><strong>Contents</strong></p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Logging to file</p></li>
-<li><p>Logging to stdout (for docker?)</p></li>
-<li><p>Debug output for server</p></li>
-<li><p>Debug output for plugins</p></li>
-<li><p>Server properties</p></li>
-<li><p>CORS errors</p></li>
-<li><p>Management properties</p></li>
-<li><p><a class="reference internal" href="tutorial-3-plugins.html#tutorial-3"><span class="std std-ref">Email and other Third-party Integrations</span></a></p></li>
-<li><p><a class="reference internal" href="tutorial-4-alerts.html#tutorial-4"><span class="std std-ref">Integration using Webhooks</span></a></p></li>
-<li><p><a class="reference internal" href="tutorial-5-blackouts.html#tutorial-5"><span class="std std-ref">Customer Views</span></a></p></li>
-<li><p><a class="reference internal" href="tutorial-6-auth.html#tutorial-6"><span class="std std-ref">Site-specific bespoke monitoring</span></a></p></li>
-<li><p><a class="reference internal" href="tutorial-7-cusomter-views.html#tutorial-7"><span class="std std-ref">Suppress alerts using Blackouts</span></a></p></li>
-<li><p><span class="xref std std-ref">Web console and command-line tool</span></p></li>
-<li><p><a class="reference internal" href="#tutorial-9"><span class="std std-ref">Troubleshooting</span></a></p></li>
+<li><p><a class="reference internal" href="#overview">Overview</a></p></li>
+<li><p><a class="reference internal" href="#step-1-enable-debug-logging">Step 1: Enable debug logging</a></p></li>
+<li><p><a class="reference internal" href="#step-2-check-server-health">Step 2: Check server health</a></p></li>
+<li><p><a class="reference internal" href="#step-3-common-web-ui-errors">Step 3: Common web UI errors</a></p></li>
+<li><p><a class="reference internal" href="#step-4-authentication-failures">Step 4: Authentication failures</a></p></li>
+<li><p><a class="reference internal" href="#step-5-database-connection-errors">Step 5: Database connection errors</a></p></li>
+<li><p><a class="reference internal" href="#step-6-plugin-errors">Step 6: Plugin errors</a></p></li>
+<li><p><a class="reference internal" href="#step-7-common-cli-errors">Step 7: Common CLI errors</a></p></li>
+<li><p><a class="reference internal" href="#next-steps">Next Steps</a></p></li>
+</ul>
+</div></blockquote>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>When something goes wrong, start by enabling debug logging,
+then check the management endpoints for server health. Most
+issues fall into a few common categories: CORS misconfiguration,
+authentication problems, database connectivity, or plugin errors.</p>
+</section>
+<section id="step-1-enable-debug-logging">
+<span id="step-1"></span><h2>Step 1: Enable debug logging<a class="headerlink" href="#step-1-enable-debug-logging" title="Permalink to this heading"></a></h2>
+<p>Set the following in your <code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code> to enable verbose
+debug output:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">LOG_LEVEL</span> <span class="o">=</span> <span class="s1">&#39;DEBUG&#39;</span>
+<span class="n">LOG_FORMAT</span> <span class="o">=</span> <span class="s1">&#39;verbose&#39;</span>
+</pre></div>
+</div>
+<p>If running in Docker, set the <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> environment variable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker run -e DEBUG=1 alerta/alerta-web
+</pre></div>
+</div>
+<p>The verbose log format includes timestamps, module names, and
+line numbers which are essential for diagnosing issues. Check
+the logs for lines containing <code class="docutils literal notranslate"><span class="pre">ERROR</span></code> or <code class="docutils literal notranslate"><span class="pre">WARNING</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep -E &#39;ERROR|WARNING&#39; /var/log/alerta/alertad.log
+</pre></div>
+</div>
+<p>For Docker deployments:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker logs alerta-web 2&gt;&amp;1 | grep -E &#39;ERROR|WARNING&#39;
+</pre></div>
+</div>
+</section>
+<section id="step-2-check-server-health">
+<span id="step-2"></span><h2>Step 2: Check server health<a class="headerlink" href="#step-2-check-server-health" title="Permalink to this heading"></a></h2>
+<p>Alerta provides management endpoints for monitoring server health.</p>
+<p><strong>Health check</strong> – returns <code class="docutils literal notranslate"><span class="pre">OK</span></code> if the server is running and
+the database is reachable:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/api/management/healthcheck
+{
+  &quot;status&quot;: &quot;ok&quot;
+}
+</pre></div>
+</div>
+<p><strong>Good to go</strong> – a lightweight check suitable for load balancers:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/api/management/gtg
+OK
+</pre></div>
+</div>
+<p><strong>Properties</strong> – shows server configuration, version, and database
+info (requires admin API key):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:8080/api/management/properties \
+  -H &#39;Authorization: Key your-admin-api-key&#39;
+</pre></div>
+</div>
+<p><strong>Heartbeats</strong> – check that expected heartbeats are being received.
+Stale heartbeats often indicate a broken integration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta heartbeats
+</pre></div>
+</div>
+</section>
+<section id="step-3-common-web-ui-errors">
+<span id="step-3"></span><h2>Step 3: Common web UI errors<a class="headerlink" href="#step-3-common-web-ui-errors" title="Permalink to this heading"></a></h2>
+<p><strong>CORS errors</strong></p>
+<p>If the browser console shows <code class="docutils literal notranslate"><span class="pre">Access-Control-Allow-Origin</span></code> errors,
+the web UI cannot reach the API due to cross-origin restrictions.
+Set <code class="docutils literal notranslate"><span class="pre">CORS_ORIGINS</span></code> in <code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code> to allow the web UI origin:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CORS_ORIGINS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;http://localhost:8080&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;https://alerta.example.com&#39;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>For Docker deployments, set the <code class="docutils literal notranslate"><span class="pre">CORS_ORIGINS</span></code> environment variable.</p>
+<p><strong>Blank page or missing alerts</strong></p>
+<p>Check the browser developer console (F12) for JavaScript errors.
+Ensure the <code class="docutils literal notranslate"><span class="pre">API_URL</span></code> in the web UI configuration points to the
+correct Alerta API endpoint. For Docker, this is set via the
+<code class="docutils literal notranslate"><span class="pre">BASE_URL</span></code> environment variable.</p>
+</section>
+<section id="step-4-authentication-failures">
+<span id="step-4"></span><h2>Step 4: Authentication failures<a class="headerlink" href="#step-4-authentication-failures" title="Permalink to this heading"></a></h2>
+<p><strong>“401 Unauthorized” errors</strong></p>
+<blockquote>
+<div><ul>
+<li><p>Verify the API key is valid and has not expired:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta key --list
+</pre></div>
+</div>
+</li>
+<li><p>Check that <code class="docutils literal notranslate"><span class="pre">AUTH_REQUIRED</span></code> is set consistently – if the server
+requires authentication, all clients must provide credentials</p></li>
+<li><p>Ensure API keys have the correct scopes (<code class="docutils literal notranslate"><span class="pre">read</span></code>, <code class="docutils literal notranslate"><span class="pre">write:alerts</span></code>,
+<code class="docutils literal notranslate"><span class="pre">admin</span></code>) for the operations being attempted</p></li>
+</ul>
+</div></blockquote>
+<p><strong>OAuth / SSO login failures</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Verify <code class="docutils literal notranslate"><span class="pre">OAUTH2_CLIENT_ID</span></code> and <code class="docutils literal notranslate"><span class="pre">OAUTH2_CLIENT_SECRET</span></code> are correct</p></li>
+<li><p>Check that the redirect URI matches exactly what is configured in
+the OAuth provider</p></li>
+<li><p>Enable debug logging to see the full OAuth exchange</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="step-5-database-connection-errors">
+<span id="step-5"></span><h2>Step 5: Database connection errors<a class="headerlink" href="#step-5-database-connection-errors" title="Permalink to this heading"></a></h2>
+<p><strong>“could not connect to server” or timeout errors</strong></p>
+<blockquote>
+<div><ul>
+<li><p>Verify the <code class="docutils literal notranslate"><span class="pre">DATABASE_URL</span></code> is correct and the database is reachable
+from the Alerta server:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ psql &quot;$DATABASE_URL&quot; -c &quot;SELECT 1&quot;
+</pre></div>
+</div>
+</li>
+<li><p>For Docker, ensure the database container is running and on the
+same network:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker network inspect &lt;network_name&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Check for connection pool exhaustion in the logs – this may
+indicate too many concurrent connections</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="step-6-plugin-errors">
+<span id="step-6"></span><h2>Step 6: Plugin errors<a class="headerlink" href="#step-6-plugin-errors" title="Permalink to this heading"></a></h2>
+<p>Plugins that raise exceptions will cause alerts to be rejected.
+Debug logging will show the full traceback.</p>
+<p><strong>Common plugin issues:</strong></p>
+<blockquote>
+<div><ul>
+<li><p>A plugin listed in <code class="docutils literal notranslate"><span class="pre">PLUGINS</span></code> is not installed – the server will
+fail to start. Check installed packages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip list | grep alerta
+</pre></div>
+</div>
+</li>
+<li><p>A plugin raises an exception during <code class="docutils literal notranslate"><span class="pre">pre_receive</span></code> – the alert
+will be rejected with a 403 error</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">post_receive</span></code> plugin failure is logged but does not reject
+the alert</p></li>
+</ul>
+</div></blockquote>
+<p>To temporarily disable a problematic plugin, remove it from the
+<code class="docutils literal notranslate"><span class="pre">PLUGINS</span></code> list and restart the server.</p>
+</section>
+<section id="step-7-common-cli-errors">
+<span id="step-7"></span><h2>Step 7: Common CLI errors<a class="headerlink" href="#step-7-common-cli-errors" title="Permalink to this heading"></a></h2>
+<p><strong>“connection refused” or timeout</strong></p>
+<blockquote>
+<div><ul>
+<li><p>Check that the <code class="docutils literal notranslate"><span class="pre">ALERTA_ENDPOINT</span></code> environment variable or
+<code class="docutils literal notranslate"><span class="pre">--endpoint</span></code> flag points to the correct URL:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta --endpoint http://localhost:8080/api query
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>“not found” when alerts exist</strong></p>
+<blockquote>
+<div><ul>
+<li><p>The default query filters by open and acknowledged status.
+Use <code class="docutils literal notranslate"><span class="pre">--status</span></code> to query other statuses:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ alerta query --status closed
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>“environment not allowed”</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The alert environment must be in the server <code class="docutils literal notranslate"><span class="pre">ALLOWED_ENVIRONMENTS</span></code>
+list. Check the current setting via the management properties
+endpoint.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="tutorial-10-docker.html#tutorial-10"><span class="std std-ref">Using Docker to deploy Alerta</span></a></p></li>
+<li><p><a class="reference internal" href="tutorial-11-kubernetes.html#tutorial-11"><span class="std std-ref">Kubernetes Deployment</span></a></p></li>
 </ul>
 </div></blockquote>
 </section>
@@ -176,7 +369,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="tutorial-8-webhooks.html" class="btn btn-neutral float-left" title="Webhooks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tutorial-8-webhooks.html" class="btn btn-neutral float-left" title="Webhook Integrations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="tutorial-10-docker.html" class="btn btn-neutral float-right" title="Using Docker to deploy Alerta" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

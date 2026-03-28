@@ -23,7 +23,7 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Managing API Keys in the Web UI" href="apikeys.html" />
+    <link rel="next" title="API Keys" href="apikeys.html" />
     <link rel="prev" title="Heartbeat Format" href="../api/heartbeat.html" /> 
 </head>
 
@@ -65,14 +65,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-4-alerts.html">Alerts explored in-depth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-4-customisation.html">Customising Alerts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-5-blackouts.html">Suppressing Alerts using Blackouts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-6-auth.html">Authentication &amp; Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-6-auth.html">Authentication Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-7-cusomter-views.html">Partition Alerts using Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-integration-nagios.html">Nagios Integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-integration-zabbix.html">Integration with Zabbix</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-webhooks.html">Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-webhooks.html">Webhook Integrations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-9-troubleshooting.html">Troubleshooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-10-docker.html">Using Docker to deploy Alerta</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-11-kubernetes.html">Using Docker to deploy Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-11-kubernetes.html">Kubernetes Deployment</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Extensions</span></p>
 <ul>
@@ -103,24 +103,29 @@
 <p class="caption" role="heading"><span class="caption-text">Web UI</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Alerts View</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#alert-summary-list">Alert Summary List</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#alert-summary-indicators-asi">Alert Summary Indicators (ASI)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#more">More</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#search-box">Search Box</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#filter-side-bar">Filter Side Bar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#alert-summary-list">Alert Summary List</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#environment-tabs">Environment Tabs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alert-detail-view">Alert Detail View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alert-actions">Alert Actions</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="apikeys.html">Managing API Keys in the Web UI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="authentication.html">Web UI Authentication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="blackouts.html">Alert Blackout Periods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#alert-status-indicators-asi">Alert Status Indicators (ASI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#search-box">Search Box</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#filter-side-bar">Filter Side Bar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#more-options">More Options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apikeys.html">API Keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blackouts.html">Blackouts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html#configuration-from-api-server">Configuration from API Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html#severity-colors">Severity Colors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="heartbeats.html">Heartbeats</a></li>
-<li class="toctree-l1"><a class="reference internal" href="permissions.html">Alert Roles, Scopes and Permissions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reports.html">Alert reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="permissions.html">Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="settings.html">User Preferences</a></li>
-<li class="toctree-l1"><a class="reference internal" href="users.html">Managing Users &amp; Groups using the web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users.html">Users and Groups</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul>
@@ -153,47 +158,89 @@
              
   <section id="alerts-view">
 <span id="webui-alerts"></span><h1>Alerts View<a class="headerlink" href="#alerts-view" title="Permalink to this heading"></a></h1>
+<p>The alerts view is the main screen of the Alerta web console. It displays a
+summary list of all alerts, colour-coded by severity, with tools for filtering,
+searching, and taking action on individual or multiple alerts.</p>
 <section id="alert-summary-list">
 <h2>Alert Summary List<a class="headerlink" href="#alert-summary-list" title="Permalink to this heading"></a></h2>
-<ul class="simple">
-<li><p>columns and column order, description is mandatory</p></li>
-<li><p>sorting by asc, desc</p></li>
-<li><p>env tabs, ALL</p></li>
-</ul>
+<p>The alert list displays one row per alert with columns that are configurable
+via the <code class="docutils literal notranslate"><span class="pre">COLUMNS</span></code> server setting. The default columns include severity,
+status, last receive time, duplicate count, customer, environment, service,
+resource, event, value, and text.</p>
+<p>Each row is colour-coded by severity (see <a class="reference internal" href="configuration.html#webui-config"><span class="std std-ref">Configuration</span></a> for the colour
+table). The status is shown as a text label – <code class="docutils literal notranslate"><span class="pre">open</span></code>, <code class="docutils literal notranslate"><span class="pre">ack</span></code>, <code class="docutils literal notranslate"><span class="pre">shelved</span></code>,
+<code class="docutils literal notranslate"><span class="pre">closed</span></code>, <code class="docutils literal notranslate"><span class="pre">blackout</span></code>, or <code class="docutils literal notranslate"><span class="pre">expired</span></code>.</p>
+<p>Columns can be sorted in ascending or descending order by clicking the column
+header.</p>
+<section id="environment-tabs">
+<h3>Environment Tabs<a class="headerlink" href="#environment-tabs" title="Permalink to this heading"></a></h3>
+<p>Tabs across the top of the alert list allow filtering by environment (e.g.
+<code class="docutils literal notranslate"><span class="pre">Production</span></code>, <code class="docutils literal notranslate"><span class="pre">Development</span></code>). The <code class="docutils literal notranslate"><span class="pre">ALL</span></code> tab shows alerts from every
+environment. The available tabs are driven by the environments present in
+current alerts.</p>
 </section>
-<section id="alert-summary-indicators-asi">
-<h2>Alert Summary Indicators (ASI)<a class="headerlink" href="#alert-summary-indicators-asi" title="Permalink to this heading"></a></h2>
-<ul class="simple">
-<li><p>panels, default and custom queries (3 diff query types)</p></li>
-</ul>
+<section id="alert-detail-view">
+<h3>Alert Detail View<a class="headerlink" href="#alert-detail-view" title="Permalink to this heading"></a></h3>
+<p>Click on an alert row to open the detail view. This shows the full set of
+alert attributes, custom attributes, tags, history (status changes and severity
+changes with timestamps), and any notes attached to the alert.</p>
+<p>From the detail view you can add notes, view raw JSON data, and see the full
+alert history timeline.</p>
 </section>
-<section id="more">
-<h2>More<a class="headerlink" href="#more" title="Permalink to this heading"></a></h2>
+<section id="alert-actions">
+<h3>Alert Actions<a class="headerlink" href="#alert-actions" title="Permalink to this heading"></a></h3>
+<p>The following actions are available from the alert detail view or via the
+toolbar when alerts are selected:</p>
 <ul class="simple">
-<li><p>display density</p></li>
-<li><p>download as csv</p></li>
+<li><p><strong>Open</strong> – reopen a closed or acknowledged alert</p></li>
+<li><p><strong>Ack</strong> – acknowledge an alert (sets status to <code class="docutils literal notranslate"><span class="pre">ack</span></code>)</p></li>
+<li><p><strong>Shelve</strong> – temporarily suppress an alert for a configurable timeout</p></li>
+<li><p><strong>Close</strong> – close an alert (sets status to <code class="docutils literal notranslate"><span class="pre">closed</span></code>)</p></li>
+<li><p><strong>Watch</strong> – add the alert to your personal watch list</p></li>
+<li><p><strong>Delete</strong> – permanently remove the alert (requires <code class="docutils literal notranslate"><span class="pre">delete:alerts</span></code> scope)</p></li>
 </ul>
+<p>Multi-select is supported – use the checkboxes on the left of each row to
+select multiple alerts, then apply an action to all of them at once.</p>
+</section>
+</section>
+<section id="alert-status-indicators-asi">
+<h2>Alert Status Indicators (ASI)<a class="headerlink" href="#alert-status-indicators-asi" title="Permalink to this heading"></a></h2>
+<p>The ASI panels appear above the alert list and show aggregate counts based
+on configurable queries. Three panel types are available: the default panels
+show counts by severity, and custom panels can be configured to show counts
+for arbitrary alert queries.</p>
+<p>Clicking an ASI panel filters the alert list to show only matching alerts.</p>
 </section>
 <section id="search-box">
 <h2>Search Box<a class="headerlink" href="#search-box" title="Permalink to this heading"></a></h2>
-<p>query DSL
-examples</p>
-<ul class="simple">
-<li><p>watched only</p></li>
-<li><p>full screen</p></li>
-<li><p>force refresh</p></li>
-</ul>
+<p>The search box supports a query DSL for filtering alerts. Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">resource</span><span class="p">:</span><span class="n">web01</span>
+<span class="n">severity</span><span class="p">:</span><span class="n">critical</span>
+<span class="n">service</span><span class="p">:</span><span class="n">Web</span> <span class="n">AND</span> <span class="n">status</span><span class="p">:</span><span class="nb">open</span>
+<span class="n">group</span><span class="p">:</span><span class="n">Network</span>
+<span class="n">tags</span><span class="p">:</span><span class="n">linux</span>
+</pre></div>
+</div>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">Watched</span> <span class="pre">only</span></code> toggle to restrict the view to alerts you are
+watching. The <code class="docutils literal notranslate"><span class="pre">Full</span> <span class="pre">screen</span></code> button hides the navigation bar, and the
+<code class="docutils literal notranslate"><span class="pre">Force</span> <span class="pre">refresh</span></code> button reloads the alert list immediately.</p>
 </section>
 <section id="filter-side-bar">
 <h2>Filter Side Bar<a class="headerlink" href="#filter-side-bar" title="Permalink to this heading"></a></h2>
-<p>filter by
-- text
-- status
-- service
-- groups
-- date time</p>
+<p>The filter side bar on the left provides faceted filtering by:</p>
 <ul class="simple">
-<li><p>customer (if enabled)</p></li>
+<li><p><strong>Status</strong> – open, ack, shelved, closed, etc.</p></li>
+<li><p><strong>Service</strong> – filter by one or more service names</p></li>
+<li><p><strong>Group</strong> – filter by alert group</p></li>
+<li><p><strong>Date/Time</strong> – filter by time range (last hour, last day, etc.)</p></li>
+<li><p><strong>Customer</strong> – filter by customer (when customer views are enabled)</p></li>
+</ul>
+</section>
+<section id="more-options">
+<h2>More Options<a class="headerlink" href="#more-options" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Display density</strong> – toggle between comfortable and compact row spacing</p></li>
+<li><p><strong>Download as CSV</strong> – export the current alert list to a CSV file</p></li>
 </ul>
 </section>
 </section>
@@ -203,7 +250,7 @@ examples</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../api/heartbeat.html" class="btn btn-neutral float-left" title="Heartbeat Format" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="apikeys.html" class="btn btn-neutral float-right" title="Managing API Keys in the Web UI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="apikeys.html" class="btn btn-neutral float-right" title="API Keys" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

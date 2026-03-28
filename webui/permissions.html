@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alert Roles, Scopes and Permissions &mdash; Alerta 9.1 documentation</title>
+  <title>Permissions &mdash; Alerta 9.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -23,7 +23,7 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Alert reports" href="reports.html" />
+    <link rel="next" title="Reports" href="reports.html" />
     <link rel="prev" title="Heartbeats" href="heartbeats.html" /> 
 </head>
 
@@ -65,14 +65,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-4-alerts.html">Alerts explored in-depth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-4-customisation.html">Customising Alerts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-5-blackouts.html">Suppressing Alerts using Blackouts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-6-auth.html">Authentication &amp; Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-6-auth.html">Authentication Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-7-cusomter-views.html">Partition Alerts using Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-integration-nagios.html">Nagios Integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-integration-zabbix.html">Integration with Zabbix</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-webhooks.html">Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-webhooks.html">Webhook Integrations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-9-troubleshooting.html">Troubleshooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-10-docker.html">Using Docker to deploy Alerta</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-11-kubernetes.html">Using Docker to deploy Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-11-kubernetes.html">Kubernetes Deployment</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Extensions</span></p>
 <ul>
@@ -103,17 +103,23 @@
 <p class="caption" role="heading"><span class="caption-text">Web UI</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="alerts.html">Alerts View</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apikeys.html">Managing API Keys in the Web UI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="authentication.html">Web UI Authentication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="blackouts.html">Alert Blackout Periods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apikeys.html">API Keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blackouts.html">Blackouts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html#configuration-from-api-server">Configuration from API Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html#severity-colors">Severity Colors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="heartbeats.html">Heartbeats</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Alert Roles, Scopes and Permissions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reports.html">Alert reports</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Permissions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-permissions-work">How Permissions Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-permission">Creating a Permission</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#listing-permissions">Listing Permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deleting-permissions">Deleting Permissions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reports.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="settings.html">User Preferences</a></li>
-<li class="toctree-l1"><a class="reference internal" href="users.html">Managing Users &amp; Groups using the web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users.html">Users and Groups</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul>
@@ -134,7 +140,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Alert Roles, Scopes and Permissions</li>
+      <li class="breadcrumb-item active">Permissions</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/webui/permissions.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -144,8 +150,63 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="alert-roles-scopes-and-permissions">
-<span id="webui-permissions"></span><h1>Alert Roles, Scopes and Permissions<a class="headerlink" href="#alert-roles-scopes-and-permissions" title="Permalink to this heading"></a></h1>
+  <section id="permissions">
+<span id="webui-permissions"></span><h1>Permissions<a class="headerlink" href="#permissions" title="Permalink to this heading"></a></h1>
+<p>The permissions page manages the mapping between user roles (or group names)
+and the scopes they are granted. Navigate to it from the main menu under
+<em>Configuration &gt; Permissions</em>.</p>
+<section id="how-permissions-work">
+<h2>How Permissions Work<a class="headerlink" href="#how-permissions-work" title="Permalink to this heading"></a></h2>
+<p>Alerta uses a role-based access control model. Each user has one or more
+roles (e.g. <code class="docutils literal notranslate"><span class="pre">admin</span></code>, <code class="docutils literal notranslate"><span class="pre">ops</span></code>, <code class="docutils literal notranslate"><span class="pre">devops</span></code>). Permissions define which
+scopes each role is granted. When a user makes an API request, their
+roles are looked up and the corresponding scopes determine what actions
+are allowed.</p>
+<p>The available scopes follow the pattern <code class="docutils literal notranslate"><span class="pre">action:resource</span></code> and include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">read</span></code>, <code class="docutils literal notranslate"><span class="pre">write</span></code>, <code class="docutils literal notranslate"><span class="pre">admin</span></code> – broad scopes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">read:alerts</span></code>, <code class="docutils literal notranslate"><span class="pre">write:alerts</span></code>, <code class="docutils literal notranslate"><span class="pre">delete:alerts</span></code>, <code class="docutils literal notranslate"><span class="pre">admin:alerts</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">read:blackouts</span></code>, <code class="docutils literal notranslate"><span class="pre">write:blackouts</span></code>, <code class="docutils literal notranslate"><span class="pre">admin:blackouts</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">read:heartbeats</span></code>, <code class="docutils literal notranslate"><span class="pre">write:heartbeats</span></code>, <code class="docutils literal notranslate"><span class="pre">admin:heartbeats</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">write:users</span></code>, <code class="docutils literal notranslate"><span class="pre">admin:users</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">read:keys</span></code>, <code class="docutils literal notranslate"><span class="pre">write:keys</span></code>, <code class="docutils literal notranslate"><span class="pre">admin:keys</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">read:perms</span></code>, <code class="docutils literal notranslate"><span class="pre">admin:perms</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">read:groups</span></code>, <code class="docutils literal notranslate"><span class="pre">admin:groups</span></code></p></li>
+</ul>
+</section>
+<section id="creating-a-permission">
+<h2>Creating a Permission<a class="headerlink" href="#creating-a-permission" title="Permalink to this heading"></a></h2>
+<p>Click the <strong>+</strong> button to create a new role-to-scope mapping:</p>
+<ul class="simple">
+<li><p><strong>Match</strong> – the role or group name to match (e.g. <code class="docutils literal notranslate"><span class="pre">ops</span></code>, <code class="docutils literal notranslate"><span class="pre">devops</span></code>,
+<code class="docutils literal notranslate"><span class="pre">network-team</span></code>). This is compared against the user’s roles and group
+memberships.</p></li>
+<li><p><strong>Scopes</strong> – select one or more scopes to grant to users matching this
+role.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">admin</span></code> role has all scopes by default and does not need
+an explicit permission mapping.</p>
+</div>
+</section>
+<section id="listing-permissions">
+<h2>Listing Permissions<a class="headerlink" href="#listing-permissions" title="Permalink to this heading"></a></h2>
+<p>The permissions table shows all configured role-to-scope mappings with the
+match string and assigned scopes. Use this view to audit which roles have
+access to which resources.</p>
+</section>
+<section id="deleting-permissions">
+<h2>Deleting Permissions<a class="headerlink" href="#deleting-permissions" title="Permalink to this heading"></a></h2>
+<p>Click the delete icon next to a permission to remove the mapping. Users
+with that role will lose the associated scopes on their next API request.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Start with minimal scopes and add more as needed. For example,
+give a monitoring dashboard role only <code class="docutils literal notranslate"><span class="pre">read:alerts</span></code> and
+<code class="docutils literal notranslate"><span class="pre">read:heartbeats</span></code> scopes.</p>
+</div>
+</section>
 </section>
 
 
@@ -153,7 +214,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="heartbeats.html" class="btn btn-neutral float-left" title="Heartbeats" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="reports.html" class="btn btn-neutral float-right" title="Alert reports" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="reports.html" class="btn btn-neutral float-right" title="Reports" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

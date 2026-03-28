@@ -23,7 +23,7 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Alert Roles, Scopes and Permissions" href="permissions.html" />
+    <link rel="next" title="Permissions" href="permissions.html" />
     <link rel="prev" title="Configuration" href="configuration.html" /> 
 </head>
 
@@ -65,14 +65,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-4-alerts.html">Alerts explored in-depth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-4-customisation.html">Customising Alerts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-5-blackouts.html">Suppressing Alerts using Blackouts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-6-auth.html">Authentication &amp; Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-6-auth.html">Authentication Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-7-cusomter-views.html">Partition Alerts using Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-integration-nagios.html">Nagios Integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-integration-zabbix.html">Integration with Zabbix</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-webhooks.html">Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-webhooks.html">Webhook Integrations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-9-troubleshooting.html">Troubleshooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-10-docker.html">Using Docker to deploy Alerta</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-11-kubernetes.html">Using Docker to deploy Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-11-kubernetes.html">Kubernetes Deployment</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Extensions</span></p>
 <ul>
@@ -103,17 +103,26 @@
 <p class="caption" role="heading"><span class="caption-text">Web UI</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="alerts.html">Alerts View</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apikeys.html">Managing API Keys in the Web UI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="authentication.html">Web UI Authentication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="blackouts.html">Alert Blackout Periods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apikeys.html">API Keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blackouts.html">Blackouts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html#configuration-from-api-server">Configuration from API Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html#severity-colors">Severity Colors</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Heartbeats</a></li>
-<li class="toctree-l1"><a class="reference internal" href="permissions.html">Alert Roles, Scopes and Permissions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reports.html">Alert reports</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Heartbeats</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#heartbeat-list">Heartbeat List</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#heartbeat-status">Heartbeat Status</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#filtering-and-search">Filtering and Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#heartbeat-alerts">Heartbeat Alerts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deleting-heartbeats">Deleting Heartbeats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="permissions.html">Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="settings.html">User Preferences</a></li>
-<li class="toctree-l1"><a class="reference internal" href="users.html">Managing Users &amp; Groups using the web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users.html">Users and Groups</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul>
@@ -146,12 +155,51 @@
              
   <section id="heartbeats">
 <span id="webui-heartbeats"></span><h1>Heartbeats<a class="headerlink" href="#heartbeats" title="Permalink to this heading"></a></h1>
-<p>latency, timeout =&gt; status</p>
-<p>tags &amp; attributes</p>
-<p>search</p>
-<p>filter by status
-- ok, slow, expired</p>
-<p>alerts from heartbeat status</p>
+<p>The heartbeats page shows the health status of all monitored components that
+send periodic heartbeat signals to Alerta. Navigate to it from the main menu
+under <em>Status &gt; Heartbeats</em>.</p>
+<section id="heartbeat-list">
+<h2>Heartbeat List<a class="headerlink" href="#heartbeat-list" title="Permalink to this heading"></a></h2>
+<p>Each heartbeat is displayed with the following information:</p>
+<ul class="simple">
+<li><p><strong>Origin</strong> – the source that sent the heartbeat (typically a hostname or
+service name)</p></li>
+<li><p><strong>Tags</strong> – any tags associated with the heartbeat</p></li>
+<li><p><strong>Status</strong> – one of <code class="docutils literal notranslate"><span class="pre">ok</span></code>, <code class="docutils literal notranslate"><span class="pre">slow</span></code>, or <code class="docutils literal notranslate"><span class="pre">expired</span></code></p></li>
+<li><p><strong>Latency</strong> – the round-trip time for the last heartbeat</p></li>
+<li><p><strong>Timeout</strong> – the configured timeout threshold in seconds</p></li>
+<li><p><strong>Last Receive Time</strong> – when the last heartbeat was received</p></li>
+<li><p><strong>Customer</strong> – the customer associated with the heartbeat (if applicable)</p></li>
+</ul>
+<section id="heartbeat-status">
+<h3>Heartbeat Status<a class="headerlink" href="#heartbeat-status" title="Permalink to this heading"></a></h3>
+<p>Status is derived from the timeout and latency values:</p>
+<ul class="simple">
+<li><p><strong>ok</strong> – the heartbeat was received within the timeout period</p></li>
+<li><p><strong>slow</strong> – the heartbeat was received but the latency exceeded a threshold</p></li>
+<li><p><strong>expired</strong> – no heartbeat was received within the timeout period</p></li>
+</ul>
+</section>
+</section>
+<section id="filtering-and-search">
+<h2>Filtering and Search<a class="headerlink" href="#filtering-and-search" title="Permalink to this heading"></a></h2>
+<p>Use the status filter buttons to show only heartbeats matching a particular
+status (ok, slow, or expired). The search box allows filtering by origin
+or tags.</p>
+</section>
+<section id="heartbeat-alerts">
+<h2>Heartbeat Alerts<a class="headerlink" href="#heartbeat-alerts" title="Permalink to this heading"></a></h2>
+<p>When a heartbeat expires, Alerta can automatically generate an alert to
+notify you of the failure. This is controlled by the <code class="docutils literal notranslate"><span class="pre">HEARTBEAT_EVENTS</span></code>
+server configuration. Expired heartbeats typically generate a <code class="docutils literal notranslate"><span class="pre">HeartbeatFail</span></code>
+alert with <code class="docutils literal notranslate"><span class="pre">major</span></code> severity.</p>
+</section>
+<section id="deleting-heartbeats">
+<h2>Deleting Heartbeats<a class="headerlink" href="#deleting-heartbeats" title="Permalink to this heading"></a></h2>
+<p>Click the delete icon next to a heartbeat to remove it. This is useful for
+cleaning up heartbeats from decommissioned hosts or services that are no
+longer sending signals.</p>
+</section>
 </section>
 
 
@@ -159,7 +207,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="configuration.html" class="btn btn-neutral float-left" title="Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="permissions.html" class="btn btn-neutral float-right" title="Alert Roles, Scopes and Permissions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="permissions.html" class="btn btn-neutral float-right" title="Permissions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alert reports &mdash; Alerta 9.1 documentation</title>
+  <title>Reports &mdash; Alerta 9.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -24,7 +24,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="User Preferences" href="settings.html" />
-    <link rel="prev" title="Alert Roles, Scopes and Permissions" href="permissions.html" /> 
+    <link rel="prev" title="Permissions" href="permissions.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -65,14 +65,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-4-alerts.html">Alerts explored in-depth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-4-customisation.html">Customising Alerts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-5-blackouts.html">Suppressing Alerts using Blackouts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-6-auth.html">Authentication &amp; Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-6-auth.html">Authentication Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-7-cusomter-views.html">Partition Alerts using Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-integration-nagios.html">Nagios Integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-integration-zabbix.html">Integration with Zabbix</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-webhooks.html">Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-webhooks.html">Webhook Integrations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-9-troubleshooting.html">Troubleshooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-10-docker.html">Using Docker to deploy Alerta</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-11-kubernetes.html">Using Docker to deploy Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-11-kubernetes.html">Kubernetes Deployment</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Extensions</span></p>
 <ul>
@@ -103,17 +103,27 @@
 <p class="caption" role="heading"><span class="caption-text">Web UI</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="alerts.html">Alerts View</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apikeys.html">Managing API Keys in the Web UI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="authentication.html">Web UI Authentication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="blackouts.html">Alert Blackout Periods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apikeys.html">API Keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blackouts.html">Blackouts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html#configuration-from-api-server">Configuration from API Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html#severity-colors">Severity Colors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="heartbeats.html">Heartbeats</a></li>
-<li class="toctree-l1"><a class="reference internal" href="permissions.html">Alert Roles, Scopes and Permissions</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Alert reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="permissions.html">Permissions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reports</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#available-reports">Available Reports</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#top-10-count">Top 10 Count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#top-10-flapping">Top 10 Flapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#top-10-standing">Top 10 Standing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#filtering">Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#group-by">Group By</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="settings.html">User Preferences</a></li>
-<li class="toctree-l1"><a class="reference internal" href="users.html">Managing Users &amp; Groups using the web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users.html">Users and Groups</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul>
@@ -134,7 +144,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Alert reports</li>
+      <li class="breadcrumb-item active">Reports</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/webui/reports.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -144,15 +154,54 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="alert-reports">
-<span id="webui-reports"></span><h1>Alert reports<a class="headerlink" href="#alert-reports" title="Permalink to this heading"></a></h1>
+  <section id="reports">
+<span id="webui-reports"></span><h1>Reports<a class="headerlink" href="#reports" title="Permalink to this heading"></a></h1>
+<p>The reports page provides aggregate views of alert activity to help identify
+problem areas and recurring issues. Navigate to it from the main menu under
+<em>Status &gt; Reports</em>.</p>
+<section id="available-reports">
+<h2>Available Reports<a class="headerlink" href="#available-reports" title="Permalink to this heading"></a></h2>
+<p>Three report types are available:</p>
+<section id="top-10-count">
+<h3>Top 10 Count<a class="headerlink" href="#top-10-count" title="Permalink to this heading"></a></h3>
+<p>Shows the top 10 alerts by total occurrence count. This highlights the
+noisiest alert sources – resources and events that generate the most
+duplicate alerts.</p>
+</section>
+<section id="top-10-flapping">
+<h3>Top 10 Flapping<a class="headerlink" href="#top-10-flapping" title="Permalink to this heading"></a></h3>
+<p>Shows the top 10 alerts that change severity most frequently. Flapping
+alerts indicate unstable conditions where a resource repeatedly transitions
+between ok and problem states.</p>
+</section>
+<section id="top-10-standing">
+<h3>Top 10 Standing<a class="headerlink" href="#top-10-standing" title="Permalink to this heading"></a></h3>
+<p>Shows the top 10 longest-standing alerts – those that have been in an
+open state for the longest duration without being resolved or acknowledged.</p>
+</section>
+</section>
+<section id="filtering">
+<h2>Filtering<a class="headerlink" href="#filtering" title="Permalink to this heading"></a></h2>
+<p>Each report can be filtered by:</p>
+<ul class="simple">
+<li><p><strong>Environment</strong> – restrict the report to a specific environment</p></li>
+<li><p><strong>Service</strong> – restrict the report to one or more services</p></li>
+</ul>
+</section>
+<section id="group-by">
+<h2>Group By<a class="headerlink" href="#group-by" title="Permalink to this heading"></a></h2>
+<p>Reports can be grouped by different alert attributes (e.g. resource, event,
+service, group) to change the aggregation level. This allows you to see,
+for example, the top 10 noisiest resources versus the top 10 noisiest
+event types.</p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="permissions.html" class="btn btn-neutral float-left" title="Alert Roles, Scopes and Permissions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="permissions.html" class="btn btn-neutral float-left" title="Permissions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="settings.html" class="btn btn-neutral float-right" title="User Preferences" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

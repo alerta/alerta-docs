@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Authentication &amp; Authorization &mdash; Alerta 9.1 documentation</title>
+  <title>Authentication Setup &mdash; Alerta 9.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -65,22 +65,26 @@
 <li class="toctree-l1"><a class="reference internal" href="tutorial-4-alerts.html">Alerts explored in-depth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-4-customisation.html">Customising Alerts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-5-blackouts.html">Suppressing Alerts using Blackouts</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Authentication &amp; Authorization</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Authentication Setup</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#step-1-enable-authentication">Step 1: Enable Authentication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#step-2-basic-auth-configuration">Step 2: Basic Auth Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#step-4-api-keys">Step 4: API Keys</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#step-3-github-configuration">Step 3: GitHub Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-set-a-secret-key">Step 2: Set a Secret Key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-create-an-admin-user">Step 3: Create an Admin User</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-4-log-in-and-obtain-a-token">Step 4: Log In and Obtain a Token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-5-generate-an-api-key">Step 5: Generate an API Key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-6-restrict-email-domains">Step 6: Restrict Email Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-7-email-verification">Step 7: Email Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-7-cusomter-views.html">Partition Alerts using Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-8-integration-nagios.html">Nagios Integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-8-integration-zabbix.html">Integration with Zabbix</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial-8-webhooks.html">Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-8-webhooks.html">Webhook Integrations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-9-troubleshooting.html">Troubleshooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-10-docker.html">Using Docker to deploy Alerta</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial-11-kubernetes.html">Using Docker to deploy Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-11-kubernetes.html">Kubernetes Deployment</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Extensions</span></p>
 <ul>
@@ -111,17 +115,17 @@
 <p class="caption" role="heading"><span class="caption-text">Web UI</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../webui/alerts.html">Alerts View</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/apikeys.html">Managing API Keys in the Web UI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/authentication.html">Web UI Authentication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/blackouts.html">Alert Blackout Periods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/apikeys.html">API Keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/blackouts.html">Blackouts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui/configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui/configuration.html#configuration-from-api-server">Configuration from API Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui/configuration.html#severity-colors">Severity Colors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui/heartbeats.html">Heartbeats</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/permissions.html">Alert Roles, Scopes and Permissions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/reports.html">Alert reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/permissions.html">Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/reports.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui/settings.html">User Preferences</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/users.html">Managing Users &amp; Groups using the web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/users.html">Users and Groups</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul>
@@ -142,7 +146,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Authentication &amp; Authorization</li>
+      <li class="breadcrumb-item active">Authentication Setup</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/gettingstarted/tutorial-6-auth.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -152,53 +156,164 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="authentication-authorization">
-<span id="tutorial-6"></span><h1>Authentication &amp; Authorization<a class="headerlink" href="#authentication-authorization" title="Permalink to this heading"></a></h1>
-<p>admin users
-normal users
-email verify
-domain whitelist
-change password</p>
-<p>reset user password via alerta cli</p>
-<p>This tutorial will …</p>
+  <section id="authentication-setup">
+<span id="tutorial-6"></span><h1>Authentication Setup<a class="headerlink" href="#authentication-setup" title="Permalink to this heading"></a></h1>
+<p>In this tutorial you will learn how to enable authentication, create
+users, generate API keys, and control access to the Alerta API.</p>
 <p><strong>Contents</strong></p>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference internal" href="#overview">Overview</a></p></li>
 <li><p><a class="reference internal" href="#prerequisites">Prerequisites</a></p></li>
 <li><p><a class="reference internal" href="#step-1-enable-authentication">Step 1: Enable Authentication</a></p></li>
-<li><p><a href="#id1"><span class="problematic" id="id2">`Step 2: Configure Administrators`_</span></a></p></li>
-<li><p><a href="#id3"><span class="problematic" id="id4">`Step 3: Customisation`_</span></a></p></li>
-<li><p><a href="#id5"><span class="problematic" id="id6">`Next Steps`_</span></a></p></li>
+<li><p><a class="reference internal" href="#step-2-set-a-secret-key">Step 2: Set a Secret Key</a></p></li>
+<li><p><a class="reference internal" href="#step-3-create-an-admin-user">Step 3: Create an Admin User</a></p></li>
+<li><p><a class="reference internal" href="#step-4-log-in-and-obtain-a-token">Step 4: Log In and Obtain a Token</a></p></li>
+<li><p><a class="reference internal" href="#step-5-generate-an-api-key">Step 5: Generate an API Key</a></p></li>
+<li><p><a class="reference internal" href="#step-6-restrict-email-domains">Step 6: Restrict Email Domains</a></p></li>
+<li><p><a class="reference internal" href="#step-7-email-verification">Step 7: Email Verification</a></p></li>
+<li><p><a class="reference internal" href="#next-steps">Next Steps</a></p></li>
 </ul>
 </div></blockquote>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>By default, Alerta runs without authentication – any client can read
+and write alerts. Enabling authentication adds user signup, login
+tokens, API keys, and role-based access control. This tutorial covers
+Basic Auth (username/password). For OAuth, LDAP, SAML, or OpenID
+Connect, see the <a class="reference internal" href="../authentication.html#authentication"><span class="std std-ref">authentication</span></a> reference.</p>
 </section>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
+<p>It is assumed that you have completed <a class="reference internal" href="tutorial-1-deploy-alerta.html#tutorial-1"><span class="std std-ref">Tutorial 1</span></a>
+or you have access to an Alerta server that you can configure.</p>
 </section>
 <section id="step-1-enable-authentication">
 <h2>Step 1: Enable Authentication<a class="headerlink" href="#step-1-enable-authentication" title="Permalink to this heading"></a></h2>
+<p>Set <code class="docutils literal notranslate"><span class="pre">AUTH_REQUIRED</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> in <code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AUTH_REQUIRED</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;UszE5hI_hx5pXKcsCP_2&amp;1DIs&amp;9_Ve*k&#39;</span>
+</pre></div>
+</div>
+<p>After restarting the server, all API requests without a valid token or
+API key will receive a <code class="docutils literal notranslate"><span class="pre">401</span> <span class="pre">Unauthorized</span></code> response:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>curl<span class="w"> </span>http://localhost:8080/api/alerts
+<span class="go">{&quot;message&quot;: &quot;Authorization required ...&quot;, &quot;status&quot;: &quot;error&quot;}</span>
 </pre></div>
 </div>
 </section>
-<section id="step-2-basic-auth-configuration">
-<h2>Step 2: Basic Auth Configuration<a class="headerlink" href="#step-2-basic-auth-configuration" title="Permalink to this heading"></a></h2>
-<p>define admin users
-define roles
-map users to roles</p>
+<section id="step-2-set-a-secret-key">
+<h2>Step 2: Set a Secret Key<a class="headerlink" href="#step-2-set-a-secret-key" title="Permalink to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">SECRET_KEY</span></code> is used to sign JWT tokens. Change it from the
+default before enabling authentication:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;R4nd0m-$3cret-k3y-ch4nge-m3!&#39;</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Use a long, random string. If the secret key is compromised,
+attackers can forge valid authentication tokens.</p>
+</div>
 </section>
-<section id="step-4-api-keys">
-<h2>Step 4: API Keys<a class="headerlink" href="#step-4-api-keys" title="Permalink to this heading"></a></h2>
+<section id="step-3-create-an-admin-user">
+<h2>Step 3: Create an Admin User<a class="headerlink" href="#step-3-create-an-admin-user" title="Permalink to this heading"></a></h2>
+<p>Define one or more admin users in <code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code> by email address:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ADMIN_USERS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;admin@example.com&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Then sign up using the API. The first matching email in <code class="docutils literal notranslate"><span class="pre">ADMIN_USERS</span></code>
+is granted the <code class="docutils literal notranslate"><span class="pre">admin</span></code> role automatically:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/api/auth/signup -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;name&quot;: &quot;Admin&quot;,
+    &quot;email&quot;: &quot;admin@example.com&quot;,
+    &quot;password&quot;: &quot;Adm1n-Pa55w0rd&quot;,
+    &quot;text&quot;: &quot;Primary administrator&quot;
+  }&#39;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Signup is enabled by default (<code class="docutils literal notranslate"><span class="pre">SIGNUP_ENABLED</span> <span class="pre">=</span> <span class="pre">True</span></code>). Set it
+to <code class="docutils literal notranslate"><span class="pre">False</span></code> after creating initial accounts if you want to prevent
+self-service registration.</p>
+</div>
 </section>
-<section id="step-3-github-configuration">
-<h2>Step 3: GitHub Configuration<a class="headerlink" href="#step-3-github-configuration" title="Permalink to this heading"></a></h2>
-<p>define admin users
-define allowed github orgs
-define roles for orgs</p>
+<section id="step-4-log-in-and-obtain-a-token">
+<h2>Step 4: Log In and Obtain a Token<a class="headerlink" href="#step-4-log-in-and-obtain-a-token" title="Permalink to this heading"></a></h2>
+<p>Exchange credentials for a JWT bearer token:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/api/auth/login -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;username&quot;: &quot;admin@example.com&quot;,
+    &quot;password&quot;: &quot;Adm1n-Pa55w0rd&quot;
+  }&#39;
+{&quot;token&quot;: &quot;eyJhbGciOiJIUzI1NiIs...&quot;}
+</pre></div>
+</div>
+<p>Use the token in subsequent requests via the <code class="docutils literal notranslate"><span class="pre">Authorization</span></code> header:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>curl<span class="w"> </span>http://localhost:8080/api/alerts<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Authorization: Bearer eyJhbGciOiJIUzI1NiIs...&#39;</span>
+</pre></div>
+</div>
+<p>Tokens expire after <code class="docutils literal notranslate"><span class="pre">TOKEN_EXPIRE_DAYS</span></code> (default 14 days).</p>
+</section>
+<section id="step-5-generate-an-api-key">
+<h2>Step 5: Generate an API Key<a class="headerlink" href="#step-5-generate-an-api-key" title="Permalink to this heading"></a></h2>
+<p>API keys are better suited for the CLI tool and long-lived
+integrations. Create one through the API:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/api/key \
+  -H &#39;Authorization: Bearer &lt;token&gt;&#39; \
+  -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;scopes&quot;: [&quot;read&quot;, &quot;write&quot;],
+    &quot;text&quot;: &quot;CLI access key&quot;
+  }&#39;
+</pre></div>
+</div>
+<p>Configure the <code class="docutils literal notranslate"><span class="pre">alerta</span></code> CLI to use the key:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>alerta<span class="w"> </span>--endpoint-url<span class="w"> </span>http://localhost:8080/api<span class="w"> </span>--api-key<span class="w"> </span>&lt;api-key&gt;<span class="w"> </span>query
+</pre></div>
+</div>
+<p>Or set environment variables:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">ALERTA_ENDPOINT</span><span class="o">=</span>http://localhost:8080/api
+<span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">ALERTA_API_KEY</span><span class="o">=</span>&lt;api-key&gt;
+<span class="gp">$ </span>alerta<span class="w"> </span>query
+</pre></div>
+</div>
+<p>API keys expire after <code class="docutils literal notranslate"><span class="pre">API_KEY_EXPIRE_DAYS</span></code> (default 365 days).</p>
+</section>
+<section id="step-6-restrict-email-domains">
+<h2>Step 6: Restrict Email Domains<a class="headerlink" href="#step-6-restrict-email-domains" title="Permalink to this heading"></a></h2>
+<p>Limit who can sign up by specifying allowed email domains. The
+default allows all domains:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ALLOWED_EMAIL_DOMAINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;ops.example.com&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Users with email addresses outside these domains will be rejected
+at signup.</p>
+</section>
+<section id="step-7-email-verification">
+<h2>Step 7: Email Verification<a class="headerlink" href="#step-7-email-verification" title="Permalink to this heading"></a></h2>
+<p>Require new users to verify their email address before they can
+use the API. Enable email verification and configure SMTP:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">EMAIL_VERIFICATION</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">SMTP_HOST</span> <span class="o">=</span> <span class="s1">&#39;smtp.example.com&#39;</span>
+<span class="n">SMTP_PORT</span> <span class="o">=</span> <span class="mi">587</span>
+<span class="n">SMTP_STARTTLS</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">SMTP_USERNAME</span> <span class="o">=</span> <span class="s1">&#39;alerts@example.com&#39;</span>
+<span class="n">SMTP_PASSWORD</span> <span class="o">=</span> <span class="s1">&#39;smtp-password&#39;</span>
+<span class="n">MAIL_FROM</span> <span class="o">=</span> <span class="s1">&#39;alerts@example.com&#39;</span>
+</pre></div>
+</div>
+<p>Unverified users will receive a <code class="docutils literal notranslate"><span class="pre">403</span> <span class="pre">Forbidden</span></code> response until
+they click the verification link sent to their email.</p>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading"></a></h2>
+<p>Now that you have authentication configured, you might want to try
+some of the following tutorials:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="tutorial-7-cusomter-views.html#tutorial-7"><span class="std std-ref">Partition alerts using customer views</span></a></p></li>
+<li><p><a class="reference internal" href="tutorial-5-blackouts.html#tutorial-5"><span class="std std-ref">Suppressing alerts using blackouts</span></a></p></li>
+<li><p>For OAuth, LDAP, SAML, and OpenID Connect see <a class="reference internal" href="../authentication.html#authentication"><span class="std std-ref">Authentication</span></a></p></li>
+</ul>
+</div></blockquote>
 </section>
 </section>
 

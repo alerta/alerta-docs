@@ -24,7 +24,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Nagios Integration" href="tutorial-8-integration-nagios.html" />
-    <link rel="prev" title="Authentication &amp; Authorization" href="tutorial-6-auth.html" /> 
+    <link rel="prev" title="Authentication Setup" href="tutorial-6-auth.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -65,19 +65,24 @@
 <li class="toctree-l1"><a class="reference internal" href="tutorial-4-alerts.html">Alerts explored in-depth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-4-customisation.html">Customising Alerts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-5-blackouts.html">Suppressing Alerts using Blackouts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial-6-auth.html">Authentication &amp; Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-6-auth.html">Authentication Setup</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Partition Alerts using Customer Views</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#step-1-install-packages">Step 1: Install Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-enable-customer-views">Step 1: Enable Customer Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-configure-admin-users">Step 2: Configure Admin Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-create-customer-lookups">Step 3: Create Customer Lookups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-4-send-alerts-as-different-customers">Step 4: Send Alerts as Different Customers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-5-verify-alert-isolation">Step 5: Verify Alert Isolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-8-integration-nagios.html">Nagios Integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-8-integration-zabbix.html">Integration with Zabbix</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial-8-webhooks.html">Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-8-webhooks.html">Webhook Integrations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-9-troubleshooting.html">Troubleshooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial-10-docker.html">Using Docker to deploy Alerta</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial-11-kubernetes.html">Using Docker to deploy Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-11-kubernetes.html">Kubernetes Deployment</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Extensions</span></p>
 <ul>
@@ -108,17 +113,17 @@
 <p class="caption" role="heading"><span class="caption-text">Web UI</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../webui/alerts.html">Alerts View</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/apikeys.html">Managing API Keys in the Web UI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/authentication.html">Web UI Authentication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/blackouts.html">Alert Blackout Periods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/apikeys.html">API Keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/blackouts.html">Blackouts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui/configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui/configuration.html#configuration-from-api-server">Configuration from API Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui/configuration.html#severity-colors">Severity Colors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui/heartbeats.html">Heartbeats</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/permissions.html">Alert Roles, Scopes and Permissions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/reports.html">Alert reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/permissions.html">Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/reports.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui/settings.html">User Preferences</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../webui/users.html">Managing Users &amp; Groups using the web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/users.html">Users and Groups</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul>
@@ -151,30 +156,160 @@
              
   <section id="partition-alerts-using-customer-views">
 <span id="tutorial-7"></span><h1>Partition Alerts using Customer Views<a class="headerlink" href="#partition-alerts-using-customer-views" title="Permalink to this heading"></a></h1>
-<p>This tutorial will …</p>
+<p>In this tutorial you will learn how to partition alerts by customer
+so that different teams or tenants only see their own alerts.</p>
 <p><strong>Contents</strong></p>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference internal" href="#overview">Overview</a></p></li>
 <li><p><a class="reference internal" href="#prerequisites">Prerequisites</a></p></li>
-<li><p><a class="reference internal" href="#step-1-install-packages">Step 1: Install Packages</a></p></li>
-<li><p><a href="#id1"><span class="problematic" id="id2">`Step 2: Configuration`_</span></a></p></li>
-<li><p><a href="#id3"><span class="problematic" id="id4">`Step 3: Customisation`_</span></a></p></li>
-<li><p><a href="#id5"><span class="problematic" id="id6">`Next Steps`_</span></a></p></li>
+<li><p><a class="reference internal" href="#step-1-enable-customer-views">Step 1: Enable Customer Views</a></p></li>
+<li><p><a class="reference internal" href="#step-2-configure-admin-users">Step 2: Configure Admin Users</a></p></li>
+<li><p><a class="reference internal" href="#step-3-create-customer-lookups">Step 3: Create Customer Lookups</a></p></li>
+<li><p><a class="reference internal" href="#step-4-send-alerts-as-different-customers">Step 4: Send Alerts as Different Customers</a></p></li>
+<li><p><a class="reference internal" href="#step-5-verify-alert-isolation">Step 5: Verify Alert Isolation</a></p></li>
+<li><p><a class="reference internal" href="#next-steps">Next Steps</a></p></li>
 </ul>
 </div></blockquote>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
-<p>Customer views and web UI…</p>
+<p>Customer views allow a single Alerta deployment to serve multiple
+teams or tenants. When enabled, alerts are tagged with a customer
+name based on the authenticated user, and non-admin users can only
+view alerts belonging to their own customer. Administrators retain
+access to all alerts.</p>
 </section>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
+<p>It is assumed that you have completed <a class="reference internal" href="tutorial-6-auth.html#tutorial-6"><span class="std std-ref">Tutorial 6</span></a>
+and have a working Alerta server with authentication enabled. You
+will need an admin user and the ability to create additional user
+accounts.</p>
 </section>
-<section id="step-1-install-packages">
-<h2>Step 1: Install Packages<a class="headerlink" href="#step-1-install-packages" title="Permalink to this heading"></a></h2>
-<ul class="simple">
-<li><p>blackout periods by customer</p></li>
+<section id="step-1-enable-customer-views">
+<h2>Step 1: Enable Customer Views<a class="headerlink" href="#step-1-enable-customer-views" title="Permalink to this heading"></a></h2>
+<p>Set <code class="docutils literal notranslate"><span class="pre">CUSTOMER_VIEWS</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> in <code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CUSTOMER_VIEWS</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>Restart the server for the change to take effect.</p>
+</section>
+<section id="step-2-configure-admin-users">
+<h2>Step 2: Configure Admin Users<a class="headerlink" href="#step-2-configure-admin-users" title="Permalink to this heading"></a></h2>
+<p>Admin users can see all alerts regardless of customer. Ensure your
+admin email is listed in <code class="docutils literal notranslate"><span class="pre">alertad.conf</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ADMIN_USERS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;admin@example.com&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="step-3-create-customer-lookups">
+<h2>Step 3: Create Customer Lookups<a class="headerlink" href="#step-3-create-customer-lookups" title="Permalink to this heading"></a></h2>
+<p>Customer lookups map users to customer names. The mapping is based
+on the user’s login domain, email prefix, Keycloak role, GitHub org,
+or a specific match. Create lookups using the API as an admin:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/api/customer \
+  -H &#39;Authorization: Bearer &lt;admin-token&gt;&#39; \
+  -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;customer&quot;: &quot;Company A&quot;,
+    &quot;match&quot;: &quot;companya.com&quot;
+  }&#39;
+
+$ curl -XPOST http://localhost:8080/api/customer \
+  -H &#39;Authorization: Bearer &lt;admin-token&gt;&#39; \
+  -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;customer&quot;: &quot;Company B&quot;,
+    &quot;match&quot;: &quot;companyb.com&quot;
+  }&#39;
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">match</span></code> field is compared against the authenticated user’s
+email domain. Any user with an <code class="docutils literal notranslate"><span class="pre">&#64;companya.com</span></code> email will be
+assigned to “Company A”.</p>
+<p>Verify the lookups:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>curl<span class="w"> </span>http://localhost:8080/api/customers<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Authorization: Bearer &lt;admin-token&gt;&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4-send-alerts-as-different-customers">
+<h2>Step 4: Send Alerts as Different Customers<a class="headerlink" href="#step-4-send-alerts-as-different-customers" title="Permalink to this heading"></a></h2>
+<p>Create a user account for each customer and generate API keys:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST http://localhost:8080/api/auth/signup -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;name&quot;: &quot;User A&quot;,
+    &quot;email&quot;: &quot;ops@companya.com&quot;,
+    &quot;password&quot;: &quot;Pa55w0rd-A&quot;
+  }&#39;
+
+$ curl -XPOST http://localhost:8080/api/auth/signup -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;name&quot;: &quot;User B&quot;,
+    &quot;email&quot;: &quot;ops@companyb.com&quot;,
+    &quot;password&quot;: &quot;Pa55w0rd-B&quot;
+  }&#39;
+</pre></div>
+</div>
+<p>Log in as each user and send alerts:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span>$ # As Company A
+$ curl -XPOST http://localhost:8080/api/alert \
+  -H &#39;Authorization: Bearer &lt;token-A&gt;&#39; \
+  -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;resource&quot;: &quot;web01&quot;,
+    &quot;event&quot;: &quot;HttpError&quot;,
+    &quot;environment&quot;: &quot;Production&quot;,
+    &quot;service&quot;: [&quot;Web&quot;],
+    &quot;severity&quot;: &quot;major&quot;,
+    &quot;text&quot;: &quot;Company A: HTTP 500 errors.&quot;
+  }&#39;
+
+$ # As Company B
+$ curl -XPOST http://localhost:8080/api/alert \
+  -H &#39;Authorization: Bearer &lt;token-B&gt;&#39; \
+  -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;resource&quot;: &quot;db01&quot;,
+    &quot;event&quot;: &quot;DbError&quot;,
+    &quot;environment&quot;: &quot;Production&quot;,
+    &quot;service&quot;: [&quot;Database&quot;],
+    &quot;severity&quot;: &quot;critical&quot;,
+    &quot;text&quot;: &quot;Company B: database connection refused.&quot;
+  }&#39;
+</pre></div>
+</div>
+<p>Alerts are automatically tagged with the customer name derived from
+the authenticated user – no <code class="docutils literal notranslate"><span class="pre">customer</span></code> field needs to be set
+explicitly.</p>
+</section>
+<section id="step-5-verify-alert-isolation">
+<h2>Step 5: Verify Alert Isolation<a class="headerlink" href="#step-5-verify-alert-isolation" title="Permalink to this heading"></a></h2>
+<p>Query alerts as each user to confirm isolation:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="c1"># Company A only sees their own alert</span>
+<span class="gp">$ </span>curl<span class="w"> </span>-s<span class="w"> </span>http://localhost:8080/api/alerts<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Authorization: Bearer &lt;token-A&gt;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>json.tool
+<span class="gp"># </span>Returns<span class="w"> </span>only<span class="w"> </span><span class="s2">&quot;Company A: HTTP 500 errors.&quot;</span>
+
+<span class="gp">$ </span><span class="c1"># Company B only sees their own alert</span>
+<span class="gp">$ </span>curl<span class="w"> </span>-s<span class="w"> </span>http://localhost:8080/api/alerts<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Authorization: Bearer &lt;token-B&gt;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>json.tool
+<span class="gp"># </span>Returns<span class="w"> </span>only<span class="w"> </span><span class="s2">&quot;Company B: database connection refused.&quot;</span>
+
+<span class="gp">$ </span><span class="c1"># Admin sees all alerts</span>
+<span class="gp">$ </span>curl<span class="w"> </span>-s<span class="w"> </span>http://localhost:8080/api/alerts<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Authorization: Bearer &lt;admin-token&gt;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>json.tool
+<span class="gp"># </span>Returns<span class="w"> </span>both<span class="w"> </span>alerts
+</pre></div>
+</div>
+<p>Blackout periods also respect customer views – a blackout created
+by a non-admin user will only apply to alerts for that user’s
+customer.</p>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this heading"></a></h2>
+<p>Now that you understand customer views, you might want to try
+some of the following tutorials:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="tutorial-4-customisation.html#tutorial-4-customisation"><span class="std std-ref">Customising alerts</span></a></p></li>
+<li><p><a class="reference internal" href="tutorial-5-blackouts.html#tutorial-5"><span class="std std-ref">Suppressing alerts using blackouts</span></a></p></li>
 </ul>
+</div></blockquote>
 </section>
 </section>
 
@@ -182,7 +317,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="tutorial-6-auth.html" class="btn btn-neutral float-left" title="Authentication &amp; Authorization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tutorial-6-auth.html" class="btn btn-neutral float-left" title="Authentication Setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="tutorial-8-integration-nagios.html" class="btn btn-neutral float-right" title="Nagios Integration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Web UI Authentication &mdash; Alerta 9.1 documentation</title>
+  <title>Authentication &mdash; Alerta 9.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -23,8 +23,8 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Alert Blackout Periods" href="blackouts.html" />
-    <link rel="prev" title="Managing API Keys in the Web UI" href="apikeys.html" /> 
+    <link rel="next" title="Blackouts" href="blackouts.html" />
+    <link rel="prev" title="API Keys" href="apikeys.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -65,14 +65,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-4-alerts.html">Alerts explored in-depth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-4-customisation.html">Customising Alerts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-5-blackouts.html">Suppressing Alerts using Blackouts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-6-auth.html">Authentication &amp; Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-6-auth.html">Authentication Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-7-cusomter-views.html">Partition Alerts using Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-integration-nagios.html">Nagios Integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-integration-zabbix.html">Integration with Zabbix</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-webhooks.html">Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-webhooks.html">Webhook Integrations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-9-troubleshooting.html">Troubleshooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-10-docker.html">Using Docker to deploy Alerta</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-11-kubernetes.html">Using Docker to deploy Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-11-kubernetes.html">Kubernetes Deployment</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Extensions</span></p>
 <ul>
@@ -103,17 +103,23 @@
 <p class="caption" role="heading"><span class="caption-text">Web UI</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="alerts.html">Alerts View</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apikeys.html">Managing API Keys in the Web UI</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Web UI Authentication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="blackouts.html">Alert Blackout Periods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apikeys.html">API Keys</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Authentication</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#login-page">Login Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sign-up">Sign Up</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#token-handling">Token Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#logout">Logout</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="blackouts.html">Blackouts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html#configuration-from-api-server">Configuration from API Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html#severity-colors">Severity Colors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="heartbeats.html">Heartbeats</a></li>
-<li class="toctree-l1"><a class="reference internal" href="permissions.html">Alert Roles, Scopes and Permissions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reports.html">Alert reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="permissions.html">Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="settings.html">User Preferences</a></li>
-<li class="toctree-l1"><a class="reference internal" href="users.html">Managing Users &amp; Groups using the web UI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users.html">Users and Groups</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul>
@@ -134,7 +140,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Web UI Authentication</li>
+      <li class="breadcrumb-item active">Authentication</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/webui/authentication.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -144,16 +150,60 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="web-ui-authentication">
-<span id="webui-auth"></span><h1>Web UI Authentication<a class="headerlink" href="#web-ui-authentication" title="Permalink to this heading"></a></h1>
+  <section id="authentication">
+<span id="webui-auth"></span><h1>Authentication<a class="headerlink" href="#authentication" title="Permalink to this heading"></a></h1>
+<p>The Alerta web UI supports multiple authentication providers. When
+<code class="docutils literal notranslate"><span class="pre">AUTH_REQUIRED</span></code> is set to <code class="docutils literal notranslate"><span class="pre">True</span></code> on the API server, users must
+log in before accessing the console.</p>
+<section id="login-page">
+<h2>Login Page<a class="headerlink" href="#login-page" title="Permalink to this heading"></a></h2>
+<p>The login page is displayed when authentication is required and no valid
+token is present. The appearance of the login page depends on the configured
+authentication provider.</p>
+<p>For <strong>Basic Auth</strong>, a username/password form is shown with an optional
+<em>Sign Up</em> link (when <code class="docutils literal notranslate"><span class="pre">SIGNUP_ENABLED</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>).</p>
+<p>For <strong>OAuth2/OIDC</strong> providers (Google, GitHub, GitLab, Keycloak, Azure,
+Cognito, PingFederate), a provider-specific login button redirects the user
+to the external identity provider. After successful authentication, the
+user is redirected back to the web console with a valid token.</p>
+<p>For <strong>SAML</strong>, the login button redirects to the configured SAML identity
+provider.</p>
+</section>
+<section id="sign-up">
+<h2>Sign Up<a class="headerlink" href="#sign-up" title="Permalink to this heading"></a></h2>
+<p>When basic auth is enabled and <code class="docutils literal notranslate"><span class="pre">SIGNUP_ENABLED</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, new users can
+create an account by clicking the <em>Sign Up</em> link on the login page. The sign
+up form requires a name, email address, and password.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Sign up is only available for the basic auth provider. When using
+OAuth2 or SAML, user accounts are created automatically on first
+login.</p>
+</div>
+</section>
+<section id="token-handling">
+<h2>Token Handling<a class="headerlink" href="#token-handling" title="Permalink to this heading"></a></h2>
+<p>After successful authentication, the web UI stores a JWT access token in
+the browser’s local storage. The token is included in all subsequent API
+requests as a <code class="docutils literal notranslate"><span class="pre">Bearer</span></code> token in the <code class="docutils literal notranslate"><span class="pre">Authorization</span></code> header.</p>
+<p>Tokens have a configurable expiry time. The web UI will attempt to refresh
+the token before it expires. If the token cannot be refreshed, the user is
+redirected to the login page.</p>
+</section>
+<section id="logout">
+<h2>Logout<a class="headerlink" href="#logout" title="Permalink to this heading"></a></h2>
+<p>Click your user avatar in the top-right corner and select <em>Sign Out</em> to
+log out. This clears the stored token from the browser and redirects to
+the login page.</p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="apikeys.html" class="btn btn-neutral float-left" title="Managing API Keys in the Web UI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="blackouts.html" class="btn btn-neutral float-right" title="Alert Blackout Periods" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="apikeys.html" class="btn btn-neutral float-left" title="API Keys" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="blackouts.html" class="btn btn-neutral float-right" title="Blackouts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

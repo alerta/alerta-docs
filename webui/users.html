@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Managing Users &amp; Groups using the web UI &mdash; Alerta 9.1 documentation</title>
+  <title>Users and Groups &mdash; Alerta 9.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -65,14 +65,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-4-alerts.html">Alerts explored in-depth</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-4-customisation.html">Customising Alerts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-5-blackouts.html">Suppressing Alerts using Blackouts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-6-auth.html">Authentication &amp; Authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-6-auth.html">Authentication Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-7-cusomter-views.html">Partition Alerts using Customer Views</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-integration-nagios.html">Nagios Integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-integration-zabbix.html">Integration with Zabbix</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-webhooks.html">Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-8-webhooks.html">Webhook Integrations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-9-troubleshooting.html">Troubleshooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-10-docker.html">Using Docker to deploy Alerta</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-11-kubernetes.html">Using Docker to deploy Alerta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/tutorial-11-kubernetes.html">Kubernetes Deployment</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Extensions</span></p>
 <ul>
@@ -103,17 +103,31 @@
 <p class="caption" role="heading"><span class="caption-text">Web UI</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="alerts.html">Alerts View</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apikeys.html">Managing API Keys in the Web UI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="authentication.html">Web UI Authentication</a></li>
-<li class="toctree-l1"><a class="reference internal" href="blackouts.html">Alert Blackout Periods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apikeys.html">API Keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">Authentication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blackouts.html">Blackouts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html#configuration-from-api-server">Configuration from API Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html#severity-colors">Severity Colors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="heartbeats.html">Heartbeats</a></li>
-<li class="toctree-l1"><a class="reference internal" href="permissions.html">Alert Roles, Scopes and Permissions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reports.html">Alert reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="permissions.html">Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports.html">Reports</a></li>
 <li class="toctree-l1"><a class="reference internal" href="settings.html">User Preferences</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Managing Users &amp; Groups using the web UI</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Users and Groups</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#users">Users</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-users">Creating Users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#listing-users">Listing Users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#editing-users">Editing Users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deleting-users">Deleting Users</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#groups">Groups</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-groups">Creating Groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#managing-members">Managing Members</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">More</span></p>
 <ul>
@@ -134,7 +148,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Managing Users &amp; Groups using the web UI</li>
+      <li class="breadcrumb-item active">Users and Groups</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/webui/users.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -144,8 +158,72 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="managing-users-groups-using-the-web-ui">
-<span id="webui-users-groups"></span><h1>Managing Users &amp; Groups using the web UI<a class="headerlink" href="#managing-users-groups-using-the-web-ui" title="Permalink to this heading"></a></h1>
+  <section id="users-and-groups">
+<span id="webui-users-groups"></span><h1>Users and Groups<a class="headerlink" href="#users-and-groups" title="Permalink to this heading"></a></h1>
+<p>The users and groups pages allow administrators to manage user accounts and
+organize users into groups. Navigate to these pages from the main menu under
+<em>Configuration &gt; Users</em> and <em>Configuration &gt; Groups</em>.</p>
+<section id="users">
+<h2>Users<a class="headerlink" href="#users" title="Permalink to this heading"></a></h2>
+<section id="creating-users">
+<h3>Creating Users<a class="headerlink" href="#creating-users" title="Permalink to this heading"></a></h3>
+<p>Click the <strong>+</strong> button to create a new user. The following fields are required:</p>
+<ul class="simple">
+<li><p><strong>Name</strong> – the user’s display name</p></li>
+<li><p><strong>Login/Email</strong> – the login identifier (typically an email address)</p></li>
+<li><p><strong>Password</strong> – the initial password (basic auth only)</p></li>
+<li><p><strong>Roles</strong> – one or more roles to assign (e.g. <code class="docutils literal notranslate"><span class="pre">admin</span></code>, <code class="docutils literal notranslate"><span class="pre">user</span></code>, <code class="docutils literal notranslate"><span class="pre">ops</span></code>)</p></li>
+<li><p><strong>Text</strong> – an optional description</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>User creation through the web UI only applies to basic auth. When
+using OAuth2 or SAML, user accounts are provisioned automatically
+on first login.</p>
+</div>
+</section>
+<section id="listing-users">
+<h3>Listing Users<a class="headerlink" href="#listing-users" title="Permalink to this heading"></a></h3>
+<p>The user list shows all registered users with the following columns:</p>
+<ul class="simple">
+<li><p><strong>Name</strong> and <strong>Login</strong></p></li>
+<li><p><strong>Status</strong> – <code class="docutils literal notranslate"><span class="pre">active</span></code>, <code class="docutils literal notranslate"><span class="pre">inactive</span></code>, or <code class="docutils literal notranslate"><span class="pre">unknown</span></code></p></li>
+<li><p><strong>Roles</strong> – the roles assigned to the user</p></li>
+<li><p><strong>Last Login</strong> – the date and time of the user’s last authentication</p></li>
+<li><p><strong>Email verified</strong> – whether the user’s email has been verified</p></li>
+</ul>
+</section>
+<section id="editing-users">
+<h3>Editing Users<a class="headerlink" href="#editing-users" title="Permalink to this heading"></a></h3>
+<p>Click on a user to edit their details. You can change the name, email,
+roles, status (active/inactive), and email verification flag. Changing a
+user’s roles immediately affects their permissions on the next API request.</p>
+</section>
+<section id="deleting-users">
+<h3>Deleting Users<a class="headerlink" href="#deleting-users" title="Permalink to this heading"></a></h3>
+<p>Click the delete icon to remove a user account. This prevents the user from
+authenticating but does not remove their historical activity from alert
+histories or notes.</p>
+</section>
+</section>
+<section id="groups">
+<h2>Groups<a class="headerlink" href="#groups" title="Permalink to this heading"></a></h2>
+<p>Groups allow you to organize users and assign permissions at the group level
+rather than per user.</p>
+<section id="creating-groups">
+<h3>Creating Groups<a class="headerlink" href="#creating-groups" title="Permalink to this heading"></a></h3>
+<p>Click the <strong>+</strong> button on the groups page to create a new group. Provide a
+group name and optional description.</p>
+</section>
+<section id="managing-members">
+<h3>Managing Members<a class="headerlink" href="#managing-members" title="Permalink to this heading"></a></h3>
+<p>Click on a group to view its members. Use the <strong>Add User</strong> button to add
+existing users to the group, or click the remove icon next to a member to
+remove them.</p>
+<p>Group names can be used in <a class="reference internal" href="permissions.html#webui-permissions"><span class="std std-ref">permission</span></a> match rules
+to grant scopes to all members of a group at once.</p>
+</section>
+</section>
 </section>
 
 
