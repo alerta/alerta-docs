@@ -224,17 +224,63 @@ The alert ``service`` is used to detail the list of effected services.
 Step 5: Groups, types and origins
 ---------------------------------
 
-TBC
+The ``group``, ``event_type``, and ``origin`` attributes provide additional
+context for alerts and can be used to organise and filter them.
+
+The ``group`` attribute is used to group related alerts together. For example,
+all network-related alerts might be assigned to a "Network" group, while
+performance alerts could use "Performance".
+
+The ``event_type`` defines the kind of alert, such as ``exceptionAlert``,
+``performanceAlert``, or ``availabilityAlert``. This can be useful for
+routing alerts to different handlers.
+
+The ``origin`` identifies the source of the alert, such as a monitoring
+tool name or a specific host. It helps trace where the alert came from.
+
+.. code-block:: console
+
+  $ alerta send -r user01 -e loginStatus -v loginError -s major -E Production \
+  -S Security -t 'user01 login failed.' --group Security --origin auth-monitor \
+  --type exceptionAlert
+  9c11a5a8-2d8c-4e2f-bc6b-75e0e4c941fd (indeterminate -> major)
 
 Step 6: Tags and Custom attributes
 ----------------------------------
 
-TBC
+Tags and custom attributes allow you to add arbitrary metadata to alerts.
+Tags are simple labels that can be used to categorise alerts, while custom
+attributes are key-value pairs for more structured data.
+
+Tags are useful for filtering alerts in the web console and can be added
+using the ``-T`` option:
+
+.. code-block:: console
+
+  $ alerta send -r user01 -e loginStatus -v loginError -s major -E Production \
+  -S Security -t 'user01 login failed.' -T login -T security
+  a3b5c7d9-1e2f-4a6b-8c0d-2e4f6a8b0c2d (indeterminate -> major)
+
+Custom attributes are added using the ``-A`` option and take the form
+``key=value``:
+
+.. code-block:: console
+
+  $ alerta send -r user01 -e loginStatus -v loginError -s major -E Production \
+  -S Security -t 'user01 login failed.' -A ip=10.0.1.23 -A region=us-east-1
+  a3b5c7d9-1e2f-4a6b-8c0d-2e4f6a8b0c2d (duplicate)
 
 Step 7: Saving raw data
 -----------------------
 
-TBC
+The ``rawData`` attribute can be used to store the original, unprocessed
+data that generated the alert. This is useful for debugging or auditing
+purposes as it preserves the complete source event.
+
+When using the ``alerta`` command-line tool, raw data can be provided
+via standard input or the ``--raw-data`` option. When using webhooks,
+the raw data from the incoming request payload is automatically saved
+to the alert.
 
 Next Steps
 ----------
