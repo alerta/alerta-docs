@@ -53,3 +53,16 @@ Dynamic 'scale up'/'scale down' environments are the defacto
 standard now; naming individual servers is lame. Use service
 discovery and dynamically generated metadata to tag alerts and
 assign custom attributes on the fly.
+
+## Alert Processing Flow
+
+The diagram below shows how an incoming alert is processed from
+receipt through to storage and notification. Plugins run twice:
+`pre_receive` before persistence (can reject, suppress, or modify)
+and `post_receive` after (for side effects like notifications and
+forwarding). Plugin routing is re-evaluated between the two phases.
+
+```{image} _static/images/alert-flow.svg
+:alt: Alert processing flow diagram
+:width: 600px
+```

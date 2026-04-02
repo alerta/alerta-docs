@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1100" font-family="Inter, -apple-system, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#ef4444"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#22c55e"/>
+    </marker>
+  </defs>
+
+  <style>
+    .box { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 1.5; rx: 6; }
+    .box-blue { fill: #eff6ff; stroke: #3b82f6; stroke-width: 1.5; rx: 6; }
+    .box-plugin { fill: #fefce8; stroke: #eab308; stroke-width: 1.5; rx: 6; }
+    .box-db { fill: #f0fdf4; stroke: #22c55e; stroke-width: 1.5; rx: 6; }
+    .box-error { fill: #fef2f2; stroke: #ef4444; stroke-width: 1.5; rx: 6; }
+    .box-result { fill: #f0fdf4; stroke: #22c55e; stroke-width: 2; rx: 6; }
+    .diamond { fill: #f8fafc; stroke: #64748b; stroke-width: 1.5; }
+    .label { fill: #1e293b; text-anchor: middle; font-weight: 500; }
+    .label-sm { fill: #64748b; text-anchor: middle; font-size: 11; }
+    .label-bold { fill: #1e293b; text-anchor: middle; font-weight: 700; }
+    .edge-label { fill: #64748b; font-size: 11; font-style: italic; }
+    .line { stroke: #64748b; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+    .line-red { stroke: #ef4444; stroke-width: 1.5; fill: none; marker-end: url(#arrow-red); }
+    .line-green { stroke: #22c55e; stroke-width: 1.5; fill: none; marker-end: url(#arrow-green); }
+    .section-label { fill: #94a3b8; font-size: 11; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+  </style>
+
+  <!-- POST /alert -->
+  <rect class="box-blue" x="270" y="20" width="180" height="36"/>
+  <text class="label-bold" x="360" y="43">POST /alert</text>
+
+  <!-- Arrow -->
+  <line class="line" x1="360" y1="56" x2="360" y2="76"/>
+
+  <!-- Parse -->
+  <rect class="box" x="270" y="78" width="180" height="36"/>
+  <text class="label" x="360" y="101">Parse &amp; Validate</text>
+
+  <line class="line" x1="360" y1="114" x2="360" y2="134"/>
+
+  <!-- Assign Customer -->
+  <rect class="box" x="270" y="136" width="180" height="36"/>
+  <text class="label" x="360" y="159">Assign Customer</text>
+
+  <line class="line" x1="360" y1="172" x2="360" y2="192"/>
+
+  <!-- Plugin Routing -->
+  <rect class="box-plugin" x="245" y="194" width="230" height="36"/>
+  <text class="label" x="360" y="217">Plugin Routing</text>
+
+  <line class="line" x1="360" y1="230" x2="360" y2="256"/>
+
+  <!-- Section: PRE-RECEIVE -->
+  <text class="section-label" x="42" y="280">pre_receive</text>
+
+  <!-- Pre-receive box -->
+  <rect class="box-plugin" x="160" y="258" width="400" height="70" style="fill: #fefce8; fill-opacity: 0.4;"/>
+  <text class="label" x="260" y="282">reject</text>
+  <text class="label-sm" x="260" y="296">policy check</text>
+  <text class="label" x="360" y="282">blackout</text>
+  <text class="label-sm" x="360" y="296">suppression</text>
+  <text class="label" x="460" y="282">heartbeat</text>
+  <text class="label-sm" x="460" y="296">conversion</text>
+  <text class="label-sm" x="360" y="318">+ other enabled plugins...</text>
+
+  <!-- Arrow down from pre-receive -->
+  <line class="line" x1="360" y1="328" x2="360" y2="358"/>
+
+  <!-- Error branches (left side) -->
+  <rect class="box-error" x="20" y="340" width="130" height="30"/>
+  <text class="label" x="85" y="360" style="fill:#ef4444; font-size:12;">403 Rejected</text>
+
+  <rect class="box-error" x="20" y="380" width="130" height="30"/>
+  <text class="label" x="85" y="400" style="fill:#ef4444; font-size:12;">429 Rate Limited</text>
+
+  <rect class="box-error" x="20" y="420" width="130" height="30"/>
+  <text class="label" x="85" y="440" style="fill:#eab308; font-size:12;">202 Suppressed</text>
+
+  <rect class="box-error" x="20" y="460" width="130" height="30"/>
+  <text class="label" x="85" y="480" style="fill:#3b82f6; font-size:12;">202 Heartbeat</text>
+
+  <!-- Lines from pre-receive to errors -->
+  <path class="line-red" d="M160,290 L150,290 L150,355 L150,355" style="marker-end: url(#arrow-red);"/>
+
+  <!-- Is Duplicate? diamond -->
+  <polygon class="diamond" points="360,360 430,395 360,430 290,395"/>
+  <text class="label" x="360" y="399">Duplicate?</text>
+
+  <!-- Yes: Deduplicate -->
+  <text class="edge-label" x="220" y="392">yes</text>
+  <line class="line" x1="290" y1="395" x2="210" y2="395"/>
+  <rect class="box-db" x="120" y="520" width="160" height="50"/>
+  <text class="label" x="200" y="542">Deduplicate</text>
+  <text class="label-sm" x="200" y="558">update count &amp; attrs</text>
+  <line class="line" x1="200" y1="395" x2="200" y2="518"/>
+
+  <!-- No: Is Correlated? -->
+  <text class="edge-label" x="445" y="392">no</text>
+  <line class="line" x1="430" y1="395" x2="500" y2="395"/>
+
+  <polygon class="diamond" points="560,370 630,395 560,420 490,395"/>
+  <text class="label" x="560" y="399">Correlated?</text>
+
+  <!-- Yes: Update -->
+  <text class="edge-label" x="565" y="445">yes</text>
+  <line class="line" x1="560" y1="420" x2="560" y2="520"/>
+  <rect class="box-db" x="480" y="520" width="160" height="50"/>
+  <text class="label" x="560" y="542">Update</text>
+  <text class="label-sm" x="560" y="558">change severity/status</text>
+
+  <!-- No: Create -->
+  <text class="edge-label" x="655" y="392">no</text>
+  <line class="line" x1="630" y1="395" x2="680" y2="395"/>
+  <line class="line" x1="680" y1="395" x2="680" y2="520"/>
+  <rect class="box-db" x="648" y="520" width="56" height="50"/>
+  <text class="label" x="676" y="542">Create</text>
+  <text class="label-sm" x="676" y="558">new</text>
+
+  <!-- Converge lines -->
+  <line class="line" x1="200" y1="570" x2="200" y2="610"/>
+  <line class="line" x1="560" y1="570" x2="560" y2="610"/>
+  <line class="line" x1="676" y1="570" x2="676" y2="600"/>
+  <line style="stroke: #64748b; stroke-width: 1.5; fill: none;" x1="200" y1="610" x2="560" y2="610"/>
+  <line style="stroke: #64748b; stroke-width: 1.5; fill: none;" x1="560" y1="610" x2="676" y2="600"/>
+  <line class="line" x1="360" y1="610" x2="360" y2="638"/>
+
+  <!-- Re-evaluate routing -->
+  <rect class="box-plugin" x="245" y="640" width="230" height="36"/>
+  <text class="label" x="360" y="663">Re-evaluate Routing</text>
+
+  <line class="line" x1="360" y1="676" x2="360" y2="706"/>
+
+  <!-- Section: POST-RECEIVE -->
+  <text class="section-label" x="42" y="730">post_receive</text>
+
+  <!-- Post-receive box -->
+  <rect class="box-plugin" x="160" y="708" width="400" height="70" style="fill: #fefce8; fill-opacity: 0.4;"/>
+  <text class="label" x="260" y="732">forwarder</text>
+  <text class="label-sm" x="260" y="746">relay to other Alerta</text>
+  <text class="label" x="360" y="732">escalate</text>
+  <text class="label-sm" x="360" y="746">auto bump severity</text>
+  <text class="label" x="460" y="732">notify</text>
+  <text class="label-sm" x="460" y="746">email, Slack, etc.</text>
+  <text class="label-sm" x="360" y="768">+ other enabled plugins...</text>
+
+  <line class="line" x1="360" y1="778" x2="360" y2="808"/>
+
+  <!-- Plugins modified? -->
+  <polygon class="diamond" points="360,810 445,845 360,880 275,845"/>
+  <text class="label" x="360" y="842">Plugins</text>
+  <text class="label" x="360" y="856">modified?</text>
+
+  <!-- Yes: update tags & attrs -->
+  <text class="edge-label" x="460" y="838">yes</text>
+  <line class="line" x1="445" y1="845" x2="510" y2="845"/>
+  <rect class="box" x="512" y="827" width="175" height="36"/>
+  <text class="label" x="600" y="850">Update tags &amp; attrs</text>
+  <line class="line" x1="600" y1="863" x2="600" y2="920"/>
+  <line style="stroke: #64748b; stroke-width: 1.5; fill: none;" x1="360" y1="920" x2="600" y2="920"/>
+
+  <!-- No: straight down -->
+  <text class="edge-label" x="340" y="895">no</text>
+  <line class="line" x1="360" y1="880" x2="360" y2="938"/>
+
+  <!-- Audit Trail -->
+  <rect class="box" x="270" y="940" width="180" height="36"/>
+  <text class="label" x="360" y="963">Audit Trail</text>
+
+  <line class="line-green" x1="360" y1="976" x2="360" y2="1006"/>
+
+  <!-- 201 Response -->
+  <rect class="box-result" x="270" y="1008" width="180" height="36"/>
+  <text class="label-bold" x="360" y="1031" style="fill:#16a34a;">201  { alert }</text>
+</svg>
