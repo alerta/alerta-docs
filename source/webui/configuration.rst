@@ -87,18 +87,18 @@ shown below that.
       "provider": "google", 
       "refresh_interval": 5000, 
       "severity": {
-        "cleared": 5, 
+        "cleared": 7, 
         "critical": 1, 
-        "debug": 7, 
+        "debug": 8, 
         "indeterminate": 5, 
         "informational": 6, 
         "major": 2, 
         "minor": 3, 
-        "normal": 5, 
-        "ok": 5, 
+        "normal": 7, 
+        "ok": 7, 
         "security": 0, 
-        "trace": 8, 
-        "unknown": 9, 
+        "trace": 9, 
+        "unknown": 10, 
         "warning": 4
       }, 
       "signup_enabled": true, 
@@ -130,13 +130,13 @@ Severity Colors
     <tr><td><code>minor</code></td><td>3</td><td><span style="display:inline-block;width:14px;height:14px;background:#FFFF00;border:1px solid #ccc;vertical-align:middle"></span> <code>#FFFF00</code> Yellow</td></tr>
     <tr><td><code>warning</code></td><td>4</td><td><span style="display:inline-block;width:14px;height:14px;background:#1E90FF;border:1px solid #ccc;vertical-align:middle"></span> <code>#1E90FF</code> DodgerBlue</td></tr>
     <tr><td><code>indeterminate</code></td><td>5</td><td><span style="display:inline-block;width:14px;height:14px;background:#ADD8E6;border:1px solid #ccc;vertical-align:middle"></span> <code>#ADD8E6</code> LightBlue</td></tr>
-    <tr><td><code>cleared</code></td><td>5</td><td><span style="display:inline-block;width:14px;height:14px;background:#00CC00;border:1px solid #ccc;vertical-align:middle"></span> <code>#00CC00</code> Green</td></tr>
-    <tr><td><code>normal</code></td><td>5</td><td><span style="display:inline-block;width:14px;height:14px;background:#00CC00;border:1px solid #ccc;vertical-align:middle"></span> <code>#00CC00</code> Green</td></tr>
-    <tr><td><code>ok</code></td><td>5</td><td><span style="display:inline-block;width:14px;height:14px;background:#00CC00;border:1px solid #ccc;vertical-align:middle"></span> <code>#00CC00</code> Green</td></tr>
     <tr><td><code>informational</code></td><td>6</td><td><span style="display:inline-block;width:14px;height:14px;background:#00CC00;border:1px solid #ccc;vertical-align:middle"></span> <code>#00CC00</code> Green</td></tr>
-    <tr><td><code>debug</code></td><td>7</td><td><span style="display:inline-block;width:14px;height:14px;background:#9D006D;border:1px solid #ccc;vertical-align:middle"></span> <code>#9D006D</code> Purple</td></tr>
-    <tr><td><code>trace</code></td><td>8</td><td><span style="display:inline-block;width:14px;height:14px;background:#7554BF;border:1px solid #ccc;vertical-align:middle"></span> <code>#7554BF</code> Violet</td></tr>
-    <tr><td><code>unknown</code></td><td>9</td><td><span style="display:inline-block;width:14px;height:14px;background:#C0C0C0;border:1px solid #ccc;vertical-align:middle"></span> <code>#C0C0C0</code> Silver</td></tr>
+    <tr><td><code>cleared</code></td><td>7</td><td><span style="display:inline-block;width:14px;height:14px;background:#00CC00;border:1px solid #ccc;vertical-align:middle"></span> <code>#00CC00</code> Green</td></tr>
+    <tr><td><code>normal</code></td><td>7</td><td><span style="display:inline-block;width:14px;height:14px;background:#00CC00;border:1px solid #ccc;vertical-align:middle"></span> <code>#00CC00</code> Green</td></tr>
+    <tr><td><code>ok</code></td><td>7</td><td><span style="display:inline-block;width:14px;height:14px;background:#00CC00;border:1px solid #ccc;vertical-align:middle"></span> <code>#00CC00</code> Green</td></tr>
+    <tr><td><code>debug</code></td><td>8</td><td><span style="display:inline-block;width:14px;height:14px;background:#9D006D;border:1px solid #ccc;vertical-align:middle"></span> <code>#9D006D</code> Purple</td></tr>
+    <tr><td><code>trace</code></td><td>9</td><td><span style="display:inline-block;width:14px;height:14px;background:#7554BF;border:1px solid #ccc;vertical-align:middle"></span> <code>#7554BF</code> Violet</td></tr>
+    <tr><td><code>unknown</code></td><td>10</td><td><span style="display:inline-block;width:14px;height:14px;background:#C0C0C0;border:1px solid #ccc;vertical-align:middle"></span> <code>#C0C0C0</code> Silver</td></tr>
     </tbody>
     </table>
 

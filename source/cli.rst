@@ -986,7 +986,7 @@ Display client config downloaded from API server.
     cas_server          : None
     provider            : google
     refresh_interval    : 5000
-    severity            : {'cleared': 5, 'critical': 1, 'debug': 7, 'indeterminate': 5, 'informational': 6, 'major': 2, 'minor': 3, 'normal': 5, 'ok': 5, 'security': 0, 'trace': 8, 'unknown': 9, 'warning': 4}
+    severity            : {'cleared': 7, 'critical': 1, 'debug': 8, 'indeterminate': 5, 'informational': 6, 'major': 2, 'minor': 3, 'normal': 7, 'ok': 7, 'security': 0, 'trace': 9, 'unknown': 10, 'warning': 4}
     signup_enabled      : True
     tracking_id         : UA-44644195-5
 

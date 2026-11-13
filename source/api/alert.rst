@@ -142,35 +142,79 @@ Alert Severities
 The `Alarms in Syslog`_ :RFC:`5674` was referenced when defining
 alert severities.
 
-+-------------------+---------------+--------+
-| Severity          | Severity Code | Colour |
-+===================+===============+========+
-| ``security``      | 0             | Black  |
-+-------------------+---------------+--------+
-| ``critical``      | 1             | Red    |
-+-------------------+---------------+--------+
-| ``major``         | 2             | Orange |
-+-------------------+---------------+--------+
-| ``minor``         | 3             | Yellow |
-+-------------------+---------------+--------+
-| ``warning``       | 4             | Blue   |
-+-------------------+---------------+--------+
-| ``informational`` | 5             | Green  |
-+-------------------+---------------+--------+
-| ``debug``         | 6             | Purple |
-+-------------------+---------------+--------+
-| ``trace``         | 7             | Grey   |
-+-------------------+---------------+--------+
-| ``indeterminate`` | 8             | Silver |
-+-------------------+---------------+--------+
-| ``cleared``       | 9             | Green  |
-+-------------------+---------------+--------+
-| ``normal``        | 9             | Green  |
-+-------------------+---------------+--------+
-| ``ok``            | 9             | Green  |
-+-------------------+---------------+--------+
-| ``unknown``       | 10            | Grey   |
-+-------------------+---------------+--------+
+The table shows the defaults. A lower severity code is more severe.
+The ``SEVERITY_MAP`` and ``COLOR_MAP`` settings change them, see
+:ref:`severity settings`.
+
++-------------------+---------------+--------------------------+
+| Severity          | Severity Code | Colour                   |
++===================+===============+==========================+
+| ``security``      | 0             | |blue| Blue              |
++-------------------+---------------+--------------------------+
+| ``critical``      | 1             | |red| Red                |
++-------------------+---------------+--------------------------+
+| ``major``         | 2             | |orange| Orange          |
++-------------------+---------------+--------------------------+
+| ``minor``         | 3             | |yellow| Yellow          |
++-------------------+---------------+--------------------------+
+| ``warning``       | 4             | |dodgerblue| Dodger blue |
++-------------------+---------------+--------------------------+
+| ``indeterminate`` | 5             | |lightblue| Light blue   |
++-------------------+---------------+--------------------------+
+| ``informational`` | 6             | |green| Green            |
++-------------------+---------------+--------------------------+
+| ``cleared``       | 7             | |green| Green            |
++-------------------+---------------+--------------------------+
+| ``normal``        | 7             | |green| Green            |
++-------------------+---------------+--------------------------+
+| ``ok``            | 7             | |green| Green            |
++-------------------+---------------+--------------------------+
+| ``debug``         | 8             | |purple| Purple          |
++-------------------+---------------+--------------------------+
+| ``trace``         | 9             | |violet| Violet          |
++-------------------+---------------+--------------------------+
+| ``unknown``       | 10            | |silver| Silver          |
++-------------------+---------------+--------------------------+
+
+.. |blue| raw:: html
+
+    <span style="display:inline-block;width:14px;height:14px;background:blue;border:1px solid #ccc;vertical-align:middle"></span>
+
+.. |red| raw:: html
+
+    <span style="display:inline-block;width:14px;height:14px;background:red;border:1px solid #ccc;vertical-align:middle"></span>
+
+.. |orange| raw:: html
+
+    <span style="display:inline-block;width:14px;height:14px;background:orange;border:1px solid #ccc;vertical-align:middle"></span>
+
+.. |yellow| raw:: html
+
+    <span style="display:inline-block;width:14px;height:14px;background:yellow;border:1px solid #ccc;vertical-align:middle"></span>
+
+.. |dodgerblue| raw:: html
+
+    <span style="display:inline-block;width:14px;height:14px;background:dodgerblue;border:1px solid #ccc;vertical-align:middle"></span>
+
+.. |lightblue| raw:: html
+
+    <span style="display:inline-block;width:14px;height:14px;background:lightblue;border:1px solid #ccc;vertical-align:middle"></span>
+
+.. |green| raw:: html
+
+    <span style="display:inline-block;width:14px;height:14px;background:#00CC00;border:1px solid #ccc;vertical-align:middle"></span>
+
+.. |purple| raw:: html
+
+    <span style="display:inline-block;width:14px;height:14px;background:#9D006D;border:1px solid #ccc;vertical-align:middle"></span>
+
+.. |violet| raw:: html
+
+    <span style="display:inline-block;width:14px;height:14px;background:#7554BF;border:1px solid #ccc;vertical-align:middle"></span>
+
+.. |silver| raw:: html
+
+    <span style="display:inline-block;width:14px;height:14px;background:silver;border:1px solid #ccc;vertical-align:middle"></span>
 
 .. _Alarms in Syslog: http://tools.ietf.org/html/rfc5674#section-2
 
